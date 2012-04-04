@@ -45,6 +45,7 @@
 		A9C5A0241517AB0E00A3F8C5 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A9C5A0231517AB0E00A3F8C5 /* icon.png */; };
 		A9F0B4BB1524731F003C931B /* FiltrosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F0B4BA1524731F003C931B /* FiltrosViewController.m */; };
 		A9F0B4BF152477C9003C931B /* ComparadorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F0B4BE152477C9003C931B /* ComparadorViewController.m */; };
+		DAFB6903152D138800DC74CB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFB6902152D138800DC74CB /* LoginViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,6 +105,8 @@
 		A9F0B4BA1524731F003C931B /* FiltrosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiltrosViewController.m; sourceTree = "<group>"; };
 		A9F0B4BD152477C9003C931B /* ComparadorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComparadorViewController.h; sourceTree = "<group>"; };
 		A9F0B4BE152477C9003C931B /* ComparadorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComparadorViewController.m; sourceTree = "<group>"; };
+		DAFB6901152D138800DC74CB /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		DAFB6902152D138800DC74CB /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +223,8 @@
 		A9CA2B4E151E496500A29DE3 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				DAFB6901152D138800DC74CB /* LoginViewController.h */,
+				DAFB6902152D138800DC74CB /* LoginViewController.m */,
 				A9C5A00F1517A78600A3F8C5 /* ListaVinhosViewController.h */,
 				A9C5A0101517A78600A3F8C5 /* ListaVinhosViewController.m */,
 				A9BE2C101518C254002E4E2A /* ListaProvasViewController.h */,
@@ -342,6 +347,7 @@
 				A9A69B9F151FCEC500FC9073 /* NovaProvaViewController.m in Sources */,
 				A9F0B4BB1524731F003C931B /* FiltrosViewController.m in Sources */,
 				A9F0B4BF152477C9003C931B /* ComparadorViewController.m in Sources */,
+				DAFB6903152D138800DC74CB /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

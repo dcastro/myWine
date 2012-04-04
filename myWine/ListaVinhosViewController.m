@@ -10,9 +10,14 @@
 
 #import "DetailViewController.h"
 
+#import "LoginViewController.h"
+
 @interface ListaVinhosViewController () {
     NSMutableArray *_objects;
 }
+@end
+
+@interface ListaVinhosViewController () <LoginViewControllerDelegate>
 @end
 
 @implementation ListaVinhosViewController
@@ -141,5 +146,14 @@
 (NovoVinhoViewController *)controller {
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
+
+
+- (void)LoginViewControllerDidLogin:(LoginViewController *)controller {
+    NSLog(@"Dismissing LoginController");
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
+
 
 @end

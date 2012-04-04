@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "LoginViewController.h"
+#import "ListaVinhosViewController.h"
 
 @implementation AppDelegate
 
@@ -23,6 +25,18 @@
     UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
     UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
     splitViewController.delegate = (id)navigationController.topViewController;
+    
+    //show login controller at startup
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    LoginViewController *lvc = (LoginViewController *) [storyboard instantiateViewControllerWithIdentifier:@"firstLogin"];
+    lvc.modalPresentationStyle = UIModalPresentationFullScreen;
+    [_window makeKeyAndVisible];
+    [splitViewController presentModalViewController:lvc animated:YES];
+    
+    //set ListaVinhos as Login's delegate
+    ListaVinhosViewController *lvvc = [[[[splitViewController viewControllers] objectAtIndex:0] viewControllers ] objectAtIndex:0 ];
+    lvc.delegate = lvvc;
+    
     return YES;
 }
 							
