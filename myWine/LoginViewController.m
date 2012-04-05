@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "Language.h"
 
 @interface LoginViewController ()
 
@@ -47,7 +48,16 @@
     NSLog(@"LoginController's delegate: %@", self.delegate);
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Bem Vindo!" message:@"Login efectuado com sucesso" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     [alert show];
-    [self.delegate LoginViewControllerDidLogin:self];
+    //[self.delegate LoginViewControllerDidLogin:self];
+    
+    Language *lan = [Language sharedLanguage];
+
+    [lan selectedLanguage];
+    NSLog(@"%d", [lan selectedLanguage]);
+    
+    NSLog(@"%@", [lan languageSelectedStringForKey:@"Welcome"]);
+    
+    lan.someProperty = @"LOOL";
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {

@@ -35,7 +35,6 @@
 		A9C5A0051517A78600A3F8C5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A9C5A0031517A78600A3F8C5 /* InfoPlist.strings */; };
 		A9C5A0071517A78600A3F8C5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A9C5A0061517A78600A3F8C5 /* main.m */; };
 		A9C5A00B1517A78600A3F8C5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A9C5A00A1517A78600A3F8C5 /* AppDelegate.m */; };
-		A9C5A00E1517A78600A3F8C5 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9C5A00C1517A78600A3F8C5 /* MainStoryboard.storyboard */; };
 		A9C5A0111517A78600A3F8C5 /* ListaVinhosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9C5A0101517A78600A3F8C5 /* ListaVinhosViewController.m */; };
 		A9C5A0141517A78600A3F8C5 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9C5A0131517A78600A3F8C5 /* DetailViewController.m */; };
 		A9C5A01F1517A7FF00A3F8C5 /* images-1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A9C5A01B1517A7FF00A3F8C5 /* images-1.jpeg */; };
@@ -45,6 +44,11 @@
 		A9C5A0241517AB0E00A3F8C5 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A9C5A0231517AB0E00A3F8C5 /* icon.png */; };
 		A9F0B4BB1524731F003C931B /* FiltrosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F0B4BA1524731F003C931B /* FiltrosViewController.m */; };
 		A9F0B4BF152477C9003C931B /* ComparadorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F0B4BE152477C9003C931B /* ComparadorViewController.m */; };
+		DA7D48A4152E0AAD00C525FB /* Language.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7D48A3152E0AAD00C525FB /* Language.m */; };
+		DADE7ADA152E136400F0F680 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DADE7AD9152E136400F0F680 /* MainStoryboard.storyboard */; };
+		DADE7AF1152E170300F0F680 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DADE7AEF152E170300F0F680 /* Localizable.strings */; };
+		DADE7AF3152E170D00F0F680 /* 184-warning.png in Resources */ = {isa = PBXBuildFile; fileRef = A9BFB2C2151D442600588B59 /* 184-warning.png */; };
+		DADE7AF5152E175B00F0F680 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DADE7AEF152E170300F0F680 /* Localizable.strings */; };
 		DAFB6903152D138800DC74CB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFB6902152D138800DC74CB /* LoginViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -91,7 +95,6 @@
 		A9C5A0081517A78600A3F8C5 /* myWine-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "myWine-Prefix.pch"; sourceTree = "<group>"; };
 		A9C5A0091517A78600A3F8C5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A9C5A00A1517A78600A3F8C5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		A9C5A00D1517A78600A3F8C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		A9C5A00F1517A78600A3F8C5 /* ListaVinhosViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListaVinhosViewController.h; sourceTree = "<group>"; };
 		A9C5A0101517A78600A3F8C5 /* ListaVinhosViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListaVinhosViewController.m; sourceTree = "<group>"; };
 		A9C5A0121517A78600A3F8C5 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
@@ -105,6 +108,12 @@
 		A9F0B4BA1524731F003C931B /* FiltrosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiltrosViewController.m; sourceTree = "<group>"; };
 		A9F0B4BD152477C9003C931B /* ComparadorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComparadorViewController.h; sourceTree = "<group>"; };
 		A9F0B4BE152477C9003C931B /* ComparadorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComparadorViewController.m; sourceTree = "<group>"; };
+		DA7D48A2152E0AAD00C525FB /* Language.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Language.h; sourceTree = "<group>"; };
+		DA7D48A3152E0AAD00C525FB /* Language.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Language.m; sourceTree = "<group>"; };
+		DADE7AD9152E136400F0F680 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
+		DADE7AF0152E170300F0F680 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = myWine/en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DADE7AF2152E170D00F0F680 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = myWine/fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DADE7AF4152E175B00F0F680 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = myWine/pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DAFB6901152D138800DC74CB /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		DAFB6902152D138800DC74CB /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -126,9 +135,9 @@
 		A9A69BA0151FDA3000FC9073 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				DADE7AD9152E136400F0F680 /* MainStoryboard.storyboard */,
 				A9C5A0091517A78600A3F8C5 /* AppDelegate.h */,
 				A9C5A00A1517A78600A3F8C5 /* AppDelegate.m */,
-				A9C5A00C1517A78600A3F8C5 /* MainStoryboard.storyboard */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -137,6 +146,8 @@
 			isa = PBXGroup;
 			children = (
 				A9BE2C141518C330002E4E2A /* Prova.h */,
+				DA7D48A2152E0AAD00C525FB /* Language.h */,
+				DA7D48A3152E0AAD00C525FB /* Language.m */,
 				A9BE2C151518C330002E4E2A /* Prova.m */,
 				A9C28887151FBD1900C2F58D /* Vinho.h */,
 				A9C28888151FBD1900C2F58D /* Vinho.m */,
@@ -188,6 +199,7 @@
 		A9C5A0011517A78600A3F8C5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DADE7AEF152E170300F0F680 /* Localizable.strings */,
 				A9C5A0021517A78600A3F8C5 /* myWine-Info.plist */,
 				A9C5A0031517A78600A3F8C5 /* InfoPlist.strings */,
 				A9C5A0061517A78600A3F8C5 /* main.m */,
@@ -286,6 +298,8 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				fr,
+				pt,
 			);
 			mainGroup = A9C59FEB1517A78500A3F8C5;
 			productRefGroup = A9C59FF71517A78500A3F8C5 /* Products */;
@@ -303,7 +317,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9C5A0051517A78600A3F8C5 /* InfoPlist.strings in Resources */,
-				A9C5A00E1517A78600A3F8C5 /* MainStoryboard.storyboard in Resources */,
 				A9C5A01F1517A7FF00A3F8C5 /* images-1.jpeg in Resources */,
 				A9C5A0201517A7FF00A3F8C5 /* images-2.jpeg in Resources */,
 				A9C5A0211517A7FF00A3F8C5 /* images-3.jpeg in Resources */,
@@ -323,6 +336,10 @@
 				A975DE01151A3CCB002FC7FB /* 02-redo.png in Resources */,
 				A9BDB692151A4F420032921A /* 06-magnify.png in Resources */,
 				A9BFB2C3151D442600588B59 /* 184-warning.png in Resources */,
+				DADE7ADA152E136400F0F680 /* MainStoryboard.storyboard in Resources */,
+				DADE7AF1152E170300F0F680 /* Localizable.strings in Resources */,
+				DADE7AF3152E170D00F0F680 /* 184-warning.png in Resources */,
+				DADE7AF5152E175B00F0F680 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,6 +365,7 @@
 				A9F0B4BB1524731F003C931B /* FiltrosViewController.m in Sources */,
 				A9F0B4BF152477C9003C931B /* ComparadorViewController.m in Sources */,
 				DAFB6903152D138800DC74CB /* LoginViewController.m in Sources */,
+				DA7D48A4152E0AAD00C525FB /* Language.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,12 +380,15 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		A9C5A00C1517A78600A3F8C5 /* MainStoryboard.storyboard */ = {
+		DADE7AEF152E170300F0F680 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				A9C5A00D1517A78600A3F8C5 /* en */,
+				DADE7AF0152E170300F0F680 /* en */,
+				DADE7AF2152E170D00F0F680 /* fr */,
+				DADE7AF4152E175B00F0F680 /* pt */,
 			);
-			name = MainStoryboard.storyboard;
+			name = Localizable.strings;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
