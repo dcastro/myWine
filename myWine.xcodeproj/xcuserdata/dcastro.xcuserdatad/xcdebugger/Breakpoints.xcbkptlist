@@ -34,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "myWine/LoginViewController.m"
-         timestampString = "355339213.19533"
+         timestampString = "355346330.525019"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "52"
-         endingLineNumber = "52"
+         startingLineNumber = "75"
+         endingLineNumber = "75"
          landmarkName = "-doLogin:"
          landmarkType = "5">
       </FileBreakpoint>

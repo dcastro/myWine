@@ -801,9 +801,6 @@ A "descoberta" do Vinho do Porto é polémica. Uma das versões, defendida pelos
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
-                                <connections>
-                                    <outlet property="delegate" destination="geJ-dX-iqE" id="7in-e0-8lo"/>
-                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="AO3-fT-my6">
                                 <rect key="frame" x="408" y="595" width="232" height="31"/>
@@ -815,14 +812,14 @@ A "descoberta" do Vinho do Porto é polémica. Uma das versões, defendida pelos
                                 </connections>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Nome do utilizador" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="28" id="Ab4-gD-6EP">
-                                <rect key="frame" x="145" y="524" width="234" height="56"/>
+                                <rect key="frame" x="130" y="524" width="260" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="29"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Palavra chave" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="28" id="6vu-GB-SKv">
-                                <rect key="frame" x="145" y="588" width="223" height="45"/>
+                                <rect key="frame" x="130" y="588" width="223" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -836,28 +833,72 @@ A "descoberta" do Vinho do Porto é polémica. Uma das versões, defendida pelos
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Idioma" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="28" id="4Q6-JF-PpG">
-                                <rect key="frame" x="324" y="243" width="120" height="64"/>
+                                <rect key="frame" x="289" y="243" width="191" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="britFlag.jpeg" id="WDr-Mi-QvL">
-                                <rect key="frame" x="509" y="325" width="191" height="111"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                            </imageView>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="FranceFlag.jpeg" id="cD2-x9-EtH">
-                                <rect key="frame" x="71" y="325" width="191" height="111"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="ptFlag.jpeg" id="cnk-tK-Q1U">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="K2x-gV-WRJ">
+                                <rect key="frame" x="67" y="325" width="191" height="111"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="FranceFlag.jpeg">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="selectLanguage:" destination="geJ-dX-iqE" eventType="touchUpInside" id="Thm-d4-P2o"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="a3c-SO-3Yj">
                                 <rect key="frame" x="289" y="325" width="191" height="111"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="ptFlag.jpeg">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="selectLanguage:" destination="geJ-dX-iqE" eventType="touchUpInside" id="L0v-TR-IBL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="a3q-up-odj">
+                                <rect key="frame" x="509" y="325" width="191" height="111"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="britFlag.jpeg">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="selectLanguage:" destination="geJ-dX-iqE" eventType="touchUpInside" id="lSq-MN-CJZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="ceX-2F-s9b"/>
+                    <connections>
+                        <outlet property="configLabel" destination="VBU-Iq-zDC" id="Dav-1L-Tvo"/>
+                        <outlet property="enFlag" destination="a3q-up-odj" id="pwD-KC-xQV"/>
+                        <outlet property="frFlag" destination="K2x-gV-WRJ" id="KlA-SG-0y5"/>
+                        <outlet property="languageLabel" destination="4Q6-JF-PpG" id="Moq-vV-kT1"/>
+                        <outlet property="loginButton" destination="XR3-al-pqb" id="ddo-3m-VOV"/>
+                        <outlet property="passwordLabel" destination="6vu-GB-SKv" id="bfd-B8-4EO"/>
+                        <outlet property="ptFlag" destination="a3c-SO-3Yj" id="gsk-iX-d8M"/>
+                        <outlet property="usernameLabel" destination="Ab4-gD-6EP" id="40W-lV-Etn"/>
+                        <outlet property="welcomeLabel" destination="GTI-he-OuM" id="jZ8-WD-KSQ"/>
+                    </connections>
                 </viewController>
             </objects>
             <point key="canvasLocation" x="-3559" y="-3003"/>
@@ -2074,6 +2115,16 @@ A "descoberta" do Vinho do Porto é polémica. Uma das versões, defendida pelos
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
             <relationships>
                 <relationship kind="action" name="doLogin:"/>
+                <relationship kind="action" name="selectLanguage:"/>
+                <relationship kind="outlet" name="configLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="enFlag" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="frFlag" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="languageLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="loginButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="passwordLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="ptFlag" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="usernameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="welcomeLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="NovaProvaViewController" superclassName="UIViewController">

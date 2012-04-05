@@ -18,7 +18,17 @@
 @interface LoginViewController : UIViewController <UITextFieldDelegate>
 
 @property (nonatomic, weak) id <LoginViewControllerDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UIButton *frFlag;
+@property (weak, nonatomic) IBOutlet UIButton *ptFlag;
+@property (weak, nonatomic) IBOutlet UIButton *enFlag;
+@property (weak, nonatomic) IBOutlet UILabel *languageLabel;
+@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *passwordLabel;
+@property (weak, nonatomic) IBOutlet UILabel *welcomeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *configLabel;
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
 
 - (IBAction)doLogin:(id)sender;
+- (IBAction)selectLanguage:(id)sender;
 
 @end
