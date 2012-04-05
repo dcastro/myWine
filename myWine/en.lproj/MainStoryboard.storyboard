@@ -800,13 +800,19 @@ A "descoberta" do Vinho do Porto é polémica. Uma das versões, defendida pelos
                                 <rect key="frame" x="408" y="536" width="232" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="geJ-dX-iqE" id="7in-e0-8lo"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="AO3-fT-my6">
                                 <rect key="frame" x="408" y="595" width="232" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="geJ-dX-iqE" id="ESl-VN-pFE"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Nome do utilizador" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="28" id="Ab4-gD-6EP">
                                 <rect key="frame" x="145" y="524" width="234" height="56"/>
