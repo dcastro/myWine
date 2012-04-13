@@ -47,8 +47,6 @@
 		DA7D48A4152E0AAD00C525FB /* Language.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7D48A3152E0AAD00C525FB /* Language.m */; };
 		DADE7ADA152E136400F0F680 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DADE7AD9152E136400F0F680 /* MainStoryboard.storyboard */; };
 		DADE7AF1152E170300F0F680 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DADE7AEF152E170300F0F680 /* Localizable.strings */; };
-		DADE7AF3152E170D00F0F680 /* 184-warning.png in Resources */ = {isa = PBXBuildFile; fileRef = A9BFB2C2151D442600588B59 /* 184-warning.png */; };
-		DADE7AF5152E175B00F0F680 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DADE7AEF152E170300F0F680 /* Localizable.strings */; };
 		DAFB6903152D138800DC74CB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFB6902152D138800DC74CB /* LoginViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -338,8 +336,6 @@
 				A9BFB2C3151D442600588B59 /* 184-warning.png in Resources */,
 				DADE7ADA152E136400F0F680 /* MainStoryboard.storyboard in Resources */,
 				DADE7AF1152E170300F0F680 /* Localizable.strings in Resources */,
-				DADE7AF3152E170D00F0F680 /* 184-warning.png in Resources */,
-				DADE7AF5152E175B00F0F680 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

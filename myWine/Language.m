@@ -12,7 +12,6 @@ static Language *sharedMyLanguage = nil;
 
 @implementation Language
 
-@synthesize someProperty;
 @synthesize selectedLanguage;
 
 
@@ -26,10 +25,8 @@ static Language *sharedMyLanguage = nil;
 }
 - (id)init {
     if (self = [super init]) {
-        someProperty = [[NSString alloc] initWithString:@"Default Property Value"];
         
-        // TODO: load default language
-        
+        #warning TODO: load default language from saved preferences
         selectedLanguage = PT;
     }
     return self;

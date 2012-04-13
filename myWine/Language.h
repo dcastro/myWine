@@ -12,11 +12,8 @@
 #define PT 2
 #define EN 3
 
-@interface Language : NSObject {
-    NSString *someProperty;
-}
+@interface Language : NSObject
 
-@property (nonatomic, retain) NSString *someProperty;
 @property (assign,readwrite) int selectedLanguage;
 
 + (id)sharedLanguage;
