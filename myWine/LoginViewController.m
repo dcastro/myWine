@@ -91,7 +91,7 @@
     NSLog(@"%d", selected.tag);
     
     Language *lan = [Language instance];
-    lan.selectedLanguage = selected.tag;
+    [lan setLang:selected.tag];
     
     [self configureView];
     

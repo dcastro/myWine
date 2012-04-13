@@ -59,6 +59,11 @@ static Language *sharedMyLanguage = nil;
     selectedLanguage = PT;
 }
 
+-(void) setLang:(int) lang {
+    selectedLanguage = lang;
+    [self saveState];
+}
+
 
 
 
