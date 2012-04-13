@@ -16,7 +16,7 @@
 
 @property (assign,readwrite) int selectedLanguage;
 
-+ (id)sharedLanguage;
--(NSString*) languageSelectedStringForKey:(NSString*) key;
++ (id)instance;
+-(NSString*) translate:(NSString*) key;
 
 @end

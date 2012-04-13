@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "NovoVinhoViewController.h"
-
+#import "LoginViewController.h"
 
 @class DetailViewController;
 
-@interface ListaVinhosViewController : UITableViewController <NovoVinhoViewControllerDelegate>
+@interface ListaVinhosViewController : UITableViewController <NovoVinhoViewControllerDelegate, LoginViewControllerDelegate>
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
 

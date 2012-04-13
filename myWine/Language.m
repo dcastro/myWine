@@ -16,7 +16,7 @@ static Language *sharedMyLanguage = nil;
 
 
 #pragma mark Singleton Methods
-+ (id)sharedLanguage {
++ (id)instance {
     @synchronized(self) {
         if (sharedMyLanguage == nil)
             sharedMyLanguage = [[self alloc] init];
@@ -25,9 +25,7 @@ static Language *sharedMyLanguage = nil;
 }
 - (id)init {
     if (self = [super init]) {
-        
-        #warning TODO: load default language from saved preferences
-        selectedLanguage = PT;
+        [self loadState];
     }
     return self;
 }
@@ -36,7 +34,7 @@ static Language *sharedMyLanguage = nil;
 }
 
 
--(NSString*) languageSelectedStringForKey:(NSString*) key
+-(NSString*) translate:(NSString*) key
 {
     
 	NSString *path;
@@ -51,6 +49,17 @@ static Language *sharedMyLanguage = nil;
 	NSString* str=[languageBundle localizedStringForKey:key value:@"" table:nil];
 	return str;
 }
+
+-(void) saveState {
+    #warning TODO: save to app preferences
+}
+
+-(void) loadState {
+    #warning TODO: load default language from saved preferences
+    selectedLanguage = PT;
+}
+
+
 
 
 

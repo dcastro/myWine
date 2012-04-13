@@ -73,12 +73,12 @@
     NSLog(@"LoginController's delegate: %@", self.delegate);
 
     
-    Language *lan = [Language sharedLanguage];
+    Language *lan = [Language instance];
     NSLog(@"%d", [lan selectedLanguage]);
-    NSLog(@"%@", [lan languageSelectedStringForKey:@"Welcome"]);
+    NSLog(@"%@", [lan translate:@"Welcome"]);
     
     //show alert
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[lan languageSelectedStringForKey:@"Welcome"] message:[lan languageSelectedStringForKey:@"Login Success"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[lan translate:@"Welcome"] message:[lan translate:@"Login Success"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     [alert show];
     
     //dismiss the login controller
@@ -90,7 +90,7 @@
     
     NSLog(@"%d", selected.tag);
     
-    Language *lan = [Language sharedLanguage];
+    Language *lan = [Language instance];
     lan.selectedLanguage = selected.tag;
     
     [self configureView];
@@ -105,14 +105,14 @@
 
 - (void)configureView {
     
-    Language *lan = [Language sharedLanguage];
+    Language *lan = [Language instance];
     
-    self.languageLabel.text = [lan languageSelectedStringForKey:@"Language"];
-    self.usernameLabel.text = [lan languageSelectedStringForKey:@"Username"];
-    self.passwordLabel.text = [lan languageSelectedStringForKey:@"Password"];
-    self.welcomeLabel.text = [lan languageSelectedStringForKey:@"Welcome to myWine"];
-    self.configLabel.text = [lan languageSelectedStringForKey:@"Initial Configuration"];
-    self.loginButton.titleLabel.text = [lan languageSelectedStringForKey:@"Login"];
+    self.languageLabel.text = [lan translate:@"Language"];
+    self.usernameLabel.text = [lan translate:@"Username"];
+    self.passwordLabel.text = [lan translate:@"Password"];
+    self.welcomeLabel.text = [lan translate:@"Welcome to myWine"];
+    self.configLabel.text = [lan translate:@"Initial Configuration"];
+    self.loginButton.titleLabel.text = [lan translate:@"Login"];
     
     
     
