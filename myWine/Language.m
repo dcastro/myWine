@@ -51,17 +51,33 @@ static Language *sharedMyLanguage = nil;
 }
 
 -(void) saveState {
-    #warning TODO: save to app preferences
+    
+    //loads user defaults    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    //set language
+    [defaults setInteger:selectedLanguage forKey:@"lang"];
+    
+    //save new defaults
+    [defaults synchronize];
+    NSLog(@"Language selection saved");
 }
 
 -(void) loadState {
-    #warning TODO: load default language from saved preferences
-    selectedLanguage = PT;
+    //loads user defaults
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    //loads language preferences
+    if (!(selectedLanguage = [defaults integerForKey:@"lang"]))
+        selectedLanguage = EN; //default language
+    
 }
 
 -(void) setLang:(int) lang {
-    selectedLanguage = lang;
-    [self saveState];
+    if (lang != selectedLanguage) {
+        selectedLanguage = lang;
+        [self saveState];
+    }
 }
 
 
