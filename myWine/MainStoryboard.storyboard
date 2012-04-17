@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50b" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50d" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="5">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
@@ -894,8 +894,10 @@ A "descoberta" do Vinho do Porto é polémica. Uma das versões, defendida pelos
                         <outlet property="frFlag" destination="K2x-gV-WRJ" id="KlA-SG-0y5"/>
                         <outlet property="languageLabel" destination="4Q6-JF-PpG" id="Moq-vV-kT1"/>
                         <outlet property="loginButton" destination="XR3-al-pqb" id="ddo-3m-VOV"/>
+                        <outlet property="passwordInput" destination="AO3-fT-my6" id="5L1-ba-gVa"/>
                         <outlet property="passwordLabel" destination="6vu-GB-SKv" id="bfd-B8-4EO"/>
                         <outlet property="ptFlag" destination="a3c-SO-3Yj" id="gsk-iX-d8M"/>
+                        <outlet property="usernameInput" destination="STu-9L-PSS" id="K7M-az-Hew"/>
                         <outlet property="usernameLabel" destination="Ab4-gD-6EP" id="40W-lV-Etn"/>
                         <outlet property="welcomeLabel" destination="GTI-he-OuM" id="jZ8-WD-KSQ"/>
                     </connections>

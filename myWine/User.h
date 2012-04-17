@@ -1,0 +1,32 @@
+//
+//  User.h
+//  myWine
+//
+//  Created by Diogo Castro on 17/04/12.
+//  Copyright (c) 2012 FEUP. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface User : NSObject {
+    BOOL isValidated;
+}
+
+@property (nonatomic, copy) NSString* username;
+@property (nonatomic, copy) NSString* password;
+@property (nonatomic, copy) NSMutableArray* vinhos;
+
+@property (nonatomic) BOOL isValidated;
+@property (nonatomic) int user_id;
+
+
+- (void) sync;
+
+//singleton instance creators
++ (void) createWithUsername:(NSString*) username Password:(NSString*) password;
++ (void) createWithID: (int) user_id;
+
+//singleton
++(id) instance;
+
+@end

@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "Language.h"
+#import "User.h"
 
 @interface LoginViewController ()
 
@@ -25,6 +26,8 @@
 @synthesize welcomeLabel = _welcomeLabel;
 @synthesize configLabel = _configLabel;
 @synthesize loginButton = _loginButton;
+@synthesize usernameInput = _usernameInput;
+@synthesize passwordInput = _passwordInput;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -59,6 +62,8 @@
     [self setWelcomeLabel:nil];
     [self setConfigLabel:nil];
     [self setLoginButton:nil];
+    [self setUsernameInput:nil];
+    [self setPasswordInput:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -77,12 +82,35 @@
     NSLog(@"%d", [lan selectedLanguage]);
     NSLog(@"%@", [lan translate:@"Welcome"]);
     
-    //show alert
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[lan translate:@"Welcome"] message:[lan translate:@"Login Success"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-    [alert show];
+    [User createWithUsername: self.usernameLabel.text Password: self.passwordLabel.text];
+    User *user = [User instance];
     
-    //dismiss the login controller
-    [self.delegate LoginViewControllerDidLogin:self];
+    [user sync];
+    
+    //Login Successful
+    if ( user.isValidated ) {
+        //show alert
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[lan translate:@"Welcome"] message:[lan translate:@"Login Success"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alert show];
+        
+        //dismiss the login controller
+        [self.delegate LoginViewControllerDidLogin:self];
+        
+        
+        //save this user as default
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setInteger:user.user_id forKey:@"user_id"];
+        [defaults synchronize];
+        
+    }
+    //Login Failure
+    else {
+        //show alert
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[lan translate:@"Error"] message:[lan translate:@"Login Failure"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alert show];
+        
+    }
+
 }
 
 - (IBAction)selectLanguage:(id)sender {

@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "ListaVinhosViewController.h"
+#import "User.h"
 
 @implementation AppDelegate
 
@@ -26,16 +27,29 @@
     UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
     splitViewController.delegate = (id)navigationController.topViewController;
     
-    //show login controller at startup
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-    LoginViewController *lvc = (LoginViewController *) [storyboard instantiateViewControllerWithIdentifier:@"firstLogin"];
-    lvc.modalPresentationStyle = UIModalPresentationFullScreen;
-    [_window makeKeyAndVisible];
-    [splitViewController presentModalViewController:lvc animated:YES];
+    //check if there's a default user
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    int user_id;
     
-    //set ListaVinhos as Login's delegate
-    ListaVinhosViewController *lvvc = [[[[splitViewController viewControllers] objectAtIndex:0] viewControllers ] objectAtIndex:0 ];
-    lvc.delegate = lvvc;
+    //if there isn't a default user, show login
+    if (!(user_id = [defaults integerForKey:@"user_id"])) {
+    
+        //show login controller at startup
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+        LoginViewController *lvc = (LoginViewController *) [storyboard instantiateViewControllerWithIdentifier:@"firstLogin"];
+        lvc.modalPresentationStyle = UIModalPresentationFullScreen;
+        [_window makeKeyAndVisible];
+        [splitViewController presentModalViewController:lvc animated:YES];
+    
+        //set ListaVinhos as Login's delegate
+        ListaVinhosViewController *lvvc = [[[[splitViewController viewControllers] objectAtIndex:0] viewControllers ] objectAtIndex:0 ];
+        lvc.delegate = lvvc;
+    }
+    
+    //if there is a default user
+    else {
+        [User createWithID:user_id];
+    }
     
     return YES;
 }
