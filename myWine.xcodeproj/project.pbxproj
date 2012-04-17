@@ -44,6 +44,9 @@
 		A9C5A0241517AB0E00A3F8C5 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A9C5A0231517AB0E00A3F8C5 /* icon.png */; };
 		A9F0B4BB1524731F003C931B /* FiltrosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F0B4BA1524731F003C931B /* FiltrosViewController.m */; };
 		A9F0B4BF152477C9003C931B /* ComparadorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F0B4BE152477C9003C931B /* ComparadorViewController.m */; };
+		D3637DCD153E305E00A9B928 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = D3637DCC153E305E00A9B928 /* Database.m */; };
+		D3637DD1153E31DA00A9B928 /* Query.m in Sources */ = {isa = PBXBuildFile; fileRef = D3637DD0153E31DA00A9B928 /* Query.m */; };
+		D3637DD3153E322800A9B928 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D3637DD2153E322800A9B928 /* libsqlite3.dylib */; };
 		DA498F14153D6659009C4072 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = DA498F13153D6659009C4072 /* User.m */; };
 		DA7D48A4152E0AAD00C525FB /* Language.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7D48A3152E0AAD00C525FB /* Language.m */; };
 		DADE7ADA152E136400F0F680 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DADE7AD9152E136400F0F680 /* MainStoryboard.storyboard */; };
@@ -107,6 +110,12 @@
 		A9F0B4BA1524731F003C931B /* FiltrosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiltrosViewController.m; sourceTree = "<group>"; };
 		A9F0B4BD152477C9003C931B /* ComparadorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComparadorViewController.h; sourceTree = "<group>"; };
 		A9F0B4BE152477C9003C931B /* ComparadorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComparadorViewController.m; sourceTree = "<group>"; };
+		D3637DCB153E305E00A9B928 /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
+		D3637DCC153E305E00A9B928 /* Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Database.m; sourceTree = "<group>"; };
+		D3637DCE153E30A600A9B928 /* DatatabaseDefinitions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DatatabaseDefinitions.h; sourceTree = "<group>"; };
+		D3637DCF153E31DA00A9B928 /* Query.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Query.h; sourceTree = "<group>"; };
+		D3637DD0153E31DA00A9B928 /* Query.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Query.m; sourceTree = "<group>"; };
+		D3637DD2153E322800A9B928 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		DA498F12153D6659009C4072 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		DA498F13153D6659009C4072 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		DA7D48A2152E0AAD00C525FB /* Language.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Language.h; sourceTree = "<group>"; };
@@ -124,6 +133,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3637DD3153E322800A9B928 /* libsqlite3.dylib in Frameworks */,
 				A9C59FFB1517A78500A3F8C5 /* UIKit.framework in Frameworks */,
 				A9C59FFD1517A78500A3F8C5 /* Foundation.framework in Frameworks */,
 				A9C59FFF1517A78500A3F8C5 /* CoreGraphics.framework in Frameworks */,
@@ -161,6 +171,7 @@
 		A9C59FEB1517A78500A3F8C5 = {
 			isa = PBXGroup;
 			children = (
+				D3637DD2153E322800A9B928 /* libsqlite3.dylib */,
 				A9B04E591519DE3B00DC32CF /* Settings.bundle */,
 				A9C5A0231517AB0E00A3F8C5 /* icon.png */,
 				A9C5A01A1517A7EF00A3F8C5 /* Resources */,
@@ -191,6 +202,7 @@
 		A9C5A0001517A78600A3F8C5 /* myWine */ = {
 			isa = PBXGroup;
 			children = (
+				D3637DCA153E303800A9B928 /* Database */,
 				A9A69BA0151FDA3000FC9073 /* Main */,
 				A9C28881151FBADE00C2F58D /* Classes */,
 				A9CA2B4E151E496500A29DE3 /* ViewControllers */,
@@ -264,6 +276,18 @@
 				A9F0B4BE152477C9003C931B /* ComparadorViewController.m */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		D3637DCA153E303800A9B928 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				D3637DCB153E305E00A9B928 /* Database.h */,
+				D3637DCC153E305E00A9B928 /* Database.m */,
+				D3637DCE153E30A600A9B928 /* DatatabaseDefinitions.h */,
+				D3637DCF153E31DA00A9B928 /* Query.h */,
+				D3637DD0153E31DA00A9B928 /* Query.m */,
+			);
+			name = Database;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -368,6 +392,8 @@
 				DAFB6903152D138800DC74CB /* LoginViewController.m in Sources */,
 				DA7D48A4152E0AAD00C525FB /* Language.m in Sources */,
 				DA498F14153D6659009C4072 /* User.m in Sources */,
+				D3637DCD153E305E00A9B928 /* Database.m in Sources */,
+				D3637DD1153E31DA00A9B928 /* Query.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
