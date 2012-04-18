@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DatatabaseDefinitions.h"
 #import "/usr/include/sqlite3.h"
 
 
@@ -15,9 +14,10 @@
 
 
 @interface Database : NSObject{
-    NSString *databasePath;
     sqlite3 *contactDB;
 }
+
+@property (readonly, nonatomic) NSString *databasePath;
 
 
 /**

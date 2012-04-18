@@ -19,6 +19,16 @@
 {
     // Override point for customization after application launch.
     
+    Database * db = [Database instance];
+    
+    NSError * error = nil;
+    if(![db isDatabaseCreated]){
+        if(![db createDatabase:&error]){
+            #warning TODO: o error tem a mensagem de erro a ser mostrada ao utilizador, convem mostrar
+            DebugLog(@"%@", [error localizedDescription]);
+        }
+    }
+    
     //Add login
     //Remove login
     //Add splitview

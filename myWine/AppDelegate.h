@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Database.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
