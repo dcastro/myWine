@@ -103,12 +103,12 @@ static User *sharedUser = nil;
             self.synced_at = sqlite3_column_int(stmt, user_column_synced);
             
             
-            //DebugLog(@"Found user: %@", [NSString stringWithUTF8String:(const char *) sqlite3_column_text(stmt, user_column_username)]);
+#warning TODO caso o utilizador tenha mudado de pass
             
         }else {
             
             self.isValidated = FALSE;
-    #warning TODO "o user nao existe"
+    #warning TODO o user nao existe
         } 
         
         
