@@ -7,6 +7,7 @@
 //
 
 #import "User.h"
+#import "Query.h"
 
 static User *sharedUser = nil;
 
@@ -17,6 +18,7 @@ static User *sharedUser = nil;
 @synthesize vinhos = _vinhos;
 @synthesize isValidated = _isValidated;
 @synthesize user_id = _user_id;
+@synthesize synced_at;
 
 + (id)instance {
     @synchronized(self) {
@@ -72,16 +74,41 @@ static User *sharedUser = nil;
 }
 
 - (void) loadFromDB {
-#warning TODO: check if user already exists in the database
-    if (YES) {
-#warning TODO: load da info do user e dos seus vinhos
+    
+    Query *query = [[Query alloc] init];
+    
+    NSString *querySQL = [NSString stringWithFormat: 
+                          @"SELECT name FROM person join contact on (person.name = contact.name) WHERE person.name like \'%@\';", 
+                          "%",self.username,"%"];
+    
+    sqlite3_stmt *stmt = [query prepareForQuery:querySQL];
+    
+    if(stmt != nil){
+        if(sqlite3_step(stmt) == SQLITE_ROW)
+        {
+            self.username = [NSString stringWithUTF8String:(const char *) sqlite3_column_text(stmt, user_column_username)];
+            
+            self.password = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, user_column_password)];
+            
+            int validated = sqlite3_column_int(stmt, user_column_validated);
+            if(validated >0)
+                self.isValidated = TRUE;
+            else 
+                self.isValidated = FALSE;
+            
+            self.synced_at = sqlite3_column_int(stmt, user_column_synced);
+            
+        }else {
+            
+            self.isValidated = FALSE;
+    #warning TODO "o user nao existe"
+        } 
         
         
-        self.isValidated = YES; // must be checked in the DB instead
-    } else {
-        
-        self.isValidated = NO;
-        
+        [query finalizeQuery:stmt];
+    }else{
+        self.isValidated = FALSE;
+        DebugLog(@"Error obtaining user from database");
     }
 }
 

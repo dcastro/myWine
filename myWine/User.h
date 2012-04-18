@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@interface User : NSObject {
-    BOOL isValidated;
-}
+
+@interface User : NSObject
 
 @property (nonatomic, copy) NSString* username;
 @property (nonatomic, copy) NSString* password;
 @property (nonatomic, copy) NSMutableArray* vinhos;
+@property (nonatomic, assign) int synced_at;
 
 @property (nonatomic) BOOL isValidated;
 @property (nonatomic) int user_id;

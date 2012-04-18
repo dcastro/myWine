@@ -44,6 +44,7 @@
 		A9C5A0241517AB0E00A3F8C5 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A9C5A0231517AB0E00A3F8C5 /* icon.png */; };
 		A9F0B4BB1524731F003C931B /* FiltrosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F0B4BA1524731F003C931B /* FiltrosViewController.m */; };
 		A9F0B4BF152477C9003C931B /* ComparadorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F0B4BE152477C9003C931B /* ComparadorViewController.m */; };
+		D328B96D153F254700EA4501 /* DatabaseDefinitions.c in Sources */ = {isa = PBXBuildFile; fileRef = D328B96C153F254700EA4501 /* DatabaseDefinitions.c */; };
 		D3637DCD153E305E00A9B928 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = D3637DCC153E305E00A9B928 /* Database.m */; };
 		D3637DD1153E31DA00A9B928 /* Query.m in Sources */ = {isa = PBXBuildFile; fileRef = D3637DD0153E31DA00A9B928 /* Query.m */; };
 		D3637DD3153E322800A9B928 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D3637DD2153E322800A9B928 /* libsqlite3.dylib */; };
@@ -110,6 +111,7 @@
 		A9F0B4BA1524731F003C931B /* FiltrosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiltrosViewController.m; sourceTree = "<group>"; };
 		A9F0B4BD152477C9003C931B /* ComparadorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComparadorViewController.h; sourceTree = "<group>"; };
 		A9F0B4BE152477C9003C931B /* ComparadorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComparadorViewController.m; sourceTree = "<group>"; };
+		D328B96C153F254700EA4501 /* DatabaseDefinitions.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = DatabaseDefinitions.c; sourceTree = "<group>"; };
 		D3637DCB153E305E00A9B928 /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
 		D3637DCC153E305E00A9B928 /* Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Database.m; sourceTree = "<group>"; };
 		D3637DCE153E30A600A9B928 /* DatatabaseDefinitions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DatatabaseDefinitions.h; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 				D3637DCE153E30A600A9B928 /* DatatabaseDefinitions.h */,
 				D3637DCF153E31DA00A9B928 /* Query.h */,
 				D3637DD0153E31DA00A9B928 /* Query.m */,
+				D328B96C153F254700EA4501 /* DatabaseDefinitions.c */,
 			);
 			name = Database;
 			sourceTree = "<group>";
@@ -394,6 +397,7 @@
 				DA498F14153D6659009C4072 /* User.m in Sources */,
 				D3637DCD153E305E00A9B928 /* Database.m in Sources */,
 				D3637DD1153E31DA00A9B928 /* Query.m in Sources */,
+				D328B96D153F254700EA4501 /* DatabaseDefinitions.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

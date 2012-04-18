@@ -14,7 +14,6 @@
 
 -(id)init{
     db = [Database instance];
-    
     return self;
 }
 

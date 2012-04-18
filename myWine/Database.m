@@ -7,9 +7,6 @@
 //
 
 #import "Database.h"
-#include "DatatabaseDefinitions.h"
-
-
 
 static Database *myDatabase = nil;
 
