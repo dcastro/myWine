@@ -67,12 +67,24 @@ static Database *myDatabase = nil;
         //creates the database
         if (sqlite3_open(dbpath, &contactDB) == SQLITE_OK)
         {
+            char *errMsg;
+            if(sqlite3_exec(contactDB, "Pragma foreign_keys = ON;", NULL, NULL, &errMsg) != SQLITE_OK){
+                DebugLog(@"Could not activate foreign keys error: %s", errMsg);
+                sqlite3_free(errMsg);
+                
+                //create the error message in NSError
+                NSMutableDictionary *errorDetail = [NSMutableDictionary dictionary];
+                [errorDetail setValue:@"Database Error" forKey:NSLocalizedDescriptionKey];
+                *error = [NSError errorWithDomain:@"myWine" code:100 userInfo:errorDetail];
+                
+                return FALSE;
+            }
+            
             int i = 0;
             
             while(strcmp(databaseTables[i], "\n") != 0) {
-                char *errMsg;
-                const char *sql_stmt = databaseTables[i];
                 
+                const char *sql_stmt = databaseTables[i];
                 
                 if (sqlite3_exec(contactDB, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK)
                 {

@@ -55,13 +55,13 @@ const char  *databaseTables[] = {
     user TEXT NOT NULL, \
     region_id INTEGER NOT NULL, \
     winetype_id INTEGER NOT NULL, \
+    name TEXT NOT NULL, \
     year INTEGER, \
     photo_filename TEXT, \
     producer TEXT, \
     currency TEXT, \
-    name TEXT NOT NULL, \
-    update_at INTEGER, \
     price REAL, \
+    update_at INTEGER, \
     FOREIGN KEY (user) REFERENCES User (username) ON UPDATE CASCADE ON DELETE CASCADE, \
     FOREIGN KEY (region_id) REFERENCES Region (region_id) ON UPDATE CASCADE ON DELETE CASCADE, \
     FOREIGN KEY (winetype_id) REFERENCES WineType (winetype_id) ON UPDATE CASCADE ON DELETE CASCADE \
@@ -158,14 +158,30 @@ const char  *databaseTables[] = {
     "CREATE INDEX IDX_WINE_YEAR ON Wine (year);",
     "CREATE INDEX IDX_WINE_PRODUCER ON Wine (producer);",
     
-    
-    
     "CREATE INDEX IDX_TASTING_WINE ON Tasting (wine_id);",
     "CREATE INDEX IDX_TASTING_DATE ON Tasting (tasting_date);",
     
     "CREATE INDEX IDX_SECTION_TASTING ON Section (tasting_id);",
     
     "CREATE INDEX IDX_CRITERION_SECTION ON Criterion (section_id);",
+    
+    
+    
+    //DADOS DE TESTE
+    "INSERT INTO User VALUES ('admin', 'admin', '10000', 1)",
+    
+    "INSERT INTO Country VALUES (1,'Portugal', 'Portugal', 'Portugal');",
+    
+    "INSERT INTO Region VALUES (1,1,'Vila Real', 'Vila Real', 'Vila Real', 1);",
+    "INSERT INTO Region VALUES (2,0,'Porto', 'Porto', 'Porto', 1);",
+    "INSERT INTO Region VALUES (3,0,'Alijo', 'Alijo', 'Alijo', 1);",
+    
+    "INSERT INTO WineType VALUES (1, 'White Wine', 'Vin Blanc', 'Vinho Branco');",
+    "INSERT INTO WineType VALUES (2, 'Sparlking Wine', 'Vin Mousseux', 'Vinho Espumante');",
+    
+    "INSERT INTO Wine VALUES (1, 'admin', 1, 1, 'Terras do Aleu', 2012, NULL, 'Lavrador XPTO', 'EUR', 9.99, 15000);",
+    "INSERT INTO Wine VALUES (2, 'admin', 3, 1, 'Muralhas', 2012, NULL, 'Adega Qualquer', 'EUR', 4.00, 15000);",
+
     
     "\n"
 };

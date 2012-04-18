@@ -108,6 +108,7 @@ static User *sharedUser = nil;
         }else {
             
             self.isValidated = FALSE;
+            DebugLog(@"User doest exist in the database");
     #warning TODO o user nao existe
         } 
         

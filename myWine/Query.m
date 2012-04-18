@@ -25,6 +25,13 @@
     
     if (sqlite3_open(dbpath, &contactDB) == SQLITE_OK)
     {
+        char *errMsg;
+        if(sqlite3_exec(contactDB, "Pragma foreign_keys = ON;", NULL, NULL, &errMsg) != SQLITE_OK){
+            DebugLog(@"Could not activate foreign keys error: %s", errMsg);
+            sqlite3_free(errMsg);
+            return nil;
+        }
+        
         const char *query_stmt = [query UTF8String];
         
         if (sqlite3_prepare_v2(contactDB, 
@@ -51,8 +58,15 @@
 -(BOOL)prepareForExecution{
     const char* dbpath = [db.databasePath UTF8String];
     
-    if (sqlite3_open(dbpath, &contactDB) == SQLITE_OK)
+    if (sqlite3_open(dbpath, &contactDB) == SQLITE_OK){
+        char *errMsg;
+        if(sqlite3_exec(contactDB, "Pragma foreign_keys = ON;", NULL, NULL, &errMsg) != SQLITE_OK){
+            DebugLog(@"Could not activate foreign keys error: %s", errMsg);
+            sqlite3_free(errMsg);
+            return FALSE;
+        }
         return TRUE;
+    }  
     return FALSE;
     
 }
