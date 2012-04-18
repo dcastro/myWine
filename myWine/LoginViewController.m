@@ -87,6 +87,7 @@
     
     [user sync];
     
+    
     //Login Successful
     if ( user.isValidated ) {
         //show alert
