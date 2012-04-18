@@ -34,11 +34,11 @@ const char  *databaseTables[] = {
     
     "CREATE TABLE Region (\
     region_id INTEGER PRIMARY KEY, \
+    country_id INTEGER NOT NULL, \
     default_selection INTEGER, \
     name_fr TEXT, \
     name_en TEXT, \
     name_pt TEXT, \
-    country_id INTEGER NOT NULL, \
     FOREIGN KEY (country_id) REFERENCES Country (country_id) ON UPDATE CASCADE ON DELETE CASCADE \
     );",
     
@@ -172,9 +172,9 @@ const char  *databaseTables[] = {
     
     "INSERT INTO Country VALUES (1,'Portugal', 'Portugal', 'Portugal');",
     
-    "INSERT INTO Region VALUES (1,1,'Vila Real', 'Vila Real', 'Vila Real', 1);",
-    "INSERT INTO Region VALUES (2,0,'Porto', 'Porto', 'Porto', 1);",
-    "INSERT INTO Region VALUES (3,0,'Alijo', 'Alijo', 'Alijo', 1);",
+    "INSERT INTO Region VALUES (1, 1, 1, 'Vila Real', 'Vila Real', 'Vila Real');",
+    "INSERT INTO Region VALUES (2, 1, 0, 'Porto', 'Porto', 'Porto');",
+    "INSERT INTO Region VALUES (3, 1, 0, 'Alijo', 'Alijo', 'Alijo');",
     
     "INSERT INTO WineType VALUES (1, 'White Wine', 'Vin Blanc', 'Vinho Branco');",
     "INSERT INTO WineType VALUES (2, 'Sparlking Wine', 'Vin Mousseux', 'Vinho Espumante');",
@@ -192,5 +192,37 @@ const int user_column_username = 0;
 const int user_column_password = 1;
 const int user_column_synced = 2;
 const int user_column_validated = 3;
+
+
+
+//columns in table Country
+const int country_column_id = 0;
+const int country_column_name_fr = 1;
+const int country_column_name_en = 2;
+const int country_column_name_pt = 3;
+
+
+
+//columns in table Region
+const int region_column_id = 0;
+const int region_column_country = 1;
+const int region_column_default = 2;
+const int region_column_name_fr = 3;
+const int region_column_name_en = 4;
+const int region_column_name_pt = 5;
+
+
+
+//columns in table Wine
+const int wine_column_id = 0;
+const int wine_column_user = 1;
+const int wine_column_region = 2;
+const int wine_column_winetype = 3;
+const int wine_column_name = 4;
+const int wine_column_year = 5;
+const int wine_column_photo = 6;
+const int wine_column_producer = 7;
+const int wine_column_currency = 8;
+const int wine_column_price = 9;
 
 

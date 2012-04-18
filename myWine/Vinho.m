@@ -11,6 +11,7 @@
 @implementation Vinho
 
 @synthesize name = _name;
+@synthesize wine_id, year, price, currency, producer, photo, region_name, winetype_name;
 
 - (NSString*) description {
     return self.name;
