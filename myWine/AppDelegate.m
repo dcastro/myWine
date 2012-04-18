@@ -31,6 +31,8 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     int user_id;
     
+    ListaVinhosViewController *lvvc = [[[[splitViewController viewControllers] objectAtIndex:0] viewControllers ] objectAtIndex:0 ];
+    
     //if there isn't a default user, show login
     if (!(user_id = [defaults integerForKey:@"user_id"])) {
     
@@ -42,13 +44,15 @@
         [splitViewController presentModalViewController:lvc animated:YES];
     
         //set ListaVinhos as Login's delegate
-        ListaVinhosViewController *lvvc = [[[[splitViewController viewControllers] objectAtIndex:0] viewControllers ] objectAtIndex:0 ];
         lvc.delegate = lvvc;
     }
     
     //if there is a default user
     else {
         [User createWithID:user_id];
+        User* user = [User instance];
+        [lvvc setVinhos:user.vinhos];
+        [[lvvc tableView] reloadData];
     }
     
     return YES;

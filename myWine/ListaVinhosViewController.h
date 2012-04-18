@@ -16,4 +16,8 @@
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
 
+@property (strong, nonatomic) NSMutableArray* vinhos; 
+
+- (void)insertNewObject:(id)sender;
+
 @end

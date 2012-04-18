@@ -21,6 +21,7 @@
 
 
 - (void) sync;
+- (NSMutableArray*) vinhos;
 
 //singleton instance creators
 + (void) createWithUsername:(NSString*) username Password:(NSString*) password;

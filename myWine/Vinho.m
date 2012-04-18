@@ -2,7 +2,7 @@
 //  Vinho.m
 //  myWine
 //
-//  Created by Antonio Velasquez on 3/25/12.
+//  Created by Diogo Castro on 18/04/12.
 //  Copyright (c) 2012 FEUP. All rights reserved.
 //
 
@@ -10,16 +10,10 @@
 
 @implementation Vinho
 
--(id) init:(NSString *)thenome {
-    
-    if(self = [super init]) {
-        nome = thenome;
-    }
-    return self;
-}
+@synthesize name = _name;
 
--(NSString *) str {
-    return nome;
+- (NSString*) description {
+    return self.name;
 }
 
 @end

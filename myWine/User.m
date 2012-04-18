@@ -85,5 +85,14 @@ static User *sharedUser = nil;
     }
 }
 
+- (NSMutableArray*) vinhos {
+    if (! _vinhos) {
+#warning TODO: retrieve vinhos from DB
+        _vinhos = [[NSMutableArray alloc] init];
+    }
+    
+    return _vinhos;
+}
+
 
 @end
