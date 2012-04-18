@@ -82,7 +82,7 @@
     NSLog(@"%d", [lan selectedLanguage]);
     NSLog(@"%@", [lan translate:@"Welcome"]);
     
-    [User createWithUsername: self.usernameLabel.text Password: self.passwordLabel.text];
+    [User createWithUsername: self.usernameInput.text Password: self.passwordInput.text];
     User *user = [User instance];
     
     [user sync];

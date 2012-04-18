@@ -33,7 +33,11 @@ static User *sharedUser = nil;
      * Login logic
      * updated isValidated at the end
      */
-    
+    DebugLog([self description]);
+}
+
+- (NSString *)description{
+    return [NSString stringWithFormat:@"Username: %@, Password: %@, Synced_at: %d", self.username, self.password, self.synced_at];
 }
 
 - (id) initWithID:(int)user_id {
@@ -78,16 +82,16 @@ static User *sharedUser = nil;
     Query *query = [[Query alloc] init];
     
     NSString *querySQL = [NSString stringWithFormat: 
-                          @"SELECT name FROM person join contact on (person.name = contact.name) WHERE person.name like \'%@\';", 
-                          "%",self.username,"%"];
+                          @"SELECT * FROM User WHERE username=\'%@\';",self.username,"%"];
     
     sqlite3_stmt *stmt = [query prepareForQuery:querySQL];
     
     if(stmt != nil){
         if(sqlite3_step(stmt) == SQLITE_ROW)
         {
+
             self.username = [NSString stringWithUTF8String:(const char *) sqlite3_column_text(stmt, user_column_username)];
-            
+                        
             self.password = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, user_column_password)];
             
             int validated = sqlite3_column_int(stmt, user_column_validated);
@@ -97,6 +101,9 @@ static User *sharedUser = nil;
                 self.isValidated = FALSE;
             
             self.synced_at = sqlite3_column_int(stmt, user_column_synced);
+            
+            
+            //DebugLog(@"Found user: %@", [NSString stringWithUTF8String:(const char *) sqlite3_column_text(stmt, user_column_username)]);
             
         }else {
             

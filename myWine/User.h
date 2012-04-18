@@ -29,4 +29,7 @@
 //singleton
 +(id) instance;
 
+
+-(NSString *)description;
+
 @end
