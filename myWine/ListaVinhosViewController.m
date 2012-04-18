@@ -12,6 +12,11 @@
 
 #import "LoginViewController.h"
 
+#import "Vinho.h"
+
+#import "User.h"
+#import "Prova.h"
+
 @interface ListaVinhosViewController () {
     NSMutableArray *_objects;
 }
@@ -23,6 +28,7 @@
 @implementation ListaVinhosViewController
 
 @synthesize detailViewController = _detailViewController;
+@synthesize vinhos = _vinhos;
 
 - (void)awakeFromNib
 {
@@ -33,7 +39,7 @@
 
 - (void)viewDidLoad
 {
-    
+    /*
     if (!_objects) {
         _objects = [[NSMutableArray alloc] init];
     }
@@ -41,7 +47,7 @@
     [_objects insertObject:@"Murganheira" atIndex:0];
     [_objects insertObject:@"Gazela" atIndex:0];
     [_objects insertObject:@"Alvarinho" atIndex:0];
-    
+    */
     
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
@@ -50,6 +56,9 @@
     //UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     //self.navigationItem.rightBarButtonItem = addButton;
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    
+
+
 }
 
 - (void)viewDidUnload
@@ -79,10 +88,12 @@
 
 - (void)insertNewObject:(id)sender
 {
-    if (!_objects) {
-        _objects = [[NSMutableArray alloc] init];
+    if (!_vinhos) {
+        //_objects = [[NSMutableArray alloc] init];
+        return;
     }
-    [_objects insertObject:[NSDate date] atIndex:0];
+    //[_objects insertObject:[NSDate date] atIndex:0];
+    [self.vinhos insertObject:sender atIndex:0];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
@@ -96,15 +107,16 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _objects.count;
+    return _vinhos.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
 
-    NSString *object = [_objects objectAtIndex:indexPath.row];
-    cell.textLabel.text = [object description];
+    //NSString *object = [_objects objectAtIndex:indexPath.row];
+    Vinho* vinho = [self.vinhos objectAtIndex:indexPath.row];
+    cell.textLabel.text = [vinho description];
     return cell;
 }
 
@@ -122,7 +134,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [_objects removeObjectAtIndex:indexPath.row];
+        [_vinhos removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
@@ -131,6 +143,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+#warning TODO: passar vinho para a detail
     NSString *object = [_objects objectAtIndex:indexPath.row];
     self.detailViewController.detailItem = object;
 }

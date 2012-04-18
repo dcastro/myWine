@@ -9,6 +9,8 @@
 #import "LoginViewController.h"
 #import "Language.h"
 #import "User.h"
+#import "ListaVinhosViewController.h"
+#import "Vinho.h"
 
 @interface LoginViewController ()
 
@@ -87,6 +89,7 @@
     
     [user sync];
     
+    
     //Login Successful
     if ( user.isValidated ) {
         //show alert
@@ -95,12 +98,23 @@
         
         //dismiss the login controller
         [self.delegate LoginViewControllerDidLogin:self];
-        
+        ListaVinhosViewController* lvvc = (ListaVinhosViewController*) self.delegate;
+        [lvvc setVinhos:user.vinhos];
         
         //save this user as default
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setInteger:user.user_id forKey:@"user_id"];
         [defaults synchronize];
+        
+        //reload master controller data
+        [[lvvc tableView] reloadData];
+        
+        //Vinho* vinho = [[Vinho alloc] init];
+        //vinho.name = @"Testing";
+        //[lvvc.vinhos insertObject:vinho atIndex:0];
+        //[lvvc insertNewObject:vinho];
+        //NSLog(@"LOOOOOOOOL: %d", lvvc.vinhos.count);
+        //NSLog(@"LOOOOOOOOL2: %d", user.vinhos.count);
         
     }
     //Login Failure

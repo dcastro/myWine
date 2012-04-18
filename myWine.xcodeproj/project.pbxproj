@@ -50,6 +50,7 @@
 		D3637DD3153E322800A9B928 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D3637DD2153E322800A9B928 /* libsqlite3.dylib */; };
 		DA498F14153D6659009C4072 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = DA498F13153D6659009C4072 /* User.m */; };
 		DA7D48A4152E0AAD00C525FB /* Language.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7D48A3152E0AAD00C525FB /* Language.m */; };
+		DA993CDE153F22E7009D3E13 /* Vinho.m in Sources */ = {isa = PBXBuildFile; fileRef = DA993CDD153F22E7009D3E13 /* Vinho.m */; };
 		DADE7ADA152E136400F0F680 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DADE7AD9152E136400F0F680 /* MainStoryboard.storyboard */; };
 		DADE7AF1152E170300F0F680 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DADE7AEF152E170300F0F680 /* Localizable.strings */; };
 		DAFB6903152D138800DC74CB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFB6902152D138800DC74CB /* LoginViewController.m */; };
@@ -86,8 +87,6 @@
 		A9BFB2C5151D468500588B59 /* NovoVinhoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NovoVinhoViewController.m; sourceTree = "<group>"; };
 		A9C28882151FBB4400C2F58D /* VinhoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VinhoViewController.h; sourceTree = "<group>"; };
 		A9C28883151FBB4400C2F58D /* VinhoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VinhoViewController.m; sourceTree = "<group>"; };
-		A9C28887151FBD1900C2F58D /* Vinho.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Vinho.h; sourceTree = "<group>"; };
-		A9C28888151FBD1900C2F58D /* Vinho.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Vinho.m; sourceTree = "<group>"; };
 		A9C59FF61517A78500A3F8C5 /* myWine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myWine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9C59FFA1517A78500A3F8C5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A9C59FFC1517A78500A3F8C5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -122,6 +121,8 @@
 		DA498F13153D6659009C4072 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		DA7D48A2152E0AAD00C525FB /* Language.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Language.h; sourceTree = "<group>"; };
 		DA7D48A3152E0AAD00C525FB /* Language.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Language.m; sourceTree = "<group>"; };
+		DA993CDC153F22E7009D3E13 /* Vinho.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vinho.h; sourceTree = "<group>"; };
+		DA993CDD153F22E7009D3E13 /* Vinho.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vinho.m; sourceTree = "<group>"; };
 		DADE7AD9152E136400F0F680 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		DADE7AF0152E170300F0F680 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = myWine/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DADE7AF2152E170D00F0F680 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = myWine/fr.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -158,14 +159,14 @@
 		A9C28881151FBADE00C2F58D /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				DA993CDC153F22E7009D3E13 /* Vinho.h */,
+				DA993CDD153F22E7009D3E13 /* Vinho.m */,
 				A9BE2C141518C330002E4E2A /* Prova.h */,
 				DA498F12153D6659009C4072 /* User.h */,
 				DA498F13153D6659009C4072 /* User.m */,
 				DA7D48A2152E0AAD00C525FB /* Language.h */,
 				DA7D48A3152E0AAD00C525FB /* Language.m */,
 				A9BE2C151518C330002E4E2A /* Prova.m */,
-				A9C28887151FBD1900C2F58D /* Vinho.h */,
-				A9C28888151FBD1900C2F58D /* Vinho.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -398,6 +399,7 @@
 				D3637DCD153E305E00A9B928 /* Database.m in Sources */,
 				D3637DD1153E31DA00A9B928 /* Query.m in Sources */,
 				D328B96D153F254700EA4501 /* DatabaseDefinitions.c in Sources */,
+				DA993CDE153F22E7009D3E13 /* Vinho.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
