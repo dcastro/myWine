@@ -17,6 +17,8 @@
 #import "User.h"
 #import "Prova.h"
 
+#import "NSMutableArray+VinhosMutableArray.h"
+
 @interface ListaVinhosViewController () {
     NSMutableArray *_objects;
 }
@@ -93,7 +95,7 @@
         return;
     }
     //[_objects insertObject:[NSDate date] atIndex:0];
-    [self.vinhos insertObject:sender atIndex:0];
+    [self.vinhos insertVinho:sender atIndex:0];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }

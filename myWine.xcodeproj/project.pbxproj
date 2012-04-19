@@ -48,6 +48,7 @@
 		D3637DCD153E305E00A9B928 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = D3637DCC153E305E00A9B928 /* Database.m */; };
 		D3637DD1153E31DA00A9B928 /* Query.m in Sources */ = {isa = PBXBuildFile; fileRef = D3637DD0153E31DA00A9B928 /* Query.m */; };
 		D3637DD3153E322800A9B928 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D3637DD2153E322800A9B928 /* libsqlite3.dylib */; };
+		DA06B867153FA0C800D03DD9 /* NSMutableArray+VinhosMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = DA06B866153FA0C800D03DD9 /* NSMutableArray+VinhosMutableArray.m */; };
 		DA498F14153D6659009C4072 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = DA498F13153D6659009C4072 /* User.m */; };
 		DA7D48A4152E0AAD00C525FB /* Language.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7D48A3152E0AAD00C525FB /* Language.m */; };
 		DA993CDE153F22E7009D3E13 /* Vinho.m in Sources */ = {isa = PBXBuildFile; fileRef = DA993CDD153F22E7009D3E13 /* Vinho.m */; };
@@ -117,6 +118,8 @@
 		D3637DCF153E31DA00A9B928 /* Query.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Query.h; sourceTree = "<group>"; };
 		D3637DD0153E31DA00A9B928 /* Query.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Query.m; sourceTree = "<group>"; };
 		D3637DD2153E322800A9B928 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		DA06B865153FA0C800D03DD9 /* NSMutableArray+VinhosMutableArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+VinhosMutableArray.h"; sourceTree = "<group>"; };
+		DA06B866153FA0C800D03DD9 /* NSMutableArray+VinhosMutableArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+VinhosMutableArray.m"; sourceTree = "<group>"; };
 		DA498F12153D6659009C4072 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		DA498F13153D6659009C4072 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		DA7D48A2152E0AAD00C525FB /* Language.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Language.h; sourceTree = "<group>"; };
@@ -205,6 +208,7 @@
 		A9C5A0001517A78600A3F8C5 /* myWine */ = {
 			isa = PBXGroup;
 			children = (
+				DA06B863153FA0B800D03DD9 /* Categories */,
 				D3637DCA153E303800A9B928 /* Database */,
 				A9A69BA0151FDA3000FC9073 /* Main */,
 				A9C28881151FBADE00C2F58D /* Classes */,
@@ -292,6 +296,15 @@
 				D328B96C153F254700EA4501 /* DatabaseDefinitions.c */,
 			);
 			name = Database;
+			sourceTree = "<group>";
+		};
+		DA06B863153FA0B800D03DD9 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				DA06B865153FA0C800D03DD9 /* NSMutableArray+VinhosMutableArray.h */,
+				DA06B866153FA0C800D03DD9 /* NSMutableArray+VinhosMutableArray.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -400,6 +413,7 @@
 				D3637DD1153E31DA00A9B928 /* Query.m in Sources */,
 				D328B96D153F254700EA4501 /* DatabaseDefinitions.c in Sources */,
 				DA993CDE153F22E7009D3E13 /* Vinho.m in Sources */,
+				DA06B867153FA0C800D03DD9 /* NSMutableArray+VinhosMutableArray.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
