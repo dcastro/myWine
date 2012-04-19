@@ -72,7 +72,7 @@ static User *sharedUser = nil;
 
 + (void) createWithUsername:(NSString *)username Password:(NSString *)password {
     @synchronized(self) {
-        if (sharedUser == nil)
+        //if (sharedUser == nil)
             sharedUser = [[self alloc] initWithUsername:username Password:password];
     }
 }
