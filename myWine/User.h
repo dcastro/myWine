@@ -13,7 +13,7 @@
 
 @property (nonatomic, copy) NSString* username;
 @property (nonatomic, copy) NSString* password;
-@property (nonatomic, copy) NSMutableArray* wines;
+@property (nonatomic, copy) NSMutableArray* vinhos;
 @property (nonatomic, assign) int synced_at;
 
 @property (nonatomic) BOOL isValidated;
@@ -21,7 +21,7 @@
 
 
 - (void) sync;
-- (NSMutableArray*) getWines;
+- (NSMutableArray*) vinhos;
 
 //singleton instance creators
 + (void) createWithUsername:(NSString*) username Password:(NSString*) password;

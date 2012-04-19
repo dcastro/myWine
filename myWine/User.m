@@ -15,7 +15,7 @@ static User *sharedUser = nil;
 
 @synthesize username = _username;
 @synthesize password = _password;
-@synthesize wines = _wines;
+@synthesize vinhos = _vinhos;
 @synthesize isValidated = _isValidated;
 @synthesize user_id = _user_id;
 @synthesize synced_at;
@@ -120,14 +120,18 @@ static User *sharedUser = nil;
     }
 }
 
-- (NSMutableArray*) getWines{
-    if (! _wines) {
-            
+- (NSMutableArray*) vinhos{
+    if (! _vinhos) {
         
-        _wines = [[NSMutableArray alloc] init];
+        [self loadVinhosFromDB];
     }
     
-    return _wines;
+    return _vinhos;
+}
+
+- (void) loadVinhosFromDB {
+    #warning TODO: load dos vinhos da DB
+    _vinhos = [[NSMutableArray alloc] init];
 }
 
 
