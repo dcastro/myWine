@@ -141,17 +141,17 @@ static User *sharedUser = nil;
     Language *lan = [Language instance];
     switch (lan.selectedLanguage) {
         case FR:
-            querySQL =  @"SELECT w.wine_id, w.user, r.name_fr  , wt.name_fr, w.name, w.year, w.photo_filename, w.producer, w.currency, w.price \
+            querySQL =  @"SELECT w.wine_id, c.name_fr, r.name_fr  , wt.name_fr, w.name, w.year, w.photo_filename, w.producer, w.currency, w.price \
                         FROM Wine w, Region r, Country c, WineType wt \
                         WHERE w.region_id = r.region_id AND r.country_id = c.country_id AND w.winetype_id = wt.winetype_id;";
             break;
             
-        case EN: querySQL =  @"SELECT w.wine_id, w.user, r.name_en  , wt.name_en, w.name, w.year, w.photo_filename, w.producer, w.currency, w.price \
+        case EN: querySQL =  @"SELECT w.wine_id, c.name_en, r.name_en  , wt.name_en, w.name, w.year, w.photo_filename, w.producer, w.currency, w.price \
             FROM Wine w, Region r, Country c, WineType wt \
             WHERE w.region_id = r.region_id AND r.country_id = c.country_id AND w.winetype_id = wt.winetype_id;";
             break;
             
-        case PT:querySQL =  @"SELECT w.wine_id, w.user, r.name_en  , wt.name_en, w.name, w.year, w.photo_filename, w.producer, w.currency, w.price \
+        case PT:querySQL =  @"SELECT w.wine_id, c.name_pt, r.name_pt  , wt.name_pt, w.name, w.year, w.photo_filename, w.producer, w.currency, w.price \
             FROM Wine w, Region r, Country c, WineType wt \
             WHERE w.region_id = r.region_id AND r.country_id = c.country_id AND w.winetype_id = wt.winetype_id;";
             break;
@@ -171,8 +171,10 @@ static User *sharedUser = nil;
                         
             wine.wine_id = sqlite3_column_int(stmt, wine_column_id);
             
-            wine.region_name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, wine_column_region)];
+            wine.country_name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 1)];
             
+            wine.region_name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, wine_column_region)];
+                        
             wine.winetype_name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, wine_column_winetype)];
             
             wine.name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, wine_column_name)];
@@ -195,9 +197,6 @@ static User *sharedUser = nil;
             
             wine.currency = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, wine_column_currency)];
             wine.price = sqlite3_column_double(stmt, wine_column_price);
-
-            
-            
             
             
             

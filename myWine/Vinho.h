@@ -18,6 +18,7 @@
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *producer;
 @property (nonatomic, copy) NSString *region_name;
+@property (nonatomic, copy) NSString *country_name;
 @property (nonatomic, copy) NSString *winetype_name;
 @property (nonatomic, copy) NSString *photo;
 
