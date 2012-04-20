@@ -169,6 +169,13 @@
     
 }
 
+- (void) setVinhos:(NSMutableArray*)vinhos {
+    if (vinhos != _vinhos) {
+        _vinhos = vinhos;
+        [[self tableView] reloadData];
+    }
+}
+
 
 
 @end

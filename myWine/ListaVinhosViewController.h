@@ -20,4 +20,6 @@
 
 - (void)insertNewObject:(id)sender;
 
+- (void) setVinhos:(NSMutableArray*)vinhos;
+
 @end

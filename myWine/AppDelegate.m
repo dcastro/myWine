@@ -22,6 +22,7 @@
     Database * db = [Database instance];
     
     NSError * error = nil;
+    //[db deleteDatabase:&error];
     if(![db isDatabaseCreated]){
         if(![db createDatabase:&error]){
             #warning TODO: o error tem a mensagem de erro a ser mostrada ao utilizador, convem mostrar
@@ -62,7 +63,6 @@
         [User createWithID:user_id];
         User* user = [User instance];
         [lvvc setVinhos:user.vinhos];
-        [[lvvc tableView] reloadData];
     }
     
     return YES;

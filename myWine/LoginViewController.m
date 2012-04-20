@@ -88,6 +88,10 @@
     User *user = [User instance];
     
     [user sync];
+    //Vinho* vinho = [[Vinho alloc] init];
+    //vinho.name = @"Testing";
+    //[user.vinhos insertObject:vinho atIndex:0];
+    
     
     
     //Login Successful
@@ -105,9 +109,6 @@
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setInteger:user.user_id forKey:@"user_id"];
         [defaults synchronize];
-        
-        //reload master controller data
-        [[lvvc tableView] reloadData];
         
         //Vinho* vinho = [[Vinho alloc] init];
         //vinho.name = @"Testing";
