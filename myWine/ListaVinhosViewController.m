@@ -16,6 +16,7 @@
 
 #import "User.h"
 #import "Prova.h"
+#import "Language.h"
 
 #import "NSMutableArray+VinhosMutableArray.h"
 
@@ -58,6 +59,8 @@
     //UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     //self.navigationItem.rightBarButtonItem = addButton;
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    
+    [self configureView];
     
 
 
@@ -174,6 +177,12 @@
         _vinhos = vinhos;
         [[self tableView] reloadData];
     }
+}
+
+-(void) configureView {
+    Language* lan = [Language instance];
+    
+    self.title = [lan translate:@"Wines List Title"];
 }
 
 

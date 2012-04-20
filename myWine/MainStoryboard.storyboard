@@ -801,6 +801,9 @@ A "descoberta" do Vinho do Porto é polémica. Uma das versões, defendida pelos
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="geJ-dX-iqE" id="e1F-mG-HLp"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="AO3-fT-my6">
                                 <rect key="frame" x="408" y="595" width="232" height="31"/>
@@ -2123,8 +2126,10 @@ A "descoberta" do Vinho do Porto é polémica. Uma das versões, defendida pelos
                 <relationship kind="outlet" name="frFlag" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="languageLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="loginButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="passwordInput" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="passwordLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="ptFlag" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="usernameInput" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="usernameLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="welcomeLabel" candidateClass="UILabel"/>
             </relationships>

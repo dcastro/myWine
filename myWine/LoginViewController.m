@@ -137,6 +137,8 @@
     [lan setLang:selected.tag];
     
     [self configureView];
+    ListaVinhosViewController* lvvc = (ListaVinhosViewController*) self.delegate;
+    [lvvc configureView];
     
 }
 
