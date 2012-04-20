@@ -17,7 +17,6 @@ static User *sharedUser = nil;
 @synthesize password = _password;
 @synthesize vinhos = _vinhos;
 @synthesize isValidated = _isValidated;
-@synthesize user_id = _user_id;
 @synthesize synced_at;
 
 + (id)instance {
@@ -40,9 +39,9 @@ static User *sharedUser = nil;
     return [NSString stringWithFormat:@"Username: %@, Password: %@, Synced_at: %d", self.username, self.password, self.synced_at];
 }
 
-- (id) initWithID:(int)user_id {
+- (id) initWithUsername:(NSString*) username {
     if (self = [super init]) {
-        self.user_id = user_id;
+        self.username = username;
         
         [self loadFromDB];
     }
@@ -50,10 +49,10 @@ static User *sharedUser = nil;
     return self;
 }
 
-+ (void) createWithID:(int) user_id {
++ (void) createWithUsername:(NSString*) username {
     @synchronized(self) {
         if (sharedUser == nil)
-            sharedUser = [[self alloc] initWithID:user_id];
+            sharedUser = [[self alloc] initWithUsername:username];
     }
 }
 

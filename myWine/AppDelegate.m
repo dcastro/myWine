@@ -40,12 +40,12 @@
     
     //check if there's a default user
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    int user_id;
+    NSString* username;
     
     ListaVinhosViewController *lvvc = [[[[splitViewController viewControllers] objectAtIndex:0] viewControllers ] objectAtIndex:0 ];
     
     //if there isn't a default user, show login
-    if (!(user_id = [defaults integerForKey:@"user_id"])) {
+    if (!(username = [defaults stringForKey:@"username"])) {
     
         //show login controller at startup
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
@@ -60,7 +60,7 @@
     
     //if there is a default user
     else {
-        [User createWithID:user_id];
+        [User createWithUsername:username];
         User* user = [User instance];
         [lvvc setVinhos:user.vinhos];
     }

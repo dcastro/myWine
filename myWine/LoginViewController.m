@@ -107,7 +107,7 @@
         
         //save this user as default
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setInteger:user.user_id forKey:@"user_id"];
+        [defaults setObject:user.username forKey:@"username"];
         [defaults synchronize];
         
         //Vinho* vinho = [[Vinho alloc] init];

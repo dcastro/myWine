@@ -17,7 +17,6 @@
 @property (nonatomic, assign) int synced_at;
 
 @property (nonatomic) BOOL isValidated;
-@property (nonatomic) int user_id;
 
 
 - (void) sync;
@@ -25,7 +24,7 @@
 
 //singleton instance creators
 + (void) createWithUsername:(NSString*) username Password:(NSString*) password;
-+ (void) createWithID: (int) user_id;
++ (void) createWithUsername:(NSString*) username;
 
 //singleton
 +(id) instance;
