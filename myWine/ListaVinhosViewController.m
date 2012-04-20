@@ -18,6 +18,8 @@
 #import "Prova.h"
 #import "Language.h"
 
+#import "VinhoViewController.h"
+
 #import "NSMutableArray+VinhosMutableArray.h"
 
 @interface ListaVinhosViewController () {
@@ -149,8 +151,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 #warning TODO: passar vinho para a detail
-    NSString *object = [_objects objectAtIndex:indexPath.row];
-    self.detailViewController.detailItem = object;
+    
+    Vinho* vinho = [self.vinhos objectAtIndex:indexPath.row];
+    self.detailViewController.detailItem = vinho;
 }
 
 #pragma mark - NovoVinhoViewControllerDelegate
