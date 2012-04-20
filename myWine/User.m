@@ -8,6 +8,8 @@
 
 #import "User.h"
 #import "Query.h"
+#import "Language.h"
+#import "Vinho.h"
 
 static User *sharedUser = nil;
 
@@ -128,9 +130,66 @@ static User *sharedUser = nil;
     return _vinhos;
 }
 
-- (void) loadVinhosFromDB {
-    #warning TODO: load dos vinhos da DB
+- (BOOL) loadVinhosFromDB {
     _vinhos = [[NSMutableArray alloc] init];
+    
+    
+    Query *query = [[Query alloc] init];
+    
+    NSString *querySQL;
+    
+    Language *lan = [Language instance];
+    switch (lan.selectedLanguage) {
+        case FR:
+            querySQL =  @"SELECT w.wine_id, r.name_fr  , wt.name_fr, w.name, w.year, w.photo_filename, w.producer, w.currency, w.price \
+                        FROM Wine w, Region r, Country c, WineType wt \
+                        WHERE w.region_id = r.region_id AND r.country_id = c.country_id AND w.winetype_id = wt.winetype_id;";
+            break;
+            
+        case EN: querySQL =  @"SELECT w.wine_id, r.name_en  , wt.name_en, w.name, w.year, w.photo_filename, w.producer, w.currency, w.price \
+            FROM Wine w, Region r, Country c, WineType wt \
+            WHERE w.region_id = r.region_id AND r.country_id = c.country_id AND w.winetype_id = wt.winetype_id;";
+            break;
+            
+        case PT:querySQL =  @"SELECT w.wine_id, r.name_en  , wt.name_en, w.name, w.year, w.photo_filename, w.producer, w.currency, w.price \
+            FROM Wine w, Region r, Country c, WineType wt \
+            WHERE w.region_id = r.region_id AND r.country_id = c.country_id AND w.winetype_id = wt.winetype_id;";
+            break;
+            
+        default:
+            break;
+    }
+     
+    
+    sqlite3_stmt *stmt = [query prepareForQuery:querySQL];
+    
+    
+    if(stmt != nil){
+        while(sqlite3_step(stmt) == SQLITE_ROW)
+        {
+            Vinho *wine = [[Vinho alloc] init]; 
+            wine.wine_id = sqlite3_column_int(stmt, wine_column_id);
+            wine.region_name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, wine_column_region)];
+            wine.winetype_name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, wine_column_winetype)];
+            wine.name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, wine_column_name)];
+            wine.year = sqlite3_column_int(stmt, wine_column_year);
+            wine.photo = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, wine_column_photo)];
+            wine.producer = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, wine_column_producer)];
+            wine.currency = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, wine_column_currency)];
+            wine.price = sqlite3_column_double(stmt, wine_column_year);
+
+            [_vinhos insertObject:wine atIndex:0];
+         
+            
+        }
+        return TRUE;
+    }
+    else
+        return FALSE;
+    
+    
+    
+    
 }
 
 

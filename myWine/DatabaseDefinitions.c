@@ -188,6 +188,7 @@ const char  *databaseTables[] = {
 
 
 //columns in table User
+const int user_column_count = 4;
 const int user_column_username = 0;
 const int user_column_password = 1;
 const int user_column_synced = 2;
@@ -196,6 +197,7 @@ const int user_column_validated = 3;
 
 
 //columns in table Country
+const int country_column_count = 4;
 const int country_column_id = 0;
 const int country_column_name_fr = 1;
 const int country_column_name_en = 2;
@@ -204,6 +206,7 @@ const int country_column_name_pt = 3;
 
 
 //columns in table Region
+const int region_column_count = 6;
 const int region_column_id = 0;
 const int region_column_country = 1;
 const int region_column_default = 2;
@@ -214,6 +217,7 @@ const int region_column_name_pt = 5;
 
 
 //columns in table Wine
+const int wine_column_count = 10;
 const int wine_column_id = 0;
 const int wine_column_user = 1;
 const int wine_column_region = 2;
