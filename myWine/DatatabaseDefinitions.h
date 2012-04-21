@@ -59,6 +59,8 @@ extern const int wine_column_photo;
 extern const int wine_column_producer;
 extern const int wine_column_currency;
 extern const int wine_column_price;
+extern const int wine_column_state;
+
 
 
 

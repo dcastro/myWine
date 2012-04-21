@@ -61,7 +61,7 @@ const char  *databaseTables[] = {
     producer TEXT, \
     currency TEXT, \
     price REAL, \
-    update_at INTEGER, \
+    state INTEGER, \
     FOREIGN KEY (user) REFERENCES User (username) ON UPDATE CASCADE ON DELETE CASCADE, \
     FOREIGN KEY (region_id) REFERENCES Region (region_id) ON UPDATE CASCADE ON DELETE CASCADE, \
     FOREIGN KEY (winetype_id) REFERENCES WineType (winetype_id) ON UPDATE CASCADE ON DELETE CASCADE \
@@ -75,7 +75,7 @@ const char  *databaseTables[] = {
     comment TEXT, \
     latitude REAL, \
     longitude REAL, \
-    updated_at INTEGER, \
+    state INTEGER, \
     FOREIGN KEY (classification_id) REFERENCES Classification (classification_id) ON UPDATE CASCADE ON DELETE CASCADE, \
     FOREIGN KEY (wine_id) REFERENCES Wine (wine_id) ON UPDATE CASCADE ON DELETE CASCADE \
     );",
@@ -217,7 +217,7 @@ const int region_column_name_pt = 5;
 
 
 //columns in table Wine
-const int wine_column_count = 10;
+const int wine_column_count = 11;
 const int wine_column_id = 0;
 const int wine_column_user = 1;
 const int wine_column_region = 2;
@@ -228,5 +228,7 @@ const int wine_column_photo = 6;
 const int wine_column_producer = 7;
 const int wine_column_currency = 8;
 const int wine_column_price = 9;
+const int wine_column_state = 10;
+
 
 
