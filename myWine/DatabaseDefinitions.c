@@ -119,8 +119,7 @@ const char  *databaseTables[] = {
     );",
     
     "CREATE TABLE FormTasting (\
-    formtasting_id INTEGER PRIMARY KEY, \
-    updated_at INTEGER \
+    formtasting_id INTEGER PRIMARY KEY \
     );",
     
     "CREATE TABLE FormSection (\
