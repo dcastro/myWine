@@ -36,9 +36,7 @@ const char  *databaseTables[] = {
     region_id INTEGER PRIMARY KEY, \
     country_id INTEGER NOT NULL, \
     default_selection INTEGER, \
-    name_fr TEXT, \
-    name_en TEXT, \
-    name_pt TEXT, \
+    name TEXT, \
     FOREIGN KEY (country_id) REFERENCES Country (country_id) ON UPDATE CASCADE ON DELETE CASCADE \
     );",
     
@@ -52,11 +50,12 @@ const char  *databaseTables[] = {
     
     "CREATE TABLE Wine (\
     wine_id INTEGER PRIMARY KEY, \
+    wine_server_id INTEGER, \
     user TEXT NOT NULL, \
     region_id INTEGER NOT NULL, \
     winetype_id INTEGER NOT NULL, \
     name TEXT NOT NULL, \
-    year INTEGER, \
+    year INTEGER NOT NULL, \
     photo_filename TEXT, \
     producer TEXT, \
     currency TEXT, \
@@ -100,6 +99,17 @@ const char  *databaseTables[] = {
     FOREIGN KEY (section_id) REFERENCES Section (section_id) ON UPDATE CASCADE ON DELETE CASCADE \
     );",
     
+    "CREATE TABLE Characteristics (\
+    characteristics_id INTEGER PRIMARY KEY, \
+    section_id INTEGER NOT NULL, \
+    classification_id INTEGER, \
+    name_en TEXT, \
+    name_fr TEXT, \
+    name_pt TEXT, \
+    FOREIGN KEY (section_id) REFERENCES Section (section_id) ON UPDATE CASCADE ON DELETE CASCADE \
+    FOREIGN KEY (classification_id) REFERENCES Classification (classification_id) ON UPDATE CASCADE ON DELETE CASCADE, \
+    );",
+    
     "CREATE TABLE Classification (\
     classification_id INTEGER PRIMARY KEY, \
     weight INTEGER, \
@@ -109,9 +119,9 @@ const char  *databaseTables[] = {
     );",
     
     "CREATE TABLE UserTypeForm (\
-    user TEXT, \
-    winetype_id INTEGER, \
-    formtasting_id INTEGER, \
+    user TEXT NOT NULL, \
+    winetype_id INTEGER NOT NULL, \
+    formtasting_id INTEGER NOT NULL, \
     PRIMARY KEY (user, winetype_id, formtasting_id), \
     FOREIGN KEY (user) REFERENCES User (username) ON UPDATE CASCADE ON DELETE CASCADE, \
     FOREIGN KEY (winetype_id) REFERENCES WineType (winetype_id) ON UPDATE CASCADE ON DELETE CASCADE, \
@@ -133,6 +143,16 @@ const char  *databaseTables[] = {
     
     "CREATE TABLE FormCriterion (\
     formcriterion_id INTEGER PRIMARY KEY, \
+    formsection_id INTEGER NOT NULL, \
+    name_en TEXT, \
+    name_fr TEXT, \
+    name_pt TEXT, \
+    FOREIGN KEY (formsection_id) REFERENCES FormSection (formsection_id) ON UPDATE CASCADE ON DELETE CASCADE \
+    );",
+    
+    
+    "CREATE TABLE FormCharacteristics (\
+    formcharacteristics_id INTEGER PRIMARY KEY, \
     formsection_id INTEGER NOT NULL, \
     name_en TEXT, \
     name_fr TEXT, \
