@@ -169,6 +169,11 @@ A "descoberta" do Vinho do Porto é polémica. Uma das versões, defendida pelos
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Detalhes" id="53">
+                        <barButtonItem key="leftBarButtonItem" title="Home" id="RQ8-DU-uiE">
+                            <connections>
+                                <segue destination="N51-FY-8hq" kind="push" id="IEu-YB-U4K"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Editar" id="0yn-lv-cAI"/>
                     </navigationItem>
                     <connections>
@@ -1557,11 +1562,11 @@ A "descoberta" do Vinho do Porto é polémica. Uma das versões, defendida pelos
                             </items>
                         </toolbar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="tIi-5l-S0i" detailTextLabel="Nzd-zB-1iV" style="IBUITableViewCellStyleSubtitle" id="ZSw-0O-9Pw">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="tIi-5l-S0i" detailTextLabel="Nzd-zB-1iV" style="IBUITableViewCellStyleSubtitle" id="ZSw-0O-9Pw">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tIi-5l-S0i">
@@ -1936,7 +1941,7 @@ A "descoberta" do Vinho do Porto é polémica. Uma das versões, defendida pelos
                     </navigationItem>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="-2409" y="56"/>
+            <point key="canvasLocation" x="-2157" y="-688"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="2rB-iu-xtc">
@@ -2186,5 +2191,6 @@ A "descoberta" do Vinho do Porto é polémica. Uma das versões, defendida pelos
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="zKK-or-der"/>
+        <segue reference="IEu-YB-U4K"/>
     </inferredMetricsTieBreakers>
 </document>
