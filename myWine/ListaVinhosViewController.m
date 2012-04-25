@@ -127,9 +127,12 @@
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [vinho year]];
     
     //Change cell's background color when selected
-    UIView *myBackView = [[UIView alloc] initWithFrame:cell.frame];
+    /*UIView *myBackView = [[UIView alloc] initWithFrame:cell.frame];
     myBackView.backgroundColor = [UIColor colorWithRed:0.48 green:0.05 blue:0.07 alpha:1];
-    cell.selectedBackgroundView = myBackView;
+    cell.selectedBackgroundView = myBackView;*/
+    
+    [[cell textLabel] setBackgroundColor:[UIColor clearColor]];
+    cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cell_bg_gradient.png"]];
     
     return cell;
 }

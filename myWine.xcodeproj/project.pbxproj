@@ -52,6 +52,7 @@
 		DA498F14153D6659009C4072 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = DA498F13153D6659009C4072 /* User.m */; };
 		DA7D48A4152E0AAD00C525FB /* Language.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7D48A3152E0AAD00C525FB /* Language.m */; };
 		DA993CDE153F22E7009D3E13 /* Vinho.m in Sources */ = {isa = PBXBuildFile; fileRef = DA993CDD153F22E7009D3E13 /* Vinho.m */; };
+		DADE3BCA15480E2000465551 /* cell_bg_gradient.png in Resources */ = {isa = PBXBuildFile; fileRef = DADE3BC915480E2000465551 /* cell_bg_gradient.png */; };
 		DADE7ADA152E136400F0F680 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DADE7AD9152E136400F0F680 /* MainStoryboard.storyboard */; };
 		DADE7AF1152E170300F0F680 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DADE7AEF152E170300F0F680 /* Localizable.strings */; };
 		DAFB6903152D138800DC74CB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFB6902152D138800DC74CB /* LoginViewController.m */; };
@@ -126,6 +127,7 @@
 		DA7D48A3152E0AAD00C525FB /* Language.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Language.m; sourceTree = "<group>"; };
 		DA993CDC153F22E7009D3E13 /* Vinho.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vinho.h; sourceTree = "<group>"; };
 		DA993CDD153F22E7009D3E13 /* Vinho.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vinho.m; sourceTree = "<group>"; };
+		DADE3BC915480E2000465551 /* cell_bg_gradient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cell_bg_gradient.png; sourceTree = "<group>"; };
 		DADE7AD9152E136400F0F680 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		DADE7AF0152E170300F0F680 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = myWine/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DADE7AF2152E170D00F0F680 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = myWine/fr.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 		A9C5A01A1517A7EF00A3F8C5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DADE3BC915480E2000465551 /* cell_bg_gradient.png */,
 				A9BFB2C2151D442600588B59 /* 184-warning.png */,
 				A975DE00151A3CCB002FC7FB /* 02-redo.png */,
 				A9BDB691151A4F420032921A /* 06-magnify.png */,
@@ -382,6 +385,7 @@
 				A9BFB2C3151D442600588B59 /* 184-warning.png in Resources */,
 				DADE7ADA152E136400F0F680 /* MainStoryboard.storyboard in Resources */,
 				DADE7AF1152E170300F0F680 /* Localizable.strings in Resources */,
+				DADE3BCA15480E2000465551 /* cell_bg_gradient.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
