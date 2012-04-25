@@ -809,7 +809,7 @@ A "descoberta" do Vinho do Porto é polémica. Uma das versões, defendida pelos
                                 <rect key="frame" x="408" y="595" width="232" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="geJ-dX-iqE" id="ESl-VN-pFE"/>
                                 </connections>
