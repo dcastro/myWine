@@ -50,10 +50,10 @@ const char  *databaseTables[] = {
     
     "CREATE TABLE Wine (\
     wine_id INTEGER PRIMARY KEY, \
-    wine_server_id INTEGER, \
     user TEXT NOT NULL, \
     region_id INTEGER NOT NULL, \
     winetype_id INTEGER NOT NULL, \
+    wine_server_id INTEGER, \
     name TEXT NOT NULL, \
     year INTEGER NOT NULL, \
     photo_filename TEXT, \
@@ -106,8 +106,8 @@ const char  *databaseTables[] = {
     name_en TEXT, \
     name_fr TEXT, \
     name_pt TEXT, \
-    FOREIGN KEY (section_id) REFERENCES Section (section_id) ON UPDATE CASCADE ON DELETE CASCADE \
-    FOREIGN KEY (classification_id) REFERENCES Classification (classification_id) ON UPDATE CASCADE ON DELETE CASCADE, \
+    FOREIGN KEY (section_id) REFERENCES Section (section_id) ON UPDATE CASCADE ON DELETE CASCADE, \
+    FOREIGN KEY (classification_id) REFERENCES Classification (classification_id) ON UPDATE CASCADE ON DELETE CASCADE \
     );",
     
     "CREATE TABLE Classification (\
@@ -191,20 +191,22 @@ const char  *databaseTables[] = {
     
     "INSERT INTO Country VALUES (1,'Portugal', 'Portugal', 'Portugal');",
     
-    "INSERT INTO Region VALUES (1, 1, 1, 'Vila Real', 'Vila Real', 'Vila Real');",
-    "INSERT INTO Region VALUES (2, 1, 0, 'Porto', 'Porto', 'Porto');",
-    "INSERT INTO Region VALUES (3, 1, 0, 'Alijo', 'Alijo', 'Alijo');",
+    "INSERT INTO Region VALUES (1, 1, 1, 'Vila Real');",
+    "INSERT INTO Region VALUES (2, 1, 0, 'Porto');",
+    "INSERT INTO Region VALUES (3, 1, 0, 'Alijo');",
     
     "INSERT INTO WineType VALUES (1, 'White Wine', 'Vin Blanc', 'Vinho Branco');",
     "INSERT INTO WineType VALUES (2, 'Sparlking Wine', 'Vin Mousseux', 'Vinho Espumante');",
     
-    "INSERT INTO Wine VALUES (1, 'admin', 1, 1, 'Terras do Aleu', 2012, NULL, 'Lavrador XPTO', 'EUR', 9.99, 15000);",
-    "INSERT INTO Wine VALUES (2, 'admin', 3, 1, 'Muralhas', 2012, NULL, 'Adega Qualquer', 'EUR', 4.00, 15000);",
+    "INSERT INTO Wine VALUES (1, 'admin', 1, 1,NULL, 'Terras do Aleu', 2012, NULL, 'Lavrador XPTO', 'EUR', 9.99, 15000);",
+    "INSERT INTO Wine VALUES (2, 'admin', 3, 1,NULL, 'Muralhas', 2012, NULL, 'Adega Qualquer', 'EUR', 4.00, 15000);",
 
     
     "\n"
 };
 
+
+#warning actualizar isto
 
 //columns in table User
 const int user_column_count = 4;
@@ -225,29 +227,28 @@ const int country_column_name_pt = 3;
 
 
 //columns in table Region
-const int region_column_count = 6;
+const int region_column_count = 4;
 const int region_column_id = 0;
 const int region_column_country = 1;
 const int region_column_default = 2;
-const int region_column_name_fr = 3;
-const int region_column_name_en = 4;
-const int region_column_name_pt = 5;
+const int region_column_name = 3;
 
 
 
 //columns in table Wine
-const int wine_column_count = 11;
+const int wine_column_count = 12;
 const int wine_column_id = 0;
 const int wine_column_user = 1;
 const int wine_column_region = 2;
 const int wine_column_winetype = 3;
-const int wine_column_name = 4;
-const int wine_column_year = 5;
-const int wine_column_photo = 6;
-const int wine_column_producer = 7;
-const int wine_column_currency = 8;
-const int wine_column_price = 9;
-const int wine_column_state = 10;
+const int wine_column_server_id = 4;
+const int wine_column_name = 5;
+const int wine_column_year = 6;
+const int wine_column_photo = 7;
+const int wine_column_producer = 8;
+const int wine_column_currency = 9;
+const int wine_column_price = 10;
+const int wine_column_state = 11;
 
 
 
