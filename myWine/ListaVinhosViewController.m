@@ -124,6 +124,7 @@
     //NSString *object = [_objects objectAtIndex:indexPath.row];
     Vinho* vinho = [self.vinhos objectAtIndex:indexPath.row];
     cell.textLabel.text = [vinho description];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [vinho year]];
     return cell;
 }
 
