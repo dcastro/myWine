@@ -110,6 +110,11 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Detalhes" id="53">
+                        <barButtonItem key="leftBarButtonItem" title="Home" id="RQ8-DU-uiE">
+                            <connections>
+                                <segue destination="N51-FY-8hq" kind="push" id="IEu-YB-U4K"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Editar" id="0yn-lv-cAI"/>
                     </navigationItem>
                     <connections>
@@ -759,7 +764,7 @@
                                 <rect key="frame" x="408" y="595" width="232" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="geJ-dX-iqE" id="ESl-VN-pFE"/>
                                 </connections>
@@ -1886,7 +1891,7 @@
                     </navigationItem>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="-2409" y="56"/>
+            <point key="canvasLocation" x="-2157" y="-688"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="2rB-iu-xtc">
@@ -2144,5 +2149,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="Q9i-cx-GHb"/>
+        <segue reference="zKK-or-der"/>
+        <segue reference="IEu-YB-U4K"/>
     </inferredMetricsTieBreakers>
 </document>
