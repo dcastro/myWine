@@ -7,6 +7,7 @@
 //
 
 #import "VinhoViewController.h"
+#import "Language.h"
 
 @interface VinhoViewController ()
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
@@ -14,9 +15,17 @@
 @end
 
 @implementation VinhoViewController
-
+@synthesize producer_label = _producer_label;
+@synthesize producer_label_name = _producer_label_name;
+@synthesize year_label = _year_label;
+@synthesize year_label_name = _year_label_name;
+@synthesize region_label = _region_label;
+@synthesize region_label_name = _region_label_name;
+@synthesize country_label = _country_label;
+@synthesize country_label_name = _country_label_name;
+@synthesize percentage_label_name = _percentage_label_name;
+@synthesize wine_label_name = _wine_label_name;
 @synthesize detailItem = _detailItem;
-@synthesize detailDescriptionLabel = _detailDescriptionLabel;
 @synthesize masterPopoverController = _masterPopoverController;
 
 #pragma mark - Managing the detail item
@@ -39,9 +48,25 @@
 {
     // Update the user interface for the detail item.
     
-    if (self.detailItem) {
-        self.detailDescriptionLabel.text = [self.detailItem description];
-    }
+    Language *lan = [Language instance];
+    
+    
+    self.producer_label.text = [lan translate:@"Producer"];
+    self.producer_label.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGE_FONT];
+    
+    self.year_label.text = [lan translate:@"Harvest year"];
+    self.year_label.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGE_FONT];
+    
+    self.producer_label.text = [lan translate:@"Producer"];
+    self.producer_label.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGE_FONT];
+
+    self.region_label.text = [lan translate:@"Region"];
+    self.region_label.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGE_FONT];
+
+    self.country_label.text = [lan translate:@"Country"];
+    self.country_label.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGE_FONT];
+
+    
 }
 
 - (void)viewDidLoad
@@ -53,9 +78,18 @@
 
 - (void)viewDidUnload
 {
+    [self setProducer_label:nil];
+    [self setProducer_label_name:nil];
+    [self setYear_label:nil];
+    [self setYear_label_name:nil];
+    [self setRegion_label:nil];
+    [self setRegion_label_name:nil];
+    [self setCountry_label:nil];
+    [self setCountry_label_name:nil];
+    [self setPercentage_label_name:nil];
+    [self setWine_label_name:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
-    self.detailDescriptionLabel = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

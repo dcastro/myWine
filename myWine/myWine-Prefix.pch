@@ -12,3 +12,8 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 #endif
+
+
+#define LARGE_FONT 25
+#define SMALL_FONT 15
+

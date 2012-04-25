@@ -44,6 +44,10 @@
 		A9C5A0241517AB0E00A3F8C5 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A9C5A0231517AB0E00A3F8C5 /* icon.png */; };
 		A9F0B4BB1524731F003C931B /* FiltrosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F0B4BA1524731F003C931B /* FiltrosViewController.m */; };
 		A9F0B4BF152477C9003C931B /* ComparadorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F0B4BE152477C9003C931B /* ComparadorViewController.m */; };
+		D3231DA3154814F400F09BAC /* DroidSerif-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D3231D9D15480DF700F09BAC /* DroidSerif-Bold.ttf */; };
+		D3231DA4154814F800F09BAC /* DroidSerif-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D3231D9E15480DF700F09BAC /* DroidSerif-BoldItalic.ttf */; };
+		D3231DA5154814FC00F09BAC /* DroidSerif-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D3231D9F15480DF700F09BAC /* DroidSerif-Italic.ttf */; };
+		D3231DA6154814FF00F09BAC /* DroidSerif-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D3231DA015480DF700F09BAC /* DroidSerif-Regular.ttf */; };
 		D328B96D153F254700EA4501 /* DatabaseDefinitions.c in Sources */ = {isa = PBXBuildFile; fileRef = D328B96C153F254700EA4501 /* DatabaseDefinitions.c */; };
 		D3637DCD153E305E00A9B928 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = D3637DCC153E305E00A9B928 /* Database.m */; };
 		D3637DD1153E31DA00A9B928 /* Query.m in Sources */ = {isa = PBXBuildFile; fileRef = D3637DD0153E31DA00A9B928 /* Query.m */; };
@@ -111,6 +115,10 @@
 		A9F0B4BA1524731F003C931B /* FiltrosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiltrosViewController.m; sourceTree = "<group>"; };
 		A9F0B4BD152477C9003C931B /* ComparadorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComparadorViewController.h; sourceTree = "<group>"; };
 		A9F0B4BE152477C9003C931B /* ComparadorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComparadorViewController.m; sourceTree = "<group>"; };
+		D3231D9D15480DF700F09BAC /* DroidSerif-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DroidSerif-Bold.ttf"; sourceTree = "<group>"; };
+		D3231D9E15480DF700F09BAC /* DroidSerif-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DroidSerif-BoldItalic.ttf"; sourceTree = "<group>"; };
+		D3231D9F15480DF700F09BAC /* DroidSerif-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DroidSerif-Italic.ttf"; sourceTree = "<group>"; };
+		D3231DA015480DF700F09BAC /* DroidSerif-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DroidSerif-Regular.ttf"; sourceTree = "<group>"; };
 		D328B96C153F254700EA4501 /* DatabaseDefinitions.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = DatabaseDefinitions.c; sourceTree = "<group>"; };
 		D3637DCB153E305E00A9B928 /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
 		D3637DCC153E305E00A9B928 /* Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Database.m; sourceTree = "<group>"; };
@@ -233,6 +241,10 @@
 		A9C5A01A1517A7EF00A3F8C5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D3231D9D15480DF700F09BAC /* DroidSerif-Bold.ttf */,
+				D3231D9E15480DF700F09BAC /* DroidSerif-BoldItalic.ttf */,
+				D3231D9F15480DF700F09BAC /* DroidSerif-Italic.ttf */,
+				D3231DA015480DF700F09BAC /* DroidSerif-Regular.ttf */,
 				A9BFB2C2151D442600588B59 /* 184-warning.png */,
 				A975DE00151A3CCB002FC7FB /* 02-redo.png */,
 				A9BDB691151A4F420032921A /* 06-magnify.png */,
@@ -382,6 +394,10 @@
 				A9BFB2C3151D442600588B59 /* 184-warning.png in Resources */,
 				DADE7ADA152E136400F0F680 /* MainStoryboard.storyboard in Resources */,
 				DADE7AF1152E170300F0F680 /* Localizable.strings in Resources */,
+				D3231DA3154814F400F09BAC /* DroidSerif-Bold.ttf in Resources */,
+				D3231DA4154814F800F09BAC /* DroidSerif-BoldItalic.ttf in Resources */,
+				D3231DA5154814FC00F09BAC /* DroidSerif-Italic.ttf in Resources */,
+				D3231DA6154814FF00F09BAC /* DroidSerif-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
