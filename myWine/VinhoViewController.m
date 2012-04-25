@@ -65,6 +65,24 @@
 
     self.country_label.text = [lan translate:@"Country"];
     self.country_label.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGE_FONT];
+    
+    
+    Vinho* vinho = (Vinho*) self.detailItem;
+    
+    self.producer_label_name.text = vinho.name;
+    self.producer_label_name.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
+    
+    self.year_label_name.text = [NSString stringWithFormat:@"%d", vinho.year];
+    self.year_label_name.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
+    
+    self.region_label_name.text = vinho.region_name;
+    self.region_label_name.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
+    
+    self.country_label_name.text = vinho.country_name;
+    self.country_label_name.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
+    
+    self.wine_label_name.text = vinho.name;
+    self.wine_label_name.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGE_FONT];
 
     
 }
