@@ -49,8 +49,8 @@
     prova = [[Prova alloc] init];
 	prova.data = @"14/03/2012";
 	prova.local = @"Casa";
-	[_objects addObject:prova];
-
+*/
+    
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     //self.navigationItem.leftBarButtonItem = self.editButtonItem;
