@@ -10,6 +10,6 @@
 
 @implementation Prova
 
-@synthesize data;
-@synthesize local;
+@synthesize tasting_date,longitude,latitude,comment, tasting_id;
+
 @end

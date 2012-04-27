@@ -200,6 +200,9 @@ const char  *databaseTables[] = {
     
     "INSERT INTO Wine VALUES (1, 'admin', 1, 1,NULL, 'Terras do Aleu', 2012, NULL, 'Lavrador XPTO', 'EUR', 9.99, 15000);",
     "INSERT INTO Wine VALUES (2, 'admin', 3, 1,NULL, 'Muralhas', 2012, NULL, 'Adega Qualquer', 'EUR', 4.00, 15000);",
+    
+    
+    "INSERT INTO Tasting VALUES (1, 1, NULL, 1000000, 'muito bom este negocio....', 27.0, 27.0, 1);",
 
     
     "\n"

@@ -32,6 +32,7 @@
     if (!_objects) {
         _objects = [[NSMutableArray alloc] init];
     }
+    /*
     _objects = [NSMutableArray arrayWithCapacity:20];
 	Prova *prova = [[Prova alloc] init];
 	prova.data = @"22/06/2011";
@@ -49,7 +50,12 @@
 	prova.data = @"14/03/2012";
 	prova.local = @"Casa";
 	[_objects addObject:prova];
+<<<<<<< HEAD
     */
+=======
+     */
+    
+>>>>>>> a3e7e907db598e8d56f60ee05af96e107815abfb
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     //self.navigationItem.leftBarButtonItem = self.editButtonItem;
@@ -121,8 +127,9 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Prova"];
     
     Prova *object = [_provas objectAtIndex:indexPath.row];
-    cell.textLabel.text = object.data;
-    cell.detailTextLabel.text = object.local;
+    cell.textLabel.text = [NSString stringWithFormat:@"%d", object.tasting_date];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", object.tasting_id];
+
     return cell;
 }
 
