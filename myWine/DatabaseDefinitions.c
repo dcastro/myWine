@@ -201,6 +201,7 @@ const char  *databaseTables[] = {
     
     
     
+    
     //DADOS DE TESTE
     "INSERT INTO User VALUES ('admin', 'admin', '10000', 1)",
     
@@ -213,9 +214,31 @@ const char  *databaseTables[] = {
     "INSERT INTO WineType VALUES (1, 'White Wine', 'Vin Blanc', 'Vinho Branco');",
     "INSERT INTO WineType VALUES (2, 'Sparlking Wine', 'Vin Mousseux', 'Vinho Espumante');",
     
-    "INSERT INTO Wine VALUES (1, 'admin', 1, 1,NULL, 'Terras do Aleu', 2012, NULL, 'Lavrador XPTO', 'EUR', 9.99, 15000);",
-    "INSERT INTO Wine VALUES (2, 'admin', 3, 1,NULL, 'Muralhas', 2012, NULL, 'Adega Qualquer', 'EUR', 4.00, 15000);",
+    "INSERT INTO Grape VALUES (1,'ALVARINHO', 'ALVARINHO', 'ALVARINHO');",
+    "INSERT INTO Grape VALUES (2,'ARINTO', 'ARINTO', 'ARINTO');", 
+    "INSERT INTO Grape VALUES (3,'MARIA GOMES', 'MARIA GOMES', 'MARIA GOMES');", 
+    "INSERT INTO Grape VALUES (4,'TINTA RORIZ', 'TINTA RORIZ', 'TINTA RORIZ');",
+    "INSERT INTO Grape VALUES (5,'BAGA','BAGA','BAGA');", 
     
+    
+    "INSERT INTO Wine VALUES (1, 'admin', 1, 1,NULL, 'Terras do Aleu', 2012, NULL, 'Lavrador XPTO', 'EUR', 9.99, 0);",
+    "INSERT INTO Wine VALUES (2, 'admin', 3, 1,NULL, 'Muralhas', 2012, NULL, 'Adega Qualquer', 'EUR', 4.00, 0);",
+    
+    "INSERT INTO WineGrape(4,1);",
+    "INSERT INTO WineGrape(5,1);",
+    "INSERT INTO WineGrape(1,2);",
+    "INSERT INTO WineGrape(2,2);",
+    "INSERT INTO WineGrape(3,2);",
+    
+    
+    "INSERT INTO Classification VALUES (1,15,'Very bad', 'Tres mal', 'Muito mau');",
+    "INSERT INTO Classification VALUES (2,30,'Bad', 'Mal', 'Mau');",
+    "INSERT INTO Classification VALUES (3,45,'Reasonable', 'Raisonnable', 'Razoavel');",
+    "INSERT INTO Classification VALUES (4,60,'Good', 'Bon', 'Bom');",
+    "INSERT INTO Classification VALUES (5,75,'Very Good', 'Tres bon', 'Muito bom');",
+    "INSERT INTO Classification VALUES (6,100,'Excellent', 'Excellent', 'Excelente');",
+
+
     
     "INSERT INTO Tasting VALUES (1, 1, NULL, 1000000, 'muito bom este negocio....', 27.0, 27.0, 1);",
 
@@ -223,6 +246,7 @@ const char  *databaseTables[] = {
     "\n"
 };
 
+#warning "adicionar index as tabelas que faltam"
 
 
 //columns in table User
