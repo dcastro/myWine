@@ -16,6 +16,7 @@
 
 @implementation ListaProvasViewController
 @synthesize provaViewController = _provaViewController;
+@synthesize provas = _provas;
 
 - (void)awakeFromNib
 {
@@ -72,6 +73,15 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+ 
+    if ([segue.identifier isEqualToString:@"showProva"]) {
+        
+        ProvaViewController* pvc = (ProvaViewController*) [segue.destinationViewController topViewController];
+        Prova* prova = [_objects objectAtIndex:[[self.tableView indexPathForSelectedRow] row]];
+        pvc.detailItem = prova;
+        
+    }
+    
 	if ([segue.identifier isEqualToString:@"AddProva"])
 	{
 		UINavigationController *navigationController = 
@@ -134,8 +144,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Prova *object = [_objects objectAtIndex:indexPath.row];
-    self.provaViewController.detailItem = object.data;
+    //Prova *object = [_objects objectAtIndex:indexPath.row];
+    //self.provaViewController.detailItem = object.data;
 }
 
 #pragma mark - NovaProvaViewControllerDelegate

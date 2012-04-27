@@ -21,7 +21,7 @@
 @property (nonatomic, copy) NSString *country_name;
 @property (nonatomic, copy) NSString *winetype_name;
 @property (nonatomic, copy) NSString *photo;
-
+@property (nonatomic,copy) NSMutableArray *provas;
 
 
 

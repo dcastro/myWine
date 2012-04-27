@@ -1611,7 +1611,7 @@
                                 </view>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <segue destination="6GF-Y3-3V0" kind="replace" splitViewControllerTargetIndex="1" id="reR-n5-zpp"/>
+                                    <segue destination="6GF-Y3-3V0" kind="replace" identifier="showProva" splitViewControllerTargetIndex="1" id="reR-n5-zpp"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
