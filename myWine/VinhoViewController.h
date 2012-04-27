@@ -26,4 +26,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *percentage_label_name;
 @property (weak, nonatomic) IBOutlet UILabel *wine_label_name;
 
+@property(nonatomic, getter=isEditing) BOOL editing;
+
+- (IBAction)toggleEdit:(id)sender;
+
 @end

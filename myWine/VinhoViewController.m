@@ -131,4 +131,41 @@
     self.masterPopoverController = nil;
 }
 
+- (IBAction)toggleEdit:(id)sender {
+    
+    if ([self isEditing]) {
+        
+        NSArray* subviews = [[self view] subviews];
+        
+        for (int i = 0; i < [subviews count]; i++) {
+            if ([[subviews objectAtIndex:i] isKindOfClass:[UITextField class]]) {
+                NSLog(@"LKHKAJH");
+                UITextField* textField = (UITextField*) [subviews objectAtIndex:i];
+                [textField setHidden:YES];
+                
+                UILabel* label = (UILabel*) textField.delegate;
+                [label setHidden:NO];
+                
+
+                [textField removeFromSuperview];
+            }
+        }
+        NSLog(@"%d", [subviews count]);
+        
+        
+        [self setEditing:NO];
+        
+    } else {
+        NSLog(@"LAAKH");
+    
+        [self.region_label setHidden:YES];
+        UITextField* text = [[UITextField alloc] initWithFrame:self.region_label.frame];
+        text.text = self.region_label.text;
+        text.delegate = self.region_label;
+        [[self view] addSubview: text];
+        
+        [self setEditing:YES];
+    }
+    
+}
 @end

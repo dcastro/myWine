@@ -115,7 +115,11 @@
                                 <segue destination="N51-FY-8hq" kind="push" id="IEu-YB-U4K"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Editar" id="0yn-lv-cAI"/>
+                        <barButtonItem key="rightBarButtonItem" title="Editar" id="0yn-lv-cAI">
+                            <connections>
+                                <action selector="toggleEdit:" destination="4" id="cBq-JK-tJC"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="country_label" destination="rDV-B6-8GL" id="0b7-9f-F6k"/>
@@ -2129,6 +2133,7 @@
         <class className="VinhoViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/VinhoViewController.h"/>
             <relationships>
+                <relationship kind="action" name="toggleEdit:"/>
                 <relationship kind="outlet" name="country_label" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="country_label_name" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="percentage_label_name" candidateClass="UILabel"/>
