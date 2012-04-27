@@ -47,6 +47,13 @@ const char  *databaseTables[] = {
     name_pt TEXT \
     );",
     
+    "CREATE TABLE Grape(\
+    grape_id INTEGER PRIMARY KEY, \
+    name_en TEXT, \
+    name_fr TEXT, \
+    name_pt TEXT \
+    );",
+    
     
     "CREATE TABLE Wine (\
     wine_id INTEGER PRIMARY KEY, \
@@ -65,6 +72,14 @@ const char  *databaseTables[] = {
     FOREIGN KEY (region_id) REFERENCES Region (region_id) ON UPDATE CASCADE ON DELETE CASCADE, \
     FOREIGN KEY (winetype_id) REFERENCES WineType (winetype_id) ON UPDATE CASCADE ON DELETE CASCADE \
     );",
+    
+    "CREATE TABLE WineGrape (\
+    grape_id INTEGER NOT NULL, \
+    wine_id INTEGER NOT NULL, \
+    PRIMARY KEY (grape_id, wine_id), \
+    FOREIGN KEY (grape_id) REFERENCES Grape (grape_id) ON UPDATE CASCADE ON DELETE CASCADE, \
+    FOREIGN KEY (wine_id) REFERENCES Wine (wine_id) ON UPDATE CASCADE ON DELETE CASCADE \
+    )",
     
     "CREATE TABLE Tasting (\
     tasting_id INTEGER PRIMARY KEY, \
@@ -99,7 +114,7 @@ const char  *databaseTables[] = {
     FOREIGN KEY (section_id) REFERENCES Section (section_id) ON UPDATE CASCADE ON DELETE CASCADE \
     );",
     
-    "CREATE TABLE Characteristics (\
+    "CREATE TABLE Characteristic (\
     characteristics_id INTEGER PRIMARY KEY, \
     section_id INTEGER NOT NULL, \
     classification_id INTEGER, \
@@ -151,7 +166,7 @@ const char  *databaseTables[] = {
     );",
     
     
-    "CREATE TABLE FormCharacteristics (\
+    "CREATE TABLE FormCharacteristic (\
     formcharacteristics_id INTEGER PRIMARY KEY, \
     formsection_id INTEGER NOT NULL, \
     name_en TEXT, \
@@ -161,8 +176,8 @@ const char  *databaseTables[] = {
     );",
     
     "CREATE TABLE PossibleClassification(\
-    classification_id INTEGER, \
     classifiable_id INTEGER, \
+    classification_id INTEGER, \
     classifiable_type TEXT, \
     PRIMARY KEY (classification_id, classifiable_id, classifiable_type), \
     FOREIGN KEY (classification_id) REFERENCES Classification (classification_id) ON UPDATE CASCADE ON DELETE CASCADE \
@@ -209,7 +224,6 @@ const char  *databaseTables[] = {
 };
 
 
-#warning actualizar isto
 
 //columns in table User
 const int user_column_count = 4;
