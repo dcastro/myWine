@@ -238,9 +238,14 @@ const char  *databaseTables[] = {
     "INSERT INTO Classification VALUES (5,75,'Very Good', 'Tres bon', 'Muito bom');",
     "INSERT INTO Classification VALUES (6,100,'Excellent', 'Excellent', 'Excelente');",
 
+    "INSERT INTO PossibleClassification VALUES (1,2,'Tasting');",
+    "INSERT INTO PossibleClassification VALUES (1,3,'Tasting');",
+    "INSERT INTO PossibleClassification VALUES (1,4,'Tasting');",
+    "INSERT INTO PossibleClassification VALUES (1,5,'Tasting');",
+    "INSERT INTO PossibleClassification VALUES (1,6,'Tasting');",
 
     
-    "INSERT INTO Tasting VALUES (1, 1, NULL, 1000000, 'muito bom este negocio....', 27.0, 27.0, 1);",
+    "INSERT INTO Tasting VALUES (1, 1, 3, 1000000, 'muito bom este negocio....', 27.0, 27.0, 1);",
 
     
     "\n"
