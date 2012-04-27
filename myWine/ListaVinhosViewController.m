@@ -22,6 +22,8 @@
 
 #import "NSMutableArray+VinhosMutableArray.h"
 
+#import <objc/runtime.h>
+
 @interface ListaVinhosViewController () {
     NSMutableArray *_objects;
 }
@@ -61,6 +63,7 @@
     //UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     //self.navigationItem.rightBarButtonItem = addButton;
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+
     
     [self configureView];
     
@@ -81,6 +84,13 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    if ([segue.identifier isEqualToString:@"showVinho"]) {
+        
+        VinhoViewController* vvc = (VinhoViewController*) [segue.destinationViewController topViewController];
+        Vinho* vinho = [self.vinhos objectAtIndex:[[self.tableView indexPathForSelectedRow] row]];
+        vvc.detailItem = vinho;
+
+    }
 	if ([segue.identifier isEqualToString:@"AddVinho"])
 	{
 		UINavigationController *navigationController = 
@@ -160,10 +170,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-#warning TODO: passar vinho para a detail
-    
-    Vinho* vinho = [self.vinhos objectAtIndex:indexPath.row];
-    self.detailViewController.detailItem = vinho;
+
 }
 
 #pragma mark - NovoVinhoViewControllerDelegate
