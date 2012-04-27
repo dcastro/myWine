@@ -29,7 +29,6 @@
     return _provas;
 }
 
-#warning TODO - a implementar acesso a base dados da lista de provas de um vinho
 - (void) loadProvasFromDB {
     _provas = [[NSMutableArray alloc] init];
     
