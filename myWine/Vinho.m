@@ -25,7 +25,6 @@
     if (! _provas) {
         [self loadProvasFromDB];
     } 
-
     return _provas;
 }
 
@@ -59,6 +58,7 @@
             break;
     }
     
+    NSLog(@"%@",querySQL);
     
     sqlite3_stmt *stmt = [query prepareForQuery:querySQL];
     
@@ -68,12 +68,12 @@
         {
             Prova *tasting = [[Prova alloc] init];
             
+            
             tasting.tasting_date = sqlite3_column_int(stmt, 1);   
             tasting.tasting_date = sqlite3_column_int(stmt, 0);
             tasting.comment = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 2)];
             tasting.latitude = sqlite3_column_double(stmt, 3);
             tasting.longitude = sqlite3_column_double(stmt, 4);
-            
             
             [_provas insertObject:tasting atIndex:0];
         }
