@@ -85,7 +85,7 @@ static User *sharedUser = nil;
     NSString *querySQL = [NSString stringWithFormat: 
                           @"SELECT * FROM User WHERE username=\'%@\';",self.username,"%"];
     
-    sqlite3_stmt *stmt = [query prepareForQuery:querySQL];
+    sqlite3_stmt *stmt = [query prepareForSingleQuery:querySQL];
     
     if(stmt != nil){
         if(sqlite3_step(stmt) == SQLITE_ROW)
@@ -161,7 +161,7 @@ static User *sharedUser = nil;
     }
      
     
-    sqlite3_stmt *stmt = [query prepareForQuery:querySQL];
+    sqlite3_stmt *stmt = [query prepareForSingleQuery:querySQL];
     
     
     if(stmt != nil){

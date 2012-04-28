@@ -32,7 +32,7 @@
     if (!_objects) {
         _objects = [[NSMutableArray alloc] init];
     }
-    /*
+    
     _objects = [NSMutableArray arrayWithCapacity:20];
 	Prova *prova = [[Prova alloc] init];
 	prova.data = @"22/06/2011";

@@ -14,7 +14,15 @@
 @implementation Vinho
 
 @synthesize name = _name;
-@synthesize wine_id, year, price, currency, producer, photo, region_name, winetype_name, country_name;
+@synthesize wine_id = _wine_id;
+@synthesize  year = _year;
+@synthesize price = _price; 
+@synthesize currency = _currency;
+@synthesize producer = _producer; 
+@synthesize photo = _photo; 
+@synthesize region_name = _region_name;
+@synthesize winetype_name = _winetype_name; 
+@synthesize country_name = _country_name;
 @synthesize provas=_provas;
 
 - (NSString*) description {
@@ -28,7 +36,7 @@
     return _provas;
 }
 
-- (void) loadProvasFromDB {
+- (BOOL) loadProvasFromDB {
     _provas = [[NSMutableArray alloc] init];
     
     
@@ -41,17 +49,17 @@
         case FR:
             querySQL = [NSString stringWithFormat:@"SELECT t.tasting_id, t.tasting_date, t.comment, t.latitude, t.longitude \
                         FROM Tasting t \
-                        WHERE t.wine_id = %d;", wine_id ];
+                        WHERE t.wine_id = %d;", _wine_id ];
             break;
             
         case EN: querySQL =  [NSString stringWithFormat:@"SELECT t.tasting_id, t.tasting_date, t.comment, t.latitude, t.longitude \
                               FROM Tasting t \
-                              WHERE t.wine_id = %d;", wine_id ];
+                              WHERE t.wine_id = %d;", _wine_id ];
             break;
             
         case PT:querySQL =  [NSString stringWithFormat:@"SELECT t.tasting_id, t.tasting_date, t.comment, t.latitude, t.longitude \
                              FROM Tasting t \
-                             WHERE t.wine_id = %d;", wine_id ];            
+                             WHERE t.wine_id = %d;", _wine_id ];            
             break;
             
         default:
@@ -60,7 +68,7 @@
     
     NSLog(@"%@",querySQL);
     
-    sqlite3_stmt *stmt = [query prepareForQuery:querySQL];
+    sqlite3_stmt *stmt = [query prepareForSingleQuery:querySQL];
     
     
     if(stmt != nil){
