@@ -205,14 +205,18 @@ const char  *databaseTables[] = {
     //DADOS DE TESTE
     "INSERT INTO User VALUES ('admin', 'admin', '10000', 1)",
     
+    
     "INSERT INTO Country VALUES (1,'Portugal', 'Portugal', 'Portugal');",
+    
     
     "INSERT INTO Region VALUES (1, 1, 1, 'Vila Real');",
     "INSERT INTO Region VALUES (2, 1, 0, 'Porto');",
     "INSERT INTO Region VALUES (3, 1, 0, 'Alijo');",
     
+    
     "INSERT INTO WineType VALUES (1, 'White Wine', 'Vin Blanc', 'Vinho Branco');",
     "INSERT INTO WineType VALUES (2, 'Sparlking Wine', 'Vin Mousseux', 'Vinho Espumante');",
+    
     
     "INSERT INTO Grape VALUES (1,'ALVARINHO', 'ALVARINHO', 'ALVARINHO');",
     "INSERT INTO Grape VALUES (2,'ARINTO', 'ARINTO', 'ARINTO');", 
@@ -224,11 +228,12 @@ const char  *databaseTables[] = {
     "INSERT INTO Wine VALUES (1, 'admin', 1, 1,NULL, 'Terras do Aleu', 2012, NULL, 'Lavrador XPTO', 'EUR', 9.99, 0);",
     "INSERT INTO Wine VALUES (2, 'admin', 3, 1,NULL, 'Muralhas', 2012, NULL, 'Adega Qualquer', 'EUR', 4.00, 0);",
     
-    "INSERT INTO WineGrape(4,1);",
-    "INSERT INTO WineGrape(5,1);",
-    "INSERT INTO WineGrape(1,2);",
-    "INSERT INTO WineGrape(2,2);",
-    "INSERT INTO WineGrape(3,2);",
+    
+    "INSERT INTO WineGrape VALUES (4,1);",
+    "INSERT INTO WineGrape VALUES (5,1);",
+    "INSERT INTO WineGrape VALUES (1,2);",
+    "INSERT INTO WineGrape VALUES (2,2);",
+    "INSERT INTO WineGrape VALUES (3,2);",
     
     
     "INSERT INTO Classification VALUES (1,15,'Very bad', 'Tres mal', 'Muito mau');",
@@ -237,15 +242,53 @@ const char  *databaseTables[] = {
     "INSERT INTO Classification VALUES (4,60,'Good', 'Bon', 'Bom');",
     "INSERT INTO Classification VALUES (5,75,'Very Good', 'Tres bon', 'Muito bom');",
     "INSERT INTO Classification VALUES (6,100,'Excellent', 'Excellent', 'Excelente');",
-
+    "INSERT INTO Classification VALUES (7,0,'Very bad', 'Tres mal', 'Muito mau');",
+    "INSERT INTO Classification VALUES (8,0,'Bad', 'Mal', 'Mau');",
+    "INSERT INTO Classification VALUES (9,0,'Reasonable', 'Raisonnable', 'Razoavel');",
+    "INSERT INTO Classification VALUES (10,0,'Good', 'Bon', 'Bom');",
+    "INSERT INTO Classification VALUES (11,0,'Very Good', 'Tres bon', 'Muito bom');",
+    "INSERT INTO Classification VALUES (12,0,'Excellent', 'Excellent', 'Excelente');",
+    
+    
     "INSERT INTO PossibleClassification VALUES (1,2,'Tasting');",
     "INSERT INTO PossibleClassification VALUES (1,3,'Tasting');",
     "INSERT INTO PossibleClassification VALUES (1,4,'Tasting');",
     "INSERT INTO PossibleClassification VALUES (1,5,'Tasting');",
     "INSERT INTO PossibleClassification VALUES (1,6,'Tasting');",
-
+    "INSERT INTO PossibleClassification VALUES (1,2,'Criterion');",
+    "INSERT INTO PossibleClassification VALUES (1,4,'Criterion');",
+    "INSERT INTO PossibleClassification VALUES (2,3,'Criterion');",
+    "INSERT INTO PossibleClassification VALUES (2,4,'Criterion');",
+    "INSERT INTO PossibleClassification VALUES (2,5,'Criterion');",
+    "INSERT INTO PossibleClassification VALUES (2,6,'Criterion');",
+    "INSERT INTO PossibleClassification VALUES (3,6,'Criterion');",
+    "INSERT INTO PossibleClassification VALUES (4,4,'Criterion');",
+    "INSERT INTO PossibleClassification VALUES (5,4,'Criterion');",
+    "INSERT INTO PossibleClassification VALUES (6,5,'Criterion');",
+    "INSERT INTO PossibleClassification VALUES (1,10,'Characteristic');",
+    "INSERT INTO PossibleClassification VALUES (2,10,'Characteristic');",
+    "INSERT INTO PossibleClassification VALUES (3,11,'Characteristic');",
+    
     
     "INSERT INTO Tasting VALUES (1, 1, 3, 1000000, 'muito bom este negocio....', 27.0, 27.0, 1);",
+    
+    
+    "INSERT INTO Section VALUES (1,1,'View', 'Voir', 'Vista');",
+    "INSERT INTO Section VALUES (2,1,'Aroma', 'Arome', 'Aroma');",
+    "INSERT INTO Section VALUES (3,1,'Flavor', 'Saveur', 'Sabor');",
+
+    
+    "INSERT INTO Criterion VALUES (1, 1, 4, 'Clarity', 'Clarte', 'Limpidez');",
+    "INSERT INTO Criterion VALUES (2, 1, 6, 'Color', 'Couleur', 'Cor');",
+    "INSERT INTO Criterion VALUES (3, 3, 6, 'Genuineness', 'Authenticite', 'Genuinidade');",
+    "INSERT INTO Criterion VALUES (4, 3, 4, 'Intensity', 'Intensite', 'Intensidade');",
+    "INSERT INTO Criterion VALUES (5, 3, 4, 'Persistence', 'Persistance', 'Persistencia');",
+    "INSERT INTO Criterion VALUES (6, 3, 5, 'Quality', 'Qualite', 'Qualidade');",
+
+    
+    "INSERT INTO Characteristic VALUES (1, 2, 10 , 'Genuineness', 'Authenticite', 'Genuinidade');",
+    "INSERT INTO Characteristic VALUES (2, 2, 10 , 'Intensity', 'Intensite', 'Intensidade');",
+    "INSERT INTO Characteristic VALUES (3, 2, 11, 'Quality', 'Qualite', 'Qualidade');",
 
     
     "\n"
