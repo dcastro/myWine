@@ -18,7 +18,7 @@
 }
 
 
--(sqlite3_stmt *)prepareForQuery:(NSString *)query{
+-(sqlite3_stmt *)prepareForSingleQuery:(NSString *)query{
     
     sqlite3_stmt    *statement;
     const char* dbpath = [db.databasePath UTF8String];

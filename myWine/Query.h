@@ -29,11 +29,26 @@
  * 
  * @return sqlite statement compiled. Returns nil if the query is not valid. After execution must call function filalizeQuery if the query is correct.
  */
--(sqlite3_stmt *)prepareForQuery:(NSString*)query;
+-(sqlite3_stmt *)prepareForSingleQuery:(NSString*)query;
+
 
 
 /**
- * Function that finalizes the query. Must be called if the function prepareForQuery succeeded.
+ *Function that opens the connection to the database for the execution of multiple queries afterwards.
+ *Call function prepareDBForQuery for each query to be executed. 
+ *@return pointer to the database connection;
+ */
+-(sqlite3 *)prepareForMultipleQueries;
+
+
+/**
+ *
+ */
+-(sqlite3_stmt *)prepareDB:(sqlite3 *)bd ForQuery:(NSString*)query;
+
+
+/**
+ * Function that finalizes the query. Must be called if the function prepareForSingleQuery or prepareForExecution succeeded.
  *
  * @param statement - statement returned from funcion prepareForQuery
  */

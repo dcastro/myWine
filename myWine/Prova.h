@@ -15,6 +15,8 @@
 @property (nonatomic, assign) double latitude;
 @property (nonatomic, assign) double longitude;
 @property (nonatomic, copy) NSString *comment;
+@property (nonatomic,copy) NSMutableArray *sections;
+
 
 
 @end
