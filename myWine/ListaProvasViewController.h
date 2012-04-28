@@ -16,4 +16,6 @@
 
 @property (strong, nonatomic) ProvaViewController *provaViewController;
 
+@property (strong, nonatomic) NSMutableArray* provas; 
+
 @end

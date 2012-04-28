@@ -12,6 +12,7 @@
 
 #import "LoginViewController.h"
 
+#import "ListaProvasViewController.h"
 #import "Vinho.h"
 
 #import "User.h"
@@ -26,6 +27,7 @@
 
 @interface ListaVinhosViewController () {
     NSMutableArray *_objects;
+    NSIndexPath* _index;
 }
 @end
 
@@ -84,6 +86,12 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    if([segue.identifier isEqualToString:@"PushProvas"]) {
+       ListaProvasViewController* lpvc = (ListaProvasViewController*) [segue destinationViewController ];
+        
+       Vinho* vinho = [self.vinhos objectAtIndex:_index.row];
+       lpvc.provas = vinho.provas;
+    }
     if ([segue.identifier isEqualToString:@"showVinho"]) {
         
         VinhoViewController* vvc = (VinhoViewController*) [segue.destinationViewController topViewController];
@@ -149,6 +157,8 @@
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
+    //fill in provas @ listaprovasviewcontroller
+    _index = indexPath;
     [self performSegueWithIdentifier:@"PushProvas" sender:self];
 }
 
