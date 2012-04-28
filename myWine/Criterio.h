@@ -11,8 +11,8 @@
 
 @interface Criterio : NSObject
 
-@property (nonatomic, assign) int section_id;
-@property (nonatomic, copy) Classificacao * classification_choosen;
+@property (nonatomic, assign) int criterion_id;
+@property (nonatomic, retain) Classificacao * classification_choosen;
 @property (nonatomic, copy) NSString * name;
 @property (nonatomic, copy) NSMutableArray * classifications;
 
