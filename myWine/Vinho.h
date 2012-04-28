@@ -10,7 +10,6 @@
 
 @interface Vinho : NSObject
 
-
 @property (nonatomic, assign) int wine_id;
 @property (nonatomic, assign) int year;
 @property (nonatomic, assign) double price;

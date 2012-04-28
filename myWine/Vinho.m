@@ -10,6 +10,7 @@
 #import "Query.h"
 #import "Language.h"
 #import "Prova.h"
+#import "Classificacao.h"
 
 @implementation Vinho
 
@@ -47,27 +48,25 @@
     Language *lan = [Language instance];
     switch (lan.selectedLanguage) {
         case FR:
-            querySQL = [NSString stringWithFormat:@"SELECT t.tasting_id, t.tasting_date, t.comment, t.latitude, t.longitude \
-                        FROM Tasting t \
-                        WHERE t.wine_id = %d;", _wine_id ];
+            querySQL = [NSString stringWithFormat:@"SELECT t.tasting_id, t.tasting_date, t.comment, t.latitude, t.longitude,  c.classification_id, c.weight, c.name_fr\
+                        FROM Tasting t, Classification c\
+                        WHERE t.wine_id = %d AND t.classification_id = c.classification_id;", _wine_id ];
             break;
             
-        case EN: querySQL =  [NSString stringWithFormat:@"SELECT t.tasting_id, t.tasting_date, t.comment, t.latitude, t.longitude \
-                              FROM Tasting t \
-                              WHERE t.wine_id = %d;", _wine_id ];
+        case EN: querySQL =  [NSString stringWithFormat:@"SELECT t.tasting_id, t.tasting_date, t.comment, t.latitude, t.longitude,  c.classification_id, c.weight, c.name_en\
+                              FROM Tasting t, Classification c\
+                              WHERE t.wine_id = %d AND t.classification_id = c.classification_id;", _wine_id ];
             break;
             
-        case PT:querySQL =  [NSString stringWithFormat:@"SELECT t.tasting_id, t.tasting_date, t.comment, t.latitude, t.longitude \
-                             FROM Tasting t \
-                             WHERE t.wine_id = %d;", _wine_id ];            
+        case PT:querySQL =  [NSString stringWithFormat:@"SELECT t.tasting_id, t.tasting_date, t.comment, t.latitude, t.longitude,  c.classification_id, c.weight, c.name_pt\
+                             FROM Tasting t, Classification c\
+                             WHERE t.wine_id = %d AND t.classification_id = c.classification_id;", _wine_id ];            
             break;
             
         default:
             break;
     }
-    
-    NSLog(@"%@",querySQL);
-    
+        
     sqlite3_stmt *stmt = [query prepareForSingleQuery:querySQL];
     
     
@@ -76,15 +75,28 @@
         {
             Prova *tasting = [[Prova alloc] init];
             
-            
+            tasting.tasting_id = sqlite3_column_int(stmt, 0);
             tasting.tasting_date = sqlite3_column_int(stmt, 1);   
-            tasting.tasting_date = sqlite3_column_int(stmt, 0);
-            tasting.comment = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 2)];
-            tasting.latitude = sqlite3_column_double(stmt, 3);
+            
+            const unsigned char * comment = sqlite3_column_text(stmt, 2);
+            if(comment != NULL){
+                tasting.comment = [NSString stringWithUTF8String:(const char *)comment];
+            }
+            
+            tasting.latitude = sqlite3_column_int(stmt, 3);
             tasting.longitude = sqlite3_column_double(stmt, 4);
+            
+            Classificacao *c = [[Classificacao alloc] init];
+            c.classification_id = sqlite3_column_int(stmt, 5);
+            c.weight = sqlite3_column_int(stmt, 6);
+            c.name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 7)];
+            
+            tasting.classification_choosen = c;
             
             [_provas insertObject:tasting atIndex:0];
         }
+        
+        [query finalizeQuery:stmt];
         return TRUE;
     }
     else

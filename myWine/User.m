@@ -204,6 +204,8 @@ static User *sharedUser = nil;
          
             
         }
+        
+        [query finalizeQuery:stmt];
         return TRUE;
     }
     else

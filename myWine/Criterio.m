@@ -22,21 +22,9 @@
     return _classifications;
 }
 
-- (Classificacao *)classification_choosen {
-    if(!_classification_choosen){
-        [self loadClassificationChoosenFromDB];
-    }
-    return _classification_choosen;
-}
-
 
 -(BOOL) loadClassificationsFromDB{
     return true;
-}
-
-
--(BOOL) loadClassificationChoosenFromDB{
-    return TRUE;
 }
 
 

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Classificacao.h"
 
 @interface Prova : NSObject
 
@@ -15,7 +16,9 @@
 @property (nonatomic, assign) double latitude;
 @property (nonatomic, assign) double longitude;
 @property (nonatomic, copy) NSString *comment;
+@property (nonatomic, retain) Classificacao * classification_choosen;
 @property (nonatomic,copy) NSMutableArray *sections;
+@property (nonatomic, copy) NSMutableArray *classifications;
 
 
 

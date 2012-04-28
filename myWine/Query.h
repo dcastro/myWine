@@ -24,27 +24,13 @@
 /**
  * Function that tests if the query to be executed is valid. This function is not for deletes, inserts and updates
  * Opens the database and compiles the query for execution.
- * 
+ * After execution must call function filalizeQuery if the query is correct.
+ *
  * @param query - query to be executed
  * 
- * @return sqlite statement compiled. Returns nil if the query is not valid. After execution must call function filalizeQuery if the query is correct.
- */
+ * @return sqlite statement compiled. Returns nil if the query is not valid.  */
 -(sqlite3_stmt *)prepareForSingleQuery:(NSString*)query;
 
-
-
-/**
- *Function that opens the connection to the database for the execution of multiple queries afterwards.
- *Call function prepareDBForQuery for each query to be executed. 
- *@return pointer to the database connection;
- */
--(sqlite3 *)prepareForMultipleQueries;
-
-
-/**
- *
- */
--(sqlite3_stmt *)prepareDB:(sqlite3 *)bd ForQuery:(NSString*)query;
 
 
 /**
