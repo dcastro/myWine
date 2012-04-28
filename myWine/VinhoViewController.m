@@ -28,6 +28,9 @@
 @synthesize detailItem = _detailItem;
 @synthesize masterPopoverController = _masterPopoverController;
 
+@synthesize wine_name_text_field = _wine_name_text_field, producer_text_field = _producer_text_field, year_text_field = _year_text_field;
+@synthesize editing = _editing;
+
 #pragma mark - Managing the detail item
 
 - (void)setDetailItem:(id)newDetailItem
@@ -92,6 +95,19 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     [self configureView];
+    
+    //init editing frames
+    self.wine_name_text_field = [[UITextField alloc] initWithFrame:self.wine_label_name.frame];
+    self.producer_text_field = [[UITextField alloc] initWithFrame:self.producer_label_name.frame];
+    self.year_text_field = [[UITextField alloc] initWithFrame:self.year_label_name.frame];
+    
+    //styling of the editing fields
+    [self.wine_name_text_field setTextAlignment:UITextAlignmentCenter];
+    
+    //addition of editing fields to the subviews
+    [[self view] addSubview:self.wine_name_text_field];
+    [[self view] addSubview:self.producer_text_field];
+    [[self view] addSubview:self.year_text_field];
 }
 
 - (void)viewDidUnload
@@ -132,40 +148,39 @@
 }
 
 - (IBAction)toggleEdit:(id)sender {
+    //switch editing mode
+    [self setEditing: !self.isEditing];
+    
     
     if ([self isEditing]) {
         
-        NSArray* subviews = [[self view] subviews];
-        
-        for (int i = 0; i < [subviews count]; i++) {
-            if ([[subviews objectAtIndex:i] isKindOfClass:[UITextField class]]) {
-                NSLog(@"LKHKAJH");
-                UITextField* textField = (UITextField*) [subviews objectAtIndex:i];
-                [textField setHidden:YES];
-                
-                UILabel* label = (UILabel*) textField.delegate;
-                [label setHidden:NO];
-                
-
-                [textField removeFromSuperview];
-            }
-        }
-        NSLog(@"%d", [subviews count]);
-        
-        
-        [self setEditing:NO];
-        
+        self.wine_name_text_field.text = self.wine_label_name.text;
+        self.producer_text_field.text = self.producer_label_name.text;
+        self.year_text_field.text = self.year_label_name.text;
+ 
     } else {
-        NSLog(@"LAAKH");
-    
-        [self.region_label setHidden:YES];
-        UITextField* text = [[UITextField alloc] initWithFrame:self.region_label.frame];
-        text.text = self.region_label.text;
-        text.delegate = self.region_label;
-        [[self view] addSubview: text];
         
-        [self setEditing:YES];
+        Vinho* vinho = [[Vinho alloc] init];
+        [vinho setName:self.wine_name_text_field.text];
+        [vinho setProducer:self.producer_text_field.text];
+        [vinho setYear: [self.year_text_field.text intValue]];
+        
+        [self.detailItem updateWithVinho:vinho];
+        
+        self.wine_label_name.text = self.wine_name_text_field.text;
+        self.producer_label_name.text = self.producer_text_field.text;
+        self.year_label_name.text = self.year_text_field.text;
+
     }
+    
+    //switch views
+    [self.wine_label_name setHidden: self.isEditing];
+    [self.producer_label_name setHidden: self.isEditing];
+    [self.year_label_name setHidden: self.isEditing];
+    
+    [self.wine_name_text_field setHidden: !self.isEditing];
+    [self.producer_text_field setHidden: !self.isEditing];
+    [self.year_text_field setHidden: !self.isEditing];
     
 }
 @end

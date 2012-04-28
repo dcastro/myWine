@@ -87,4 +87,19 @@
 
 }
 
+- (void) updateWithVinho:(Vinho *)vinho {
+    
+#warning TODO: update do vinho
+    
+    if (self.name != vinho.name)
+        self.name = vinho.name;
+    if (self.producer != vinho.producer)
+        self.producer = vinho.producer;
+    if (self.year != vinho.year)
+        self.year = vinho.year;
+    
+    //TODO: actualizar na BD os atributos alterados
+    
+}
+
 @end
