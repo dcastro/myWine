@@ -37,9 +37,8 @@
         [self insertObject:vinho atIndex:index];
 
     }
-
-   
-        
+    
+#warning TODO: tratar em caso de erro
 
 }
 
