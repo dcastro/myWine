@@ -84,7 +84,7 @@ const char  *databaseTables[] = {
     "CREATE TABLE Tasting (\
     tasting_id INTEGER PRIMARY KEY AUTOINCREMENT, \
     wine_id INTEGER NOT NULL, \
-    classification_id INTEGER, \
+    classification_id INTEGER NOT NULL, \
     tasting_date INTEGER NOT NULL, \
     comment TEXT, \
     latitude REAL, \
@@ -106,7 +106,7 @@ const char  *databaseTables[] = {
     "CREATE TABLE Criterion (\
     criterion_id INTEGER PRIMARY KEY AUTOINCREMENT, \
     section_id INTEGER NOT NULL, \
-    classification_id INTEGER, \
+    classification_id INTEGER NOT NULL, \
     name_en TEXT, \
     name_fr TEXT, \
     name_pt TEXT, \
