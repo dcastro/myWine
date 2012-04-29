@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50b" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="5">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
@@ -112,7 +112,7 @@
                     <navigationItem key="navigationItem" title="Detalhes" id="53">
                         <barButtonItem key="leftBarButtonItem" title="Home" id="RQ8-DU-uiE">
                             <connections>
-                                <segue destination="N51-FY-8hq" kind="push" id="IEu-YB-U4K"/>
+                                <segue destination="42" kind="replace" splitViewControllerTargetIndex="1" id="9z4-xD-QHL"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Editar" id="0yn-lv-cAI">
@@ -2153,7 +2153,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Q9i-cx-GHb"/>
-        <segue reference="IEu-YB-U4K"/>
+        <segue reference="9z4-xD-QHL"/>
     </inferredMetricsTieBreakers>
 </document>
