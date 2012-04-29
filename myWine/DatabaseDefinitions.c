@@ -16,6 +16,13 @@ const char * databaseFilename = "wineDB.db";
 
 
 //database table creation
+/**
+ *IMPORTANT: statement is a state machine with the possible numbers 0,1,2,3.
+ * 0 - synced with server
+ * 1 - new
+ * 2 - edited
+ * 3 - deleted
+ */
 const char  *databaseTables[] = {
     
     "CREATE TABLE User (\

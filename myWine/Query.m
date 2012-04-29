@@ -55,7 +55,7 @@
 }
 
 
--(BOOL)prepareForExecution{
+-(sqlite3 *)prepareForExecution{
     const char* dbpath = [db.databasePath UTF8String];
     
     if (sqlite3_open(dbpath, &contactDB) == SQLITE_OK){
@@ -63,11 +63,11 @@
         if(sqlite3_exec(contactDB, "Pragma foreign_keys = ON;", NULL, NULL, &errMsg) != SQLITE_OK){
             DebugLog(@"Could not activate foreign keys error: %s", errMsg);
             sqlite3_free(errMsg);
-            return FALSE;
+            return NULL;
         }
-        return TRUE;
+        return contactDB;
     }  
-    return FALSE;
+    return NULL;
     
 }
 

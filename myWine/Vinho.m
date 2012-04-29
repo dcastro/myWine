@@ -21,10 +21,9 @@
 @synthesize currency = _currency;
 @synthesize producer = _producer; 
 @synthesize photo = _photo; 
-@synthesize region_name = _region_name;
-@synthesize winetype_name = _winetype_name; 
-@synthesize country_name = _country_name;
+@synthesize winetype = _winetype; 
 @synthesize provas=_provas;
+@synthesize region = _region;
 
 - (NSString*) description {
     return self.name;

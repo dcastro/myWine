@@ -13,6 +13,8 @@
     #import <Foundation/Foundation.h>
 #endif
 
+#define DebugLog( s, ... ) NSLog( @"<%p %@:(%d)> %@", self, [[NSString stringWithUTF8String:__FILE__] lastPathComponent], __LINE__, [NSString stringWithFormat:(s), ##__VA_ARGS__] )
+
 
 #define LARGE_FONT 25
 #define SMALL_FONT 15

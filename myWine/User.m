@@ -171,11 +171,14 @@ static User *sharedUser = nil;
                         
             wine.wine_id = sqlite3_column_int(stmt, 0);
             
-            wine.country_name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 1)];
+            Regiao * r = [[Regiao alloc] init];
+            r.country_name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 1)];
+            r.region_name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 2)];
+            wine.region = r;
             
-            wine.region_name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 2)];
-                        
-            wine.winetype_name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 3)];
+            TipoVinho *tv = [[TipoVinho alloc] init];
+            tv.name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 3)];
+            wine.winetype = tv;
             
             wine.name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 4)];
             

@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Regiao.h"
+#import "TipoVinho.h"
 
 @interface Vinho : NSObject
 
@@ -16,9 +18,8 @@
 @property (nonatomic, copy) NSString *currency;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *producer;
-@property (nonatomic, copy) NSString *region_name;
-@property (nonatomic, copy) NSString *country_name;
-@property (nonatomic, copy) NSString *winetype_name;
+@property (nonatomic, retain) Regiao * region;
+@property (nonatomic, retain) TipoVinho *winetype;
 @property (nonatomic, copy) NSString *photo;
 @property (nonatomic,copy) NSMutableArray *provas;
 
