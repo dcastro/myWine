@@ -72,7 +72,7 @@
     
     Vinho* vinho = (Vinho*) self.detailItem;
     
-    self.producer_label_name.text = vinho.name;
+    self.producer_label_name.text = vinho.producer;
     self.producer_label_name.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
     
     self.year_label_name.text = [NSString stringWithFormat:@"%d", vinho.year];
@@ -101,12 +101,29 @@
     self.producer_text_field = [[UITextField alloc] initWithFrame:self.producer_label_name.frame];
     self.year_text_field = [[UITextField alloc] initWithFrame:self.year_label_name.frame];
     
-    //styling of the editing fields
+    /**
+     * styling of the editing fields
+     **/
+    
+    //alignment
     [self.wine_name_text_field setTextAlignment:UITextAlignmentCenter];
     
+    //borders
     self.wine_name_text_field.borderStyle = UITextBorderStyleRoundedRect;
     self.producer_text_field.borderStyle = UITextBorderStyleRoundedRect;
     self.year_text_field.borderStyle = UITextBorderStyleRoundedRect;    
+    
+    //fonts
+    self.wine_name_text_field.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGE_FONT];
+    self.producer_text_field.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
+    self.year_text_field.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
+    
+    //frame adjustments
+    CGRect frame = self.wine_name_text_field.frame;
+    self.wine_name_text_field.frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height + 20.0);
+    
+    //keyboard types
+    self.year_text_field.keyboardType = UIKeyboardTypeNumberPad;
 
 }
 
