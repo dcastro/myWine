@@ -26,14 +26,14 @@ const char  *databaseTables[] = {
     );",
     
     "CREATE TABLE Country (\
-    country_id INTEGER PRIMARY KEY, \
+    country_id INTEGER PRIMARY KEY AUTOINCREMENT, \
     name_en TEXT, \
     name_fr TEXT, \
     name_pt TEXT \
     );",
     
     "CREATE TABLE Region (\
-    region_id INTEGER PRIMARY KEY, \
+    region_id INTEGER PRIMARY KEY AUTOINCREMENT, \
     country_id INTEGER NOT NULL, \
     default_selection INTEGER, \
     name TEXT, \
@@ -41,14 +41,14 @@ const char  *databaseTables[] = {
     );",
     
     "CREATE TABLE WineType (\
-    winetype_id INTEGER PRIMARY KEY, \
+    winetype_id INTEGER PRIMARY KEY AUTOINCREMENT, \
     name_en TEXT, \
     name_fr TEXT, \
     name_pt TEXT \
     );",
     
     "CREATE TABLE Grape(\
-    grape_id INTEGER PRIMARY KEY, \
+    grape_id INTEGER PRIMARY KEY AUTOINCREMENT, \
     name_en TEXT, \
     name_fr TEXT, \
     name_pt TEXT \
@@ -56,7 +56,7 @@ const char  *databaseTables[] = {
     
     
     "CREATE TABLE Wine (\
-    wine_id INTEGER PRIMARY KEY, \
+    wine_id INTEGER PRIMARY KEY AUTOINCREMENT, \
     user TEXT NOT NULL, \
     region_id INTEGER NOT NULL, \
     winetype_id INTEGER NOT NULL, \
@@ -82,7 +82,7 @@ const char  *databaseTables[] = {
     )",
     
     "CREATE TABLE Tasting (\
-    tasting_id INTEGER PRIMARY KEY, \
+    tasting_id INTEGER PRIMARY KEY AUTOINCREMENT, \
     wine_id INTEGER NOT NULL, \
     classification_id INTEGER, \
     tasting_date INTEGER NOT NULL, \
@@ -95,7 +95,7 @@ const char  *databaseTables[] = {
     );",
     
     "CREATE TABLE Section (\
-    section_id INTEGER PRIMARY KEY, \
+    section_id INTEGER PRIMARY KEY AUTOINCREMENT, \
     tasting_id INTEGER, \
     name_en TEXT, \
     name_fr TEXT, \
@@ -104,7 +104,7 @@ const char  *databaseTables[] = {
     );",
     
     "CREATE TABLE Criterion (\
-    criterion_id INTEGER PRIMARY KEY, \
+    criterion_id INTEGER PRIMARY KEY AUTOINCREMENT, \
     section_id INTEGER NOT NULL, \
     classification_id INTEGER, \
     name_en TEXT, \
@@ -115,7 +115,7 @@ const char  *databaseTables[] = {
     );",
     
     "CREATE TABLE Characteristic (\
-    characteristics_id INTEGER PRIMARY KEY, \
+    characteristics_id INTEGER PRIMARY KEY AUTOINCREMENT, \
     section_id INTEGER NOT NULL, \
     classification_id INTEGER, \
     name_en TEXT, \
@@ -144,11 +144,11 @@ const char  *databaseTables[] = {
     );",
     
     "CREATE TABLE FormTasting (\
-    formtasting_id INTEGER PRIMARY KEY \
+    formtasting_id INTEGER PRIMARY KEY AUTOINCREMENT \
     );",
     
     "CREATE TABLE FormSection (\
-    formsection_id INTEGER PRIMARY KEY, \
+    formsection_id INTEGER PRIMARY KEY AUTOINCREMENT, \
     formtasting_id INTEGER NOT NULL, \
     name_en TEXT, \
     name_fr TEXT, \
@@ -157,7 +157,7 @@ const char  *databaseTables[] = {
     );",
     
     "CREATE TABLE FormCriterion (\
-    formcriterion_id INTEGER PRIMARY KEY, \
+    formcriterion_id INTEGER PRIMARY KEY AUTOINCREMENT, \
     formsection_id INTEGER NOT NULL, \
     name_en TEXT, \
     name_fr TEXT, \
@@ -167,7 +167,7 @@ const char  *databaseTables[] = {
     
     
     "CREATE TABLE FormCharacteristic (\
-    formcharacteristics_id INTEGER PRIMARY KEY, \
+    formcharacteristics_id INTEGER PRIMARY KEY AUTOINCREMENT, \
     formsection_id INTEGER NOT NULL, \
     name_en TEXT, \
     name_fr TEXT, \
@@ -191,6 +191,7 @@ const char  *databaseTables[] = {
     "CREATE INDEX IDX_WINE_WINETYPE ON Wine (winetype_id);",
     "CREATE INDEX IDX_WINE_YEAR ON Wine (year);",
     "CREATE INDEX IDX_WINE_PRODUCER ON Wine (producer);",
+    "CREATE INDEX IDX_WINE_NAME ON Wine (name);",
     
     "CREATE INDEX IDX_TASTING_WINE ON Tasting (wine_id);",
     "CREATE INDEX IDX_TASTING_DATE ON Tasting (tasting_date);",
@@ -198,6 +199,10 @@ const char  *databaseTables[] = {
     "CREATE INDEX IDX_SECTION_TASTING ON Section (tasting_id);",
     
     "CREATE INDEX IDX_CRITERION_SECTION ON Criterion (section_id);",
+    
+    "CREATE INDEX IDX_CHARACTERISTIC_SECTION ON Characteristic (section_id);",
+    
+    "CREATE INDEX IDX_POSSIBLECLASSIFICATION ON PossibleClassification(classifiable_id, classifiable_type);",
     
     
     
@@ -294,7 +299,6 @@ const char  *databaseTables[] = {
     "\n"
 };
 
-#warning "adicionar index as tabelas que faltam"
 
 
 //columns in table User
