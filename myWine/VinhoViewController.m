@@ -104,10 +104,10 @@
     //styling of the editing fields
     [self.wine_name_text_field setTextAlignment:UITextAlignmentCenter];
     
-    //addition of editing fields to the subviews
-    [[self view] addSubview:self.wine_name_text_field];
-    [[self view] addSubview:self.producer_text_field];
-    [[self view] addSubview:self.year_text_field];
+    self.wine_name_text_field.borderStyle = UITextBorderStyleRoundedRect;
+    self.producer_text_field.borderStyle = UITextBorderStyleRoundedRect;
+    self.year_text_field.borderStyle = UITextBorderStyleRoundedRect;    
+
 }
 
 - (void)viewDidUnload
@@ -157,6 +157,11 @@
         self.wine_name_text_field.text = self.wine_label_name.text;
         self.producer_text_field.text = self.producer_label_name.text;
         self.year_text_field.text = self.year_label_name.text;
+        
+        //addition of editing fields to the subviews
+        [[self view] addSubview:self.wine_name_text_field];
+        [[self view] addSubview:self.producer_text_field];
+        [[self view] addSubview:self.year_text_field];
  
     } else {
         
@@ -170,6 +175,12 @@
         self.wine_label_name.text = self.wine_name_text_field.text;
         self.producer_label_name.text = self.producer_text_field.text;
         self.year_label_name.text = self.year_text_field.text;
+        
+        //remove editing fields from subviews
+        NSMutableArray* subviews = (NSMutableArray*) [[self view] subviews];
+        [subviews removeObject:self.wine_name_text_field];
+        [subviews removeObject:self.producer_text_field];
+        [subviews removeObject:self.year_text_field];
 
     }
     
