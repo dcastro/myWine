@@ -175,10 +175,17 @@
         self.producer_text_field.text = self.producer_label_name.text;
         self.year_text_field.text = self.year_label_name.text;
         
-        //addition of editing fields to the subviews
-        [[self view] addSubview:self.wine_name_text_field];
-        [[self view] addSubview:self.producer_text_field];
-        [[self view] addSubview:self.year_text_field];
+        [UIView transitionWithView:[self view] duration:0.5
+						   options:UIViewAnimationOptionTransitionCurlDown
+						animations:^ {
+                            //addition of editing fields to the subviews
+                            [[self view] addSubview:self.wine_name_text_field];
+                            [[self view] addSubview:self.producer_text_field];
+                            [[self view] addSubview:self.year_text_field];
+                            
+                        }
+						completion:nil];
+
  
     } else {
         
@@ -193,11 +200,15 @@
         self.producer_label_name.text = self.producer_text_field.text;
         self.year_label_name.text = self.year_text_field.text;
         
-        //remove editing fields from subviews
-        NSMutableArray* subviews = (NSMutableArray*) [[self view] subviews];
-        [subviews removeObject:self.wine_name_text_field];
-        [subviews removeObject:self.producer_text_field];
-        [subviews removeObject:self.year_text_field];
+        [UIView transitionWithView:[self view] duration:0.5
+						   options:UIViewAnimationOptionTransitionCurlUp
+						animations:^ {
+                            [self.wine_name_text_field removeFromSuperview];
+                            [self.producer_text_field removeFromSuperview];
+                            [self.year_text_field removeFromSuperview];
+                        }
+						completion:nil];
+
 
     }
     
