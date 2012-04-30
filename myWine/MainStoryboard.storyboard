@@ -124,6 +124,7 @@
                     <connections>
                         <outlet property="country_label" destination="rDV-B6-8GL" id="0b7-9f-F6k"/>
                         <outlet property="country_label_name" destination="iuw-1c-cQq" id="dgK-jH-8ZW"/>
+                        <outlet property="editButton" destination="0yn-lv-cAI" id="fmY-kU-Ggx"/>
                         <outlet property="percentage_label_name" destination="435-r7-kr3" id="Qba-8u-gAh"/>
                         <outlet property="producer_label" destination="lew-0F-qda" id="LhG-z4-zAi"/>
                         <outlet property="producer_label_name" destination="r1S-LA-qgS" id="wkS-7p-YwH"/>
@@ -2136,6 +2137,7 @@
                 <relationship kind="action" name="toggleEdit:"/>
                 <relationship kind="outlet" name="country_label" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="country_label_name" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="editButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="percentage_label_name" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="producer_label" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="producer_label_name" candidateClass="UILabel"/>

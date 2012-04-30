@@ -28,6 +28,8 @@
 
 @property (strong, nonatomic) UITextField* wine_name_text_field, *producer_text_field, *year_text_field;
 
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *editButton;
+
 @property(nonatomic, getter=isEditing) BOOL editing;
 
 - (IBAction)toggleEdit:(id)sender;

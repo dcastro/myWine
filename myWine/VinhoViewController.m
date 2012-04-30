@@ -29,6 +29,7 @@
 @synthesize masterPopoverController = _masterPopoverController;
 
 @synthesize wine_name_text_field = _wine_name_text_field, producer_text_field = _producer_text_field, year_text_field = _year_text_field;
+@synthesize editButton = _editButton;
 @synthesize editing = _editing;
 
 #pragma mark - Managing the detail item
@@ -86,6 +87,8 @@
     
     self.wine_label_name.text = vinho.name;
     self.wine_label_name.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGE_FONT];
+    
+    self.editButton.title = [lan translate:@"Edit"];
 
     
 }
@@ -139,6 +142,7 @@
     [self setCountry_label_name:nil];
     [self setPercentage_label_name:nil];
     [self setWine_label_name:nil];
+    [self setEditButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -185,7 +189,25 @@
                             
                         }
 						completion:nil];
-
+        
+        //switch do doneButton
+        Language* lan = [Language instance];
+        UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithTitle:[lan translate:@"Done"] style:UIBarButtonItemStyleDone target:self action:@selector(toggleEdit:)];
+        
+        //adjust doneButton's width
+        UIView* view = [[self editButton] valueForKey:@"view"];
+        CGFloat editWidth = view.frame.size.width;
+        
+        self.navigationItem.rightBarButtonItem = doneButton;
+        
+        UIView* doneView = [self.navigationItem.rightBarButtonItem valueForKey:@"view"];
+        CGFloat doneWidth = doneView.frame.size.width;
+        
+        if (editWidth > doneWidth) {
+            doneView.frame = CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width, view.frame.size.height);
+            [self.navigationItem.rightBarButtonItem setValue:doneView forKey:@"view"];
+        }
+        
  
     } else {
         
@@ -208,6 +230,9 @@
                             [self.year_text_field removeFromSuperview];
                         }
 						completion:nil];
+        
+        //switch to editButton
+        self.navigationItem.rightBarButtonItem = self.editButton;
 
 
     }
