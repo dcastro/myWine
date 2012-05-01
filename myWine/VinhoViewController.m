@@ -8,6 +8,7 @@
 
 #import "VinhoViewController.h"
 #import "Language.h"
+#import <objc/runtime.h>
 
 @interface VinhoViewController ()
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
@@ -30,6 +31,7 @@
 
 @synthesize wine_name_text_field = _wine_name_text_field, producer_text_field = _producer_text_field, year_text_field = _year_text_field;
 @synthesize editButton = _editButton;
+@synthesize homeButton = _homeButton;
 @synthesize editing = _editing;
 
 #pragma mark - Managing the detail item
@@ -143,6 +145,7 @@
     [self setPercentage_label_name:nil];
     [self setWine_label_name:nil];
     [self setEditButton:nil];
+    [self setHomeButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -170,8 +173,7 @@
 
 - (IBAction)toggleEdit:(id)sender {
     //switch editing mode
-    [self setEditing: !self.isEditing];
-    
+    [self setEditing: !self.isEditing];    
     
     if ([self isEditing]) {
         
@@ -193,12 +195,14 @@
         //switch do doneButton
         Language* lan = [Language instance];
         UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithTitle:[lan translate:@"Done"] style:UIBarButtonItemStyleDone target:self action:@selector(toggleEdit:)];
+        UIBarButtonItem* cancelButton = [[UIBarButtonItem alloc] initWithTitle:[lan translate:@"Cancel"] style:UIBarButtonSystemItemCancel target:self action:@selector(toggleEdit:)];
         
         //adjust doneButton's width
         UIView* view = [[self editButton] valueForKey:@"view"];
         CGFloat editWidth = view.frame.size.width;
         
         self.navigationItem.rightBarButtonItem = doneButton;
+        self.navigationItem.leftBarButtonItem = cancelButton;
         
         UIView* doneView = [self.navigationItem.rightBarButtonItem valueForKey:@"view"];
         CGFloat doneWidth = doneView.frame.size.width;
@@ -210,17 +214,20 @@
         
  
     } else {
+        UIBarButtonItem* pressedButton = (UIBarButtonItem*) sender;
         
-        Vinho* vinho = [[Vinho alloc] init];
-        [vinho setName:self.wine_name_text_field.text];
-        [vinho setProducer:self.producer_text_field.text];
-        [vinho setYear: [self.year_text_field.text intValue]];
+        if ([pressedButton style] != UIBarButtonSystemItemCancel) {
+            Vinho* vinho = [[Vinho alloc] init];
+            [vinho setName:self.wine_name_text_field.text];
+            [vinho setProducer:self.producer_text_field.text];
+            [vinho setYear: [self.year_text_field.text intValue]];
         
-        [self.detailItem updateWithVinho:vinho];
+            [self.detailItem updateWithVinho:vinho];
         
-        self.wine_label_name.text = self.wine_name_text_field.text;
-        self.producer_label_name.text = self.producer_text_field.text;
-        self.year_label_name.text = self.year_text_field.text;
+            self.wine_label_name.text = self.wine_name_text_field.text;
+            self.producer_label_name.text = self.producer_text_field.text;
+            self.year_label_name.text = self.year_text_field.text;
+        }
         
         [UIView transitionWithView:[self view] duration:0.5
 						   options:UIViewAnimationOptionTransitionCurlUp
@@ -233,6 +240,9 @@
         
         //switch to editButton
         self.navigationItem.rightBarButtonItem = self.editButton;
+        self.navigationItem.leftBarButtonItem = self.homeButton;
+        
+        [self configureView];
 
 
     }
@@ -247,4 +257,6 @@
     [self.year_text_field setHidden: !self.isEditing];
     
 }
+
+
 @end
