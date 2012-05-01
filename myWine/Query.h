@@ -22,18 +22,22 @@
 
 
 /**
- * Function that tests if the query to be executed is valid. This function is not for deletes, inserts and updates
+ * Function that tests if the query to be executed is valid. 
+ * This function can only be used for deletes, inserts and updates if, and only if, 
+ * there is a query in the statement after the insert/update/delete.
  * Opens the database and compiles the query for execution.
- * 
+ * After execution must call function filalizeQuery if the query is correct.
+ *
  * @param query - query to be executed
  * 
- * @return sqlite statement compiled. Returns nil if the query is not valid. After execution must call function filalizeQuery if the query is correct.
- */
--(sqlite3_stmt *)prepareForQuery:(NSString*)query;
+ * @return sqlite statement compiled. Returns nil if the query is not valid.  */
+-(sqlite3_stmt *)prepareForSingleQuery:(NSString*)query;
+
 
 
 /**
- * Function that finalizes the query. Must be called if the function prepareForQuery succeeded.
+ * Function that finalizes the query.
+ * Must be called if the function prepareForSingleQuery or prepareForExecution succeeded.
  *
  * @param statement - statement returned from funcion prepareForQuery
  */
@@ -45,7 +49,7 @@
  * Function that prepares for the execution of inserts, updates, deletes.
  * @return - true if the database can accept inserts, updates, deletes. Must call finalizeQuery if returns true
  */
--(BOOL)prepareForExecution;
+-(sqlite3 *)prepareForExecution;
 
 
 @end

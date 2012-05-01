@@ -49,9 +49,15 @@
 		D3231DA5154814FC00F09BAC /* DroidSerif-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D3231D9F15480DF700F09BAC /* DroidSerif-Italic.ttf */; };
 		D3231DA6154814FF00F09BAC /* DroidSerif-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D3231DA015480DF700F09BAC /* DroidSerif-Regular.ttf */; };
 		D328B96D153F254700EA4501 /* DatabaseDefinitions.c in Sources */ = {isa = PBXBuildFile; fileRef = D328B96C153F254700EA4501 /* DatabaseDefinitions.c */; };
+		D3500EF3154C458400FB85E3 /* Seccao.m in Sources */ = {isa = PBXBuildFile; fileRef = D3500EF2154C458400FB85E3 /* Seccao.m */; };
+		D3500EF6154C459600FB85E3 /* Classificacao.m in Sources */ = {isa = PBXBuildFile; fileRef = D3500EF5154C459600FB85E3 /* Classificacao.m */; };
+		D3500EF9154C45D800FB85E3 /* Caracteristica.m in Sources */ = {isa = PBXBuildFile; fileRef = D3500EF8154C45D800FB85E3 /* Caracteristica.m */; };
+		D3500EFC154C45EE00FB85E3 /* Criterio.m in Sources */ = {isa = PBXBuildFile; fileRef = D3500EFB154C45EE00FB85E3 /* Criterio.m */; };
 		D3637DCD153E305E00A9B928 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = D3637DCC153E305E00A9B928 /* Database.m */; };
 		D3637DD1153E31DA00A9B928 /* Query.m in Sources */ = {isa = PBXBuildFile; fileRef = D3637DD0153E31DA00A9B928 /* Query.m */; };
 		D3637DD3153E322800A9B928 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D3637DD2153E322800A9B928 /* libsqlite3.dylib */; };
+		D37D40D3154D9BDB00A11E6F /* Regiao.m in Sources */ = {isa = PBXBuildFile; fileRef = D37D40D2154D9BDB00A11E6F /* Regiao.m */; };
+		D37D40D6154D9E1500A11E6F /* TipoVinho.m in Sources */ = {isa = PBXBuildFile; fileRef = D37D40D5154D9E1400A11E6F /* TipoVinho.m */; };
 		DA06B867153FA0C800D03DD9 /* NSMutableArray+VinhosMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = DA06B866153FA0C800D03DD9 /* NSMutableArray+VinhosMutableArray.m */; };
 		DA498F14153D6659009C4072 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = DA498F13153D6659009C4072 /* User.m */; };
 		DA7D48A4152E0AAD00C525FB /* Language.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7D48A3152E0AAD00C525FB /* Language.m */; };
@@ -121,12 +127,24 @@
 		D3231D9F15480DF700F09BAC /* DroidSerif-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DroidSerif-Italic.ttf"; sourceTree = "<group>"; };
 		D3231DA015480DF700F09BAC /* DroidSerif-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DroidSerif-Regular.ttf"; sourceTree = "<group>"; };
 		D328B96C153F254700EA4501 /* DatabaseDefinitions.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = DatabaseDefinitions.c; sourceTree = "<group>"; };
+		D3500EF1154C458400FB85E3 /* Seccao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Seccao.h; sourceTree = "<group>"; };
+		D3500EF2154C458400FB85E3 /* Seccao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Seccao.m; sourceTree = "<group>"; };
+		D3500EF4154C459600FB85E3 /* Classificacao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Classificacao.h; sourceTree = "<group>"; };
+		D3500EF5154C459600FB85E3 /* Classificacao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Classificacao.m; sourceTree = "<group>"; };
+		D3500EF7154C45D800FB85E3 /* Caracteristica.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Caracteristica.h; sourceTree = "<group>"; };
+		D3500EF8154C45D800FB85E3 /* Caracteristica.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Caracteristica.m; sourceTree = "<group>"; };
+		D3500EFA154C45EE00FB85E3 /* Criterio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Criterio.h; sourceTree = "<group>"; };
+		D3500EFB154C45EE00FB85E3 /* Criterio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Criterio.m; sourceTree = "<group>"; };
 		D3637DCB153E305E00A9B928 /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
 		D3637DCC153E305E00A9B928 /* Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Database.m; sourceTree = "<group>"; };
 		D3637DCE153E30A600A9B928 /* DatatabaseDefinitions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DatatabaseDefinitions.h; sourceTree = "<group>"; };
 		D3637DCF153E31DA00A9B928 /* Query.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Query.h; sourceTree = "<group>"; };
 		D3637DD0153E31DA00A9B928 /* Query.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Query.m; sourceTree = "<group>"; };
 		D3637DD2153E322800A9B928 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		D37D40D1154D9BDA00A11E6F /* Regiao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Regiao.h; sourceTree = "<group>"; };
+		D37D40D2154D9BDB00A11E6F /* Regiao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Regiao.m; sourceTree = "<group>"; };
+		D37D40D4154D9E1400A11E6F /* TipoVinho.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipoVinho.h; sourceTree = "<group>"; };
+		D37D40D5154D9E1400A11E6F /* TipoVinho.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipoVinho.m; sourceTree = "<group>"; };
 		DA06B865153FA0C800D03DD9 /* NSMutableArray+VinhosMutableArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+VinhosMutableArray.h"; sourceTree = "<group>"; };
 		DA06B866153FA0C800D03DD9 /* NSMutableArray+VinhosMutableArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+VinhosMutableArray.m"; sourceTree = "<group>"; };
 		DA498F12153D6659009C4072 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -174,12 +192,24 @@
 			children = (
 				DA993CDC153F22E7009D3E13 /* Vinho.h */,
 				DA993CDD153F22E7009D3E13 /* Vinho.m */,
-				A9BE2C141518C330002E4E2A /* Prova.h */,
 				DA498F12153D6659009C4072 /* User.h */,
 				DA498F13153D6659009C4072 /* User.m */,
 				DA7D48A2152E0AAD00C525FB /* Language.h */,
 				DA7D48A3152E0AAD00C525FB /* Language.m */,
+				A9BE2C141518C330002E4E2A /* Prova.h */,
 				A9BE2C151518C330002E4E2A /* Prova.m */,
+				D3500EF1154C458400FB85E3 /* Seccao.h */,
+				D3500EF2154C458400FB85E3 /* Seccao.m */,
+				D3500EF4154C459600FB85E3 /* Classificacao.h */,
+				D3500EF5154C459600FB85E3 /* Classificacao.m */,
+				D3500EF7154C45D800FB85E3 /* Caracteristica.h */,
+				D3500EF8154C45D800FB85E3 /* Caracteristica.m */,
+				D3500EFA154C45EE00FB85E3 /* Criterio.h */,
+				D3500EFB154C45EE00FB85E3 /* Criterio.m */,
+				D37D40D1154D9BDA00A11E6F /* Regiao.h */,
+				D37D40D2154D9BDB00A11E6F /* Regiao.m */,
+				D37D40D4154D9E1400A11E6F /* TipoVinho.h */,
+				D37D40D5154D9E1400A11E6F /* TipoVinho.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -434,6 +464,12 @@
 				D328B96D153F254700EA4501 /* DatabaseDefinitions.c in Sources */,
 				DA993CDE153F22E7009D3E13 /* Vinho.m in Sources */,
 				DA06B867153FA0C800D03DD9 /* NSMutableArray+VinhosMutableArray.m in Sources */,
+				D3500EF3154C458400FB85E3 /* Seccao.m in Sources */,
+				D3500EF6154C459600FB85E3 /* Classificacao.m in Sources */,
+				D3500EF9154C45D800FB85E3 /* Caracteristica.m in Sources */,
+				D3500EFC154C45EE00FB85E3 /* Criterio.m in Sources */,
+				D37D40D3154D9BDB00A11E6F /* Regiao.m in Sources */,
+				D37D40D6154D9E1500A11E6F /* TipoVinho.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

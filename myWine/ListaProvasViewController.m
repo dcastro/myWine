@@ -16,6 +16,7 @@
 
 @implementation ListaProvasViewController
 @synthesize provaViewController = _provaViewController;
+@synthesize provas = _provas;
 
 - (void)awakeFromNib
 {
@@ -27,10 +28,11 @@
 - (void)viewDidLoad
 {
     
-    
+    /*
     if (!_objects) {
         _objects = [[NSMutableArray alloc] init];
     }
+    
     _objects = [NSMutableArray arrayWithCapacity:20];
 	Prova *prova = [[Prova alloc] init];
 	prova.data = @"22/06/2011";
@@ -47,7 +49,7 @@
     prova = [[Prova alloc] init];
 	prova.data = @"14/03/2012";
 	prova.local = @"Casa";
-	[_objects addObject:prova];
+*/
     
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
@@ -72,6 +74,15 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+ 
+    if ([segue.identifier isEqualToString:@"showProva"]) {
+        
+        ProvaViewController* pvc = (ProvaViewController*) [segue.destinationViewController topViewController];
+        Prova* prova = [_provas objectAtIndex:[[self.tableView indexPathForSelectedRow] row]];
+        pvc.detailItem = prova;
+        
+    }
+    
 	if ([segue.identifier isEqualToString:@"AddProva"])
 	{
 		UINavigationController *navigationController = 
@@ -86,10 +97,10 @@
 
 - (void)insertNewObject:(id)sender
 {
-    if (!_objects) {
-        _objects = [[NSMutableArray alloc] init];
+    if (!_provas) {
+        _provas = [[NSMutableArray alloc] init];
     }
-    [_objects insertObject:[NSDate date] atIndex:0];
+    [_provas insertObject:[NSDate date] atIndex:0];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
@@ -103,16 +114,17 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _objects.count;
+    return _provas.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Prova"];
     
-    Prova *object = [_objects objectAtIndex:indexPath.row];
-    cell.textLabel.text = object.data;
-    cell.detailTextLabel.text = object.local;
+    Prova *object = [_provas objectAtIndex:indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"%d", object.tasting_date];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", object.tasting_id];
+
     return cell;
 }
 
@@ -125,7 +137,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [_objects removeObjectAtIndex:indexPath.row];
+        [_provas removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
@@ -134,8 +146,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Prova *object = [_objects objectAtIndex:indexPath.row];
-    self.provaViewController.detailItem = object.data;
+    //Prova *object = [_objects objectAtIndex:indexPath.row];
+    //self.provaViewController.detailItem = object.data;
 }
 
 #pragma mark - NovaProvaViewControllerDelegate
@@ -150,5 +162,11 @@
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void) setProvas:(NSMutableArray*)provas {
+    if (provas != _provas) {
+        _provas = provas;
+        [[self tableView] reloadData];
+    }
+}
 
 @end

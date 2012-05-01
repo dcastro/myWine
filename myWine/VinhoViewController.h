@@ -13,7 +13,7 @@
 
 @property (strong, nonatomic) id detailItem;
 
-@property (strong, nonatomic) Vinho* selected_wine;
+//@property (strong, nonatomic) Vinho* selected_wine;
 
 @property (weak, nonatomic) IBOutlet UILabel *producer_label;
 @property (weak, nonatomic) IBOutlet UILabel *producer_label_name;
@@ -25,5 +25,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *country_label_name;
 @property (weak, nonatomic) IBOutlet UILabel *percentage_label_name;
 @property (weak, nonatomic) IBOutlet UILabel *wine_label_name;
+
+@property (strong, nonatomic) UITextField* wine_name_text_field, *producer_text_field, *year_text_field;
+
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *editButton;
+
+@property(nonatomic, getter=isEditing) BOOL editing;
+
+- (IBAction)toggleEdit:(id)sender;
 
 @end

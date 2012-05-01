@@ -28,6 +28,10 @@
 @synthesize detailItem = _detailItem;
 @synthesize masterPopoverController = _masterPopoverController;
 
+@synthesize wine_name_text_field = _wine_name_text_field, producer_text_field = _producer_text_field, year_text_field = _year_text_field;
+@synthesize editButton = _editButton;
+@synthesize editing = _editing;
+
 #pragma mark - Managing the detail item
 
 - (void)setDetailItem:(id)newDetailItem
@@ -69,20 +73,22 @@
     
     Vinho* vinho = (Vinho*) self.detailItem;
     
-    self.producer_label_name.text = vinho.name;
+    self.producer_label_name.text = vinho.producer;
     self.producer_label_name.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
     
     self.year_label_name.text = [NSString stringWithFormat:@"%d", vinho.year];
     self.year_label_name.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
     
-    self.region_label_name.text = vinho.region_name;
+    self.region_label_name.text = vinho.region.region_name;
     self.region_label_name.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
     
-    self.country_label_name.text = vinho.country_name;
+    self.country_label_name.text = vinho.region.country_name;
     self.country_label_name.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
     
     self.wine_label_name.text = vinho.name;
     self.wine_label_name.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGE_FONT];
+    
+    self.editButton.title = [lan translate:@"Edit"];
 
     
 }
@@ -92,6 +98,36 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     [self configureView];
+    
+    //init editing frames
+    self.wine_name_text_field = [[UITextField alloc] initWithFrame:self.wine_label_name.frame];
+    self.producer_text_field = [[UITextField alloc] initWithFrame:self.producer_label_name.frame];
+    self.year_text_field = [[UITextField alloc] initWithFrame:self.year_label_name.frame];
+    
+    /**
+     * styling of the editing fields
+     **/
+    
+    //alignment
+    [self.wine_name_text_field setTextAlignment:UITextAlignmentCenter];
+    
+    //borders
+    self.wine_name_text_field.borderStyle = UITextBorderStyleRoundedRect;
+    self.producer_text_field.borderStyle = UITextBorderStyleRoundedRect;
+    self.year_text_field.borderStyle = UITextBorderStyleRoundedRect;    
+    
+    //fonts
+    self.wine_name_text_field.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGE_FONT];
+    self.producer_text_field.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
+    self.year_text_field.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
+    
+    //frame adjustments
+    CGRect frame = self.wine_name_text_field.frame;
+    self.wine_name_text_field.frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height + 20.0);
+    
+    //keyboard types
+    self.year_text_field.keyboardType = UIKeyboardTypeNumberPad;
+
 }
 
 - (void)viewDidUnload
@@ -106,6 +142,7 @@
     [self setCountry_label_name:nil];
     [self setPercentage_label_name:nil];
     [self setWine_label_name:nil];
+    [self setEditButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -131,4 +168,83 @@
     self.masterPopoverController = nil;
 }
 
+- (IBAction)toggleEdit:(id)sender {
+    //switch editing mode
+    [self setEditing: !self.isEditing];
+    
+    
+    if ([self isEditing]) {
+        
+        self.wine_name_text_field.text = self.wine_label_name.text;
+        self.producer_text_field.text = self.producer_label_name.text;
+        self.year_text_field.text = self.year_label_name.text;
+        
+        [UIView transitionWithView:[self view] duration:0.5
+						   options:UIViewAnimationOptionTransitionCurlDown
+						animations:^ {
+                            //addition of editing fields to the subviews
+                            [[self view] addSubview:self.wine_name_text_field];
+                            [[self view] addSubview:self.producer_text_field];
+                            [[self view] addSubview:self.year_text_field];
+                            
+                        }
+						completion:nil];
+        
+        //switch do doneButton
+        Language* lan = [Language instance];
+        UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithTitle:[lan translate:@"Done"] style:UIBarButtonItemStyleDone target:self action:@selector(toggleEdit:)];
+        
+        //adjust doneButton's width
+        UIView* view = [[self editButton] valueForKey:@"view"];
+        CGFloat editWidth = view.frame.size.width;
+        
+        self.navigationItem.rightBarButtonItem = doneButton;
+        
+        UIView* doneView = [self.navigationItem.rightBarButtonItem valueForKey:@"view"];
+        CGFloat doneWidth = doneView.frame.size.width;
+        
+        if (editWidth > doneWidth) {
+            doneView.frame = CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width, view.frame.size.height);
+            [self.navigationItem.rightBarButtonItem setValue:doneView forKey:@"view"];
+        }
+        
+ 
+    } else {
+        
+        Vinho* vinho = [[Vinho alloc] init];
+        [vinho setName:self.wine_name_text_field.text];
+        [vinho setProducer:self.producer_text_field.text];
+        [vinho setYear: [self.year_text_field.text intValue]];
+        
+        [self.detailItem updateWithVinho:vinho];
+        
+        self.wine_label_name.text = self.wine_name_text_field.text;
+        self.producer_label_name.text = self.producer_text_field.text;
+        self.year_label_name.text = self.year_text_field.text;
+        
+        [UIView transitionWithView:[self view] duration:0.5
+						   options:UIViewAnimationOptionTransitionCurlUp
+						animations:^ {
+                            [self.wine_name_text_field removeFromSuperview];
+                            [self.producer_text_field removeFromSuperview];
+                            [self.year_text_field removeFromSuperview];
+                        }
+						completion:nil];
+        
+        //switch to editButton
+        self.navigationItem.rightBarButtonItem = self.editButton;
+
+
+    }
+    
+    //switch views
+    [self.wine_label_name setHidden: self.isEditing];
+    [self.producer_label_name setHidden: self.isEditing];
+    [self.year_label_name setHidden: self.isEditing];
+    
+    [self.wine_name_text_field setHidden: !self.isEditing];
+    [self.producer_text_field setHidden: !self.isEditing];
+    [self.year_text_field setHidden: !self.isEditing];
+    
+}
 @end
