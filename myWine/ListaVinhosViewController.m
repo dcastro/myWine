@@ -36,8 +36,11 @@
 
 @implementation ListaVinhosViewController
 
+@synthesize currentPopover;
 @synthesize detailViewController = _detailViewController;
 @synthesize vinhos = _vinhos;
+
+SEL action; id target;
 
 - (void)awakeFromNib
 {
@@ -92,14 +95,14 @@
        Vinho* vinho = [self.vinhos objectAtIndex:_index.row];
        lpvc.provas = vinho.provas;
     }
-    if ([segue.identifier isEqualToString:@"showVinho"]) {
+    else if ([segue.identifier isEqualToString:@"showVinho"]) {
         
         VinhoViewController* vvc = (VinhoViewController*) [segue.destinationViewController topViewController];
         Vinho* vinho = [self.vinhos objectAtIndex:[[self.tableView indexPathForSelectedRow] row]];
         vvc.detailItem = vinho;
 
     }
-	if ([segue.identifier isEqualToString:@"AddVinho"])
+	else if ([segue.identifier isEqualToString:@"AddVinho"])
 	{
 		UINavigationController *navigationController = 
         segue.destinationViewController;
@@ -109,6 +112,32 @@
          objectAtIndex:0];
 		NovoVinhoViewController.delegate = self;
 	}
+    else if([segue.identifier isEqualToString:@"filterSegue"])
+    {
+        
+        action = [sender action];
+        target = [sender target];
+        
+        [sender setTarget:self];
+        [sender setAction:@selector(dismiss:)];
+        
+        self.currentPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
+    }
+}
+
+-(void)dismiss:(id)sender
+{
+    [self.navigationItem.rightBarButtonItem setAction:action];
+    [self.navigationItem.rightBarButtonItem setTarget:target];
+    [self.currentPopover dismissPopoverAnimated:YES];
+}
+
+
+-(BOOL)popoverControllerShouldDismissPopover:(UIPopoverController *)popoverController
+{
+    [self.navigationItem.rightBarButtonItem setAction:action];
+    [self.navigationItem.rightBarButtonItem setTarget:target];
+    return YES;
 }
 
 - (void)insertNewObject:(id)sender
@@ -138,7 +167,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-
+    
     //NSString *object = [_objects objectAtIndex:indexPath.row];
     Vinho* vinho = [self.vinhos objectAtIndex:indexPath.row];
     cell.textLabel.text = [vinho description];
@@ -146,8 +175,8 @@
     
     //Change cell's background color when selected
     /*UIView *myBackView = [[UIView alloc] initWithFrame:cell.frame];
-    myBackView.backgroundColor = [UIColor colorWithRed:0.48 green:0.05 blue:0.07 alpha:1];
-    cell.selectedBackgroundView = myBackView;*/
+     myBackView.backgroundColor = [UIColor colorWithRed:0.48 green:0.05 blue:0.07 alpha:1];
+     cell.selectedBackgroundView = myBackView;*/
     
     [[cell textLabel] setBackgroundColor:[UIColor clearColor]];
     cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cell_bg_gradient.png"]];
@@ -180,7 +209,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    
 }
 
 #pragma mark - NovoVinhoViewControllerDelegate

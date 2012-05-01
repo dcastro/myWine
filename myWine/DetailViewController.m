@@ -20,6 +20,8 @@
 @synthesize detailDescriptionLabel = _detailDescriptionLabel;
 @synthesize masterPopoverController = _masterPopoverController;
 
+SEL action; id target;
+
 #pragma mark - Managing the detail item
 
 - (void)setDetailItem:(id)newDetailItem
@@ -65,12 +67,30 @@
     return YES;
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if([segue isKindOfClass:[UIStoryboardPopoverSegue class]]){
-        // Dismiss current popover, set new popover
-        [currentPopover dismissPopoverAnimated:YES];
-        currentPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
-    }
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    action = [sender action];
+    target = [sender target];
+    
+    [sender setTarget:self];
+    [sender setAction:@selector(dismiss:)];
+    
+    self.currentPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
+}
+
+-(void)dismiss:(id)sender
+{
+    [self.navigationItem.rightBarButtonItem setAction:action];
+    [self.navigationItem.rightBarButtonItem setTarget:target];
+    [self.currentPopover dismissPopoverAnimated:YES];
+}
+
+
+-(BOOL)popoverControllerShouldDismissPopover:(UIPopoverController *)popoverController
+{
+    [self.navigationItem.rightBarButtonItem setAction:action];
+    [self.navigationItem.rightBarButtonItem setTarget:target];
+    return YES;
 }
 
 #pragma mark - Split view

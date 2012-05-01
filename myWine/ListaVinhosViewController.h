@@ -16,7 +16,9 @@
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
 
-@property (strong, nonatomic) NSMutableArray* vinhos; 
+@property (strong, nonatomic) NSMutableArray* vinhos;
+
+@property (weak, nonatomic) UIPopoverController *currentPopover;
 
 - (void)insertNewObject:(id)sender;
 
