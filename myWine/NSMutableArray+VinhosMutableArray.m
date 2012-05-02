@@ -46,22 +46,18 @@
 -(void) removeVinhoAtIndex:(NSUInteger) index {
     
     Vinho * v = [self objectAtIndex:index];
-    
     Query *query = [[Query alloc] init];
+    
+    BOOL return_value = TRUE;
+    sqlite3_stmt *stmt;
+    char * errMsg;
+
     
     NSString *querySQL = [NSString stringWithFormat:@"SELECT state FROM wine WHERE wine_id = %d", v.wine_id];
     
     sqlite3* contactDB = [query prepareForExecution];
     
-    
-    sqlite3_stmt *stmt;
-    char * errMsg;
-    
-    BOOL return_value = TRUE;
-    
-    const char *query_stmt = [querySQL UTF8String];
-    
-    if (sqlite3_prepare_v2(contactDB, query_stmt, -1, &stmt, NULL) == SQLITE_OK){
+    if (sqlite3_prepare_v2(contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
         
         int state;
         
@@ -106,14 +102,16 @@
         }
         
     }else{
+        return_value = FALSE;
         sqlite3_close(contactDB);
     }
     
+    if(return_value)
+        [self removeObjectAtIndex:index];
     
     
+#warning TODO:tratamento de erros
     
-    
-    [self removeObjectAtIndex:index];
 }
 
 @end
