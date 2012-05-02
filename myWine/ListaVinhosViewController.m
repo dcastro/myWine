@@ -110,6 +110,7 @@ SEL action; id target;
         vvc = (VinhoViewController*) [segue.destinationViewController topViewController];
         Vinho* vinho = [self.vinhos objectAtIndex:[[self.tableView indexPathForSelectedRow] row]];
         vvc.detailItem = vinho;
+        vvc.delegate = self;
 
     }
 	else if ([segue.identifier isEqualToString:@"AddVinho"])
@@ -327,6 +328,12 @@ SEL action; id target;
     [detailViewController invalidateRootPopoverButtonItem:rootPopoverButtonItem];
     self.popoverController = nil;
     self.rootPopoverButtonItem = nil;
+}
+
+#pragma mark - VinhoViewController Delegate Methods
+
+- (void) onVinhoEdition:(Vinho*) vinho {
+    [[self tableView] reloadData];
 }
 
 @end

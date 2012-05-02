@@ -10,6 +10,13 @@
 #import "Vinho.h"
 #import "ListaVinhosViewController.h"
 
+
+@protocol VinhoViewControllerDelegate <NSObject>
+
+- (void) onVinhoEdition:(Vinho*) vinho;
+
+@end
+
 @interface VinhoViewController : UIViewController <UISplitViewControllerDelegate, SubstitutableDetailViewController, UITextFieldDelegate>
 
 @property (strong, nonatomic) id detailItem;
@@ -33,6 +40,8 @@
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *tempButton;
 
 @property(nonatomic, getter=isEditing) BOOL editing;
+
+@property (nonatomic, weak) id <VinhoViewControllerDelegate> delegate;
 
 - (IBAction)toggleEdit:(id)sender;
 

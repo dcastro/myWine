@@ -12,6 +12,7 @@
 
 @class DetailViewController;
 @class VinhoViewController;
+@protocol VinhoViewControllerDelegate;
 
 @protocol SubstitutableDetailViewController <NSObject>
 
@@ -22,7 +23,7 @@
 
 
 
-@interface ListaVinhosViewController : UITableViewController <NovoVinhoViewControllerDelegate, LoginViewControllerDelegate, UISplitViewControllerDelegate>
+@interface ListaVinhosViewController : UITableViewController <NovoVinhoViewControllerDelegate, LoginViewControllerDelegate, UISplitViewControllerDelegate, VinhoViewControllerDelegate>
 {
     UISplitViewController *splitViewController;
     

@@ -34,6 +34,8 @@
 @synthesize tempButton = _tempButton;
 @synthesize editing = _editing;
 
+@synthesize delegate;
+
 #pragma mark - Managing the detail item
 
 - (void)setDetailItem:(id)newDetailItem
@@ -178,7 +180,7 @@
 
 - (IBAction)toggleEdit:(id)sender {
     //switch editing mode
-    [self setEditing: !self.isEditing];    
+    [self setEditing: !self.isEditing];
     
     if ([self isEditing]) {
         
@@ -209,7 +211,7 @@
     } else {
         UIBarButtonItem* pressedButton = (UIBarButtonItem*) sender;
         
-        if ([pressedButton style] != UIBarButtonSystemItemCancel) {
+        if ([pressedButton style] == UIBarButtonItemStyleDone) {
             Vinho* vinho = [[Vinho alloc] init];
             [vinho setName:self.wine_name_text_field.text];
             [vinho setProducer:self.producer_text_field.text];
@@ -220,6 +222,9 @@
             self.wine_label_name.text = self.wine_name_text_field.text;
             self.producer_label_name.text = self.producer_text_field.text;
             self.year_label_name.text = self.year_text_field.text;
+            
+            //refresh master view
+            [self.delegate onVinhoEdition:(Vinho*) self.detailItem];
         }
         
         [UIView transitionWithView:[self view] duration:0.5
