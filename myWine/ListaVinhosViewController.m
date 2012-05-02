@@ -244,25 +244,25 @@ SEL action; id target;
         
         Vinho* vinho = (Vinho*) [_vinhos objectAtIndex:indexPath.row];
         
-        [_vinhos removeVinhoAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        
-        //if the displayed wine was deleted
-        if (vvc && vvc.detailItem == vinho) {
-            //if there are any other wines to be displayed
-            if([_vinhos count] > 0) {
-                
-                //show another wine
-                vvc.detailItem = [_vinhos objectAtIndex:0];
-                [vvc configureView];
-            }
-            //if there are no more wines
-            else {
-                //go back home
-                [self performSegueWithIdentifier:@"VinhosToHome" sender:self];
+        if ([_vinhos removeVinhoAtIndex:indexPath.row]) {
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            
+            //if the displayed wine was deleted
+            if (vvc && vvc.detailItem == vinho) {
+                //if there are any other wines to be displayed
+                if([_vinhos count] > 0) {
+                    
+                    //show another wine
+                    vvc.detailItem = [_vinhos objectAtIndex:0];
+                    [vvc configureView];
+                }
+                //if there are no more wines
+                else {
+                    //go back home
+                    [self performSegueWithIdentifier:@"VinhosToHome" sender:self];
+                }
             }
         }
-        
         
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.

@@ -43,7 +43,7 @@
 }
 
 
--(void) removeVinhoAtIndex:(NSUInteger) index {
+-(BOOL) removeVinhoAtIndex:(NSUInteger) index {
     
     Vinho * v = [self objectAtIndex:index];
     Query *query = [[Query alloc] init];
@@ -108,6 +108,8 @@
     
     if(return_value)
         [self removeObjectAtIndex:index];
+    
+    return return_value;
     
     
 #warning TODO:tratamento de erros
