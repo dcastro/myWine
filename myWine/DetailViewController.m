@@ -7,6 +7,7 @@
 //
 
 #import "DetailViewController.h"
+#import "Language.h"
 
 @interface DetailViewController ()
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
@@ -108,5 +109,22 @@ SEL action; id target;
     [self.navigationItem setLeftBarButtonItem:nil animated:YES];
     self.masterPopoverController = nil;
 }
+
+#pragma mark -
+#pragma mark Managing the popover
+
+- (void)showRootPopoverButtonItem:(UIBarButtonItem *)barButtonItem {
+    Language* lan = [Language instance];
+    barButtonItem.title = [lan translate:@"Wines List Title"];
+    [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
+}
+
+
+- (void)invalidateRootPopoverButtonItem:(UIBarButtonItem *)barButtonItem {
+    
+    [self.navigationItem setLeftBarButtonItem:nil animated:YES];
+}
+
+
 
 @end

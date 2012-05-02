@@ -43,4 +43,11 @@
 }
 
 
+-(void) removeVinhoAtIndex:(NSUInteger) index {
+    
+#warning TODO: remover vinho da BD
+    
+    [self removeObjectAtIndex:index];
+}
+
 @end

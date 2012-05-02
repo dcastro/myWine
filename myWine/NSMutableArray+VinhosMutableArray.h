@@ -13,4 +13,6 @@
 
 -(void) insertVinho:(Vinho*)vinho atIndex:(NSUInteger)index;
     
+-(void) removeVinhoAtIndex:(NSUInteger) index;
+
 @end
