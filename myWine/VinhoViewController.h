@@ -10,7 +10,7 @@
 #import "Vinho.h"
 #import "ListaVinhosViewController.h"
 
-@interface VinhoViewController : UIViewController <UISplitViewControllerDelegate, SubstitutableDetailViewController>
+@interface VinhoViewController : UIViewController <UISplitViewControllerDelegate, SubstitutableDetailViewController, UITextFieldDelegate>
 
 @property (strong, nonatomic) id detailItem;
 

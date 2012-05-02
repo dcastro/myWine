@@ -129,6 +129,11 @@
     
     //keyboard types
     self.year_text_field.keyboardType = UIKeyboardTypeNumberPad;
+    
+    //delegates
+    self.wine_name_text_field.delegate = self;
+    self.producer_text_field.delegate = self;
+    self.year_text_field.delegate = self;
 
 }
 
@@ -268,6 +273,15 @@
     }
     
     [self.navigationItem setLeftBarButtonItem:nil animated:YES];
+}
+
+#pragma mark -
+#pragma mark UITextField Delegate Method
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    
+    return YES;
 }
 
 
