@@ -45,7 +45,73 @@
 
 -(void) removeVinhoAtIndex:(NSUInteger) index {
     
-#warning TODO: remover vinho da BD
+    Vinho * v = [self objectAtIndex:index];
+    
+    Query *query = [[Query alloc] init];
+    
+    NSString *querySQL = [NSString stringWithFormat:@"SELECT state FROM wine WHERE wine_id = %d", v.wine_id];
+    
+    sqlite3* contactDB = [query prepareForExecution];
+    
+    
+    sqlite3_stmt *stmt;
+    char * errMsg;
+    
+    BOOL return_value = TRUE;
+    
+    const char *query_stmt = [querySQL UTF8String];
+    
+    if (sqlite3_prepare_v2(contactDB, query_stmt, -1, &stmt, NULL) == SQLITE_OK){
+        
+        int state;
+        
+        if(stmt != NULL){
+            if(sqlite3_step(stmt) == SQLITE_ROW){
+                state = sqlite3_column_int(stmt, 0);
+                sqlite3_finalize(stmt);
+                
+                switch (state) {
+                    case 0:
+                        querySQL = [NSString stringWithFormat:@"UPDATE Wine SET state = 3 WHERE wine_id = %d", v.wine_id];
+                        if(sqlite3_exec(contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+                            DebugLog(@"Could not mark for deletion: %s", errMsg);
+                            sqlite3_free(errMsg);
+                            return_value = FALSE;
+                        }
+                        break;
+                        
+                    case 1:
+                        querySQL = [NSString stringWithFormat:@"DELETE FROM Wine WHERE wine_id = %d", v.wine_id];
+                        if(sqlite3_exec(contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+                            DebugLog(@"Could not delete: %s", errMsg);
+                            sqlite3_free(errMsg);
+                            return_value = FALSE;
+                        }
+                        break;
+                        
+                    case 2:
+                        querySQL = [NSString stringWithFormat:@"UPDATE Wine SET state = 3 WHERE wine_id = %d", v.wine_id];
+                        if(sqlite3_exec(contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+                            DebugLog(@"Could not mark for deletion: %s", errMsg);
+                            sqlite3_free(errMsg);
+                            return_value = FALSE;
+                        }
+                        break;
+                        
+                    default:
+                        break;
+                }
+            }
+            sqlite3_close(contactDB);
+        }
+        
+    }else{
+        sqlite3_close(contactDB);
+    }
+    
+    
+    
+    
     
     [self removeObjectAtIndex:index];
 }

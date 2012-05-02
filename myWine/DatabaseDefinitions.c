@@ -215,6 +215,7 @@ const char  *databaseTables[] = {
     
     
     //DADOS DE TESTE
+    //VINHOS
     "INSERT INTO User VALUES ('admin', 'admin', '10000', 1)",
     
     
@@ -302,6 +303,49 @@ const char  *databaseTables[] = {
     "INSERT INTO Characteristic VALUES (2, 2, 10 , 'Intensity', 'Intensite', 'Intensidade');",
     "INSERT INTO Characteristic VALUES (3, 2, 11, 'Quality', 'Qualite', 'Qualidade');",
 
+    
+    //FORMS
+    "INSERT INTO FormTasting VALUES (1);",
+    
+    "INSERT INTO UserTypeForm VALUES ('admin', 1,1);",
+    
+    "INSERT INTO FormSection VALUES (1,1, 'View', 'Voir', 'Vista');",
+    "INSERT INTO FormSection VALUES (2,1,'Aroma', 'Arome', 'Aroma');",
+    "INSERT INTO FormSection VALUES (3,1,'Flavor', 'Saveur', 'Sabor');",
+    
+    "INSERT INTO FormCriterion VALUES (1, 1, 'Clarity', 'Clarte', 'Limpidez');",
+    "INSERT INTO FormCriterion VALUES (2, 1, 'Color', 'Couleur', 'Cor');",
+    "INSERT INTO FormCriterion VALUES (3, 3, 'Genuineness', 'Authenticite', 'Genuinidade');",
+    "INSERT INTO FormCriterion VALUES (4, 3, 'Intensity', 'Intensite', 'Intensidade');",
+    "INSERT INTO FormCriterion VALUES (5, 3, 'Persistence', 'Persistance', 'Persistencia');",
+    "INSERT INTO FormCriterion VALUES (6, 3, 'Quality', 'Qualite', 'Qualidade');"
+    
+    
+    "INSERT INTO FormCharacteristic VALUES (1, 2, 'Genuineness', 'Authenticite', 'Genuinidade');",
+    "INSERT INTO FormCharacteristic VALUES (2, 2, 'Intensity', 'Intensite', 'Intensidade');",
+    "INSERT INTO FormCharacteristic VALUES (3, 2, 'Quality', 'Qualite', 'Qualidade');",
+    
+    
+    "INSERT INTO PossibleClassification VALUES (1,2,'FormTasting');",
+    "INSERT INTO PossibleClassification VALUES (1,3,'FormTasting');",
+    "INSERT INTO PossibleClassification VALUES (1,4,'FormTasting');",
+    "INSERT INTO PossibleClassification VALUES (1,5,'FormTasting');",
+    "INSERT INTO PossibleClassification VALUES (1,6,'FormTasting');",
+    "INSERT INTO PossibleClassification VALUES (1,2,'FormCriterion');",
+    "INSERT INTO PossibleClassification VALUES (1,4,'FormCriterion');",
+    "INSERT INTO PossibleClassification VALUES (2,3,'FormCriterion');",
+    "INSERT INTO PossibleClassification VALUES (2,4,'FormCriterion');",
+    "INSERT INTO PossibleClassification VALUES (2,5,'FormCriterion');",
+    "INSERT INTO PossibleClassification VALUES (2,6,'FormCriterion');",
+    "INSERT INTO PossibleClassification VALUES (3,6,'FormCriterion');",
+    "INSERT INTO PossibleClassification VALUES (4,4,'FormCriterion');",
+    "INSERT INTO PossibleClassification VALUES (5,4,'FormCriterion');",
+    "INSERT INTO PossibleClassification VALUES (6,5,'FormCriterion');",
+    "INSERT INTO PossibleClassification VALUES (1,10,'FormCharacteristic');",
+    "INSERT INTO PossibleClassification VALUES (2,10,'FormCharacteristic');",
+    "INSERT INTO PossibleClassification VALUES (3,11,'FormCharacteristic');",
+
+    
     
     "\n"
 };
