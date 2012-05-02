@@ -18,6 +18,8 @@
 @synthesize provaViewController = _provaViewController;
 @synthesize provas = _provas;
 
+@synthesize rootPopoverButtonItem, popoverController, splitViewController;
+
 - (void)awakeFromNib
 {
     self.clearsSelectionOnViewWillAppear = NO;
@@ -93,7 +95,24 @@
          objectAtIndex:0];
 		NovaProvaViewController.delegate = self;
 	}
+    
+    [self switchDetailViews:segue];
 }
+
+- (void) switchDetailViews: (UIStoryboardSegue *)segue {
+    
+    if ([segue.identifier isEqualToString:@"showProva"]) { 
+        if (rootPopoverButtonItem != nil) {
+            UIViewController<SubstitutableDetailViewController>* detailViewController = (UIViewController<SubstitutableDetailViewController>*)[segue.destinationViewController topViewController];
+            [detailViewController showRootPopoverButtonItem:self.rootPopoverButtonItem];
+        }
+        
+        if (popoverController != nil) {
+            [popoverController dismissPopoverAnimated:YES];
+        }
+    }
+}
+
 
 - (void)insertNewObject:(id)sender
 {

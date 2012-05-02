@@ -95,10 +95,15 @@ SEL action; id target;
 {
     
     if([segue.identifier isEqualToString:@"PushProvas"]) {
-       ListaProvasViewController* lpvc = (ListaProvasViewController*) [segue destinationViewController ];
         
-       Vinho* vinho = [self.vinhos objectAtIndex:_index.row];
-       lpvc.provas = vinho.provas;
+        ListaProvasViewController* lpvc = (ListaProvasViewController*) [segue destinationViewController ];
+        
+        Vinho* vinho = [self.vinhos objectAtIndex:_index.row];
+        lpvc.provas = vinho.provas;
+        
+        lpvc.rootPopoverButtonItem = self.rootPopoverButtonItem;
+        lpvc.popoverController = self.popoverController;
+        lpvc.splitViewController = self.splitViewController;
     }
     else if ([segue.identifier isEqualToString:@"showVinho"]) {
         
@@ -151,7 +156,7 @@ SEL action; id target;
 
 - (void) switchDetailViews: (UIStoryboardSegue *)segue {
     
-    if ([segue.identifier isEqualToString:@"showVinho"]) { //|| [segue.identifier isEqualToString:@"VinhosToHome"]) {
+    if ([segue.identifier isEqualToString:@"showVinho"]) {
         if (rootPopoverButtonItem != nil) {
             UIViewController<SubstitutableDetailViewController>* detailViewController = (UIViewController<SubstitutableDetailViewController>*)[segue.destinationViewController topViewController];
             [detailViewController showRootPopoverButtonItem:self.rootPopoverButtonItem];

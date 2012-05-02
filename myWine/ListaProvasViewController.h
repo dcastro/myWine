@@ -13,9 +13,20 @@
 @class ProvaViewController;
 
 @interface ListaProvasViewController : UITableViewController <NovaProvaViewControllerDelegate>
+{
+    UISplitViewController *splitViewController;
+    
+    UIPopoverController *popoverController;    
+    UIBarButtonItem *rootPopoverButtonItem;
+}
 
 @property (strong, nonatomic) ProvaViewController *provaViewController;
 
 @property (strong, nonatomic) NSMutableArray* provas; 
+
+@property (nonatomic, strong) UISplitViewController *splitViewController;
+
+@property (nonatomic, strong) UIPopoverController *popoverController;
+@property (nonatomic, strong) UIBarButtonItem *rootPopoverButtonItem;
 
 @end
