@@ -263,6 +263,12 @@ SEL action; id target;
                 }
             }
         }
+        //removal failure
+        else {
+            Language* lan = [Language instance];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[lan translate:@"Error"] message:[lan translate:@"Wine delete fail"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            [alert show];
+        }
         
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
