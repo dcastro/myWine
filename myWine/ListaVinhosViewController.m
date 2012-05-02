@@ -39,7 +39,7 @@
 @synthesize currentPopover;
 @synthesize detailViewController = _detailViewController;
 @synthesize vinhos = _vinhos;
-
+@synthesize vvc;
 
 SEL action; id target;
 
@@ -107,7 +107,7 @@ SEL action; id target;
     }
     else if ([segue.identifier isEqualToString:@"showVinho"]) {
         
-        VinhoViewController* vvc = (VinhoViewController*) [segue.destinationViewController topViewController];
+        vvc = (VinhoViewController*) [segue.destinationViewController topViewController];
         Vinho* vinho = [self.vinhos objectAtIndex:[[self.tableView indexPathForSelectedRow] row]];
         vvc.detailItem = vinho;
 
@@ -240,8 +240,29 @@ SEL action; id target;
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        Vinho* vinho = (Vinho*) [_vinhos objectAtIndex:indexPath.row];
+        
         [_vinhos removeVinhoAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+        //if the displayed wine was deleted
+        if (vvc && vvc.detailItem == vinho) {
+            //if there are any other wines to be displayed
+            if([_vinhos count] > 0) {
+                
+                //show another wine
+                vvc.detailItem = [_vinhos objectAtIndex:0];
+                [vvc configureView];
+            }
+            //if there are no more wines
+            else {
+                //go back home
+                [self performSegueWithIdentifier:@"VinhosToHome" sender:self];
+            }
+        }
+        
+        
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
     }

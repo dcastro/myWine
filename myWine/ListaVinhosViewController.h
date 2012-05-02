@@ -11,6 +11,7 @@
 #import "LoginViewController.h"
 
 @class DetailViewController;
+@class VinhoViewController;
 
 @protocol SubstitutableDetailViewController <NSObject>
 
@@ -30,6 +31,7 @@
 }
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
+@property (strong, nonatomic) VinhoViewController *vvc;
 
 @property (strong, nonatomic) NSMutableArray* vinhos;
 

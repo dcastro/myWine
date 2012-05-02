@@ -36,4 +36,6 @@
 
 - (IBAction)toggleEdit:(id)sender;
 
+- (void)configureView;
+
 @end
