@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Vinho.h"
+#import "ListaVinhosViewController.h"
 
-@interface VinhoViewController : UIViewController <UISplitViewControllerDelegate>
+@interface VinhoViewController : UIViewController <UISplitViewControllerDelegate, SubstitutableDetailViewController>
 
 @property (strong, nonatomic) id detailItem;
 
@@ -29,7 +30,7 @@
 @property (strong, nonatomic) UITextField* wine_name_text_field, *producer_text_field, *year_text_field;
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *editButton;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *homeButton;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *tempButton;
 
 @property(nonatomic, getter=isEditing) BOOL editing;
 

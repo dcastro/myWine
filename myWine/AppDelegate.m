@@ -35,14 +35,16 @@
     //Add splitview
     
     UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
-    UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
-    splitViewController.delegate = (id)navigationController.topViewController;
+    
+    UINavigationController *masterNavigationController = [splitViewController.viewControllers objectAtIndex:0];
+    ListaVinhosViewController *lvvc = (ListaVinhosViewController *)masterNavigationController.topViewController;
+    lvvc.splitViewController = splitViewController;
+    
+    splitViewController.delegate = (id)lvvc;
     
     //check if there's a default user
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString* username;
-    
-    ListaVinhosViewController *lvvc = [[[[splitViewController viewControllers] objectAtIndex:0] viewControllers ] objectAtIndex:0 ];
     
     //if there isn't a default user, show login
     if (!(username = [defaults stringForKey:@"username"])) {
@@ -66,6 +68,7 @@
     }
     
     return YES;
+    
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

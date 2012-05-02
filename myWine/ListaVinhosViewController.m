@@ -39,6 +39,8 @@
 @synthesize detailViewController = _detailViewController;
 @synthesize vinhos = _vinhos;
 
+@synthesize rootPopoverButtonItem, popoverController, splitViewController;
+
 - (void)awakeFromNib
 {
     self.clearsSelectionOnViewWillAppear = NO;
@@ -86,6 +88,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    
     if([segue.identifier isEqualToString:@"PushProvas"]) {
        ListaProvasViewController* lpvc = (ListaProvasViewController*) [segue destinationViewController ];
         
@@ -109,6 +112,35 @@
          objectAtIndex:0];
 		NovoVinhoViewController.delegate = self;
 	}
+    
+    //switch detail views
+    [self switchDetailViews:segue];
+}
+
+
+- (void) switchDetailViews: (UIStoryboardSegue *)segue {
+    
+    if ([segue.identifier isEqualToString:@"showVinho"]) { //|| [segue.identifier isEqualToString:@"VinhosToHome"]) {
+        if (rootPopoverButtonItem != nil) {
+            UIViewController<SubstitutableDetailViewController>* detailViewController = (UIViewController<SubstitutableDetailViewController>*)[segue.destinationViewController topViewController];
+            [detailViewController showRootPopoverButtonItem:self.rootPopoverButtonItem];
+        }
+        
+        if (popoverController != nil) {
+            [popoverController dismissPopoverAnimated:YES];
+        }
+    }
+    
+    if ([segue.identifier isEqualToString:@"VinhosToHome"]) {
+        if (rootPopoverButtonItem != nil) {
+            UIViewController<SubstitutableDetailViewController>* detailViewController = (UIViewController<SubstitutableDetailViewController>*) segue.destinationViewController;
+            [detailViewController showRootPopoverButtonItem:self.rootPopoverButtonItem];
+        }
+        
+        if (popoverController != nil) {
+            [popoverController dismissPopoverAnimated:YES];
+        }
+    }
 }
 
 - (void)insertNewObject:(id)sender
@@ -216,5 +248,27 @@
 }
 
 
+#pragma mark - UISplitViewControllerDelegate
+
+- (void)splitViewController:(UISplitViewController*)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem*)barButtonItem forPopoverController:(UIPopoverController*)pc {
+    
+    // Keep references to the popover controller and the popover button, and tell the detail view controller to show the button.
+    Language* lan = [Language instance];
+    barButtonItem.title = [lan translate:@"Wines List Title"];
+    self.popoverController = pc;
+    self.rootPopoverButtonItem = barButtonItem;
+    UIViewController <SubstitutableDetailViewController> *detailViewController = (UIViewController<SubstitutableDetailViewController>*)[[splitViewController.viewControllers objectAtIndex:1] topViewController];
+    [detailViewController showRootPopoverButtonItem:rootPopoverButtonItem];
+}
+
+
+- (void)splitViewController:(UISplitViewController*)svc willShowViewController:(UIViewController *)aViewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem {
+    
+    // Nil out references to the popover controller and the popover button, and tell the detail view controller to hide the button.
+    UIViewController <SubstitutableDetailViewController> *detailViewController = (UIViewController<SubstitutableDetailViewController>*)[[splitViewController.viewControllers objectAtIndex:1] topViewController];
+    [detailViewController invalidateRootPopoverButtonItem:rootPopoverButtonItem];
+    self.popoverController = nil;
+    self.rootPopoverButtonItem = nil;
+}
 
 @end

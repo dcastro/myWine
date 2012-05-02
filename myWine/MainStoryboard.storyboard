@@ -110,11 +110,6 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Detalhes" id="53">
-                        <barButtonItem key="leftBarButtonItem" title="Home" id="RQ8-DU-uiE">
-                            <connections>
-                                <segue destination="42" kind="replace" splitViewControllerTargetIndex="1" id="9z4-xD-QHL"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Editar" style="plain" id="0yn-lv-cAI">
                             <connections>
                                 <action selector="toggleEdit:" destination="4" id="cBq-JK-tJC"/>
@@ -125,7 +120,6 @@
                         <outlet property="country_label" destination="rDV-B6-8GL" id="0b7-9f-F6k"/>
                         <outlet property="country_label_name" destination="iuw-1c-cQq" id="dgK-jH-8ZW"/>
                         <outlet property="editButton" destination="0yn-lv-cAI" id="fmY-kU-Ggx"/>
-                        <outlet property="homeButton" destination="RQ8-DU-uiE" id="l4g-aY-Rfe"/>
                         <outlet property="percentage_label_name" destination="435-r7-kr3" id="Qba-8u-gAh"/>
                         <outlet property="producer_label" destination="lew-0F-qda" id="LhG-z4-zAi"/>
                         <outlet property="producer_label_name" destination="r1S-LA-qgS" id="wkS-7p-YwH"/>
@@ -1544,6 +1538,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Vinhos" id="40">
+                        <barButtonItem key="leftBarButtonItem" title="Home" id="DcH-NY-T9O">
+                            <connections>
+                                <segue destination="N51-FY-8hq" kind="push" identifier="VinhosToHome" splitViewControllerTargetIndex="1" id="rwW-dr-8FO"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="cbO-x7-nK2">
                             <connections>
                                 <segue destination="ECj-uc-2oM" kind="modal" identifier="AddVinho" modalPresentationStyle="pageSheet" id="yN3-tK-abN"/>
@@ -2145,7 +2144,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="WBf-4i-rdQ"/>
-        <segue reference="9z4-xD-QHL"/>
+        <segue reference="rwW-dr-8FO"/>
     </inferredMetricsTieBreakers>
 </document>

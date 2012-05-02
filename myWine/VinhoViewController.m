@@ -31,7 +31,7 @@
 
 @synthesize wine_name_text_field = _wine_name_text_field, producer_text_field = _producer_text_field, year_text_field = _year_text_field;
 @synthesize editButton = _editButton;
-@synthesize homeButton = _homeButton;
+@synthesize tempButton = _tempButton;
 @synthesize editing = _editing;
 
 #pragma mark - Managing the detail item
@@ -145,7 +145,7 @@
     [self setPercentage_label_name:nil];
     [self setWine_label_name:nil];
     [self setEditButton:nil];
-    [self setHomeButton:nil];
+    [self setTempButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -192,26 +192,14 @@
                         }
 						completion:nil];
         
-        //switch do doneButton
+        //switch do doneButton and cancelButton
         Language* lan = [Language instance];
         UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithTitle:[lan translate:@"Done"] style:UIBarButtonItemStyleDone target:self action:@selector(toggleEdit:)];
         UIBarButtonItem* cancelButton = [[UIBarButtonItem alloc] initWithTitle:[lan translate:@"Cancel"] style:UIBarButtonSystemItemCancel target:self action:@selector(toggleEdit:)];
         
-        //adjust doneButton's width
-        UIView* view = [[self editButton] valueForKey:@"view"];
-        CGFloat editWidth = view.frame.size.width;
-        
-        self.navigationItem.rightBarButtonItem = doneButton;
-        self.navigationItem.leftBarButtonItem = cancelButton;
-        
-        UIView* doneView = [self.navigationItem.rightBarButtonItem valueForKey:@"view"];
-        CGFloat doneWidth = doneView.frame.size.width;
-        
-        if (editWidth > doneWidth) {
-            doneView.frame = CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width, view.frame.size.height);
-            [self.navigationItem.rightBarButtonItem setValue:doneView forKey:@"view"];
-        }
-        
+        [self setTempButton:self.navigationItem.leftBarButtonItem];
+        [[self navigationItem] setRightBarButtonItem:doneButton animated:YES];
+        [[self navigationItem] setLeftBarButtonItem:cancelButton animated:YES];        
  
     } else {
         UIBarButtonItem* pressedButton = (UIBarButtonItem*) sender;
@@ -239,8 +227,9 @@
 						completion:nil];
         
         //switch to editButton
-        self.navigationItem.rightBarButtonItem = self.editButton;
-        self.navigationItem.leftBarButtonItem = self.homeButton;
+        [[self navigationItem] setRightBarButtonItem:self.editButton animated:YES];
+        [[self navigationItem] setLeftBarButtonItem:self.tempButton animated:YES];
+        [self setTempButton:nil];
         
         [self configureView];
 
@@ -256,6 +245,29 @@
     [self.producer_text_field setHidden: !self.isEditing];
     [self.year_text_field setHidden: !self.isEditing];
     
+}
+
+#pragma mark -
+#pragma mark Managing the popover
+
+- (void)showRootPopoverButtonItem:(UIBarButtonItem *)barButtonItem {
+    if ([self isEditing]) {
+        [self setTempButton:barButtonItem];
+        return;
+    }
+    Language* lan = [Language instance];
+    barButtonItem.title = [lan translate:@"Wines List Title"];
+    [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
+}
+
+
+- (void)invalidateRootPopoverButtonItem:(UIBarButtonItem *)barButtonItem {
+    if ([self isEditing]) {
+        [self setTempButton:nil];
+        return;
+    }
+    
+    [self.navigationItem setLeftBarButtonItem:nil animated:YES];
 }
 
 

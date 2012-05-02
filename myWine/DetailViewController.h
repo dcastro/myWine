@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ListaVinhosViewController.h"
 
-@interface DetailViewController : UIViewController <UISplitViewControllerDelegate> 
+@interface DetailViewController : UIViewController <UISplitViewControllerDelegate, SubstitutableDetailViewController> 
 
 @property (strong, nonatomic) id detailItem;
 
