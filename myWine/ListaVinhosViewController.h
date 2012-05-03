@@ -13,6 +13,7 @@
 @class DetailViewController;
 @class VinhoViewController;
 @protocol VinhoViewControllerDelegate;
+@protocol DetailViewControllerDelegate;
 
 @protocol SubstitutableDetailViewController <NSObject>
 
@@ -23,7 +24,7 @@
 
 
 
-@interface ListaVinhosViewController : UITableViewController <NovoVinhoViewControllerDelegate, LoginViewControllerDelegate, UISplitViewControllerDelegate, VinhoViewControllerDelegate>
+@interface ListaVinhosViewController : UITableViewController <NovoVinhoViewControllerDelegate, LoginViewControllerDelegate, UISplitViewControllerDelegate, VinhoViewControllerDelegate, DetailViewControllerDelegate>
 {
     UISplitViewController *splitViewController;
     
@@ -43,10 +44,16 @@
 @property (nonatomic, strong) UIPopoverController *popoverController;
 @property (nonatomic, strong) UIBarButtonItem *rootPopoverButtonItem;
 
+
+@property (nonatomic, getter=homeIsVisible) BOOL homeVisibility;
+
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *tempButton;
+
 - (void)insertNewObject:(id)sender;
 
 - (void) setVinhos:(NSMutableArray*)vinhos;
 
 - (void) configureView;
+- (IBAction)didPressHomeButton:(id)sender;
 
 @end

@@ -21,6 +21,8 @@
 @synthesize detailDescriptionLabel = _detailDescriptionLabel;
 @synthesize masterPopoverController = _masterPopoverController;
 
+@synthesize delegate;
+
 SEL action; id target;
 
 #pragma mark - Managing the detail item
@@ -61,6 +63,18 @@ SEL action; id target;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     self.detailDescriptionLabel = nil;
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    [self.delegate detailViewDidAppear];
+    [super viewDidAppear:animated];
+}
+
+
+- (void)viewDidDisappear:(BOOL)animated {
+    
+    [self.delegate detailViewDidDisappear];
+    [super viewDidDisappear:animated];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

@@ -41,6 +41,9 @@
 @synthesize vinhos = _vinhos;
 @synthesize vvc;
 
+@synthesize homeVisibility;
+@synthesize tempButton;
+
 SEL action; id target;
 
 @synthesize rootPopoverButtonItem, popoverController, splitViewController;
@@ -75,6 +78,9 @@ SEL action; id target;
 
     
     [self configureView];
+    
+    self.detailViewController.delegate = self;
+    [self setHomeVisibility:TRUE];
     
 
 
@@ -134,7 +140,13 @@ SEL action; id target;
         
         self.currentPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
     }
-    
+    else if ([segue.identifier isEqualToString:@"VinhosToHome"]) {
+        
+        DetailViewController* home = segue.destinationViewController;
+        home.delegate = self;
+        
+    }
+
     //switch detail views
     [self switchDetailViews:segue];
 }
@@ -312,6 +324,13 @@ SEL action; id target;
     self.title = [lan translate:@"Wines List Title"];
 }
 
+- (IBAction)didPressHomeButton:(id)sender {
+    if ([self homeIsVisible])
+        return;
+    
+    [self performSegueWithIdentifier:@"VinhosToHome" sender:self];
+}
+
 
 #pragma mark - UISplitViewControllerDelegate
 
@@ -340,6 +359,20 @@ SEL action; id target;
 
 - (void) onVinhoEdition:(Vinho*) vinho {
     [[self tableView] reloadData];
+}
+
+#pragma mark - DetailViewController Delegate Methods
+
+- (void) detailViewDidDisappear {
+    [self setHomeVisibility:FALSE];
+    [[self navigationItem] setLeftBarButtonItem:[self tempButton] animated:YES];
+    tempButton = nil;
+
+}
+- (void) detailViewDidAppear {
+    [self setHomeVisibility:TRUE];
+    tempButton = [[self navigationItem] leftBarButtonItem];
+    [[self navigationItem] setLeftBarButtonItem:nil animated:YES];
 }
 
 @end
