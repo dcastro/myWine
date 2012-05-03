@@ -14,7 +14,9 @@
 @implementation NovoVinhoViewController
 
 @synthesize NomeVinho;
+@synthesize Produtor;
 @synthesize AnoVinho = _AnoVinho;
+@synthesize Preco;
 @synthesize delegate;
 @synthesize anosVinhos;
 @synthesize PickAnoVinho;
@@ -65,6 +67,9 @@
     [self setPickAnoVinho:nil];
     [self setAnoVinho:nil];
     [self setNomeVinho:nil];
+    [self setProdutor:nil];
+    [self setAnoVinho:nil];
+    [self setPreco:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -73,6 +78,7 @@
 {
 	return YES;
 }
+
 
 - (IBAction)cancel:(id)sender
 {
@@ -108,4 +114,8 @@
     self.AnoVinho.text = [NSString stringWithFormat:@"%d", [[anosVinhos objectAtIndex:row] integerValue]];
 }
 
+- (IBAction)asdsd:(id)sender {
+}
+- (IBAction)teste:(id)sender {
+}
 @end

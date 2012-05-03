@@ -20,11 +20,18 @@
     UITextField *AnoVinho;
     
 }
+
 @property (weak, nonatomic) IBOutlet UITextField *NomeVinho;
-@property (nonatomic,strong) IBOutlet UIPickerView *PickAnoVinho;
+@property (weak, nonatomic) IBOutlet UITextField *Produtor;
 @property (weak, nonatomic) IBOutlet UITextField *AnoVinho;
+@property (weak, nonatomic) IBOutlet UITextField *Preco;
+
+@property (nonatomic,strong) IBOutlet UIPickerView *PickAnoVinho;
+
+
 @property (nonatomic, weak) id <NovoVinhoViewControllerDelegate> delegate;
 @property (nonatomic, retain) NSMutableArray *anosVinhos;
+
 
 - (IBAction)cancel:(id)sender;
 - (IBAction)done:(id)sender;
