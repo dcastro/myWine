@@ -10,6 +10,7 @@
 #import "Query.h"
 #import "Language.h"
 #import "Vinho.h"
+#import "Pais.h"
 
 static User *sharedUser = nil;
 
@@ -20,6 +21,7 @@ static User *sharedUser = nil;
 @synthesize vinhos = _vinhos;
 @synthesize isValidated = _isValidated;
 @synthesize synced_at;
+@synthesize countries = _countries;
 
 + (id)instance {
     @synchronized(self) {
@@ -216,6 +218,28 @@ static User *sharedUser = nil;
     
     
     
+    
+}
+
+- (void) loadCountries {
+    
+#warning TODO: load dos paises para memoria
+    
+    Pais* p = [[Pais alloc] init];
+    p.name = @"Portugal";
+    
+    _countries  = [[NSMutableArray alloc] initWithObjects: p, nil];
+    
+    
+}
+
+- (NSMutableArray*) countries {
+    
+    if (!_countries) {
+        [self loadCountries];
+    }
+    
+    return _countries;
     
 }
 

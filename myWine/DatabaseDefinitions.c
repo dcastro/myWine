@@ -220,6 +220,8 @@ const char  *databaseTables[] = {
     
     
     "INSERT INTO Country VALUES (1,'Portugal', 'Portugal', 'Portugal');",
+    "INSERT INTO Country VALUES (2,'França', 'França', 'França');",
+    "INSERT INTO Country VALUES (3,'Inglaterra', 'Inglaterra', 'Inglaterra');",
     
     
     "INSERT INTO Region VALUES (1, 1, 1, 'Vila Real');",

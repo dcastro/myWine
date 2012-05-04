@@ -18,6 +18,8 @@
 
 @property (nonatomic) BOOL isValidated;
 
+@property (nonatomic) NSMutableArray* countries;
+
 
 - (void) sync;
 - (NSMutableArray*) vinhos;

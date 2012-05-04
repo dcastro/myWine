@@ -27,6 +27,6 @@
 
 - (NSString*) description;
 
--(void) updateWithVinho:(Vinho*) vinho;
+- (void) updateWithVinho:(Vinho*) vinho;
 
 @end
