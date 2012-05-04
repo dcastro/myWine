@@ -1,22 +1,18 @@
 //
-//  ListaPaisesViewController.m
+//  ListaRegioesViewController.m
 //  myWine
 //
-//  Created by Diogo Castro on 04/05/12.
+//  Created by Luis on 5/4/12.
 //  Copyright (c) 2012 FEUP. All rights reserved.
 //
 
-#import "ListaPaisesViewController.h"
-#import "User.h"
-#import "Pais.h"
+#import "ListaRegioesViewController.h"
 
-@interface ListaPaisesViewController ()
+@interface ListaRegioesViewController ()
 
 @end
 
-@implementation ListaPaisesViewController
-
-@synthesize countries = _countries;
+@implementation ListaRegioesViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -36,11 +32,6 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    User* user = [User instance];
-    [self setCountries:user.countries];
-    
-    
 }
 
 - (void)viewDidUnload
@@ -61,28 +52,20 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 1;
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    NSLog(@"N COUNTRIES: %d", [self.countries count]);
-    return [self.countries count];
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Countries"];
-    
-    
-    //static NSString *CellIdentifier = @"Cell";
-    Pais* p = [self.countries objectAtIndex:indexPath.row];
-    
-    cell.textLabel.text = p.name;
-    
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     // Configure the cell...
     

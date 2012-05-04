@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A0C66470155448CC004C798E /* ListaRegioesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C6646F155448CC004C798E /* ListaRegioesViewController.m */; };
 		A975188315191F3700EAC591 /* ProvaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A975188215191F3700EAC591 /* ProvaViewController.m */; };
 		A97583661519F60C009B5F68 /* inicial.png in Resources */ = {isa = PBXBuildFile; fileRef = A97583651519F60C009B5F68 /* inicial.png */; };
 		A97583691519F743009B5F68 /* images.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A97583681519F743009B5F68 /* images.jpeg */; };
@@ -71,6 +72,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A0C6646E155448CC004C798E /* ListaRegioesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListaRegioesViewController.h; sourceTree = "<group>"; };
+		A0C6646F155448CC004C798E /* ListaRegioesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListaRegioesViewController.m; sourceTree = "<group>"; };
 		A975188115191F3700EAC591 /* ProvaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProvaViewController.h; sourceTree = "<group>"; };
 		A975188215191F3700EAC591 /* ProvaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProvaViewController.m; sourceTree = "<group>"; };
 		A97583651519F60C009B5F68 /* inicial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inicial.png; sourceTree = "<group>"; };
@@ -310,6 +313,8 @@
 		A9CA2B4E151E496500A29DE3 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				A0C6646E155448CC004C798E /* ListaRegioesViewController.h */,
+				A0C6646F155448CC004C798E /* ListaRegioesViewController.m */,
 				DADADA5315541E04008A9FBB /* ListaPaisesViewController.h */,
 				DADADA5415541E04008A9FBB /* ListaPaisesViewController.m */,
 				DAFB6901152D138800DC74CB /* LoginViewController.h */,
@@ -482,6 +487,7 @@
 				D37D40D6154D9E1500A11E6F /* TipoVinho.m in Sources */,
 				DADADA5515541E04008A9FBB /* ListaPaisesViewController.m in Sources */,
 				DADADA5915542420008A9FBB /* Pais.m in Sources */,
+				A0C66470155448CC004C798E /* ListaRegioesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

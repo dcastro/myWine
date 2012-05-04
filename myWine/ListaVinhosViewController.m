@@ -58,6 +58,7 @@ SEL action; id target;
 
 - (void)viewDidLoad
 {
+    
     /*
     if (!_objects) {
         _objects = [[NSMutableArray alloc] init];
@@ -219,6 +220,7 @@ SEL action; id target;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     
     //NSString *object = [_objects objectAtIndex:indexPath.row];

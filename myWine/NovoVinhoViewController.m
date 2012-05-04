@@ -33,7 +33,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
 
     [_AnoVinho setInputView:PickAnoVinho];
     PickAnoVinho.hidden = YES;
