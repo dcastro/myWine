@@ -84,13 +84,16 @@ SEL action; id target;
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    action = [sender action];
-    target = [sender target];
     
-    [sender setTarget:self];
-    [sender setAction:@selector(dismiss:)];
-    
-    self.currentPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
+    if( [segue.identifier isEqualToString:@"helpSegue"]) {
+        action = [sender action];
+        target = [sender target];
+        
+        [sender setTarget:self];
+        [sender setAction:@selector(dismiss:)];
+        
+        self.currentPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
+    }
 }
 
 -(void)dismiss:(id)sender
