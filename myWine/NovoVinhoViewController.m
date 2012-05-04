@@ -114,8 +114,4 @@
     self.AnoVinho.text = [NSString stringWithFormat:@"%d", [[anosVinhos objectAtIndex:row] integerValue]];
 }
 
-- (IBAction)asdsd:(id)sender {
-}
-- (IBAction)teste:(id)sender {
-}
 @end
