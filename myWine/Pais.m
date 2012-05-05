@@ -8,6 +8,7 @@
 
 #import "Pais.h"
 #import "Regiao.h"
+#import "Query.h"
 
 @implementation Pais
 
@@ -24,13 +25,39 @@
     return _regions;
 }
 
-- (void) loadRegions {
+- (BOOL) loadRegions {
+        
+    _regions = [[NSMutableArray alloc] init];
     
-#warning TODO: load das regioes
-    Regiao* r = [[Regiao alloc] init];
-    r.region_name = @"Douro";
     
-    _regions = [[NSMutableArray alloc] initWithObjects:r , nil];
+    
+    Query *query = [[Query alloc] init];
+    
+    NSString *querySQL= [NSString stringWithFormat:@"SELECT r.region_id, r.name_fr\
+                         FROM Region r\
+                         WHERE r.country_id = %d",self.id];
+    
+#warning TODO:ver a cena do default
+              
+    sqlite3_stmt *stmt = [query prepareForSingleQuery:querySQL];
+    
+    
+    if(stmt != nil){
+        while(sqlite3_step(stmt) == SQLITE_ROW)
+        {
+            Regiao *region = [[Regiao alloc] init];
+            
+            region.region_id = sqlite3_column_int(stmt, 0);
+            region.region_name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 1)];
+            region.country_name = self.name;
+            
+            [_regions insertObject:region atIndex:0];
+        }
+        
+        [query finalizeQuery:stmt];
+        return TRUE;
+    }else
+        return FALSE;
 }
 
 

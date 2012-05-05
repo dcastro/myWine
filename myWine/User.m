@@ -221,16 +221,53 @@ static User *sharedUser = nil;
     
 }
 
-- (void) loadCountries {
+- (BOOL) loadCountries {
     
-#warning TODO: load dos paises para memoria
-    
-    Pais* p = [[Pais alloc] init];
-    p.name = @"Portugal";
-    
-    _countries  = [[NSMutableArray alloc] initWithObjects: p, nil];
+     _countries  = [[NSMutableArray alloc] init];
     
     
+    
+    Query *query = [[Query alloc] init];
+    
+    NSString *querySQL;
+    
+    Language *lan = [Language instance];
+    switch (lan.selectedLanguage) {
+        case FR:
+            querySQL = [NSString stringWithFormat:@"SELECT c.country_id, c.name_fr\
+                        FROM Country c;"];
+            break;
+            
+        case EN: querySQL =  [NSString stringWithFormat:@"SELECT c.country_id, c.name_en\
+                              FROM Country c;"];
+            break;
+            
+        case PT:querySQL =  [NSString stringWithFormat:@"SELECT c.country_id, c.name_pt\
+                             FROM Country c;"];           
+            break;
+            
+        default:
+            break;
+    }
+    
+    sqlite3_stmt *stmt = [query prepareForSingleQuery:querySQL];
+    
+    
+    if(stmt != nil){
+        while(sqlite3_step(stmt) == SQLITE_ROW)
+        {
+            Pais *country = [[Pais alloc] init];
+            
+            country.id = sqlite3_column_int(stmt, 0);
+            country.name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 1)];
+            
+            [_countries insertObject:country atIndex:0];
+        }
+        
+        [query finalizeQuery:stmt];
+        return TRUE;
+    }else
+        return FALSE;
 }
 
 - (NSMutableArray*) countries {
