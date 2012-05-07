@@ -24,6 +24,7 @@
 @synthesize winetype = _winetype; 
 @synthesize provas=_provas;
 @synthesize region = _region;
+@synthesize grapes = _grapes;
 
 - (NSString*) description {
     return self.name;
@@ -115,6 +116,8 @@
         self.producer = vinho.producer;
     if (self.year != vinho.year)
         self.year = vinho.year;
+    if (self.grapes != vinho.grapes)
+        self.grapes = vinho.grapes;
     
     //TODO: actualizar na BD os atributos alterados
     

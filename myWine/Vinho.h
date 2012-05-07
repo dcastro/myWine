@@ -22,6 +22,7 @@
 @property (nonatomic, retain) TipoVinho *winetype;
 @property (nonatomic, copy) NSString *photo;
 @property (nonatomic,copy) NSMutableArray *provas;
+@property (nonatomic, strong) NSString* grapes;
 
 
 

@@ -26,10 +26,12 @@
 @synthesize country_label_name = _country_label_name;
 @synthesize percentage_label_name = _percentage_label_name;
 @synthesize wine_label_name = _wine_label_name;
+@synthesize grapes_label = _grapes_label;
+@synthesize grapes_data_label = _grapes_data_label;
 @synthesize detailItem = _detailItem;
 @synthesize masterPopoverController = _masterPopoverController;
 
-@synthesize wine_name_text_field = _wine_name_text_field, producer_text_field = _producer_text_field, year_text_field = _year_text_field;
+@synthesize wine_name_text_field = _wine_name_text_field, producer_text_field = _producer_text_field, year_text_field = _year_text_field, grapes_text_field = _grapes_text_field;
 @synthesize editButton = _editButton;
 @synthesize tempButton = _tempButton;
 @synthesize editing = _editing;
@@ -74,6 +76,9 @@
     self.country_label.text = [lan translate:@"Country"];
     self.country_label.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGE_FONT];
     
+    self.grapes_label.text = [lan translate:@"Grapes"];
+    self.grapes_label.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGE_FONT];
+    
     
     Vinho* vinho = (Vinho*) self.detailItem;
     
@@ -92,6 +97,9 @@
     self.wine_label_name.text = vinho.name;
     self.wine_label_name.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGE_FONT];
     
+    self.grapes_data_label.text = vinho.grapes;
+    self.grapes_data_label.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
+    
     self.editButton.title = [lan translate:@"Edit"];
 
     
@@ -107,6 +115,7 @@
     self.wine_name_text_field = [[UITextField alloc] initWithFrame:self.wine_label_name.frame];
     self.producer_text_field = [[UITextField alloc] initWithFrame:self.producer_label_name.frame];
     self.year_text_field = [[UITextField alloc] initWithFrame:self.year_label_name.frame];
+    self.grapes_text_field = [[UITextField alloc] initWithFrame:self.grapes_data_label.frame];
     
     /**
      * styling of the editing fields
@@ -119,11 +128,13 @@
     self.wine_name_text_field.borderStyle = UITextBorderStyleRoundedRect;
     self.producer_text_field.borderStyle = UITextBorderStyleRoundedRect;
     self.year_text_field.borderStyle = UITextBorderStyleRoundedRect;    
+    self.grapes_text_field.borderStyle = UITextBorderStyleRoundedRect; 
     
     //fonts
     self.wine_name_text_field.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGE_FONT];
     self.producer_text_field.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
     self.year_text_field.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
+    self.grapes_text_field.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
     
     //frame adjustments
     CGRect frame = self.wine_name_text_field.frame;
@@ -136,6 +147,7 @@
     self.wine_name_text_field.delegate = self;
     self.producer_text_field.delegate = self;
     self.year_text_field.delegate = self;
+    self.grapes_text_field.delegate = self;
 
 }
 
@@ -153,6 +165,8 @@
     [self setWine_label_name:nil];
     [self setEditButton:nil];
     [self setTempButton:nil];
+    [self setGrapes_label:nil];
+    [self setGrapes_data_label:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -187,6 +201,7 @@
         self.wine_name_text_field.text = self.wine_label_name.text;
         self.producer_text_field.text = self.producer_label_name.text;
         self.year_text_field.text = self.year_label_name.text;
+        self.grapes_text_field.text = self.grapes_data_label.text;
         
         [UIView transitionWithView:[self view] duration:0.5
 						   options:UIViewAnimationOptionTransitionCurlDown
@@ -195,6 +210,7 @@
                             [[self view] addSubview:self.wine_name_text_field];
                             [[self view] addSubview:self.producer_text_field];
                             [[self view] addSubview:self.year_text_field];
+                            [[self view] addSubview:self.grapes_text_field];
                             
                         }
 						completion:nil];
@@ -216,12 +232,14 @@
             [vinho setName:self.wine_name_text_field.text];
             [vinho setProducer:self.producer_text_field.text];
             [vinho setYear: [self.year_text_field.text intValue]];
+            [vinho setGrapes:self.grapes_text_field.text];
         
             [self.detailItem updateWithVinho:vinho];
         
             self.wine_label_name.text = self.wine_name_text_field.text;
             self.producer_label_name.text = self.producer_text_field.text;
             self.year_label_name.text = self.year_text_field.text;
+            self.grapes_data_label.text = self.grapes_text_field.text;
             
             //refresh master view
             [self.delegate onVinhoEdition:(Vinho*) self.detailItem];
@@ -233,6 +251,7 @@
                             [self.wine_name_text_field removeFromSuperview];
                             [self.producer_text_field removeFromSuperview];
                             [self.year_text_field removeFromSuperview];
+                            [self.grapes_text_field removeFromSuperview];
                         }
 						completion:nil];
         
@@ -242,18 +261,19 @@
         [self setTempButton:nil];
         
         [self configureView];
-
-
+        
     }
     
     //switch views
     [self.wine_label_name setHidden: self.isEditing];
     [self.producer_label_name setHidden: self.isEditing];
     [self.year_label_name setHidden: self.isEditing];
+    [self.grapes_data_label setHidden: self.isEditing];
     
     [self.wine_name_text_field setHidden: !self.isEditing];
     [self.producer_text_field setHidden: !self.isEditing];
     [self.year_text_field setHidden: !self.isEditing];
+    [self.grapes_text_field setHidden: !self.isEditing];
     
 }
 
