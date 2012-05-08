@@ -120,7 +120,7 @@
         self.grapes = vinho.grapes;
     
     //TODO: actualizar na BD os atributos alterados
-    
+#warning TODO: actualizar castas
     
     Query *query = [[Query alloc] init];
     

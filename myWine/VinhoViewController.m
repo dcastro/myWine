@@ -9,6 +9,7 @@
 #import "VinhoViewController.h"
 #import "Language.h"
 #import <objc/runtime.h>
+#import "ListaPaisesViewController.h"
 
 @interface VinhoViewController ()
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
@@ -34,6 +35,7 @@
 @synthesize wine_name_text_field = _wine_name_text_field, producer_text_field = _producer_text_field, year_text_field = _year_text_field, grapes_text_field = _grapes_text_field;
 @synthesize editButton = _editButton;
 @synthesize tempButton = _tempButton;
+@synthesize selectCountryButton = _selectCountryButton;
 @synthesize editing = _editing;
 
 @synthesize delegate;
@@ -148,6 +150,8 @@
     self.producer_text_field.delegate = self;
     self.year_text_field.delegate = self;
     self.grapes_text_field.delegate = self;
+    
+    [self.selectCountryButton setHidden:TRUE];
 
 }
 
@@ -167,6 +171,7 @@
     [self setTempButton:nil];
     [self setGrapes_label:nil];
     [self setGrapes_data_label:nil];
+    [self setSelectCountryButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -203,6 +208,8 @@
         self.year_text_field.text = self.year_label_name.text;
         self.grapes_text_field.text = self.grapes_data_label.text;
         
+        [self.selectCountryButton setTitle:self.country_label_name.text forState:UIControlStateNormal];
+        
         [UIView transitionWithView:[self view] duration:0.5
 						   options:UIViewAnimationOptionTransitionCurlDown
 						animations:^ {
@@ -211,7 +218,6 @@
                             [[self view] addSubview:self.producer_text_field];
                             [[self view] addSubview:self.year_text_field];
                             [[self view] addSubview:self.grapes_text_field];
-                            
                         }
 						completion:nil];
         
@@ -274,6 +280,9 @@
     [self.producer_text_field setHidden: !self.isEditing];
     [self.year_text_field setHidden: !self.isEditing];
     [self.grapes_text_field setHidden: !self.isEditing];
+    
+    [self.country_label_name setHidden: self.isEditing];
+    [self.selectCountryButton setHidden: !self.isEditing];
     
 }
 
