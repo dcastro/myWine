@@ -171,11 +171,11 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yBq-lk-Txq" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="Detail" id="Bfx-yF-GXZ" customClass="ProvaViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="R75-NC-s43">
-                        <rect key="frame" x="0.0" y="64" width="703" height="704"/>
+                        <rect key="frame" x="0.0" y="64" width="703" height="655"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="14/03/2012" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="24" id="dFK-3q-B23">
-                                <rect key="frame" x="39" y="15" width="619" height="36"/>
+                                <rect key="frame" x="39" y="14" width="619" height="36"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -387,6 +387,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
+                    <tabBarItem key="tabBarItem" systemItem="topRated" id="2FJ-QI-dZa"/>
                     <navigationItem key="navigationItem" title="Prova Alvarinho" id="Ovy-tS-G2c">
                         <barButtonItem key="rightBarButtonItem" title="Editar" id="1Gp-Hn-axq"/>
                     </navigationItem>
@@ -395,7 +396,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="-2204" y="345"/>
+            <point key="canvasLocation" x="1346" y="-1814"/>
         </scene>
         <!--Nova Prova View Controller - Nova Prova-->
         <scene sceneID="XuU-I6-lzr">
@@ -1981,7 +1982,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="Bfx-yF-GXZ" kind="relationship" relationship="rootViewController" id="jAR-QU-P4j"/>
+                        <segue destination="j2E-bo-XYb" kind="relationship" relationship="rootViewController" id="Qh4-ox-JT3"/>
                     </connections>
                 </navigationController>
             </objects>
@@ -2184,6 +2185,24 @@
             </objects>
             <point key="canvasLocation" x="-403" y="1129"/>
         </scene>
+        <!--Substitutable Tab Bar Controller View Controller-->
+        <scene sceneID="xuw-4O-8aF">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tze-LP-p3I" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tabBarController id="j2E-bo-XYb" customClass="SubstitutableTabBarControllerViewController" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="fuT-lL-sQy"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="fkF-b8-yQ8">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="Bfx-yF-GXZ" kind="relationship" relationship="viewControllers" id="URi-5B-jhM"/>
+                    </connections>
+                </tabBarController>
+            </objects>
+            <point key="canvasLocation" x="116" y="-1814"/>
+        </scene>
     </scenes>
     <resources>
         <image name="02-redo.png" width="30" height="26"/>
@@ -2280,6 +2299,9 @@
             <relationships>
                 <relationship kind="outlet" name="detailDescriptionLabel" candidateClass="UILabel"/>
             </relationships>
+        </class>
+        <class className="SubstitutableTabBarControllerViewController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SubstitutableTabBarControllerViewController.h"/>
         </class>
         <class className="SyncViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SyncViewController.h"/>

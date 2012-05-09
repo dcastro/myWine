@@ -79,7 +79,8 @@
  
     if ([segue.identifier isEqualToString:@"showProva"]) {
         
-        ProvaViewController* pvc = (ProvaViewController*) [segue.destinationViewController topViewController];
+        UITabBarController* tabBarController = (UITabBarController*) [segue.destinationViewController topViewController];
+        ProvaViewController* pvc = (ProvaViewController*) [[tabBarController viewControllers] objectAtIndex:0];  //(ProvaViewController*) [segue.destinationViewController topViewController];
         Prova* prova = [_provas objectAtIndex:[[self.tableView indexPathForSelectedRow] row]];
         pvc.detailItem = prova;
         
