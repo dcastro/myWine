@@ -80,5 +80,10 @@
 
 }
 
+- (NSString*) description {
+NSLog(@"NAME: %@", self.name);
+    return self.name;
+}
+
 
 @end

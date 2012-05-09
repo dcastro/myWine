@@ -9,6 +9,7 @@
 #import "ListaProvasViewController.h"
 #import "ProvaViewController.h"
 #import "Prova.h"
+#import "ProvaCriteriaViewController.h"
 
 @interface ListaProvasViewController () {NSMutableArray *_objects;}
 
@@ -80,8 +81,12 @@
     if ([segue.identifier isEqualToString:@"showProva"]) {
         
         UITabBarController* tabBarController = (UITabBarController*) [segue.destinationViewController topViewController];
-        ProvaViewController* pvc = (ProvaViewController*) [[tabBarController viewControllers] objectAtIndex:0];  //(ProvaViewController*) [segue.destinationViewController topViewController];
         Prova* prova = [_provas objectAtIndex:[[self.tableView indexPathForSelectedRow] row]];
+        
+        ProvaCriteriaViewController* pcvc = (ProvaCriteriaViewController*) [[tabBarController viewControllers] objectAtIndex:0];
+        pcvc.prova = prova;
+        
+        ProvaViewController* pvc = (ProvaViewController*) [[tabBarController viewControllers] objectAtIndex:1];  //(ProvaViewController*) [segue.destinationViewController topViewController];
         pvc.detailItem = prova;
         
     }

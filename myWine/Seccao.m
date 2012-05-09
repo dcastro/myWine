@@ -17,7 +17,7 @@
 @synthesize name = _name;
 @synthesize section_id = _section_id;
 @synthesize characteristics = _characteristics;
-@synthesize criterions = _criterions;
+@synthesize criteria = _criteria;
 
 
 -(NSMutableArray *) characteristics {
@@ -27,11 +27,11 @@
     return _characteristics;
 }
 
--(NSMutableArray *)  criterions{
-    if(!_criterions){
-        [self loadCriterionsFromDB];
+-(NSMutableArray *)  criteria{
+    if(!_criteria){
+        [self loadCriteriaFromDB];
     }
-    return _criterions;
+    return _criteria;
 }
 
 
@@ -98,8 +98,8 @@
 }
 
 
-- (BOOL) loadCriterionsFromDB {
-    _criterions = [[NSMutableArray alloc] init];
+- (BOOL) loadCriteriaFromDB {
+    _criteria = [[NSMutableArray alloc] init];
     
     
     Query *query = [[Query alloc] init];
@@ -135,7 +135,6 @@
     
     sqlite3_stmt *stmt = [query prepareForSingleQuery:querySQL];
     
-    
     if(stmt != nil){
         while(sqlite3_step(stmt) == SQLITE_ROW)
         {
@@ -151,7 +150,7 @@
             
             cr.classification_choosen = c;
             
-            [_criterions insertObject:cr atIndex:0];
+            [_criteria insertObject:cr atIndex:0];
         }
         
         [query finalizeQuery:stmt];
@@ -162,6 +161,9 @@
 
 }
 
+- (NSString*) description {
+    return self.name;
+}
          
 
 @end
