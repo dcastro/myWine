@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class Criterio;
 @class CriterionView;
 
 @interface CriterionCell : UITableViewCell
 
 @property (strong, nonatomic) CriterionView* criterionView;
+
+- (void)setCriterion:(Criterio *)newCriterion;
+- (void)redisplay;
 
 @end

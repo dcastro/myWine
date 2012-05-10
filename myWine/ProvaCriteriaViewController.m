@@ -82,8 +82,9 @@
     
     // Configure the cell...
     Seccao* section = (Seccao*) [self.prova.sections objectAtIndex:indexPath.section];
-    Criterio* criterion = (Criterio*) [[section.criteria objectAtIndex:indexPath.row] description];
-    cell.textLabel.text = [criterion description];
+    Criterio* criterion = (Criterio*) [section.criteria objectAtIndex:indexPath.row];
+    //cell.textLabel.text = [criterion description];
+    [cell setCriterion:criterion];
     
     return cell;
 }

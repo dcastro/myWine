@@ -34,4 +34,12 @@
     // Configure the view for the selected state
 }
 
+- (void)setCriterion:(Criterio *)newCriterion {
+    [self.criterionView setCriterion:newCriterion];
+}
+
+- (void)redisplay {
+    [self.criterionView setNeedsDisplay];
+}
+
 @end

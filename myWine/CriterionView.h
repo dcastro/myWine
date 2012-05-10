@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CriterionView : UIView
+@class Criterio;
+
+@interface CriterionView : UIView {
+    BOOL highlighted;
+	BOOL editing;
+}
+
+@property (weak, nonatomic) Criterio* criterion;
+@property (nonatomic, getter=isHighlighted) BOOL highlighted;
+@property (nonatomic, getter=isEditing) BOOL editing;
+
 
 @end
