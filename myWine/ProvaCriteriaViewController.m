@@ -9,6 +9,7 @@
 #import "ProvaCriteriaViewController.h"
 #import "Seccao.h"
 #import "Criterio.h"
+#import "CriterionCell.h"
 
 @interface ProvaCriteriaViewController ()
 
@@ -58,6 +59,7 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    // Return section header title.
     return [[self.prova.sections objectAtIndex:section] description];
 }
 
@@ -71,10 +73,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    CriterionCell *cell = (CriterionCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if(cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+        cell = [[CriterionCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     }
     
     // Configure the cell...

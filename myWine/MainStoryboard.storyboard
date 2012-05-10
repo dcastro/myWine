@@ -170,13 +170,13 @@
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9NR-84-PiU" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="cDu-dJ-dqi" customClass="ProvaCriteriaViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="ePZ-4v-ifM">
-                        <rect key="frame" x="0.0" y="64" width="703" height="655"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="ePZ-4v-ifM">
+                        <rect key="frame" x="0.0" y="64" width="703" height="748"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Vof-Gx-RPU" detailTextLabel="00I-Ix-mQu" style="IBUITableViewCellStyleValue1" id="Uza-02-m2z">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Vof-Gx-RPU" detailTextLabel="00I-Ix-mQu" style="IBUITableViewCellStyleValue1" id="Uza-02-m2z" customClass="CriterionCell">
                                 <rect key="frame" x="0.0" y="54" width="703" height="46"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -2271,6 +2271,9 @@
             <relationships>
                 <relationship kind="action" name="cancel:"/>
             </relationships>
+        </class>
+        <class className="CriterionCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CriterionCell.h"/>
         </class>
         <class className="DetailViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DetailViewController.h"/>
