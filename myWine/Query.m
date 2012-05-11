@@ -29,15 +29,15 @@
         if(sqlite3_exec(contactDB, "Pragma foreign_keys = ON;", NULL, NULL, &errMsg) != SQLITE_OK){
             DebugLog(@"Could not activate foreign keys error: %s", errMsg);
             sqlite3_free(errMsg);
+            sqlite3_close(contactDB);
             return nil;
         }
         
         const char *query_stmt = [query UTF8String];
         
-        if (sqlite3_prepare_v2(contactDB, 
-                               query_stmt, -1, &statement, NULL) == SQLITE_OK)
+        if (sqlite3_prepare_v2(contactDB, query_stmt, -1, &statement, NULL) == SQLITE_OK){
             return statement;
-        else{
+        }else{
             sqlite3_close(contactDB);
             DebugLog(@"Query with error: %s", query_stmt);
             return nil;
@@ -55,7 +55,7 @@
 }
 
 
--(sqlite3 *)prepareForExecution{
+-(sqlite3 **)prepareForExecution{
     const char* dbpath = [db.databasePath UTF8String];
     
     if (sqlite3_open(dbpath, &contactDB) == SQLITE_OK){
@@ -63,12 +63,68 @@
         if(sqlite3_exec(contactDB, "Pragma foreign_keys = ON;", NULL, NULL, &errMsg) != SQLITE_OK){
             DebugLog(@"Could not activate foreign keys error: %s", errMsg);
             sqlite3_free(errMsg);
+            sqlite3_close(contactDB);
             return NULL;
         }
-        return contactDB;
+        return &contactDB;
     }  
     return NULL;
     
+}
+
+
+
+-(sqlite3 **)beginTransation{
+    const char* dbpath = [db.databasePath UTF8String];
+    
+    if (sqlite3_open(dbpath, &contactDB) == SQLITE_OK){
+        char *errMsg;
+        if(sqlite3_exec(contactDB, "Pragma foreign_keys = ON;", NULL, NULL, &errMsg) != SQLITE_OK){
+            DebugLog(@"Could not activate foreign keys error: %s", errMsg);
+            sqlite3_free(errMsg);
+            sqlite3_close(contactDB);
+            return NULL;
+        }
+        
+        if(sqlite3_exec(contactDB, "Begin Transation;", NULL, NULL, &errMsg) != SQLITE_OK){
+            DebugLog(@"Could not begin transaction: %s", errMsg);
+            sqlite3_free(errMsg);
+            sqlite3_close(contactDB);
+            return NULL;
+        }
+        
+        return &contactDB;
+    }  
+    return NULL;
+}
+
+
+
+-(BOOL)endTransation{
+    char *errMsg;
+    if(sqlite3_exec(contactDB, "Commit Transaction;", NULL, NULL, &errMsg) != SQLITE_OK){
+        DebugLog(@"Could not commit transaction: %s", errMsg);
+        sqlite3_free(errMsg);
+        sqlite3_close(contactDB);
+        return FALSE;
+    }else {
+        sqlite3_close(contactDB);
+        return TRUE;
+    }
+}
+
+
+-(BOOL)rollbackTransation{
+    char *errMsg;
+    if(sqlite3_exec(contactDB, "Rollback Transaction;", NULL, NULL, &errMsg) != SQLITE_OK){
+        DebugLog(@"Could not rollback transaction: %s", errMsg);
+        sqlite3_free(errMsg);
+        sqlite3_close(contactDB);
+        return FALSE;
+    }else {
+        sqlite3_close(contactDB);
+        return TRUE;
+    }
 }
 
 @end

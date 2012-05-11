@@ -49,7 +49,23 @@
  * Function that prepares for the execution of inserts, updates, deletes.
  * @return - true if the database can accept inserts, updates, deletes. Must call finalizeQuery if returns true
  */
--(sqlite3 *)prepareForExecution;
+-(sqlite3 **)prepareForExecution;
 
+
+
+/**
+ * Opens the database and prepares it to a transaction.
+ */
+-(sqlite3 **)beginTransation;
+
+
+
+/**
+ *Finalizes the database transations and commits changes. Closes the connection to the database.
+ */
+-(BOOL)endTransation;
+
+
+-(BOOL)rollbackTransation;
 
 @end
