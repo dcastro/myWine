@@ -16,6 +16,9 @@
 
 -(BOOL) removeProvaAtIndex:(NSUInteger) index {
     #warning TODO: completar este metodo
+    
+    [self removeObjectAtIndex:index];
+    return TRUE;
 }
 
 @end
