@@ -33,7 +33,7 @@
     
     Query *query = [[Query alloc] init];
     
-    NSString *querySQL= [NSString stringWithFormat:@"SELECT r.region_id, r.name_fr\
+    NSString *querySQL= [NSString stringWithFormat:@"SELECT r.region_id, r.name\
                          FROM Region r\
                          WHERE r.country_id = %d",self.id];
     
