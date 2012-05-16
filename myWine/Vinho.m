@@ -50,17 +50,17 @@
         case FR:
             querySQL = [NSString stringWithFormat:@"SELECT t.tasting_id, t.tasting_date, t.comment, t.latitude, t.longitude,  c.classification_id, c.weight, c.name_fr\
                         FROM Tasting t, Classification c\
-                        WHERE t.wine_id = %d AND t.classification_id = c.classification_id;", _wine_id ];
+                        WHERE t.wine_id = %d AND t.classification_id = c.classification_id AND t.state <> 3;", _wine_id ];
             break;
             
         case EN: querySQL =  [NSString stringWithFormat:@"SELECT t.tasting_id, t.tasting_date, t.comment, t.latitude, t.longitude,  c.classification_id, c.weight, c.name_en\
                               FROM Tasting t, Classification c\
-                              WHERE t.wine_id = %d AND t.classification_id = c.classification_id;", _wine_id ];
+                              WHERE t.wine_id = %d AND t.classification_id = c.classification_id AND t.state <> 3;", _wine_id ];
             break;
             
         case PT:querySQL =  [NSString stringWithFormat:@"SELECT t.tasting_id, t.tasting_date, t.comment, t.latitude, t.longitude,  c.classification_id, c.weight, c.name_pt\
                              FROM Tasting t, Classification c\
-                             WHERE t.wine_id = %d AND t.classification_id = c.classification_id;", _wine_id ];            
+                             WHERE t.wine_id = %d AND t.classification_id = c.classification_id AND t.state <> 3;", _wine_id ];            
             break;
             
         default:
