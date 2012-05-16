@@ -7,7 +7,14 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
+#import "AppDelegate.h"
 
-@interface Tests : SenTestCase
+@interface Tests : SenTestCase {
+    @private
+    AppDelegate* appDelegate;
+    UISplitViewController* splitView;
+}
+
+
 
 @end
