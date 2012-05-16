@@ -155,8 +155,11 @@
     self.passwordInput.placeholder = [lan translate:@"Password"];
     self.usernameInput.placeholder = [lan translate:@"Username"];
     self.welcomeLabel.text = [lan translate:@"Welcome to myWine"];
+    self.welcomeLabel.font = [UIFont fontWithName:@"DroidSerif-Bold" size:42];
     self.configLabel.text = [lan translate:@"Initial Configuration"];
-    self.loginButton.titleLabel.text = [lan translate:@"Login"];
+    self.configLabel.font = [UIFont fontWithName:@"DroidSerif-Bold" size:18];
+    [self.loginButton setTitle:[lan translate:@"Login"] forState:UIControlStateNormal];
+    self.loginButton.titleLabel.font = [UIFont fontWithName:@"DroidSerif-Bold" size:24];
 }
 
 @end
