@@ -84,6 +84,18 @@ SEL action; id target;
     [self setHomeVisibility:TRUE];
     
 
+    //Teste as notificacoes
+    /*
+    NSDate* alertDate = [[NSDate date] dateByAddingTimeInterval:10];
+    UIApplication* app = [UIApplication sharedApplication];
+    UILocalNotification* syncReminder = [[UILocalNotification alloc] init];
+    syncReminder.fireDate = alertDate;
+    syncReminder.timeZone = [NSTimeZone defaultTimeZone];
+    syncReminder.repeatInterval = 0;
+    syncReminder.soundName = @"Glass.aiff";
+    syncReminder.alertBody = @"Nao sincroniza os seus dados ha X dias.";
+    [app scheduleLocalNotification:syncReminder];
+     */
 
 }
 

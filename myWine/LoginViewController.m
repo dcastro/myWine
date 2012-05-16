@@ -152,15 +152,11 @@
     
     Language *lan = [Language instance];
     
-    self.languageLabel.text = [lan translate:@"Language"];
-    self.usernameLabel.text = [lan translate:@"Username"];
-    self.passwordLabel.text = [lan translate:@"Password"];
+    self.passwordInput.placeholder = [lan translate:@"Password"];
+    self.usernameInput.placeholder = [lan translate:@"Username"];
     self.welcomeLabel.text = [lan translate:@"Welcome to myWine"];
     self.configLabel.text = [lan translate:@"Initial Configuration"];
     self.loginButton.titleLabel.text = [lan translate:@"Login"];
-    
-    
-    
 }
 
 @end
