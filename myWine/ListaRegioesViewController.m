@@ -14,6 +14,8 @@
 
 @implementation ListaRegioesViewController
 
+@synthesize regions = _regions;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];

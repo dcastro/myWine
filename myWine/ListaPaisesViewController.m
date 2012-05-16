@@ -17,6 +17,7 @@
 @implementation ListaPaisesViewController
 
 @synthesize countries = _countries;
+@synthesize delegate;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -67,8 +68,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 #warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    NSLog(@"N COUNTRIES: %d", [self.countries count]);
+    // Return the number of rows in the section.s
     return [self.countries count];
 }
 
@@ -136,6 +136,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    Pais* pais = (Pais*)[self.countries objectAtIndex:indexPath.row];
+    
+    [self.delegate selectedCountry:pais];
+   
+    [self dismissModalViewControllerAnimated:YES];
     // Navigation logic may go here. Create and push another view controller.
     /*
      <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];

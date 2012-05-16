@@ -7,12 +7,18 @@
 //
 
 #import "NovoVinhoViewController.h"
+#import "ListaPaisesViewController.h"
+#import "Language.h"
+#import "ListaRegioesViewController.h"
 
 @interface NovoVinhoViewController () 
 @end
 
 @implementation NovoVinhoViewController
 
+
+@synthesize regiaoButton;
+@synthesize paisButton;
 @synthesize NomeVinho;
 @synthesize Produtor;
 @synthesize AnoVinho = _AnoVinho;
@@ -20,6 +26,7 @@
 @synthesize delegate;
 @synthesize anosVinhos;
 @synthesize PickAnoVinho;
+@synthesize country = _country;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,7 +40,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
+    Language* lang = [Language instance];
+    
+    [self.paisButton setTitle:[lang translate:@"Tap to select"] forState:UIControlStateNormal];
+    [self.regiaoButton setEnabled:NO];
+    [self.regiaoButton setTitle: [lang translate:@"Select Country First"] forState:UIControlStateNormal];
+    [[self.regiaoButton titleLabel] setTextColor:[UIColor grayColor]];
+    
     [_AnoVinho setInputView:PickAnoVinho];
     PickAnoVinho.hidden = YES;
     _AnoVinho.delegate = self;
@@ -55,6 +69,21 @@
     
 }
 
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if([segue.identifier isEqualToString:@"showCountries"]) {
+        ListaPaisesViewController* lpvc = (ListaPaisesViewController*) [segue destinationViewController];
+        lpvc.delegate = self;
+        
+    }
+    if([segue.identifier isEqualToString:@"showRegions"]) {
+        ListaRegioesViewController* lrvc = (ListaRegioesViewController*) [segue destinationViewController];
+        //lrvc.delegate = self;
+        [lrvc setRegions: [self.country regions]];
+    }
+    
+}
+
 -(void)textFieldDidBeginEditing:(UITextField *) textField {
     
     if(textField.tag == 2) {PickAnoVinho.hidden = NO; NSLog(@"dont hide it");}
@@ -69,6 +98,8 @@
     [self setProdutor:nil];
     [self setAnoVinho:nil];
     [self setPreco:nil];
+    [self setPaisButton:nil];
+    [self setRegiaoButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -112,5 +143,19 @@
     
     self.AnoVinho.text = [NSString stringWithFormat:@"%d", [[anosVinhos objectAtIndex:row] integerValue]];
 }
+
+- (void) selectedCountry:(Pais*)country {
+    
+    self.country = country;
+    
+    Language* lang = [Language instance];
+    
+    [self.paisButton setTitle:country.name forState:UIControlStateNormal];
+    
+    [self.regiaoButton setTitle: [lang translate:@"Tap to select"] forState:UIControlStateNormal];
+    [self.regiaoButton setEnabled:YES];
+}
+
+
 
 @end

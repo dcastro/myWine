@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ListaPaisesViewController.h"
+#import "Pais.h"
+
 
 @class NovoVinhoViewController;
 
@@ -15,12 +18,13 @@
     - (void)NovoVinhoViewControllerDidSave:(NovoVinhoViewController *)controller;
 @end
 
-@interface NovoVinhoViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate> {
+@interface NovoVinhoViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, ListaPaisesViewControllerDelegate> {
     UIPickerView *PickAnoVinho;
     UITextField *AnoVinho;
     
 }
-
+@property (weak, nonatomic) IBOutlet UIButton *regiaoButton;
+@property (weak, nonatomic) IBOutlet UIButton *paisButton;
 @property (weak, nonatomic) IBOutlet UITextField *NomeVinho;
 @property (weak, nonatomic) IBOutlet UITextField *Produtor;
 @property (weak, nonatomic) IBOutlet UITextField *AnoVinho;
@@ -31,6 +35,8 @@
 
 @property (nonatomic, weak) id <NovoVinhoViewControllerDelegate> delegate;
 @property (nonatomic, retain) NSMutableArray *anosVinhos;
+
+@property (nonatomic,strong) Pais* country;
 
 
 - (IBAction)cancel:(id)sender;

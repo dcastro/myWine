@@ -7,9 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Pais.h"
+
+@class ListaPaisesViewController;
+
+@protocol ListaPaisesViewControllerDelegate <NSObject>
+//- (void)addItemViewController:(ListaPaisesViewController *)controller didFinishEnteringItem:(NSString *)item;
+- (void) selectedCountry:(Pais*) country;
+@end
 
 @interface ListaPaisesViewController : UITableViewController
-
+@property (nonatomic, weak) id <ListaPaisesViewControllerDelegate> delegate;
 @property (nonatomic, strong) NSMutableArray* countries;
 
 @end
