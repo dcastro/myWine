@@ -14,6 +14,7 @@
 @implementation AppDelegate
 
 @synthesize window = _window;
+@synthesize splitView = _splitView;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -35,6 +36,8 @@
     //Add splitview
     
     UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
+    
+    self.splitView = splitViewController;
     
     UINavigationController *masterNavigationController = [splitViewController.viewControllers objectAtIndex:0];
     ListaVinhosViewController *lvvc = (ListaVinhosViewController *)masterNavigationController.topViewController;

@@ -285,7 +285,7 @@ const char  *databaseTables[] = {
     "INSERT INTO PossibleClassification VALUES (3,11,'Characteristic');",
     
     
-    "INSERT INTO Tasting VALUES (1, 1, 3, 1000000, 'muito bom este negocio....', 27.0, 27.0, 1);",
+    "INSERT INTO Tasting VALUES (1, 1, 3, 1000000, 'muito bom este negocio....', 27.0, 27.0, 0);",
     
     
     "INSERT INTO Section VALUES (1,1,'View', 'Voir', 'Vista');",

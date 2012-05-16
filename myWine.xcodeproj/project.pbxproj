@@ -82,6 +82,16 @@
 		DAFB6903152D138800DC74CB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFB6902152D138800DC74CB /* LoginViewController.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		DA72AA541563FDB200FC7E30 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9C59FED1517A78500A3F8C5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A9C59FF51517A78500A3F8C5;
+			remoteInfo = myWine;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		65846630156034BE003CB644 /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		65846631156034BE003CB644 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -457,6 +467,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				DA72AA551563FDB200FC7E30 /* PBXTargetDependency */,
 			);
 			name = Tests;
 			productName = Tests;
@@ -625,6 +636,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		DA72AA551563FDB200FC7E30 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A9C59FF51517A78500A3F8C5 /* myWine */;
+			targetProxy = DA72AA541563FDB200FC7E30 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		65846638156034BE003CB644 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
@@ -659,6 +678,7 @@
 		6584663F156034BE003CB644 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/myWine.app/myWine";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
@@ -667,6 +687,7 @@
 				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -674,6 +695,7 @@
 		65846640156034BE003CB644 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/myWine.app/myWine";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
@@ -682,6 +704,7 @@
 				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
@@ -736,10 +759,12 @@
 		A9C5A0181517A78600A3F8C5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUNDLE_LOADER = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "myWine/myWine-Prefix.pch";
 				INFOPLIST_FILE = "myWine/myWine-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -747,10 +772,14 @@
 		A9C5A0191517A78600A3F8C5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUNDLE_LOADER = "";
+				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "myWine/myWine-Prefix.pch";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = "myWine/myWine-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

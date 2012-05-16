@@ -14,6 +14,9 @@
 {
     [super setUp];
     
+    appDelegate = [[UIApplication sharedApplication] delegate];
+    splitView = [appDelegate splitView];
+    
     // Set-up code here.
 }
 
@@ -24,9 +27,14 @@
     [super tearDown];
 }
 
+- (void) testAppDelegate {
+    STAssertNotNil(appDelegate, @"Cannot find the application delegate");
+}
+
 - (void)testExample
 {
-    STFail(@"Unit tests are not implemented yet in Tests");
+    
+    //STFail(@"Unit tests are not implemented yet in Tests");
 }
 
 @end
