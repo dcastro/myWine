@@ -12,7 +12,6 @@
 @class ListaPaisesViewController;
 
 @protocol ListaPaisesViewControllerDelegate <NSObject>
-//- (void)addItemViewController:(ListaPaisesViewController *)controller didFinishEnteringItem:(NSString *)item;
 - (void) selectedCountry:(Pais*) country;
 @end
 

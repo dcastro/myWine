@@ -27,6 +27,7 @@
 @synthesize anosVinhos;
 @synthesize PickAnoVinho;
 @synthesize country = _country;
+@synthesize region = _region;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -78,8 +79,9 @@
     }
     if([segue.identifier isEqualToString:@"showRegions"]) {
         ListaRegioesViewController* lrvc = (ListaRegioesViewController*) [segue destinationViewController];
-        //lrvc.delegate = self;
+        lrvc.delegate = self;
         [lrvc setRegions: [self.country regions]];
+        
     }
     
 }
@@ -156,6 +158,11 @@
     [self.regiaoButton setEnabled:YES];
 }
 
-
+- (void) selectedRegion:(Regiao*) region{
+    
+    self.region = region;
+    [self.regiaoButton setTitle:region.region_name forState:UIControlStateNormal];
+    
+}
 
 @end

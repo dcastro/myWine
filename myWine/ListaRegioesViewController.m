@@ -7,6 +7,9 @@
 //
 
 #import "ListaRegioesViewController.h"
+#import "Regiao.h"
+#import "Pais.h"
+
 
 @interface ListaRegioesViewController ()
 
@@ -15,6 +18,7 @@
 @implementation ListaRegioesViewController
 
 @synthesize regions = _regions;
+@synthesize delegate;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -34,6 +38,7 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
 }
 
 - (void)viewDidUnload
@@ -41,6 +46,9 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    //Pais* pais = [Pais instance];
+    
+    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -54,20 +62,30 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [self.regions count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *cellIdentifier = @"Regions";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    if(cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+    }
+    
+    //static NSString *CellIdentifier = @"Cell";
+    Regiao* r = [self.regions objectAtIndex:indexPath.row];
+    
+    cell.textLabel.text = r.region_name;
+    
     
     // Configure the cell...
     
@@ -81,7 +99,7 @@
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
+*/			
 
 /*
 // Override to support editing the table view.
@@ -117,6 +135,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    Regiao* regiao = (Regiao*)[self.regions objectAtIndex:indexPath.row];
+    
+    [self.delegate selectedRegion:regiao];
+    
+    [self dismissModalViewControllerAnimated:YES];
     // Navigation logic may go here. Create and push another view controller.
     /*
      <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
