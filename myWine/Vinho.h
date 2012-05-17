@@ -10,7 +10,7 @@
 #import "Regiao.h"
 #import "TipoVinho.h"
 
-@interface Vinho : NSObject
+@interface Vinho : NSObject <NSCopying>
 
 @property (nonatomic, assign) int wine_id;
 @property (nonatomic, assign) int year;

@@ -40,6 +40,8 @@
 
 @synthesize delegate;
 
+@synthesize editableWine = _editableWine, country = _country;
+
 #pragma mark - Managing the detail item
 
 - (void)setDetailItem:(id)newDetailItem
@@ -181,6 +183,15 @@
     return YES;
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    
+    if([segue.identifier isEqualToString:@"vinhoToCountries"]) {
+        ListaPaisesViewController* lpvc = (ListaPaisesViewController*) segue.destinationViewController;
+        lpvc.delegate = self;
+    }
+}
+
 #pragma mark - Split view
 
 - (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
@@ -202,6 +213,8 @@
     [self setEditing: !self.isEditing];
     
     if ([self isEditing]) {
+        
+        self.editableWine = [self.detailItem copy];
         
         self.wine_name_text_field.text = self.wine_label_name.text;
         self.producer_text_field.text = self.producer_label_name.text;
@@ -234,13 +247,12 @@
         UIBarButtonItem* pressedButton = (UIBarButtonItem*) sender;
         
         if ([pressedButton style] == UIBarButtonItemStyleDone) {
-            Vinho* vinho = [[Vinho alloc] init];
-            [vinho setName:self.wine_name_text_field.text];
-            [vinho setProducer:self.producer_text_field.text];
-            [vinho setYear: [self.year_text_field.text intValue]];
-            [vinho setGrapes:self.grapes_text_field.text];
+            [self.editableWine setName:self.wine_name_text_field.text];
+            [self.editableWine setProducer:self.producer_text_field.text];
+            [self.editableWine setYear: [self.year_text_field.text intValue]];
+            [self.editableWine setGrapes:self.grapes_text_field.text];
         
-            [self.detailItem updateWithVinho:vinho];
+            [self.detailItem updateWithVinho:self.editableWine];
         
             self.wine_label_name.text = self.wine_name_text_field.text;
             self.producer_label_name.text = self.producer_text_field.text;
@@ -318,5 +330,16 @@
     return YES;
 }
 
+#pragma mark - ListaPaises and ListaRegioes Delegate Methods
+
+- (void) selectedCountry:(Pais*)country {
+    self.country = country;
+    [self.selectCountryButton setTitle:self.country.name forState:UIControlStateNormal];
+}
+
+- (void) selectedRegion:(Regiao*) region{
+    self.editableWine.region = region;
+#warning Diogo: update text field
+}
 
 @end

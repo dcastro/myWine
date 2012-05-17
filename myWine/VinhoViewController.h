@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "Vinho.h"
 #import "ListaVinhosViewController.h"
+#import "ListaPaisesViewController.h"
+#import "ListaRegioesViewController.h"
 
 
 @protocol VinhoViewControllerDelegate <NSObject>
@@ -17,7 +19,7 @@
 
 @end
 
-@interface VinhoViewController : UIViewController <UISplitViewControllerDelegate, SubstitutableDetailViewController, UITextFieldDelegate>
+@interface VinhoViewController : UIViewController <UISplitViewControllerDelegate, SubstitutableDetailViewController, UITextFieldDelegate, ListaPaisesViewControllerDelegate, ListaRegioesViewControllerDelegate>
 
 @property (strong, nonatomic) id detailItem;
 
@@ -45,6 +47,9 @@
 @property(nonatomic, getter=isEditing) BOOL editing;
 
 @property (nonatomic, weak) id <VinhoViewControllerDelegate> delegate;
+
+@property (nonatomic, strong) Vinho* editableWine;
+@property (nonatomic, strong) Pais* country;
 
 - (IBAction)toggleEdit:(id)sender;
 

@@ -188,4 +188,17 @@
     
 }
 
+-(id) copyWithZone: (NSZone *) zone {
+    Vinho* vinho = [[Vinho allocWithZone:zone] init];
+    [vinho setProducer:self.producer];
+    [vinho setYear:self.year];
+    [vinho setRegion:self.region];
+    [vinho setPrice:self.price];
+    [vinho setCurrency:self.currency];
+    [vinho setGrapes:self.grapes];
+    [vinho setName:self.name];
+    
+    return vinho;
+}
+
 @end
