@@ -33,6 +33,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *Preco;
 
 @property (nonatomic,strong) IBOutlet UIPickerView *PickAnoVinho;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *Done;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *Cancel;
 
 
 @property (nonatomic, weak) id <NovoVinhoViewControllerDelegate> delegate;

@@ -19,13 +19,15 @@
 
 @synthesize regiaoButton;
 @synthesize paisButton;
-@synthesize NomeVinho;
-@synthesize Produtor;
+@synthesize NomeVinho = _NomeVinho;
+@synthesize Produtor = _Produtor;
 @synthesize AnoVinho = _AnoVinho;
-@synthesize Preco;
+@synthesize Preco = _Preco;
 @synthesize delegate;
 @synthesize anosVinhos;
 @synthesize PickAnoVinho;
+@synthesize Done;
+@synthesize Cancel;
 @synthesize country = _country;
 @synthesize region = _region;
 
@@ -44,6 +46,9 @@
     
     Language* lang = [Language instance];
     
+    [self.Done setTitle:[lang translate: @"Done"]];
+     [self.Cancel setTitle:[lang translate:@"Cancel"]];
+      
     [self.paisButton setTitle:[lang translate:@"Tap to select"] forState:UIControlStateNormal];
     [self.regiaoButton setEnabled:NO];
     [self.regiaoButton setTitle: [lang translate:@"Select Country First"] forState:UIControlStateNormal];
@@ -102,6 +107,8 @@
     [self setPreco:nil];
     [self setPaisButton:nil];
     [self setRegiaoButton:nil];
+    [self setDone:nil];
+    [self setCancel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -118,9 +125,40 @@
 }
 - (IBAction)done:(id)sender
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Obrigado" message:@"Vinho adicionado com sucesso" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-    [alert show];
-	[self.delegate NovoVinhoViewControllerDidSave:self];
+    /*
+    @synthesize NomeVinho;
+    @synthesize AnoVinho = _AnoVinho;
+    @synthesize country = _country;
+    @synthesize region = _region;*/
+    
+    Language* lang = [Language instance];
+    
+    if( _NomeVinho.text.length == 0){
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle: [lang translate:@"Error"] message: [lang translate:@"Empty Name"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alert show];
+    }
+    else
+        if (_AnoVinho.text.length == 0){
+        
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle: [lang translate:@"Error"] message: [lang translate:@"Empty year"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            [alert show];
+        }
+        else 
+            if(!_country){
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle: [lang translate:@"Error"] message: [lang translate:@"Empty country"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                [alert show];
+            }
+            else 
+                if(!_region){
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: [lang translate:@"Error"] message:[lang translate:@"Empty region"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                    [alert show];
+                }
+                else{
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: [lang translate:@"Thank you"] message:[lang translate:@"Success"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                    [alert show];
+                    [self.delegate NovoVinhoViewControllerDidSave:self];
+                }
 }
 
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
