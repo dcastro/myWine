@@ -316,6 +316,7 @@ SEL action; id target;
 - (void)NovoVinhoViewControllerDidSave:
 (NovoVinhoViewController *)controller {
 	[self dismissViewControllerAnimated:YES completion:nil];
+    [[self tableView] reloadData];
 }
 
 

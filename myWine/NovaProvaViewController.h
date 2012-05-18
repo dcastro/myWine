@@ -21,6 +21,8 @@
 
 @property (nonatomic, weak) id <NovaProvaViewControllerDelegate> delegate;
 @property (strong, nonatomic) IBOutlet UILabel *sliderLabel;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *DoneButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *CancelButton;
 
 
 - (IBAction)cancel:(id)sender;

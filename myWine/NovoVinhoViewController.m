@@ -10,22 +10,18 @@
 #import "ListaPaisesViewController.h"
 #import "Language.h"
 #import "ListaRegioesViewController.h"
-<<<<<<< HEAD
 #import "Utils.h"
+#import "User.h"
+#import "Vinho.h"
+
 @interface NovoVinhoViewController () {
     CGFloat animatedDistance;
     UITextField *keyboard; 
 }
-=======
-#import "User.h"
-#import "Vinho.h"
-
-@interface NovoVinhoViewController () 
->>>>>>> NovoVinhoViewController actualizado
 @end
 
-@implementation NovoVinhoViewController
 
+@implementation NovoVinhoViewController
 
 @synthesize regiaoButton;
 @synthesize paisButton;
@@ -61,8 +57,8 @@
     Language* lang = [Language instance];
     
     [self.Done setTitle:[lang translate: @"Done"]];
-     [self.Cancel setTitle:[lang translate:@"Cancel"]];
-      
+    [self.Cancel setTitle: [lang translate: @"Cancel"]];
+    
     [self.paisButton setTitle:[lang translate:@"Tap to select"] forState:UIControlStateNormal];
     [self.regiaoButton setEnabled:NO];
     [self.regiaoButton setTitle: [lang translate:@"Select Country First"] forState:UIControlStateNormal];
@@ -159,8 +155,27 @@
                 else{
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle: [lang translate:@"Thank you"] message:[lang translate:@"Success"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
                     [alert show];
-                    Vinho* vinho;
+                    Vinho* vinho = [[Vinho alloc] init];
                     User* user = [User instance];
+                    vinho.name = _NomeVinho.text;
+                    vinho.producer = _Produtor.text;
+                    vinho.price = _Preco.text.doubleValue;
+                    vinho.year = _AnoVinho.text.intValue;
+                    vinho.region = self.region;
+                    
+                    /*@synthesize regiaoButton;
+
+                    @synthesize Produtor = _Produtor;
+                    @synthesize AnoVinho = _AnoVinho;
+                    @synthesize Preco = _Preco;
+                    @synthesize delegate;
+                    @synthesize anosVinhos;
+                    @synthesize PickAnoVinho;
+                    @synthesize Done;
+                    @synthesize Cancel;
+                    @synthesize country = _country;
+                    @synthesize region = _region;*/
+                    
                     [user.vinhos insertObject: vinho atIndex: user.vinhos.count];
                     [self.delegate NovoVinhoViewControllerDidSave:self];
                 }

@@ -633,6 +633,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="CancelButton" destination="BYZ-L9-Y8g" id="ieM-uI-onu"/>
+                        <outlet property="DoneButton" destination="peM-aW-06w" id="a8H-dy-BFa"/>
                         <outlet property="sliderLabel" destination="VxA-EJ-Gbs" id="gki-I7-Rgy"/>
                     </connections>
                 </viewController>

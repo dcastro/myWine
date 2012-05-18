@@ -7,6 +7,7 @@
 //
 
 #import "NovaProvaViewController.h"
+#import "Language.h"
 
 @interface NovaProvaViewController ()
 
@@ -16,6 +17,8 @@
 
 @synthesize delegate;
 @synthesize sliderLabel;
+@synthesize DoneButton;
+@synthesize CancelButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,6 +32,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    Language* lang = [Language instance];
+    
+    [self.DoneButton setTitle: [lang translate:@"Done"]];
+    [self.CancelButton setTitle: [lang translate: @"Cancel"] ];
 	// Do any additional setup after loading the view.
     if(1) {
         [self dismissModalViewControllerAnimated:YES];
@@ -38,6 +46,8 @@
 - (void)viewDidUnload
 {
     [self setSliderLabel:nil];
+    [self setDoneButton:nil];
+    [self setCancelButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
