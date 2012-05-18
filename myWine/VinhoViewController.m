@@ -119,6 +119,10 @@
 	// Do any additional setup after loading the view, typically from a nib.
     [self configureView];
     
+    // Setup the background
+    UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background.png"]];
+    [self.view insertSubview:background atIndex:0];
+    
     //init editing frames
     self.wine_name_text_field = [[UITextField alloc] initWithFrame:self.wine_label_name.frame];
     self.producer_text_field = [[UITextField alloc] initWithFrame:self.producer_label_name.frame];

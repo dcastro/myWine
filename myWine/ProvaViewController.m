@@ -52,6 +52,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     [self configureView];
+    // Setup the background
+    UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background.png"]];
+    [self.view insertSubview:background atIndex:0];
 }
 
 - (void)viewDidUnload

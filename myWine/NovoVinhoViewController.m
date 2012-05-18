@@ -47,6 +47,10 @@
 {
     [super viewDidLoad];
     
+    // Setup the background
+    UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background.png"]];
+    [self.view insertSubview:background atIndex:0];
+    
     Language* lang = [Language instance];
     
     [self.Done setTitle:[lang translate: @"Done"]];
