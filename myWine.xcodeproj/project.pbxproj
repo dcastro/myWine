@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		65826F4F1566629300C3D2AD /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 65826F4D1566629300C3D2AD /* background.png */; };
+		65826F501566629300C3D2AD /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 65826F4E1566629300C3D2AD /* logo.png */; };
 		65846632156034BE003CB644 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65846631156034BE003CB644 /* SenTestingKit.framework */; };
 		65846633156034BE003CB644 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9C59FFA1517A78500A3F8C5 /* UIKit.framework */; };
 		65846634156034BE003CB644 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9C59FFC1517A78500A3F8C5 /* Foundation.framework */; };
@@ -93,6 +95,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		65826F4D1566629300C3D2AD /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		65826F4E1566629300C3D2AD /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		65846630156034BE003CB644 /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		65846631156034BE003CB644 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		65846637156034BE003CB644 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
@@ -365,6 +369,8 @@
 		A9C5A01A1517A7EF00A3F8C5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				65826F4D1566629300C3D2AD /* background.png */,
+				65826F4E1566629300C3D2AD /* logo.png */,
 				D3231D9D15480DF700F09BAC /* DroidSerif-Bold.ttf */,
 				D3231D9E15480DF700F09BAC /* DroidSerif-BoldItalic.ttf */,
 				D3231D9F15480DF700F09BAC /* DroidSerif-Italic.ttf */,
@@ -560,6 +566,8 @@
 				D3231DA5154814FC00F09BAC /* DroidSerif-Italic.ttf in Resources */,
 				D3231DA6154814FF00F09BAC /* DroidSerif-Regular.ttf in Resources */,
 				DADE3BCA15480E2000465551 /* cell_bg_gradient.png in Resources */,
+				65826F4F1566629300C3D2AD /* background.png in Resources */,
+				65826F501566629300C3D2AD /* logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

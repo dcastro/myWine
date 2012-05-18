@@ -45,6 +45,11 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    // Setup the background
+    UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background.png"]];
+    [self.view insertSubview:background atIndex:0];
+    //[background release];
+    
     //flag buttons setup
     self.ptFlag.tag = PT;
     self.enFlag.tag = EN;
