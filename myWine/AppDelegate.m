@@ -103,7 +103,8 @@
     
     if(logout){
         //NSLog(@"Entrou em foreground e flag logout e true");
-#warning TODO: forçar a app a voltar ao ecra inicial de login
+#warning TODO: Diogo, forçar a app a voltar ao ecra inicial de login
+        [defaults setObject:nil forKey:@"username"];
         [defaults setBool:NO forKey:@"logout"];
         [defaults synchronize];
     }

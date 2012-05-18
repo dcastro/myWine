@@ -10,8 +10,11 @@
 #import "ListaPaisesViewController.h"
 #import "Language.h"
 #import "ListaRegioesViewController.h"
-
-@interface NovoVinhoViewController () 
+#import "Utils.h"
+@interface NovoVinhoViewController () {
+    CGFloat animatedDistance;
+    UITextField *keyboard; 
+}
 @end
 
 @implementation NovoVinhoViewController
@@ -89,12 +92,6 @@
         
     }
     
-}
-
--(void)textFieldDidBeginEditing:(UITextField *) textField {
-    
-    if(textField.tag == 2) {PickAnoVinho.hidden = NO; NSLog(@"dont hide it");}
-    else {PickAnoVinho.hidden = YES; NSLog(@"Hide it");}
 }
 
 - (void)viewDidUnload
@@ -201,6 +198,46 @@
     self.region = region;
     [self.regiaoButton setTitle:region.region_name forState:UIControlStateNormal];
     
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    animatedDistance = calculateAnimation(self,keyboard);
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if(textField.tag == 2) {PickAnoVinho.hidden = NO; NSLog(@"dont hide it");}
+    else {PickAnoVinho.hidden = YES; NSLog(@"Hide it");}
+    keyboard = textField;
+    animatedDistance = calculateAnimation(self, textField);
+    
+    CGRect viewFrame = self.view.frame;
+    viewFrame.origin.y -= animatedDistance;
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
+    
+    [self.view setFrame:viewFrame];
+    
+    [UIView commitAnimations];
+}
+
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    keyboard = textField;
+    
+    CGRect viewFrame = self.view.frame;
+    viewFrame.origin.y += animatedDistance;
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
+    
+    [self.view setFrame:viewFrame];
+    
+    [UIView commitAnimations];
 }
 
 @end
