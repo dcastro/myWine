@@ -21,7 +21,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *frFlag;
 @property (weak, nonatomic) IBOutlet UIButton *ptFlag;
 @property (weak, nonatomic) IBOutlet UIButton *enFlag;
-@property (weak, nonatomic) IBOutlet UILabel *languageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *passwordLabel;
 @property (weak, nonatomic) IBOutlet UILabel *welcomeLabel;

@@ -21,6 +21,8 @@
 @property (strong, nonatomic) id detailItem;
 
 @property (strong, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+@property (strong, nonatomic) IBOutlet UILabel *infoLabel;
+@property (strong, nonatomic) IBOutlet UILabel *info2Label;
 
 @property (weak, nonatomic) UIPopoverController *currentPopover;
 
