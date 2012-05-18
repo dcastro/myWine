@@ -142,7 +142,7 @@ SEL action; id target;
          objectAtIndex:0];
 		NovoVinhoViewController.delegate = self;
 	}
-    else if([segue.identifier isEqualToString:@"filterSegue"])
+    /*else if([segue.identifier isEqualToString:@"filterSegue"])
     {
         
         action = [sender action];
@@ -152,7 +152,7 @@ SEL action; id target;
         [sender setAction:@selector(dismiss:)];
         
         self.currentPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
-    }
+    }*/
     else if ([segue.identifier isEqualToString:@"VinhosToHome"]) {
         
         DetailViewController* home = segue.destinationViewController;

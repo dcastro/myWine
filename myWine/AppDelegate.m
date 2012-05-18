@@ -60,7 +60,7 @@
         LoginViewController *lvc = (LoginViewController *) [storyboard instantiateViewControllerWithIdentifier:@"firstLogin"];
         lvc.modalPresentationStyle = UIModalPresentationFullScreen;
         [_window makeKeyAndVisible];
-        [splitViewController presentModalViewController:lvc animated:YES];
+        [splitViewController presentModalViewController:lvc animated:NO];
     
         //set ListaVinhos as Login's delegate
         lvc.delegate = lvvc;
