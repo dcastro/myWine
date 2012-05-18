@@ -10,8 +10,12 @@
 #import "Language.h"
 #import <objc/runtime.h>
 #import "ListaPaisesViewController.h"
+#import "Utils.h"
 
-@interface VinhoViewController ()
+@interface VinhoViewController () {
+    CGFloat animatedDistance;
+    UITextField *keyboard;
+}
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
 - (void)configureView;
 @end
@@ -328,6 +332,44 @@
     [textField resignFirstResponder];
     
     return YES;
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    animatedDistance = calculateAnimation(self,keyboard);
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    keyboard = textField;
+    animatedDistance = calculateAnimation(self, textField);
+    
+    CGRect viewFrame = self.view.frame;
+    viewFrame.origin.y -= animatedDistance;
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
+    
+    [self.view setFrame:viewFrame];
+    
+    [UIView commitAnimations];
+}
+
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    keyboard = textField;
+    
+    CGRect viewFrame = self.view.frame;
+    viewFrame.origin.y += animatedDistance;
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
+    
+    [self.view setFrame:viewFrame];
+    
+    [UIView commitAnimations];
 }
 
 #pragma mark - ListaPaises and ListaRegioes Delegate Methods
