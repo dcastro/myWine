@@ -2262,8 +2262,6 @@
         <image name="86-camera.png" width="24" height="18"/>
         <image name="logo.png" width="923" height="1069"/>
     </resources>
-<<<<<<< HEAD
-=======
     <classes>
         <class className="ComparadorViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ComparadorViewController.h"/>
@@ -2388,7 +2386,6 @@
             </relationships>
         </class>
     </classes>
->>>>>>> 958c17592e085bf3f0b50fd0472b47f1f52eb714
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
