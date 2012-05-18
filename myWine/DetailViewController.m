@@ -54,6 +54,12 @@ SEL action; id target;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    // Setup the background
+    UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background.png"]];
+    [self.view insertSubview:background atIndex:0];
+    
+    
     self.navigationItem.hidesBackButton = YES;
     [self configureView];
 }

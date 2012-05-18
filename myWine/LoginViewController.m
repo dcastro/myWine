@@ -22,7 +22,6 @@
 @synthesize frFlag = _frFlag;
 @synthesize ptFlag = _ptFlag;
 @synthesize enFlag = _enFlag;
-@synthesize languageLabel = _languageLabel;
 @synthesize usernameLabel = _usernameLabel;
 @synthesize passwordLabel = _passwordLabel;
 @synthesize welcomeLabel = _welcomeLabel;
@@ -63,8 +62,6 @@
     [self setFrFlag:nil];
     [self setPtFlag:nil];
     [self setEnFlag:nil];
-    [self setLanguageLabel:nil];
-    [self setUsernameLabel:nil];
     [self setPasswordLabel:nil];
     [self setWelcomeLabel:nil];
     [self setConfigLabel:nil];

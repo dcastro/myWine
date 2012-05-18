@@ -49,8 +49,11 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString* username;
     
+    BOOL logout = [defaults boolForKey:@"logout"];
+    
+    
     //if there isn't a default user, show login
-    if (!(username = [defaults stringForKey:@"username"])) {
+    if (!(username = [defaults stringForKey:@"username"]) || logout) {
     
         //show login controller at startup
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
@@ -61,6 +64,12 @@
     
         //set ListaVinhos as Login's delegate
         lvc.delegate = lvvc;
+        
+        if(logout){
+            [defaults setBool:NO forKey:@"logout"];
+            [defaults synchronize];
+        }
+        
     }
     
     //if there is a default user
@@ -89,6 +98,15 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    BOOL logout = [defaults boolForKey:@"logout"];
+    
+    if(logout){
+        //NSLog(@"Entrou em foreground e flag logout e true");
+#warning TODO: forçar a app a voltar ao ecra inicial de login
+        [defaults setBool:NO forKey:@"logout"];
+        [defaults synchronize];
+    }
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
