@@ -10,11 +10,18 @@
 #import "ListaPaisesViewController.h"
 #import "Language.h"
 #import "ListaRegioesViewController.h"
+<<<<<<< HEAD
 #import "Utils.h"
 @interface NovoVinhoViewController () {
     CGFloat animatedDistance;
     UITextField *keyboard; 
 }
+=======
+#import "User.h"
+#import "Vinho.h"
+
+@interface NovoVinhoViewController () 
+>>>>>>> NovoVinhoViewController actualizado
 @end
 
 @implementation NovoVinhoViewController
@@ -126,12 +133,6 @@
 }
 - (IBAction)done:(id)sender
 {
-    /*
-    @synthesize NomeVinho;
-    @synthesize AnoVinho = _AnoVinho;
-    @synthesize country = _country;
-    @synthesize region = _region;*/
-    
     Language* lang = [Language instance];
     
     if( _NomeVinho.text.length == 0){
@@ -158,6 +159,9 @@
                 else{
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle: [lang translate:@"Thank you"] message:[lang translate:@"Success"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
                     [alert show];
+                    Vinho* vinho;
+                    User* user = [User instance];
+                    [user.vinhos insertObject: vinho atIndex: user.vinhos.count];
                     [self.delegate NovoVinhoViewControllerDidSave:self];
                 }
 }
