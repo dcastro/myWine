@@ -43,6 +43,7 @@
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *editButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *tempButton;
 @property (weak, nonatomic) IBOutlet UIButton *selectCountryButton;
+@property (weak, nonatomic) IBOutlet UIButton *selectRegionButton;
 
 @property(nonatomic, getter=isEditing) BOOL editing;
 

@@ -118,9 +118,12 @@
         self.year = vinho.year;
     if (self.grapes != vinho.grapes)
         self.grapes = vinho.grapes;
+    if (self.region != vinho.region)
+        self.region = vinho.region;
     
     //TODO: actualizar na BD os atributos alterados
-#warning TODO: actualizar castas
+#warning TODO FERNANDO: actualizar castas
+#warning TODO FERNANDO: actualizar regiao
     
     Query *query = [[Query alloc] init];
     

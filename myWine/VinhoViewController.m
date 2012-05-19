@@ -11,6 +11,7 @@
 #import <objc/runtime.h>
 #import "ListaPaisesViewController.h"
 #import "Utils.h"
+#import "User.h"
 
 @interface VinhoViewController () {
     CGFloat animatedDistance;
@@ -40,6 +41,7 @@
 @synthesize editButton = _editButton;
 @synthesize tempButton = _tempButton;
 @synthesize selectCountryButton = _selectCountryButton;
+@synthesize selectRegionButton = _selectRegionButton;
 @synthesize editing = _editing;
 
 @synthesize delegate;
@@ -162,6 +164,7 @@
     self.grapes_text_field.delegate = self;
     
     [self.selectCountryButton setHidden:TRUE];
+    [self.selectRegionButton setHidden:TRUE];
 
 }
 
@@ -182,6 +185,7 @@
     [self setGrapes_label:nil];
     [self setGrapes_data_label:nil];
     [self setSelectCountryButton:nil];
+    [self setSelectRegionButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -197,6 +201,11 @@
     if([segue.identifier isEqualToString:@"vinhoToCountries"]) {
         ListaPaisesViewController* lpvc = (ListaPaisesViewController*) segue.destinationViewController;
         lpvc.delegate = self;
+    }
+    if([segue.identifier isEqualToString:@"vinhoToRegions"]) {
+        ListaRegioesViewController* lrvc = (ListaRegioesViewController*) segue.destinationViewController;
+        lrvc.delegate = self;
+        lrvc.regions = self.country.regions;
     }
 }
 
@@ -217,10 +226,9 @@
 }
 
 - (IBAction)toggleEdit:(id)sender {
-    //switch editing mode
-    [self setEditing: !self.isEditing];
+
     
-    if ([self isEditing]) {
+    if (![self isEditing]) {
         
         self.editableWine = [self.detailItem copy];
         
@@ -230,6 +238,7 @@
         self.grapes_text_field.text = self.grapes_data_label.text;
         
         [self.selectCountryButton setTitle:self.country_label_name.text forState:UIControlStateNormal];
+        [self.selectRegionButton setTitle:self.region_label_name.text forState:UIControlStateNormal];
         
         [UIView transitionWithView:[self view] duration:0.5
 						   options:UIViewAnimationOptionTransitionCurlDown
@@ -249,12 +258,33 @@
         
         [self setTempButton:self.navigationItem.leftBarButtonItem];
         [[self navigationItem] setRightBarButtonItem:doneButton animated:YES];
-        [[self navigationItem] setLeftBarButtonItem:cancelButton animated:YES];        
+        [[self navigationItem] setLeftBarButtonItem:cancelButton animated:YES];   
+        
+        //set country
+        NSString* country_name = self.editableWine.region.country_name;
+        NSArray* countries = [[User instance] countries];
+        for(int i = 0; i <  [countries count]; i++) {
+            if([[[countries objectAtIndex:i] name] isEqualToString:country_name]){
+                self.country = [countries objectAtIndex:i];
+                break;
+            }
+        }
+        
  
     } else {
         UIBarButtonItem* pressedButton = (UIBarButtonItem*) sender;
         
         if ([pressedButton style] == UIBarButtonItemStyleDone) {
+            
+            //verifications
+            if(!self.editableWine.region) {
+                //show alert
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[[Language instance] translate:@"Error"] message:[[Language instance] translate:@"Select Region"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                [alert show];
+                
+                return;
+            }
+            
             [self.editableWine setName:self.wine_name_text_field.text];
             [self.editableWine setProducer:self.producer_text_field.text];
             [self.editableWine setYear: [self.year_text_field.text intValue]];
@@ -290,6 +320,9 @@
         
     }
     
+    //switch editing mode
+    [self setEditing: !self.isEditing];
+    
     //switch views
     [self.wine_label_name setHidden: self.isEditing];
     [self.producer_label_name setHidden: self.isEditing];
@@ -303,6 +336,9 @@
     
     [self.country_label_name setHidden: self.isEditing];
     [self.selectCountryButton setHidden: !self.isEditing];
+    
+    [self.region_label_name setHidden:self.isEditing];
+    [self.selectRegionButton setHidden: !self.isEditing];
     
 }
 
@@ -381,11 +417,16 @@
 - (void) selectedCountry:(Pais*)country {
     self.country = country;
     [self.selectCountryButton setTitle:self.country.name forState:UIControlStateNormal];
+    
+    //reset region
+    self.editableWine.region = nil;
+    [self.selectRegionButton setTitle:[[Language instance] translate:@"Tap to select"] forState:UIControlStateNormal];
+    
 }
 
 - (void) selectedRegion:(Regiao*) region{
     self.editableWine.region = region;
-#warning Diogo: update text field
+    [self.selectRegionButton setTitle:region.region_name forState:UIControlStateNormal];
 }
 
 @end
