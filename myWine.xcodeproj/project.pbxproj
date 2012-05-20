@@ -69,6 +69,7 @@
 		D37D177B155DC249005E502A /* Sincronizacao.m in Sources */ = {isa = PBXBuildFile; fileRef = D37D177A155DC249005E502A /* Sincronizacao.m */; };
 		D37D40D3154D9BDB00A11E6F /* Regiao.m in Sources */ = {isa = PBXBuildFile; fileRef = D37D40D2154D9BDB00A11E6F /* Regiao.m */; };
 		D37D40D6154D9E1500A11E6F /* TipoVinho.m in Sources */ = {isa = PBXBuildFile; fileRef = D37D40D5154D9E1400A11E6F /* TipoVinho.m */; };
+		D390B22D156986AC0041F236 /* Casta.m in Sources */ = {isa = PBXBuildFile; fileRef = D390B22C156986AC0041F236 /* Casta.m */; };
 		DA06B867153FA0C800D03DD9 /* NSMutableArray+VinhosMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = DA06B866153FA0C800D03DD9 /* NSMutableArray+VinhosMutableArray.m */; };
 		DA2BA9E5155BC9B400D2BFCA /* CriterionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2BA9E4155BC9B400D2BFCA /* CriterionCell.m */; };
 		DA2BA9ED155BD02300D2BFCA /* CriterionView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2BA9EC155BD02300D2BFCA /* CriterionView.m */; };
@@ -189,6 +190,8 @@
 		D37D40D2154D9BDB00A11E6F /* Regiao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Regiao.m; sourceTree = "<group>"; };
 		D37D40D4154D9E1400A11E6F /* TipoVinho.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipoVinho.h; sourceTree = "<group>"; };
 		D37D40D5154D9E1400A11E6F /* TipoVinho.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipoVinho.m; sourceTree = "<group>"; };
+		D390B22B156986AC0041F236 /* Casta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Casta.h; sourceTree = "<group>"; };
+		D390B22C156986AC0041F236 /* Casta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Casta.m; sourceTree = "<group>"; };
 		DA06B865153FA0C800D03DD9 /* NSMutableArray+VinhosMutableArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+VinhosMutableArray.h"; sourceTree = "<group>"; };
 		DA06B866153FA0C800D03DD9 /* NSMutableArray+VinhosMutableArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+VinhosMutableArray.m"; sourceTree = "<group>"; };
 		DA2BA9E3155BC9B400D2BFCA /* CriterionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CriterionCell.h; sourceTree = "<group>"; };
@@ -308,6 +311,8 @@
 				D37D177A155DC249005E502A /* Sincronizacao.m */,
 				A979EDA915668FCB00E94A34 /* Utils.h */,
 				A979EDAA15668FCB00E94A34 /* Utils.m */,
+				D390B22B156986AC0041F236 /* Casta.h */,
+				D390B22C156986AC0041F236 /* Casta.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -645,6 +650,7 @@
 				D37D177B155DC249005E502A /* Sincronizacao.m in Sources */,
 				BCC8EBB91563E36B006645BC /* NSMutableArray+ProvasMutableArray.m in Sources */,
 				A979EDAB15668FCB00E94A34 /* Utils.m in Sources */,
+				D390B22D156986AC0041F236 /* Casta.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

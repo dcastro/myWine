@@ -11,6 +11,7 @@
 #import "Language.h"
 #import "Prova.h"
 #import "Classificacao.h"
+#import "Casta.h"
 
 @implementation Vinho
 
@@ -35,6 +36,13 @@
         [self loadProvasFromDB];
     } 
     return _provas;
+}
+
+-(NSMutableArray*)grapes {
+    if(_grapes){
+        [self loadCastasFromDB];
+    }
+    return _grapes;
 }
 
 - (BOOL) loadProvasFromDB {
@@ -101,11 +109,65 @@
     }
     else
         return FALSE;
-    
-    
-    
 
 }
+
+
+
+- (BOOL) loadCastasFromDB {
+    _grapes = [[NSMutableArray alloc] init];
+    
+    
+    Query *query = [[Query alloc] init];
+    
+    NSString *querySQL;
+    
+    Language *lan = [Language instance];
+    switch (lan.selectedLanguage) {
+        case FR:
+            querySQL = [NSString stringWithFormat:@"SELECT g.grape_id, g.name_fr\
+                        FROM Grape g, WineGrape wg\
+                        WHERE wg.wine_id = %d AND wg.grape_id = g.grape_id;", _wine_id ];
+            break;
+            
+        case EN: 
+            querySQL =  [NSString stringWithFormat:@"SELECT g.grape_id, g.name_en\
+                              FROM Grape g, WineGrape wg\
+                              WHERE wg.wine_id = %d AND wg.grape_id = g.grape_id;", _wine_id ];
+            break;
+            
+        case PT:
+            querySQL =  [NSString stringWithFormat:@"SELECT g.grape_id, g.name_pt\
+                             FROM Grape g, WineGrape wg\
+                             WHERE wg.wine_id = %d AND wg.grape_id = g.grape_id;", _wine_id ];            
+            break;
+            
+        default:
+            break;
+    }
+    
+    sqlite3_stmt *stmt = [query prepareForSingleQuery:querySQL];
+    
+    
+    if(stmt != nil){
+        while(sqlite3_step(stmt) == SQLITE_ROW)
+        {
+            Casta *grape = [[Casta alloc] init];
+            
+            grape.grape_id = sqlite3_column_int(stmt, 0);
+            grape.grape_name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 1)];  
+            
+            [_grapes insertObject:grape atIndex:0];
+        }
+        
+        [query finalizeQuery:stmt];
+        return TRUE;
+    }
+    else
+        return FALSE;
+    
+}
+
 
 - (void) updateWithVinho:(Vinho *)vinho {
     
@@ -190,6 +252,8 @@
     
     
 }
+
+
 
 -(id) copyWithZone: (NSZone *) zone {
     Vinho* vinho = [[Vinho allocWithZone:zone] init];
