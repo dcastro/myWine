@@ -60,7 +60,6 @@ static Language *sharedMyLanguage = nil;
     
     //save new defaults
     [defaults synchronize];
-    NSLog(@"Language selection saved");
 }
 
 -(void) loadState {

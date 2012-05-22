@@ -45,7 +45,7 @@
 	// Do any additional setup after loading the view.
     
     // Setup the background
-    UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background.png"]];
+    UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imagfneNamed:@"background.png"]];
     [self.view insertSubview:background atIndex:0];
     
     //flag buttons setup
@@ -77,13 +77,8 @@
 }
 
 - (IBAction)doLogin:(id)sender {
-    NSLog(@"Logging in");
-    NSLog(@"LoginController's delegate: %@", self.delegate);
-
     
     Language *lan = [Language instance];
-    NSLog(@"%d", [lan selectedLanguage]);
-    NSLog(@"%@", [lan translate:@"Welcome"]);
     
     [User createWithUsername: self.usernameInput.text Password: self.passwordInput.text];
     User *user = [User instance];
@@ -92,7 +87,6 @@
     //Vinho* vinho = [[Vinho alloc] init];
     //vinho.name = @"Testing";
     //[user.vinhos insertObject:vinho atIndex:0];
-    
     
     
     //Login Successful
@@ -131,8 +125,6 @@
 
 - (IBAction)selectLanguage:(id)sender {
     UIButton* selected = (UIButton*) sender;
-    
-    NSLog(@"%d", selected.tag);
     
     Language *lan = [Language instance];
     [lan setLang:selected.tag];
