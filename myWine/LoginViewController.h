@@ -29,6 +29,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *usernameInput;
 @property (weak, nonatomic) IBOutlet UITextField *passwordInput;
 
+@property(nonatomic, getter=isEditing) BOOL editing;
+
 - (IBAction)doLogin:(id)sender;
 - (IBAction)selectLanguage:(id)sender;
 

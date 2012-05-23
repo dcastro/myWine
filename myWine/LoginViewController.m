@@ -12,7 +12,11 @@
 #import "ListaVinhosViewController.h"
 #import "Vinho.h"
 
-@interface LoginViewController ()
+@interface LoginViewController (){
+    CGFloat animatedDistance;
+    UITextField *keyboard;
+}
+
 
 @end
 
@@ -29,6 +33,8 @@
 @synthesize loginButton = _loginButton;
 @synthesize usernameInput = _usernameInput;
 @synthesize passwordInput = _passwordInput;
+@synthesize editing = _editing;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -140,6 +146,91 @@
     
     return YES;
 }
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    
+    if(_editing){
+    
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    CGRect viewFrame = self.view.frame;
+        
+    if (orientation == UIInterfaceOrientationLandscapeRight){
+        animatedDistance = 200;
+        NSLog(@"entrei");
+        viewFrame.origin.x += animatedDistance;
+    }   
+    else if (orientation == UIInterfaceOrientationLandscapeLeft){
+        animatedDistance = 200;
+        viewFrame.origin.x -= animatedDistance;
+    }
+    else if(orientation == UIInterfaceOrientationPortrait){
+        //viewFrame.origin.y -= animatedDistance;
+        animatedDistance = 0;
+    }
+    else if(orientation == UIInterfaceOrientationPortraitUpsideDown){
+        //viewFrame.origin.y += animatedDistance;
+        animatedDistance = 0;
+    }
+        
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        [UIView setAnimationDuration:0.3];
+        
+        [self.view setFrame:viewFrame];
+        
+        [UIView commitAnimations];
+    }
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    _editing = true;
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    CGRect viewFrame = self.view.frame;
+    
+    if (orientation == UIInterfaceOrientationLandscapeRight){
+        animatedDistance = 200;
+        viewFrame.origin.x += animatedDistance;
+    }   
+    else if (orientation == UIInterfaceOrientationLandscapeLeft){
+        animatedDistance = 200;
+        viewFrame.origin.x -= animatedDistance;
+    }
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:0.3];
+    
+    [self.view setFrame:viewFrame];
+    
+    [UIView commitAnimations];
+}
+
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    _editing = false;
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    CGRect viewFrame = self.view.frame;
+    
+    if (orientation == UIInterfaceOrientationLandscapeRight){
+        viewFrame.origin.x -= animatedDistance;
+        animatedDistance = 0;
+    }   
+    else if (orientation == UIInterfaceOrientationLandscapeLeft){
+        viewFrame.origin.x += animatedDistance;
+        animatedDistance = 0;
+    }
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:0.3];
+    
+    [self.view setFrame:viewFrame];
+    
+    [UIView commitAnimations];
+}
+
 
 - (void)configureView {
     
