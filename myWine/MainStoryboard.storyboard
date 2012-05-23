@@ -1645,7 +1645,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="20">
                         <rect key="frame" x="0.0" y="64" width="320" height="704"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.91107302300000004" green="0.91107302300000004" blue="0.91107302300000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.84999999999999998" alpha="1" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Le1-wv-sC2">
                             <rect key="frame" x="0.0" y="66" width="320" height="44"/>
@@ -1679,13 +1679,13 @@
                                             <rect key="frame" x="10" y="24" width="36" height="18"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" white="0.40000000000000002" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <color key="backgroundColor" red="0.91107302295918369" green="0.91107302295918369" blue="0.91107302295918369" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.74933845766129037" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <segue destination="8qc-B5-bJQ" kind="replace" identifier="showVinho" splitViewControllerTargetIndex="1" id="A97-zh-koc"/>
                                 </connections>
@@ -1725,7 +1725,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="8C1-6g-bJy">
                         <rect key="frame" x="0.0" y="64" width="320" height="704"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.91107302300000004" green="0.91107302300000004" blue="0.91107302300000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.84999999999999998" alpha="1" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="PnV-Pd-nJD">
                             <rect key="frame" x="0.0" y="66" width="320" height="44"/>
@@ -1758,13 +1758,13 @@
                                             <rect key="frame" x="10" y="24" width="47" height="18"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" white="0.40000000000000002" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <color key="backgroundColor" red="0.91107302300000004" green="0.91107302300000004" blue="0.91107302300000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.75" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <segue destination="6GF-Y3-3V0" kind="replace" identifier="showProva" splitViewControllerTargetIndex="1" id="reR-n5-zpp"/>
                                 </connections>

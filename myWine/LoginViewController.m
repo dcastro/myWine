@@ -156,7 +156,6 @@
         
     if (orientation == UIInterfaceOrientationLandscapeRight){
         animatedDistance = 200;
-        NSLog(@"entrei");
         viewFrame.origin.x += animatedDistance;
     }   
     else if (orientation == UIInterfaceOrientationLandscapeLeft){
@@ -164,11 +163,9 @@
         viewFrame.origin.x -= animatedDistance;
     }
     else if(orientation == UIInterfaceOrientationPortrait){
-        //viewFrame.origin.y -= animatedDistance;
         animatedDistance = 0;
     }
     else if(orientation == UIInterfaceOrientationPortraitUpsideDown){
-        //viewFrame.origin.y += animatedDistance;
         animatedDistance = 0;
     }
         
