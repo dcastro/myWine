@@ -34,6 +34,7 @@
 @synthesize wine_label_name = _wine_label_name;
 @synthesize grapes_label = _grapes_label;
 @synthesize grapes_data_label = _grapes_data_label;
+@synthesize wine_type_label = _wine_type_label;
 @synthesize detailItem = _detailItem;
 @synthesize masterPopoverController = _masterPopoverController;
 
@@ -42,6 +43,7 @@
 @synthesize tempButton = _tempButton;
 @synthesize selectCountryButton = _selectCountryButton;
 @synthesize selectRegionButton = _selectRegionButton;
+@synthesize selectWineTypeButton = _selectWineTypeButton;
 @synthesize editing = _editing;
 
 @synthesize delegate;
@@ -105,12 +107,18 @@
     self.country_label_name.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
     
     self.wine_label_name.text = vinho.name;
-    self.wine_label_name.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGE_FONT];
+    self.wine_label_name.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGER_FONT];
     
     self.grapes_data_label.text = vinho.grapes;
     self.grapes_data_label.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
     
+    self.wine_type_label.text = vinho.winetype.name;
+    self.wine_type_label.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGE_FONT];
+    
     self.editButton.title = [lan translate:@"Edit"];
+    
+    //set navigation bar title
+    [self setTitle: [self.detailItem description]];
 
     
 }
@@ -165,6 +173,7 @@
     
     [self.selectCountryButton setHidden:TRUE];
     [self.selectRegionButton setHidden:TRUE];
+    [self.selectWineTypeButton setHidden:TRUE];
 
 }
 
@@ -186,6 +195,8 @@
     [self setGrapes_data_label:nil];
     [self setSelectCountryButton:nil];
     [self setSelectRegionButton:nil];
+    [self setWine_type_label:nil];
+    [self setSelectWineTypeButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -239,6 +250,7 @@
         
         [self.selectCountryButton setTitle:self.country_label_name.text forState:UIControlStateNormal];
         [self.selectRegionButton setTitle:self.region_label_name.text forState:UIControlStateNormal];
+        [self.selectWineTypeButton setTitle:self.wine_type_label.text forState:UIControlStateNormal];
         
         [UIView transitionWithView:[self view] duration:0.5
 						   options:UIViewAnimationOptionTransitionCurlDown
@@ -339,6 +351,9 @@
     
     [self.region_label_name setHidden:self.isEditing];
     [self.selectRegionButton setHidden: !self.isEditing];
+    
+    [self.wine_type_label setHidden:self.isEditing];
+    [self.selectWineTypeButton setHidden:!self.isEditing];
     
 }
 

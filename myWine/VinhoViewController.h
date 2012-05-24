@@ -37,6 +37,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *wine_label_name;
 @property (weak, nonatomic) IBOutlet UILabel *grapes_label;
 @property (weak, nonatomic) IBOutlet UILabel *grapes_data_label;
+@property (weak, nonatomic) IBOutlet UILabel *wine_type_label;
 
 @property (strong, nonatomic) UITextField* wine_name_text_field, *producer_text_field, *year_text_field, *grapes_text_field;
 
@@ -44,6 +45,7 @@
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *tempButton;
 @property (weak, nonatomic) IBOutlet UIButton *selectCountryButton;
 @property (weak, nonatomic) IBOutlet UIButton *selectRegionButton;
+@property (weak, nonatomic) IBOutlet UIButton *selectWineTypeButton;
 
 @property(nonatomic, getter=isEditing) BOOL editing;
 
