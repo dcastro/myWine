@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+//currency definitions
+#define EUR 1
+#define USD 2
+#define GBP 3
+
+
 @interface Utils : NSObject
 
 extern CGFloat const KEYBOARD_ANIMATION_DURATION;
