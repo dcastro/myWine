@@ -12,6 +12,7 @@
 #import "ListaPaisesViewController.h"
 #import "Utils.h"
 #import "User.h"
+#import "CurrencyViewController.h"
 
 @interface VinhoViewController () {
     CGFloat animatedDistance;
@@ -228,6 +229,13 @@
         lrvc.delegate = self;
         lrvc.regions = self.country.regions;
     }
+    if([segue.identifier isEqualToString:@"vinhoToCurrency"]) {
+        CurrencyViewController* cvc = (CurrencyViewController*) segue.destinationViewController;
+        Vinho* vinho = (Vinho*) self.detailItem;
+        cvc.selectedCurrency = vinho.currency;
+
+    }
+    
 }
 
 #pragma mark - Split view

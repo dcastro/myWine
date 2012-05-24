@@ -74,6 +74,7 @@
 		DA2BA9E5155BC9B400D2BFCA /* CriterionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2BA9E4155BC9B400D2BFCA /* CriterionCell.m */; };
 		DA2BA9ED155BD02300D2BFCA /* CriterionView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2BA9EC155BD02300D2BFCA /* CriterionView.m */; };
 		DA498F14153D6659009C4072 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = DA498F13153D6659009C4072 /* User.m */; };
+		DA631DE0156EA7F2003EC91B /* CurrencyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA631DDF156EA7F2003EC91B /* CurrencyViewController.m */; };
 		DA7D48A4152E0AAD00C525FB /* Language.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7D48A3152E0AAD00C525FB /* Language.m */; };
 		DA993CDE153F22E7009D3E13 /* Vinho.m in Sources */ = {isa = PBXBuildFile; fileRef = DA993CDD153F22E7009D3E13 /* Vinho.m */; };
 		DAC99B7F155AE3EA00D9C04F /* SubstitutableTabBarControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC99B7E155AE3EA00D9C04F /* SubstitutableTabBarControllerViewController.m */; };
@@ -200,6 +201,8 @@
 		DA2BA9EC155BD02300D2BFCA /* CriterionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CriterionView.m; sourceTree = "<group>"; };
 		DA498F12153D6659009C4072 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		DA498F13153D6659009C4072 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		DA631DDE156EA7F2003EC91B /* CurrencyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyViewController.h; sourceTree = "<group>"; };
+		DA631DDF156EA7F2003EC91B /* CurrencyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyViewController.m; sourceTree = "<group>"; };
 		DA7D48A2152E0AAD00C525FB /* Language.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Language.h; sourceTree = "<group>"; };
 		DA7D48A3152E0AAD00C525FB /* Language.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Language.m; sourceTree = "<group>"; };
 		DA993CDC153F22E7009D3E13 /* Vinho.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vinho.h; sourceTree = "<group>"; };
@@ -410,6 +413,8 @@
 		A9CA2B4E151E496500A29DE3 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				DA631DDE156EA7F2003EC91B /* CurrencyViewController.h */,
+				DA631DDF156EA7F2003EC91B /* CurrencyViewController.m */,
 				DAC99B83155B0B7B00D9C04F /* ProvaCriteriaViewController.h */,
 				DAC99B84155B0B7B00D9C04F /* ProvaCriteriaViewController.m */,
 				A0C6646E155448CC004C798E /* ListaRegioesViewController.h */,
@@ -651,6 +656,7 @@
 				BCC8EBB91563E36B006645BC /* NSMutableArray+ProvasMutableArray.m in Sources */,
 				A979EDAB15668FCB00E94A34 /* Utils.m in Sources */,
 				D390B22D156986AC0041F236 /* Casta.m in Sources */,
+				DA631DE0156EA7F2003EC91B /* CurrencyViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

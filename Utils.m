@@ -50,5 +50,29 @@ double calculateAnimation(UIViewController *v, UITextField *keyboard) {
     return animatedDistance;
 }
 
+NSString* currencyStr(int currency) {
+    switch(currency) {
+        case EUR:
+            return @"EUR";
+        case USD:
+            return @"USD";
+        case GBP:
+            return @"GBP";
+        default:
+            return Nil;
+    }
+        
+}
+
+int currencyInt(NSString* currency) {
+    if([currency isEqualToString:@"EUR"])
+        return EUR;
+    if([currency isEqualToString:@"USD"])
+        return USD;
+    if([currency isEqualToString:@"GBP"])
+        return GBP;
+    return nil;
+}
+
 @end
 

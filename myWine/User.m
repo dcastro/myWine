@@ -11,6 +11,7 @@
 #import "Language.h"
 #import "Vinho.h"
 #import "Pais.h"
+#import "Utils.h"
 
 static User *sharedUser = nil;
 
@@ -200,10 +201,8 @@ static User *sharedUser = nil;
                 wine.producer = nil;
             
             
-            wine.currency = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 8)];
+            wine.currency = currencyInt( [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 8)] );
             wine.price = sqlite3_column_double(stmt, 9);
-            
-            
             
             [_vinhos insertObject:wine atIndex:0];
          

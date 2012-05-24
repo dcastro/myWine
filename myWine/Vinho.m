@@ -12,6 +12,7 @@
 #import "Prova.h"
 #import "Classificacao.h"
 #import "Casta.h"
+#import "Utils.h"
 
 @implementation Vinho
 
@@ -269,7 +270,7 @@
 }
 
 -(NSString*) fullPrice {
-    NSString* full_price = [[NSString alloc] initWithFormat:@"%.02f %@", self.price, self.currency];
+    NSString* full_price = [[NSString alloc] initWithFormat:@"%.02f %@", self.price, currencyStr(self.currency)];
     return full_price;
 }
 
