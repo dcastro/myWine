@@ -38,6 +38,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *grapes_label;
 @property (weak, nonatomic) IBOutlet UILabel *grapes_data_label;
 @property (weak, nonatomic) IBOutlet UILabel *wine_type_label;
+@property (weak, nonatomic) IBOutlet UILabel *price_label;
+@property (weak, nonatomic) IBOutlet UILabel *price_value_label;
 
 @property (strong, nonatomic) UITextField* wine_name_text_field, *producer_text_field, *year_text_field, *grapes_text_field;
 

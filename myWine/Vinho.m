@@ -268,4 +268,10 @@
     return vinho;
 }
 
+-(NSString*) fullPrice {
+    NSString* full_price = [[NSString alloc] initWithFormat:@"%.02f %@", self.price, self.currency];
+    return full_price;
+}
+
+
 @end

@@ -27,6 +27,7 @@
 
 
 - (NSString*) description;
+- (NSString*) fullPrice;
 
 - (void) updateWithVinho:(Vinho*) vinho;
 

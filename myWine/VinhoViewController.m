@@ -35,6 +35,8 @@
 @synthesize grapes_label = _grapes_label;
 @synthesize grapes_data_label = _grapes_data_label;
 @synthesize wine_type_label = _wine_type_label;
+@synthesize price_label = _price_label;
+@synthesize price_value_label = _price_value_label;
 @synthesize detailItem = _detailItem;
 @synthesize masterPopoverController = _masterPopoverController;
 
@@ -91,6 +93,9 @@
     self.grapes_label.text = [lan translate:@"Grapes"];
     self.grapes_label.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGE_FONT];
     
+    self.price_label.text = [lan translate:@"Price"];
+    self.price_label.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGE_FONT];
+    
     
     Vinho* vinho = (Vinho*) self.detailItem;
     
@@ -114,6 +119,9 @@
     
     self.wine_type_label.text = vinho.winetype.name;
     self.wine_type_label.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGE_FONT];
+    
+    self.price_value_label.text = [vinho fullPrice];
+    self.price_value_label.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
     
     self.editButton.title = [lan translate:@"Edit"];
     
@@ -197,6 +205,8 @@
     [self setSelectRegionButton:nil];
     [self setWine_type_label:nil];
     [self setSelectWineTypeButton:nil];
+    [self setPrice_label:nil];
+    [self setPrice_value_label:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
