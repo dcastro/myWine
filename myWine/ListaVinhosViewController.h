@@ -24,7 +24,7 @@
 
 @end
 
-@interface ListaVinhosViewController : UITableViewController < UISplitViewControllerDelegate, VinhoViewControllerDelegate, DetailViewControllerDelegate>
+@interface ListaVinhosViewController : UITableViewController < UISplitViewControllerDelegate, VinhoViewControllerDelegate, DetailViewControllerDelegate, NovoVinhoViewControllerDelegate, LoginViewControllerDelegate>
 {
     UISplitViewController *splitViewController;
     

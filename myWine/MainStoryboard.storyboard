@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50b" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11E53" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="5">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
@@ -247,7 +247,7 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Vof-Gx-RPU" detailTextLabel="00I-Ix-mQu" style="IBUITableViewCellStyleValue1" id="Uza-02-m2z" customClass="CriterionCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Criterion" textLabel="Vof-Gx-RPU" detailTextLabel="00I-Ix-mQu" style="IBUITableViewCellStyleValue1" id="Uza-02-m2z" customClass="CriterionCell">
                                 <rect key="frame" x="0.0" y="54" width="703" height="46"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -2436,8 +2436,9 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DetailViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="detailDescriptionLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="info2Label" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="infoLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="help" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="search" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="sync" candidateClass="UIButton"/>
             </relationships>
         </class>
         <class className="FiltrosViewController" superclassName="UITableViewController">
@@ -2463,6 +2464,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ListaVinhosViewController.h"/>
             <relationships>
                 <relationship kind="action" name="didPressHomeButton:"/>
+                <relationship kind="outlet" name="filter" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="tempButton" candidateClass="UIBarButtonItem"/>
             </relationships>
         </class>

@@ -132,10 +132,10 @@ SEL action; id target;
 		UINavigationController *navigationController = 
         segue.destinationViewController;
 		NovoVinhoViewController 
-        *NovoVinhoViewController = 
+        *nvvc = 
         [[navigationController viewControllers] 
          objectAtIndex:0];
-		NovoVinhoViewController.delegate = self;
+		nvvc.delegate = self;
 	}
     else if([segue.identifier isEqualToString:@"filterSegue"])
     {
