@@ -41,6 +41,15 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *Done;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *Cancel;
 
+@property (weak, nonatomic) IBOutlet UILabel *lblNomeVinho;
+@property (weak, nonatomic) IBOutlet UILabel *lblProdutor;
+@property (weak, nonatomic) IBOutlet UILabel *lblAno;
+@property (weak, nonatomic) IBOutlet UILabel *lblPreco;
+@property (weak, nonatomic) IBOutlet UILabel *lblPais;
+@property (weak, nonatomic) IBOutlet UILabel *lblRegiao;
+@property (weak, nonatomic) IBOutlet UILabel *lblTipoVinho;
+@property (weak, nonatomic) IBOutlet UILabel *lblCasta;
+
 
 @property (nonatomic, weak) id <NovoVinhoViewControllerDelegate> delegate;
 @property (nonatomic, retain) NSMutableArray *anosVinhos;

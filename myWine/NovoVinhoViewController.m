@@ -30,6 +30,14 @@
 @synthesize PickAnoVinho;
 @synthesize Done;
 @synthesize Cancel;
+@synthesize lblNomeVinho = _lblNomeVinho;
+@synthesize lblProdutor = _lblProdutor;
+@synthesize lblAno = _lblAno;
+@synthesize lblPreco = _lblPreco;
+@synthesize lblPais = _lblPais;
+@synthesize lblRegiao = _lblRegiao;
+@synthesize lblTipoVinho = _lblTipoVinho;
+@synthesize lblCasta = _lblCasta;
 @synthesize country = _country;
 @synthesize region = _region;
 
@@ -49,11 +57,20 @@
     // Setup the background
     UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background.png"]];
     [self.view insertSubview:background atIndex:0];
-    
+
     Language* lang = [Language instance];
     
     [self.Done setTitle:[lang translate: @"Done"]];
     [self.Cancel setTitle: [lang translate: @"Cancel"]];
+    
+    [_lblNomeVinho setText:[lang translate:@"WineName"]];
+    [_lblProdutor setText:[lang translate:@"WineProd"]];
+    [_lblAno setText:[lang translate:@"WineYear"]];
+    [_lblPreco setText:[lang translate:@"WinePrice"]];
+    [_lblPais setText:[lang translate:@"WineCountry"]];
+    [_lblRegiao setText:[lang translate:@"WineRegion"]];
+    [_lblTipoVinho setText:[lang translate:@"WineType"]];
+    [_lblCasta setText:[lang translate:@"WineGrape"]];
     
     [self.paisButton setTitle:[lang translate:@"Tap to select"] forState:UIControlStateNormal];
     [self.regiaoButton setEnabled:NO];
@@ -63,6 +80,8 @@
     [_AnoVinho setInputView:PickAnoVinho];
     PickAnoVinho.hidden = YES;
     _AnoVinho.delegate = self;
+    _castaVinho.delegate = self;
+    _tipoVinho.delegate = self;
     
     // Get current year
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
@@ -111,6 +130,14 @@
     [self setCancel:nil];
     [self setTipoVinho:nil];
     [self setCastaVinho:nil];
+    [self setLblNomeVinho:nil];
+    [self setLblProdutor:nil];
+    [self setLblAno:nil];
+    [self setLblPreco:nil];
+    [self setLblPais:nil];
+    [self setLblRegiao:nil];
+    [self setLblTipoVinho:nil];
+    [self setLblCasta:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
