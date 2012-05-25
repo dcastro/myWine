@@ -23,6 +23,8 @@
 @synthesize Produtor = _Produtor;
 @synthesize AnoVinho = _AnoVinho;
 @synthesize Preco = _Preco;
+@synthesize tipoVinho = _tipoVinho;
+@synthesize castaVinho = _castaVinho;
 @synthesize delegate;
 @synthesize anosVinhos;
 @synthesize PickAnoVinho;
@@ -107,6 +109,8 @@
     [self setRegiaoButton:nil];
     [self setDone:nil];
     [self setCancel:nil];
+    [self setTipoVinho:nil];
+    [self setCastaVinho:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -201,6 +205,7 @@
 - (void) selectedCountry:(Pais*)country {
     
     self.country = country;
+    self.region = NULL;
     
     Language* lang = [Language instance];
     
@@ -223,8 +228,8 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    //if(textField.tag == 2) {PickAnoVinho.hidden = NO; NSLog(@"dont hide it");}
-    //else {PickAnoVinho.hidden = YES; NSLog(@"Hide it");}
+    if(textField.tag == 2) {PickAnoVinho.hidden = NO; NSLog(@"dont hide it");}
+    else {PickAnoVinho.hidden = YES; NSLog(@"Hide it");}
     
     keyboard = textField;
     animatedDistance = calculateAnimation(self, textField);

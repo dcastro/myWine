@@ -34,6 +34,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *Produtor;
 @property (weak, nonatomic) IBOutlet UITextField *AnoVinho;
 @property (weak, nonatomic) IBOutlet UITextField *Preco;
+@property (weak, nonatomic) IBOutlet UITextField *tipoVinho;
+@property (weak, nonatomic) IBOutlet UITextField *castaVinho;
 
 @property (nonatomic,strong) IBOutlet UIPickerView *PickAnoVinho;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *Done;
