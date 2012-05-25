@@ -36,19 +36,6 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    // place a checkmark on the selected currency
-    UITableViewCell* cell = [[self tableView] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    [[[self tableView] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]] setAccessoryType:UITableViewCellAccessoryNone];
-    NSLog(@"CENAS: %@", cell.textLabel.text);
-    
-    UITableViewCell* c = (UITableViewCell*) [[self tableView] viewWithTag:1];
-    [c setAccessoryType:UITableViewCellAccessoryNone];
-    NSLog(@"CENAS2: %@", c);
-    
-    //[self tableView] viewWithTag:<#(NSInteger)#>
-    NSLog(@"teste: %i", [[self tableView] numberOfSections]);
-    NSLog(@"teste: %i", [[self tableView] numberOfRowsInSection:0]);
     
 }
 
@@ -154,6 +141,18 @@
      */
     //self dismiss
     //NSLog(@"Selected: %i", indexPath.row);
+    
+    //removes all rows' checkmarks
+    for(int i = 0; i < [[self tableView] numberOfRowsInSection:0]; i++ ){
+        UITableViewCell* cell = [[self tableView] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+        [cell setAccessoryType:UITableViewCellAccessoryNone];
+    }
+    
+    //adds a checkmark to the selected row
+    UITableViewCell* cell = [[self tableView] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:0]];
+    [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+    
+    //informs the delegate of the selected currency
     [self.delegate currencyViewControllerDidSelect:indexPath.row];
 }
 

@@ -64,6 +64,8 @@
 @property (nonatomic, strong) Vinho* editableWine;
 @property (nonatomic, strong) Pais* country;
 
+@property (nonatomic, strong) UIPopoverController* popover;
+
 - (IBAction)toggleEdit:(id)sender;
 
 - (void)configureView;

@@ -50,6 +50,8 @@
 
 @synthesize delegate;
 
+@synthesize popover = _popover;
+
 @synthesize editableWine = _editableWine, country = _country;
 
 #pragma mark - Managing the detail item
@@ -187,6 +189,7 @@
     [self.selectCountryButton setHidden:TRUE];
     [self.selectRegionButton setHidden:TRUE];
     [self.selectWineTypeButton setHidden:TRUE];
+    [self.selectCurrencyButton setHidden:TRUE];
 
 }
 
@@ -240,9 +243,10 @@
     }
     if([segue.identifier isEqualToString:@"vinhoToCurrency"]) {
         CurrencyViewController* cvc = (CurrencyViewController*) segue.destinationViewController;
-        Vinho* vinho = (Vinho*) self.detailItem;
-        cvc.selectedCurrency = vinho.currency;
+        cvc.selectedCurrency = self.editableWine.currency;
         cvc.delegate = self;
+        self.popover = [(UIStoryboardPopoverSegue *)segue popoverController];
+        
 
     }
     
@@ -383,6 +387,8 @@
     [self.wine_type_label setHidden:self.isEditing];
     [self.selectWineTypeButton setHidden:!self.isEditing];
     
+    [self.selectCurrencyButton setHidden:!self.isEditing];
+    
 }
 
 #pragma mark -
@@ -472,10 +478,16 @@
     [self.selectRegionButton setTitle:region.region_name forState:UIControlStateNormal];
 }
 
+#pragma mark - Currency Delegate Method
 - (void) currencyViewControllerDidSelect:(int) currency {
+    //sets the selected currency
     self.editableWine.currency = currency;
-    NSLog(@"Delegate: %i", currency);
+    
+    //sets the button text
     [self.selectCurrencyButton setTitle:currencyStr(self.editableWine.currency) forState:UIControlStateNormal];
+    
+    //dismisses the popover
+    [self.popover dismissPopoverAnimated:YES];
 }
 
 @end
