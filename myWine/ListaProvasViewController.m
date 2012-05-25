@@ -7,10 +7,6 @@
 //
 
 #import "ListaProvasViewController.h"
-#import "ProvaViewController.h"
-#import "Prova.h"
-#import "ProvaCriteriaViewController.h"
-#import "NSMutableArray+ProvasMutableArray.h"
 
 @interface ListaProvasViewController () {NSMutableArray *_objects;}
 

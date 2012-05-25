@@ -7,7 +7,6 @@
 //
 
 #import "NovaProvaViewController.h"
-#import "Language.h"
 
 @interface NovaProvaViewController ()
 

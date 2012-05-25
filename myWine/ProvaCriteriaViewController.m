@@ -7,9 +7,6 @@
 //
 
 #import "ProvaCriteriaViewController.h"
-#import "Seccao.h"
-#import "Criterio.h"
-#import "CriterionCell.h"
 
 @interface ProvaCriteriaViewController ()
 

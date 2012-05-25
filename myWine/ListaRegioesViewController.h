@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Regiao.h"
+#import "Pais.h"
 
 @protocol ListaRegioesViewControllerDelegate <NSObject>
 - (void) selectedRegion:(Regiao*) region;

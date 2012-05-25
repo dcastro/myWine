@@ -10,6 +10,7 @@
 #import "NovoVinhoViewController.h"
 #import "LoginViewController.h"
 #import "DetailViewController.h"
+#import "VinhoViewController.h"
 
 @class DetailViewController;
 @class VinhoViewController;

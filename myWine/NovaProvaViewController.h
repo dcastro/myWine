@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Language.h"
 
 @class NovaProvaViewController;
 

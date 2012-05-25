@@ -7,8 +7,6 @@
 //
 
 #import "ListaRegioesViewController.h"
-#import "Regiao.h"
-#import "Pais.h"
 
 
 @interface ListaRegioesViewController ()

@@ -11,15 +11,11 @@
 
 #import "ListaProvasViewController.h"
 #import "Vinho.h"
-
 #import "User.h"
 #import "Prova.h"
 #import "Language.h"
-
 #import "VinhoViewController.h"
-
 #import "NSMutableArray+VinhosMutableArray.h"
-
 #import <objc/runtime.h>
 
 @interface ListaVinhosViewController () {
