@@ -103,10 +103,25 @@
     
     if(logout){
         //NSLog(@"Entrou em foreground e flag logout e true");
-#warning TODO: Diogo, forçar a app a voltar ao ecra inicial de login
+
         [defaults setObject:nil forKey:@"username"];
         [defaults setBool:NO forKey:@"logout"];
         [defaults synchronize];
+        
+        //show login controller at startup
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+        LoginViewController *lvc = (LoginViewController *) [storyboard instantiateViewControllerWithIdentifier:@"firstLogin"];
+        lvc.modalPresentationStyle = UIModalPresentationFullScreen;
+        [_window makeKeyAndVisible];
+        [self.splitView presentModalViewController:lvc animated:NO];
+        
+        
+        //set delegate
+        UINavigationController *masterNavigationController = [self.splitView.viewControllers objectAtIndex:0];
+        ListaVinhosViewController *lvvc = (ListaVinhosViewController *)masterNavigationController.topViewController;
+        
+        lvc.delegate = lvvc;
+        
     }
 }
 

@@ -495,6 +495,7 @@
     [UIView commitAnimations];
 }
 
+//only accepts 2 digits precision doubles
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     
     NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
