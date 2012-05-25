@@ -7,12 +7,14 @@
 //
 
 #import "SyncViewController.h"
+#import "User.h"
 
 @interface SyncViewController ()
 
 @end
 
 @implementation SyncViewController
+@synthesize percentage_label;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,10 +29,16 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    User *u = [User instance];
+    
+    [u sync]; 
+    
 }
 
 - (void)viewDidUnload
 {
+    [self setPercentage_label:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }

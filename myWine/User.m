@@ -12,6 +12,7 @@
 #import "Vinho.h"
 #import "Pais.h"
 #import "Utils.h"
+#import "Sincronizacao.h"
 
 static User *sharedUser = nil;
 
@@ -39,6 +40,12 @@ static User *sharedUser = nil;
      * updated isValidated at the end
      */
     DebugLog([self description]);
+    
+    NSError * error;
+    Sincronizacao *s = [[Sincronizacao alloc] init];
+    [s sync:&error withPercentage:nil];
+    
+    
 }
 
 - (NSString *)description{

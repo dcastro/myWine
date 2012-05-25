@@ -10,6 +10,7 @@
 
 @interface SyncViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UILabel *percentage_label;
 - (IBAction)cancel:(id)sender;
 
 @end
