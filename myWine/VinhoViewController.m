@@ -40,7 +40,7 @@
 @synthesize detailItem = _detailItem;
 @synthesize masterPopoverController = _masterPopoverController;
 
-@synthesize wine_name_text_field = _wine_name_text_field, producer_text_field = _producer_text_field, year_text_field = _year_text_field, grapes_text_field = _grapes_text_field;
+@synthesize wine_name_text_field = _wine_name_text_field, producer_text_field = _producer_text_field, year_text_field = _year_text_field, grapes_text_field = _grapes_text_field, price_text_field = _price_text_field;
 @synthesize editButton = _editButton;
 @synthesize tempButton = _tempButton;
 @synthesize selectCountryButton = _selectCountryButton;
@@ -155,6 +155,8 @@
     self.year_text_field = [[UITextField alloc] initWithFrame:self.year_label_name.frame];
     self.grapes_text_field = [[UITextField alloc] initWithFrame:self.grapes_data_label.frame];
     
+    self.price_text_field = [[UITextField alloc] initWithFrame:self.price_value_label.frame];
+    
     /**
      * styling of the editing fields
      **/
@@ -167,25 +169,33 @@
     self.producer_text_field.borderStyle = UITextBorderStyleRoundedRect;
     self.year_text_field.borderStyle = UITextBorderStyleRoundedRect;    
     self.grapes_text_field.borderStyle = UITextBorderStyleRoundedRect; 
+    self.price_text_field.borderStyle = UITextBorderStyleRoundedRect;
     
     //fonts
     self.wine_name_text_field.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGE_FONT];
     self.producer_text_field.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
     self.year_text_field.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
     self.grapes_text_field.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
+    self.price_text_field.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
     
     //frame adjustments
     CGRect frame = self.wine_name_text_field.frame;
     self.wine_name_text_field.frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height + 20.0);
     
+    frame = self.price_text_field.frame;
+    self.price_text_field.frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width - 70.0, frame.size.height);
+    
     //keyboard types
     self.year_text_field.keyboardType = UIKeyboardTypeNumberPad;
+    self.price_text_field.keyboardType = UIKeyboardTypeNumberPad;
     
     //delegates
     self.wine_name_text_field.delegate = self;
     self.producer_text_field.delegate = self;
     self.year_text_field.delegate = self;
     self.grapes_text_field.delegate = self;
+    
+    self.price_text_field.delegate = self;
     
     [self.selectCountryButton setHidden:TRUE];
     [self.selectRegionButton setHidden:TRUE];
@@ -282,6 +292,7 @@
         self.producer_text_field.text = self.producer_label_name.text;
         self.year_text_field.text = self.year_label_name.text;
         self.grapes_text_field.text = self.grapes_data_label.text;
+        self.price_text_field.text = [[NSString alloc] initWithFormat: @"%.02f", self.editableWine.price];
         
         [self.selectCountryButton setTitle:self.country_label_name.text forState:UIControlStateNormal];
         [self.selectRegionButton setTitle:self.region_label_name.text forState:UIControlStateNormal];
@@ -295,6 +306,7 @@
                             [[self view] addSubview:self.producer_text_field];
                             [[self view] addSubview:self.year_text_field];
                             [[self view] addSubview:self.grapes_text_field];
+                            [[self view] addSubview:self.price_text_field];
                         }
 						completion:nil];
         
@@ -336,6 +348,7 @@
             [self.editableWine setProducer:self.producer_text_field.text];
             [self.editableWine setYear: [self.year_text_field.text intValue]];
             [self.editableWine setGrapes:self.grapes_text_field.text];
+            [self.editableWine setPrice: [self.price_text_field.text doubleValue]];  
         
             [self.detailItem updateWithVinho:self.editableWine];
         
@@ -343,6 +356,7 @@
             self.producer_label_name.text = self.producer_text_field.text;
             self.year_label_name.text = self.year_text_field.text;
             self.grapes_data_label.text = self.grapes_text_field.text;
+            //self.price_value_label.text = self.price_text_field.text;
             
             //refresh master view
             [self.delegate onVinhoEdition:(Vinho*) self.detailItem];
@@ -355,6 +369,7 @@
                             [self.producer_text_field removeFromSuperview];
                             [self.year_text_field removeFromSuperview];
                             [self.grapes_text_field removeFromSuperview];
+                            [self.price_text_field removeFromSuperview];
                         }
 						completion:nil];
         
@@ -390,6 +405,8 @@
     [self.wine_type_label setHidden:self.isEditing];
     [self.selectWineTypeButton setHidden:!self.isEditing];
     
+    [self.price_value_label setHidden:self.isEditing];
+    [self.price_text_field setHidden:!self.isEditing];
     [self.selectCurrencyButton setHidden:!self.isEditing];
     
 }
@@ -476,6 +493,19 @@
     [self.view setFrame:viewFrame];
     
     [UIView commitAnimations];
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
+    NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    
+    NSArray *sep = [newString componentsSeparatedByString:@"."];
+    if([sep count]>=2)
+    {
+        NSString *sepStr=[NSString stringWithFormat:@"%@",[sep objectAtIndex:1]];
+        return !([sepStr length]>2);
+    }
+    return YES;
 }
 
 #pragma mark - ListaPaises and ListaRegioes Delegate Methods

@@ -48,7 +48,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *regionButton;
 @property (strong, nonatomic) IBOutlet UIButton *WineTypeButton;
 
-@property (strong, nonatomic) UITextField* wine_name_text_field, *producer_text_field, *year_text_field, *grapes_text_field;
+@property (strong, nonatomic) UITextField* wine_name_text_field, *producer_text_field, *year_text_field, *grapes_text_field, *price_text_field;
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *editButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *tempButton;

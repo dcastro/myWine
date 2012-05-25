@@ -185,6 +185,8 @@
         self.region = vinho.region;
     if (self.currency != vinho.currency)
         self.currency = vinho.currency;
+    if (self.price != vinho.price)
+        self.price = vinho.price;
     
     //TODO: actualizar na BD os atributos alterados
 #warning TODO FERNANDO: actualizar castas
