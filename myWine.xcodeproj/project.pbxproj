@@ -70,9 +70,9 @@
 		D37D177B155DC249005E502A /* Sincronizacao.m in Sources */ = {isa = PBXBuildFile; fileRef = D37D177A155DC249005E502A /* Sincronizacao.m */; };
 		D37D40D3154D9BDB00A11E6F /* Regiao.m in Sources */ = {isa = PBXBuildFile; fileRef = D37D40D2154D9BDB00A11E6F /* Regiao.m */; };
 		D37D40D6154D9E1500A11E6F /* TipoVinho.m in Sources */ = {isa = PBXBuildFile; fileRef = D37D40D5154D9E1400A11E6F /* TipoVinho.m */; };
+		DA019F531570400E00CC589A /* CriterionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA019F521570400E00CC589A /* CriterionCell.xib */; };
+		DA019F56157046A200CC589A /* CriterionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA019F55157046A200CC589A /* CriterionCell.m */; };
 		DA06B867153FA0C800D03DD9 /* NSMutableArray+VinhosMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = DA06B866153FA0C800D03DD9 /* NSMutableArray+VinhosMutableArray.m */; };
-		DA2BA9E5155BC9B400D2BFCA /* CriterionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2BA9E4155BC9B400D2BFCA /* CriterionCell.m */; };
-		DA2BA9ED155BD02300D2BFCA /* CriterionView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2BA9EC155BD02300D2BFCA /* CriterionView.m */; };
 		DA498F14153D6659009C4072 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = DA498F13153D6659009C4072 /* User.m */; };
 		DA631DE0156EA7F2003EC91B /* CurrencyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA631DDF156EA7F2003EC91B /* CurrencyViewController.m */; };
 		DA7D48A4152E0AAD00C525FB /* Language.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7D48A3152E0AAD00C525FB /* Language.m */; };
@@ -193,12 +193,11 @@
 		D37D40D2154D9BDB00A11E6F /* Regiao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Regiao.m; sourceTree = "<group>"; };
 		D37D40D4154D9E1400A11E6F /* TipoVinho.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipoVinho.h; sourceTree = "<group>"; };
 		D37D40D5154D9E1400A11E6F /* TipoVinho.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipoVinho.m; sourceTree = "<group>"; };
+		DA019F521570400E00CC589A /* CriterionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CriterionCell.xib; sourceTree = "<group>"; };
+		DA019F54157046A200CC589A /* CriterionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CriterionCell.h; sourceTree = "<group>"; };
+		DA019F55157046A200CC589A /* CriterionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CriterionCell.m; sourceTree = "<group>"; };
 		DA06B865153FA0C800D03DD9 /* NSMutableArray+VinhosMutableArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+VinhosMutableArray.h"; sourceTree = "<group>"; };
 		DA06B866153FA0C800D03DD9 /* NSMutableArray+VinhosMutableArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+VinhosMutableArray.m"; sourceTree = "<group>"; };
-		DA2BA9E3155BC9B400D2BFCA /* CriterionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CriterionCell.h; sourceTree = "<group>"; };
-		DA2BA9E4155BC9B400D2BFCA /* CriterionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CriterionCell.m; sourceTree = "<group>"; };
-		DA2BA9EB155BD02300D2BFCA /* CriterionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CriterionView.h; sourceTree = "<group>"; };
-		DA2BA9EC155BD02300D2BFCA /* CriterionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CriterionView.m; sourceTree = "<group>"; };
 		DA498F12153D6659009C4072 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		DA498F13153D6659009C4072 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		DA631DDE156EA7F2003EC91B /* CurrencyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyViewController.h; sourceTree = "<group>"; };
@@ -282,10 +281,8 @@
 		A9C28881151FBADE00C2F58D /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				DA2BA9E3155BC9B400D2BFCA /* CriterionCell.h */,
-				DA2BA9E4155BC9B400D2BFCA /* CriterionCell.m */,
-				DA2BA9EB155BD02300D2BFCA /* CriterionView.h */,
-				DA2BA9EC155BD02300D2BFCA /* CriterionView.m */,
+				DA019F54157046A200CC589A /* CriterionCell.h */,
+				DA019F55157046A200CC589A /* CriterionCell.m */,
 				DAC99B7D155AE3EA00D9C04F /* SubstitutableTabBarControllerViewController.h */,
 				DAC99B7E155AE3EA00D9C04F /* SubstitutableTabBarControllerViewController.m */,
 				DA993CDC153F22E7009D3E13 /* Vinho.h */,
@@ -357,6 +354,7 @@
 		A9C5A0001517A78600A3F8C5 /* myWine */ = {
 			isa = PBXGroup;
 			children = (
+				DA019F5015703FFB00CC589A /* Interfaces */,
 				DA06B863153FA0B800D03DD9 /* Categories */,
 				D3637DCA153E303800A9B928 /* Database */,
 				A9A69BA0151FDA3000FC9073 /* Main */,
@@ -460,6 +458,14 @@
 				D328B96C153F254700EA4501 /* DatabaseDefinitions.c */,
 			);
 			name = Database;
+			sourceTree = "<group>";
+		};
+		DA019F5015703FFB00CC589A /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				DA019F521570400E00CC589A /* CriterionCell.xib */,
+			);
+			name = Interfaces;
 			sourceTree = "<group>";
 		};
 		DA06B863153FA0B800D03DD9 /* Categories */ = {
@@ -583,6 +589,7 @@
 				DADE3BCA15480E2000465551 /* cell_bg_gradient.png in Resources */,
 				65826F4F1566629300C3D2AD /* background.png in Resources */,
 				65826F501566629300C3D2AD /* logo.png in Resources */,
+				DA019F531570400E00CC589A /* CriterionCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -650,13 +657,12 @@
 				A0C66470155448CC004C798E /* ListaRegioesViewController.m in Sources */,
 				DAC99B7F155AE3EA00D9C04F /* SubstitutableTabBarControllerViewController.m in Sources */,
 				DAC99B85155B0B7B00D9C04F /* ProvaCriteriaViewController.m in Sources */,
-				DA2BA9E5155BC9B400D2BFCA /* CriterionCell.m in Sources */,
-				DA2BA9ED155BD02300D2BFCA /* CriterionView.m in Sources */,
 				D37D177B155DC249005E502A /* Sincronizacao.m in Sources */,
 				BCC8EBB91563E36B006645BC /* NSMutableArray+ProvasMutableArray.m in Sources */,
 				A979EDAB15668FCB00E94A34 /* Utils.m in Sources */,
 				DA631DE0156EA7F2003EC91B /* CurrencyViewController.m in Sources */,
 				D33F4B6E15702F00003C0BC5 /* SeccaoCaracteristica.m in Sources */,
+				DA019F56157046A200CC589A /* CriterionCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

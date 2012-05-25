@@ -2,20 +2,18 @@
 //  CriterionCell.h
 //  myWine
 //
-//  Created by Diogo Castro on 5/10/12.
+//  Created by Diogo Castro on 26/05/12.
 //  Copyright (c) 2012 FEUP. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-
-@class Criterio;
-@class CriterionView;
+#import "Criterio.h"
 
 @interface CriterionCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *classificationLabel;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UISlider *classificationSlider;
 
-@property (strong, nonatomic) CriterionView* criterionView;
-
-- (void)setCriterion:(Criterio *)newCriterion;
-- (void)redisplay;
+@property (strong, nonatomic) Criterio* criterion;
 
 @end

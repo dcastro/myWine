@@ -2,27 +2,23 @@
 //  CriterionCell.m
 //  myWine
 //
-//  Created by Diogo Castro on 5/10/12.
+//  Created by Diogo Castro on 26/05/12.
 //  Copyright (c) 2012 FEUP. All rights reserved.
 //
 
 #import "CriterionCell.h"
-#import "CriterionView.h"
 
 @implementation CriterionCell
-
-@synthesize criterionView = _criterionView;
+@synthesize classificationLabel;
+@synthesize nameLabel;
+@synthesize classificationSlider;
+@synthesize criterion = _criterion;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        CGRect cvFrame = CGRectMake(0.0, 0.0, self.contentView.bounds.size.width,
-                                     self.contentView.bounds.size.height);
-        self.criterionView = [[CriterionView alloc] initWithFrame:cvFrame];
-        self.criterionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        [self.contentView addSubview:self.criterionView];
     }
     return self;
 }
@@ -34,12 +30,16 @@
     // Configure the view for the selected state
 }
 
-- (void)setCriterion:(Criterio *)newCriterion {
-    [self.criterionView setCriterion:newCriterion];
+- (void) setCriterion:(Criterio *)criterion {
+    if (_criterion != criterion) {
+        _criterion = criterion;
+        [self configureView];
+    }
 }
 
-- (void)redisplay {
-    [self.criterionView setNeedsDisplay];
+- (void) configureView {
+    [self.nameLabel setText:self.criterion.name];
+    [self.classificationLabel setText:self.criterion.classification_choosen.name];
 }
 
 @end
