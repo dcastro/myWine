@@ -17,6 +17,7 @@
 @end
 
 @implementation VinhoViewController
+@synthesize swipeLeft = _swipeLeft;
 @synthesize producer_label = _producer_label;
 @synthesize producer_label_name = _producer_label_name;
 @synthesize year_label = _year_label;
@@ -204,6 +205,7 @@
     [self setPrice_label:nil];
     [self setPrice_value_label:nil];
     [self setSelectCurrencyButton:nil];
+    [self setSwipeLeft:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -250,6 +252,7 @@
     [self.navigationItem setLeftBarButtonItem:nil animated:YES];
     self.masterPopoverController = nil;
 }
+
 
 - (IBAction)toggleEdit:(id)sender {
 
@@ -393,6 +396,20 @@
     }
     
     [self.navigationItem setLeftBarButtonItem:nil animated:YES];
+}
+
+- (IBAction)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer {
+    
+	CGPoint location = [recognizer locationInView:self.view];
+
+	
+    if (recognizer.direction == UISwipeGestureRecognizerDirectionLeft) {
+        NSLog(@"swipe left");
+    }
+    else {
+        NSLog(@"swipe left");
+    }
+
 }
 
 #pragma mark -
