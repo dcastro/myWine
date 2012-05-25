@@ -7,12 +7,6 @@
 //
 
 #import "NovoVinhoViewController.h"
-#import "ListaPaisesViewController.h"
-#import "Language.h"
-#import "ListaRegioesViewController.h"
-#import "Utils.h"
-#import "User.h"
-#import "Vinho.h"
 
 @interface NovoVinhoViewController () {
     CGFloat animatedDistance;
@@ -229,11 +223,12 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    if(textField.tag == 2) {PickAnoVinho.hidden = NO; NSLog(@"dont hide it");}
-    else {PickAnoVinho.hidden = YES; NSLog(@"Hide it");}
+    //if(textField.tag == 2) {PickAnoVinho.hidden = NO; NSLog(@"dont hide it");}
+    //else {PickAnoVinho.hidden = YES; NSLog(@"Hide it");}
+    
     keyboard = textField;
     animatedDistance = calculateAnimation(self, textField);
-    
+    NSLog(@"Animated: %f", animatedDistance);
     CGRect viewFrame = self.view.frame;
     viewFrame.origin.y -= animatedDistance;
     
@@ -250,6 +245,8 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     keyboard = textField;
+    
+    NSLog(@"Animated 2: %f", animatedDistance);
     
     CGRect viewFrame = self.view.frame;
     viewFrame.origin.y += animatedDistance;

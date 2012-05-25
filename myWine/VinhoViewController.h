@@ -11,7 +11,11 @@
 #import "ListaVinhosViewController.h"
 #import "ListaPaisesViewController.h"
 #import "ListaRegioesViewController.h"
-
+#import "Language.h"
+#import <objc/runtime.h>
+#import "Utils.h"
+#import "User.h"
+#import "CurrencyViewController.h"
 
 @protocol VinhoViewControllerDelegate <NSObject>
 

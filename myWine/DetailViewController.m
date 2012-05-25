@@ -7,7 +7,6 @@
 //
 
 #import "DetailViewController.h"
-#import "Language.h"
 
 @interface DetailViewController ()
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;

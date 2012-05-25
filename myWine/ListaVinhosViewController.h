@@ -9,20 +9,19 @@
 #import <UIKit/UIKit.h>
 #import "NovoVinhoViewController.h"
 #import "LoginViewController.h"
+#import "DetailViewController.h"
 
 @class DetailViewController;
 @class VinhoViewController;
 @protocol VinhoViewControllerDelegate;
 @protocol DetailViewControllerDelegate;
-
+@protocol LoginViewControllerDelegate;
 @protocol SubstitutableDetailViewController <NSObject>
 
 - (void)showRootPopoverButtonItem:(UIBarButtonItem *)barButtonItem;
 - (void)invalidateRootPopoverButtonItem:(UIBarButtonItem *)barButtonItem;
 
 @end
-
-
 
 @interface ListaVinhosViewController : UITableViewController <NovoVinhoViewControllerDelegate, LoginViewControllerDelegate, UISplitViewControllerDelegate, VinhoViewControllerDelegate, DetailViewControllerDelegate>
 {

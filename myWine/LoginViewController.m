@@ -7,10 +7,6 @@
 //
 
 #import "LoginViewController.h"
-#import "Language.h"
-#import "User.h"
-#import "ListaVinhosViewController.h"
-#import "Vinho.h"
 
 @interface LoginViewController (){
     CGFloat animatedDistance;

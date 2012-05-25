@@ -7,12 +7,6 @@
 //
 
 #import "VinhoViewController.h"
-#import "Language.h"
-#import <objc/runtime.h>
-#import "ListaPaisesViewController.h"
-#import "Utils.h"
-#import "User.h"
-#import "CurrencyViewController.h"
 
 @interface VinhoViewController () {
     CGFloat animatedDistance;

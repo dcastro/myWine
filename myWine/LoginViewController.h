@@ -7,6 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Language.h"
+#import "User.h"
+#import "ListaVinhosViewController.h"
+#import "Vinho.h"
 
 @class LoginViewController;
 

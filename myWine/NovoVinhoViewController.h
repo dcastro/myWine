@@ -11,7 +11,10 @@
 #import "ListaRegioesViewController.h"
 #import "Pais.h"
 #import "Regiao.h"
-
+#import "Language.h"
+#import "Utils.h"
+#import "User.h"
+#import "Vinho.h"
 
 @class NovoVinhoViewController;
 

@@ -8,9 +8,6 @@
 
 #import "ListaVinhosViewController.h"
 
-#import "DetailViewController.h"
-
-#import "LoginViewController.h"
 
 #import "ListaProvasViewController.h"
 #import "Vinho.h"

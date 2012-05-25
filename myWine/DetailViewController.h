@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "ListaVinhosViewController.h"
-
+#import "Language.h"
+@protocol SubstitutableDetailViewController;
 @protocol DetailViewControllerDelegate <NSObject>
 
 - (void) detailViewDidDisappear;
