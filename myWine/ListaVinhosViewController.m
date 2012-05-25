@@ -40,6 +40,7 @@
 
 @synthesize homeVisibility;
 @synthesize tempButton;
+@synthesize filter;
 
 SEL action; id target;
 
@@ -98,6 +99,7 @@ SEL action; id target;
 
 - (void)viewDidUnload
 {
+    [self setFilter:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -139,7 +141,7 @@ SEL action; id target;
          objectAtIndex:0];
 		NovoVinhoViewController.delegate = self;
 	}
-    /*else if([segue.identifier isEqualToString:@"filterSegue"])
+    else if([segue.identifier isEqualToString:@"filterSegue"])
     {
         
         action = [sender action];
@@ -149,7 +151,7 @@ SEL action; id target;
         [sender setAction:@selector(dismiss:)];
         
         self.currentPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
-    }*/
+    }
     else if ([segue.identifier isEqualToString:@"VinhosToHome"]) {
         
         DetailViewController* home = segue.destinationViewController;
@@ -163,16 +165,16 @@ SEL action; id target;
 
 -(void)dismiss:(id)sender
 {
-    [self.navigationItem.rightBarButtonItem setAction:action];
-    [self.navigationItem.rightBarButtonItem setTarget:target];
+    [self.filter setAction:action];
+    [self.filter setTarget:target];
     [self.currentPopover dismissPopoverAnimated:YES];
 }
 
 
 -(BOOL)popoverControllerShouldDismissPopover:(UIPopoverController *)popoverController
 {
-    [self.navigationItem.rightBarButtonItem setAction:action];
-    [self.navigationItem.rightBarButtonItem setTarget:target];
+    [self.filter setAction:action];
+    [self.filter setTarget:target];
     return YES;    
 }
 

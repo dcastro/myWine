@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ListaVinhosViewController.h"
 #import "Language.h"
-@protocol SubstitutableDetailViewController;
+
 @protocol DetailViewControllerDelegate <NSObject>
 
 - (void) detailViewDidDisappear;
@@ -17,13 +17,11 @@
 
 @end
 
-@interface DetailViewController : UIViewController <UISplitViewControllerDelegate, SubstitutableDetailViewController> 
+@interface DetailViewController : UIViewController <UISplitViewControllerDelegate> 
 
 @property (strong, nonatomic) id detailItem;
 
 @property (strong, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
-@property (strong, nonatomic) IBOutlet UILabel *infoLabel;
-@property (strong, nonatomic) IBOutlet UILabel *info2Label;
 
 @property (weak, nonatomic) UIPopoverController *currentPopover;
 

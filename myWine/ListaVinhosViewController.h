@@ -23,7 +23,7 @@
 
 @end
 
-@interface ListaVinhosViewController : UITableViewController <NovoVinhoViewControllerDelegate, LoginViewControllerDelegate, UISplitViewControllerDelegate, VinhoViewControllerDelegate, DetailViewControllerDelegate>
+@interface ListaVinhosViewController : UITableViewController < UISplitViewControllerDelegate, VinhoViewControllerDelegate, DetailViewControllerDelegate>
 {
     UISplitViewController *splitViewController;
     
@@ -47,6 +47,7 @@
 @property (nonatomic, getter=homeIsVisible) BOOL homeVisibility;
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *tempButton;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *filter;
 
 - (void)insertNewObject:(id)sender;
 

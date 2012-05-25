@@ -68,6 +68,8 @@ SEL action; id target;
     self.sync.titleLabel.font = [UIFont fontWithName:@"DroidSerif-Bold" size:18];
     
     self.help.title = [lan translate:@"Help"];
+    self.title = [lan translate:@"Home"];
+
     
     
     self.navigationItem.hidesBackButton = YES;
