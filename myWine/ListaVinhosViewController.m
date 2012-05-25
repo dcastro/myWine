@@ -11,15 +11,11 @@
 
 #import "ListaProvasViewController.h"
 #import "Vinho.h"
-
 #import "User.h"
 #import "Prova.h"
 #import "Language.h"
-
 #import "VinhoViewController.h"
-
 #import "NSMutableArray+VinhosMutableArray.h"
-
 #import <objc/runtime.h>
 
 @interface ListaVinhosViewController () {
@@ -40,6 +36,7 @@
 
 @synthesize homeVisibility;
 @synthesize tempButton;
+@synthesize filter;
 
 SEL action; id target;
 
@@ -98,6 +95,7 @@ SEL action; id target;
 
 - (void)viewDidUnload
 {
+    [self setFilter:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -134,12 +132,12 @@ SEL action; id target;
 		UINavigationController *navigationController = 
         segue.destinationViewController;
 		NovoVinhoViewController 
-        *NovoVinhoViewController = 
+        *nvvc = 
         [[navigationController viewControllers] 
          objectAtIndex:0];
-		NovoVinhoViewController.delegate = self;
+		nvvc.delegate = self;
 	}
-    /*else if([segue.identifier isEqualToString:@"filterSegue"])
+    else if([segue.identifier isEqualToString:@"filterSegue"])
     {
         
         action = [sender action];
@@ -149,7 +147,7 @@ SEL action; id target;
         [sender setAction:@selector(dismiss:)];
         
         self.currentPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
-    }*/
+    }
     else if ([segue.identifier isEqualToString:@"VinhosToHome"]) {
         
         DetailViewController* home = segue.destinationViewController;
@@ -163,16 +161,16 @@ SEL action; id target;
 
 -(void)dismiss:(id)sender
 {
-    [self.navigationItem.rightBarButtonItem setAction:action];
-    [self.navigationItem.rightBarButtonItem setTarget:target];
+    [self.filter setAction:action];
+    [self.filter setTarget:target];
     [self.currentPopover dismissPopoverAnimated:YES];
 }
 
 
 -(BOOL)popoverControllerShouldDismissPopover:(UIPopoverController *)popoverController
 {
-    [self.navigationItem.rightBarButtonItem setAction:action];
-    [self.navigationItem.rightBarButtonItem setTarget:target];
+    [self.filter setAction:action];
+    [self.filter setTarget:target];
     return YES;    
 }
 

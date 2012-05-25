@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Prova.h"
+#import "Seccao.h"
+#import "Criterio.h"
+#import "CriterionCell.h"
 
 @interface ProvaCriteriaViewController : UITableViewController
 

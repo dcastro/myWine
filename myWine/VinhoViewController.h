@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "Vinho.h"
-#import "ListaVinhosViewController.h"
 #import "ListaPaisesViewController.h"
 #import "ListaRegioesViewController.h"
 #import "Language.h"
@@ -23,7 +22,7 @@
 
 @end
 
-@interface VinhoViewController : UIViewController <UISplitViewControllerDelegate, SubstitutableDetailViewController, UITextFieldDelegate, ListaPaisesViewControllerDelegate, ListaRegioesViewControllerDelegate>
+@interface VinhoViewController : UIViewController <UISplitViewControllerDelegate, UITextFieldDelegate, ListaPaisesViewControllerDelegate, ListaRegioesViewControllerDelegate, CurrencyViewControllerDelegate>
 
 @property (strong, nonatomic) id detailItem;
 
@@ -52,6 +51,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *selectCountryButton;
 @property (weak, nonatomic) IBOutlet UIButton *selectRegionButton;
 @property (weak, nonatomic) IBOutlet UIButton *selectWineTypeButton;
+@property (weak, nonatomic) IBOutlet UIButton *selectCurrencyButton;
 
 @property(nonatomic, getter=isEditing) BOOL editing;
 

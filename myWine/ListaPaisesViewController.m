@@ -7,8 +7,6 @@
 //
 
 #import "ListaPaisesViewController.h"
-#import "User.h"
-#import "Pais.h"
 
 @interface ListaPaisesViewController ()
 

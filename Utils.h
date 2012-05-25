@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 
 //currency definitions
-#define EUR 1
-#define USD 2
-#define GBP 3
+#define EUR 0
+#define USD 1
+#define GBP 2
 
 
 @interface Utils : NSObject

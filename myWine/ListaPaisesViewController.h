@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Pais.h"
+#import "User.h"
 
 @class ListaPaisesViewController;
 

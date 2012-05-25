@@ -15,6 +15,7 @@
 @implementation CurrencyViewController
 
 @synthesize selectedCurrency = _selectedCurrency;
+@synthesize delegate = _delegate;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -151,6 +152,9 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+    //self dismiss
+    //NSLog(@"Selected: %i", indexPath.row);
+    [self.delegate currencyViewControllerDidSelect:indexPath.row];
 }
 
 @end

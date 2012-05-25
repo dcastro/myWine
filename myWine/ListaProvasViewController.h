@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "NovaProvaViewController.h"
-
+#import "ProvaViewController.h"
+#import "Prova.h"
+#import "ProvaCriteriaViewController.h"
+#import "NSMutableArray+ProvasMutableArray.h"
 
 @class ProvaViewController;
 

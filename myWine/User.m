@@ -23,6 +23,7 @@ static User *sharedUser = nil;
 @synthesize isValidated = _isValidated;
 @synthesize synced_at;
 @synthesize countries = _countries;
+@synthesize tipoVinhos = _tipoVinhos;
 
 + (id)instance {
     @synchronized(self) {
@@ -220,6 +221,56 @@ static User *sharedUser = nil;
     
 }
 
+-(BOOL) loadWineTypes{
+    _tipoVinhos = [[NSMutableArray alloc] init];
+    
+    Query *query = [[Query alloc] init];
+    
+    NSString *querySQL;
+    
+    Language *lan = [Language instance];
+    switch (lan.selectedLanguage) {
+        case FR:
+            querySQL = [NSString stringWithFormat:@"SELECT wt.winetype_id, wt.name_fr\
+                        FROM WineType wt;"];
+            break;
+            
+        case EN: querySQL =  [NSString stringWithFormat:@"SELECT wt.winetype_id, wt.name_en\
+                              FROM WineType wt;"];
+            break;
+            
+        case PT:querySQL =  [NSString stringWithFormat:@"SELECT wt.winetype_id, wt.name_pt\
+                             FROM WineType wt;"];
+   
+            break;
+            
+        default:
+            break;
+    }
+    
+    sqlite3_stmt *stmt = [query prepareForSingleQuery:querySQL];
+    
+    
+    if(stmt != nil){
+        while(sqlite3_step(stmt) == SQLITE_ROW)
+        {
+            TipoVinho *winetype = [[TipoVinho alloc] init];
+            
+            winetype.winetype_id = sqlite3_column_int(stmt, 0);
+            winetype.name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 1)];
+            
+            [_tipoVinhos insertObject:winetype atIndex:0];
+        }
+        
+        [query finalizeQuery:stmt];
+        return TRUE;
+    }else
+        return FALSE;
+
+    
+}
+
+
 - (BOOL) loadCountries {
     
      _countries  = [[NSMutableArray alloc] init];
@@ -277,6 +328,14 @@ static User *sharedUser = nil;
     
     return _countries;
     
+}
+
+
+- (NSMutableArray*) tipoVinhos {
+    if (!_tipoVinhos){
+        [self loadWineTypes];
+    }
+    return _tipoVinhos;
 }
 
 

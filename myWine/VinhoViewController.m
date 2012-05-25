@@ -41,6 +41,7 @@
 @synthesize selectCountryButton = _selectCountryButton;
 @synthesize selectRegionButton = _selectRegionButton;
 @synthesize selectWineTypeButton = _selectWineTypeButton;
+@synthesize selectCurrencyButton = _selectCurrencyButton;
 @synthesize editing = _editing;
 
 @synthesize delegate;
@@ -202,6 +203,7 @@
     [self setSelectWineTypeButton:nil];
     [self setPrice_label:nil];
     [self setPrice_value_label:nil];
+    [self setSelectCurrencyButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -227,6 +229,7 @@
         CurrencyViewController* cvc = (CurrencyViewController*) segue.destinationViewController;
         Vinho* vinho = (Vinho*) self.detailItem;
         cvc.selectedCurrency = vinho.currency;
+        cvc.delegate = self;
 
     }
     
@@ -454,6 +457,12 @@
 - (void) selectedRegion:(Regiao*) region{
     self.editableWine.region = region;
     [self.selectRegionButton setTitle:region.region_name forState:UIControlStateNormal];
+}
+
+- (void) currencyViewControllerDidSelect:(int) currency {
+    self.editableWine.currency = currency;
+    NSLog(@"Delegate: %i", currency);
+    [self.selectCurrencyButton setTitle:currencyStr(self.editableWine.currency) forState:UIControlStateNormal];
 }
 
 @end
