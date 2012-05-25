@@ -10,16 +10,11 @@
 #import "Vinho.h"
 #import "ListaPaisesViewController.h"
 #import "ListaRegioesViewController.h"
-<<<<<<< HEAD
 #import "Language.h"
 #import <objc/runtime.h>
 #import "Utils.h"
 #import "User.h"
 #import "CurrencyViewController.h"
-=======
-#import "CurrencyViewController.h"
-
->>>>>>> Currency Popover improved
 
 @protocol VinhoViewControllerDelegate <NSObject>
 
@@ -27,11 +22,7 @@
 
 @end
 
-<<<<<<< HEAD
-@interface VinhoViewController : UIViewController <UISplitViewControllerDelegate, UITextFieldDelegate, ListaPaisesViewControllerDelegate, ListaRegioesViewControllerDelegate>
-=======
-@interface VinhoViewController : UIViewController <UISplitViewControllerDelegate, SubstitutableDetailViewController, UITextFieldDelegate, ListaPaisesViewControllerDelegate, ListaRegioesViewControllerDelegate, CurrencyViewControllerDelegate>
->>>>>>> Currency Popover improved
+@interface VinhoViewController : UIViewController <UISplitViewControllerDelegate, UITextFieldDelegate, ListaPaisesViewControllerDelegate, ListaRegioesViewControllerDelegate, CurrencyViewControllerDelegate>
 
 @property (strong, nonatomic) id detailItem;
 
