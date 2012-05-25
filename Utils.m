@@ -65,13 +65,12 @@ NSString* currencyStr(int currency) {
 }
 
 int currencyInt(NSString* currency) {
-    if([currency isEqualToString:@"EUR"])
-        return EUR;
     if([currency isEqualToString:@"USD"])
         return USD;
     if([currency isEqualToString:@"GBP"])
         return GBP;
-    return nil;
+    //default
+    return EUR;
 }
 
 @end

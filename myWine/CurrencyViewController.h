@@ -8,8 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol CurrencyViewControllerDelegate <NSObject>
+
+- (void) currencyViewControllerDidSelect:(int) currency;
+
+@end
+
+
+
 @interface CurrencyViewController : UITableViewController
 
 @property (nonatomic) int selectedCurrency;
+@property (nonatomic, weak) id <CurrencyViewControllerDelegate> delegate;
 
 @end
