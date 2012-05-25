@@ -25,6 +25,7 @@
 @synthesize Preco = _Preco;
 @synthesize tipoVinho = _tipoVinho;
 @synthesize castaVinho = _castaVinho;
+@synthesize PhotoButton;
 @synthesize delegate;
 @synthesize anosVinhos;
 @synthesize PickAnoVinho;
@@ -62,6 +63,8 @@
     
     [self.Done setTitle:[lang translate: @"Done"]];
     [self.Cancel setTitle: [lang translate: @"Cancel"]];
+    
+    [self.PhotoButton setTitle:[lang translate:@"Photo"] forState:UIControlStateNormal];
     
     [_lblNomeVinho setText:[lang translate:@"WineName"]];
     [_lblProdutor setText:[lang translate:@"WineProd"]];
@@ -138,6 +141,7 @@
     [self setLblRegiao:nil];
     [self setLblTipoVinho:nil];
     [self setLblCasta:nil];
+    [self setPhotoButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }

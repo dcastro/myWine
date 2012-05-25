@@ -37,6 +37,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *tipoVinho;
 @property (weak, nonatomic) IBOutlet UITextField *castaVinho;
 
+@property (weak, nonatomic) IBOutlet UIButton *PhotoButton;
 @property (nonatomic,strong) IBOutlet UIPickerView *PickAnoVinho;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *Done;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *Cancel;
