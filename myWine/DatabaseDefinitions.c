@@ -33,22 +33,29 @@ const char  *databaseTables[] = {
     );",
     
     "CREATE TABLE Country (\
-    country_id TEXT PRIMARY KEY, \
+    country_id INTEGER PRIMARY KEY AUTOINCREMENT, \
     name_en TEXT, \
     name_fr TEXT, \
     name_pt TEXT \
     );",
     
     "CREATE TABLE Region (\
-    region_id INTEGER PRIMARY KEY, \
-    country_id TEXT NOT NULL, \
-    default_selection INTEGER NOT NULL, \
-    name TEXT NOT NULL, \
+    region_id INTEGER PRIMARY KEY AUTOINCREMENT, \
+    country_id INTEGER NOT NULL, \
+    default_selection INTEGER, \
+    name TEXT, \
     FOREIGN KEY (country_id) REFERENCES Country (country_id) ON UPDATE CASCADE ON DELETE CASCADE \
     );",
     
     "CREATE TABLE WineType (\
-    winetype_id INTEGER, \
+    winetype_id INTEGER PRIMARY KEY AUTOINCREMENT, \
+    name_en TEXT, \
+    name_fr TEXT, \
+    name_pt TEXT \
+    );",
+    
+    "CREATE TABLE Grape(\
+    grape_id INTEGER PRIMARY KEY AUTOINCREMENT, \
     name_en TEXT, \
     name_fr TEXT, \
     name_pt TEXT \
@@ -63,7 +70,6 @@ const char  *databaseTables[] = {
     wine_server_id INTEGER, \
     name TEXT NOT NULL, \
     year INTEGER NOT NULL, \
-    grapes TEXT, \
     photo_filename TEXT, \
     producer TEXT, \
     currency TEXT, \
@@ -74,6 +80,13 @@ const char  *databaseTables[] = {
     FOREIGN KEY (winetype_id) REFERENCES WineType (winetype_id) ON UPDATE CASCADE ON DELETE CASCADE \
     );",
     
+    "CREATE TABLE WineGrape (\
+    grape_id INTEGER NOT NULL, \
+    wine_id INTEGER NOT NULL, \
+    PRIMARY KEY (grape_id, wine_id), \
+    FOREIGN KEY (grape_id) REFERENCES Grape (grape_id) ON UPDATE CASCADE ON DELETE CASCADE, \
+    FOREIGN KEY (wine_id) REFERENCES Wine (wine_id) ON UPDATE CASCADE ON DELETE CASCADE \
+    )",
     
     "CREATE TABLE Tasting (\
     tasting_id INTEGER PRIMARY KEY AUTOINCREMENT, \
@@ -90,18 +103,7 @@ const char  *databaseTables[] = {
     
     "CREATE TABLE Section (\
     section_id INTEGER PRIMARY KEY AUTOINCREMENT, \
-    tasting_id INTEGER NOT NULL, \
-    order INTEGER NOT NULL, \
-    name_en TEXT, \
-    name_fr TEXT, \
-    name_pt TEXT, \
-    FOREIGN KEY (tasting_id) REFERENCES Tasting (tasting_id) ON UPDATE CASCADE ON DELETE CASCADE \
-    );",
-    
-    "CREATE TABLE SectionCharacteristic (\
-    sectioncharacteristic_id INTEGER PRIMARY KEY AUTOINCREMENT, \
-    tasting_id INTEGER NOT NULL, \
-    order INTEGER NOT NULL, \
+    tasting_id INTEGER, \
     name_en TEXT, \
     name_fr TEXT, \
     name_pt TEXT, \
@@ -112,7 +114,6 @@ const char  *databaseTables[] = {
     criterion_id INTEGER PRIMARY KEY AUTOINCREMENT, \
     section_id INTEGER NOT NULL, \
     classification_id INTEGER NOT NULL, \
-    order INTEGER NOT NULL,\
     name_en TEXT, \
     name_fr TEXT, \
     name_pt TEXT, \
@@ -121,10 +122,9 @@ const char  *databaseTables[] = {
     );",
     
     "CREATE TABLE Characteristic (\
-    characteristic_id INTEGER PRIMARY KEY AUTOINCREMENT, \
-    sectioncharacteristic_id INTEGER NOT NULL, \
+    characteristics_id INTEGER PRIMARY KEY AUTOINCREMENT, \
+    section_id INTEGER NOT NULL, \
     classification_id INTEGER, \
-    order INTEGER NOT NULL, \
     name_en TEXT, \
     name_fr TEXT, \
     name_pt TEXT, \
@@ -133,7 +133,7 @@ const char  *databaseTables[] = {
     );",
     
     "CREATE TABLE Classification (\
-    classification_id INTEGER PRIMARY KEY AUTOINCREMENT, \
+    classification_id INTEGER PRIMARY KEY, \
     weight INTEGER, \
     name_en TEXT, \
     name_fr TEXT, \
@@ -157,17 +157,6 @@ const char  *databaseTables[] = {
     "CREATE TABLE FormSection (\
     formsection_id INTEGER PRIMARY KEY AUTOINCREMENT, \
     formtasting_id INTEGER NOT NULL, \
-    order INTEGER NOT NULL, \
-    name_en TEXT, \
-    name_fr TEXT, \
-    name_pt TEXT, \
-    FOREIGN KEY (formtasting_id) REFERENCES FormTasting (formtasting_id) ON UPDATE CASCADE ON DELETE CASCADE \
-    );",
-    
-    "CREATE TABLE FormSectionCharacteristic (\
-    formsectioncharacteristic_id INTEGER PRIMARY KEY, \
-    formtasting_id INTEGER NOT NULL, \
-    order INTEGER NOT NULL, \
     name_en TEXT, \
     name_fr TEXT, \
     name_pt TEXT, \
@@ -177,7 +166,6 @@ const char  *databaseTables[] = {
     "CREATE TABLE FormCriterion (\
     formcriterion_id INTEGER PRIMARY KEY AUTOINCREMENT, \
     formsection_id INTEGER NOT NULL, \
-    order INTEGER NOT NULL, \
     name_en TEXT, \
     name_fr TEXT, \
     name_pt TEXT, \
@@ -188,7 +176,6 @@ const char  *databaseTables[] = {
     "CREATE TABLE FormCharacteristic (\
     formcharacteristics_id INTEGER PRIMARY KEY AUTOINCREMENT, \
     formsection_id INTEGER NOT NULL, \
-    order INTEGER NOT NULL, \
     name_en TEXT, \
     name_fr TEXT, \
     name_pt TEXT, \
@@ -218,11 +205,9 @@ const char  *databaseTables[] = {
     
     "CREATE INDEX IDX_SECTION_TASTING ON Section (tasting_id);",
     
-    "CREATE INDEX IDX_SECTIONCHARACTERISTIC_TASTING ON SectionCharacteristic (tasting_id);",
-    
     "CREATE INDEX IDX_CRITERION_SECTION ON Criterion (section_id);",
     
-    "CREATE INDEX IDX_CHARACTERISTIC_SECTION ON Characteristic (sectioncharacteristic_id);",
+    "CREATE INDEX IDX_CHARACTERISTIC_SECTION ON Characteristic (section_id);",
     
     "CREATE INDEX IDX_POSSIBLECLASSIFICATION ON PossibleClassification(classifiable_id, classifiable_type);",
     
@@ -234,23 +219,36 @@ const char  *databaseTables[] = {
     "INSERT INTO User VALUES ('admin', 'admin', '10000', 1)",
     
     
-    "INSERT INTO Country VALUES ('PT','Portugal', 'Portugal', 'Portugal');",
-    "INSERT INTO Country VALUES ('FR','France', 'France', 'França');",
-    "INSERT INTO Country VALUES ('EN','England', 'Angleterre', 'Inglaterra');",
+    "INSERT INTO Country VALUES (1,'Portugal', 'Portugal', 'Portugal');",
+    "INSERT INTO Country VALUES (2,'France', 'France', 'França');",
+    "INSERT INTO Country VALUES (3,'England', 'Angleterre', 'Inglaterra');",
     
     
-    "INSERT INTO Region VALUES (1, 'PT', 1, 'Vila Real');",
-    "INSERT INTO Region VALUES (2, 'PT', 0, 'Porto');",
-    "INSERT INTO Region VALUES (3, 'PT', 0, 'Alijo');",
+    "INSERT INTO Region VALUES (1, 1, 1, 'Vila Real');",
+    "INSERT INTO Region VALUES (2, 1, 0, 'Porto');",
+    "INSERT INTO Region VALUES (3, 1, 0, 'Alijo');",
     
     
     "INSERT INTO WineType VALUES (1, 'White Wine', 'Vin Blanc', 'Vinho Branco');",
     "INSERT INTO WineType VALUES (2, 'Sparlking Wine', 'Vin Mousseux', 'Vinho Espumante');",
     
     
+    "INSERT INTO Grape VALUES (1,'ALVARINHO', 'ALVARINHO', 'ALVARINHO');",
+    "INSERT INTO Grape VALUES (2,'ARINTO', 'ARINTO', 'ARINTO');", 
+    "INSERT INTO Grape VALUES (3,'MARIA GOMES', 'MARIA GOMES', 'MARIA GOMES');", 
+    "INSERT INTO Grape VALUES (4,'TINTA RORIZ', 'TINTA RORIZ', 'TINTA RORIZ');",
+    "INSERT INTO Grape VALUES (5,'BAGA','BAGA','BAGA');", 
     
-    "INSERT INTO Wine VALUES (1, 'admin', 1, 1,NULL, 'Terras do Aleu', 2012, 'Casta 1, Casta 2, Casta 3', NULL, 'Lavrador XPTO', 'EUR', 9.99, 0);",
-    "INSERT INTO Wine VALUES (2, 'admin', 3, 1,NULL, 'Muralhas', 2012, 'Casta 1, Casta 2, Casta 4', NULL, 'Adega Qualquer', 'EUR', 4.00, 0);",
+    
+    "INSERT INTO Wine VALUES (1, 'admin', 1, 1,NULL, 'Terras do Aleu', 2012, NULL, 'Lavrador XPTO', 'EUR', 9.99, 0);",
+    "INSERT INTO Wine VALUES (2, 'admin', 3, 1,NULL, 'Muralhas', 2012, NULL, 'Adega Qualquer', 'EUR', 4.00, 0);",
+    
+    
+    "INSERT INTO WineGrape VALUES (4,1);",
+    "INSERT INTO WineGrape VALUES (5,1);",
+    "INSERT INTO WineGrape VALUES (1,2);",
+    "INSERT INTO WineGrape VALUES (2,2);",
+    "INSERT INTO WineGrape VALUES (3,2);",
     
     
     "INSERT INTO Classification VALUES (1,15,'Very bad', 'Tres mal', 'Muito mau');",
@@ -291,10 +289,8 @@ const char  *databaseTables[] = {
     
     
     "INSERT INTO Section VALUES (1,1,'View', 'Voir', 'Vista');",
-    "INSERT INTO Section VALUES (2,1,'Flavor', 'Saveur', 'Sabor');",
-    
-    "INSERT INTO SectionCharacteristic VALUES (1,1,'Aroma', 'Arome', 'Aroma');",
-
+    "INSERT INTO Section VALUES (2,1,'Aroma', 'Arome', 'Aroma');",
+    "INSERT INTO Section VALUES (3,1,'Flavor', 'Saveur', 'Sabor');",
 
     
     "INSERT INTO Criterion VALUES (1, 1, 4, 'Clarity', 'Clarte', 'Limpidez');",
@@ -305,9 +301,9 @@ const char  *databaseTables[] = {
     "INSERT INTO Criterion VALUES (6, 3, 5, 'Quality', 'Qualite', 'Qualidade');",
 
     
-    "INSERT INTO Characteristic VALUES (1, 1, 10 , 'Genuineness', 'Authenticite', 'Genuinidade');",
-    "INSERT INTO Characteristic VALUES (2, 1, 10 , 'Intensity', 'Intensite', 'Intensidade');",
-    "INSERT INTO Characteristic VALUES (3, 1, 11, 'Quality', 'Qualite', 'Qualidade');",
+    "INSERT INTO Characteristic VALUES (1, 2, 10 , 'Genuineness', 'Authenticite', 'Genuinidade');",
+    "INSERT INTO Characteristic VALUES (2, 2, 10 , 'Intensity', 'Intensite', 'Intensidade');",
+    "INSERT INTO Characteristic VALUES (3, 2, 11, 'Quality', 'Qualite', 'Qualidade');",
 
     
     //FORMS
@@ -315,23 +311,21 @@ const char  *databaseTables[] = {
     
     "INSERT INTO UserTypeForm VALUES ('admin', 1,1);",
     
-    "INSERT INTO FormSection VALUES (1, 1, 'View', 'Voir', 'Vista');",
-    "INSERT INTO FormSection VALUES (2, 1, 'Flavor', 'Saveur', 'Sabor');",
-    
-    "INSERT INTO FormSectionCharacteristic VALUES (1, 1, 'Aroma', 'Arome', 'Aroma');",
-
+    "INSERT INTO FormSection VALUES (1,1, 'View', 'Voir', 'Vista');",
+    "INSERT INTO FormSection VALUES (2,1,'Aroma', 'Arome', 'Aroma');",
+    "INSERT INTO FormSection VALUES (3,1,'Flavor', 'Saveur', 'Sabor');",
     
     "INSERT INTO FormCriterion VALUES (1, 1, 'Clarity', 'Clarte', 'Limpidez');",
     "INSERT INTO FormCriterion VALUES (2, 1, 'Color', 'Couleur', 'Cor');",
-    "INSERT INTO FormCriterion VALUES (3, 2, 'Genuineness', 'Authenticite', 'Genuinidade');",
-    "INSERT INTO FormCriterion VALUES (4, 2, 'Intensity', 'Intensite', 'Intensidade');",
-    "INSERT INTO FormCriterion VALUES (5, 2, 'Persistence', 'Persistance', 'Persistencia');",
-    "INSERT INTO FormCriterion VALUES (6, 2, 'Quality', 'Qualite', 'Qualidade');"
+    "INSERT INTO FormCriterion VALUES (3, 3, 'Genuineness', 'Authenticite', 'Genuinidade');",
+    "INSERT INTO FormCriterion VALUES (4, 3, 'Intensity', 'Intensite', 'Intensidade');",
+    "INSERT INTO FormCriterion VALUES (5, 3, 'Persistence', 'Persistance', 'Persistencia');",
+    "INSERT INTO FormCriterion VALUES (6, 3, 'Quality', 'Qualite', 'Qualidade');"
     
     
-    "INSERT INTO FormCharacteristic VALUES (1, 1, 'Genuineness', 'Authenticite', 'Genuinidade');",
-    "INSERT INTO FormCharacteristic VALUES (2, 1, 'Intensity', 'Intensite', 'Intensidade');",
-    "INSERT INTO FormCharacteristic VALUES (3, 1, 'Quality', 'Qualite', 'Qualidade');",
+    "INSERT INTO FormCharacteristic VALUES (1, 2, 'Genuineness', 'Authenticite', 'Genuinidade');",
+    "INSERT INTO FormCharacteristic VALUES (2, 2, 'Intensity', 'Intensite', 'Intensidade');",
+    "INSERT INTO FormCharacteristic VALUES (3, 2, 'Quality', 'Qualite', 'Qualidade');",
     
     
     "INSERT INTO PossibleClassification VALUES (1,2,'FormTasting');",
