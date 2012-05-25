@@ -37,6 +37,7 @@
 @synthesize homeVisibility;
 @synthesize tempButton;
 @synthesize filter;
+@synthesize filterButton;
 
 SEL action; id target;
 
@@ -96,6 +97,7 @@ SEL action; id target;
 - (void)viewDidUnload
 {
     [self setFilter:nil];
+    [self setFilterButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -332,7 +334,8 @@ SEL action; id target;
     Language* lan = [Language instance];
     
     self.title = [lan translate:@"Wines List Title"];
-    self.filter.title = [lan translate:@"Filter"];
+    //self.filter.title = [lan translate:@"Filter"];
+    [self.filterButton setTitle: [lan translate:@"Filter"]];
 }
 
 - (IBAction)didPressHomeButton:(id)sender {
