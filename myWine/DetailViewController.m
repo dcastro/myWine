@@ -16,6 +16,9 @@
 @implementation DetailViewController
 
 @synthesize currentPopover;
+@synthesize search = _search;
+@synthesize sync = _sync;
+@synthesize help = _help;
 @synthesize detailItem = _detailItem;
 @synthesize detailDescriptionLabel = _detailDescriptionLabel;
 @synthesize masterPopoverController = _masterPopoverController;
@@ -58,6 +61,14 @@ SEL action; id target;
     UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background.png"]];
     [self.view insertSubview:background atIndex:0];
     
+    Language* lan = [Language instance];
+    [self.search setTitle:[lan translate:@"Search"] forState:UIControlStateNormal];
+    self.search.titleLabel.font = [UIFont fontWithName:@"DroidSerif-Bold" size:18];
+    [self.sync setTitle:[lan translate:@"Sync"] forState:UIControlStateNormal];
+    self.sync.titleLabel.font = [UIFont fontWithName:@"DroidSerif-Bold" size:18];
+    
+    self.help.title = [lan translate:@"Help"];
+    
     
     self.navigationItem.hidesBackButton = YES;
     [self configureView];
@@ -65,6 +76,9 @@ SEL action; id target;
 
 - (void)viewDidUnload
 {
+    [self setSearch:nil];
+    [self setSync:nil];
+    [self setHelp:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     self.detailDescriptionLabel = nil;

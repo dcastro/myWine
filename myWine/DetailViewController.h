@@ -27,6 +27,10 @@
 
 @property (weak, nonatomic) UIPopoverController *currentPopover;
 
+@property (strong, nonatomic) IBOutlet UIButton *search;
+@property (strong, nonatomic) IBOutlet UIButton *sync;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *help;
+
 @property (nonatomic, weak) id <DetailViewControllerDelegate> delegate;
 
 @end
