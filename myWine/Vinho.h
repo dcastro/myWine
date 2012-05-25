@@ -22,13 +22,13 @@
 @property (nonatomic, retain) TipoVinho *winetype;
 @property (nonatomic, copy) NSString *photo;
 @property (nonatomic,copy) NSMutableArray *provas;
-@property (nonatomic, copy) NSMutableArray* grapes;
+@property (nonatomic, copy) NSString* grapes;
 
 
 
 - (NSString*) description;
 - (NSString*) fullPrice;
 
-- (void) updateWithVinho:(Vinho*) vinho;
+- (BOOL) updateWithVinho:(Vinho*) vinho;
 
 @end

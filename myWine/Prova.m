@@ -10,6 +10,7 @@
 #import "Query.h"
 #import "Language.h"
 #import "Seccao.h"
+#import "SeccaoCaracteristica.h"
 
 @implementation Prova
 
@@ -19,8 +20,7 @@
 @synthesize comment = _comment; 
 @synthesize tasting_id = _tasting_id;
 @synthesize sections = _sections;
-@synthesize classification_choosen = _classification_choosen;
-@synthesize classifications = _classifications;
+@synthesize characteristic_sections = _characteristic_sections;
 
 
 - (NSMutableArray *) sections {
@@ -30,12 +30,11 @@
     return _sections;
 }
 
-
--(NSMutableArray *) classifications{
-    if (!_classifications) {
-        [self loadClassificationsFromBD];
+-(NSMutableArray *) characteristic_sections{
+    if (!_characteristic_sections) {
+        [self loadCharacteristicSectionsFromDB];
     }
-    return _classifications;
+    return _characteristic_sections;
 }
 
 
@@ -91,8 +90,9 @@
     
 }
 
--(BOOL)loadClassificationsFromBD{
-    _classifications = [[NSMutableArray alloc] init];
+
+- (BOOL)loadCharacteristicSectionsFromDB{
+    _characteristic_sections = [[NSMutableArray alloc] init];
     
     
     Query *query = [[Query alloc] init];
@@ -102,19 +102,22 @@
     Language *lan = [Language instance];
     switch (lan.selectedLanguage) {
         case FR:
-            querySQL = [NSString stringWithFormat:@"SELECT c.classification_id, c.weight ,c.name_fr\
-                        FROM Classification c, PossibleClassification ps\
-                        WHERE ps.classifiable_id = %d AND ps.classifiable_type = 'Tasting' AND ps.classification = c.classification;", _tasting_id];
+            querySQL = [NSString stringWithFormat:@"SELECT sc.section_id, sc.name_fr\
+                        FROM SectionCharacteristic sc\
+                        WHERE sc.tasting_id = %d \
+                        ORDER BY order_priority ASC;", _tasting_id];
             break;
             
-        case EN: querySQL =  [NSString stringWithFormat:@"SELECT c.classification_id, c.weight ,c.name_en\
-                              FROM Classification c, PossibleClassification ps\
-                              WHERE ps.classifiable_id = %d AND ps.classifiable_type = 'Tasting' AND ps.classification = c.classification;", _tasting_id];
+        case EN: querySQL =  [NSString stringWithFormat:@"SELECT sc.section_id, sc.name_en\
+                              FROM SectionCharacteristic sc\
+                              WHERE sc.tasting_id = %d \
+                              ORDER BY order_priority ASC;", _tasting_id];
             break;
             
-        case PT:querySQL =  [NSString stringWithFormat:@"SELECT c.classification_id, c.weight ,c.name_pt\
-                             FROM Classification c, PossibleClassification ps\
-                             WHERE ps.classifiable_id = %d AND ps.classifiable_type = 'Tasting' AND ps.classification = c.classification;", _tasting_id];        
+        case PT:querySQL =  [NSString stringWithFormat:@"SELECT sc.section_id, sc.name_pt\
+                             FROM SectionCharacteristic sc\
+                             WHERE sc.tasting_id = %d \
+                             ORDER BY order_priority ASC;", _tasting_id];          
             break;
             
         default:
@@ -127,12 +130,12 @@
     if(stmt != nil){
         while(sqlite3_step(stmt) == SQLITE_ROW)
         {
-            Classificacao * c = [[Classificacao alloc]init];
-            c.classification_id = sqlite3_column_int(stmt, 0);
-            c.weight = sqlite3_column_int(stmt, 1);
-            c.name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 2)];
+            SeccaoCaracteristica * sc = [[SeccaoCaracteristica alloc]init];
+            sc.sectioncharacteristic_id = sqlite3_column_int(stmt, 0);
+            sc.name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 1)];
             
-            [_classifications insertObject:c atIndex:0];
+            [_characteristic_sections insertObject:sc atIndex:0];
+            
         }
         
         [query finalizeQuery:stmt];
@@ -141,6 +144,5 @@
     else
         return FALSE;
 }
-
 
 @end

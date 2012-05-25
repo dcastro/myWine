@@ -8,10 +8,7 @@
 
 #import "Vinho.h"
 #import "Query.h"
-#import "Language.h"
 #import "Prova.h"
-#import "Classificacao.h"
-#import "Casta.h"
 #import "Utils.h"
 
 @implementation Vinho
@@ -39,42 +36,16 @@
     return _provas;
 }
 
--(NSMutableArray*)grapes {
-    if(_grapes){
-        [self loadCastasFromDB];
-    }
-    return _grapes;
-}
-
 - (BOOL) loadProvasFromDB {
     _provas = [[NSMutableArray alloc] init];
     
     
     Query *query = [[Query alloc] init];
     
-    NSString *querySQL;
+    NSString *querySQL = [NSString stringWithFormat:@"SELECT t.tasting_id, t.tasting_date, t.comment, t.latitude, t.longitude \
+                          FROM Tasting t \
+                          WHERE t.wine_id = %d AND t.state <> 3;", _wine_id ];
     
-    Language *lan = [Language instance];
-    switch (lan.selectedLanguage) {
-        case FR:
-            querySQL = [NSString stringWithFormat:@"SELECT t.tasting_id, t.tasting_date, t.comment, t.latitude, t.longitude,  c.classification_id, c.weight, c.name_fr\
-                        FROM Tasting t, Classification c\
-                        WHERE t.wine_id = %d AND t.classification_id = c.classification_id AND t.state <> 3;", _wine_id ];
-            break;
-            
-        case EN: querySQL =  [NSString stringWithFormat:@"SELECT t.tasting_id, t.tasting_date, t.comment, t.latitude, t.longitude,  c.classification_id, c.weight, c.name_en\
-                              FROM Tasting t, Classification c\
-                              WHERE t.wine_id = %d AND t.classification_id = c.classification_id AND t.state <> 3;", _wine_id ];
-            break;
-            
-        case PT:querySQL =  [NSString stringWithFormat:@"SELECT t.tasting_id, t.tasting_date, t.comment, t.latitude, t.longitude,  c.classification_id, c.weight, c.name_pt\
-                             FROM Tasting t, Classification c\
-                             WHERE t.wine_id = %d AND t.classification_id = c.classification_id AND t.state <> 3;", _wine_id ];            
-            break;
-            
-        default:
-            break;
-    }
         
     sqlite3_stmt *stmt = [query prepareForSingleQuery:querySQL];
     
@@ -90,18 +61,13 @@
             const unsigned char * comment = sqlite3_column_text(stmt, 2);
             if(comment != NULL){
                 tasting.comment = [NSString stringWithUTF8String:(const char *)comment];
+            }else {
+                tasting.comment = nil;
             }
             
             tasting.latitude = sqlite3_column_int(stmt, 3);
             tasting.longitude = sqlite3_column_double(stmt, 4);
-            
-            Classificacao *c = [[Classificacao alloc] init];
-            c.classification_id = sqlite3_column_int(stmt, 5);
-            c.weight = sqlite3_column_int(stmt, 6);
-            c.name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 7)];
-            
-            tasting.classification_choosen = c;
-            
+                        
             [_provas insertObject:tasting atIndex:0];
         }
         
@@ -115,62 +81,7 @@
 
 
 
-- (BOOL) loadCastasFromDB {
-    _grapes = [[NSMutableArray alloc] init];
-    
-    
-    Query *query = [[Query alloc] init];
-    
-    NSString *querySQL;
-    
-    Language *lan = [Language instance];
-    switch (lan.selectedLanguage) {
-        case FR:
-            querySQL = [NSString stringWithFormat:@"SELECT g.grape_id, g.name_fr\
-                        FROM Grape g, WineGrape wg\
-                        WHERE wg.wine_id = %d AND wg.grape_id = g.grape_id;", _wine_id ];
-            break;
-            
-        case EN: 
-            querySQL =  [NSString stringWithFormat:@"SELECT g.grape_id, g.name_en\
-                              FROM Grape g, WineGrape wg\
-                              WHERE wg.wine_id = %d AND wg.grape_id = g.grape_id;", _wine_id ];
-            break;
-            
-        case PT:
-            querySQL =  [NSString stringWithFormat:@"SELECT g.grape_id, g.name_pt\
-                             FROM Grape g, WineGrape wg\
-                             WHERE wg.wine_id = %d AND wg.grape_id = g.grape_id;", _wine_id ];            
-            break;
-            
-        default:
-            break;
-    }
-    
-    sqlite3_stmt *stmt = [query prepareForSingleQuery:querySQL];
-    
-    
-    if(stmt != nil){
-        while(sqlite3_step(stmt) == SQLITE_ROW)
-        {
-            Casta *grape = [[Casta alloc] init];
-            
-            grape.grape_id = sqlite3_column_int(stmt, 0);
-            grape.grape_name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 1)];  
-            
-            [_grapes insertObject:grape atIndex:0];
-        }
-        
-        [query finalizeQuery:stmt];
-        return TRUE;
-    }
-    else
-        return FALSE;
-    
-}
-
-
-- (void) updateWithVinho:(Vinho *)vinho {
+- (BOOL) updateWithVinho:(Vinho *)vinho {
     
     
     if (self.name != vinho.name)
@@ -253,8 +164,7 @@
     }
     
     
-#warning TODO: tratamento de erros
-    
+    return return_value;
     
 }
 

@@ -13,6 +13,5 @@
 @property (nonatomic, assign) int section_id;
 @property (nonatomic, copy) NSString * name;
 @property (nonatomic, strong) NSMutableArray * criteria;
-@property (nonatomic, copy) NSMutableArray * characteristics;
 
 @end

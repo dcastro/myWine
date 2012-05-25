@@ -10,7 +10,7 @@
 
 @interface Pais : NSObject
 
-@property (nonatomic) int id;
+@property (nonatomic, strong) NSString* id;
 @property (nonatomic, strong) NSString* name;
 @property (nonatomic, strong) NSMutableArray* regions;
 

@@ -35,10 +35,9 @@
     
     NSString *querySQL= [NSString stringWithFormat:@"SELECT r.region_id, r.name\
                          FROM Region r\
-                         WHERE r.country_id = %d",self.id];
-    
-#warning TODO:ver a cena do default
-              
+                         WHERE r.country_id = '%@'\
+                         ORDER BY r.default_selection ASC",self.id];
+                  
     sqlite3_stmt *stmt = [query prepareForSingleQuery:querySQL];
     
     
