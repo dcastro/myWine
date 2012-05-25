@@ -17,6 +17,7 @@
 @end
 
 @implementation VinhoViewController
+@synthesize swipeLeft = _swipeLeft;
 @synthesize producer_label = _producer_label;
 @synthesize producer_label_name = _producer_label_name;
 @synthesize year_label = _year_label;
@@ -32,6 +33,10 @@
 @synthesize wine_type_label = _wine_type_label;
 @synthesize price_label = _price_label;
 @synthesize price_value_label = _price_value_label;
+@synthesize currencyButton = _currencyButton;
+@synthesize countryButton = _countryButton;
+@synthesize regionButton = _regionButton;
+@synthesize WineTypeButton = _WineTypeButton;
 @synthesize detailItem = _detailItem;
 @synthesize masterPopoverController = _masterPopoverController;
 
@@ -45,6 +50,8 @@
 @synthesize editing = _editing;
 
 @synthesize delegate;
+
+@synthesize popover = _popover;
 
 @synthesize editableWine = _editableWine, country = _country;
 
@@ -121,6 +128,11 @@
     
     self.editButton.title = [lan translate:@"Edit"];
     
+    self.currencyButton.titleLabel.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
+    self.countryButton.titleLabel.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
+    self.regionButton.titleLabel.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
+    self.WineTypeButton.titleLabel.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
+    
     //set navigation bar title
     [self setTitle: [self.detailItem description]];
 
@@ -178,6 +190,7 @@
     [self.selectCountryButton setHidden:TRUE];
     [self.selectRegionButton setHidden:TRUE];
     [self.selectWineTypeButton setHidden:TRUE];
+    [self.selectCurrencyButton setHidden:TRUE];
 
 }
 
@@ -204,6 +217,11 @@
     [self setPrice_label:nil];
     [self setPrice_value_label:nil];
     [self setSelectCurrencyButton:nil];
+    [self setSwipeLeft:nil];
+    [self setCurrencyButton:nil];
+    [self setCountryButton:nil];
+    [self setRegionButton:nil];
+    [self setWineTypeButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -227,9 +245,10 @@
     }
     if([segue.identifier isEqualToString:@"vinhoToCurrency"]) {
         CurrencyViewController* cvc = (CurrencyViewController*) segue.destinationViewController;
-        Vinho* vinho = (Vinho*) self.detailItem;
-        cvc.selectedCurrency = vinho.currency;
+        cvc.selectedCurrency = self.editableWine.currency;
         cvc.delegate = self;
+        self.popover = [(UIStoryboardPopoverSegue *)segue popoverController];
+        
 
     }
     
@@ -250,6 +269,7 @@
     [self.navigationItem setLeftBarButtonItem:nil animated:YES];
     self.masterPopoverController = nil;
 }
+
 
 - (IBAction)toggleEdit:(id)sender {
 
@@ -370,6 +390,8 @@
     [self.wine_type_label setHidden:self.isEditing];
     [self.selectWineTypeButton setHidden:!self.isEditing];
     
+    [self.selectCurrencyButton setHidden:!self.isEditing];
+    
 }
 
 #pragma mark -
@@ -393,6 +415,20 @@
     }
     
     [self.navigationItem setLeftBarButtonItem:nil animated:YES];
+}
+
+- (IBAction)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer {
+    
+	CGPoint location = [recognizer locationInView:self.view];
+
+	
+    if (recognizer.direction == UISwipeGestureRecognizerDirectionLeft) {
+        NSLog(@"swipe left");
+    }
+    else {
+        NSLog(@"swipe left");
+    }
+
 }
 
 #pragma mark -
@@ -459,10 +495,16 @@
     [self.selectRegionButton setTitle:region.region_name forState:UIControlStateNormal];
 }
 
+#pragma mark - Currency Delegate Method
 - (void) currencyViewControllerDidSelect:(int) currency {
+    //sets the selected currency
     self.editableWine.currency = currency;
-    NSLog(@"Delegate: %i", currency);
+    
+    //sets the button text
     [self.selectCurrencyButton setTitle:currencyStr(self.editableWine.currency) forState:UIControlStateNormal];
+    
+    //dismisses the popover
+    [self.popover dismissPopoverAnimated:YES];
 }
 
 @end

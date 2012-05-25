@@ -183,11 +183,13 @@
         self.grapes = vinho.grapes;
     if (self.region != vinho.region)
         self.region = vinho.region;
+    if (self.currency != vinho.currency)
+        self.currency = vinho.currency;
     
     //TODO: actualizar na BD os atributos alterados
 #warning TODO FERNANDO: actualizar castas
 #warning TODO FERNANDO: actualizar regiao
-    
+#warning TODO FERNANDO: actualizar currency e (se ainda nao estiver a ser actualizado) o price
     Query *query = [[Query alloc] init];
     
     BOOL return_value = TRUE;

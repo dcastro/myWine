@@ -22,7 +22,7 @@
 
 @end
 
-@interface VinhoViewController : UIViewController <UISplitViewControllerDelegate, UITextFieldDelegate, ListaPaisesViewControllerDelegate, ListaRegioesViewControllerDelegate, CurrencyViewControllerDelegate>
+@interface VinhoViewController : UIViewController <UISplitViewControllerDelegate, UITextFieldDelegate,UIGestureRecognizerDelegate, ListaPaisesViewControllerDelegate, ListaRegioesViewControllerDelegate, CurrencyViewControllerDelegate>
 
 @property (strong, nonatomic) id detailItem;
 
@@ -43,6 +43,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *wine_type_label;
 @property (weak, nonatomic) IBOutlet UILabel *price_label;
 @property (weak, nonatomic) IBOutlet UILabel *price_value_label;
+@property (strong, nonatomic) IBOutlet UIButton *currencyButton;
+@property (strong, nonatomic) IBOutlet UIButton *countryButton;
+@property (strong, nonatomic) IBOutlet UIButton *regionButton;
+@property (strong, nonatomic) IBOutlet UIButton *WineTypeButton;
 
 @property (strong, nonatomic) UITextField* wine_name_text_field, *producer_text_field, *year_text_field, *grapes_text_field;
 
@@ -59,6 +63,12 @@
 
 @property (nonatomic, strong) Vinho* editableWine;
 @property (nonatomic, strong) Pais* country;
+@property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeLeft;
+
+- (IBAction)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer;
+
+@property (nonatomic, strong) UIPopoverController* popover;
+
 
 - (IBAction)toggleEdit:(id)sender;
 

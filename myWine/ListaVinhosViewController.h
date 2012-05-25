@@ -1,5 +1,5 @@
 //
-//  MasterViewController.h
+//  ListaVinhosViewController.h
 //  myWine
 //
 //  Created by Antonio Velasquez on 3/19/12.
