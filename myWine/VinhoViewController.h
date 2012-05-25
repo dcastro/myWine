@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "Vinho.h"
-#import "ListaVinhosViewController.h"
 #import "ListaPaisesViewController.h"
 #import "ListaRegioesViewController.h"
 #import "Language.h"

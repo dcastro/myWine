@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ListaVinhosViewController.h"
 #import "Language.h"
 
 @protocol DetailViewControllerDelegate <NSObject>
