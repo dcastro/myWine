@@ -14,6 +14,7 @@
 @property (nonatomic, copy) NSString* username;
 @property (nonatomic, copy) NSString* password;
 @property (nonatomic, copy) NSMutableArray* vinhos;
+@property (nonatomic, copy) NSMutableArray* tipoVinhos;
 @property (nonatomic, assign) int synced_at;
 
 @property (nonatomic) BOOL isValidated;
