@@ -332,6 +332,7 @@ SEL action; id target;
     Language* lan = [Language instance];
     
     self.title = [lan translate:@"Wines List Title"];
+    self.filter.title = [lan translate:@"Filter"];
 }
 
 - (IBAction)didPressHomeButton:(id)sender {

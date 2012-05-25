@@ -32,6 +32,10 @@
 @synthesize wine_type_label = _wine_type_label;
 @synthesize price_label = _price_label;
 @synthesize price_value_label = _price_value_label;
+@synthesize currencyButton = _currencyButton;
+@synthesize countryButton = _countryButton;
+@synthesize regionButton = _regionButton;
+@synthesize WineTypeButton = _WineTypeButton;
 @synthesize detailItem = _detailItem;
 @synthesize masterPopoverController = _masterPopoverController;
 
@@ -121,6 +125,11 @@
     
     self.editButton.title = [lan translate:@"Edit"];
     
+    self.currencyButton.titleLabel.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
+    self.countryButton.titleLabel.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
+    self.regionButton.titleLabel.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
+    self.WineTypeButton.titleLabel.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
+    
     //set navigation bar title
     [self setTitle: [self.detailItem description]];
 
@@ -204,6 +213,10 @@
     [self setPrice_label:nil];
     [self setPrice_value_label:nil];
     [self setSelectCurrencyButton:nil];
+    [self setCurrencyButton:nil];
+    [self setCountryButton:nil];
+    [self setRegionButton:nil];
+    [self setWineTypeButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
