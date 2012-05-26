@@ -265,17 +265,40 @@ const char  *databaseTables[] = {
     
     
     "INSERT INTO PossibleClassification VALUES (1,2,'Criterion');",
+    "INSERT INTO PossibleClassification VALUES (1,3,'Criterion');",
     "INSERT INTO PossibleClassification VALUES (1,4,'Criterion');",
+    
     "INSERT INTO PossibleClassification VALUES (2,3,'Criterion');",
     "INSERT INTO PossibleClassification VALUES (2,4,'Criterion');",
     "INSERT INTO PossibleClassification VALUES (2,5,'Criterion');",
     "INSERT INTO PossibleClassification VALUES (2,6,'Criterion');",
+    
+    "INSERT INTO PossibleClassification VALUES (3,4,'Criterion');",
+    "INSERT INTO PossibleClassification VALUES (3,5,'Criterion');",
     "INSERT INTO PossibleClassification VALUES (3,6,'Criterion');",
+    
+    "INSERT INTO PossibleClassification VALUES (4,2,'Criterion');",
+    "INSERT INTO PossibleClassification VALUES (4,3,'Criterion');",
     "INSERT INTO PossibleClassification VALUES (4,4,'Criterion');",
+    
     "INSERT INTO PossibleClassification VALUES (5,4,'Criterion');",
+    "INSERT INTO PossibleClassification VALUES (5,5,'Criterion');",
+    "INSERT INTO PossibleClassification VALUES (5,6,'Criterion');",
+    
+    "INSERT INTO PossibleClassification VALUES (6,3,'Criterion');",
+    "INSERT INTO PossibleClassification VALUES (6,4,'Criterion');",
     "INSERT INTO PossibleClassification VALUES (6,5,'Criterion');",
+    
+    "INSERT INTO PossibleClassification VALUES (1,8,'Characteristic');",
+    "INSERT INTO PossibleClassification VALUES (1,9,'Characteristic');",
     "INSERT INTO PossibleClassification VALUES (1,10,'Characteristic');",
+    
+    "INSERT INTO PossibleClassification VALUES (2,8,'Characteristic');",
+    "INSERT INTO PossibleClassification VALUES (2,9,'Characteristic');",
     "INSERT INTO PossibleClassification VALUES (2,10,'Characteristic');",
+    
+    "INSERT INTO PossibleClassification VALUES (3,9,'Characteristic');",
+    "INSERT INTO PossibleClassification VALUES (3,10,'Characteristic');",
     "INSERT INTO PossibleClassification VALUES (3,11,'Characteristic');",
     
     
@@ -290,15 +313,15 @@ const char  *databaseTables[] = {
 
     
     "INSERT INTO Criterion VALUES (1, 1, 1, 4, 'Clarity', 'Clarte', 'Limpidez');",
-    "INSERT INTO Criterion VALUES (2, 1, 2, 6, 'Color', 'Couleur', 'Cor');",
+    "INSERT INTO Criterion VALUES (2, 1, 2, 5, 'Color', 'Couleur', 'Cor');",
     "INSERT INTO Criterion VALUES (3, 3, 3, 6, 'Genuineness', 'Authenticite', 'Genuinidade');",
-    "INSERT INTO Criterion VALUES (4, 3, 4, 4, 'Intensity', 'Intensite', 'Intensidade');",
-    "INSERT INTO Criterion VALUES (5, 3, 5, 4, 'Persistence', 'Persistance', 'Persistencia');",
+    "INSERT INTO Criterion VALUES (4, 3, 4, 2, 'Intensity', 'Intensite', 'Intensidade');",
+    "INSERT INTO Criterion VALUES (5, 3, 5, 5, 'Persistence', 'Persistance', 'Persistencia');",
     "INSERT INTO Criterion VALUES (6, 3, 6, 5, 'Quality', 'Qualite', 'Qualidade');",
 
     
-    "INSERT INTO Characteristic VALUES (1, 1, 1, 10 , 'Genuineness', 'Authenticite', 'Genuinidade');",
-    "INSERT INTO Characteristic VALUES (2, 1, 2, 10 , 'Intensity', 'Intensite', 'Intensidade');",
+    "INSERT INTO Characteristic VALUES (1, 1, 1, 9 , 'Genuineness', 'Authenticite', 'Genuinidade');",
+    "INSERT INTO Characteristic VALUES (2, 1, 2, 8 , 'Intensity', 'Intensite', 'Intensidade');",
     "INSERT INTO Characteristic VALUES (3, 1, 3, 11, 'Quality', 'Qualite', 'Qualidade');",
 
     
