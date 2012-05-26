@@ -8,13 +8,16 @@
 
 #import "SyncViewController.h"
 #import "Sincronizacao.h"
+#import "Language.h"
 
 @interface SyncViewController ()
 
 @end
 
 @implementation SyncViewController
-@synthesize percentage_label;
+@synthesize description_label;
+@synthesize progress_label;
+@synthesize progress_bar;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -25,14 +28,55 @@
     return self;
 }
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    Language *lan = [Language instance];
+
+    
     UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background.png"]];
     [self.view insertSubview:background atIndex:0];
+    self.title = [lan translate:@"Synchronizing"];
     
+    self.description_label.text = [lan translate:@"Synchronization frase"];
+    self.description_label.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGE_FONT];
+    
+    self.progress_label.text = [NSString stringWithFormat:[lan translate:@"Synchronization step"], 3, 5];
+    self.progress_label.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
+
+    
+    [progress_bar setProgress:0.0];
+    
+    
+    [self startsync];
+    
+}
+
+- (void)viewDidUnload
+{
+    [self setDescription_label:nil];
+    [self setProgress_label:nil];
+    [self setProgress_bar:nil];
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+	return YES;
+}
+
+- (IBAction)cancel:(id)sender
+{
+	[self dismissModalViewControllerAnimated:YES];
+}
+
+
+
+- (void) startsync{
     receivedData = [[NSMutableData data]init];
     
     NSString *jsonRequest = @"{\"accessKey\":\"mywine\",\"userid\":\"mywine@cpcis.pt\",\"MyWines\":null}";
@@ -53,23 +97,8 @@
     if (!theConnection) {
         DebugLog(@"Connection Failed");
     }
-}
-
-- (void)viewDidUnload
-{
-    [self setPercentage_label:nil];
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-	return YES;
-}
-
-- (IBAction)cancel:(id)sender
-{
-	[self dismissModalViewControllerAnimated:YES];
+    
+    [progress_bar setProgress:0.2]; 
 }
 
 
@@ -87,6 +116,7 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
+    [progress_bar setProgress:0.50];
     
     NSError *jsonParsingError = nil;
     NSDictionary *ob = [NSJSONSerialization JSONObjectWithData:receivedData options:0 error:&jsonParsingError];
@@ -95,6 +125,7 @@
     
     DebugLog(@"JSON: %@", output);
     
+    [progress_bar setProgress:1.0];
     
 }
 

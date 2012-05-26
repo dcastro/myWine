@@ -231,7 +231,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.33459739960000001" green="0.01176470588" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <connections>
@@ -2211,7 +2211,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.33459739960000001" green="0.01176470588" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" title="Início" id="wZU-4M-9ue">
@@ -2419,10 +2419,10 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Por favor aguarde enquanto a aplicação é sincronizada" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="m8x-nO-M5s">
-                                <rect key="frame" x="40" y="193" width="460" height="48"/>
+                                <rect key="frame" x="40" y="335" width="460" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="K2L-m8-WbU">
@@ -2430,7 +2430,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Cancelar">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.33459739960000001" green="0.01176470588" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted">
@@ -2440,24 +2440,27 @@
                                     <action selector="cancel:" destination="cUh-or-q6J" eventType="touchUpInside" id="Ewo-5L-Djt"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" style="gray" id="IXL-8m-q7F">
-                                <rect key="frame" x="260" y="347" width="20" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </activityIndicatorView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="9yt-sW-Lja">
-                                <rect key="frame" x="249" y="266" width="42" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Passo 1 de 2 completo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="9yt-sW-Lja">
+                                <rect key="frame" x="182" y="419" width="176" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <progressView opaque="NO" contentMode="scaleToFill" progress="0.5" id="bXh-Qw-DBT">
+                                <rect key="frame" x="195" y="448" width="150" height="9"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="progressTintColor" red="0.33459739960000001" green="0.01176470588" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </progressView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.33459739960000001" green="0.01176470588" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" title="A sincronizar" id="oEX-0U-WvP"/>
                     <connections>
-                        <outlet property="percentage_label" destination="9yt-sW-Lja" id="Xc5-LS-Sds"/>
+                        <outlet property="description_label" destination="m8x-nO-M5s" id="894-FO-2vG"/>
+                        <outlet property="progress_bar" destination="bXh-Qw-DBT" id="17Y-oU-TRn"/>
+                        <outlet property="progress_label" destination="9yt-sW-Lja" id="tC1-fN-eTk"/>
                     </connections>
                 </viewController>
             </objects>
@@ -2500,6 +2503,11 @@
         </class>
         <class className="CriterionCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CriterionCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="classificationLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="classificationSlider" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+            </relationships>
         </class>
         <class className="CurrencyViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CurrencyViewController.h"/>
@@ -2612,7 +2620,9 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SyncViewController.h"/>
             <relationships>
                 <relationship kind="action" name="cancel:"/>
-                <relationship kind="outlet" name="percentage_label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="description_label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="progress_bar" candidateClass="UIProgressView"/>
+                <relationship kind="outlet" name="progress_label" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="VinhoViewController" superclassName="UIViewController">
@@ -2656,7 +2666,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="5EB-Zz-Uxs"/>
-        <segue reference="H31-UN-sUY"/>
-        <segue reference="Hqe-Hx-33H"/>
+        <segue reference="Obm-ls-lkJ"/>
+        <segue reference="Kqj-0D-4Kz"/>
     </inferredMetricsTieBreakers>
 </document>

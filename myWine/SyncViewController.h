@@ -12,8 +12,12 @@
     NSMutableData *receivedData;
 }
 
+@property (weak, nonatomic) IBOutlet UILabel *description_label;
+@property (weak, nonatomic) IBOutlet UILabel *progress_label;
+@property (weak, nonatomic) IBOutlet UIProgressView *progress_bar;
 
-@property (weak, nonatomic) IBOutlet UILabel *percentage_label;
+
+
 - (IBAction)cancel:(id)sender;
 
 @end
