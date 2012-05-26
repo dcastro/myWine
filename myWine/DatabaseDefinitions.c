@@ -326,11 +326,7 @@ const char  *databaseTables[] = {
     "INSERT INTO FormCharacteristic VALUES (3, 1, 3, 'Quality', 'Qualite', 'Qualidade');",
     
     
-    "INSERT INTO PossibleClassification VALUES (1,2,'FormTasting');",
-    "INSERT INTO PossibleClassification VALUES (1,3,'FormTasting');",
-    "INSERT INTO PossibleClassification VALUES (1,4,'FormTasting');",
-    "INSERT INTO PossibleClassification VALUES (1,5,'FormTasting');",
-    "INSERT INTO PossibleClassification VALUES (1,6,'FormTasting');",
+
     "INSERT INTO PossibleClassification VALUES (1,2,'FormCriterion');",
     "INSERT INTO PossibleClassification VALUES (1,4,'FormCriterion');",
     "INSERT INTO PossibleClassification VALUES (2,3,'FormCriterion');",
