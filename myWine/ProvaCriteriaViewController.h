@@ -15,5 +15,8 @@
 @interface ProvaCriteriaViewController : UITableViewController
 
 @property (strong, nonatomic) Prova* prova;
+@property (weak, nonatomic) IBOutlet UIScrollView *bottomScrollView;
+@property (weak, nonatomic) IBOutlet UILabel *commentContentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *commentLabel;
 
 @end

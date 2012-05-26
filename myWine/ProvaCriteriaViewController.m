@@ -7,6 +7,8 @@
 //
 
 #import "ProvaCriteriaViewController.h"
+#import "Language.h"
+#import <objc/runtime.h> 
 
 @interface ProvaCriteriaViewController ()
 
@@ -14,6 +16,9 @@
 
 @implementation ProvaCriteriaViewController
 @synthesize prova = _prova;
+@synthesize bottomScrollView = _bottomScrollView;
+@synthesize commentContentLabel = _commentContentLabel;
+@synthesize commentLabel = _commentLabel;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -33,10 +38,75 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    [self configureView];
+}
+
+- (void) configureView {
+    
+    [self styleLabel:self.commentLabel withTitle: [[Language instance] translate:@"Comment"]];
+    
+    [self.commentContentLabel setText: self.prova.comment];
+    self.commentContentLabel.numberOfLines = 0;
+    [self.commentContentLabel sizeToFit];
+    
+    
+    /*
+    NSArray* views = [[self tableView] subviews];
+    for(int i = 0; i < views.count; i++) {
+        const char* className = class_getName([[views objectAtIndex:i] class]);
+        NSLog(@"CLASS: %s", className);
+        
+        NSArray* views2 = [[views objectAtIndex:i] subviews];
+        for(int j = 0; j < views2.count; j++) {
+            const char* className = class_getName([[views2 objectAtIndex:j] class]);
+            NSLog(@"    CLASS: %s", className);
+        }
+
+        
+    }*/
+    
+}
+
+- (void) styleLabel:(UILabel*)label withTitle: (NSString*) title {
+    label.backgroundColor = [UIColor clearColor];
+    label.textColor = [UIColor colorWithHue:(136.0/360.0)  // Slightly bluish green
+                                 saturation:1.0
+                                 brightness:0.60
+                                      alpha:1.0];
+    label.shadowColor = [UIColor whiteColor];
+    label.shadowOffset = CGSizeMake(0.0, 1.0);
+    label.font = [UIFont boldSystemFontOfSize:16];
+    label.text = title;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    NSString *sectionTitle = [self tableView:tableView titleForHeaderInSection:section];
+    if (sectionTitle == nil) {
+        return nil;
+    }
+    
+    // Create label with section title
+    UILabel *label = [[UILabel alloc] init];
+    label.frame = CGRectMake(50, 6, 300, 30);
+    [self styleLabel:label withTitle:sectionTitle];
+    
+    
+    
+    // Create header view and add label as a subview
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
+    [view addSubview: label];
+    
+    return view;
+    
 }
 
 - (void)viewDidUnload
 {
+    [self setBottomScrollView:nil];
+    [self setCommentContentLabel:nil];
+    [self setCommentLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
