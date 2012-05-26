@@ -39,7 +39,10 @@
 
 - (void) configureView {
     [self.nameLabel setText:self.criterion.name];
-    [self.classificationLabel setText:self.criterion.classification_choosen.name];
+    [self.classificationLabel setText:self.criterion.classification_chosen.name];
+    [self.classificationSlider setMinimumValue: [self.criterion minWeight]]; 
+    [self.classificationSlider setMaximumValue: [self.criterion maxWeight]]; 
+    NSLog(@" MIN %i MAX %i", self.criterion.minWeight, self.criterion.maxWeight);
 }
 
 @end

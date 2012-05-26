@@ -14,4 +14,13 @@
 @synthesize name = _name;
 @synthesize weight = _weight;
 
+- (NSComparisonResult)compare:(Classificacao *)classification {
+    if ([self weight] < [classification weight])
+        return NSOrderedAscending;
+    else if ([self weight] > [classification weight])
+        return NSOrderedDescending;
+    else 
+        return NSOrderedSame;
+}
+
 @end

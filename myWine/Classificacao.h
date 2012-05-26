@@ -12,6 +12,9 @@
 
 @property (nonatomic, assign) int classification_id;
 @property (nonatomic, copy) NSString * name;
-@property (nonatomic, assign) int weight;
+@property (nonatomic, assign) NSInteger weight;
+
+
+- (NSComparisonResult)compare:(Classificacao *)classification;
 
 @end

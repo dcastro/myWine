@@ -15,7 +15,7 @@
 
 @synthesize name = _name;
 @synthesize criterion_id=_criterion_id;
-@synthesize classification_choosen = _classification_choosen;
+@synthesize classification_chosen = _classification_chosen;
 @synthesize classifications = _classifications;
 
 - (NSMutableArray *)classifications {
@@ -72,6 +72,8 @@
             [_classifications insertObject:c atIndex:0];
         }
         
+        [_classifications sortUsingSelector:@selector(compare:)];
+        
         [query finalizeQuery:stmt];
         return TRUE;
     }
@@ -82,6 +84,33 @@
 
 - (NSString*) description {
     return self.name;
+}
+
+- (int) minWeight {
+    if (!self.classifications.count) {
+        //NSLog(@"EMPTY CLASSIFC");
+        return 0;
+    }
+    return [[self.classifications objectAtIndex:0] weight];
+    
+    /*
+    int minVal = -1;
+    for (int i = 0; i < self.classifications.count; i++) {
+        Classificacao* classification = [self.classifications objectAtIndex:i];
+        if (classification.weight < minVal || minVal == -1)
+            minVal = classification.weight;
+        
+    }*/
+}
+
+
+- (int) maxWeight {
+    if (!self.classifications.count) {
+        //NSLog(@"EMPTY CLASSIFC");
+        return 0;
+    }
+    return [[self.classifications objectAtIndex:(self.classifications.count - 1)] weight];
+    
 }
 
 

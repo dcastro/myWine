@@ -12,10 +12,13 @@
 @interface Criterio : NSObject
 
 @property (nonatomic, assign) int criterion_id;
-@property (nonatomic, retain) Classificacao * classification_choosen;
+@property (nonatomic, retain) Classificacao * classification_chosen;
 @property (nonatomic, strong) NSString * name;
 @property (nonatomic, copy) NSMutableArray * classifications;
 
 - (NSString*) description;
+
+- (int) minWeight;
+- (int) maxWeight;
 
 @end
