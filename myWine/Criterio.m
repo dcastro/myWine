@@ -87,8 +87,7 @@
 }
 
 - (int) minWeight {
-    if (!self.classifications.count) {
-        //NSLog(@"EMPTY CLASSIFC");
+    if (self.classifications.count == 0) {
         return 0;
     }
     return [[self.classifications objectAtIndex:0] weight];
@@ -105,8 +104,7 @@
 
 
 - (int) maxWeight {
-    if (!self.classifications.count) {
-        //NSLog(@"EMPTY CLASSIFC");
+    if (self.classifications.count == 0) {
         return 0;
     }
     return [[self.classifications objectAtIndex:(self.classifications.count - 1)] weight];
