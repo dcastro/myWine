@@ -85,7 +85,7 @@
     [User createWithUsername: self.usernameInput.text Password: self.passwordInput.text];
     User *user = [User instance];
     
-    [user sync];
+#warning TODO: FERNANDO: sync
     //Vinho* vinho = [[Vinho alloc] init];
     //vinho.name = @"Testing";
     //[user.vinhos insertObject:vinho atIndex:0];

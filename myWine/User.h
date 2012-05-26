@@ -22,7 +22,6 @@
 @property (nonatomic) NSMutableArray* countries;
 
 
-- (void) sync;
 - (NSMutableArray*) vinhos;
 
 //singleton instance creators

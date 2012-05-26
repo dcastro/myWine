@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SyncViewController : UIViewController
+@interface SyncViewController : UIViewController{
+    NSMutableData *receivedData;
+}
+
 
 @property (weak, nonatomic) IBOutlet UILabel *percentage_label;
 - (IBAction)cancel:(id)sender;

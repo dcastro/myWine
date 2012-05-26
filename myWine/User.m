@@ -34,19 +34,6 @@ static User *sharedUser = nil;
     return sharedUser;
 }
 
-- (void) sync {
-    /**
-     * Login logic
-     * updated isValidated at the end
-     */
-    DebugLog([self description]);
-    
-    NSError * error;
-    Sincronizacao *s = [[Sincronizacao alloc] init];
-    [s sync:&error withPercentage:nil];
-    
-    
-}
 
 - (NSString *)description{
     return [NSString stringWithFormat:@"Username: %@, Password: %@, Synced_at: %d", self.username, self.password, self.synced_at];
