@@ -145,4 +145,16 @@
         return FALSE;
 }
 
+- (NSString*) fullDate {
+    NSDate* date = [[NSDate alloc] initWithTimeIntervalSince1970:self.tasting_date];
+
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    NSLocale* locale = [[Language instance] locale];
+    [dateFormatter setLocale:locale];
+    [dateFormatter setDateFormat:@"EEEE, dd MMMM yyyy     hh:mm a"];
+    NSString *dateString = [dateFormatter stringFromDate:date];
+
+    return dateString;
+}
+
 @end

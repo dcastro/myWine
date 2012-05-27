@@ -58,15 +58,19 @@
 
 - (void) configureView {
     
+    //header
+    NSString* wineNameLabelText = [[NSString alloc] initWithFormat:@"%@: %@", [[Language instance] translate:@"Tasting of"], self.vinho.name];
+    [self.wineNameLabel setText:wineNameLabelText];
+    
+    [self.dateLabel setText:[self.prova fullDate] ];
+    
+    
+    //footer
     [self styleLabel:self.commentLabel withTitle: [[Language instance] translate:@"Comment"]];
     
     [self.commentContentLabel setText: self.prova.comment];
     self.commentContentLabel.numberOfLines = 0;
     [self.commentContentLabel sizeToFit];
-    
-    NSString* wineNameLabelText = [[NSString alloc] initWithFormat:@"%@: %@", [[Language instance] translate:@"Tasting of"], self.vinho.name];
-    [self.wineNameLabel setText:wineNameLabelText];
-    
     
     
     /*

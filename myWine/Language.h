@@ -19,6 +19,7 @@
 + (id)instance;
 -(NSString*) translate:(NSString*) key;
 -(void) setLang:(int) lang;
+-(NSLocale*) locale;
 
 
 @end

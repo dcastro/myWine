@@ -18,6 +18,6 @@
 @property (nonatomic,strong) NSMutableArray *sections;
 @property (nonatomic,strong) NSMutableArray *characteristic_sections;
 
-
+- (NSString*) fullDate;
 
 @end

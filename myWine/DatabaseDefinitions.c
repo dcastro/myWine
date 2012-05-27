@@ -302,7 +302,7 @@ const char  *databaseTables[] = {
     "INSERT INTO PossibleClassification VALUES (3,11,'Characteristic');",
     
     
-    "INSERT INTO Tasting VALUES (1, 1, 1000000, 'muito bom este negocio....', 27.0, 27.0, 0);",
+    "INSERT INTO Tasting VALUES (1, 1, 1338154961, 'muito bom este negocio....', 27.0, 27.0, 0);",
     
     
     "INSERT INTO Section VALUES (1,1,2,'View', 'Voir', 'Vista');",

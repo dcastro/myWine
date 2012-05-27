@@ -79,6 +79,23 @@ static Language *sharedMyLanguage = nil;
     }
 }
 
+-(NSLocale*) locale {
+    NSLocale* locale;
+    
+    switch(selectedLanguage) {
+        case EN:
+            locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+            break;
+        case FR:
+            locale = [[NSLocale alloc] initWithLocaleIdentifier:@"fr_FR"];
+            break;
+        case PT:
+            locale = [[NSLocale alloc] initWithLocaleIdentifier:@"pt_PT"];
+            break;
+    }
+    
+    return locale;
+}
 
 
 
