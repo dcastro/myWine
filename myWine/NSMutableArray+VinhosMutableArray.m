@@ -23,7 +23,16 @@
 #warning TODO: FERNANDO: faltam os novos campos
     
     NSString *querySQL = [NSString stringWithFormat:@"INSERT INTO Wine VALUES ((SELECT MAX (wine_id) FROM Wine)+1, %@, %d, %d, NULL, %@, %d, NULL, %@, %@, %f); SELECT MAX(wine_id) FROM Wine;", 
-                          user.username, vinho.region.region_id, vinho.winetype.winetype_id, vinho.name, vinho.year,  vinho.producer, vinho.currency, vinho.price, 1];
+                          user.username, 
+                          vinho.region.region_id,
+                          vinho.winetype.winetype_id, 
+                          vinho.name, 
+                          vinho.year,  
+                          vinho.producer, 
+                          vinho.currency, 
+                          vinho.price, 1];
+    
+    DebugLog(querySQL);
     
     sqlite3_stmt * stmt = [query prepareForSingleQuery:querySQL];
     

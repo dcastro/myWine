@@ -36,6 +36,9 @@
 }
 
 
+
+
+
 -(BOOL)parseData:(NSMutableData *)receivedData{
     
     contactDB = [query beginTransaction];
@@ -73,13 +76,25 @@
     }
     
     
-        
-        
+    if([receivedJSON objectForKey:@"wine_types"]){
+        if(![self parseWineTypes:[receivedJSON objectForKey:@"wine_types"]]){
+            [query rollbackTransaction];
+            return FALSE; 
+        }
+    }
     
-    
-    
+
     
     [query endTransaction];
+    
+    return TRUE;
+}
+
+
+
+
+
+-(BOOL)parseWineTypes:(NSArray *) winetypes {
     
     return TRUE;
 }
@@ -88,8 +103,8 @@
 -(BOOL)parseCountries:(NSArray *) countries{
     
     sqlite3_stmt *stmt;
-    NSString * querySQL;
-    NSString * country_id;
+    NSString * querySQL = nil;
+    NSString * country_id = nil;
 
     
     for (int i = 0; i < [countries count]; i++) {
@@ -154,42 +169,5 @@
     
     return TRUE;
 }
-
-
--(NSMutableDictionary *)buidRequestNewWines{
-    return Nil;
-    
-}
-
-
-
--(NSMutableDictionary *)buildRequestNewTastings{
-    return Nil;
-}
-
-
-
--(NSMutableDictionary *)buildRequestDeleted{
-    return Nil;
-}
-
-
-
--(NSMutableDictionary *)buildRequestUpdatedWines{
-    return Nil;
-}
-
-
-
--(BOOL)processResponseDeleted:(NSDictionary *)deleted{
-    return TRUE;
-}
-
-
-
--(BOOL)processResponseCountries:(NSArray *)countries{
-    return TRUE;
-}
-
 
 @end

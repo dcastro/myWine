@@ -107,6 +107,7 @@
     char * errMsg;
     
 #warning TODO: Fernando tipo de vinho
+#warning TODO: Fernando conflito com foreign key se nao mudar regiao...
     
     
     NSString *querySQL = [NSString stringWithFormat:@"SELECT state FROM wine WHERE wine_id = %d", self.wine_id];
