@@ -16,6 +16,9 @@
 
 @implementation SubstitutableTabBarControllerViewController
 
+@synthesize vinho = _vinho, prova = _prova;
+@synthesize editButton = _editButton;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -29,10 +32,14 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    [self setTitle: self.vinho.name];
+    [self.editButton setTitle:[[Language instance] translate:@"Edit"]];
 }
 
 - (void)viewDidUnload
 {
+    [self setEditButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }

@@ -7,9 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Vinho.h"
+#import "Prova.h"
 
 @protocol SubstitutableDetailViewController;
 
 @interface SubstitutableTabBarControllerViewController : UITabBarController <SubstitutableDetailViewController>
+
+@property (strong, nonatomic) Vinho* vinho;
+@property (strong, nonatomic) Prova* prova;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
 
 @end

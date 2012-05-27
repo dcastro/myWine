@@ -16,9 +16,13 @@
 
 @implementation ProvaCriteriaViewController
 @synthesize prova = _prova;
+@synthesize vinho = _vinho;
 @synthesize bottomScrollView = _bottomScrollView;
+@synthesize upperView = _upperView;
 @synthesize commentContentLabel = _commentContentLabel;
 @synthesize commentLabel = _commentLabel;
+@synthesize wineNameLabel = _wineNameLabel;
+@synthesize dateLabel = _dateLabel;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -39,7 +43,17 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
+    
+    //Makes upperView's background transparent
+    [self.upperView setBackgroundColor:[UIColor clearColor]];
+    
+    //Fetch the data objects from the tab bar parent
+    SubstitutableTabBarControllerViewController* tabBarController = (SubstitutableTabBarControllerViewController*) [self tabBarController];
+    self.vinho = [tabBarController vinho];
+    self.prova = [tabBarController prova];
+    
     [self configureView];
+    
 }
 
 - (void) configureView {
@@ -49,6 +63,10 @@
     [self.commentContentLabel setText: self.prova.comment];
     self.commentContentLabel.numberOfLines = 0;
     [self.commentContentLabel sizeToFit];
+    
+    NSString* wineNameLabelText = [[NSString alloc] initWithFormat:@"%@: %@", [[Language instance] translate:@"Tasting of"], self.vinho.name];
+    [self.wineNameLabel setText:wineNameLabelText];
+    
     
     
     /*
@@ -107,6 +125,9 @@
     [self setBottomScrollView:nil];
     [self setCommentContentLabel:nil];
     [self setCommentLabel:nil];
+    [self setUpperView:nil];
+    [self setWineNameLabel:nil];
+    [self setDateLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

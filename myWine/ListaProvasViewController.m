@@ -15,6 +15,7 @@
 @implementation ListaProvasViewController
 @synthesize provaViewController = _provaViewController;
 @synthesize provas = _provas;
+@synthesize vinho = _vinho;
 
 @synthesize rootPopoverButtonItem, popoverController, splitViewController;
 
@@ -77,11 +78,13 @@
  
     if ([segue.identifier isEqualToString:@"showProva"]) {
         
-        UITabBarController* tabBarController = (UITabBarController*) [segue.destinationViewController topViewController];
+        SubstitutableTabBarControllerViewController* tabBarController = (SubstitutableTabBarControllerViewController*) [segue.destinationViewController topViewController];
         Prova* prova = [_provas objectAtIndex:[[self.tableView indexPathForSelectedRow] row]];
         
-        ProvaCriteriaViewController* pcvc = (ProvaCriteriaViewController*) [[tabBarController viewControllers] objectAtIndex:0];
-        pcvc.prova = prova;
+        //ProvaCriteriaViewController* pcvc = (ProvaCriteriaViewController*) [[tabBarController viewControllers] objectAtIndex:0];
+        //pcvc.prova = prova;
+        tabBarController.vinho = self.vinho;
+        tabBarController.prova = prova;
         
         ProvaViewController* pvc = (ProvaViewController*) [[tabBarController viewControllers] objectAtIndex:1];  //(ProvaViewController*) [segue.destinationViewController topViewController];
         pvc.detailItem = prova;

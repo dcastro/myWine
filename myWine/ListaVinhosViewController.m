@@ -115,6 +115,7 @@ SEL action; id target;
         ListaProvasViewController* lpvc = (ListaProvasViewController*) [segue destinationViewController ];
         
         Vinho* vinho = [self.vinhos objectAtIndex:_index.row];
+        lpvc.vinho = vinho;
         lpvc.provas = vinho.provas;
         
         lpvc.rootPopoverButtonItem = self.rootPopoverButtonItem;

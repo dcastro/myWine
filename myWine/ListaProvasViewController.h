@@ -12,6 +12,7 @@
 #import "Prova.h"
 #import "ProvaCriteriaViewController.h"
 #import "NSMutableArray+ProvasMutableArray.h"
+#import "SubstitutableTabBarControllerViewController.h"
 
 @class ProvaViewController;
 
@@ -26,6 +27,7 @@
 @property (strong, nonatomic) ProvaViewController *provaViewController;
 
 @property (strong, nonatomic) NSMutableArray* provas; 
+@property (strong, nonatomic) Vinho* vinho;
 
 @property (nonatomic, strong) UISplitViewController *splitViewController;
 
