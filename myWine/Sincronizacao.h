@@ -7,8 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Query.h"
+#import "User.h"
 
-@interface Sincronizacao : NSObject
+@interface Sincronizacao : NSObject{
+    Query * query;
+    sqlite3 ** contactDB;
+    User *user;
+}
 
 
 -(NSString *)buildRequest:(NSError **) error;

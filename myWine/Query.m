@@ -74,7 +74,7 @@
 
 
 
--(sqlite3 **)beginTransation{
+-(sqlite3 **)beginTransaction{
     const char* dbpath = [db.databasePath UTF8String];
     
     if (sqlite3_open(dbpath, &contactDB) == SQLITE_OK){
@@ -100,7 +100,7 @@
 
 
 
--(BOOL)endTransation{
+-(BOOL)endTransaction{
     char *errMsg;
     if(sqlite3_exec(contactDB, "Commit Transaction;", NULL, NULL, &errMsg) != SQLITE_OK){
         DebugLog(@"Could not commit transaction: %s", errMsg);
@@ -114,7 +114,7 @@
 }
 
 
--(BOOL)rollbackTransation{
+-(BOOL)rollbackTransaction{
     char *errMsg;
     if(sqlite3_exec(contactDB, "Rollback Transaction;", NULL, NULL, &errMsg) != SQLITE_OK){
         DebugLog(@"Could not rollback transaction: %s", errMsg);

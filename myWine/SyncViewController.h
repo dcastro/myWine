@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "Language.h"
+#import "Sincronizacao.h"
 
 @interface SyncViewController : UIViewController{
     NSMutableData *receivedData;
     Language *lan;
+    Sincronizacao * sync;
 }
 
 @property (weak, nonatomic) IBOutlet UILabel *description_label;

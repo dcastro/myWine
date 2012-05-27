@@ -35,6 +35,7 @@
 	// Do any additional setup after loading the view.
     
     lan = [Language instance];
+    sync = [[Sincronizacao alloc]init];
 
     
     UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background.png"]];
@@ -120,17 +121,26 @@
     self.progress_label.Text=[NSString stringWithFormat:[lan translate:@"Synchronization step"], 2,3];
     [progress_bar setProgress:0.50];
     
-    NSError *jsonParsingError = nil;
-    NSDictionary *ob = [NSJSONSerialization JSONObjectWithData:receivedData options:0 error:&jsonParsingError];
-    
-    NSString *output = [NSString stringWithFormat:@"%@",  ob];
-    
-    DebugLog(@"JSON: %@", output);
+    if(![sync parseData:receivedData]){
+#warning FERNANDO: mostrar aviso
+        return;
+    };
     
     [progress_bar setProgress:1.0];
     self.progress_label.Text=[NSString stringWithFormat:[lan translate:@"Synchronization step"], 3,3];
 
     
+}
+
+
+
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{    
+    // inform the user
+    NSLog(@"Connection failed! Error - %@ %@",
+          [error localizedDescription],
+          [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]);
 }
 
 @end

@@ -56,16 +56,16 @@
 /**
  * Opens the database and prepares it to a transaction.
  */
--(sqlite3 **)beginTransation;
+-(sqlite3 **)beginTransaction;
 
 
 
 /**
  *Finalizes the database transations and commits changes. Closes the connection to the database.
  */
--(BOOL)endTransation;
+-(BOOL)endTransaction;
 
 
--(BOOL)rollbackTransation;
+-(BOOL)rollbackTransaction;
 
 @end
