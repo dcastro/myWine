@@ -12,14 +12,15 @@
 
 @implementation NSMutableArray (VinhosMutableArray)
 
--(void) insertVinho:(Vinho*) vinho atIndex:(NSUInteger)index {
+-(BOOL) insertVinho:(Vinho*) vinho atIndex:(NSUInteger)index {
     
     User * user = [User instance];
     
     Query *query = [[Query alloc] init];
     
-    #warning TODO: falta a foto
-    #warning TODO: alterar para suportar autoincrement
+    #warning TODO: FERNANDO: falta a foto
+    #warning TODO: FERNANDO: alterar para suportar autoincrement
+#warning TODO: FERNANDO: faltam os novos campos
     
     NSString *querySQL = [NSString stringWithFormat:@"INSERT INTO Wine VALUES ((SELECT MAX (wine_id) FROM Wine)+1, %@, %d, %d, NULL, %@, %d, NULL, %@, %@, %f); SELECT MAX(wine_id) FROM Wine;", 
                           user.username, vinho.region.region_id, vinho.winetype.winetype_id, vinho.name, vinho.year,  vinho.producer, vinho.currency, vinho.price, 1];
@@ -35,11 +36,12 @@
         [query finalizeQuery:stmt];
         
         [self insertObject:vinho atIndex:index];
+        return TRUE;
 
+    }else {
+        return FALSE;
     }
     
-#warning TODO: tratar em caso de erro
-
 }
 
 
@@ -110,9 +112,6 @@
         [self removeObjectAtIndex:index];
     
     return return_value;
-    
-    
-#warning TODO:tratamento de erros
     
 }
 

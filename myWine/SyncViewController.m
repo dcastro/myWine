@@ -34,7 +34,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    Language *lan = [Language instance];
+    lan = [Language instance];
 
     
     UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background.png"]];
@@ -44,7 +44,7 @@
     self.description_label.text = [lan translate:@"Synchronization frase"];
     self.description_label.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGE_FONT];
     
-    self.progress_label.text = [NSString stringWithFormat:[lan translate:@"Synchronization step"], 3, 5];
+    self.progress_label.Text=[NSString stringWithFormat:[lan translate:@"Synchronization step"], 0,3];
     self.progress_label.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
 
     
@@ -98,6 +98,7 @@
         DebugLog(@"Connection Failed");
     }
     
+    self.progress_label.Text=[NSString stringWithFormat:[lan translate:@"Synchronization step"], 1,3];
     [progress_bar setProgress:0.2]; 
 }
 
@@ -116,6 +117,7 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
+    self.progress_label.Text=[NSString stringWithFormat:[lan translate:@"Synchronization step"], 2,3];
     [progress_bar setProgress:0.50];
     
     NSError *jsonParsingError = nil;
@@ -126,6 +128,8 @@
     DebugLog(@"JSON: %@", output);
     
     [progress_bar setProgress:1.0];
+    self.progress_label.Text=[NSString stringWithFormat:[lan translate:@"Synchronization step"], 3,3];
+
     
 }
 

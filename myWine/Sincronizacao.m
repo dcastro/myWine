@@ -7,13 +7,36 @@
 //
 
 #import "Sincronizacao.h"
+#import "User.h"
 
 @implementation Sincronizacao
 
 
 
 -(NSString *)buildRequest:(NSError **) error{
-    return nil;
+    
+    User *u = [User instance];
+    NSString * synced_at = nil;
+    
+    
+    NSMutableDictionary * requestData = [NSMutableDictionary dictionaryWithObjectsAndKeys:u.username,@"username" ,u.password, @"password" , u.synced_at, @"synced_at" , nil];
+    
+    
+    
+#warning TODO: FERNANDO fazer o resto
+    
+    
+    
+    
+    //conversao para string
+    NSError * jsonErr = nil;
+    NSData * data = [NSJSONSerialization dataWithJSONObject:requestData options:NSJSONWritingPrettyPrinted error:error];
+    
+    if(error){
+        return nil;
+    }else {
+        return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    }
 }
 
 

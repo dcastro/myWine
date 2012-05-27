@@ -11,7 +11,7 @@
 
 @implementation NSMutableArray (ProvasMutableArray)
 
-- (void) insertProva:(Prova*)prova atIndex:(NSUInteger)index {
+- (BOOL) insertProva:(Prova*)prova atIndex:(NSUInteger)index {
     #warning TODO: completar este metodo
 }
 

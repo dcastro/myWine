@@ -11,7 +11,7 @@
 
 @interface NSMutableArray (VinhosMutableArray)
 
--(void) insertVinho:(Vinho*)vinho atIndex:(NSUInteger)index;
+-(BOOL) insertVinho:(Vinho*)vinho atIndex:(NSUInteger)index;
     
 -(BOOL) removeVinhoAtIndex:(NSUInteger) index;
 

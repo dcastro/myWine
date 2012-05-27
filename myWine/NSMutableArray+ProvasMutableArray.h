@@ -11,7 +11,7 @@
 
 @interface NSMutableArray (ProvasMutableArray)
 
--(void) insertProva:(Prova*)prova atIndex:(NSUInteger)index;
+-(BOOL) insertProva:(Prova*)prova atIndex:(NSUInteger)index;
 
 -(BOOL) removeProvaAtIndex:(NSUInteger) index;
 
