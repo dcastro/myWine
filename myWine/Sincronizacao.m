@@ -87,8 +87,7 @@
 
 -(BOOL)parseCountries:(NSArray *) countries{
     
-    BOOL return_value = TRUE;
-    sqlite3_stmt    *stmt;
+    sqlite3_stmt *stmt;
     NSString * querySQL;
     NSString * country_id;
 
@@ -106,6 +105,7 @@
         if (sqlite3_prepare_v2(*contactDB, query_stmt, -1, &stmt, NULL) == SQLITE_OK){
                 if(sqlite3_step(stmt) == SQLITE_ROW){
                     exists = TRUE;
+                    sqlite3_finalize(stmt);
                 }
             }else{
                 DebugLog(@"Query with error: %s", query_stmt);
@@ -132,14 +132,27 @@
         
         NSArray * regionsJSON = [countryWithRegionsJSON objectForKey:@"region"];
         for (int k = 0; k < [regionsJSON count]; k++) {
-#warning TODO: FERNANDO completar
+            NSDictionary *regionJSON = [regionsJSON objectAtIndex:k];
+#warning TODO: FERNANDO: ver default
+            querySQL = [NSString stringWithFormat:@"INSERT INTO Region VALUES (\'%@\', \'%@\', 0, \'%@\');", 
+                        [regionJSON objectForKey:@"code"],
+                        country_id,
+                        [regionJSON objectForKey:@"name"]];
+            
+            char *errMsg;
+            if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+                DebugLog(@"%s", errMsg);
+                sqlite3_free(errMsg);
+                return FALSE;
+            }
+
         }
         
         
     }
     
     
-    return return_value;
+    return TRUE;
 }
 
 
