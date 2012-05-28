@@ -19,5 +19,6 @@
 @property (nonatomic,strong) NSMutableArray *characteristic_sections;
 
 - (NSString*) fullDate;
+- (NSString*) shortDate;
 
 @end

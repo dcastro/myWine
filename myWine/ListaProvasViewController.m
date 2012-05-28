@@ -147,7 +147,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Prova"];
     
     Prova *object = [_provas objectAtIndex:indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%d", object.tasting_date];
+    cell.textLabel.text = object.shortDate;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", object.tasting_id];
 
     return cell;

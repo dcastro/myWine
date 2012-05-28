@@ -157,4 +157,17 @@
     return dateString;
 }
 
+
+- (NSString*) shortDate {
+    NSDate* date = [[NSDate alloc] initWithTimeIntervalSince1970:self.tasting_date];
+
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    NSLocale* locale = [[Language instance] locale];
+    [dateFormatter setLocale:locale];
+    [dateFormatter setDateFormat:@"dd/MM/YYYY hh:mm a"];
+    NSString *dateString = [dateFormatter stringFromDate:date];
+
+    return dateString;
+}
+
 @end
