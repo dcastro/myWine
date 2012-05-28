@@ -14,6 +14,21 @@
 		65846634156034BE003CB644 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9C59FFC1517A78500A3F8C5 /* Foundation.framework */; };
 		6584663A156034BE003CB644 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 65846638156034BE003CB644 /* InfoPlist.strings */; };
 		6584663D156034BE003CB644 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6584663C156034BE003CB644 /* Tests.m */; };
+		65EFEBB71573C9770087F155 /* material mywine-03.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EFEBA81573C9770087F155 /* material mywine-03.png */; };
+		65EFEBB81573C9770087F155 /* material mywine-04.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EFEBA91573C9770087F155 /* material mywine-04.png */; };
+		65EFEBB91573C9770087F155 /* material mywine-05.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EFEBAA1573C9770087F155 /* material mywine-05.png */; };
+		65EFEBBA1573C9770087F155 /* material mywine-06.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EFEBAB1573C9770087F155 /* material mywine-06.png */; };
+		65EFEBBB1573C9770087F155 /* material mywine-07.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EFEBAC1573C9770087F155 /* material mywine-07.png */; };
+		65EFEBBC1573C9770087F155 /* material mywine-08.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EFEBAD1573C9770087F155 /* material mywine-08.png */; };
+		65EFEBBD1573C9770087F155 /* material mywine-09.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EFEBAE1573C9770087F155 /* material mywine-09.png */; };
+		65EFEBBE1573C9770087F155 /* material mywine-10.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EFEBAF1573C9770087F155 /* material mywine-10.png */; };
+		65EFEBBF1573C9770087F155 /* material mywine-11.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EFEBB01573C9770087F155 /* material mywine-11.png */; };
+		65EFEBC01573C9770087F155 /* material mywine-12.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EFEBB11573C9770087F155 /* material mywine-12.png */; };
+		65EFEBC11573C9770087F155 /* material mywine-13.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EFEBB21573C9770087F155 /* material mywine-13.png */; };
+		65EFEBC21573C9770087F155 /* material mywine-14.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EFEBB31573C9770087F155 /* material mywine-14.png */; };
+		65EFEBC31573C9770087F155 /* material mywine-15.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EFEBB41573C9770087F155 /* material mywine-15.png */; };
+		65EFEBC41573C9770087F155 /* material mywine-16.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EFEBB51573C9770087F155 /* material mywine-16.png */; };
+		65EFEBC51573C9770087F155 /* material mywine-17.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EFEBB61573C9770087F155 /* material mywine-17.png */; };
 		A0C66470155448CC004C798E /* ListaRegioesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C6646F155448CC004C798E /* ListaRegioesViewController.m */; };
 		A975188315191F3700EAC591 /* ProvaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A975188215191F3700EAC591 /* ProvaViewController.m */; };
 		A97583661519F60C009B5F68 /* inicial.png in Resources */ = {isa = PBXBuildFile; fileRef = A97583651519F60C009B5F68 /* inicial.png */; };
@@ -107,6 +122,21 @@
 		6584663B156034BE003CB644 /* Tests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tests.h; sourceTree = "<group>"; };
 		6584663C156034BE003CB644 /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		6584663E156034BE003CB644 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
+		65EFEBA81573C9770087F155 /* material mywine-03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "material mywine-03.png"; sourceTree = "<group>"; };
+		65EFEBA91573C9770087F155 /* material mywine-04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "material mywine-04.png"; sourceTree = "<group>"; };
+		65EFEBAA1573C9770087F155 /* material mywine-05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "material mywine-05.png"; sourceTree = "<group>"; };
+		65EFEBAB1573C9770087F155 /* material mywine-06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "material mywine-06.png"; sourceTree = "<group>"; };
+		65EFEBAC1573C9770087F155 /* material mywine-07.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "material mywine-07.png"; sourceTree = "<group>"; };
+		65EFEBAD1573C9770087F155 /* material mywine-08.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "material mywine-08.png"; sourceTree = "<group>"; };
+		65EFEBAE1573C9770087F155 /* material mywine-09.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "material mywine-09.png"; sourceTree = "<group>"; };
+		65EFEBAF1573C9770087F155 /* material mywine-10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "material mywine-10.png"; sourceTree = "<group>"; };
+		65EFEBB01573C9770087F155 /* material mywine-11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "material mywine-11.png"; sourceTree = "<group>"; };
+		65EFEBB11573C9770087F155 /* material mywine-12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "material mywine-12.png"; sourceTree = "<group>"; };
+		65EFEBB21573C9770087F155 /* material mywine-13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "material mywine-13.png"; sourceTree = "<group>"; };
+		65EFEBB31573C9770087F155 /* material mywine-14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "material mywine-14.png"; sourceTree = "<group>"; };
+		65EFEBB41573C9770087F155 /* material mywine-15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "material mywine-15.png"; sourceTree = "<group>"; };
+		65EFEBB51573C9770087F155 /* material mywine-16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "material mywine-16.png"; sourceTree = "<group>"; };
+		65EFEBB61573C9770087F155 /* material mywine-17.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "material mywine-17.png"; sourceTree = "<group>"; };
 		A0C6646E155448CC004C798E /* ListaRegioesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListaRegioesViewController.h; sourceTree = "<group>"; };
 		A0C6646F155448CC004C798E /* ListaRegioesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListaRegioesViewController.m; sourceTree = "<group>"; };
 		A975188115191F3700EAC591 /* ProvaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProvaViewController.h; sourceTree = "<group>"; };
@@ -378,6 +408,21 @@
 		A9C5A01A1517A7EF00A3F8C5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				65EFEBA81573C9770087F155 /* material mywine-03.png */,
+				65EFEBA91573C9770087F155 /* material mywine-04.png */,
+				65EFEBAA1573C9770087F155 /* material mywine-05.png */,
+				65EFEBAB1573C9770087F155 /* material mywine-06.png */,
+				65EFEBAC1573C9770087F155 /* material mywine-07.png */,
+				65EFEBAD1573C9770087F155 /* material mywine-08.png */,
+				65EFEBAE1573C9770087F155 /* material mywine-09.png */,
+				65EFEBAF1573C9770087F155 /* material mywine-10.png */,
+				65EFEBB01573C9770087F155 /* material mywine-11.png */,
+				65EFEBB11573C9770087F155 /* material mywine-12.png */,
+				65EFEBB21573C9770087F155 /* material mywine-13.png */,
+				65EFEBB31573C9770087F155 /* material mywine-14.png */,
+				65EFEBB41573C9770087F155 /* material mywine-15.png */,
+				65EFEBB51573C9770087F155 /* material mywine-16.png */,
+				65EFEBB61573C9770087F155 /* material mywine-17.png */,
 				65826F4D1566629300C3D2AD /* background.png */,
 				65826F4E1566629300C3D2AD /* logo.png */,
 				D3231D9D15480DF700F09BAC /* DroidSerif-Bold.ttf */,
@@ -590,6 +635,21 @@
 				65826F4F1566629300C3D2AD /* background.png in Resources */,
 				65826F501566629300C3D2AD /* logo.png in Resources */,
 				DA019F531570400E00CC589A /* CriterionCell.xib in Resources */,
+				65EFEBB71573C9770087F155 /* material mywine-03.png in Resources */,
+				65EFEBB81573C9770087F155 /* material mywine-04.png in Resources */,
+				65EFEBB91573C9770087F155 /* material mywine-05.png in Resources */,
+				65EFEBBA1573C9770087F155 /* material mywine-06.png in Resources */,
+				65EFEBBB1573C9770087F155 /* material mywine-07.png in Resources */,
+				65EFEBBC1573C9770087F155 /* material mywine-08.png in Resources */,
+				65EFEBBD1573C9770087F155 /* material mywine-09.png in Resources */,
+				65EFEBBE1573C9770087F155 /* material mywine-10.png in Resources */,
+				65EFEBBF1573C9770087F155 /* material mywine-11.png in Resources */,
+				65EFEBC01573C9770087F155 /* material mywine-12.png in Resources */,
+				65EFEBC11573C9770087F155 /* material mywine-13.png in Resources */,
+				65EFEBC21573C9770087F155 /* material mywine-14.png in Resources */,
+				65EFEBC31573C9770087F155 /* material mywine-15.png in Resources */,
+				65EFEBC41573C9770087F155 /* material mywine-16.png in Resources */,
+				65EFEBC51573C9770087F155 /* material mywine-17.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
