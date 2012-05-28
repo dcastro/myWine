@@ -17,6 +17,8 @@
 }
 
 
+-(id)init;
+
 -(NSString *)buildRequest:(NSError **) error;
 
 

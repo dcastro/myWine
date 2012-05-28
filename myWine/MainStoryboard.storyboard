@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50b" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11E53" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="5">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
@@ -335,7 +335,7 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="GJE-Es-ups">
-                            <rect key="frame" x="0.0" y="0.0" width="704" height="150"/>
+                            <rect key="frame" x="0.0" y="0.0" width="703" height="150"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Tasting of: Wine Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="Toc-hi-sDg">
@@ -2505,7 +2505,9 @@
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9EZ-Gv-6ns" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController definesPresentationContext="YES" id="Rj4-Fm-dRe" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="GCc-Lt-M4A">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque"/>
+                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" barStyle="blackOpaque" id="GCc-Lt-M4A">
+                        <rect key="frame" x="0.0" y="-74" width="0.0" height="74"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -2558,6 +2560,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="progressTintColor" red="0.33459739960000001" green="0.01176470588" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </progressView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="material mywine-17.png" id="2jA-2W-oju">
+                                <rect key="frame" x="118" y="87" width="304" height="240"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="contentStretch" x="1" y="0.0" width="1" height="1"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.33459739960000001" green="0.01176470588" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -2604,6 +2611,7 @@
         <image name="logo.png" width="923" height="1069"/>
         <image name="material mywine-05.png" width="1029" height="1277"/>
         <image name="material mywine-06.png" width="1108" height="1360"/>
+        <image name="material mywine-17.png" width="711" height="617"/>
     </resources>
     <classes>
         <class className="ComparadorViewController" superclassName="UIViewController">

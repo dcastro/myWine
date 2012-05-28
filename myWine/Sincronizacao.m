@@ -12,11 +12,18 @@
 @implementation Sincronizacao
 
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        query = [[Query alloc] init];
+        user = [User instance];
+    }
+    return self;
+}
 
 -(NSString *)buildRequest:(NSError **) error{
     
-    query = [[Query alloc] init];
-    user = [User instance];    
     
     NSMutableDictionary * requestData = [NSMutableDictionary dictionaryWithObjectsAndKeys:user.username,@"username" ,user.password, @"password" , user.synced_at, @"synced_at" , nil];
     
@@ -52,7 +59,7 @@
         return FALSE; 
     }
     
-    //DebugLog(@"JSON: %@", [NSString stringWithFormat:@"%@",  receivedJSON]);
+    DebugLog(@"JSON: %@", [NSString stringWithFormat:@"%@",  receivedJSON]);
 
     
     

@@ -86,7 +86,7 @@
             return NULL;
         }
         
-        if(sqlite3_exec(contactDB, "Begin Transation;", NULL, NULL, &errMsg) != SQLITE_OK){
+        if(sqlite3_exec(contactDB, "Begin Transaction;", NULL, NULL, &errMsg) != SQLITE_OK){
             DebugLog(@"Could not begin transaction: %s", errMsg);
             sqlite3_free(errMsg);
             sqlite3_close(contactDB);
