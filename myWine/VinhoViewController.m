@@ -297,6 +297,7 @@
         Language* lan = [Language instance];
         UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithTitle:[lan translate:@"Done"] style:UIBarButtonItemStyleDone target:self action:@selector(toggleEdit:)];
         UIBarButtonItem* cancelButton = [[UIBarButtonItem alloc] initWithTitle:[lan translate:@"Cancel"] style:UIBarButtonSystemItemCancel target:self action:@selector(toggleEdit:)];
+        [cancelButton setTintColor: [UIColor colorWithRed:255/255 green:54/255 blue:76/255 alpha:0]];
         
         [self setTempButton:self.navigationItem.leftBarButtonItem];
         [[self navigationItem] setRightBarButtonItem:doneButton animated:YES];
