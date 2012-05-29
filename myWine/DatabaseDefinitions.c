@@ -116,7 +116,7 @@ const char  *databaseTables[] = {
     );",
     
     "CREATE TABLE Characteristic (\
-    characteristics_id INTEGER PRIMARY KEY AUTOINCREMENT, \
+    characteristic_id INTEGER PRIMARY KEY AUTOINCREMENT, \
     sectioncharacteristic_id INTEGER NOT NULL, \
     order_priority INTEGER NOT NULL, \
     classification_id INTEGER, \

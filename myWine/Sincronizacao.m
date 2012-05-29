@@ -30,6 +30,37 @@
     
     
 #warning TODO: FERNANDO: completar
+    //codigo sql para eliminar classficacoes soltas
+    //select classification_id from classification where classification_id not in (Select distinct c.classification_id from classification c, possibleclassification pc where  c.classification_id = pc.classification_id);
+    
+    
+    /*
+     
+     FUNCIONA!!!!!!
+     
+     
+     select distinct classifiable_id, classifiable_type from possibleclassification where  classifiable_type = 'FormCriterion' AND classifiable_id not in (Select formcriterion_id from formcriterion) UNION select distinct classifiable_id, classifiable_type from possibleclassification where  classifiable_type = 'FormCharacteristic' AND classifiable_id not in (Select formcharacteristics_id from FormCharacteristic) UNION select distinct classifiable_id, classifiable_type from possibleclassification where  classifiable_type = 'Criterion' AND classifiable_id not in (Select criterion_id from Criterion) UNION  select distinct classifiable_id, classifiable_type from possibleclassification where  classifiable_type = 'Characteristic' AND classifiable_id not in (Select characteristic_id from Characteristic)
+     
+     
+     select distinct classifiable_id, classifiable_type 
+     from possibleclassification 
+     where  classifiable_type = 'FormCriterion' AND classifiable_id not in (Select formcriterion_id from formcriterion) 
+     
+     UNION 
+     
+     select distinct classifiable_id, classifiable_type 
+     from possibleclassification 
+     where  classifiable_type = 'FormCharacteristic' AND classifiable_id not in (Select formcharacteristics_id from FormCharacteristic) 
+     
+     UNION 
+     
+     select distinct classifiable_id, classifiable_type from possibleclassification where  classifiable_type = 'Criterion' AND classifiable_id not in (Select criterion_id from Criterion)
+     
+     UNION 
+     
+     select distinct classifiable_id, classifiable_type from possibleclassification where  classifiable_type = 'Characteristic' AND classifiable_id not in (Select characteristic_id from Characteristic)
+     
+    */
     
     
     //conversao para string
@@ -481,7 +512,6 @@
         NSArray * regionsJSON = [countryWithRegionsJSON objectForKey:@"region"];
         for (int k = 0; k < [regionsJSON count]; k++) {
             NSDictionary *regionJSON = [regionsJSON objectAtIndex:k];
-#warning TODO: FERNANDO: ver default
             querySQL = [NSString stringWithFormat:@"INSERT INTO Region VALUES (\'%@\', \'%@\', \'%@\');", 
                         [regionJSON objectForKey:@"code"],
                         country_id,
