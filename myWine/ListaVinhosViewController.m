@@ -8,16 +8,6 @@
 
 #import "ListaVinhosViewController.h"
 
-
-#import "ListaProvasViewController.h"
-#import "Vinho.h"
-#import "User.h"
-#import "Prova.h"
-#import "Language.h"
-#import "VinhoViewController.h"
-#import "NSMutableArray+VinhosMutableArray.h"
-#import <objc/runtime.h>
-
 @interface ListaVinhosViewController () {
     NSMutableArray *_objects;
     NSIndexPath* _index;
@@ -36,7 +26,6 @@
 
 @synthesize homeVisibility;
 @synthesize tempButton;
-@synthesize filter;
 @synthesize filterButton;
 
 SEL action; id target;
@@ -96,7 +85,6 @@ SEL action; id target;
 
 - (void)viewDidUnload
 {
-    [self setFilter:nil];
     [self setFilterButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -142,7 +130,6 @@ SEL action; id target;
 	}
     else if([segue.identifier isEqualToString:@"filterSegue"])
     {
-        
         action = [sender action];
         target = [sender target];
         
@@ -164,16 +151,16 @@ SEL action; id target;
 
 -(void)dismiss:(id)sender
 {
-    [self.filter setAction:action];
-    [self.filter setTarget:target];
+    [self.filterButton setAction:action];
+    [self.filterButton setTarget:target];
     [self.currentPopover dismissPopoverAnimated:YES];
 }
 
 
 -(BOOL)popoverControllerShouldDismissPopover:(UIPopoverController *)popoverController
 {
-    [self.filter setAction:action];
-    [self.filter setTarget:target];
+    [self.filterButton setAction:action];
+    [self.filterButton setTarget:target];
     return YES;    
 }
 

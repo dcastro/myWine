@@ -6,9 +6,8 @@
 //  Copyright (c) 2012 FEUP. All rights reserved.
 //
 
-#import "ListaVinhosViewController.h"
 #import "SubstitutableTabBarControllerViewController.h"
-#import "Language.h"
+
 
 @interface SubstitutableTabBarControllerViewController ()
 

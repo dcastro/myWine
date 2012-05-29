@@ -13,9 +13,14 @@
 @end
 
 @implementation ListaProvasViewController
+@synthesize filterButton;
+@synthesize compareButton;
 @synthesize provaViewController = _provaViewController;
 @synthesize provas = _provas;
 @synthesize vinho = _vinho;
+@synthesize currentPopover;
+
+SEL action; id target;
 
 @synthesize rootPopoverButtonItem, popoverController, splitViewController;
 
@@ -60,10 +65,14 @@
     //UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     //self.navigationItem.rightBarButtonItem = addButton;
     self.provaViewController = (ProvaViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    Language* lan = [Language instance];
+    [self.filterButton setTitle: [lan translate:@"Filter"]];
 }
 
 - (void)viewDidUnload
 {
+    [self setFilterButton:nil];
+    [self setCompareButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -101,8 +110,34 @@
          objectAtIndex:0];
 		NovaProvaViewController.delegate = self;
 	}
+    else if([segue.identifier isEqualToString:@"filterSegue"])
+    {
+        action = [sender action];
+        target = [sender target];
+        
+        [sender setTarget:self];
+        [sender setAction:@selector(dismiss:)];
+        
+        self.currentPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
+    }
+
     
     [self switchDetailViews:segue];
+}
+
+-(void)dismiss:(id)sender
+{
+    [self.filterButton setAction:action];
+    [self.filterButton setTarget:target];
+    [self.currentPopover dismissPopoverAnimated:YES];
+}
+
+
+-(BOOL)popoverControllerShouldDismissPopover:(UIPopoverController *)popoverController
+{
+    [self.filterButton setAction:action];
+    [self.filterButton setTarget:target];
+    return YES;    
 }
 
 - (void) switchDetailViews: (UIStoryboardSegue *)segue {

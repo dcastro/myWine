@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Vinho.h"
 #import "Prova.h"
+#import "Language.h"
 
 @protocol SubstitutableDetailViewController;
 

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ListaVinhosViewController.h"
 #import "Language.h"
+#import "SubstitutableTabBarControllerViewController.h"
 
 @interface ProvaViewController : UIViewController <UISplitViewControllerDelegate, SubstitutableDetailViewController>
 

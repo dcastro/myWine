@@ -11,6 +11,13 @@
 #import "LoginViewController.h"
 #import "DetailViewController.h"
 #import "VinhoViewController.h"
+#import "Vinho.h"
+#import "User.h"
+#import "Prova.h"
+#import "Language.h"
+#import "ListaProvasViewController.h"
+#import "NSMutableArray+VinhosMutableArray.h"
+#import <objc/runtime.h>
 
 @class DetailViewController;
 @class VinhoViewController;
@@ -48,7 +55,6 @@
 @property (nonatomic, getter=homeIsVisible) BOOL homeVisibility;
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *tempButton;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *filter;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *filterButton;
 
 - (void)insertNewObject:(id)sender;

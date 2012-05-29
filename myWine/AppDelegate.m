@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-//#import "LoginViewController.h"
 #import "ListaVinhosViewController.h"
 #import "User.h"
 
