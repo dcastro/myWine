@@ -45,12 +45,16 @@
     
     
     //Makes upperView's background transparent
-    [self.upperView setBackgroundColor:[UIColor clearColor]];
+    //[self.upperView setBackgroundColor:[UIColor clearColor]];
     
     //Fetch the data objects from the tab bar parent
     SubstitutableTabBarControllerViewController* tabBarController = (SubstitutableTabBarControllerViewController*) [self tabBarController];
     self.vinho = [tabBarController vinho];
     self.prova = [tabBarController prova];
+    
+    //Set fonts
+    self.wineNameLabel.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGE_FONT];
+    self.dateLabel.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT+2];
     
     [self configureView];
     
