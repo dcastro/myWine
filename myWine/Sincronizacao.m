@@ -22,8 +22,8 @@
     return self;
 }
 
--(NSString *)buildRequest:(NSError **) error{
-    
+-(NSString *)buildRequest:(NSError **) error
+{
     
     NSMutableDictionary * requestData = [NSMutableDictionary dictionaryWithObjectsAndKeys:user.username,@"username" ,user.password, @"password" , user.synced_at, @"synced_at" , nil];
     
@@ -46,7 +46,8 @@
 
 
 
--(BOOL)parseData:(NSMutableData *)receivedData{
+-(BOOL)parseData:(NSMutableData *)receivedData
+{
     
     contactDB = [query beginTransaction];
     
@@ -101,13 +102,80 @@
 
 
 
--(BOOL)parseWineTypes:(NSArray *) winetypes {
+-(BOOL)parseWineTypes:(NSArray *) winetypes 
+{
     
-    return TRUE;
+    sqlite3_stmt * stmt;
+    NSString * querySQL = nil;
+    BOOL exists = FALSE;
+    
+    for (int i = 0; i < [winetypes count]; i++) {
+        NSDictionary * winetypesWithFormsJSON = [winetypes objectAtIndex:i];
+        int winetype_id = [[winetypesWithFormsJSON objectForKey:@"id"] intValue];
+        
+#warning TODO:o winetype vai ter sempre um formulario?
+        //verifica se o tipo de vinho existe
+        querySQL = [NSString stringWithFormat:@"SELECT formtasting_id FROM UserTypeWine WHERE winetype_id = %d AND user = \'%@\'", winetype_id, user.username];
+        const char *query_stmt = [querySQL UTF8String];
+        if (sqlite3_prepare_v2(*contactDB, query_stmt, -1, &stmt, NULL) == SQLITE_OK){
+            
+            if(sqlite3_step(stmt) == SQLITE_ROW){
+                
+                exists = TRUE;
+                int formtasting_id = sqlite3_column_int(stmt, 0);
+                sqlite3_finalize(stmt);
+                
+                //se existir apaga os formularios associados e possible classifications
+#warning TODO: ver cena das possible classifications...
+                if(exists){
+                    
+                    querySQL = [NSString stringWithFormat:@"DELETE FROM FormTasting WHERE formtasting_id = %d;", formtasting_id]; 
+                    char *errMsg;
+                    if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+                        DebugLog(@"%s", errMsg);
+                        sqlite3_free(errMsg);
+                        return FALSE;
+                    }
+                    
+                }else {//senao existir adiciona
+                    
+                    querySQL = [NSString stringWithFormat:@"INSERT INTO WineType VALUES (%d, \'%@\', \'%@\', \'%@\');", 
+                                winetype_id,
+                                [winetypesWithFormsJSON objectForKey:@"name_eng"],
+                                [winetypesWithFormsJSON objectForKey:@"name_fr"],
+                                [winetypesWithFormsJSON objectForKey:@"name_pt"]];
+                    char *errMsg;
+                    if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+                        DebugLog(@"%s", errMsg);
+                        sqlite3_free(errMsg);
+                        return FALSE;
+                    }
+                    
+                }
+                
+                
+            }
+        }else{
+            DebugLog(@"Query with error: %s", query_stmt);
+            return FALSE;
+        }
+        
+        
+        //adiciona os formularios
+        
+        
+        
+        
+        
+    }
+    
+    
+    return FALSE;
 }
 
 
--(BOOL)parseCountries:(NSArray *) countries{
+-(BOOL)parseCountries:(NSArray *) countries 
+{
     
     sqlite3_stmt *stmt;
     NSString * querySQL = nil;

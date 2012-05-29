@@ -23,14 +23,17 @@
 @synthesize characteristic_sections = _characteristic_sections;
 
 
-- (NSMutableArray *) sections {
+- (NSMutableArray *) sections 
+{
     if (!_sections) {
         [self loadSectionsFromDB];
     }
     return _sections;
 }
 
--(NSMutableArray *) characteristic_sections{
+
+-(NSMutableArray *) characteristic_sections
+{
     if (!_characteristic_sections) {
         [self loadCharacteristicSectionsFromDB];
     }
@@ -38,7 +41,8 @@
 }
 
 
--(BOOL) loadSectionsFromDB{
+-(BOOL) loadSectionsFromDB
+{
     _sections = [[NSMutableArray alloc] init];
     
     
@@ -91,7 +95,9 @@
 }
 
 
-- (BOOL)loadCharacteristicSectionsFromDB{
+
+- (BOOL)loadCharacteristicSectionsFromDB
+{
     _characteristic_sections = [[NSMutableArray alloc] init];
     
     
@@ -145,7 +151,9 @@
         return FALSE;
 }
 
-- (NSString*) fullDate {
+
+- (NSString*) fullDate
+{
     NSDate* date = [[NSDate alloc] initWithTimeIntervalSince1970:self.tasting_date];
 
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
@@ -158,7 +166,9 @@
 }
 
 
-- (NSString*) shortDate {
+
+- (NSString*) shortDate 
+{
     NSDate* date = [[NSDate alloc] initWithTimeIntervalSince1970:self.tasting_date];
 
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
