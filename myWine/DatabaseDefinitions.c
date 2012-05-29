@@ -42,7 +42,6 @@ const char  *databaseTables[] = {
     "CREATE TABLE Region (\
     region_id INTEGER PRIMARY KEY AUTOINCREMENT, \
     country_id TEXT NOT NULL, \
-    default_selection INTEGER, \
     name TEXT, \
     FOREIGN KEY (country_id) REFERENCES Country (country_id) ON UPDATE CASCADE ON DELETE CASCADE \
     );",
@@ -238,9 +237,9 @@ const char  *databaseTables[] = {
     "INSERT INTO Country VALUES ('UK','England', 'Angleterre', 'Inglaterra');",
     
     
-    "INSERT INTO Region VALUES (1, 'PT', 0, 'Vila Real');",
-    "INSERT INTO Region VALUES (2, 'PT', 1, 'Porto');",
-    "INSERT INTO Region VALUES (3, 'PT', 0, 'Alijo');",
+    "INSERT INTO Region VALUES (1, 'PT', 'Vila Real');",
+    "INSERT INTO Region VALUES (2, 'PT', 'Porto');",
+    "INSERT INTO Region VALUES (3, 'PT', 'Alijo');",
     
     
     "INSERT INTO WineType VALUES (1, 'White Wine', 'Vin Blanc', 'Vinho Branco');",

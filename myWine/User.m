@@ -233,15 +233,18 @@ static User *sharedUser = nil;
     switch (lan.selectedLanguage) {
         case FR:
             querySQL = [NSString stringWithFormat:@"SELECT wt.winetype_id, wt.name_fr\
-                        FROM WineType wt;"];
+                        FROM WineType wt \
+                        ORDER BY wt.name_fr DESC;"];
             break;
             
         case EN: querySQL =  [NSString stringWithFormat:@"SELECT wt.winetype_id, wt.name_en\
-                              FROM WineType wt;"];
+                              FROM WineType wt \
+                              ORDER BY wt.name_en DESC;"];
             break;
             
         case PT:querySQL =  [NSString stringWithFormat:@"SELECT wt.winetype_id, wt.name_pt\
-                             FROM WineType wt;"];
+                             FROM WineType wt \
+                             ORDER BY wt.name_pt DESC;"];
    
             break;
             
@@ -286,15 +289,18 @@ static User *sharedUser = nil;
     switch (lan.selectedLanguage) {
         case FR:
             querySQL = [NSString stringWithFormat:@"SELECT c.country_id, c.name_fr\
-                        FROM Country c;"];
+                        FROM Country c  \
+                        ORDER BY c.name_fr DESC;"];
             break;
             
         case EN: querySQL =  [NSString stringWithFormat:@"SELECT c.country_id, c.name_en\
-                              FROM Country c;"];
+                              FROM Country c \
+                              ORDER BY c.name_en DESC;"];
             break;
             
         case PT:querySQL =  [NSString stringWithFormat:@"SELECT c.country_id, c.name_pt\
-                             FROM Country c;"];           
+                             FROM Country c \
+                             ORDER BY c.name_pt DESC;"];           
             break;
             
         default:

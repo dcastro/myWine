@@ -122,6 +122,8 @@
     [progress_bar setProgress:0.50];
     
     if(![sync parseData:receivedData]){
+        [progress_bar setProgress:0.0];
+        self.progress_label.Text=[NSString stringWithFormat:[lan translate:@"Synchronization step"], 0,3];
 #warning FERNANDO: mostrar aviso
         return;
     };

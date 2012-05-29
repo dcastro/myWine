@@ -482,7 +482,7 @@
         for (int k = 0; k < [regionsJSON count]; k++) {
             NSDictionary *regionJSON = [regionsJSON objectAtIndex:k];
 #warning TODO: FERNANDO: ver default
-            querySQL = [NSString stringWithFormat:@"INSERT INTO Region VALUES (\'%@\', \'%@\', 0, \'%@\');", 
+            querySQL = [NSString stringWithFormat:@"INSERT INTO Region VALUES (\'%@\', \'%@\', \'%@\');", 
                         [regionJSON objectForKey:@"code"],
                         country_id,
                         [regionJSON objectForKey:@"name"]];
