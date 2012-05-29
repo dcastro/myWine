@@ -41,6 +41,7 @@
 @synthesize harvestyear = _harvestyear;
 @synthesize producerName = _producerName;
 @synthesize grapesList = _grapesList;
+@synthesize grapesListShow = _grapesListShow;
 @synthesize detailItem = _detailItem;
 @synthesize masterPopoverController = _masterPopoverController;
 
@@ -126,7 +127,7 @@
     self.price_value_label.text = [vinho fullPrice];
     self.price_value_label.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
     
-    self.grapesList.text = [vinho grapes];
+    self.grapesListShow.text = [vinho grapes];
     
     self.editButton.title = [lan translate:@"Edit"];
     
@@ -144,9 +145,11 @@
     [self.priceValue setHidden:YES];
     [self.harvestyear setHidden:YES];
     [self.producerName setHidden:YES];
-    [self.grapesList setEditable:NO];
-    self.grapesList.backgroundColor = [UIColor  clearColor];
-    self.grapesList.textColor = [UIColor whiteColor];
+    [self.grapesList setHidden:YES];
+    self.grapesList.backgroundColor = [UIColor  whiteColor];
+    self.grapesList.textColor = [UIColor colorWithRed:68.0/255.0 green:2.0/255.0 blue:0 alpha:1.0];
+    self.grapesListShow.backgroundColor = [UIColor  clearColor];
+    self.grapesListShow.textColor = [UIColor whiteColor];
     
 }
 
@@ -210,6 +213,7 @@
     [self setHarvestyear:nil];
     [self setProducerName:nil];
     [self setGrapesList:nil];
+    [self setGrapesListShow:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -270,6 +274,7 @@
         self.producerName.text = self.producer_label_name.text;
         self.harvestyear.text = self.year_label_name.text;
         self.priceValue.text = [[NSString alloc] initWithFormat: @"%.02f", self.editableWine.price];
+        self.grapesList.text = self.grapesListShow.text;
         
         [self.selectCountryButton setTitle:self.country_label_name.text forState:UIControlStateNormal];
         [self.selectRegionButton setTitle:self.region_label_name.text forState:UIControlStateNormal];
@@ -283,9 +288,8 @@
                             [self.priceValue setHidden:NO];
                             [self.harvestyear setHidden:NO];
                             [self.producerName setHidden:NO];
-                            [self.grapesList setEditable:YES];
-                            self.grapesList.backgroundColor = [UIColor  whiteColor];
-                            self.grapesList.textColor = [UIColor colorWithRed:68.0/255.0 green:2.0/255.0 blue:0 alpha:1.0];
+                            [self.grapesListShow setHidden:YES];
+                            [self.grapesList setHidden:NO];
                         }
 						completion:nil];
         
@@ -335,6 +339,7 @@
             self.producer_label_name.text = self.producerName.text;
             self.year_label_name.text = self.harvestyear.text;
             self.price_value_label.text = self.priceValue.text;
+            self.grapesListShow.text = self.grapesList.text;
             
             //refresh master view
             [self.delegate onVinhoEdition:(Vinho*) self.detailItem];
@@ -347,9 +352,8 @@
                             [self.priceValue setHidden:YES];
                             [self.harvestyear setHidden:YES];
                             [self.producerName setHidden:YES];
-                            [self.grapesList setEditable:NO];
-                            self.grapesList.backgroundColor = [UIColor  clearColor];
-                            self.grapesList.textColor = [UIColor whiteColor];
+                            [self.grapesListShow setHidden:NO];
+                            [self.grapesList setHidden:YES];
                         }
 						completion:nil];
         

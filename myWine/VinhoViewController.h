@@ -52,6 +52,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *harvestyear;
 @property (strong, nonatomic) IBOutlet UITextField *producerName;
 @property (strong, nonatomic) IBOutlet UITextView *grapesList;
+@property (strong, nonatomic) IBOutlet UITextView *grapesListShow;
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *editButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *tempButton;
