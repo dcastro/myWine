@@ -92,7 +92,7 @@
     }
     
 
-    
+    #warning TODO: ver cena das possible classifications...
     [query endTransaction];
     
     return TRUE;
@@ -113,7 +113,6 @@
         NSDictionary * winetypesWithFormsJSON = [winetypes objectAtIndex:i];
         int winetype_id = [[winetypesWithFormsJSON objectForKey:@"id"] intValue];
         
-#warning TODO:o winetype vai ter sempre um formulario?
         //verifica se o tipo de vinho existe
         querySQL = [NSString stringWithFormat:@"SELECT formtasting_id FROM UserTypeWine WHERE winetype_id = %d AND user = \'%@\'", winetype_id, user.username];
         const char *query_stmt = [querySQL UTF8String];
@@ -126,7 +125,6 @@
                 sqlite3_finalize(stmt);
                 
                 //se existir apaga os formularios associados e possible classifications
-#warning TODO: ver cena das possible classifications...
                 if(exists){
                     
                     querySQL = [NSString stringWithFormat:@"DELETE FROM FormTasting WHERE formtasting_id = %d;", formtasting_id]; 
@@ -161,16 +159,276 @@
         }
         
         
+        //insere no formtasting, retrive do id
+        int formTasting_id;
+        querySQL = @"INSERT INTO FormTasting Values((SELECT DISTINCT last_insert_rowid() FROM FormTasting)+1); SELECT DISTINCT last_insert_rowid() FROM FormtTasting;";
+        query_stmt = [querySQL UTF8String];
+        if (sqlite3_prepare_v2(*contactDB, query_stmt, -1, &stmt, NULL) == SQLITE_OK){
+            
+            if(sqlite3_step(stmt) == SQLITE_ROW){
+                formTasting_id = sqlite3_column_int(stmt, 0);
+                sqlite3_finalize(stmt);
+            }
+        }else {
+            DebugLog(@"Query with error: %s", query_stmt);
+            return FALSE;
+        }
+        
+        
+        
         //adiciona os formularios
+        NSDictionary * formJSON = [winetypesWithFormsJSON objectForKey:@"form"];
+        
+        //seccoes, criterios e classificacoes associadas
+        NSArray * formSectionsJSON = [formJSON objectForKey:@"form_sections"];
+        for(int k = 0; k < [formSectionsJSON count]; k++){
+            
+            int formSection_id;
+            NSDictionary * formSectionJSON = [formSectionsJSON  objectAtIndex:k];
+            
+            querySQL = [NSString stringWithFormat:@"INSERT INTO FormSection(formtasting_id, order_priority, name_en, name_fr, name_pt) Values(%d, %d, \'%@\', \'%@\', \'%@\'); SELECT DISTINCT last_insert_rowid() FROM FormSection;",
+                        formTasting_id,
+                        [formSectionJSON objectForKey:@"order"],
+                        [formSectionJSON objectForKey:@"name_eng"],
+                        [formSectionJSON objectForKey:@"name_fr"],
+                        [formSectionJSON objectForKey:@"name_pt"]];
+            
+            query_stmt = [querySQL UTF8String];
+            if (sqlite3_prepare_v2(*contactDB, query_stmt, -1, &stmt, NULL) == SQLITE_OK){
+                
+                if(sqlite3_step(stmt) == SQLITE_ROW){
+                    formSection_id = sqlite3_column_int(stmt, 0);
+                    sqlite3_finalize(stmt);
+                }
+            }else {
+                DebugLog(@"Query with error: %s", query_stmt);
+                return FALSE;
+            }
+            
+            
+            
+            NSArray * formCriteriaJSON = [formSectionJSON objectForKey:@"forms_criteria"];
+            for (int w=0; w < [formCriteriaJSON count]; w++) {
+                
+                int criterion_id;
+                NSDictionary * formCriterionJSON = [formCriteriaJSON objectAtIndex:w];
+                
+                querySQL = [NSString stringWithFormat:@"INSERT INTO FormCriterion(formsection_id, order_priority, name_en, name_fr, name_pt) Values(%d, %d, \'%@\', \'%@\', \'%@\'); SELECT DISTINCT last_insert_rowid() FROM FormCriterion;",
+                            formSection_id,
+                            [formCriterionJSON objectForKey:@"order"],
+                            [formCriterionJSON objectForKey:@"name_eng"],
+                            [formCriterionJSON objectForKey:@"name_fr"],
+                            [formCriterionJSON objectForKey:@"name_pt"]];
+                
+                query_stmt = [querySQL UTF8String];
+                if (sqlite3_prepare_v2(*contactDB, query_stmt, -1, &stmt, NULL) == SQLITE_OK){
+                    
+                    if(sqlite3_step(stmt) == SQLITE_ROW){
+                        criterion_id = sqlite3_column_int(stmt, 0);
+                        sqlite3_finalize(stmt);
+                    }
+                }else {
+                    DebugLog(@"Query with error: %s", query_stmt);
+                    return FALSE;
+                }
+                
+                
+                NSArray * formClassificationsJSON = [formCriterionJSON objectForKey:@"classifications"];
+                for (int z = 0; z < [formClassificationsJSON count]; z++) {
+                    
+                    NSDictionary * classificationJSON = [formClassificationsJSON objectAtIndex:z];
+                    
+                    //verificar se existe, 
+                    int classification_id;
+                    BOOL existsClassification = FALSE;
+                    
+                    querySQL = [NSString stringWithFormat:@"SELECT classification_id FROM Classification WHERE weight = %d AND name_en = \'%@\' AND name_fr = \'%@\' AND name_pt = \'%@\';",
+                                [classificationJSON objectForKey:@"weight"],
+                                [classificationJSON objectForKey:@"name_eng"],
+                                [classificationJSON objectForKey:@"name_ft"],
+                                [classificationJSON objectForKey:@"name_pt"]];
+                    
+                    query_stmt = [querySQL UTF8String];
+                    if (sqlite3_prepare_v2(*contactDB, query_stmt, -1, &stmt, NULL) == SQLITE_OK){
+                        
+                        if(sqlite3_step(stmt) == SQLITE_ROW){
+                            classification_id = sqlite3_column_int(stmt, 0);
+                            existsClassification = TRUE;
+                            sqlite3_finalize(stmt);
+                        }
+                    }else {
+                        DebugLog(@"Query with error: %s", query_stmt);
+                        return FALSE;
+                    }
+                    
+                    
+                    
+                    //se existir nao insere, senao insere e retorna o classification_id
+                    if(!existsClassification){
+                        
+                        querySQL = [NSString stringWithFormat:@"INSERT INTO Classification(weight, name_en, name_fr, name_pt) Values(%d, \'%@\', \'%@\', \'%@\'); SELECT DISTINCT last_insert_rowid() FROM Classification;",
+                                    [classificationJSON objectForKey:@"weight"],
+                                    [classificationJSON objectForKey:@"name_eng"],
+                                    [classificationJSON objectForKey:@"name_ft"],
+                                    [classificationJSON objectForKey:@"name_pt"]];
+                        
+                        query_stmt = [querySQL UTF8String];
+                        if (sqlite3_prepare_v2(*contactDB, query_stmt, -1, &stmt, NULL) == SQLITE_OK){
+                            
+                            if(sqlite3_step(stmt) == SQLITE_ROW){
+                                classification_id = sqlite3_column_int(stmt, 0);
+                                sqlite3_finalize(stmt);
+                            }
+                        }else {
+                            DebugLog(@"Query with error: %s", query_stmt);
+                            return FALSE;
+                        }
+                    }
+                    
+                                
+                    //insere nas possibleClassifications
+                    querySQL = [NSString stringWithFormat:@"INSERT INTO PossibleClassification(classifiable_id, classification_id, classifiable_type) Values(%d, %d, \'%@\');",
+                               criterion_id,
+                                classification_id,
+                                @"FormCriterion"];
+                    
+                    char *errMsg;
+                    if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+                        DebugLog(@"%s", errMsg);
+                        sqlite3_free(errMsg);
+                        return FALSE;
+                    }
+                    
+                }
+            }
+        }
         
         
         
-        
-        
+        //seccoes de caracteristicas, caracteristicas e classificacoes associadas
+        NSArray * formCharacteristicSectionsJSON = [formJSON objectForKey:@"form_characteristics_sections"];
+        for(int k = 0; k < [formCharacteristicSectionsJSON count]; k++){
+            int formSectionCharacteristic_id;
+            NSDictionary * formCharacteristicSectionJSON = [formCharacteristicSectionsJSON  objectAtIndex:k];
+            
+            querySQL = [NSString stringWithFormat:@"INSERT INTO FormSectionCharacteristic(formtasting_id, order_priority, name_en, name_fr, name_pt) Values(%d, %d, \'%@\', \'%@\', \'%@\'); SELECT DISTINCT last_insert_rowid() FROM FormSectionCharacteristic;",
+                        formTasting_id,
+                        [formCharacteristicSectionJSON objectForKey:@"order"],
+                        [formCharacteristicSectionJSON objectForKey:@"name_eng"],
+                        [formCharacteristicSectionJSON objectForKey:@"name_fr"],
+                        [formCharacteristicSectionJSON objectForKey:@"name_pt"]];
+            
+            query_stmt = [querySQL UTF8String];
+            if (sqlite3_prepare_v2(*contactDB, query_stmt, -1, &stmt, NULL) == SQLITE_OK){
+                
+                if(sqlite3_step(stmt) == SQLITE_ROW){
+                    formSectionCharacteristic_id = sqlite3_column_int(stmt, 0);
+                    sqlite3_finalize(stmt);
+                }
+            }else {
+                DebugLog(@"Query with error: %s", query_stmt);
+                return FALSE;
+            }
+            
+            
+            
+            NSArray * formCharacteristicsJSON = [formCharacteristicSectionJSON objectForKey:@"form_characteristics"];
+            for (int w=0; w < [formCharacteristicsJSON count]; w++) {
+                
+                int characteristic_id;
+                NSDictionary * formCharacteristicJSON = [formCharacteristicsJSON objectAtIndex:w];
+                
+                querySQL = [NSString stringWithFormat:@"INSERT INTO FormCharacteristic(formsectioncharacteristic_id, order_priority, name_en, name_fr, name_pt) Values(%d, %d, \'%@\', \'%@\', \'%@\'); SELECT DISTINCT last_insert_rowid() FROM FormCharacteristic;",
+                            formSectionCharacteristic_id,
+                            [formCharacteristicJSON objectForKey:@"order"],
+                            [formCharacteristicJSON objectForKey:@"name_eng"],
+                            [formCharacteristicJSON objectForKey:@"name_fr"],
+                            [formCharacteristicJSON objectForKey:@"name_pt"]];
+                
+                query_stmt = [querySQL UTF8String];
+                if (sqlite3_prepare_v2(*contactDB, query_stmt, -1, &stmt, NULL) == SQLITE_OK){
+                    
+                    if(sqlite3_step(stmt) == SQLITE_ROW){
+                        characteristic_id = sqlite3_column_int(stmt, 0);
+                        sqlite3_finalize(stmt);
+                    }
+                }else {
+                    DebugLog(@"Query with error: %s", query_stmt);
+                    return FALSE;
+                }
+                
+                
+                NSArray * formClassificationsJSON = [formCharacteristicJSON objectForKey:@"classifications"];
+                for (int z = 0; z < [formClassificationsJSON count]; z++) {
+                    
+                    NSDictionary * classificationJSON = [formClassificationsJSON objectAtIndex:z];
+                    
+                    //verificar se existe, 
+                    int classification_id;
+                    BOOL existsClassification = FALSE;
+                    
+                    querySQL = [NSString stringWithFormat:@"SELECT classification_id FROM Classification WHERE weight = 0 AND name_en = \'%@\' AND name_fr = \'%@\' AND name_pt = \'%@\';",
+                                [classificationJSON objectForKey:@"name_eng"],
+                                [classificationJSON objectForKey:@"name_ft"],
+                                [classificationJSON objectForKey:@"name_pt"]];
+                    
+                    query_stmt = [querySQL UTF8String];
+                    if (sqlite3_prepare_v2(*contactDB, query_stmt, -1, &stmt, NULL) == SQLITE_OK){
+                        
+                        if(sqlite3_step(stmt) == SQLITE_ROW){
+                            classification_id = sqlite3_column_int(stmt, 0);
+                            existsClassification = TRUE;
+                            sqlite3_finalize(stmt);
+                        }
+                    }else {
+                        DebugLog(@"Query with error: %s", query_stmt);
+                        return FALSE;
+                    }
+                    
+                    
+                    
+                    //se existir nao insere, senao insere e retorna o classification_id
+                    if(!existsClassification){
+                        
+                        querySQL = [NSString stringWithFormat:@"INSERT INTO Classification(weight, name_en, name_fr, name_pt) Values(0, \'%@\', \'%@\', \'%@\'); SELECT DISTINCT last_insert_rowid() FROM Classification;",
+                                    [classificationJSON objectForKey:@"name_eng"],
+                                    [classificationJSON objectForKey:@"name_ft"],
+                                    [classificationJSON objectForKey:@"name_pt"]];
+                        
+                        query_stmt = [querySQL UTF8String];
+                        if (sqlite3_prepare_v2(*contactDB, query_stmt, -1, &stmt, NULL) == SQLITE_OK){
+                            
+                            if(sqlite3_step(stmt) == SQLITE_ROW){
+                                classification_id = sqlite3_column_int(stmt, 0);
+                                sqlite3_finalize(stmt);
+                            }
+                        }else {
+                            DebugLog(@"Query with error: %s", query_stmt);
+                            return FALSE;
+                        }
+                    }
+                    
+                    
+                    //insere nas possibleClassifications
+                    querySQL = [NSString stringWithFormat:@"INSERT INTO PossibleClassification(classifiable_id, classification_id, classifiable_type) Values(%d, %d, \'%@\');",
+                                characteristic_id,
+                                classification_id,
+                                @"FormCriterion"];
+                    
+                    char *errMsg;
+                    if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+                        DebugLog(@"%s", errMsg);
+                        sqlite3_free(errMsg);
+                        return FALSE;
+                    }
+                    
+                }
+            }
+        }
     }
     
     
-    return FALSE;
+    return TRUE;
 }
 
 

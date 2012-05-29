@@ -129,7 +129,7 @@ const char  *databaseTables[] = {
     );",
     
     "CREATE TABLE Classification (\
-    classification_id INTEGER PRIMARY KEY, \
+    classification_id INTEGER PRIMARY KEY AUTOINCREMENT, \
     weight INTEGER, \
     name_en TEXT, \
     name_fr TEXT, \
@@ -222,6 +222,8 @@ const char  *databaseTables[] = {
     "CREATE INDEX IDX_CHARACTERISTIC_SECTIONCHARACTERISTIC ON Characteristic (sectioncharacteristic_id);",
     
     "CREATE INDEX IDX_POSSIBLECLASSIFICATION ON PossibleClassification(classifiable_id, classifiable_type);",
+    
+    "CREATE INDEX IDX_CLASSIFICATION_TOUPLE ON Classification(weight, name_en, name_fr, name_pt);",
     
     
     
