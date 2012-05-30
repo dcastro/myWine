@@ -477,13 +477,16 @@
 //only accepts 2 digits precision doubles
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     
-    NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    if(textField == self.priceValue) {
     
-    NSArray *sep = [newString componentsSeparatedByString:@"."];
-    if([sep count]>=2)
-    {
-        NSString *sepStr=[NSString stringWithFormat:@"%@",[sep objectAtIndex:1]];
-        return !([sepStr length]>2);
+        NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        
+        NSArray *sep = [newString componentsSeparatedByString:@"."];
+        if([sep count]>=2)
+        {
+            NSString *sepStr=[NSString stringWithFormat:@"%@",[sep objectAtIndex:1]];
+            return !([sepStr length]>2);
+        }
     }
     return YES;
 }

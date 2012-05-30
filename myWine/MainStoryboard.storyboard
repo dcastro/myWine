@@ -219,6 +219,9 @@
                                 <color key="textColor" red="0.31372549020000001" green="0.027450980390000001" blue="0.015686274510000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="4" id="Z1f-ri-dl7"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="7Xl-eY-8c5">
                                 <rect key="frame" x="377" y="505" width="171" height="31"/>
@@ -226,6 +229,9 @@
                                 <color key="textColor" red="0.31372549020000001" green="0.027450980390000001" blue="0.015686274510000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="4" id="Kbm-VX-I08"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="zZh-Hk-jJv">
                                 <rect key="frame" x="377" y="197" width="251" height="31"/>
@@ -233,6 +239,9 @@
                                 <color key="textColor" red="0.31372549020000001" green="0.027450980390000001" blue="0.015686274510000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="4" id="Tkj-3z-5SI"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="cOa-wl-WBu">
                                 <rect key="frame" x="377" y="104" width="251" height="31"/>
@@ -240,6 +249,9 @@
                                 <color key="textColor" red="0.31372549020000001" green="0.027450980390000001" blue="0.015686274510000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="4" id="jDe-dC-n3c"/>
+                                </connections>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" id="JQg-Lm-H83">
                                 <rect key="frame" x="377" y="591" width="246" height="145"/>
@@ -256,6 +268,9 @@
                                 <color key="textColor" red="0.31372549020000001" green="0.027450980390000001" blue="0.015686274510000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="4" id="ACa-aS-HRR"/>
+                                </connections>
                             </textView>
                             <view contentMode="scaleToFill" id="xFr-ol-BCC">
                                 <rect key="frame" x="17" y="104" width="352" height="432"/>
