@@ -33,13 +33,12 @@
             return nil;
         }
         
-        const char *query_stmt = [query UTF8String];
         
-        if (sqlite3_prepare_v2(contactDB, query_stmt, -1, &statement, NULL) == SQLITE_OK){
+        if (sqlite3_prepare_v2(contactDB, [query UTF8String], -1, &statement, NULL) == SQLITE_OK){
             return statement;
         }else{
             sqlite3_close(contactDB);
-            DebugLog(@"Query with error: %s", query_stmt);
+            DebugLog(@"Query with error: %@", query);
             return nil;
         }
     }else{

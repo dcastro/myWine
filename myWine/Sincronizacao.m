@@ -130,9 +130,8 @@
         //verificar se o vinho ja existe na da bd, se existir e um update
         querySQL = [NSString stringWithFormat:@"SELECT wine_id FROM wine WHERE wine_server_id = %d", [wineJSON objectForKey:@"wine_server_id"]];
         
-        const char *query_stmt = [querySQL UTF8String];
-        if (sqlite3_prepare_v2(*contactDB, query_stmt, -1, &stmt, NULL) == SQLITE_OK){
-            
+        
+        if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
             if(sqlite3_step(stmt) == SQLITE_ROW){
                 
                 wine_id = sqlite3_column_int(stmt, 0);
@@ -141,7 +140,7 @@
                 sqlite3_finalize(stmt);
             }
         }else{
-            DebugLog(@"Query with error: %s", query_stmt);
+            DebugLog(@"Query with error: %@", querySQL);
             return FALSE;
         }
         
@@ -149,9 +148,16 @@
         
         //se exisit faz update, senao cria
         if(wineExists){
-            
-            
-            
+            /*
+             querySQL = [NSString stringWithFormat:@"UPDATE Wine SET state = 0, name = \'%@\', producer = '\%@\', year = %d, grapes = \'%@\',  region_id = %d, currency = \'%@\' WHERE wine_id = %d", 
+                         [wineJSON objectForKey:@"name"],
+                         [wineJSON objectForKey:@"producer"]
+                         [wineJSON objectForKey:@"year"]
+                         [wineJSON objectForKey:@"grapes"]
+                         [wineJSON objectForKey:@"region"]
+                         [wineJSON objectForKey:@"currency"]
+                         [wineJSON objectForKey:@"name"]]
+             */
         }else {
             
         }
@@ -182,9 +188,8 @@
         
         //verifica se o tipo de vinho existe
         querySQL = [NSString stringWithFormat:@"SELECT formtasting_id FROM UserTypeWine WHERE winetype_id = %d AND user = \'%@\'", winetype_id, user.username];
-        const char *query_stmt = [querySQL UTF8String];
-        if (sqlite3_prepare_v2(*contactDB, query_stmt, -1, &stmt, NULL) == SQLITE_OK){
-            
+
+        if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
             if(sqlite3_step(stmt) == SQLITE_ROW){
                 
                 exists = TRUE;
@@ -221,7 +226,7 @@
                 
             }
         }else{
-            DebugLog(@"Query with error: %s", query_stmt);
+            DebugLog(@"Query with error: %@", querySQL);
             return FALSE;
         }
         
@@ -229,15 +234,13 @@
         //insere no formtasting, retrive do id
         int formTasting_id;
         querySQL = @"INSERT INTO FormTasting Values((SELECT DISTINCT last_insert_rowid() FROM FormTasting)+1); SELECT DISTINCT last_insert_rowid() FROM FormtTasting;";
-        query_stmt = [querySQL UTF8String];
-        if (sqlite3_prepare_v2(*contactDB, query_stmt, -1, &stmt, NULL) == SQLITE_OK){
-            
+        if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){            
             if(sqlite3_step(stmt) == SQLITE_ROW){
                 formTasting_id = sqlite3_column_int(stmt, 0);
                 sqlite3_finalize(stmt);
             }
         }else {
-            DebugLog(@"Query with error: %s", query_stmt);
+            DebugLog(@"Query with error: %@", querySQL);
             return FALSE;
         }
         
@@ -260,15 +263,14 @@
                         [formSectionJSON objectForKey:@"name_fr"],
                         [formSectionJSON objectForKey:@"name_pt"]];
             
-            query_stmt = [querySQL UTF8String];
-            if (sqlite3_prepare_v2(*contactDB, query_stmt, -1, &stmt, NULL) == SQLITE_OK){
+            if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
                 
                 if(sqlite3_step(stmt) == SQLITE_ROW){
                     formSection_id = sqlite3_column_int(stmt, 0);
                     sqlite3_finalize(stmt);
                 }
             }else {
-                DebugLog(@"Query with error: %s", query_stmt);
+                DebugLog(@"Query with error: %@", querySQL);
                 return FALSE;
             }
             
@@ -287,15 +289,14 @@
                             [formCriterionJSON objectForKey:@"name_fr"],
                             [formCriterionJSON objectForKey:@"name_pt"]];
                 
-                query_stmt = [querySQL UTF8String];
-                if (sqlite3_prepare_v2(*contactDB, query_stmt, -1, &stmt, NULL) == SQLITE_OK){
+                if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
                     
                     if(sqlite3_step(stmt) == SQLITE_ROW){
                         criterion_id = sqlite3_column_int(stmt, 0);
                         sqlite3_finalize(stmt);
                     }
                 }else {
-                    DebugLog(@"Query with error: %s", query_stmt);
+                    DebugLog(@"Query with error: %@", querySQL);
                     return FALSE;
                 }
                 
@@ -315,16 +316,14 @@
                                 [classificationJSON objectForKey:@"name_ft"],
                                 [classificationJSON objectForKey:@"name_pt"]];
                     
-                    query_stmt = [querySQL UTF8String];
-                    if (sqlite3_prepare_v2(*contactDB, query_stmt, -1, &stmt, NULL) == SQLITE_OK){
-                        
+                    if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
                         if(sqlite3_step(stmt) == SQLITE_ROW){
                             classification_id = sqlite3_column_int(stmt, 0);
                             existsClassification = TRUE;
                             sqlite3_finalize(stmt);
                         }
                     }else {
-                        DebugLog(@"Query with error: %s", query_stmt);
+                        DebugLog(@"Query with error: %@", querySQL);
                         return FALSE;
                     }
                     
@@ -339,15 +338,14 @@
                                     [classificationJSON objectForKey:@"name_ft"],
                                     [classificationJSON objectForKey:@"name_pt"]];
                         
-                        query_stmt = [querySQL UTF8String];
-                        if (sqlite3_prepare_v2(*contactDB, query_stmt, -1, &stmt, NULL) == SQLITE_OK){
+                        if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
                             
                             if(sqlite3_step(stmt) == SQLITE_ROW){
                                 classification_id = sqlite3_column_int(stmt, 0);
                                 sqlite3_finalize(stmt);
                             }
                         }else {
-                            DebugLog(@"Query with error: %s", query_stmt);
+                            DebugLog(@"Query with error: %@", querySQL);
                             return FALSE;
                         }
                     }
@@ -385,15 +383,13 @@
                         [formCharacteristicSectionJSON objectForKey:@"name_fr"],
                         [formCharacteristicSectionJSON objectForKey:@"name_pt"]];
             
-            query_stmt = [querySQL UTF8String];
-            if (sqlite3_prepare_v2(*contactDB, query_stmt, -1, &stmt, NULL) == SQLITE_OK){
-                
+            if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
                 if(sqlite3_step(stmt) == SQLITE_ROW){
                     formSectionCharacteristic_id = sqlite3_column_int(stmt, 0);
                     sqlite3_finalize(stmt);
                 }
             }else {
-                DebugLog(@"Query with error: %s", query_stmt);
+                DebugLog(@"Query with error: %@", querySQL);
                 return FALSE;
             }
             
@@ -412,15 +408,13 @@
                             [formCharacteristicJSON objectForKey:@"name_fr"],
                             [formCharacteristicJSON objectForKey:@"name_pt"]];
                 
-                query_stmt = [querySQL UTF8String];
-                if (sqlite3_prepare_v2(*contactDB, query_stmt, -1, &stmt, NULL) == SQLITE_OK){
-                    
+                if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
                     if(sqlite3_step(stmt) == SQLITE_ROW){
                         characteristic_id = sqlite3_column_int(stmt, 0);
                         sqlite3_finalize(stmt);
                     }
                 }else {
-                    DebugLog(@"Query with error: %s", query_stmt);
+                    DebugLog(@"Query with error: %@", querySQL);
                     return FALSE;
                 }
                 
@@ -439,8 +433,7 @@
                                 [classificationJSON objectForKey:@"name_ft"],
                                 [classificationJSON objectForKey:@"name_pt"]];
                     
-                    query_stmt = [querySQL UTF8String];
-                    if (sqlite3_prepare_v2(*contactDB, query_stmt, -1, &stmt, NULL) == SQLITE_OK){
+                    if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
                         
                         if(sqlite3_step(stmt) == SQLITE_ROW){
                             classification_id = sqlite3_column_int(stmt, 0);
@@ -448,7 +441,7 @@
                             sqlite3_finalize(stmt);
                         }
                     }else {
-                        DebugLog(@"Query with error: %s", query_stmt);
+                        DebugLog(@"Query with error: %@", querySQL);
                         return FALSE;
                     }
                     
@@ -462,15 +455,13 @@
                                     [classificationJSON objectForKey:@"name_ft"],
                                     [classificationJSON objectForKey:@"name_pt"]];
                         
-                        query_stmt = [querySQL UTF8String];
-                        if (sqlite3_prepare_v2(*contactDB, query_stmt, -1, &stmt, NULL) == SQLITE_OK){
-                            
+                        if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
                             if(sqlite3_step(stmt) == SQLITE_ROW){
                                 classification_id = sqlite3_column_int(stmt, 0);
                                 sqlite3_finalize(stmt);
                             }
                         }else {
-                            DebugLog(@"Query with error: %s", query_stmt);
+                            DebugLog(@"Query with error: %@", querySQL);
                             return FALSE;
                         }
                     }
@@ -516,14 +507,14 @@
         //verifies if the country exists in the database
         BOOL exists = FALSE;
         querySQL = [NSString stringWithFormat:@"SELECT country_id FROM Country WHERE country_id = \'%@\';", country_id];
-        const char *query_stmt = [querySQL UTF8String];
-        if (sqlite3_prepare_v2(*contactDB, query_stmt, -1, &stmt, NULL) == SQLITE_OK){
+        
+        if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
                 if(sqlite3_step(stmt) == SQLITE_ROW){
                     exists = TRUE;
                     sqlite3_finalize(stmt);
                 }
             }else{
-                DebugLog(@"Query with error: %s", query_stmt);
+                DebugLog(@"Query with error: %@", querySQL);
                 return FALSE;
         }
         

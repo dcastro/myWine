@@ -64,6 +64,7 @@
         }
         
     }else{
+        DebugLog(@"Query with error: %@", querySQL);
         return_value = FALSE;
         sqlite3_close(*contactDB);
     }

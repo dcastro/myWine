@@ -19,10 +19,10 @@
     Query *query = [[Query alloc] init];
     
     #warning TODO: FERNANDO: falta a foto
-    #warning TODO: FERNANDO: alterar para suportar autoincrement
-#warning TODO: FERNANDO: faltam os novos campos
     
-    NSString *querySQL = [NSString stringWithFormat:@"INSERT INTO Wine VALUES ((SELECT MAX (wine_id) FROM Wine)+1, %@, %d, %d, NULL, %@, %d, NULL, %@, %@, %f); SELECT MAX(wine_id) FROM Wine;", 
+    NSString *querySQL = [NSString stringWithFormat:@"INSERT INTO Wine (username, region_id,  winetype_id, name, year, producer, currency, price, state)\
+                          VALUES (\'%@\', %d, %d, \'%@\', %d, \'%@\', \'%@\', %f, %d); \
+                          SELECT DISTINCT last_insert_rowid() FROM Wine;", 
                           user.username, 
                           vinho.region.region_id,
                           vinho.winetype.winetype_id, 
@@ -30,9 +30,10 @@
                           vinho.year,  
                           vinho.producer, 
                           vinho.currency, 
-                          vinho.price, 1];
+                          vinho.price, 
+                          1];
     
-    DebugLog(querySQL);
+    //DebugLog(querySQL);
     
     sqlite3_stmt * stmt = [query prepareForSingleQuery:querySQL];
     

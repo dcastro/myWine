@@ -105,10 +105,7 @@
     BOOL return_value = TRUE;
     sqlite3_stmt *stmt;
     char * errMsg;
-    
-#warning TODO: Fernando tipo de vinho
-#warning TODO: Fernando conflito com foreign key se nao mudar regiao...
-    
+        
     
     NSString *querySQL = [NSString stringWithFormat:@"SELECT state FROM wine WHERE wine_id = %d", self.wine_id];
     
@@ -125,15 +122,15 @@
                 
                 switch (state) {
                     case 0:
-                        querySQL = [NSString stringWithFormat:@"UPDATE Wine SET state = 2, name = \'%@\', producer = '\%@\', year = %d, grapes = \'%@\',  region_id = %d, currency = \'%@\' WHERE wine_id = %d", self.name, self.producer, self.year, self.grapes, self.region.region_id, currencyStr(self.currency), self.wine_id];
+                        querySQL = [NSString stringWithFormat:@"UPDATE Wine SET state = 2, name = \'%@\', producer = '\%@\', year = %d, grapes = \'%@\',  region_id = %d, price = %f, currency = \'%@\' WHERE wine_id = %d", self.name, self.producer, self.year, self.grapes, self.region.region_id, self.price, currencyStr(self.currency), self.wine_id];
                         break;
                         
                     case 1:
-                        querySQL = [NSString stringWithFormat:@"UPDATE Wine SET state = 1, name = \'%@\', producer = \'%@\', year = %d, grapes = \'%@\',  region_id = %d, currency = \'%@\' WHERE wine_id = %d", self.name, self.producer, self.year, self.grapes, self.region.region_id, currencyStr(self.currency), self.wine_id];
+                        querySQL = [NSString stringWithFormat:@"UPDATE Wine SET state = 1, name = \'%@\', producer = \'%@\', year = %d, grapes = \'%@\',  region_id = %d, price = %f, currency = \'%@\' WHERE wine_id = %d", self.name, self.producer, self.year, self.grapes, self.region.region_id, self.price, currencyStr(self.currency), self.wine_id];
                         break;
                         
                     case 2:
-                        querySQL = [NSString stringWithFormat:@"UPDATE Wine SET state = 2, name = \'%@\', producer = \'%@\', year = %d, grapes = \'%@\',  region_id = %d, currency = \'%@\' WHERE wine_id = %d", self.name, self.producer, self.year, self.grapes, self.region.region_id, currencyStr(self.currency), self.wine_id];
+                        querySQL = [NSString stringWithFormat:@"UPDATE Wine SET state = 2, name = \'%@\', producer = \'%@\', year = %d, grapes = \'%@\',  region_id = %d, price = %f, currency = \'%@\' WHERE wine_id = %d", self.name, self.producer, self.year, self.grapes, self.region.region_id, self.price, currencyStr(self.currency), self.wine_id];
                         break;
                         
                     default:
@@ -151,6 +148,7 @@
         }
         
     }else{
+        DebugLog(@"Query with error: %@", querySQL);
         return_value = FALSE;
         sqlite3_close(*contactDB);
     }
