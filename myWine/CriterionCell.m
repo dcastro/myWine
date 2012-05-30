@@ -139,8 +139,10 @@
 
 
 - (void) resetState {
-    [self.classificationSlider setValue:self.criterion.classification_chosen.weight animated:YES];
-    [self drawClassificationLabel:self.criterion.classification_chosen animated:YES];    
+    if(self.criterion.classification_chosen != self.classification) {
+        [self.classificationSlider setValue:self.criterion.classification_chosen.weight animated:YES];
+        [self drawClassificationLabel:self.criterion.classification_chosen animated:YES];
+    }
     
 }
 
