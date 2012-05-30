@@ -20,6 +20,7 @@
 @synthesize bottomScrollView = _bottomScrollView;
 @synthesize upperView = _upperView;
 @synthesize commentContentLabel = _commentContentLabel;
+@synthesize commentContentTextView = _commentContentTextView;
 @synthesize commentLabel = _commentLabel;
 @synthesize wineNameLabel = _wineNameLabel;
 @synthesize dateLabel = _dateLabel;
@@ -55,6 +56,9 @@
     //Set fonts
     self.wineNameLabel.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGE_FONT];
     self.dateLabel.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT+2];
+    
+    //hide the text views
+    self.commentContentTextView.hidden = TRUE;
     
     [self configureView];
     
@@ -136,6 +140,7 @@
     [self setUpperView:nil];
     [self setWineNameLabel:nil];
     [self setDateLabel:nil];
+    [self setCommentContentTextView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -194,6 +199,43 @@
     [cell setCriterion:criterion];
     
     return cell;
+}
+
+- (void) setEditing:(BOOL)editing animated:(BOOL)animated {
+    
+    /*
+    [UIView animateWithDuration:0.3 animations:^() {
+        self.commentContentLabel.alpha = (editing)? 0.0 : 1.0;
+    }];
+    */
+    
+    /*
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:1.0];
+    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.commentContentLabel cache:YES];
+    
+    self.commentContentLabel.hidden = editing;   
+    
+    [UIView commitAnimations];
+    */
+    
+    //prepare animations
+    self.commentContentTextView.text = self.commentContentLabel.text;
+    
+    
+    UIViewAnimationOptions options = UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionTransitionCrossDissolve;  
+    
+    [UIView transitionWithView:self.bottomScrollView 
+                      duration:0.3
+                       options:options  
+                    animations:^{
+                        self.commentContentLabel.hidden = editing;
+                        self.commentContentTextView.hidden = !editing;
+                    
+                    }  
+                    completion:NULL];  
+    
+    [super setEditing:editing animated:animated];
 }
 
 /*

@@ -24,6 +24,7 @@
 
 
 @property (weak, nonatomic) IBOutlet UILabel *commentContentLabel;
+@property (weak, nonatomic) IBOutlet UITextView *commentContentTextView;
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
 @property (weak, nonatomic) IBOutlet UILabel *wineNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;

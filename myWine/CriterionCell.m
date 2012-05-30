@@ -48,4 +48,16 @@
     [self.classificationSlider setUserInteractionEnabled:FALSE];
 }
 
+- (void) setEditing:(BOOL)editing animated:(BOOL)animated {
+    
+    if (editing) {
+        [self.classificationSlider setUserInteractionEnabled:YES];
+    } else {
+        [self.classificationSlider setUserInteractionEnabled:NO];
+    }
+    
+    [super setEditing:editing animated:animated];
+    
+}
+
 @end

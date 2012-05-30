@@ -17,6 +17,7 @@
 
 @synthesize vinho = _vinho, prova = _prova;
 @synthesize editButton = _editButton;
+@synthesize  pcvc = _pcvc;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,6 +35,7 @@
     
     [self setTitle: self.vinho.name];
     [self.editButton setTitle:[[Language instance] translate:@"Edit"]];
+    self.pcvc = [[self viewControllers] objectAtIndex:0];
 }
 
 - (void)viewDidUnload
@@ -59,4 +61,9 @@
     [self.navigationItem setLeftBarButtonItem:nil animated:YES];
 }
 
+- (IBAction)toggleEdit:(id)sender {
+    
+    [self.pcvc setEditing:!self.pcvc.isEditing animated:YES];
+    
+}
 @end
