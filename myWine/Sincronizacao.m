@@ -121,12 +121,40 @@
 {
     sqlite3_stmt * stmt;
     NSString * querySQL = nil;
-    BOOL exists = FALSE;
+    BOOL wineExists = FALSE;
     
     for(int i = 0; i < [wines count]; i++){
         NSDictionary * wineJSON = [wines objectAtIndex:i];
+        int wine_id;
         
-        //verificar se o vinho ja existe na da bd, se existir é um update
+        //verificar se o vinho ja existe na da bd, se existir e um update
+        querySQL = [NSString stringWithFormat:@"SELECT wine_id FROM wine WHERE wine_server_id = %d", [wineJSON objectForKey:@"wine_server_id"]];
+        
+        const char *query_stmt = [querySQL UTF8String];
+        if (sqlite3_prepare_v2(*contactDB, query_stmt, -1, &stmt, NULL) == SQLITE_OK){
+            
+            if(sqlite3_step(stmt) == SQLITE_ROW){
+                
+                wine_id = sqlite3_column_int(stmt, 0);
+                wineExists = TRUE;
+                
+                sqlite3_finalize(stmt);
+            }
+        }else{
+            DebugLog(@"Query with error: %s", query_stmt);
+            return FALSE;
+        }
+        
+        
+        
+        //se exisit faz update, senao cria
+        if(wineExists){
+            
+            
+            
+        }else {
+            
+        }
         
         
     }

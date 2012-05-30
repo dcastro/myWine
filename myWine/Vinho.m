@@ -126,34 +126,26 @@
                 switch (state) {
                     case 0:
                         querySQL = [NSString stringWithFormat:@"UPDATE Wine SET state = 2, name = \'%@\', producer = '\%@\', year = %d, grapes = \'%@\',  region_id = %d, currency = \'%@\' WHERE wine_id = %d", self.name, self.producer, self.year, self.grapes, self.region.region_id, currencyStr(self.currency), self.wine_id];
-                        if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
-                            DebugLog(@"Could not update: %s", errMsg);
-                            sqlite3_free(errMsg);
-                            return_value = FALSE;
-                        }
                         break;
                         
                     case 1:
                         querySQL = [NSString stringWithFormat:@"UPDATE Wine SET state = 1, name = \'%@\', producer = \'%@\', year = %d, grapes = \'%@\',  region_id = %d, currency = \'%@\' WHERE wine_id = %d", self.name, self.producer, self.year, self.grapes, self.region.region_id, currencyStr(self.currency), self.wine_id];
-                        if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
-                            DebugLog(@"Could not update: %s", errMsg);
-                            sqlite3_free(errMsg);
-                            return_value = FALSE;
-                        }
                         break;
                         
                     case 2:
                         querySQL = [NSString stringWithFormat:@"UPDATE Wine SET state = 2, name = \'%@\', producer = \'%@\', year = %d, grapes = \'%@\',  region_id = %d, currency = \'%@\' WHERE wine_id = %d", self.name, self.producer, self.year, self.grapes, self.region.region_id, currencyStr(self.currency), self.wine_id];
-                        if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
-                            DebugLog(@"Could not update: %s", errMsg);
-                            sqlite3_free(errMsg);
-                            return_value = FALSE;
-                        }
                         break;
                         
                     default:
                         break;
                 }
+                                
+                if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+                    DebugLog(@"Could not update: %s", errMsg);
+                    sqlite3_free(errMsg);
+                    return_value = FALSE;
+                }
+                
             }
             sqlite3_close(*contactDB);
         }

@@ -40,33 +40,24 @@
                 switch (state) {
                     case 0:
                         querySQL = [NSString stringWithFormat:@"UPDATE Tasting SET state = 3 WHERE wine_id = %d", p.tasting_id];
-                        if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
-                            DebugLog(@"Could not mark for deletion: %s", errMsg);
-                            sqlite3_free(errMsg);
-                            return_value = FALSE;
-                        }
                         break;
                         
                     case 1:
                         querySQL = [NSString stringWithFormat:@"DELETE FROM Tasting WHERE tasting_id = %d", p.tasting_id];
-                        if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
-                            DebugLog(@"Could not delete: %s", errMsg);
-                            sqlite3_free(errMsg);
-                            return_value = FALSE;
-                        }
                         break;
                         
                     case 2:
                         querySQL = [NSString stringWithFormat:@"UPDATE Tasting SET state = 3 WHERE tasting_id = %d", p.tasting_id];
-                        if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
-                            DebugLog(@"Could not mark for deletion: %s", errMsg);
-                            sqlite3_free(errMsg);
-                            return_value = FALSE;
-                        }
                         break;
                         
                     default:
                         break;
+                }
+                
+                if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+                    DebugLog(@"Could not mark for deletion: %s", errMsg);
+                    sqlite3_free(errMsg);
+                    return_value = FALSE;
                 }
             }
             sqlite3_close(*contactDB);

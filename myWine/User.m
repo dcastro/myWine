@@ -139,21 +139,21 @@ static User *sharedUser = nil;
     Language *lan = [Language instance];
     switch (lan.selectedLanguage) {
         case FR:
-            querySQL =  @"SELECT w.wine_id, c.name_fr, r.name  , wt.name_fr, w.name, w.year, w.photo_filename, w.producer, w.currency, w.price, w.grapes \
+            querySQL =  @"SELECT w.wine_id, c.name_fr, r.name , wt.name_fr, w.name, w.year, w.photo_filename, w.producer, w.currency, w.price, w.grapes, r.region_id \
                         FROM Wine w, Region r, Country c, WineType wt \
                         WHERE w.region_id = r.region_id AND r.country_id = c.country_id AND w.winetype_id = wt.winetype_id AND w.state <> 3 \
                         ORDER BY w.name DESC;";
             break;
             
         case EN: 
-            querySQL =  @"SELECT w.wine_id, c.name_en, r.name  , wt.name_en, w.name, w.year, w.photo_filename, w.producer, w.currency, w.price, w.grapes \
+            querySQL =  @"SELECT w.wine_id, c.name_en, r.name  , wt.name_en, w.name, w.year, w.photo_filename, w.producer, w.currency, w.price, w.grapes, r.region_id \
                         FROM Wine w, Region r, Country c, WineType wt \
                         WHERE w.region_id = r.region_id AND r.country_id = c.country_id AND w.winetype_id = wt.winetype_id AND w.state <> 3 \
                         ORDER BY w.name DESC;";
             break;
             
         case PT:
-            querySQL =  @"SELECT w.wine_id, c.name_pt, r.name  , wt.name_pt, w.name, w.year, w.photo_filename, w.producer, w.currency, w.price, w.grapes \
+            querySQL =  @"SELECT w.wine_id, c.name_pt, r.name  , wt.name_pt, w.name, w.year, w.photo_filename, w.producer, w.currency, w.price, w.grapes, r.region_id \
                         FROM Wine w, Region r, Country c, WineType wt \
                         WHERE w.region_id = r.region_id AND r.country_id = c.country_id AND w.winetype_id = wt.winetype_id AND w.state <> 3 \
                         ORDER BY w.name DESC;";
@@ -177,11 +177,15 @@ static User *sharedUser = nil;
             Regiao * r = [[Regiao alloc] init];
             r.country_name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 1)];
             r.region_name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 2)];
+            r.region_id = sqlite3_column_int(stmt, 11);
             wine.region = r;
+
+           
             
             TipoVinho *tv = [[TipoVinho alloc] init];
             tv.name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 3)];
             wine.winetype = tv;
+            
             
             wine.name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 4)];
             
@@ -210,6 +214,8 @@ static User *sharedUser = nil;
                 wine.grapes = [NSString stringWithUTF8String:(const char *)wgrapes];
             else
                 wine.grapes = nil;
+            
+            
             
             [_vinhos insertObject:wine atIndex:0];
          
