@@ -88,18 +88,51 @@
             return FALSE; 
         }
     }
-    
 
+    
+    if([receivedJSON objectForKey:@"wines"]){
+        if(![self parseWines:[receivedJSON objectForKey:@"wines"]]){
+            [query rollbackTransaction];
+            return FALSE; 
+        }
+    }
+    
+    
+    
+    
+    
+    
     
     //ultimo passo e limpar o lixo solto da bd
     if(![self cleanGarbage]){
         [query rollbackTransaction];
         return FALSE; 
     }
-
     
     
     [query endTransaction];
+    
+    return TRUE;
+}
+           
+           
+           
+-(BOOL)parseWines:(NSArray *) wines
+{
+    sqlite3_stmt * stmt;
+    NSString * querySQL = nil;
+    BOOL exists = FALSE;
+    
+    for(int i = 0; i < [wines count]; i++){
+        NSDictionary * wineJSON = [wines objectAtIndex:i];
+        
+        //verificar se o vinho ja existe na da bd, se existir é um update
+        
+        
+    }
+    
+    
+    
     
     return TRUE;
 }
