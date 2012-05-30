@@ -13,6 +13,8 @@
 
 - (BOOL) insertProva:(Prova*)prova atIndex:(NSUInteger)index {
     #warning TODO: completar este metodo
+    
+    return FALSE;
 }
 
 -(BOOL) removeProvaAtIndex:(NSUInteger) index {

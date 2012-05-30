@@ -111,8 +111,29 @@
     
 }
 
-- (void) save {
-#warning FERNANDO TODO: gravar a classification_chosen
+- (BOOL) save 
+{
+    
+    Query *query = [[Query alloc]init];
+    NSString * querySQL = [NSString stringWithFormat:@"UPDATE Criterion SET classification_id = %d WHERE criterion_id= %d", 
+                           self.classification_chosen.classification_id,
+                           self.criterion_id];
+    
+    sqlite3 ** contactDB = [query prepareForExecution];
+    
+    char *errMsg;
+    if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+        DebugLog(@"%s", errMsg);
+        sqlite3_free(errMsg);
+        sqlite3_close(*contactDB);
+        return FALSE;
+    }
+    sqlite3_close(*contactDB);
+
+    
+
+    return TRUE;
+    
 }
 
 @end
