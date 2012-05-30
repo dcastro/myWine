@@ -20,5 +20,7 @@
 
 - (IBAction)adjustSliderValue:(id)sender;
 - (IBAction)classificationSliderValueChanged:(id)sender;
+- (void) resetState;
+- (void) commitEdit;
 
 @end

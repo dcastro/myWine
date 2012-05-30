@@ -21,4 +21,6 @@
 - (int) minWeight;
 - (int) maxWeight;
 
+- (void) save;
+
 @end

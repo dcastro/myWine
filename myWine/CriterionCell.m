@@ -46,12 +46,8 @@
     [self.classificationSlider setMaximumValue: [self.criterion maxWeight]]; 
     [self.classificationSlider setValue:self.criterion.classification_chosen.weight];
     NSLog(@" MIN %i MAX %i CHOSEN %i", self.criterion.minWeight, self.criterion.maxWeight, self.criterion.classification_chosen.weight);
-    self.classification = self.criterion.classification_chosen;
     
-    //find currently selected classification's index
-    int i;
-    for(i = 0; i < self.criterion.classifications.count && ((Classificacao*)[self.criterion.classifications objectAtIndex:i]).weight != self.classification.weight; i++);
-    self.classification_index = i;
+
     
     [self.classificationSlider setUserInteractionEnabled:FALSE];
     
@@ -81,6 +77,16 @@
 - (void) setEditing:(BOOL)editing animated:(BOOL)animated {
     
     if (editing) {
+        
+        //temp classification
+        self.classification = self.criterion.classification_chosen;
+        
+        //find currently selected classification's index
+        int i;
+        for(i = 0; i < self.criterion.classifications.count && ((Classificacao*)[self.criterion.classifications objectAtIndex:i]).weight != self.classification.weight; i++);
+        self.classification_index = i;
+        
+        
         [self.classificationSlider setUserInteractionEnabled:YES];
     } else {
         [self.classificationSlider setUserInteractionEnabled:NO];
@@ -91,7 +97,7 @@
 }
 
 - (IBAction)adjustSliderValue:(id)sender {
-    self.classificationSlider.value = self.classification.weight;
+    [self.classificationSlider setValue:self.classification.weight animated:YES];
 }
 
 - (IBAction)classificationSliderValueChanged:(id)sender {
@@ -129,6 +135,20 @@
     
     //NSLog(@"classification %i   value %.02f", self.classification.weight, value);
     
+}
+
+
+- (void) resetState {
+    [self.classificationSlider setValue:self.criterion.classification_chosen.weight animated:YES];
+    [self drawClassificationLabel:self.criterion.classification_chosen animated:YES];    
+    
+}
+
+- (void) commitEdit {
+    if(self.criterion.classification_chosen != self.classification) {
+        self.criterion.classification_chosen = self.classification;
+        [self.criterion save];
+    }
 }
 
 @end

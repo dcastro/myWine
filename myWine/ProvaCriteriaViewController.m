@@ -206,7 +206,7 @@
     return cell;
 }
 
-- (void) setEditing:(BOOL)editing animated:(BOOL)animated {
+- (void) setEditing:(BOOL)editing animated:(BOOL)animated done:(BOOL)done {
     
     /*
     [UIView animateWithDuration:0.3 animations:^() {
@@ -241,6 +241,37 @@
                     completion:NULL];  
     
     [super setEditing:editing animated:animated];
+    
+    //if the edition was canceled
+    if (!editing && !done) {
+        
+        //cancel changes
+        [self forEveryCell:^(CriterionCell* cell) {
+            [cell resetState];
+        } ];
+        
+    }
+    //if the edition was completed successfully
+    else if (!editing) {
+        
+        //save changes
+        [self forEveryCell:^(CriterionCell* cell) {
+            [cell commitEdit];
+        } ];
+    }
+}
+
+// Executes the given block for all cells
+-(void) forEveryCell:(void (^)(CriterionCell*)) block {
+    for(int i = 0; i < self.prova.sections.count; i++) {
+        Seccao* seccao = [self.prova.sections objectAtIndex:i];
+        
+        for(int j = 0; j < seccao.criteria.count; j++) {
+            CriterionCell* cell = (CriterionCell*) [[self tableView] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:j inSection:i]];
+            block(cell);
+        }
+        
+    }
 }
 
 /*

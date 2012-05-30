@@ -29,4 +29,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *wineNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
+
+- (void) setEditing:(BOOL)editing animated:(BOOL)animated done:(BOOL)done;
+
 @end

@@ -77,7 +77,8 @@
 
 - (IBAction)toggleEdit:(id)sender {
     
-    BOOL isEditing = ! self.pcvc.isEditing;
+    BOOL isEditing = ! self.isEditing;
+    BOOL done = false;
     
     if (isEditing) {
         //switch do doneButton and cancelButton
@@ -94,11 +95,15 @@
         [[self navigationItem] setRightBarButtonItem:self.editButton animated:YES];
         [[self navigationItem] setLeftBarButtonItem:self.tempButton animated:YES];
         [self setTempButton:nil];
+        
+        UIBarButtonItem* pressedButton = (UIBarButtonItem*) sender;
+        done = [pressedButton style] == UIBarButtonItemStyleDone;
+
     }
     
     
     //switch editing mode
-    [self.pcvc setEditing: isEditing animated:YES];
+    [self.pcvc setEditing: isEditing animated:YES done:done];
     [self setEditing:isEditing animated:YES];
     
 }
