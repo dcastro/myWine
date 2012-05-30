@@ -91,6 +91,7 @@
 		DA498F14153D6659009C4072 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = DA498F13153D6659009C4072 /* User.m */; };
 		DA631DE0156EA7F2003EC91B /* CurrencyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA631DDF156EA7F2003EC91B /* CurrencyViewController.m */; };
 		DA7D48A4152E0AAD00C525FB /* Language.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7D48A3152E0AAD00C525FB /* Language.m */; };
+		DA91312915767E7300D37BA0 /* slider_thumb.png in Resources */ = {isa = PBXBuildFile; fileRef = DA91312815767E7300D37BA0 /* slider_thumb.png */; };
 		DA993CDE153F22E7009D3E13 /* Vinho.m in Sources */ = {isa = PBXBuildFile; fileRef = DA993CDD153F22E7009D3E13 /* Vinho.m */; };
 		DAC99B7F155AE3EA00D9C04F /* SubstitutableTabBarControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC99B7E155AE3EA00D9C04F /* SubstitutableTabBarControllerViewController.m */; };
 		DAC99B85155B0B7B00D9C04F /* ProvaCriteriaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC99B84155B0B7B00D9C04F /* ProvaCriteriaViewController.m */; };
@@ -234,6 +235,7 @@
 		DA631DDF156EA7F2003EC91B /* CurrencyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyViewController.m; sourceTree = "<group>"; };
 		DA7D48A2152E0AAD00C525FB /* Language.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Language.h; sourceTree = "<group>"; };
 		DA7D48A3152E0AAD00C525FB /* Language.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Language.m; sourceTree = "<group>"; };
+		DA91312815767E7300D37BA0 /* slider_thumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slider_thumb.png; sourceTree = "<group>"; };
 		DA993CDC153F22E7009D3E13 /* Vinho.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vinho.h; sourceTree = "<group>"; };
 		DA993CDD153F22E7009D3E13 /* Vinho.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vinho.m; sourceTree = "<group>"; };
 		DAC99B7D155AE3EA00D9C04F /* SubstitutableTabBarControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubstitutableTabBarControllerViewController.h; sourceTree = "<group>"; };
@@ -408,6 +410,7 @@
 		A9C5A01A1517A7EF00A3F8C5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DA91312815767E7300D37BA0 /* slider_thumb.png */,
 				65EFEBA81573C9770087F155 /* material mywine-03.png */,
 				65EFEBA91573C9770087F155 /* material mywine-04.png */,
 				65EFEBAA1573C9770087F155 /* material mywine-05.png */,
@@ -650,6 +653,7 @@
 				65EFEBC31573C9770087F155 /* material mywine-15.png in Resources */,
 				65EFEBC41573C9770087F155 /* material mywine-16.png in Resources */,
 				65EFEBC51573C9770087F155 /* material mywine-17.png in Resources */,
+				DA91312915767E7300D37BA0 /* slider_thumb.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

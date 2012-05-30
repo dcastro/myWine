@@ -53,6 +53,11 @@
     self.classification_index = i;
     
     [self.classificationSlider setUserInteractionEnabled:FALSE];
+    
+    //change slider's thumb image
+    UIImage* image = [UIImage imageNamed:@"slider_thumb.png"];
+    [self.classificationSlider setThumbImage:image forState:UIControlStateNormal];
+    [self.classificationSlider setThumbImage:image forState:UIControlStateHighlighted];
 }
 
 - (void) drawClassificationLabel:(Classificacao*) classification animated:(BOOL) animated {
