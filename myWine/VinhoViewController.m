@@ -7,6 +7,7 @@
 //
 
 #import "VinhoViewController.h"
+#import "UIColor+myWineColor.h"
 
 @interface VinhoViewController () {
     CGFloat animatedDistance;
@@ -147,7 +148,7 @@
     [self.producerName setHidden:YES];
     [self.grapesList setHidden:YES];
     self.grapesList.backgroundColor = [UIColor  whiteColor];
-    self.grapesList.textColor = [UIColor colorWithRed:68.0/255.0 green:2.0/255.0 blue:0 alpha:1.0];
+    self.grapesList.textColor = [UIColor myWineColor];
     self.grapesListShow.backgroundColor = [UIColor  clearColor];
     self.grapesListShow.textColor = [UIColor whiteColor];
     

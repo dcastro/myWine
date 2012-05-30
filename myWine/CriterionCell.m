@@ -7,6 +7,7 @@
 //
 
 #import "CriterionCell.h"
+#import "UIColor+myWineColor.h"
 
 @implementation CriterionCell
 @synthesize classificationLabel;
@@ -58,6 +59,7 @@
     UIImage* image = [UIImage imageNamed:@"slider_thumb.png"];
     [self.classificationSlider setThumbImage:image forState:UIControlStateNormal];
     [self.classificationSlider setThumbImage:image forState:UIControlStateHighlighted];
+    [self.classificationSlider setMinimumTrackTintColor:[UIColor myWineColor]];
 }
 
 - (void) drawClassificationLabel:(Classificacao*) classification animated:(BOOL) animated {

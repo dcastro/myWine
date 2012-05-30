@@ -92,6 +92,7 @@
 		DA631DE0156EA7F2003EC91B /* CurrencyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA631DDF156EA7F2003EC91B /* CurrencyViewController.m */; };
 		DA7D48A4152E0AAD00C525FB /* Language.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7D48A3152E0AAD00C525FB /* Language.m */; };
 		DA91312915767E7300D37BA0 /* slider_thumb.png in Resources */ = {isa = PBXBuildFile; fileRef = DA91312815767E7300D37BA0 /* slider_thumb.png */; };
+		DA9131311576812500D37BA0 /* UIColor+myWineColor.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9131301576812500D37BA0 /* UIColor+myWineColor.m */; };
 		DA993CDE153F22E7009D3E13 /* Vinho.m in Sources */ = {isa = PBXBuildFile; fileRef = DA993CDD153F22E7009D3E13 /* Vinho.m */; };
 		DAC99B7F155AE3EA00D9C04F /* SubstitutableTabBarControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC99B7E155AE3EA00D9C04F /* SubstitutableTabBarControllerViewController.m */; };
 		DAC99B85155B0B7B00D9C04F /* ProvaCriteriaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC99B84155B0B7B00D9C04F /* ProvaCriteriaViewController.m */; };
@@ -236,6 +237,8 @@
 		DA7D48A2152E0AAD00C525FB /* Language.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Language.h; sourceTree = "<group>"; };
 		DA7D48A3152E0AAD00C525FB /* Language.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Language.m; sourceTree = "<group>"; };
 		DA91312815767E7300D37BA0 /* slider_thumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slider_thumb.png; sourceTree = "<group>"; };
+		DA91312F1576812500D37BA0 /* UIColor+myWineColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+myWineColor.h"; sourceTree = "<group>"; };
+		DA9131301576812500D37BA0 /* UIColor+myWineColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+myWineColor.m"; sourceTree = "<group>"; };
 		DA993CDC153F22E7009D3E13 /* Vinho.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vinho.h; sourceTree = "<group>"; };
 		DA993CDD153F22E7009D3E13 /* Vinho.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vinho.m; sourceTree = "<group>"; };
 		DAC99B7D155AE3EA00D9C04F /* SubstitutableTabBarControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubstitutableTabBarControllerViewController.h; sourceTree = "<group>"; };
@@ -519,6 +522,8 @@
 		DA06B863153FA0B800D03DD9 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				DA91312F1576812500D37BA0 /* UIColor+myWineColor.h */,
+				DA9131301576812500D37BA0 /* UIColor+myWineColor.m */,
 				DA06B865153FA0C800D03DD9 /* NSMutableArray+VinhosMutableArray.h */,
 				DA06B866153FA0C800D03DD9 /* NSMutableArray+VinhosMutableArray.m */,
 				BCC8EBB71563E36B006645BC /* NSMutableArray+ProvasMutableArray.h */,
@@ -727,6 +732,7 @@
 				DA631DE0156EA7F2003EC91B /* CurrencyViewController.m in Sources */,
 				D33F4B6E15702F00003C0BC5 /* SeccaoCaracteristica.m in Sources */,
 				DA019F56157046A200CC589A /* CriterionCell.m in Sources */,
+				DA9131311576812500D37BA0 /* UIColor+myWineColor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
