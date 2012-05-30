@@ -19,7 +19,8 @@
 
 @property (strong, nonatomic) Vinho* vinho;
 @property (strong, nonatomic) Prova* prova;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *editButton;
+@property (strong, nonatomic) UIBarButtonItem* tempButton;
 
 @property (strong, nonatomic) ProvaCriteriaViewController* pcvc;
 

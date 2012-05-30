@@ -56,7 +56,7 @@
         [self.classificationSlider setUserInteractionEnabled:NO];
     }
     
-    [super setEditing:editing animated:animated];
+    //[super setEditing:editing animated:animated];
     
 }
 
