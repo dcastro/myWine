@@ -27,40 +27,7 @@
     
     NSMutableDictionary * requestData = [NSMutableDictionary dictionaryWithObjectsAndKeys:user.username,@"username" ,user.password, @"password" , user.synced_at, @"synced_at" , nil];
     
-    
-    
-#warning TODO: FERNANDO: completar
-    //codigo sql para eliminar classficacoes soltas
-    //select classification_id from classification where classification_id not in (Select distinct c.classification_id from classification c, possibleclassification pc where  c.classification_id = pc.classification_id);
-    
-    
-    /*
-     
-     FUNCIONA!!!!!!
-     
-     
-     select distinct classifiable_id, classifiable_type from possibleclassification where  classifiable_type = 'FormCriterion' AND classifiable_id not in (Select formcriterion_id from formcriterion) UNION select distinct classifiable_id, classifiable_type from possibleclassification where  classifiable_type = 'FormCharacteristic' AND classifiable_id not in (Select formcharacteristics_id from FormCharacteristic) UNION select distinct classifiable_id, classifiable_type from possibleclassification where  classifiable_type = 'Criterion' AND classifiable_id not in (Select criterion_id from Criterion) UNION  select distinct classifiable_id, classifiable_type from possibleclassification where  classifiable_type = 'Characteristic' AND classifiable_id not in (Select characteristic_id from Characteristic)
-     
-     
-     select distinct classifiable_id, classifiable_type 
-     from possibleclassification 
-     where  classifiable_type = 'FormCriterion' AND classifiable_id not in (Select formcriterion_id from formcriterion) 
-     
-     UNION 
-     
-     select distinct classifiable_id, classifiable_type 
-     from possibleclassification 
-     where  classifiable_type = 'FormCharacteristic' AND classifiable_id not in (Select formcharacteristics_id from FormCharacteristic) 
-     
-     UNION 
-     
-     select distinct classifiable_id, classifiable_type from possibleclassification where  classifiable_type = 'Criterion' AND classifiable_id not in (Select criterion_id from Criterion)
-     
-     UNION 
-     
-     select distinct classifiable_id, classifiable_type from possibleclassification where  classifiable_type = 'Characteristic' AND classifiable_id not in (Select characteristic_id from Characteristic)
-     
-    */
+
     
     
     //conversao para string
@@ -123,7 +90,15 @@
     }
     
 
-    #warning TODO: ver cena das possible classifications...
+    
+    //ultimo passo e limpar o lixo solto da bd
+    if(![self cleanGarbage]){
+        [query rollbackTransaction];
+        return FALSE; 
+    }
+
+    
+    
     [query endTransaction];
     
     return TRUE;
@@ -531,6 +506,120 @@
     
     
     return TRUE;
+}
+
+
+
+
+-(BOOL)cleanGarbage
+{
+    
+    sqlite3_stmt *stmt;
+    NSString * querySQL = nil;
+    
+    
+    /*
+     select distinct classifiable_id, classifiable_type from possibleclassification where  classifiable_type = 'FormCriterion' AND classifiable_id not in (Select formcriterion_id from formcriterion) UNION select distinct classifiable_id, classifiable_type from possibleclassification where  classifiable_type = 'FormCharacteristic' AND classifiable_id not in (Select formcharacteristics_id from FormCharacteristic) UNION select distinct classifiable_id, classifiable_type from possibleclassification where  classifiable_type = 'Criterion' AND classifiable_id not in (Select criterion_id from Criterion) UNION  select distinct classifiable_id, classifiable_type from possibleclassification where  classifiable_type = 'Characteristic' AND classifiable_id not in (Select characteristic_id from Characteristic);
+     */
+    
+    querySQL =  @"SELECT DISTINCT classifiable_id, classifiable_type \
+                FROM possibleclassification \
+                WHERE  classifiable_type = 'FormCriterion' AND classifiable_id NOT INT (\
+                        SELECT formcriterion_id \
+                        FROM formcriterion) \
+                \
+                UNION \
+                \
+                SELECT DISTINCT classifiable_id, classifiable_type \
+                FROM possibleclassification \
+                WHERE  classifiable_type = 'FormCharacteristic' AND classifiable_id NOT IN (\
+                        SELECT formcharacteristics_id \
+                        FROM FormCharacteristic) \
+                \
+                UNION\
+                \
+                SELECT DISTINCT classifiable_id, classifiable_type \
+                FROM possibleclassification \
+                WHERE  classifiable_type = 'Criterion' AND classifiable_id NOT IN (\
+                        SELECT criterion_id \
+                        FROM Criterion) \
+                \
+                UNION\
+                \
+                SELECT DISTINCT classifiable_id, classifiable_type \
+                FROM possibleclassification \
+                WHERE  classifiable_type = 'Characteristic' AND classifiable_id NOT INE (\
+                        SELECT characteristic_id \
+                        FROM Characteristic);";
+    
+    
+    
+    const char * query_stmt = [querySQL UTF8String];
+    char *errMsg;
+    if (sqlite3_prepare_v2(*contactDB, query_stmt, -1, &stmt, NULL) == SQLITE_OK){
+        
+        while(sqlite3_step(stmt) == SQLITE_ROW){
+            
+            querySQL = [NSString stringWithFormat:@"DELETE FROM PossibleClassification \
+                        WHERE classifiable_id = %d AND classifiable_type = \'%@\'", 
+                        sqlite3_column_int(stmt, 0),
+                        [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 1)]];
+            
+            
+            if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+                DebugLog(@"%s", errMsg);
+                sqlite3_free(errMsg);
+                return FALSE;
+            }
+
+            
+            
+        }
+    }else {
+        DebugLog(@"Query with error: %s", query_stmt);
+        return FALSE;
+    }
+    sqlite3_finalize(stmt);
+
+    
+    
+    
+
+    querySQL =  @"SELECT classification_id \
+                FROM classification \
+                WHERE classification_id NOT IN ( \
+                SELECT DISTINCT c.classification_id \
+                FROM classification c, possibleclassification pc \
+                WHERE  c.classification_id = pc.classification_id);";
+    
+    query_stmt = [querySQL UTF8String];
+    if (sqlite3_prepare_v2(*contactDB, query_stmt, -1, &stmt, NULL) == SQLITE_OK){
+        
+        while(sqlite3_step(stmt) == SQLITE_ROW){
+            
+            querySQL = [NSString stringWithFormat:@"DELETE FROM Classification \
+                        WHERE classification_id = %d", 
+                        sqlite3_column_int(stmt, 0)];
+            
+            
+            if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+                DebugLog(@"%s", errMsg);
+                sqlite3_free(errMsg);
+                return FALSE;
+            }
+            
+            
+            
+        }
+    }else {
+        DebugLog(@"Query with error: %s", query_stmt);
+        return FALSE;
+    }
+    sqlite3_finalize(stmt);
+    
+    
+    return TRUE;
+    
 }
 
 @end

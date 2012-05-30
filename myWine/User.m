@@ -141,17 +141,22 @@ static User *sharedUser = nil;
         case FR:
             querySQL =  @"SELECT w.wine_id, c.name_fr, r.name  , wt.name_fr, w.name, w.year, w.photo_filename, w.producer, w.currency, w.price, w.grapes \
                         FROM Wine w, Region r, Country c, WineType wt \
-                        WHERE w.region_id = r.region_id AND r.country_id = c.country_id AND w.winetype_id = wt.winetype_id AND w.state <> 3;";
+                        WHERE w.region_id = r.region_id AND r.country_id = c.country_id AND w.winetype_id = wt.winetype_id AND w.state <> 3 \
+                        ORDER BY w.name DESC;";
             break;
             
-        case EN: querySQL =  @"SELECT w.wine_id, c.name_en, r.name  , wt.name_en, w.name, w.year, w.photo_filename, w.producer, w.currency, w.price, w.grapes \
-            FROM Wine w, Region r, Country c, WineType wt \
-            WHERE w.region_id = r.region_id AND r.country_id = c.country_id AND w.winetype_id = wt.winetype_id AND w.state <> 3;";
+        case EN: 
+            querySQL =  @"SELECT w.wine_id, c.name_en, r.name  , wt.name_en, w.name, w.year, w.photo_filename, w.producer, w.currency, w.price, w.grapes \
+                        FROM Wine w, Region r, Country c, WineType wt \
+                        WHERE w.region_id = r.region_id AND r.country_id = c.country_id AND w.winetype_id = wt.winetype_id AND w.state <> 3 \
+                        ORDER BY w.name DESC;";
             break;
             
-        case PT:querySQL =  @"SELECT w.wine_id, c.name_pt, r.name  , wt.name_pt, w.name, w.year, w.photo_filename, w.producer, w.currency, w.price, w.grapes \
-            FROM Wine w, Region r, Country c, WineType wt \
-            WHERE w.region_id = r.region_id AND r.country_id = c.country_id AND w.winetype_id = wt.winetype_id AND w.state <> 3;";
+        case PT:
+            querySQL =  @"SELECT w.wine_id, c.name_pt, r.name  , wt.name_pt, w.name, w.year, w.photo_filename, w.producer, w.currency, w.price, w.grapes \
+                        FROM Wine w, Region r, Country c, WineType wt \
+                        WHERE w.region_id = r.region_id AND r.country_id = c.country_id AND w.winetype_id = wt.winetype_id AND w.state <> 3 \
+                        ORDER BY w.name DESC;";
             break;
             
         default:
