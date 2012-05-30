@@ -15,5 +15,10 @@
 @property (weak, nonatomic) IBOutlet UISlider *classificationSlider;
 
 @property (strong, nonatomic) Criterio* criterion;
+@property (strong, nonatomic) Classificacao* classification; //
+@property (nonatomic) int classification_index;
+
+- (IBAction)adjustSliderValue:(id)sender;
+- (IBAction)classificationSliderValueChanged:(id)sender;
 
 @end
