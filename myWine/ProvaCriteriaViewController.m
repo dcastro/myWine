@@ -9,6 +9,7 @@
 #import "ProvaCriteriaViewController.h"
 #import "Language.h"
 #import <objc/runtime.h> 
+#import <QuartzCore/QuartzCore.h>
 
 @interface ProvaCriteriaViewController ()
 
@@ -59,6 +60,10 @@
     
     //hide the text views
     self.commentContentTextView.hidden = TRUE;
+    
+    //apply rounded corners to text views
+    self.commentContentTextView.clipsToBounds = YES;
+    self.commentContentTextView.layer.cornerRadius = 10.0f;
     
     [self configureView];
     
