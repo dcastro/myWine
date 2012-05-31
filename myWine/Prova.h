@@ -21,7 +21,7 @@
 
 - (NSString*) fullDate;
 - (NSString*) shortDate;
-- (NSString*) calcScore;
+- (int) calcScore;
 
 -(BOOL)save;
 

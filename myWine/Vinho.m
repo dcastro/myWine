@@ -178,5 +178,37 @@
     return full_price;
 }
 
+- (NSComparisonResult)compareUsingName:(Vinho*)vinho {
+    
+    return [self.name compare:vinho.name];
+
+}
+
+- (NSComparisonResult)compareUsingScore:(Vinho*)vinho {
+    int thisScore = [self score];
+    int otherScore = [vinho score];
+    
+    if (thisScore < otherScore)
+        return NSOrderedAscending;
+    else if (thisScore > otherScore)
+        return NSOrderedDescending;
+    else 
+        return NSOrderedSame;
+}
+
+- (int) score {
+    if ([self.provas count] == 0)
+        return -1;
+    int total = 0;
+    
+    for (Prova* prova in self.provas)
+        total += [prova calcScore];
+    
+    int percentage = (float) total / (float) [self.provas count];
+    
+    return percentage;
+    
+}
+
 
 @end

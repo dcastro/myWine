@@ -94,7 +94,8 @@
     [self.commentContentLabel sizeToFit];
     
     self.scoreLabel.text = [[Language instance] translate:@"Score"];
-    self.scoreContentLabel.text = [self.prova calcScore];
+    NSString* string = [[NSString alloc] initWithFormat:@"%i %%", [self.prova calcScore]];
+    self.scoreContentLabel.text = string;
     
     /*
     NSArray* views = [[self tableView] subviews];

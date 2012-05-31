@@ -9,10 +9,15 @@
 #import <Foundation/Foundation.h>
 #import "Vinho.h"
 
+#define ORDER_BY_NAME 0
+#define ORDER_BY_SCORE 1
+
 @interface NSMutableArray (VinhosMutableArray)
 
 -(BOOL) insertVinho:(Vinho*)vinho atIndex:(NSUInteger)index;
     
 -(BOOL) removeVinhoAtIndex:(NSUInteger) index;
+
+-(void) orderVinhosBy:(int) order;
 
 @end

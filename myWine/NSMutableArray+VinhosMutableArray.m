@@ -116,4 +116,15 @@
     
 }
 
+- (void) orderVinhosBy:(int) order {
+    switch (order) {
+        case ORDER_BY_NAME:
+            [self sortUsingSelector:@selector(compareUsingName:)];
+            break;
+            
+        case ORDER_BY_SCORE:
+            [self sortUsingSelector:@selector(compareUsingScore:)];
+    }
+}
+
 @end

@@ -28,7 +28,11 @@
 
 - (NSString*) description;
 - (NSString*) fullPrice;
+- (int) score;
 
 - (BOOL) updateWithVinho:(Vinho*) vinho;
+
+- (NSComparisonResult)compareUsingName:(Vinho*)vinho;
+- (NSComparisonResult)compareUsingScore:(Vinho*)vinho;
 
 @end
