@@ -37,6 +37,13 @@
     [self.editButton setTitle:[[Language instance] translate:@"Edit"]];
     self.criteriaController = [[self viewControllers] objectAtIndex:0];
     self.characteristicsController = [[self viewControllers] objectAtIndex:1];
+    
+    Language* lan = [Language instance];
+    UITabBarItem* criteriaItem = [[UITabBarItem alloc] initWithTitle:[lan translate:@"Criteria"] image:nil tag:0];
+    UITabBarItem* characteristicsItem = [[UITabBarItem alloc] initWithTitle:[lan translate:@"Characteristics"] image:nil tag:1];
+    
+    self.criteriaController.tabBarItem = criteriaItem;
+    self.characteristicsController.tabBarItem = characteristicsItem;
 }
 
 - (void)viewDidUnload
