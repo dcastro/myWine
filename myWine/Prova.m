@@ -202,4 +202,20 @@
     return dateString;
 }
 
+- (NSString*) calcScore {
+    
+    int score = 0, max = 0;
+    
+    for( Seccao* section in self.sections) {
+        for( Criterio* criterion in section.criteria ) {
+            score += criterion.classification_chosen.weight;
+            max += criterion.maxWeight;
+        }
+    }
+    
+    int percentage = ((float)score/ (float) max) * 100.0;
+    NSString* string = [[NSString alloc] initWithFormat:@"%i %%", percentage];
+    return string;
+}
+
 @end

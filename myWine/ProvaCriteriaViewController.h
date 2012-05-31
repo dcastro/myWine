@@ -14,7 +14,7 @@
 #import "Vinho.h"
 #import "SubstitutableTabBarControllerViewController.h"
 
-@interface ProvaCriteriaViewController : UITableViewController
+@interface ProvaCriteriaViewController : UITableViewController <CriterionCellDelegate>
 
 @property (strong, nonatomic) Prova* prova;
 @property (strong, nonatomic) Vinho* vinho;
@@ -28,6 +28,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
 @property (weak, nonatomic) IBOutlet UILabel *wineNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (weak, nonatomic) IBOutlet UILabel *scoreContentLabel;
 
 
 - (void) setEditing:(BOOL)editing animated:(BOOL)animated done:(BOOL)done;

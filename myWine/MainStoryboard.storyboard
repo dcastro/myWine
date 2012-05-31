@@ -384,31 +384,45 @@
                             <color key="backgroundColor" red="0.33459739960000001" green="0.01176470588" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         </view>
                         <scrollView key="tableFooterView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="83r-FD-Tah">
-                            <rect key="frame" x="0.0" y="240" width="703" height="215"/>
+                            <rect key="frame" x="0.0" y="240" width="703" height="350"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <subviews>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Lorem Ipsum" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="6he-6c-4xP">
-                                    <rect key="frame" x="44" y="49" width="633" height="130"/>
+                                    <rect key="frame" x="44" y="155" width="633" height="130"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Comment" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="KNh-BK-Sm0">
-                                    <rect key="frame" x="44" y="20" width="182" height="21"/>
+                                    <rect key="frame" x="44" y="126" width="182" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" id="77Z-2j-uPU">
-                                    <rect key="frame" x="44" y="49" width="633" height="130"/>
+                                    <rect key="frame" x="44" y="155" width="633" height="130"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 </textView>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Score" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="X2W-n3-NgD">
+                                    <rect key="frame" x="44" y="20" width="74" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="x %" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="t0d-iL-gwf">
+                                    <rect key="frame" x="44" y="49" width="42" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                         </scrollView>
                         <prototypes>
@@ -451,6 +465,8 @@
                         <outlet property="commentContentTextView" destination="77Z-2j-uPU" id="t6N-wF-TU7"/>
                         <outlet property="commentLabel" destination="KNh-BK-Sm0" id="hiS-XV-wIX"/>
                         <outlet property="dateLabel" destination="JHN-Pa-4ro" id="sI1-lz-Yrh"/>
+                        <outlet property="scoreContentLabel" destination="t0d-iL-gwf" id="3j6-BG-Jlc"/>
+                        <outlet property="scoreLabel" destination="X2W-n3-NgD" id="6Pf-99-PeO"/>
                         <outlet property="upperView" destination="GJE-Es-ups" id="yQF-z2-YYf"/>
                         <outlet property="wineNameLabel" destination="Toc-hi-sDg" id="Bu2-Ie-ptk"/>
                     </connections>
@@ -2661,6 +2677,8 @@
         <class className="CriterionCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CriterionCell.h"/>
             <relationships>
+                <relationship kind="action" name="adjustSliderValue:"/>
+                <relationship kind="action" name="classificationSliderValueChanged:"/>
                 <relationship kind="outlet" name="classificationLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="classificationSlider" candidateClass="UISlider"/>
                 <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
@@ -2772,6 +2790,8 @@
                 <relationship kind="outlet" name="commentContentTextView" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="commentLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scoreContentLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scoreLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="upperView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="wineNameLabel" candidateClass="UILabel"/>
             </relationships>

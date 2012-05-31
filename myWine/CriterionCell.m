@@ -15,6 +15,7 @@
 @synthesize classificationSlider;
 @synthesize criterion = _criterion;
 @synthesize classification = _classification, classification_index = _classification_index;
+@synthesize delegate = _delegate;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -47,7 +48,8 @@
     [self.classificationSlider setValue:self.criterion.classification_chosen.weight];
     NSLog(@" MIN %i MAX %i CHOSEN %i", self.criterion.minWeight, self.criterion.maxWeight, self.criterion.classification_chosen.weight);
     
-
+    //temp classification
+    self.classification = self.criterion.classification_chosen;
     
     [self.classificationSlider setUserInteractionEnabled:FALSE];
     
@@ -131,6 +133,8 @@
         self.classification_index = new_index;
         
         [self drawClassificationLabel:self.classification animated:YES];
+        
+        [self.delegate criterionCellDidUpdateClassification];
     }
     
     //NSLog(@"classification %i   value %.02f", self.classification.weight, value);
@@ -140,6 +144,7 @@
 
 - (void) resetState {
     if(self.criterion.classification_chosen != self.classification) {
+        self.classification = self.criterion.classification_chosen;
         [self.classificationSlider setValue:self.criterion.classification_chosen.weight animated:YES];
         [self drawClassificationLabel:self.criterion.classification_chosen animated:YES];
     }

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Criterio.h"
 
 @interface Prova : NSObject
 
@@ -20,7 +21,7 @@
 
 - (NSString*) fullDate;
 - (NSString*) shortDate;
-
+- (NSString*) calcScore;
 
 -(BOOL)save;
 

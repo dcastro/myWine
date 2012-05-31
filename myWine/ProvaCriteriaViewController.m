@@ -25,6 +25,8 @@
 @synthesize commentLabel = _commentLabel;
 @synthesize wineNameLabel = _wineNameLabel;
 @synthesize dateLabel = _dateLabel;
+@synthesize scoreLabel = _scoreLabel;
+@synthesize scoreContentLabel = _scoreContentLabel;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -91,6 +93,8 @@
     self.commentContentLabel.numberOfLines = 0;
     [self.commentContentLabel sizeToFit];
     
+    self.scoreLabel.text = [[Language instance] translate:@"Score"];
+    self.scoreContentLabel.text = [self.prova calcScore];
     
     /*
     NSArray* views = [[self tableView] subviews];
@@ -106,6 +110,39 @@
 
         
     }*/
+    
+}
+
+- (void) updateScoreLabel {
+    
+    int score = 0, max = 0;
+    
+    for(int i = 0; i < self.prova.sections.count; i++) {
+        Seccao* seccao = [self.prova.sections objectAtIndex:i];
+        
+        for(int j = 0; j < seccao.criteria.count; j++) {
+            CriterionCell* cell = (CriterionCell*) [[self tableView] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:j inSection:i]];
+            score += cell.classification.weight;
+            max += cell.criterion.maxWeight;
+        }
+        
+    }
+    
+    int percentage = ((float) score/ (float) max) * 100.0;
+    NSString* string = [[NSString alloc] initWithFormat:@"%i %%", percentage];
+
+    if(! [self.scoreContentLabel.text isEqualToString:string]) {
+
+        [UIView animateWithDuration:0.3 animations:^() {
+            self.scoreContentLabel.alpha = 0.0;
+        }];
+        
+        self.scoreContentLabel.text = string;
+        
+        [UIView animateWithDuration:0.3 animations:^() {
+            self.scoreContentLabel.alpha = 1.0;
+        }];
+    }
     
 }
 
@@ -152,6 +189,8 @@
     [self setWineNameLabel:nil];
     [self setDateLabel:nil];
     [self setCommentContentTextView:nil];
+    [self setScoreLabel:nil];
+    [self setScoreContentLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -206,8 +245,8 @@
     // Configure the cell...
     Seccao* section = (Seccao*) [self.prova.sections objectAtIndex:indexPath.section];
     Criterio* criterion = (Criterio*) [section.criteria objectAtIndex:indexPath.row];
-    //cell.textLabel.text = [criterion description];
     [cell setCriterion:criterion];
+    [cell setDelegate:self];
     
     return cell;
 }
@@ -255,6 +294,8 @@
         [self forEveryCell:^(CriterionCell* cell) {
             [cell resetState];
         } ];
+        
+        [self updateScoreLabel];
         
     }
     //if the edition was completed successfully
@@ -330,6 +371,12 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+}
+
+#pragma mark - CriterionCell Delegate Method
+
+- (void) criterionCellDidUpdateClassification {
+    [self updateScoreLabel];
 }
 
 @end
