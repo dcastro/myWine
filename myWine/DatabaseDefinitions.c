@@ -201,6 +201,7 @@ const char  *databaseTables[] = {
     
     "CREATE INDEX IDX_REGION_COUNTRY ON Region (country_id);",
     
+    
     "CREATE INDEX IDX_WINE_USER ON Wine (user);",
     "CREATE INDEX IDX_WINE_REGION ON Wine (region_id);",
     "CREATE INDEX IDX_WINE_WINETYPE ON Wine (winetype_id);",
@@ -208,19 +209,29 @@ const char  *databaseTables[] = {
     "CREATE INDEX IDX_WINE_PRODUCER ON Wine (producer);",
     "CREATE INDEX IDX_WINE_NAME ON Wine (name);",
     
+    
     "CREATE INDEX IDX_TASTING_WINE ON Tasting (wine_id);",
     "CREATE INDEX IDX_TASTING_DATE ON Tasting (tasting_date);",
     
+    
     "CREATE INDEX IDX_SECTION_TASTING ON Section (tasting_id);",
+    "CREATE INDEX IDX_SECTION_TOUPLE ON Section (order_priority,  name_en, name_fr, name_pt);",
+    
     
     "CREATE INDEX IDX_SECTIONCHARACTERISTIC_TASTING ON SectionCharacteristic (tasting_id);",
+    "CREATE INDEX IDX_SECTIONCHARACTERISTIC_TOUPLE ON SectionCharacteristic (order_priority,  name_en, name_fr, name_pt);",
 
     
     "CREATE INDEX IDX_CRITERION_SECTION ON Criterion (section_id);",
+    "CREATE INDEX IDX_CRITERION_TOUPLE ON Criterion (order_priority,  name_en, name_fr, name_pt);",
+
     
     "CREATE INDEX IDX_CHARACTERISTIC_SECTIONCHARACTERISTIC ON Characteristic (sectioncharacteristic_id);",
+    "CREATE INDEX IDX_CHARACTERISTIC_TOUPLE ON Characteristic (order_priority,  name_en, name_fr, name_pt);",
+
     
     "CREATE INDEX IDX_POSSIBLECLASSIFICATION ON PossibleClassification(classifiable_id, classifiable_type);",
+    
     
     "CREATE INDEX IDX_CLASSIFICATION_TOUPLE ON Classification(weight, name_en, name_fr, name_pt);",
     
