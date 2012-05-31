@@ -81,7 +81,7 @@ static User *sharedUser = nil;
     Query *query = [[Query alloc] init];
     
     NSString *querySQL = [NSString stringWithFormat: 
-                          @"SELECT * FROM User WHERE username=\'%@\';",self.username,"%"];
+                          @"SELECT FROM User WHERE username=\'%@\';",self.username,"%"];
     
     sqlite3_stmt *stmt = [query prepareForSingleQuery:querySQL];
     
@@ -89,17 +89,15 @@ static User *sharedUser = nil;
         if(sqlite3_step(stmt) == SQLITE_ROW)
         {
 
-            self.username = [NSString stringWithUTF8String:(const char *) sqlite3_column_text(stmt, user_column_username)];
-                        
-            self.password = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, user_column_password)];
+            self.username = [NSString stringWithUTF8String:(const char *) sqlite3_column_text(stmt, 0)];
+            self.password = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 1)];
+            self.synced_at = sqlite3_column_int(stmt, 2);
             
-            int validated = sqlite3_column_int(stmt, user_column_validated);
+            int validated = sqlite3_column_int(stmt, 3);
             if(validated >0)
                 self.isValidated = TRUE;
             else 
                 self.isValidated = FALSE;
-            
-            self.synced_at = sqlite3_column_int(stmt, user_column_synced);
             
             
 #warning TODO caso o utilizador tenha mudado de pass
