@@ -2398,6 +2398,7 @@
                     <connections>
                         <outlet property="editButton" destination="slH-1I-LRL" id="zlZ-CX-GHZ"/>
                         <segue destination="cDu-dJ-dqi" kind="relationship" relationship="viewControllers" id="Lgh-gb-oiR"/>
+                        <segue destination="cDu-dJ-dqi" kind="relationship" relationship="viewControllers" id="A7k-ad-KMK"/>
                     </connections>
                 </tabBarController>
             </objects>
@@ -2531,6 +2532,20 @@
                 <relationship kind="outlet" name="tipoVinho" candidateClass="UITextField"/>
             </relationships>
         </class>
+        <class className="ProvaViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProvaViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="bottomScrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="commentContentLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="commentContentTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="commentLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scoreContentLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scoreLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="upperView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="wineNameLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
         <class className="SubstitutableTabBarControllerViewController" superclassName="UITabBarController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SubstitutableTabBarControllerViewController.h"/>
             <relationships>
@@ -2591,8 +2606,9 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="5EB-Zz-Uxs"/>
+        <segue reference="lxC-hI-C9J"/>
+        <segue reference="Lgh-gb-oiR"/>
         <segue reference="Kqj-0D-4Kz"/>
         <segue reference="Obm-ls-lkJ"/>
-        <segue reference="lxC-hI-C9J"/>
     </inferredMetricsTieBreakers>
 </document>

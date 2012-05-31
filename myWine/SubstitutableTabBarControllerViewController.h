@@ -23,7 +23,8 @@
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *editButton;
 @property (strong, nonatomic) UIBarButtonItem* tempButton;
 
-@property (strong, nonatomic) ProvaViewController* pcvc;
+@property (strong, nonatomic) ProvaViewController* criteriaController;
+@property (strong, nonatomic) ProvaViewController* characteristicsController;
 
 - (IBAction)toggleEdit:(id)sender;
 

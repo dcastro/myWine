@@ -17,7 +17,7 @@
 
 @synthesize vinho = _vinho, prova = _prova;
 @synthesize editButton = _editButton, tempButton = _tempButton;
-@synthesize  pcvc = _pcvc;
+@synthesize  criteriaController = _criteriaController, characteristicsController = _characteristicsController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,7 +35,8 @@
     
     [self setTitle: self.vinho.name];
     [self.editButton setTitle:[[Language instance] translate:@"Edit"]];
-    self.pcvc = [[self viewControllers] objectAtIndex:0];
+    self.criteriaController = [[self viewControllers] objectAtIndex:0];
+    self.characteristicsController = [[self viewControllers] objectAtIndex:1];
 }
 
 - (void)viewDidUnload
@@ -103,7 +104,8 @@
     
     
     //switch editing mode
-    [self.pcvc setEditing: isEditing animated:YES done:done];
+    [self.criteriaController setEditing: isEditing animated:YES done:done];
+    [self.characteristicsController setEditing: isEditing animated:YES done:done];
     [self setEditing:isEditing animated:YES];
     
 }
