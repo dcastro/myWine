@@ -152,6 +152,28 @@
 }
 
 
+-(BOOL)save
+{
+    Query *query = [[Query alloc]init];
+    NSString * querySQL = [NSString stringWithFormat:@"UPDATE Tasting SET comment = \'%@\' WHERE tasting_id= %d", 
+                           self.comment,
+                           self.tasting_id];
+    
+    sqlite3 ** contactDB = [query prepareForExecution];
+    
+    char *errMsg;
+    if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+        DebugLog(@"%s", errMsg);
+        sqlite3_free(errMsg);
+        sqlite3_close(*contactDB);
+        return FALSE;
+    }
+    sqlite3_close(*contactDB);
+    
+    return TRUE;
+}
+
+
 - (NSString*) fullDate
 {
     NSDate* date = [[NSDate alloc] initWithTimeIntervalSince1970:self.tasting_date];

@@ -21,4 +21,7 @@
 - (NSString*) fullDate;
 - (NSString*) shortDate;
 
+
+-(BOOL)save;
+
 @end
