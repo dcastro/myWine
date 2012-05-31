@@ -137,8 +137,8 @@
                 wine_id = sqlite3_column_int(stmt, 0);
                 wineExists = TRUE;
                 
-                sqlite3_finalize(stmt);
             }
+            sqlite3_finalize(stmt);
         }else{
             DebugLog(@"Query with error: %@", querySQL);
             return FALSE;
@@ -160,7 +160,7 @@
         }else {
             querySQL = [NSString stringWithFormat:@"INSERT INTO Wine(user, region_id, winetype_id, wineserver_id, name, year, grapes, photo_filename, producer, currency, price, state) \
                         VALUES (\'%@\', %d, %d, %d, \'%@\', %d, '\%@\', \'%@\', \'%@\', \'%@\', %f, 0); \
-                        SELECT DISTINCT last_insert_rowid() FROM FormtTasting;", 
+                        SELECT DISTINCT last_insert_rowid() FROM Wine;", 
                         user.username,
                         [[wineJSON objectForKey:@"region"] intValue],
                         [[wineJSON objectForKey:@"wine_type"] intValue],
@@ -194,7 +194,7 @@
         for (int k = 0; k < [tastingsJSON count]; k++) {
             NSDictionary * tastingJSON = [tastingsJSON objectAtIndex:k];
             
-            BOOL updatingTasting = FALSE;
+            BOOL existsTasting = FALSE;
             int tasting_id;
             
             //se o vinho existe verifica se a prova existe
@@ -206,7 +206,7 @@
                 if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
                     if(sqlite3_step(stmt) == SQLITE_ROW){
                         tasting_id = sqlite3_column_int(stmt, 0);
-                        updatingTasting = TRUE;
+                        existsTasting = TRUE;
                     }
                     sqlite3_finalize(stmt);
                 }else {
@@ -216,24 +216,238 @@
             }
         
             //faz update de uma prova existente
-            if(wineExists && updatingTasting){
+            if(wineExists && existsTasting){
+                
+                //guarda os dados da prova
+#warning TODO: completar
+                //faz update ao resto
                 
                 
+            }else {//nova prova
                 
-            }else {
-                //nova prova
+                if(![self parseNewTasting:tastingJSON forWine:wine_id])
+                    return FALSE;
+                    
             }
-        
-        
-        
-        }
                 
+        }
+        
         
         
     }
     
     
     
+    return TRUE;
+}
+
+
+-(BOOL)parseNewTasting:(NSDictionary *)tastingJSON forWine:(int)wine_id
+{
+    NSString * querySQL;
+    sqlite3_stmt * stmt;
+    int tasting_id;
+    
+    querySQL = [NSString stringWithFormat:@"INSERT INTO Tasting (wine_id, tasting_date, comment, latitude, longitude, state) \
+                VALUES (%d, %d, \'%@\', %f, %f); \
+                SELECT DISTINCT last_insert_rowid() FROM Tasting;",
+                wine_id, 
+                [[tastingJSON objectForKey:@"tasting_date"]intValue],
+                [tastingJSON objectForKey:@"comment"],
+                [[tastingJSON objectForKey:@"latitude"]doubleValue],
+                [[tastingJSON objectForKey:@"longitude"]doubleValue],
+                0];
+    
+    if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
+        if(sqlite3_step(stmt) == SQLITE_ROW){
+            tasting_id = sqlite3_column_int(stmt, 0);
+        }
+        sqlite3_finalize(stmt);
+    }else {
+        DebugLog(@"Query with error: %@", querySQL);
+        return FALSE;
+    }
+    
+    
+    //seccoes
+    NSArray * sectionsJSON = [tastingJSON objectForKey:@"sections"];
+    for(int i = 0; i < [sectionsJSON count]; i++){
+        
+        NSDictionary *sectionJSON = [sectionsJSON objectAtIndex:i];
+        
+        int section_id;
+        
+        querySQL = [NSString stringWithFormat:@"INSERT INTO Section (tasting_id,order_priority, name_eng, name_fr, name_pt)\
+                    VALUES (%d, \'%@\', \'%@\', \'%@\');\
+                    SELECT DISTINCT last_insert_rowid() FROM Section;",
+                    tasting_id,
+                    [[sectionJSON objectForKey:@"order"]intValue],
+                    [sectionJSON objectForKey:@"name_eng"],
+                    [sectionJSON objectForKey:@"name_fr"],
+                    [sectionJSON objectForKey:@"name_pt"]];
+        
+        if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
+            if(sqlite3_step(stmt) == SQLITE_ROW){
+                section_id = sqlite3_column_int(stmt, 0);
+            }
+            sqlite3_finalize(stmt);
+        }else {
+            DebugLog(@"Query with error: %@", querySQL);
+            return FALSE;
+        }
+        
+        NSArray * criteriaJSON = [sectionJSON objectForKey:@"criteria"];
+        for (int k = 0; k < [criteriaJSON count]; k++){
+            
+            NSDictionary * criterionJSON = [criteriaJSON objectAtIndex:k];
+            int criterion_id;
+            int classification_id;
+            
+            
+            classification_id = [self insertClassificationIfNotExists:[[criterionJSON objectForKey:@"chosen_classification"] objectForKey:@"name_eng"] 
+                                                               nameFR:[[criterionJSON objectForKey:@"chosen_classification"] objectForKey:@"name_fr"] 
+                                                               namePT:[[criterionJSON objectForKey:@"chosen_classification"] objectForKey:@"name_pt"] 
+                                                           andWheight:[[[criterionJSON objectForKey:@"chosen_classification"] objectForKey:@"weight"]intValue]];
+            
+            if(classification_id == -2)
+                return FALSE;
+            
+                       
+            querySQL = [NSString stringWithFormat:@"INSERT INTO Criterion (section_id, order_priority, name_eng, name_fr, name_pt, classification_id)\
+                        VALUES (%d, \'%@\', \'%@\', \'%@\', %d);\
+                        SELECT DISTINCT last_insert_rowid() FROM Criterion;",
+                        section_id,
+                        [[criterionJSON objectForKey:@"order"]intValue],
+                        [criterionJSON objectForKey:@"name_eng"],
+                        [criterionJSON objectForKey:@"name_fr"],
+                        [criterionJSON objectForKey:@"name_pt"],
+                        classification_id];
+            
+            if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
+                if(sqlite3_step(stmt) == SQLITE_ROW){
+                    criterion_id = sqlite3_column_int(stmt, 0);
+                }
+                sqlite3_finalize(stmt);
+            }else {
+                DebugLog(@"Query with error: %@", querySQL);
+                return FALSE;
+            }
+            
+            
+            
+            //insere todas as classificacoes possiveis
+            NSArray * classificationsJSON = [sectionJSON objectForKey:@"classifications"];
+            for (int z = 0; z < [classificationsJSON count]; z++) {
+                NSDictionary * classificationJSON = [classificationsJSON objectAtIndex:z];
+                
+                
+                classification_id = [self insertClassificationIfNotExists:[classificationJSON objectForKey:@"name_eng"] 
+                                                                   nameFR:[classificationJSON objectForKey:@"name_fr"] 
+                                                                   namePT:[classificationJSON objectForKey:@"name_pt"] 
+                                                               andWheight:[[classificationJSON objectForKey:@"weight"]intValue]];
+                
+                if(classification_id == -2)
+                    return FALSE;
+                
+                
+                if(![self insertPossibleClassification:criterion_id 
+                                    withClassification:classification_id 
+                                                  Type:@"Criterion"])
+                    return FALSE;
+                
+            }
+        }
+    }
+    
+    
+    
+    //seccoes de caracteristicas
+    NSArray * characteristicsSectionsJSON = [tastingJSON objectForKey:@"characteristics_sections"];
+    for (int i = 0; i < [characteristicsSectionsJSON count]; i++) {
+        NSDictionary *characteristicsectionJSON = [characteristicsSectionsJSON objectAtIndex:i];
+        
+        int characteristicsection_id;
+        
+        querySQL = [NSString stringWithFormat:@"INSERT INTO SectionCharacteristic (tasting_id, order_priority, name_eng, name_fr, name_pt)\
+                    VALUES (%d ,%d, \'%@\', \'%@\', \'%@\');\
+                    SELECT DISTINCT last_insert_rowid() FROM SectionCharacteristic;",
+                    tasting_id,
+                    [[characteristicsectionJSON objectForKey:@"order"]intValue],
+                    [characteristicsectionJSON objectForKey:@"name_eng"],
+                    [characteristicsectionJSON objectForKey:@"name_fr"],
+                    [characteristicsectionJSON objectForKey:@"name_pt"]];
+        
+        if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
+            if(sqlite3_step(stmt) == SQLITE_ROW){
+                characteristicsection_id = sqlite3_column_int(stmt, 0);
+            }
+            sqlite3_finalize(stmt);
+        }else {
+            DebugLog(@"Query with error: %@", querySQL);
+            return FALSE;
+        }
+        
+        NSArray * characteriticsJSON = [characteristicsectionJSON objectForKey:@"characteristics"];
+        for (int z = 0; z < [characteriticsJSON count]; z++){
+            
+            NSDictionary * characteristicJSON = [characteriticsJSON objectAtIndex:z];
+            int characteristic_id;
+            int classification_id;
+            
+            
+            classification_id = [self insertClassificationIfNotExists:[[characteristicJSON objectForKey:@"chosen_classification"] objectForKey:@"name_eng"] 
+                                                               nameFR:[[characteristicJSON objectForKey:@"chosen_classification"] objectForKey:@"name_fr"] 
+                                                               namePT:[[characteristicJSON objectForKey:@"chosen_classification"] objectForKey:@"name_pt"] 
+                                                           andWheight:0];
+            
+            if(classification_id == -2)
+                return FALSE;
+            
+            
+            querySQL = [NSString stringWithFormat:@"INSERT INTO Characteristic (sectioncharacteristic_id, order_priority, name_eng, name_fr, name_pt, classification_id)\
+                        VALUES (%d, %d, \'%@\', \'%@\', \'%@\', %d);\
+                        SELECT DISTINCT last_insert_rowid() FROM Characteristic;",
+                        characteristicsection_id,
+                        [[characteristicJSON objectForKey:@"order"]intValue],
+                        [characteristicJSON objectForKey:@"name_eng"],
+                        [characteristicJSON objectForKey:@"name_fr"],
+                        [characteristicJSON objectForKey:@"name_pt"],
+                        classification_id];
+            
+            if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
+                if(sqlite3_step(stmt) == SQLITE_ROW){
+                    characteristic_id = sqlite3_column_int(stmt, 0);
+                }
+                sqlite3_finalize(stmt);
+            }else {
+                DebugLog(@"Query with error: %@", querySQL);
+                return FALSE;
+            }
+            
+            
+            
+            //insere todas as classificacoes possiveis
+            NSArray * classificationsJSON = [characteristicJSON objectForKey:@"classifications"];
+            for (int k = 0; k < [classificationsJSON count]; k++) {
+                NSDictionary * classificationJSON = [classificationsJSON objectAtIndex:k];
+                
+                
+                classification_id = [self insertClassificationIfNotExists:[classificationJSON objectForKey:@"name_eng"] 
+                                                                   nameFR:[classificationJSON objectForKey:@"name_fr"] 
+                                                                   namePT:[classificationJSON objectForKey:@"name_pt"] 
+                                                               andWheight:0];
+                
+                if(classification_id == -2)
+                    return FALSE;
+                
+                
+                if(![self insertPossibleClassification:characteristic_id 
+                                    withClassification:classification_id 
+                                                  Type:@"Characteristic"])
+                    return FALSE;
+            }
+        }
+    }
     
     return TRUE;
 }
@@ -379,29 +593,13 @@
                     //verificar se existe, 
                     int classification_id;
                     
-                    classification_id = [self existsClassification:stmt 
-                                                            nameEN:[classificationJSON objectForKey:@"name_eng"] 
-                                                            nameFR:[classificationJSON objectForKey:@"name_fr"] 
-                                                            namePT:[classificationJSON objectForKey:@"name_pt"] 
-                                                        andWheight:[[classificationJSON objectForKey:@"weight"]intValue]];
+                    classification_id = [self insertClassificationIfNotExists:[classificationJSON objectForKey:@"name_eng"]  
+                                                                       nameFR:[classificationJSON objectForKey:@"name_fr"] 
+                                                                       namePT:[classificationJSON objectForKey:@"name_pt"] 
+                                                                   andWheight:[[classificationJSON objectForKey:@"weight"]intValue]];
                     
                     if(classification_id == -2)
                         return FALSE;
-                    
-                    
-                    //se existir nao insere, senao insere e retorna o classification_id
-                    if(classification_id == -1){
-                        
-                        classification_id = [self insertClassification:stmt 
-                                                                nameEN:[classificationJSON objectForKey:@"name_eng"] 
-                                                                nameFR:[classificationJSON objectForKey:@"name_fr"] 
-                                                                namePT:[classificationJSON objectForKey:@"name_pt"]
-                                                            andWheight:[[classificationJSON objectForKey:@"weight"]intValue]];
-                        
-                        
-                        if(classification_id == -2)
-                            return FALSE;
-                    }
                     
                                 
                     //insere nas possibleClassifications
@@ -477,27 +675,13 @@
                     //verificar se existe, 
                     int classification_id;
                     
-                    classification_id = [self existsClassification:stmt 
-                                                            nameEN:[classificationJSON objectForKey:@"name_eng"] 
-                                                            nameFR:[classificationJSON objectForKey:@"name_fr"]
-                                                            namePT:[classificationJSON objectForKey:@"name_pt"] 
-                                                        andWheight:0];
+                    classification_id = [self insertClassificationIfNotExists:[classificationJSON objectForKey:@"name_eng"] 
+                                                                       nameFR:[classificationJSON objectForKey:@"name_fr"] 
+                                                                       namePT:[classificationJSON objectForKey:@"name_pt"] 
+                                                                   andWheight:0];
                     
                     if(classification_id == -2)
                         return FALSE;
-                    
-                    //se existir nao insere, senao insere e retorna o classification_id
-                    if(classification_id == -1){
-                        
-                        classification_id = [self insertClassification:stmt 
-                                                                nameEN:[classificationJSON objectForKey:@"name_eng"] 
-                                                                nameFR:[classificationJSON objectForKey:@"name_fr"]
-                                                                namePT:[classificationJSON objectForKey:@"name_pt"] 
-                                                            andWheight:0];
-
-                        if(classification_id == -2)
-                            return FALSE;
-                    }
                     
 
                     //insere nas possibleClassifications
@@ -515,6 +699,38 @@
     return TRUE;
 }
 
+
+
+
+-(int)insertClassificationIfNotExists:(NSString *)name_eng nameFR:(NSString *)name_fr
+                               namePT:(NSString *)name_pt andWheight:(int)weight
+{
+    int classification_id;
+    sqlite3_stmt * stmt = nil;
+    
+    classification_id = [self existsClassification:stmt 
+                                            nameEN:name_eng
+                                            nameFR:name_fr
+                                            namePT:name_pt
+                                        andWheight:weight];
+    
+    
+    if(classification_id == -2)
+        return -2;
+    
+    //se nao existir insere
+    if(classification_id == -1){
+        classification_id = [self insertClassification:stmt 
+                                                nameEN:name_eng
+                                                nameFR:name_fr
+                                                namePT:name_pt
+                                            andWheight:weight];        
+        if(classification_id == -2)
+            return -2;
+    }
+
+
+}
 
 
 -(int)existsClassification:(sqlite3_stmt *)stmt nameEN:(NSString *)name_eng nameFR:(NSString *)name_fr
