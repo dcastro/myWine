@@ -30,7 +30,6 @@
 		65EFEBC41573C9770087F155 /* material mywine-16.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EFEBB51573C9770087F155 /* material mywine-16.png */; };
 		65EFEBC51573C9770087F155 /* material mywine-17.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EFEBB61573C9770087F155 /* material mywine-17.png */; };
 		A0C66470155448CC004C798E /* ListaRegioesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C6646F155448CC004C798E /* ListaRegioesViewController.m */; };
-		A975188315191F3700EAC591 /* ProvaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A975188215191F3700EAC591 /* ProvaViewController.m */; };
 		A97583661519F60C009B5F68 /* inicial.png in Resources */ = {isa = PBXBuildFile; fileRef = A97583651519F60C009B5F68 /* inicial.png */; };
 		A97583691519F743009B5F68 /* images.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A97583681519F743009B5F68 /* images.jpeg */; };
 		A9758371151A0151009B5F68 /* 117-todo.png in Resources */ = {isa = PBXBuildFile; fileRef = A9758370151A0151009B5F68 /* 117-todo.png */; };
@@ -141,8 +140,6 @@
 		65EFEBB61573C9770087F155 /* material mywine-17.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "material mywine-17.png"; sourceTree = "<group>"; };
 		A0C6646E155448CC004C798E /* ListaRegioesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListaRegioesViewController.h; sourceTree = "<group>"; };
 		A0C6646F155448CC004C798E /* ListaRegioesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListaRegioesViewController.m; sourceTree = "<group>"; };
-		A975188115191F3700EAC591 /* ProvaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProvaViewController.h; sourceTree = "<group>"; };
-		A975188215191F3700EAC591 /* ProvaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProvaViewController.m; sourceTree = "<group>"; };
 		A97583651519F60C009B5F68 /* inicial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inicial.png; sourceTree = "<group>"; };
 		A97583681519F743009B5F68 /* images.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = images.jpeg; sourceTree = "<group>"; };
 		A9758370151A0151009B5F68 /* 117-todo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "117-todo.png"; sourceTree = "<group>"; };
@@ -484,8 +481,6 @@
 				A9A69B98151FC41000FC9073 /* FotoViewController.m */,
 				A9C5A0121517A78600A3F8C5 /* DetailViewController.h */,
 				A9C5A0131517A78600A3F8C5 /* DetailViewController.m */,
-				A975188115191F3700EAC591 /* ProvaViewController.h */,
-				A975188215191F3700EAC591 /* ProvaViewController.m */,
 				A9C28882151FBB4400C2F58D /* VinhoViewController.h */,
 				A9C28883151FBB4400C2F58D /* VinhoViewController.m */,
 				A9A69B9A151FCDE100FC9073 /* SyncViewController.h */,
@@ -699,7 +694,6 @@
 				A9C5A0141517A78600A3F8C5 /* DetailViewController.m in Sources */,
 				A9BE2C121518C254002E4E2A /* ListaProvasViewController.m in Sources */,
 				A9BE2C161518C330002E4E2A /* Prova.m in Sources */,
-				A975188315191F3700EAC591 /* ProvaViewController.m in Sources */,
 				A9BFB2C6151D468500588B59 /* NovoVinhoViewController.m in Sources */,
 				A9C28884151FBB4400C2F58D /* VinhoViewController.m in Sources */,
 				A9A69B99151FC41000FC9073 /* FotoViewController.m in Sources */,

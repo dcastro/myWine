@@ -11,6 +11,7 @@
 #import "Prova.h"
 #import "Language.h"
 #import "ProvaCriteriaViewController.h"
+#import "ListaVinhosViewController.h"
 
 @class ProvaCriteriaViewController;
 @protocol SubstitutableDetailViewController;
@@ -25,5 +26,7 @@
 @property (strong, nonatomic) ProvaCriteriaViewController* pcvc;
 
 - (IBAction)toggleEdit:(id)sender;
+
+- (void)showRootPopoverButtonItem:(UIBarButtonItem *)barButtonItem;
 
 @end
