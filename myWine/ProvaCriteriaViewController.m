@@ -62,8 +62,14 @@
     self.commentContentTextView.hidden = TRUE;
     
     //apply rounded corners to text views
-    self.commentContentTextView.clipsToBounds = YES;
+    self.commentContentTextView.clipsToBounds = NO;
     self.commentContentTextView.layer.cornerRadius = 10.0f;
+    
+    //apply shadow
+    self.commentContentTextView.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.commentContentTextView.layer.shadowOffset = CGSizeMake(0, 3);
+    self.commentContentTextView.layer.shadowOpacity = 0.8;
+    self.commentContentTextView.layer.shadowRadius = 10.0;
     
     [self configureView];
     
