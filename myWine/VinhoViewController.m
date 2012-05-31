@@ -36,7 +36,6 @@
 @synthesize currencyButton = _currencyButton;
 @synthesize countryButton = _countryButton;
 @synthesize regionButton = _regionButton;
-@synthesize WineTypeButton = _WineTypeButton;
 @synthesize wineName = _wineName;
 @synthesize priceValue = _priceValue;
 @synthesize harvestyear = _harvestyear;
@@ -50,7 +49,6 @@
 @synthesize tempButton = _tempButton;
 @synthesize selectCountryButton = _selectCountryButton;
 @synthesize selectRegionButton = _selectRegionButton;
-@synthesize selectWineTypeButton = _selectWineTypeButton;
 @synthesize selectCurrencyButton = _selectCurrencyButton;
 @synthesize editing = _editing;
 
@@ -143,8 +141,7 @@
     self.currencyButton.titleLabel.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
     self.countryButton.titleLabel.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
     self.regionButton.titleLabel.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
-    self.WineTypeButton.titleLabel.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
-    
+
     //set navigation bar title
     [self setTitle: [self.detailItem description]];
     
@@ -185,7 +182,6 @@
     
     [self.selectCountryButton setHidden:TRUE];
     [self.selectRegionButton setHidden:TRUE];
-    [self.selectWineTypeButton setHidden:TRUE];
     [self.selectCurrencyButton setHidden:TRUE];
 
 }
@@ -208,7 +204,6 @@
     [self setSelectCountryButton:nil];
     [self setSelectRegionButton:nil];
     [self setWine_type_label:nil];
-    [self setSelectWineTypeButton:nil];
     [self setPrice_label:nil];
     [self setPrice_value_label:nil];
     [self setSelectCurrencyButton:nil];
@@ -216,7 +211,6 @@
     [self setCurrencyButton:nil];
     [self setCountryButton:nil];
     [self setRegionButton:nil];
-    [self setWineTypeButton:nil];
     [self setWineName:nil];
     [self setPriceValue:nil];
     [self setHarvestyear:nil];
@@ -273,7 +267,6 @@
 
 
 - (IBAction)toggleEdit:(id)sender {
-
     
     if (![self isEditing]) {
         
@@ -287,7 +280,6 @@
         
         [self.selectCountryButton setTitle:self.country_label_name.text forState:UIControlStateNormal];
         [self.selectRegionButton setTitle:self.region_label_name.text forState:UIControlStateNormal];
-        [self.selectWineTypeButton setTitle:self.wine_type_label.text forState:UIControlStateNormal];
         
         [UIView transitionWithView:[self view] duration:0.5
 						   options:UIViewAnimationOptionTransitionCurlDown
@@ -390,10 +382,7 @@
     
     [self.region_label_name setHidden:self.isEditing];
     [self.selectRegionButton setHidden: !self.isEditing];
-    
-    [self.wine_type_label setHidden:self.isEditing];
-    [self.selectWineTypeButton setHidden:!self.isEditing];
-    
+        
     [self.price_value_label setHidden:self.isEditing];
     [self.selectCurrencyButton setHidden:!self.isEditing];
     

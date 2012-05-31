@@ -45,7 +45,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *currencyButton;
 @property (strong, nonatomic) IBOutlet UIButton *countryButton;
 @property (strong, nonatomic) IBOutlet UIButton *regionButton;
-@property (strong, nonatomic) IBOutlet UIButton *WineTypeButton;
 
 @property (strong, nonatomic) IBOutlet UITextField *wineName;
 @property (strong, nonatomic) IBOutlet UITextField *priceValue;
@@ -58,7 +57,6 @@
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *tempButton;
 @property (weak, nonatomic) IBOutlet UIButton *selectCountryButton;
 @property (weak, nonatomic) IBOutlet UIButton *selectRegionButton;
-@property (weak, nonatomic) IBOutlet UIButton *selectWineTypeButton;
 @property (weak, nonatomic) IBOutlet UIButton *selectCurrencyButton;
 
 @property(nonatomic, getter=isEditing) BOOL editing;

@@ -144,22 +144,6 @@
                                     <outletCollection property="gestureRecognizers" destination="pyo-PJ-lnN" appends="YES" id="SEg-16-H7E"/>
                                 </connections>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3Qj-ev-Kqc">
-                                <rect key="frame" x="42" y="645" width="290" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <gestureRecognizers/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Wine Type">
-                                    <color key="titleColor" red="0.31372549020000001" green="0.027450980390000001" blue="0.015686274510000001" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="pyo-PJ-lnN" appends="YES" id="M9v-Jn-UUY"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="19R-BP-HEn">
                                 <rect key="frame" x="382" y="399" width="246" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
@@ -308,7 +292,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="WineTypeButton" destination="3Qj-ev-Kqc" id="SHI-8u-Fy7"/>
                         <outlet property="countryButton" destination="19R-BP-HEn" id="DjY-4X-xXQ"/>
                         <outlet property="country_label" destination="rDV-B6-8GL" id="0b7-9f-F6k"/>
                         <outlet property="country_label_name" destination="iuw-1c-cQq" id="dgK-jH-8ZW"/>
@@ -331,7 +314,6 @@
                         <outlet property="selectCountryButton" destination="19R-BP-HEn" id="D1N-zM-9Yj"/>
                         <outlet property="selectCurrencyButton" destination="ArU-XT-rbJ" id="Qfg-6k-X4s"/>
                         <outlet property="selectRegionButton" destination="Ljr-Oc-9s5" id="e2B-Dt-dkB"/>
-                        <outlet property="selectWineTypeButton" destination="3Qj-ev-Kqc" id="fCe-es-MK1"/>
                         <outlet property="swipeLeft" destination="pyo-PJ-lnN" id="igR-or-NHa"/>
                         <outlet property="wineName" destination="b98-GM-nbX" id="Iuo-vk-TEH"/>
                         <outlet property="wine_label_name" destination="ab5-7n-PtI" id="p6F-eY-9Zk"/>
@@ -2823,7 +2805,6 @@
             <relationships>
                 <relationship kind="action" name="handleSwipeFrom:" candidateClass="UISwipeGestureRecognizer"/>
                 <relationship kind="action" name="toggleEdit:"/>
-                <relationship kind="outlet" name="WineTypeButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="countryButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="country_label" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="country_label_name" candidateClass="UILabel"/>
@@ -2846,7 +2827,6 @@
                 <relationship kind="outlet" name="selectCountryButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="selectCurrencyButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="selectRegionButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="selectWineTypeButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="swipeLeft" candidateClass="UISwipeGestureRecognizer"/>
                 <relationship kind="outlet" name="tempButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="wineName" candidateClass="UITextField"/>
