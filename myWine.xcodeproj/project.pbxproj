@@ -94,7 +94,7 @@
 		DA9131311576812500D37BA0 /* UIColor+myWineColor.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9131301576812500D37BA0 /* UIColor+myWineColor.m */; };
 		DA993CDE153F22E7009D3E13 /* Vinho.m in Sources */ = {isa = PBXBuildFile; fileRef = DA993CDD153F22E7009D3E13 /* Vinho.m */; };
 		DAC99B7F155AE3EA00D9C04F /* SubstitutableTabBarControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC99B7E155AE3EA00D9C04F /* SubstitutableTabBarControllerViewController.m */; };
-		DAC99B85155B0B7B00D9C04F /* ProvaCriteriaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC99B84155B0B7B00D9C04F /* ProvaCriteriaViewController.m */; };
+		DAC99B85155B0B7B00D9C04F /* ProvaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC99B84155B0B7B00D9C04F /* ProvaViewController.m */; };
 		DADADA5515541E04008A9FBB /* ListaPaisesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DADADA5415541E04008A9FBB /* ListaPaisesViewController.m */; };
 		DADADA5915542420008A9FBB /* Pais.m in Sources */ = {isa = PBXBuildFile; fileRef = DADADA5815542420008A9FBB /* Pais.m */; };
 		DADE3BCA15480E2000465551 /* cell_bg_gradient.png in Resources */ = {isa = PBXBuildFile; fileRef = DADE3BC915480E2000465551 /* cell_bg_gradient.png */; };
@@ -240,8 +240,8 @@
 		DA993CDD153F22E7009D3E13 /* Vinho.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vinho.m; sourceTree = "<group>"; };
 		DAC99B7D155AE3EA00D9C04F /* SubstitutableTabBarControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubstitutableTabBarControllerViewController.h; sourceTree = "<group>"; };
 		DAC99B7E155AE3EA00D9C04F /* SubstitutableTabBarControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubstitutableTabBarControllerViewController.m; sourceTree = "<group>"; };
-		DAC99B83155B0B7B00D9C04F /* ProvaCriteriaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProvaCriteriaViewController.h; sourceTree = "<group>"; };
-		DAC99B84155B0B7B00D9C04F /* ProvaCriteriaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProvaCriteriaViewController.m; sourceTree = "<group>"; };
+		DAC99B83155B0B7B00D9C04F /* ProvaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = ProvaViewController.h; sourceTree = "<group>"; };
+		DAC99B84155B0B7B00D9C04F /* ProvaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProvaViewController.m; sourceTree = "<group>"; };
 		DADADA5315541E04008A9FBB /* ListaPaisesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListaPaisesViewController.h; sourceTree = "<group>"; };
 		DADADA5415541E04008A9FBB /* ListaPaisesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListaPaisesViewController.m; sourceTree = "<group>"; };
 		DADADA5715542420008A9FBB /* Pais.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pais.h; sourceTree = "<group>"; };
@@ -461,8 +461,8 @@
 				DAC99B7E155AE3EA00D9C04F /* SubstitutableTabBarControllerViewController.m */,
 				DA631DDE156EA7F2003EC91B /* CurrencyViewController.h */,
 				DA631DDF156EA7F2003EC91B /* CurrencyViewController.m */,
-				DAC99B83155B0B7B00D9C04F /* ProvaCriteriaViewController.h */,
-				DAC99B84155B0B7B00D9C04F /* ProvaCriteriaViewController.m */,
+				DAC99B83155B0B7B00D9C04F /* ProvaViewController.h */,
+				DAC99B84155B0B7B00D9C04F /* ProvaViewController.m */,
 				A0C6646E155448CC004C798E /* ListaRegioesViewController.h */,
 				A0C6646F155448CC004C798E /* ListaRegioesViewController.m */,
 				DADADA5315541E04008A9FBB /* ListaPaisesViewController.h */,
@@ -719,7 +719,7 @@
 				DADADA5915542420008A9FBB /* Pais.m in Sources */,
 				A0C66470155448CC004C798E /* ListaRegioesViewController.m in Sources */,
 				DAC99B7F155AE3EA00D9C04F /* SubstitutableTabBarControllerViewController.m in Sources */,
-				DAC99B85155B0B7B00D9C04F /* ProvaCriteriaViewController.m in Sources */,
+				DAC99B85155B0B7B00D9C04F /* ProvaViewController.m in Sources */,
 				D37D177B155DC249005E502A /* Sincronizacao.m in Sources */,
 				BCC8EBB91563E36B006645BC /* NSMutableArray+ProvasMutableArray.m in Sources */,
 				A979EDAB15668FCB00E94A34 /* Utils.m in Sources */,

@@ -1,21 +1,21 @@
 //
-//  ProvaCriteriaViewController.m
+//  ProvaViewController.m
 //  myWine
 //
 //  Created by Diogo Castro on 5/9/12.
 //  Copyright (c) 2012 FEUP. All rights reserved.
 //
 
-#import "ProvaCriteriaViewController.h"
+#import "ProvaViewController.h"
 #import "Language.h"
 #import <objc/runtime.h> 
 #import <QuartzCore/QuartzCore.h>
 
-@interface ProvaCriteriaViewController ()
+@interface ProvaViewController ()
 
 @end
 
-@implementation ProvaCriteriaViewController
+@implementation ProvaViewController
 @synthesize prova = _prova;
 @synthesize vinho = _vinho;
 @synthesize bottomScrollView = _bottomScrollView;

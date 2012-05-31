@@ -1,5 +1,5 @@
 //
-//  ProvaCriteriaViewController.h
+//  ProvaViewController.h
 //  myWine
 //
 //  Created by Diogo Castro on 5/9/12.
@@ -14,7 +14,7 @@
 #import "Vinho.h"
 #import "SubstitutableTabBarControllerViewController.h"
 
-@interface ProvaCriteriaViewController : UITableViewController <CriterionCellDelegate>
+@interface ProvaViewController : UITableViewController <CriterionCellDelegate>
 
 @property (strong, nonatomic) Prova* prova;
 @property (strong, nonatomic) Vinho* vinho;
