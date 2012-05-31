@@ -98,6 +98,21 @@
     }
     
     
+    if([receivedJSON objectForKey:@"deleted"]){
+        if(![self parseDeleted:[receivedJSON objectForKey:@"deleted"]]){
+            [query rollbackTransaction];
+            return FALSE;
+        }
+    }
+    
+    
+    if([receivedJSON objectForKey:@"wine_server_ids"]){
+        if(![self parseWineServerIds:[receivedJSON objectForKey:@"wine_server_ids"]]){
+            [query rollbackTransaction];
+            return FALSE;
+        }
+    }
+    
     
     //ultimo passo e limpar o lixo solto da bd
     if(![self cleanGarbage]){
@@ -110,7 +125,98 @@
     
     return TRUE;
 }
-           
+
+
+
+-(BOOL)parseWineServerIds:(NSArray *)serverIdsJSON
+{
+    NSString * querySQL;
+    char *errMsg;
+    
+    
+    for (int i = 0; i < [serverIdsJSON count]; i++) {
+        
+        querySQL = [NSString stringWithFormat:@"UPDATE Wine SET wine_server_id = %d WHERE user = \'%@\' name = \'%@\' AND year = %d;", 
+                    [[[serverIdsJSON objectAtIndex:i] objectForKey:@"Wine_server_id"]intValue],
+                    user.username,
+                    [[serverIdsJSON objectAtIndex:i] objectForKey:@"name"],
+                    [[[serverIdsJSON objectAtIndex:i] objectForKey:@"year"]intValue]];
+                    
+        if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+            DebugLog(@"%s", errMsg);
+            sqlite3_free(errMsg);
+            return FALSE;
+        }
+    }
+    
+    
+    return TRUE;
+}
+
+
+
+
+-(BOOL)parseDeleted:(NSDictionary *)deletedJSON
+{
+    NSString * querySQL;
+    sqlite3_stmt * stmt;
+    char *errMsg;
+    
+    //wines
+    NSArray * deletedWines = [deletedJSON objectForKey:@"wines"];
+    for (int i = 0; i < [deletedWines count]; i++) {
+        
+        querySQL = [NSString stringWithFormat:@"DELETE FROM Wine WHERE user = \'%@\' AND wine_server_id = %d",
+                    user.username,
+                    [[deletedWines objectAtIndex:i]intValue]];
+        
+        
+        if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+            DebugLog(@"%s", errMsg);
+            sqlite3_free(errMsg);
+            return FALSE;
+        }
+    }
+    
+    
+    //tastings
+    NSArray * deletedTastings = [deletedJSON objectForKey:@"tastings"];
+    int tasting_id;
+    for (int i = 0; i < [deletedTastings count]; i++) {
+        
+        //vai buscar o id da prova do user 
+        //para garantir que nao se eliminam varias provas ao mesmo tempo do user errado
+        querySQL = [NSString stringWithFormat:@"SELECT t.tasting_id FROM Tasting t , Wine w WHERE t.tasting_date = %d AND t.wine_id = w.wine_id AND w.user = \'%@\';", 
+                    [[deletedTastings objectAtIndex:i]intValue],
+                    user.username];
+        
+        if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
+            if(sqlite3_step(stmt) == SQLITE_ROW){
+                
+                tasting_id = sqlite3_column_int(stmt, 0);                
+            }
+            
+            sqlite3_finalize(stmt);
+        }else {
+            DebugLog(@"Query with error: %@", querySQL);
+            return FALSE;
+        }
+        
+        
+        querySQL = [NSString stringWithFormat:@"DELETE FROM Tasting WHERE tasting_id = %d;", tasting_id];
+        if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+            DebugLog(@"%s", errMsg);
+            sqlite3_free(errMsg);
+            return FALSE;
+        }
+
+        
+    }
+    
+
+    return TRUE;
+}
+
            
            
 -(BOOL)parseWines:(NSArray *) wines
@@ -223,14 +329,8 @@
                     return FALSE;
                     
             }
-                
         }
-        
-        
-        
     }
-    
-    
     
     return TRUE;
 }
@@ -426,9 +526,7 @@
         }
     }
 
-
-
-
+    return TRUE;
 }
 
 
@@ -919,7 +1017,7 @@
             return -2;
     }
 
-
+    return classification_id;
 }
 
 
