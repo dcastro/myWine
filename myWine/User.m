@@ -81,7 +81,7 @@ static User *sharedUser = nil;
     Query *query = [[Query alloc] init];
     
     NSString *querySQL = [NSString stringWithFormat: 
-                          @"SELECT FROM User WHERE username=\'%@\';",self.username,"%"];
+                          @"SELECT * FROM User WHERE username=\'%@\';",self.username,"%"];
     
     sqlite3_stmt *stmt = [query prepareForSingleQuery:querySQL];
     
