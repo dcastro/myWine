@@ -104,6 +104,14 @@
     self.price_label.text = [lan translate:@"Price"];
     self.price_label.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGE_FONT];
     
+    //set score
+    int score = [((Vinho*) self.detailItem) score];
+    NSString* scoreString;
+    if (score == -1)
+        scoreString = [[NSString alloc] initWithFormat:@"-- %%"];
+    else scoreString = [[NSString alloc] initWithFormat:@"%i %%", score];
+    self.percentage_label_name.text = scoreString;
+    
     
     Vinho* vinho = (Vinho*) self.detailItem;
     
