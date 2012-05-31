@@ -270,9 +270,6 @@
     */
     
     //prepare animations
-    self.commentContentTextView.text = self.commentContentLabel.text;
-    
-    
     UIViewAnimationOptions options = UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionTransitionCrossDissolve;  
     
     [UIView transitionWithView:self.bottomScrollView 
@@ -305,6 +302,23 @@
         [self forEveryCell:^(CriterionCell* cell) {
             [cell commitEdit];
         } ];
+        
+        //update prova
+        self.prova.comment = self.commentContentTextView.text;
+        [self.prova save];
+        
+        //update label
+        self.commentContentLabel.text = self.commentContentTextView.text;
+        
+        //adjust label size
+        [self.commentContentLabel sizeToFit];
+        CGRect frame = self.commentContentLabel.frame;
+        frame.size.width = 633;
+        self.commentContentLabel.frame = frame;
+    }
+    //if the edition is about to begin
+    else if (editing) {
+        self.commentContentTextView.text = self.commentContentLabel.text;
     }
 }
 
