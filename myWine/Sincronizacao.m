@@ -99,10 +99,6 @@
     
     
     
-    
-    
-    
-    
     //ultimo passo e limpar o lixo solto da bd
     if(![self cleanGarbage]){
         [query rollbackTransaction];
@@ -879,6 +875,45 @@ namePT:(NSString *)name_pt andWheight:(int)weight
     
     sqlite3_stmt *stmt;
     NSString * querySQL = nil;
+    char * errMsg;
+    
+    
+    //elimina todas os vinhos que estejam com state = 3 (deleted)
+    querySQL = [NSString stringWithFormat:@"DELETE FROM Wine WHERE user= \'%@\' AND state = 3", user.username];
+    if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+        DebugLog(@"%s", errMsg);
+        sqlite3_free(errMsg);
+        return FALSE;
+    }
+    
+    
+    
+    
+    //elimina todas as provas que estejam com state = 3 (deleted)
+    querySQL = [NSString stringWithFormat:@"SELECT t.tasting_id \
+                FROM Tasting t, Wine w \
+                WHERE w.user = \'%@\' AND w.wine_id = t.wine_id AND t.state = 3;", user.username ];
+    
+    if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
+        while(sqlite3_step(stmt) == SQLITE_ROW){
+            
+            querySQL = [NSString stringWithFormat:@"DELETE FROM Tasting WHERE tasting_id = %d",
+                        sqlite3_column_int(stmt,0)];
+            
+            
+            if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+                DebugLog(@"%s", errMsg);
+                sqlite3_free(errMsg);
+                return FALSE;
+            }
+            
+        }
+    }else {
+        DebugLog(@"Query with error: %s", querySQL);
+        return FALSE;
+    }
+    sqlite3_finalize(stmt);
+    
     
     
     /*
@@ -917,10 +952,7 @@ namePT:(NSString *)name_pt andWheight:(int)weight
     
     
     
-    const char * query_stmt = [querySQL UTF8String];
-    char *errMsg;
-    if (sqlite3_prepare_v2(*contactDB, query_stmt, -1, &stmt, NULL) == SQLITE_OK){
-        
+    if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
         while(sqlite3_step(stmt) == SQLITE_ROW){
             
             querySQL = [NSString stringWithFormat:@"DELETE FROM PossibleClassification \
@@ -939,7 +971,7 @@ namePT:(NSString *)name_pt andWheight:(int)weight
             
         }
     }else {
-        DebugLog(@"Query with error: %s", query_stmt);
+        DebugLog(@"Query with error: %s", querySQL);
         return FALSE;
     }
     sqlite3_finalize(stmt);
@@ -955,8 +987,7 @@ namePT:(NSString *)name_pt andWheight:(int)weight
                 FROM classification c, possibleclassification pc \
                 WHERE  c.classification_id = pc.classification_id);";
     
-    query_stmt = [querySQL UTF8String];
-    if (sqlite3_prepare_v2(*contactDB, query_stmt, -1, &stmt, NULL) == SQLITE_OK){
+    if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
         
         while(sqlite3_step(stmt) == SQLITE_ROW){
             
@@ -975,7 +1006,7 @@ namePT:(NSString *)name_pt andWheight:(int)weight
             
         }
     }else {
-        DebugLog(@"Query with error: %s", query_stmt);
+        DebugLog(@"Query with error: %s", querySQL);
         return FALSE;
     }
     sqlite3_finalize(stmt);
