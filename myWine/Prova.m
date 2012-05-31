@@ -213,6 +213,8 @@
         }
     }
     
+    if (max == 0)
+        return 0;
     int percentage = ((float)score/ (float) max) * 100.0;
 
     return percentage;

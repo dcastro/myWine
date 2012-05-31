@@ -46,7 +46,7 @@
     [self.classificationSlider setMinimumValue: [self.criterion minWeight]]; 
     [self.classificationSlider setMaximumValue: [self.criterion maxWeight]]; 
     [self.classificationSlider setValue:self.criterion.classification_chosen.weight];
-    NSLog(@" MIN %i MAX %i CHOSEN %i", self.criterion.minWeight, self.criterion.maxWeight, self.criterion.classification_chosen.weight);
+    //NSLog(@" MIN %i MAX %i CHOSEN %i", self.criterion.minWeight, self.criterion.maxWeight, self.criterion.classification_chosen.weight);
     
     //temp classification
     self.classification = self.criterion.classification_chosen;
