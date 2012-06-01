@@ -20,13 +20,10 @@
 
 @property (strong, nonatomic) id detailItem;
 
-@property (strong, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
-
 @property (weak, nonatomic) UIPopoverController *currentPopover;
 
-@property (strong, nonatomic) IBOutlet UIButton *search;
-@property (strong, nonatomic) IBOutlet UIButton *sync;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *help;
+@property (strong, nonatomic) IBOutlet UILabel *myWine;
 
 @property (nonatomic, weak) id <DetailViewControllerDelegate> delegate;
 

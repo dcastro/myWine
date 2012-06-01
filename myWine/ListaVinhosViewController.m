@@ -43,22 +43,10 @@ SEL action; id target;
 - (void)viewDidLoad
 {
     
-    /*
-    if (!_objects) {
-        _objects = [[NSMutableArray alloc] init];
-    }
-    [_objects insertObject:@"Vinho do Porto" atIndex:0];
-    [_objects insertObject:@"Murganheira" atIndex:0];
-    [_objects insertObject:@"Gazela" atIndex:0];
-    [_objects insertObject:@"Alvarinho" atIndex:0];
-    */
-    
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     //self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
-    //UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    //self.navigationItem.rightBarButtonItem = addButton;
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
 
     
@@ -66,21 +54,6 @@ SEL action; id target;
     
     self.detailViewController.delegate = self;
     [self setHomeVisibility:TRUE];
-    
-
-    //Teste as notificacoes
-    /*
-    NSDate* alertDate = [[NSDate date] dateByAddingTimeInterval:10];
-    UIApplication* app = [UIApplication sharedApplication];
-    UILocalNotification* syncReminder = [[UILocalNotification alloc] init];
-    syncReminder.fireDate = alertDate;
-    syncReminder.timeZone = [NSTimeZone defaultTimeZone];
-    syncReminder.repeatInterval = 0;
-    syncReminder.soundName = @"Glass.aiff";
-    syncReminder.alertBody = @"Nao sincroniza os seus dados ha X dias.";
-    [app scheduleLocalNotification:syncReminder];
-     */
-
 }
 
 - (void)viewDidUnload
@@ -232,9 +205,11 @@ SEL action; id target;
     cell.accessoryView = icon;
     
     cell.textLabel.text = [vinho description];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [vinho year]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@, %d", [[vinho winetype] name], [vinho year]];
     [[cell textLabel] setBackgroundColor:[UIColor clearColor]];
     cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cell_bg_gradient.png"]];
+    cell.textLabel.font = [UIFont fontWithName:@"DroidSans-Bold" size:NORMAL_FONT-2];
+    cell.detailTextLabel.font = [UIFont fontWithName:@"DroidSans" size:NORMAL_FONT-2];
     
     return cell;
 }

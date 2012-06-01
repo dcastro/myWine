@@ -2678,10 +2678,8 @@
         <class className="DetailViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DetailViewController.h"/>
             <relationships>
-                <relationship kind="outlet" name="detailDescriptionLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="help" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="search" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="sync" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="myWine" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="FiltrosViewController" superclassName="UITableViewController">
