@@ -268,6 +268,7 @@
             Criterio* criterion = (Criterio*) [section.criteria objectAtIndex:indexPath.row];
             object_setClass(cell, [CriterionCell class]);
             [cell setItem:criterion];
+            break;
             
         }
 
