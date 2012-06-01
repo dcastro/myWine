@@ -10,7 +10,7 @@
 
 @interface ListaVinhosViewController () {
     NSMutableArray *_objects;
-    NSIndexPath* _index;
+    NSUInteger _index;
 }
 @end
 
@@ -102,7 +102,7 @@ SEL action; id target;
         
         ListaProvasViewController* lpvc = (ListaProvasViewController*) [segue destinationViewController ];
         
-        Vinho* vinho = [self.vinhos objectAtIndex:_index.row];
+        Vinho* vinho = [self.vinhos objectAtIndex:_index];
         lpvc.vinho = vinho;
         lpvc.provas = vinho.provas;
         
@@ -222,24 +222,33 @@ SEL action; id target;
     
     //NSString *object = [_objects objectAtIndex:indexPath.row];
     Vinho* vinho = [self.vinhos objectAtIndex:indexPath.row];
+    
+    UIButton *icon = [UIButton buttonWithType:UIButtonTypeCustom];
+    [icon setImage:[UIImage imageNamed:@"material mywine-13.png"] forState:UIControlStateNormal];
+    [icon setFrame:CGRectMake(0,0,30,30)];
+    icon.tag = indexPath.row;
+    [icon addTarget:self action:@selector(listProvas:) forControlEvents:UIControlEventTouchUpInside];
+    
+    cell.accessoryView = icon;
+    
     cell.textLabel.text = [vinho description];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [vinho year]];
-    
-    //Change cell's background color when selected
-    /*UIView *myBackView = [[UIView alloc] initWithFrame:cell.frame];
-     myBackView.backgroundColor = [UIColor colorWithRed:0.48 green:0.05 blue:0.07 alpha:1];
-     cell.selectedBackgroundView = myBackView;*/
-    
     [[cell textLabel] setBackgroundColor:[UIColor clearColor]];
     cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cell_bg_gradient.png"]];
     
     return cell;
 }
 
+- (void)listProvas:(UIButton *) button
+{
+    _index = (NSUInteger) button.tag;
+    [self performSegueWithIdentifier:@"PushProvas" sender:self];
+}
+
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
     //fill in provas @ listaprovasviewcontroller
-    _index = indexPath;
+    //_index = indexPath;
     [self performSegueWithIdentifier:@"PushProvas" sender:self];
 }
 

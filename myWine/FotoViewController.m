@@ -15,11 +15,24 @@
 @implementation FotoViewController
 @synthesize imageView;
 @synthesize myPop;
+@synthesize Cancel;
+@synthesize Done;
+@synthesize NewPhoto;
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    Language* lang = [Language instance];
+    
+    [self.Cancel setTitle:[lang translate:@"Cancel"]];
+    
+    [self.Done setTitle:[lang translate:@"Done"]];
+    
+    [self.NewPhoto setTitle:[lang translate:@"New Photo"]];
+    
+
     // Do any additional setup after loading the view.
 
 }
@@ -27,6 +40,9 @@
 - (void)viewDidUnload
 {
     self.imageView = nil;
+    [self setCancel:nil];
+    [self setDone:nil];
+    [self setNewPhoto:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }

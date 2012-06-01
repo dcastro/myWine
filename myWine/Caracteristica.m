@@ -15,7 +15,7 @@
 
 @synthesize name = _name;
 @synthesize characteristic_id = _characteristic_id;
-@synthesize classification_choosen = _classification_choosen;
+@synthesize classification_chosen = _classification_chosen;
 @synthesize classifications = _classifications;
 
 - (NSMutableArray *)classifications {

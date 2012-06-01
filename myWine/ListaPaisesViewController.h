@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Pais.h"
 #import "User.h"
+#import "Language.h"
 
 @class ListaPaisesViewController;
 
@@ -17,7 +18,15 @@
 @end
 
 @interface ListaPaisesViewController : UITableViewController
+
+@property (weak, nonatomic) IBOutlet UINavigationItem *Paises;
+
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *Cancel;
+
+
 @property (nonatomic, weak) id <ListaPaisesViewControllerDelegate> delegate;
 @property (nonatomic, strong) NSMutableArray* countries;
+
+- (IBAction)Cancel:(id)sender;
 
 @end

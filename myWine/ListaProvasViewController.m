@@ -15,7 +15,6 @@
 @implementation ListaProvasViewController
 @synthesize filterButton;
 @synthesize compareButton;
-@synthesize provaViewController = _provaViewController;
 @synthesize provas = _provas;
 @synthesize vinho = _vinho;
 @synthesize currentPopover;
@@ -64,7 +63,6 @@ SEL action; id target;
     
     //UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     //self.navigationItem.rightBarButtonItem = addButton;
-    self.provaViewController = (ProvaViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     Language* lan = [Language instance];
     [self.filterButton setTitle: [lan translate:@"Filter"]];
 }
@@ -94,9 +92,6 @@ SEL action; id target;
         //pcvc.prova = prova;
         tabBarController.vinho = self.vinho;
         tabBarController.prova = prova;
-        
-        ProvaViewController* pvc = (ProvaViewController*) [[tabBarController viewControllers] objectAtIndex:1];  //(ProvaViewController*) [segue.destinationViewController topViewController];
-        pvc.detailItem = prova;
         
     }
     
@@ -144,7 +139,7 @@ SEL action; id target;
     
     if ([segue.identifier isEqualToString:@"showProva"]) { 
         if (rootPopoverButtonItem != nil) {
-            UIViewController<SubstitutableDetailViewController>* detailViewController = (UIViewController<SubstitutableDetailViewController>*)[segue.destinationViewController topViewController];
+            SubstitutableTabBarControllerViewController* detailViewController = (SubstitutableTabBarControllerViewController*)[segue.destinationViewController topViewController];
             [detailViewController showRootPopoverButtonItem:self.rootPopoverButtonItem];
         }
         

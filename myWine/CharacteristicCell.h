@@ -1,29 +1,21 @@
 //
-//  CriterionCell.h
+//  CharacteristicCell.h
 //  myWine
 //
-//  Created by Diogo Castro on 26/05/12.
+//  Created by Diogo Castro on 5/31/12.
 //  Copyright (c) 2012 FEUP. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "Criterio.h"
+#import "Caracteristica.h"
 #import "SectionItemCell.h"
 
-@interface CriterionCell : SectionItemCell
+@interface CharacteristicCell : SectionItemCell
+
 /*
-@property (weak, nonatomic) IBOutlet UILabel *classificationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UISlider *classificationSlider;
- */
-
-/*
-- (IBAction)adjustSliderValue:(id)sender;
-- (IBAction)classificationSliderValueChanged:(id)sender;
-- (void) resetState;
-- (void) commitEdit;
-
-*/
+@property (weak, nonatomic) IBOutlet UILabel *classificationLabel;*/
 
 //template methods
 - (int) minVal;

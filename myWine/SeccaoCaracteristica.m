@@ -79,7 +79,7 @@
             c.weight = sqlite3_column_int(stmt, 3);
             c.name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 4)];
             
-            ch.classification_choosen = c;
+            ch.classification_chosen = c;
             
             [_characteristics insertObject:ch atIndex:0];
         }

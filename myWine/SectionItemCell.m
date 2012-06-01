@@ -1,15 +1,21 @@
 //
-//  CriterionCell.m
+//  SectionItemCell.m
 //  myWine
 //
-//  Created by Diogo Castro on 26/05/12.
+//  Created by Diogo Castro on 6/1/12.
 //  Copyright (c) 2012 FEUP. All rights reserved.
 //
 
-#import "CriterionCell.h"
-#import "UIColor+myWineColor.h"
+#import "SectionItemCell.h"
 
-@implementation CriterionCell
+@implementation SectionItemCell
+@synthesize nameLabel;
+@synthesize classificationSlider;
+@synthesize classificationLabel;
+@synthesize item = _item;
+@synthesize delegate = _delegate;
+@synthesize classification = _classification;
+@synthesize classification_index = _classification_index;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -20,24 +26,32 @@
     return self;
 }
 
-/*
-- (void) setCriterion:(Criterio *)criterion {
-    if (_criterion != criterion) {
-        _criterion = criterion;
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+
+
+- (void) setItem:(id) item {
+    if (_item != item) {
+        _item = item;
         [self configureView];
     }
 }
 
 - (void) configureView {
-    [self.nameLabel setText:self.criterion.name];
-    [self drawClassificationLabel:self.criterion.classification_chosen animated:NO];
-    [self.classificationSlider setMinimumValue: [self.criterion minWeight]]; 
-    [self.classificationSlider setMaximumValue: [self.criterion maxWeight]]; 
-    [self.classificationSlider setValue:self.criterion.classification_chosen.weight];
+    [self.nameLabel setText: [self.item name]];
+    [self drawClassificationLabel: [self.item classification_chosen] animated:NO];
+    [self.classificationSlider setMinimumValue: [self minVal]]; 
+    [self.classificationSlider setMaximumValue: [self maxVal]]; 
+    [self.classificationSlider setValue:[self itemChosenWeight]];
     //NSLog(@" MIN %i MAX %i CHOSEN %i", self.criterion.minWeight, self.criterion.maxWeight, self.criterion.classification_chosen.weight);
     
     //temp classification
-    self.classification = self.criterion.classification_chosen;
+    self.classification = [self.item classification_chosen];
     
     [self.classificationSlider setUserInteractionEnabled:FALSE];
     
@@ -49,13 +63,14 @@
 }
 
 - (void) drawClassificationLabel:(Classificacao*) classification animated:(BOOL) animated {
-    NSString* string = [[NSString alloc] initWithFormat:@"%i  %@", classification.weight, classification.name];
+    NSString* string = [self getClassificationLabel:classification];
+    //[[NSString alloc] initWithFormat:@"%i  %@", classification.weight, classification.name];
     
     if(animated)
         [UIView animateWithDuration:0.3 animations:^() {
             self.classificationLabel.alpha = 0.0;
         }];
-     
+    
     [self.classificationLabel setText:string];
     
     if(animated)
@@ -69,13 +84,12 @@
     if (editing) {
         
         //temp classification
-        self.classification = self.criterion.classification_chosen;
+        self.classification = [self.item classification_chosen];
         
         //find currently selected classification's index
         int i;
-        for(i = 0; i < self.criterion.classifications.count && ((Classificacao*)[self.criterion.classifications objectAtIndex:i]).weight != self.classification.weight; i++);
+        for(i = 0; i < [self.item classifications].count && ![[((Classificacao*)[[self.item classifications] objectAtIndex:i]) name] isEqualToString:self.classification.name]; i++);
         self.classification_index = i;
-        
         
         [self.classificationSlider setUserInteractionEnabled:YES];
     } else {
@@ -87,7 +101,7 @@
 }
 
 - (IBAction)adjustSliderValue:(id)sender {
-    [self.classificationSlider setValue:self.classification.weight animated:YES];
+    [self.classificationSlider setValue:[self itemWeight:self.classification] animated:YES];
 }
 
 - (IBAction)classificationSliderValueChanged:(id)sender {
@@ -96,24 +110,24 @@
     float value = self.classificationSlider.value;
     Classificacao* nextClassification;
     int new_index;
+    int classification_weight = [self itemWeight:self.classification];
     
-    if(value == self.classification.weight) {
+    if(value == classification_weight) {
         return;
     }
-    
     //checks wether the nextClassification is to the right or to the left of the current classification
-    if(value > self.classification.weight) {
+    if(value > classification_weight) {
         new_index = self.classification_index +1;
-    } else if (value < self.classification.weight) {
+    } else if (value < classification_weight) {
         new_index = self.classification_index -1;
     }
     
-    nextClassification = [self.criterion.classifications objectAtIndex:new_index];
+    nextClassification = [[self.item classifications] objectAtIndex:new_index];
     
     
     //calculates the distance to both current and next classifications
-    float distanceToCurrent = abs(self.classification.weight - value);
-    float distanceToNext = abs(nextClassification.weight - value);
+    float distanceToCurrent = abs(classification_weight - value);
+    float distanceToNext = abs([self itemWeight:nextClassification] - value);
     
     //if the value is closer to the nextClassification than to the current, the current classification is changed  
     if (distanceToNext < distanceToCurrent) {
@@ -122,7 +136,7 @@
         
         [self drawClassificationLabel:self.classification animated:YES];
         
-        [self.delegate criterionCellDidUpdateClassification];
+        [self.delegate sectionItemCellDidUpdateClassification];
     }
     
     //NSLog(@"classification %i   value %.02f", self.classification.weight, value);
@@ -131,42 +145,18 @@
 
 
 - (void) resetState {
-    if(self.criterion.classification_chosen != self.classification) {
-        self.classification = self.criterion.classification_chosen;
-        [self.classificationSlider setValue:self.criterion.classification_chosen.weight animated:YES];
-        [self drawClassificationLabel:self.criterion.classification_chosen animated:YES];
+    if([self.item classification_chosen] != self.classification) {
+        self.classification = [self.item classification_chosen];
+        [self.classificationSlider setValue: [self itemChosenWeight] animated:YES];
+        [self drawClassificationLabel:[self.item classification_chosen] animated:YES];
     }
     
 }
 
 - (void) commitEdit {
-    if(self.criterion.classification_chosen != self.classification) {
-        self.criterion.classification_chosen = self.classification;
-        [self.criterion save];
+    if([self.item classification_chosen] != self.classification) {
+        [self.item setClassification_chosen:self.classification];
+        [self.item save];
     }
 }
- */
-
-//template methods
-- (int) minVal {
-    return [[self item] minWeight];
-}
-
-- (int) maxVal {
-    return [[self item] maxWeight];
-}
-
-- (int) itemChosenWeight {
-    return [[[self item] classification_chosen] weight];
-}
-
-- (int) itemWeight:(Classificacao*) classification {
-    return classification.weight;
-}
-
-- (NSString*) getClassificationLabel:(Classificacao*) classification {
-    return [[NSString alloc] initWithFormat:@"%i  %@", classification.weight, classification.name];
-}
-
-
 @end
