@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MobileCoreServices/MobileCoreServices.h>
 #import "Language.h"
 
-@interface FotoViewController : UIViewController <UIImagePickerControllerDelegate>
+@interface FotoViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
+    
+    UIImageView *imageView;
+    BOOL newMedia;
+}
 
 - (IBAction)cancel:(id)sender;
 - (IBAction)done:(id)sender;
@@ -18,4 +23,6 @@
 @property (weak, nonatomic) IBOutlet UINavigationItem *NewPhoto;
 
 
+@property (strong, nonatomic) IBOutlet UIImageView *imageView;
+@property (strong, nonatomic) UIPopoverController *myPop;
 @end

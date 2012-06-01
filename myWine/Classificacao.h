@@ -12,6 +12,9 @@
 
 @property (nonatomic, assign) int classification_id;
 @property (nonatomic, copy) NSString * name;
+@property (nonatomic, copy) NSString * name_en;
+@property (nonatomic, copy) NSString * name_fr;
+@property (nonatomic, copy) NSString * name_pt;
 @property (nonatomic, assign) NSInteger weight;
 
 

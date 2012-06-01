@@ -14,6 +14,10 @@
 @property (nonatomic, assign) int criterion_id;
 @property (nonatomic, retain) Classificacao * classification_chosen;
 @property (nonatomic, strong) NSString * name;
+@property (nonatomic, strong) NSString * name_en;
+@property (nonatomic, strong) NSString * name_fr;
+@property (nonatomic, strong) NSString * name_pt;
+@property (nonatomic, assign) int order;
 @property (nonatomic, copy) NSMutableArray * classifications;
 
 - (NSString*) description;

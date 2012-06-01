@@ -13,8 +13,12 @@
 
 @implementation Criterio
 
-@synthesize name = _name;
 @synthesize criterion_id=_criterion_id;
+@synthesize order = _order;
+@synthesize name = _name;
+@synthesize name_en = _name_en;
+@synthesize name_pt = _name_pt;
+@synthesize name_fr = _name_fr;
 @synthesize classification_chosen = _classification_chosen;
 @synthesize classifications = _classifications;
 
@@ -26,6 +30,34 @@
 }
 
 
+
+-(NSString *)name
+{
+        
+    Language * lan = [Language instance];
+    
+    switch (lan.selectedLanguage) {
+        case EN:
+            _name = _name_en;
+            break;
+            
+        case FR:
+            _name = _name_fr;
+            break;
+            
+        case PT:
+            _name = _name_pt;
+            break;
+            
+        default:
+            break;
+    }
+
+    return _name;
+}
+
+
+
 -(BOOL) loadClassificationsFromDB{
     _classifications = [[NSMutableArray alloc] init];
     
@@ -34,30 +66,11 @@
     
     NSString *querySQL;
     
-    Language *lan = [Language instance];
-    switch (lan.selectedLanguage) {
-        case FR:
-            querySQL = [NSString stringWithFormat:@"SELECT c.classification_id, c.weight ,c.name_fr\
-                        FROM Classification c, PossibleClassification ps\
-                        WHERE ps.classifiable_id = %d AND ps.classifiable_type = 'Criterion' AND ps.classification_id = c.classification_id;", _criterion_id];
-            break;
-            
-        case EN: 
-            querySQL =  [NSString stringWithFormat:@"SELECT c.classification_id, c.weight ,c.name_en\
-                         FROM Classification c, PossibleClassification ps\
-                         WHERE ps.classifiable_id = %d AND ps.classifiable_type = 'Criterion' AND ps.classification_id = c.classification_id;", _criterion_id];
-            break;
-            
-        case PT:
-            querySQL =  [NSString stringWithFormat:@"SELECT c.classification_id, c.weight ,c.name_pt\
-                         FROM Classification c, PossibleClassification ps\
-                         WHERE ps.classifiable_id = %d AND ps.classifiable_type = 'Criterion' AND ps.classification_id = c.classification_id;", _criterion_id];        
-            break;
-            
-        default:
-            break;
-    }
-    
+
+    querySQL = [NSString stringWithFormat:@"SELECT c.classification_id, c.weight ,c.name_en, c.name_fr, c.name_pt\
+                FROM Classification c, PossibleClassification ps\
+                WHERE ps.classifiable_id = %d AND ps.classifiable_type = 'Criterion' AND ps.classification_id = c.classification_id;", _criterion_id];
+
     sqlite3_stmt *stmt = [query prepareForSingleQuery:querySQL];
     
     
@@ -67,7 +80,10 @@
             Classificacao * c = [[Classificacao alloc]init];
             c.classification_id = sqlite3_column_int(stmt, 0);
             c.weight = sqlite3_column_int(stmt, 1);
-            c.name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 2)];
+            c.name_en = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 2)];
+            c.name_fr = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 3)];
+            c.name_pt = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 4)];
+
             
             [_classifications insertObject:c atIndex:0];
         }

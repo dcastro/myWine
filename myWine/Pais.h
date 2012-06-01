@@ -12,6 +12,10 @@
 
 @property (nonatomic, strong) NSString* id;
 @property (nonatomic, strong) NSString* name;
+@property (nonatomic, strong) NSString* name_en;
+@property (nonatomic, strong) NSString* name_fr;
+@property (nonatomic, strong) NSString* name_pt;
+
 @property (nonatomic, strong) NSMutableArray* regions;
 
 @end

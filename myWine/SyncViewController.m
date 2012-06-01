@@ -18,6 +18,7 @@
 @synthesize description_label;
 @synthesize progress_label;
 @synthesize progress_bar;
+@synthesize cancelButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -43,11 +44,12 @@
     self.title = [lan translate:@"Synchronizing"];
     
     self.description_label.text = [lan translate:@"Synchronization frase"];
-    self.description_label.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGE_FONT];
+    self.description_label.font = [UIFont fontWithName:@"DroidSans" size:LARGE_FONT];
     
     self.progress_label.Text=[NSString stringWithFormat:[lan translate:@"Synchronization step"], 0,3];
-    self.progress_label.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
+    self.progress_label.font = [UIFont fontWithName:@"DroidSans" size:SMALL_FONT];
 
+    self.cancelButton.titleLabel.font = [UIFont fontWithName:@"DroidSans-Bold" size:SMALL_FONT];
     
     [progress_bar setProgress:0.0];
     
@@ -61,6 +63,7 @@
     [self setDescription_label:nil];
     [self setProgress_label:nil];
     [self setProgress_bar:nil];
+    [self setCancelButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }

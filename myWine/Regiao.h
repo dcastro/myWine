@@ -13,5 +13,9 @@
 @property (nonatomic, assign) int region_id;
 @property (nonatomic, copy) NSString *region_name;
 @property (nonatomic, copy) NSString *country_name;
+@property (nonatomic, copy) NSString *country_name_en;
+@property (nonatomic, copy) NSString *country_name_fr;
+@property (nonatomic, copy) NSString *country_name_pt;
+
 
 @end

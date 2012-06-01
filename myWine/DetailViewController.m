@@ -16,11 +16,9 @@
 @implementation DetailViewController
 
 @synthesize currentPopover;
-@synthesize search = _search;
-@synthesize sync = _sync;
 @synthesize help = _help;
+@synthesize myWine = _myWine;
 @synthesize detailItem = _detailItem;
-@synthesize detailDescriptionLabel = _detailDescriptionLabel;
 @synthesize masterPopoverController = _masterPopoverController;
 
 @synthesize delegate;
@@ -46,10 +44,6 @@ SEL action; id target;
 - (void)configureView
 {
     // Update the user interface for the detail item.
-
-    if (self.detailItem) {
-        self.detailDescriptionLabel.text = [self.detailItem description];
-    }
 }
 
 - (void)viewDidLoad
@@ -62,15 +56,11 @@ SEL action; id target;
     [self.view insertSubview:background atIndex:0];
     
     Language* lan = [Language instance];
-    [self.search setTitle:[lan translate:@"Search"] forState:UIControlStateNormal];
-    self.search.titleLabel.font = [UIFont fontWithName:@"DroidSerif-Bold" size:18];
-    [self.sync setTitle:[lan translate:@"Sync"] forState:UIControlStateNormal];
-    self.sync.titleLabel.font = [UIFont fontWithName:@"DroidSerif-Bold" size:18];
     
     self.help.title = [lan translate:@"Help"];
     self.title = [lan translate:@"Home"];
-
     
+    self.myWine.font = [UIFont fontWithName:@"DroidSerif-Bold" size:TITLE_FONT];    
     
     self.navigationItem.hidesBackButton = YES;
     [self configureView];
@@ -78,12 +68,10 @@ SEL action; id target;
 
 - (void)viewDidUnload
 {
-    [self setSearch:nil];
-    [self setSync:nil];
     [self setHelp:nil];
+    [self setMyWine:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
-    self.detailDescriptionLabel = nil;
 }
 
 -(void)viewDidAppear:(BOOL)animated {
