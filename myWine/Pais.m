@@ -23,13 +23,41 @@
 
 - (NSMutableArray*) regions {
     if (! _regions) {
-        [self loadRegions];
+        [self loadRegionsFromDB];
     }
     
     return _regions;
 }
 
-- (BOOL) loadRegions {
+
+-(NSString *)name
+{
+    
+    Language * lan = [Language instance];
+    
+    switch (lan.selectedLanguage) {
+        case EN:
+            _name = _name_en;
+            break;
+            
+        case FR:
+            _name = _name_fr;
+            break;
+            
+        case PT:
+            _name = _name_pt;
+            break;
+            
+        default:
+            break;
+    }
+    
+    return _name;
+}
+
+
+
+- (BOOL) loadRegionsFromDB {
         
     _regions = [[NSMutableArray alloc] init];
     
@@ -65,32 +93,6 @@
 
 
 
--(NSString *)name
-{
-    if(!_name){
-        
-        Language * lan = [Language instance];
-        
-        switch (lan.selectedLanguage) {
-            case EN:
-                _name = _name_en;
-                break;
-                
-            case FR:
-                _name = _name_fr;
-                break;
-                
-            case PT:
-                _name = _name_pt;
-                break;
-                
-            default:
-                break;
-        }
-    }
-    
-    return _name;
-}
 
 
 

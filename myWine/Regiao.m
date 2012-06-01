@@ -22,26 +22,24 @@
 
 -(NSString *)country_name
 {
-    if(!_country_name){
         
-        Language * lan = [Language instance];
-        
-        switch (lan.selectedLanguage) {
-            case EN:
-                _country_name = _country_name_en;
-                break;
-                
-            case FR:
-                _country_name = _country_name_fr;
-                break;
-                
-            case PT:
-                _country_name = _country_name_pt;
-                break;
-                
-            default:
-                break;
-        }
+    Language * lan = [Language instance];
+    
+    switch (lan.selectedLanguage) {
+        case EN:
+            _country_name = _country_name_en;
+            break;
+            
+        case FR:
+            _country_name = _country_name_fr;
+            break;
+            
+        case PT:
+            _country_name = _country_name_pt;
+            break;
+            
+        default:
+            break;
     }
     
     return _country_name;
