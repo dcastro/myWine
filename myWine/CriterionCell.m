@@ -10,11 +10,6 @@
 #import "UIColor+myWineColor.h"
 
 @implementation CriterionCell
-@synthesize classificationLabel;
-@synthesize nameLabel;
-@synthesize classificationSlider;
-@synthesize classification = _classification, classification_index = _classification_index;
-@synthesize delegate = _delegate;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -25,12 +20,6 @@
     return self;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
 /*
 - (void) setCriterion:(Criterio *)criterion {
     if (_criterion != criterion) {
@@ -157,5 +146,27 @@
     }
 }
  */
+
+//template methods
+- (int) minVal {
+    return [[self item] minWeight];
+}
+
+- (int) maxVal {
+    return [[self item] maxWeight];
+}
+
+- (int) itemChosenWeight {
+    return [[[self item] classification_chosen] weight];
+}
+
+- (int) itemWeight:(Classificacao*) classification {
+    return classification.weight;
+}
+
+- (NSString*) getClassificationLabel:(Classificacao*) classification {
+    return [[NSString alloc] initWithFormat:@"%i  %@", classification.weight, classification.name];
+}
+
 
 @end

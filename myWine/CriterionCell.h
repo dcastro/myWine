@@ -10,20 +10,12 @@
 #import "Criterio.h"
 #import "SectionItemCell.h"
 
-@protocol CriterionCellDelegate <NSObject>
-
-- (void) criterionCellDidUpdateClassification;
-
-@end
-
 @interface CriterionCell : SectionItemCell
 /*
 @property (weak, nonatomic) IBOutlet UILabel *classificationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UISlider *classificationSlider;
  */
-
-@property (strong, nonatomic) id<CriterionCellDelegate> delegate;
 
 /*
 - (IBAction)adjustSliderValue:(id)sender;
@@ -32,5 +24,12 @@
 - (void) commitEdit;
 
 */
+
+//template methods
+- (int) minVal;
+- (int) maxVal;
+- (int) itemChosenWeight;
+- (int) itemWeight:(Classificacao*) classification;
+- (NSString*) getClassificationLabel:(Classificacao*) classification;
 
 @end

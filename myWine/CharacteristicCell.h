@@ -10,12 +10,6 @@
 #import "Caracteristica.h"
 #import "SectionItemCell.h"
 
-@protocol CharacteristicCellDelegate <NSObject>
-
-- (void) characteristicCellDidUpdateClassification;
-
-@end
-
 @interface CharacteristicCell : SectionItemCell
 
 /*
@@ -23,6 +17,11 @@
 @property (weak, nonatomic) IBOutlet UISlider *classificationSlider;
 @property (weak, nonatomic) IBOutlet UILabel *classificationLabel;*/
 
-@property (strong, nonatomic) id<CharacteristicCellDelegate> delegate;
+//template methods
+- (int) minVal;
+- (int) maxVal;
+- (int) itemChosenWeight;
+- (int) itemWeight:(Classificacao*) classification;
+- (NSString*) getClassificationLabel:(Classificacao*) classification;
 
 @end

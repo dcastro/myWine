@@ -14,7 +14,7 @@
 #import "Vinho.h"
 #import "SubstitutableTabBarControllerViewController.h"
 
-@interface ProvaViewController : UITableViewController <CriterionCellDelegate>
+@interface ProvaViewController : UITableViewController <SectionItemCellCellDelegate>
 
 @property (strong, nonatomic) Prova* prova;
 @property (strong, nonatomic) Vinho* vinho;

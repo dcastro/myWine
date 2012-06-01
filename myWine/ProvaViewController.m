@@ -124,7 +124,7 @@
         for(int j = 0; j < seccao.criteria.count; j++) {
             CriterionCell* cell = (CriterionCell*) [[self tableView] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:j inSection:i]];
             score += cell.classification.weight;
-            max += cell.criterion.maxWeight;
+            max += [cell.item maxWeight];
         }
         
     }
@@ -234,7 +234,7 @@
         
         for(id currentObject in topLevelObjects)
         {
-            if([currentObject isKindOfClass:[CriterionCell class]])
+            if([currentObject isKindOfClass:[SectionItemCell class]])
             {
                 cell = (CriterionCell *)currentObject;
                 break;
@@ -246,8 +246,11 @@
     // Configure the cell...
     Seccao* section = (Seccao*) [self.prova.sections objectAtIndex:indexPath.section];
     Criterio* criterion = (Criterio*) [section.criteria objectAtIndex:indexPath.row];
-    [cell setCriterion:criterion];
+    
     [cell setDelegate:self];
+    
+    object_setClass(cell, [CriterionCell class]);
+    [cell setItem:criterion];
     
     return cell;
 }
@@ -390,7 +393,7 @@
 
 #pragma mark - CriterionCell Delegate Method
 
-- (void) criterionCellDidUpdateClassification {
+- (void) sectionItemCellDidUpdateClassification {
     [self updateScoreLabel];
 }
 

@@ -9,9 +9,6 @@
 #import "CharacteristicCell.h"
 
 @implementation CharacteristicCell
-@synthesize nameLabel;
-@synthesize classificationSlider;
-@synthesize classificationLabel;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -27,6 +24,26 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+
+//template methods
+- (int) minVal {
+}
+
+- (int) maxVal {
+}
+
+- (int) itemChosenWeight {
+}
+
+- (int) itemWeight:(Classificacao*) classification {
+    int index = [[[self item] classifications] indexOfObject:classification];
+    return index * (100.0 / (float) [[[self item] classifications] count]);
+}
+
+- (NSString*) getClassificationLabel:(Classificacao*) classification {
+    
 }
 
 @end
