@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Language.h"
 
 @interface FotoViewController : UIViewController <UIImagePickerControllerDelegate>
 
 - (IBAction)cancel:(id)sender;
 - (IBAction)done:(id)sender;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *Cancel;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *Done;
+@property (weak, nonatomic) IBOutlet UINavigationItem *NewPhoto;
+
 
 @end

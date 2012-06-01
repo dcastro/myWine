@@ -13,6 +13,9 @@
 @end
 
 @implementation FotoViewController
+@synthesize Cancel;
+@synthesize Done;
+@synthesize NewPhoto;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,6 +36,14 @@
     //imagePicker.sourceType =  UIImagePickerControllerSourceTypeCamera;
     imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     
+    Language* lang = [Language instance];
+    
+    [self.Cancel setTitle:[lang translate:@"Cancel"]];
+    
+    [self.Done setTitle:[lang translate:@"Done"]];
+    
+    [self.NewPhoto setTitle:[lang translate:@"New Photo"]];
+    
     // Delegate is self
     //imagePicker.delegate = self;
     
@@ -44,6 +55,9 @@
 
 - (void)viewDidUnload
 {
+    [self setCancel:nil];
+    [self setDone:nil];
+    [self setNewPhoto:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
