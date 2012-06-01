@@ -12,6 +12,12 @@
 
 @property (nonatomic, assign) int sectioncharacteristic_id;
 @property (nonatomic, copy) NSString * name;
+@property (nonatomic, copy) NSString *name_en;
+@property (nonatomic, copy) NSString *name_fr;
+@property (nonatomic, copy) NSString *name_pt;
+@property (nonatomic, assign) int order;
 @property (nonatomic, strong) NSMutableArray * characteristics;
+
+
 
 @end

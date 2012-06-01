@@ -134,32 +134,14 @@ static User *sharedUser = nil;
     
     NSString *querySQL;
     
-    Language *lan = [Language instance];
-    switch (lan.selectedLanguage) {
-        case FR:
-            querySQL =  @"SELECT w.wine_id, c.name_fr, r.name , wt.name_fr, w.name, w.year, w.photo_filename, w.producer, w.currency, w.price, w.grapes, r.region_id \
+    
+    querySQL =  @"SELECT w.wine_id, w.name, w.year, w.photo_filename, w.producer, w.currency, w.price, w.grapes,\
+                c.name_en, c.name_fr, c.name_pt, r.region_id, r.name ,\
+                wt.name_en, wt.name_fr, wt.name_pt \
                         FROM Wine w, Region r, Country c, WineType wt \
                         WHERE w.region_id = r.region_id AND r.country_id = c.country_id AND w.winetype_id = wt.winetype_id AND w.state <> 3 \
                         ORDER BY w.name DESC;";
-            break;
-            
-        case EN: 
-            querySQL =  @"SELECT w.wine_id, c.name_en, r.name  , wt.name_en, w.name, w.year, w.photo_filename, w.producer, w.currency, w.price, w.grapes, r.region_id \
-                        FROM Wine w, Region r, Country c, WineType wt \
-                        WHERE w.region_id = r.region_id AND r.country_id = c.country_id AND w.winetype_id = wt.winetype_id AND w.state <> 3 \
-                        ORDER BY w.name DESC;";
-            break;
-            
-        case PT:
-            querySQL =  @"SELECT w.wine_id, c.name_pt, r.name  , wt.name_pt, w.name, w.year, w.photo_filename, w.producer, w.currency, w.price, w.grapes, r.region_id \
-                        FROM Wine w, Region r, Country c, WineType wt \
-                        WHERE w.region_id = r.region_id AND r.country_id = c.country_id AND w.winetype_id = wt.winetype_id AND w.state <> 3 \
-                        ORDER BY w.name DESC;";
-            break;
-            
-        default:
-            break;
-    }
+   
      
     
     sqlite3_stmt *stmt = [query prepareForSingleQuery:querySQL];
@@ -171,49 +153,53 @@ static User *sharedUser = nil;
             Vinho *wine = [[Vinho alloc] init]; 
                         
             wine.wine_id = sqlite3_column_int(stmt, 0);
+            wine.name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 1)];
             
-            Regiao * r = [[Regiao alloc] init];
-            r.country_name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 1)];
-            r.region_name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 2)];
-            r.region_id = sqlite3_column_int(stmt, 11);
-            wine.region = r;
-
-           
+            wine.year = sqlite3_column_int(stmt, 2);
             
-            TipoVinho *tv = [[TipoVinho alloc] init];
-            tv.name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 3)];
-            wine.winetype = tv;
-            
-            
-            wine.name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 4)];
-            
-            wine.year = sqlite3_column_int(stmt, 5);
-           
-            const unsigned char * photo = sqlite3_column_text(stmt, 6);
+            const unsigned char * photo = sqlite3_column_text(stmt, 3);
             if(photo != NULL)
                 wine.photo = [NSString stringWithUTF8String:(const char *)photo];
             else
                 wine.photo = nil;
             
-
-            const unsigned char * producer = sqlite3_column_text(stmt, 7);
+            
+            const unsigned char * producer = sqlite3_column_text(stmt, 4);
             if(producer != NULL)
                 wine.producer = [NSString stringWithUTF8String:(const char *)producer];
             else
                 wine.producer = nil;
             
             
-            wine.currency = currencyInt( [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 8)] );
-            wine.price = sqlite3_column_double(stmt, 9);
+            wine.currency = currencyInt( [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 5)] );
+            wine.price = sqlite3_column_double(stmt, 6);
             
             
-            const unsigned char * wgrapes = sqlite3_column_text(stmt, 10);
+            const unsigned char * wgrapes = sqlite3_column_text(stmt, 7);
             if(wgrapes != NULL)
                 wine.grapes = [NSString stringWithUTF8String:(const char *)wgrapes];
             else
                 wine.grapes = nil;
             
             
+            
+            Regiao * r = [[Regiao alloc] init];
+            r.country_name_en = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 8)];
+            r.country_name_fr = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 9)];
+            r.country_name_pt = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 10)];
+            r.region_id = sqlite3_column_int(stmt, 11);
+            r.region_name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 12)];
+            wine.region = r;
+
+           
+            
+            TipoVinho *tv = [[TipoVinho alloc] init];
+            tv.name_en = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 13)];
+            tv.name_fr = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 14)];
+            tv.name_pt = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 15)];
+
+            wine.winetype = tv;
+
             
             [_vinhos insertObject:wine atIndex:0];
          
@@ -238,29 +224,10 @@ static User *sharedUser = nil;
     
     NSString *querySQL;
     
-    Language *lan = [Language instance];
-    switch (lan.selectedLanguage) {
-        case FR:
-            querySQL = [NSString stringWithFormat:@"SELECT wt.winetype_id, wt.name_fr\
-                        FROM WineType wt \
-                        ORDER BY wt.name_fr DESC;"];
-            break;
-            
-        case EN: querySQL =  [NSString stringWithFormat:@"SELECT wt.winetype_id, wt.name_en\
-                              FROM WineType wt \
-                              ORDER BY wt.name_en DESC;"];
-            break;
-            
-        case PT:querySQL =  [NSString stringWithFormat:@"SELECT wt.winetype_id, wt.name_pt\
-                             FROM WineType wt \
-                             ORDER BY wt.name_pt DESC;"];
-   
-            break;
-            
-        default:
-            break;
-    }
-    
+
+            querySQL = [NSString stringWithFormat:@"SELECT wt.winetype_id, wt.name_en, wt.name_fr, wt.name_pt\
+                        FROM WineType wt;"];
+      
     sqlite3_stmt *stmt = [query prepareForSingleQuery:querySQL];
     
     
@@ -270,7 +237,10 @@ static User *sharedUser = nil;
             TipoVinho *winetype = [[TipoVinho alloc] init];
             
             winetype.winetype_id = sqlite3_column_int(stmt, 0);
-            winetype.name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 1)];
+            winetype.name_en = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 1)];
+            winetype.name_fr = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 2)];
+            winetype.name_pt = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 3)];
+
             
             [_tipoVinhos insertObject:winetype atIndex:0];
         }
@@ -294,28 +264,10 @@ static User *sharedUser = nil;
     
     NSString *querySQL;
     
-    Language *lan = [Language instance];
-    switch (lan.selectedLanguage) {
-        case FR:
-            querySQL = [NSString stringWithFormat:@"SELECT c.country_id, c.name_fr\
-                        FROM Country c  \
-                        ORDER BY c.name_fr DESC;"];
-            break;
+    querySQL = [NSString stringWithFormat:@"SELECT c.country_id, c.name_en, c.name_fr, c.name_pt\
+                        FROM Country c;"];
             
-        case EN: querySQL =  [NSString stringWithFormat:@"SELECT c.country_id, c.name_en\
-                              FROM Country c \
-                              ORDER BY c.name_en DESC;"];
-            break;
-            
-        case PT:querySQL =  [NSString stringWithFormat:@"SELECT c.country_id, c.name_pt\
-                             FROM Country c \
-                             ORDER BY c.name_pt DESC;"];           
-            break;
-            
-        default:
-            break;
-    }
-    
+       
     sqlite3_stmt *stmt = [query prepareForSingleQuery:querySQL];
     
     
@@ -325,7 +277,10 @@ static User *sharedUser = nil;
             Pais *country = [[Pais alloc] init];
             
             country.id = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 0)];
-            country.name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 1)];
+            country.name_en = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 1)];
+            country.name_fr = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 2)];
+            country.name_pt = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 3)];
+
             
             [_countries insertObject:country atIndex:0];
         }

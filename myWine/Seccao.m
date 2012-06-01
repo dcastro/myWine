@@ -14,8 +14,12 @@
 @implementation Seccao
 
 @synthesize name = _name;
+@synthesize name_en = _name_en;
+@synthesize name_fr = _name_fr;
+@synthesize name_pt = _name_pt;
 @synthesize section_id = _section_id;
 @synthesize criteria = _criteria;
+@synthesize order = _order;
 
 
 -(NSMutableArray *)  criteria{
@@ -23,6 +27,34 @@
         [self loadCriteriaFromDB];
     }
     return _criteria;
+}
+
+
+-(NSString *)name
+{
+    if(!_name){
+        
+        Language * lan = [Language instance];
+        
+        switch (lan.selectedLanguage) {
+            case EN:
+                _name = _name_en;
+                break;
+                
+            case FR:
+                _name = _name_fr;
+                break;
+                
+            case PT:
+                _name = _name_pt;
+                break;
+                
+            default:
+                break;
+        }
+    }
+    
+    return _name;
 }
 
 
@@ -34,36 +66,13 @@
     
     NSString *querySQL;
     
-    Language *lan = [Language instance];
-    switch (lan.selectedLanguage) {
-        case FR:
-            querySQL = [NSString stringWithFormat:@"SELECT cr.criterion_id, cr.name_fr, c.classification_id, c.weight, c.name_fr\
-                        FROM Criterion cr, Classification c\
-                        WHERE cr.section_id = %d AND cr.classification_id = c.classification_id \
-                        ORDER BY order_priority ASC;", _section_id];
-            break;
-            
-        case EN: 
-            querySQL = [NSString stringWithFormat:@"SELECT cr.criterion_id, cr.name_en, c.classification_id, c.weight, c.name_en\
-                        FROM Criterion cr, Classification c\
-                        WHERE cr.section_id = %d AND cr.classification_id = c.classification_id \
-                        ORDER BY order_priority ASC;", _section_id];
 
-            break;
-            
-        case PT:
-            querySQL = [NSString stringWithFormat:@"SELECT cr.criterion_id, cr.name_pt, c.classification_id, c.weight, c.name_pt\
-                        FROM Criterion cr, Classification c\
-                        WHERE cr.section_id = %d AND cr.classification_id = c.classification_id \
-                        ORDER BY order_priority ASC;", _section_id];
+    querySQL = [NSString stringWithFormat:@"SELECT cr.criterion_id, cr.order_priority, cr.name_en, cr.name_fr, cr.name_pt, \
+                c.classification_id, c.weight, c.name_en, c.name_fr, c.name_pt\
+                FROM Criterion cr, Classification c\
+                WHERE cr.section_id = %d AND cr.classification_id = c.classification_id \
+                ORDER BY cr.order_priority ASC;", _section_id];
 
-            
-            break;
-            
-        default:
-            break;
-    }
-    
     sqlite3_stmt *stmt = [query prepareForSingleQuery:querySQL];
     
     if(stmt != nil){
@@ -72,12 +81,19 @@
             Criterio *cr = [[Criterio alloc]init];
             
             cr.criterion_id = sqlite3_column_int(stmt, 0);
-            cr.name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 1)];
+            cr.order = sqlite3_column_int(stmt, 1);
+            cr.name_en = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 2)];
+            cr.name_en = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 3)];
+            cr.name_en = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 4)];
+
             
             Classificacao * c = [[Classificacao alloc]init];
-            c.classification_id = sqlite3_column_int(stmt, 2);
-            c.weight = sqlite3_column_int(stmt, 3);
-            c.name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 4)];
+            c.classification_id = sqlite3_column_int(stmt, 5);
+            c.weight = sqlite3_column_int(stmt, 6);
+            c.name_en = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 7)];
+            c.name_fr = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 8)];
+            c.name_pt = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 9)];
+
             
             cr.classification_chosen = c;
             

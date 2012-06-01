@@ -50,28 +50,12 @@
     
     NSString *querySQL;
     
-    Language *lan = [Language instance];
-    switch (lan.selectedLanguage) {
-        case FR:
-            querySQL = [NSString stringWithFormat:@"SELECT s.section_id, s.name_fr\
-                        FROM Section s\
-                        WHERE s.tasting_id = %d;", _tasting_id];
-            break;
-            
-        case EN: querySQL =  [NSString stringWithFormat:@"SELECT s.section_id, s.name_en\
-                              FROM Section s\
-                              WHERE s.tasting_id = %d;", _tasting_id];
-            break;
-            
-        case PT:querySQL =  [NSString stringWithFormat:@"SELECT s.section_id, s.name_pt\
-                             FROM Section s\
-                             WHERE s.tasting_id = %d;", _tasting_id];           
-            break;
-            
-        default:
-            break;
-    }
-    
+
+    querySQL = [NSString stringWithFormat:@"SELECT s.section_id, s.order_priority ,s.name_en, s.name_fr, s.name_pt\
+                FROM Section s\
+                WHERE s.tasting_id = %d \
+                ORDER BY s.order_priority ASC;", _tasting_id];
+     
     sqlite3_stmt *stmt = [query prepareForSingleQuery:querySQL];
     
     
@@ -80,7 +64,11 @@
         {
             Seccao * s = [[Seccao alloc]init];
             s.section_id = sqlite3_column_int(stmt, 0);
-            s.name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 1)];
+            s.order = sqlite3_column_int(stmt, 1);
+            s.name_en = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 2)];
+            s.name_fr = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 3)];
+            s.name_pt = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 4)];
+
             
             [_sections insertObject:s atIndex:0];
         
@@ -105,30 +93,12 @@
     
     NSString *querySQL;
     
-    Language *lan = [Language instance];
-    switch (lan.selectedLanguage) {
-        case FR:
-            querySQL = [NSString stringWithFormat:@"SELECT sc.section_id, sc.name_fr\
-                        FROM SectionCharacteristic sc\
-                        WHERE sc.tasting_id = %d \
-                        ORDER BY order_priority ASC;", _tasting_id];
-            break;
-            
-        case EN: querySQL =  [NSString stringWithFormat:@"SELECT sc.section_id, sc.name_en\
-                              FROM SectionCharacteristic sc\
-                              WHERE sc.tasting_id = %d \
-                              ORDER BY order_priority ASC;", _tasting_id];
-            break;
-            
-        case PT:querySQL =  [NSString stringWithFormat:@"SELECT sc.section_id, sc.name_pt\
-                             FROM SectionCharacteristic sc\
-                             WHERE sc.tasting_id = %d \
-                             ORDER BY order_priority ASC;", _tasting_id];          
-            break;
-            
-        default:
-            break;
-    }
+
+    querySQL = [NSString stringWithFormat:@"SELECT sc.section_id, sc.order_priority, sc.name_en, sc.name_fr, sc.name_pt\
+                FROM SectionCharacteristic sc\
+                WHERE sc.tasting_id = %d \
+                ORDER BY sc.order_priority ASC;", _tasting_id];
+ 
     
     sqlite3_stmt *stmt = [query prepareForSingleQuery:querySQL];
     
@@ -138,7 +108,11 @@
         {
             SeccaoCaracteristica * sc = [[SeccaoCaracteristica alloc]init];
             sc.sectioncharacteristic_id = sqlite3_column_int(stmt, 0);
-            sc.name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 1)];
+            sc.order = sqlite3_column_int(stmt, 1);
+            sc.name_en = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 2)];
+            sc.name_fr = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 3)];
+            sc.name_pt = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 4)];
+
             
             [_characteristic_sections insertObject:sc atIndex:0];
             
