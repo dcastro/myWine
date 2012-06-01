@@ -63,6 +63,7 @@
 		A9C5A0111517A78600A3F8C5 /* ListaVinhosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9C5A0101517A78600A3F8C5 /* ListaVinhosViewController.m */; };
 		A9C5A0141517A78600A3F8C5 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9C5A0131517A78600A3F8C5 /* DetailViewController.m */; };
 		A9C5A0241517AB0E00A3F8C5 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A9C5A0231517AB0E00A3F8C5 /* icon.png */; };
+		A9D10DEF157905B700E8B01B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D10DEE157905B700E8B01B /* MobileCoreServices.framework */; };
 		A9F0B4BB1524731F003C931B /* FiltrosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F0B4BA1524731F003C931B /* FiltrosViewController.m */; };
 		A9F0B4BF152477C9003C931B /* ComparadorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F0B4BE152477C9003C931B /* ComparadorViewController.m */; };
 		BCC8EBB91563E36B006645BC /* NSMutableArray+ProvasMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = BCC8EBB81563E36B006645BC /* NSMutableArray+ProvasMutableArray.m */; };
@@ -182,6 +183,7 @@
 		A9C5A0121517A78600A3F8C5 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		A9C5A0131517A78600A3F8C5 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		A9C5A0231517AB0E00A3F8C5 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		A9D10DEE157905B700E8B01B /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		A9F0B4B91524731F003C931B /* FiltrosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiltrosViewController.h; sourceTree = "<group>"; };
 		A9F0B4BA1524731F003C931B /* FiltrosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiltrosViewController.m; sourceTree = "<group>"; };
 		A9F0B4BD152477C9003C931B /* ComparadorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComparadorViewController.h; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9D10DEF157905B700E8B01B /* MobileCoreServices.framework in Frameworks */,
 				D3637DD3153E322800A9B928 /* libsqlite3.dylib in Frameworks */,
 				A9C59FFB1517A78500A3F8C5 /* UIKit.framework in Frameworks */,
 				A9C59FFD1517A78500A3F8C5 /* Foundation.framework in Frameworks */,
@@ -343,6 +346,7 @@
 		A9C59FEB1517A78500A3F8C5 = {
 			isa = PBXGroup;
 			children = (
+				A9D10DEE157905B700E8B01B /* MobileCoreServices.framework */,
 				D3637DD2153E322800A9B928 /* libsqlite3.dylib */,
 				A9B04E591519DE3B00DC32CF /* Settings.bundle */,
 				A9C5A0231517AB0E00A3F8C5 /* icon.png */,
