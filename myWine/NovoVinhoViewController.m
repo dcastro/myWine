@@ -39,6 +39,7 @@
 @synthesize lblRegiao = _lblRegiao;
 @synthesize lblTipoVinho = _lblTipoVinho;
 @synthesize lblCasta = _lblCasta;
+@synthesize novoVinho = _novoVinho;
 @synthesize country = _country;
 @synthesize region = _region;
 
@@ -60,6 +61,8 @@
     [self.view insertSubview:background atIndex:0];
 
     Language* lang = [Language instance];
+    
+    [self.novoVinho setTitle:[lang translate:@"NovoVinho"]];
     
     [self.Done setTitle:[lang translate: @"Done"]];
     [self.Cancel setTitle: [lang translate: @"Cancel"]];
@@ -142,6 +145,7 @@
     [self setLblTipoVinho:nil];
     [self setLblCasta:nil];
     [self setPhotoButton:nil];
+    [self setNovoVinho:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }

@@ -15,6 +15,8 @@
 @implementation ListaPaisesViewController
 
 @synthesize countries = _countries;
+@synthesize Paises;
+@synthesize Cancel;
 @synthesize delegate;
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -39,11 +41,18 @@
     User* user = [User instance];
     [self setCountries:user.countries];
     
+    Language* lang = [Language instance];
+    
+    [self.Cancel setTitle: [lang translate: @"Cancel"]];
+    
+    [self.Paises setTitle: [lang translate:@"Countries"]];
     
 }
 
 - (void)viewDidUnload
 {
+    [self setCancel:nil];
+    [self setPaises:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -148,5 +157,11 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
 }
+
+- (IBAction)Cancel:(id)sender {
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+
 
 @end
