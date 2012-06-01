@@ -19,4 +19,6 @@
 #define LARGE_FONT 25
 #define SMALL_FONT 15
 #define LARGER_FONT 30
+#define TITLE_FONT 42
+#define NORMAL_FONT 20
 
