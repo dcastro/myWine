@@ -15,8 +15,10 @@
 
 @class ProvaViewController;
 @protocol SubstitutableDetailViewController;
+@protocol ProvaViewControllerDelegate;
 
-@interface SubstitutableTabBarControllerViewController : UITabBarController <SubstitutableDetailViewController>
+
+@interface SubstitutableTabBarControllerViewController : UITabBarController <SubstitutableDetailViewController, ProvaViewControllerDelegate>
 
 @property (strong, nonatomic) Vinho* vinho;
 @property (strong, nonatomic) Prova* prova;

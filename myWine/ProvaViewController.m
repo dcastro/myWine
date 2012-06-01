@@ -28,6 +28,7 @@
 @synthesize scoreLabel = _scoreLabel;
 @synthesize scoreContentLabel = _scoreContentLabel;
 @synthesize prova_mode;
+@synthesize delegate;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -115,7 +116,7 @@
     
 }
 
-- (void) updateScoreLabel {
+- (int) updateScoreLabel {
     
     int score = 0, max = 0;
     
@@ -131,10 +132,16 @@
     }
     
     int percentage = ((float) score/ (float) max) * 100.0;
-    NSString* string = [[NSString alloc] initWithFormat:@"%i %%", percentage];
+    [self updateScoreLabelWithScore:percentage];
+    
+    return percentage;
+}
 
+-(void) updateScoreLabelWithScore:(int) score {
+    NSString* string = [[NSString alloc] initWithFormat:@"%i %%", score];
+    
     if(! [self.scoreContentLabel.text isEqualToString:string]) {
-
+        
         [UIView animateWithDuration:0.3 animations:^() {
             self.scoreContentLabel.alpha = 0.0;
         }];
@@ -144,8 +151,7 @@
         [UIView animateWithDuration:0.3 animations:^() {
             self.scoreContentLabel.alpha = 1.0;
         }];
-    }
-    
+    }    
 }
 
 - (void) styleLabel:(UILabel*)label withTitle: (NSString*) title {
@@ -325,7 +331,11 @@
             [cell resetState];
         } ];
         
-        [self updateScoreLabel];
+        if(prova_mode == CRITERIA_MODE) {
+            int score = [self updateScoreLabel];
+            [self.delegate scoreUpdated:score];
+        }
+
         
     }
     //if the edition was completed successfully
@@ -423,7 +433,11 @@
 #pragma mark - CriterionCell Delegate Method
 
 - (void) sectionItemCellDidUpdateClassification {
-    [self updateScoreLabel];
+    //[self updateScoreLabel];
+    if (prova_mode == CRITERIA_MODE) {
+        int score = [self updateScoreLabel];
+        [self.delegate scoreUpdated:(int) score];
+    }
 }
 
 @end

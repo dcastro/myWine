@@ -51,6 +51,9 @@
     //set tabs' modes
     self.criteriaController.prova_mode = CRITERIA_MODE;
     self.characteristicsController.prova_mode = CHARACTERISTICS_MODE;
+    
+    //delegate
+    self.criteriaController.delegate = self;
 }
 
 - (void)viewDidUnload
@@ -123,4 +126,8 @@
     [self setEditing:isEditing animated:YES];
     
 }
+-(void) scoreUpdated:(int) score {
+    [self.characteristicsController updateScoreLabelWithScore:score];
+}
+
 @end

@@ -20,6 +20,12 @@
 #define CRITERIA_MODE 0
 #define CHARACTERISTICS_MODE 1
 
+@protocol ProvaViewControllerDelegate
+
+-(void) scoreUpdated:(int) score;
+
+@end
+
 @interface ProvaViewController : UITableViewController <SectionItemCellCellDelegate>
 
 @property (strong, nonatomic) Prova* prova;
@@ -39,7 +45,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *scoreContentLabel;
 
+@property (strong, nonatomic) id<ProvaViewControllerDelegate> delegate;
 
 - (void) setEditing:(BOOL)editing animated:(BOOL)animated done:(BOOL)done;
+
+-(void) updateScoreLabelWithScore:(int) score;
 
 @end
