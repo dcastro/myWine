@@ -94,7 +94,7 @@
     NSString *querySQL;
     
 
-    querySQL = [NSString stringWithFormat:@"SELECT sc.section_id, sc.order_priority, sc.name_en, sc.name_fr, sc.name_pt\
+    querySQL = [NSString stringWithFormat:@"SELECT sc.sectioncharacteristic_id, sc.order_priority, sc.name_en, sc.name_fr, sc.name_pt\
                 FROM SectionCharacteristic sc\
                 WHERE sc.tasting_id = %d \
                 ORDER BY sc.order_priority ASC;", _tasting_id];
