@@ -21,6 +21,8 @@
 		659189471577D17700D814C3 /* backgroundPortrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 6591893E1577CFF100D814C3 /* backgroundPortrait.png */; };
 		659189481577D17700D814C3 /* DroidSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6591893F1577CFF100D814C3 /* DroidSans-Bold.ttf */; };
 		659189491577D17700D814C3 /* DroidSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 659189401577CFF100D814C3 /* DroidSans.ttf */; };
+		65B824F11579357500527D6F /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B824F01579357500527D6F /* HelpViewController.m */; };
+		65B824F5157935FE00527D6F /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B824F4157935FE00527D6F /* ContactsViewController.m */; };
 		65EFEBB71573C9770087F155 /* material mywine-03.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EFEBA81573C9770087F155 /* material mywine-03.png */; };
 		65EFEBB81573C9770087F155 /* material mywine-04.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EFEBA91573C9770087F155 /* material mywine-04.png */; };
 		65EFEBB91573C9770087F155 /* material mywine-05.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EFEBAA1573C9770087F155 /* material mywine-05.png */; };
@@ -127,6 +129,10 @@
 		6591893E1577CFF100D814C3 /* backgroundPortrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundPortrait.png; sourceTree = "<group>"; };
 		6591893F1577CFF100D814C3 /* DroidSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DroidSans-Bold.ttf"; sourceTree = "<group>"; };
 		659189401577CFF100D814C3 /* DroidSans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DroidSans.ttf; sourceTree = "<group>"; };
+		65B824EF1579357500527D6F /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
+		65B824F01579357500527D6F /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
+		65B824F3157935FE00527D6F /* ContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsViewController.h; sourceTree = "<group>"; };
+		65B824F4157935FE00527D6F /* ContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsViewController.m; sourceTree = "<group>"; };
 		65EFEBA81573C9770087F155 /* material mywine-03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "material mywine-03.png"; sourceTree = "<group>"; };
 		65EFEBA91573C9770087F155 /* material mywine-04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "material mywine-04.png"; sourceTree = "<group>"; };
 		65EFEBAA1573C9770087F155 /* material mywine-05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "material mywine-05.png"; sourceTree = "<group>"; };
@@ -458,6 +464,8 @@
 			children = (
 				A9F0B4BD152477C9003C931B /* ComparadorViewController.h */,
 				A9F0B4BE152477C9003C931B /* ComparadorViewController.m */,
+				65B824F3157935FE00527D6F /* ContactsViewController.h */,
+				65B824F4157935FE00527D6F /* ContactsViewController.m */,
 				DA631DDE156EA7F2003EC91B /* CurrencyViewController.h */,
 				DA631DDF156EA7F2003EC91B /* CurrencyViewController.m */,
 				A9C5A0121517A78600A3F8C5 /* DetailViewController.h */,
@@ -466,6 +474,8 @@
 				A9F0B4BA1524731F003C931B /* FiltrosViewController.m */,
 				A9A69B97151FC41000FC9073 /* FotoViewController.h */,
 				A9A69B98151FC41000FC9073 /* FotoViewController.m */,
+				65B824EF1579357500527D6F /* HelpViewController.h */,
+				65B824F01579357500527D6F /* HelpViewController.m */,
 				DADADA5315541E04008A9FBB /* ListaPaisesViewController.h */,
 				DADADA5415541E04008A9FBB /* ListaPaisesViewController.m */,
 				A9BE2C101518C254002E4E2A /* ListaProvasViewController.h */,
@@ -727,6 +737,8 @@
 				DA9131311576812500D37BA0 /* UIColor+myWineColor.m in Sources */,
 				DAE595481578133C0039D894 /* CharacteristicCell.m in Sources */,
 				DA9031F515785609006E0E34 /* SectionItemCell.m in Sources */,
+				65B824F11579357500527D6F /* HelpViewController.m in Sources */,
+				65B824F5157935FE00527D6F /* ContactsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

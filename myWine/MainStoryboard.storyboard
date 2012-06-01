@@ -1331,11 +1331,11 @@
             </objects>
             <point key="canvasLocation" x="-3605" y="-3157"/>
         </scene>
-        <!--View Controller - Contactos-->
+        <!--Contacts View Controller - Contactos-->
         <scene sceneID="s79-ig-r6p">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1xV-a1-y7c" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController title="Contactos" id="FFU-at-EZ0" sceneMemberID="viewController">
+                <viewController title="Contactos" id="FFU-at-EZ0" customClass="ContactsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Z6B-UC-akx">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="719"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1407,117 +1407,161 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Contactos" image="18-envelope.png" id="wXo-V0-h6R"/>
+                    <tabBarItem key="tabBarItem" systemItem="contacts" id="wXo-V0-h6R"/>
+                    <connections>
+                        <outlet property="comercialEmail" destination="Ns4-hf-ixq" id="Hpq-qA-qkO"/>
+                        <outlet property="emailsLabel" destination="b9H-Qy-jM1" id="wtq-Yg-ooL"/>
+                        <outlet property="helpEmail" destination="4qW-fY-yyO" id="Izv-vC-NZ7"/>
+                        <outlet property="onlineHelp" destination="aPW-Ce-GDP" id="arc-kz-UNO"/>
+                        <outlet property="onlineHelpLaber" destination="irb-6e-oi0" id="8la-tM-MPQ"/>
+                        <outlet property="telephonesLabel" destination="obn-yp-jFE" id="nq7-WO-bJK"/>
+                    </connections>
                 </viewController>
             </objects>
             <point key="canvasLocation" x="-2455" y="1257"/>
         </scene>
-        <!--View Controller - Perguntas Frequentes-->
+        <!--Help View Controller - Perguntas Frequentes-->
         <scene sceneID="V9K-6H-IoO">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JJ1-b5-Cuz" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController title="Perguntas Frequentes" id="DrB-I4-mx8" sceneMemberID="viewController">
+                <viewController title="Perguntas Frequentes" id="DrB-I4-mx8" customClass="HelpViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rMC-HR-xEA">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="719"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Pergunta : Como posso adicionar um vinho novo?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="xRv-ae-V7T">
-                                <rect key="frame" x="20" y="20" width="383" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Como posso adicionar um vinho novo?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="xRv-ae-V7T">
+                                <rect key="frame" x="267" y="20" width="383" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Pergunta : Como posso adicionar uma nova prova a um vinho?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="1AJ-Oq-0Xv">
-                                <rect key="frame" x="20" y="153" width="481" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Como posso adicionar uma nova prova a um vinho?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="1AJ-Oq-0Xv">
+                                <rect key="frame" x="267" y="153" width="481" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" text="Resposta : Use o botão + localizado no canto superior esquerdo em cima da lista de vinhos para adicionar um vinho novo." id="Ng9-06-HDM">
-                                <rect key="frame" x="20" y="49" width="381" height="63"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" text="Use o botão + localizado no canto superior esquerdo em cima da lista de vinhos para adicionar um vinho novo." id="Ng9-06-HDM">
+                                <rect key="frame" x="240" y="49" width="381" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" id="zTV-Bn-Uvr">
-                                <rect key="frame" x="22" y="182" width="479" height="69"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="242" y="182" width="479" height="69"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <string key="text">Resposta : Após ter selecionado o vinho do lado esquerdo do ecrã use o botão de + do canto superior esquerdo para adicionar uma nova prova a esse vinho.</string>
+                                <string key="text">Após ter selecionado o vinho do lado esquerdo do ecrã use o botão de + do canto superior esquerdo para adicionar uma nova prova a esse vinho.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Pergunta : Como posso alterar o alerta de sincronização?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="PYx-zi-hHX">
-                                <rect key="frame" x="20" y="288" width="544" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Como posso alterar o alerta de sincronização?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="PYx-zi-hHX">
+                                <rect key="frame" x="267" y="287" width="544" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" text="Resposta : Para alterar a configuração dos alertas visite o painel de defenições do iPad e selecione a categoria myWine." id="VGe-6p-RAu">
-                                <rect key="frame" x="22" y="317" width="479" height="69"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" text="Para alterar a configuração dos alertas visite o painel de defenições do iPad e selecione a categoria myWine." id="VGe-6p-RAu">
+                                <rect key="frame" x="242" y="317" width="479" height="69"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Pergunta : Como posso alterar o idioma?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="nVg-Ku-J2w">
-                                <rect key="frame" x="20" y="414" width="481" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Como posso alterar o idioma?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="nVg-Ku-J2w">
+                                <rect key="frame" x="267" y="414" width="481" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" text="Resposta :  Para alterar a configuração do idioma visite o painel de defenições do iPad e selecione a categoria myWine." id="mCA-t7-IkP">
-                                <rect key="frame" x="22" y="443" width="479" height="69"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" text="Para alterar a configuração do idioma visite o painel de defenições do iPad e selecione a categoria myWine." id="mCA-t7-IkP">
+                                <rect key="frame" x="242" y="443" width="479" height="69"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Pergunta : Como posso adicionar removar as credênciais?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="4Mo-X2-n06">
-                                <rect key="frame" x="22" y="538" width="481" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Como posso adicionar removar as credênciais?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="4Mo-X2-n06">
+                                <rect key="frame" x="267" y="538" width="481" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" id="VO4-mU-PIR">
-                                <rect key="frame" x="24" y="567" width="479" height="69"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" text="Para alterar remover as credênciais do sistema visite o painel de defenições do iPad e selecione a categoria myWine." id="VO4-mU-PIR">
+                                <rect key="frame" x="244" y="567" width="479" height="69"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <string key="text">Resposta :  Para alterar remover as credênciais do sistema visite o painel de defenições do iPad e selecione a categoria myWine.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <progressView opaque="NO" contentMode="scaleToFill" progress="0.99999999999999989" id="dCr-7T-P6p">
-                                <rect key="frame" x="20" y="503" width="477" height="9"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="240" y="503" width="477" height="9"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <color key="progressTintColor" red="0.31372549020000001" green="0.027450980390000001" blue="0.015686274510000001" alpha="1" colorSpace="calibratedRGB"/>
                             </progressView>
                             <progressView opaque="NO" contentMode="scaleToFill" progress="1" id="DJ4-k0-tWE">
-                                <rect key="frame" x="20" y="635" width="477" height="9"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="240" y="635" width="477" height="9"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <color key="progressTintColor" red="0.31372549020000001" green="0.027450980390000001" blue="0.015686274510000001" alpha="1" colorSpace="calibratedRGB"/>
                             </progressView>
                             <progressView opaque="NO" contentMode="scaleToFill" progress="1" id="oJk-Qz-DoU">
-                                <rect key="frame" x="20" y="377" width="477" height="9"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="240" y="377" width="477" height="9"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <color key="progressTintColor" red="0.31372549020000001" green="0.027450980390000001" blue="0.015686274510000001" alpha="1" colorSpace="calibratedRGB"/>
                             </progressView>
                             <progressView opaque="NO" contentMode="scaleToFill" progress="1" id="V1k-O7-e4y">
-                                <rect key="frame" x="20" y="259" width="477" height="9"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="240" y="259" width="477" height="9"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <color key="progressTintColor" red="0.31372549020000001" green="0.027450980390000001" blue="0.015686274510000001" alpha="1" colorSpace="calibratedRGB"/>
                             </progressView>
                             <progressView opaque="NO" contentMode="scaleToFill" progress="1" id="vdj-xZ-324">
-                                <rect key="frame" x="20" y="120" width="477" height="9"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="240" y="120" width="477" height="9"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <color key="progressTintColor" red="0.31372549020000001" green="0.027450980390000001" blue="0.015686274510000001" alpha="1" colorSpace="calibratedRGB"/>
                             </progressView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="material mywine-04.png" id="JCL-W9-MiD">
+                                <rect key="frame" x="240" y="20" width="23" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="material mywine-04.png" id="2tL-3x-BJi">
+                                <rect key="frame" x="240" y="153" width="23" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="material mywine-04.png" id="6W3-vZ-HVC">
+                                <rect key="frame" x="240" y="287" width="23" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="material mywine-04.png" id="Onf-8n-xUB">
+                                <rect key="frame" x="240" y="413" width="23" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="material mywine-04.png" id="qEq-bR-ZVj">
+                                <rect key="frame" x="240" y="538" width="23" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Perguntas Frequentes" image="117-todo.png" id="yqy-Vf-MkU"/>
+                    <connections>
+                        <outlet property="pergunta1" destination="xRv-ae-V7T" id="vPT-DW-vJI"/>
+                        <outlet property="pergunta2" destination="1AJ-Oq-0Xv" id="CD1-eh-T6I"/>
+                        <outlet property="pergunta3" destination="PYx-zi-hHX" id="lgV-PN-AY0"/>
+                        <outlet property="pergunta4" destination="nVg-Ku-J2w" id="ZD7-sS-XoN"/>
+                        <outlet property="pergunta5" destination="4Mo-X2-n06" id="PUW-hP-pA7"/>
+                        <outlet property="resposta1" destination="Ng9-06-HDM" id="Cii-z6-gNu"/>
+                        <outlet property="resposta2" destination="zTV-Bn-Uvr" id="Hbc-Ok-Xts"/>
+                        <outlet property="resposta3" destination="VGe-6p-RAu" id="gc6-KB-8A7"/>
+                        <outlet property="resposta4" destination="mCA-t7-IkP" id="cbS-rV-UU6"/>
+                        <outlet property="resposta5" destination="VO4-mU-PIR" id="bls-Yx-ovo"/>
+                    </connections>
                 </viewController>
             </objects>
             <point key="canvasLocation" x="-3673" y="1240"/>
@@ -2659,9 +2703,9 @@
     <resources>
         <image name="06-magnify.png" width="24" height="24"/>
         <image name="117-todo.png" width="18" height="19"/>
-        <image name="18-envelope.png" width="24" height="16"/>
         <image name="86-camera.png" width="24" height="18"/>
         <image name="logo.png" width="923" height="1069"/>
+        <image name="material mywine-04.png" width="119" height="119"/>
         <image name="material mywine-05.png" width="1029" height="1277"/>
         <image name="material mywine-06.png" width="1108" height="1360"/>
         <image name="material mywine-14.png" width="170" height="323"/>
@@ -2672,6 +2716,17 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ComparadorViewController.h"/>
             <relationships>
                 <relationship kind="action" name="cancel:"/>
+            </relationships>
+        </class>
+        <class className="ContactsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContactsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="comercialEmail" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="emailsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="helpEmail" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="onlineHelp" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="onlineHelpLaber" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="telephonesLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="CriterionCell" superclassName="SectionItemCell">
@@ -2699,6 +2754,21 @@
                 <relationship kind="outlet" name="Done" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="NewPhoto" candidateClass="UINavigationItem"/>
                 <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="HelpViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/HelpViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="pergunta1" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="pergunta2" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="pergunta3" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="pergunta4" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="pergunta5" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="resposta1" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="resposta2" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="resposta3" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="resposta4" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="resposta5" candidateClass="UITextView"/>
             </relationships>
         </class>
         <class className="ListaPaisesViewController" superclassName="UITableViewController">
