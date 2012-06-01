@@ -4,13 +4,6 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
-	<key>UIAppFonts</key>
-	<array>
-		<string>DroidSerif-Regular.ttf</string>
-		<string>DroidSerif-Bold.ttf</string>
-		<string>DroidSerif-Italic.ttf</string>
-		<string>DroidSerif-BoldItalic.ttf</string>
-	</array>
 	<key>CFBundleDisplayName</key>
 	<string>${PRODUCT_NAME}</string>
 	<key>CFBundleExecutable</key>
@@ -41,6 +34,15 @@
 	<string>1.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>DroidSerif-Regular.ttf</string>
+		<string>DroidSerif-Bold.ttf</string>
+		<string>DroidSerif-Italic.ttf</string>
+		<string>DroidSerif-BoldItalic.ttf</string>
+		<string>DroidSans.ttf</string>
+		<string>DroidSans-Bold.ttf</string>
+	</array>
 	<key>UIMainStoryboardFile</key>
 	<string>MainStoryboard</string>
 	<key>UIRequiredDeviceCapabilities</key>

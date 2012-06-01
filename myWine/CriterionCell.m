@@ -13,7 +13,6 @@
 @synthesize classificationLabel;
 @synthesize nameLabel;
 @synthesize classificationSlider;
-@synthesize criterion = _criterion;
 @synthesize classification = _classification, classification_index = _classification_index;
 @synthesize delegate = _delegate;
 
@@ -32,7 +31,7 @@
 
     // Configure the view for the selected state
 }
-
+/*
 - (void) setCriterion:(Criterio *)criterion {
     if (_criterion != criterion) {
         _criterion = criterion;
@@ -157,5 +156,6 @@
         [self.criterion save];
     }
 }
+ */
 
 @end

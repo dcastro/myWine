@@ -47,8 +47,15 @@
 	// Do any additional setup after loading the view.
     
     // Setup the background
-    UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background.png"]];
-    [self.view insertSubview:background atIndex:0];
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown)
+    {
+        [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"backgroundPortrait.png"]]];
+    }
+    else 
+    {
+        [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"backgroundLandscape.png"]]];
+    }
     
     //flag buttons setup
     self.ptFlag.tag = PT;
@@ -122,7 +129,7 @@
         [alert show];
         
     }
-
+    
 }
 
 - (IBAction)selectLanguage:(id)sender {
@@ -145,25 +152,35 @@
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     
-    if(_editing){
-    
+    // Setup the background
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-    CGRect viewFrame = self.view.frame;
+    if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown)
+    {
+        [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"backgroundPortrait.png"]]];
+    }
+    else 
+    {
+        [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"backgroundLandscape.png"]]];
+    }
+    
+    if(_editing){
         
-    if (orientation == UIInterfaceOrientationLandscapeRight){
-        animatedDistance = 200;
-        viewFrame.origin.x += animatedDistance;
-    }   
-    else if (orientation == UIInterfaceOrientationLandscapeLeft){
-        animatedDistance = 200;
-        viewFrame.origin.x -= animatedDistance;
-    }
-    else if(orientation == UIInterfaceOrientationPortrait){
-        animatedDistance = 0;
-    }
-    else if(orientation == UIInterfaceOrientationPortraitUpsideDown){
-        animatedDistance = 0;
-    }
+        CGRect viewFrame = self.view.frame;
+        
+        if (orientation == UIInterfaceOrientationLandscapeRight){
+            animatedDistance = 235;
+            viewFrame.origin.x += animatedDistance;
+        }   
+        else if (orientation == UIInterfaceOrientationLandscapeLeft){
+            animatedDistance = 235;
+            viewFrame.origin.x -= animatedDistance;
+        }
+        else if(orientation == UIInterfaceOrientationPortrait){
+            animatedDistance = 0;
+        }
+        else if(orientation == UIInterfaceOrientationPortraitUpsideDown){
+            animatedDistance = 0;
+        }
         
         [UIView beginAnimations:nil context:NULL];
         [UIView setAnimationBeginsFromCurrentState:YES];
@@ -182,11 +199,11 @@
     CGRect viewFrame = self.view.frame;
     
     if (orientation == UIInterfaceOrientationLandscapeRight){
-        animatedDistance = 200;
+        animatedDistance = 235;
         viewFrame.origin.x += animatedDistance;
     }   
     else if (orientation == UIInterfaceOrientationLandscapeLeft){
-        animatedDistance = 200;
+        animatedDistance = 235;
         viewFrame.origin.x -= animatedDistance;
     }
     
@@ -234,9 +251,9 @@
     self.welcomeLabel.text = [lan translate:@"Welcome to myWine"];
     self.welcomeLabel.font = [UIFont fontWithName:@"DroidSerif-Bold" size:42];
     self.configLabel.text = [lan translate:@"Initial Configuration"];
-    self.configLabel.font = [UIFont fontWithName:@"DroidSerif-Bold" size:18];
+    self.configLabel.font = [UIFont fontWithName:@"DroidSans" size:20];
     [self.loginButton setTitle:[lan translate:@"Login"] forState:UIControlStateNormal];
-    self.loginButton.titleLabel.font = [UIFont fontWithName:@"DroidSerif-Bold" size:24];
+    self.loginButton.titleLabel.font = [UIFont fontWithName:@"DroidSans" size:24];
 }
 
 @end

@@ -30,6 +30,8 @@
     // Configure the view for the selected state
 }
 
+/*
+
 - (void) setCriterion:(Criterio *)criterion {
     if (_criterion != criterion) {
         _criterion = criterion;
@@ -154,5 +156,5 @@
         [self.criterion save];
     }
 }
-
+*/
 @end
