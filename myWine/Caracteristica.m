@@ -98,7 +98,25 @@
 
 - (BOOL) save {
     
-#warning TODO FERNANDO: faz essa merda!
+    Query *query = [[Query alloc]init];
+    NSString * querySQL = [NSString stringWithFormat:@"UPDATE Characteristic SET classification_id = %d WHERE characteristic_id= %d", 
+                           self.classification_chosen.classification_id,
+                           self.characteristic_id];
+    
+    sqlite3 ** contactDB = [query prepareForExecution];
+    
+    char *errMsg;
+    if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+        DebugLog(@"%s", errMsg);
+        sqlite3_free(errMsg);
+        sqlite3_close(*contactDB);
+        return FALSE;
+    }
+    sqlite3_close(*contactDB);
+    
+    
+    
+    return TRUE;
 }
 
 @end
