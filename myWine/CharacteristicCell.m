@@ -29,12 +29,22 @@
 
 //template methods
 - (int) minVal {
+    return 0;
 }
 
 - (int) maxVal {
+    return 100;
 }
 
 - (int) itemChosenWeight {
+    Classificacao* classification = [self.item classification_chosen];
+    
+    //find currently selected classification's index
+    int i;
+    for(i = 0; i < [self.item classifications].count && ![[((Classificacao*)[[self.item classifications] objectAtIndex:i]) name] isEqualToString:classification.name]; i++);
+    
+    return i * (100.0 / (float) [[[self item] classifications] count]);
+    
 }
 
 - (int) itemWeight:(Classificacao*) classification {
@@ -43,7 +53,7 @@
 }
 
 - (NSString*) getClassificationLabel:(Classificacao*) classification {
-    
+    return [[NSString alloc] initWithFormat:@"%@", classification.name];
 }
 
 @end
