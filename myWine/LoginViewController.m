@@ -100,10 +100,6 @@
     
     //Login Successful
     if ( user.isValidated ) {
-        //show alert
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[lan translate:@"Welcome"] message:[lan translate:@"Login Success"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-        [alert show];
-        
         //dismiss the login controller
         [self.delegate LoginViewControllerDidLogin:self];
         ListaVinhosViewController* lvvc = (ListaVinhosViewController*) self.delegate;
@@ -249,11 +245,11 @@
     self.passwordInput.placeholder = [lan translate:@"Password"];
     self.usernameInput.placeholder = [lan translate:@"Username"];
     self.welcomeLabel.text = [lan translate:@"Welcome to myWine"];
-    self.welcomeLabel.font = [UIFont fontWithName:@"DroidSerif-Bold" size:42];
+    self.welcomeLabel.font = [UIFont fontWithName:@"DroidSerif-Bold" size:TITLE_FONT];
     self.configLabel.text = [lan translate:@"Initial Configuration"];
-    self.configLabel.font = [UIFont fontWithName:@"DroidSans" size:20];
+    self.configLabel.font = [UIFont fontWithName:@"DroidSans" size:NORMAL_FONT];
     [self.loginButton setTitle:[lan translate:@"Login"] forState:UIControlStateNormal];
-    self.loginButton.titleLabel.font = [UIFont fontWithName:@"DroidSans" size:24];
+    self.loginButton.titleLabel.font = [UIFont fontWithName:@"DroidSans" size:LARGE_FONT];
 }
 
 @end
