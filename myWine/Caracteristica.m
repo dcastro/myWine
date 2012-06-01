@@ -78,4 +78,13 @@
         return FALSE;
 }
 
+- (NSString*) description {
+    return self.name;
+}
+
+- (BOOL) save {
+    
+#warning TODO FERNANDO: faz essa merda!
+}
+
 @end

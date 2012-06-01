@@ -16,4 +16,8 @@
 @property (nonatomic, copy) NSString * name;
 @property (nonatomic, copy) NSMutableArray * classifications;
 
+- (NSString*) description;
+
+- (BOOL) save;
+
 @end

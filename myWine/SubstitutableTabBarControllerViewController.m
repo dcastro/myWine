@@ -35,15 +35,22 @@
     
     [self setTitle: self.vinho.name];
     [self.editButton setTitle:[[Language instance] translate:@"Edit"]];
+    
+    //fetch tabs' controllers
     self.criteriaController = [[self viewControllers] objectAtIndex:0];
     self.characteristicsController = [[self viewControllers] objectAtIndex:1];
     
+    //set Tab Bar items
     Language* lan = [Language instance];
     UITabBarItem* criteriaItem = [[UITabBarItem alloc] initWithTitle:[lan translate:@"Criteria"] image:nil tag:0];
     UITabBarItem* characteristicsItem = [[UITabBarItem alloc] initWithTitle:[lan translate:@"Characteristics"] image:nil tag:1];
     
     self.criteriaController.tabBarItem = criteriaItem;
     self.characteristicsController.tabBarItem = characteristicsItem;
+    
+    //set tabs' modes
+    self.criteriaController.prova_mode = CRITERIA_MODE;
+    self.characteristicsController.prova_mode = CHARACTERISTICS_MODE;
 }
 
 - (void)viewDidUnload

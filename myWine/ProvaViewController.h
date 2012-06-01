@@ -9,15 +9,23 @@
 #import <UIKit/UIKit.h>
 #import "Prova.h"
 #import "Seccao.h"
+#import "SeccaoCaracteristica.h"
 #import "Criterio.h"
 #import "CriterionCell.h"
+#import "Caracteristica.h"
+#import "CharacteristicCell.h"
 #import "Vinho.h"
 #import "SubstitutableTabBarControllerViewController.h"
+
+#define CRITERIA_MODE 0
+#define CHARACTERISTICS_MODE 1
 
 @interface ProvaViewController : UITableViewController <SectionItemCellCellDelegate>
 
 @property (strong, nonatomic) Prova* prova;
 @property (strong, nonatomic) Vinho* vinho;
+
+@property (nonatomic) int prova_mode;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *bottomScrollView;
 @property (weak, nonatomic) IBOutlet UIView *upperView;

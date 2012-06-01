@@ -27,6 +27,7 @@
 @synthesize dateLabel = _dateLabel;
 @synthesize scoreLabel = _scoreLabel;
 @synthesize scoreContentLabel = _scoreContentLabel;
+@synthesize prova_mode;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -207,26 +208,42 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return [self.prova.sections count];
+    switch (prova_mode) {
+        case CRITERIA_MODE:
+            return [self.prova.sections count];
+        case CHARACTERISTICS_MODE:
+            return [self.prova.characteristic_sections count];
+    }
+    
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     // Return section header title.
-    return [[self.prova.sections objectAtIndex:section] description];
+    switch (prova_mode) {
+        case CRITERIA_MODE:
+            return [[self.prova.sections objectAtIndex:section] description];
+        case CHARACTERISTICS_MODE:
+            return [[self.prova.characteristic_sections objectAtIndex:section] description];
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    Seccao* seccao = [self.prova.sections objectAtIndex:section];
-    return [seccao.criteria count];
+    switch (prova_mode) {
+        case CRITERIA_MODE:
+            return [((Seccao*) [self.prova.sections objectAtIndex:section]).criteria count];
+        case CHARACTERISTICS_MODE:
+            return [((SeccaoCaracteristica*) [self.prova.characteristic_sections objectAtIndex:section]).characteristics count];
+        default:
+            break;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    CriterionCell *cell = (CriterionCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    SectionItemCell *cell = (SectionItemCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if(cell == nil) {
         //cell = [[CriterionCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
@@ -236,21 +253,32 @@
         {
             if([currentObject isKindOfClass:[SectionItemCell class]])
             {
-                cell = (CriterionCell *)currentObject;
+                cell = currentObject;
                 break;
             }
         }
 
     }
     
-    // Configure the cell...
-    Seccao* section = (Seccao*) [self.prova.sections objectAtIndex:indexPath.section];
-    Criterio* criterion = (Criterio*) [section.criteria objectAtIndex:indexPath.row];
-    
     [cell setDelegate:self];
     
-    object_setClass(cell, [CriterionCell class]);
-    [cell setItem:criterion];
+    switch (prova_mode) {
+        case CRITERIA_MODE: {
+            Seccao* section = (Seccao*) [self.prova.sections objectAtIndex:indexPath.section];
+            Criterio* criterion = (Criterio*) [section.criteria objectAtIndex:indexPath.row];
+            object_setClass(cell, [CriterionCell class]);
+            [cell setItem:criterion];
+            
+        }
+
+        case CHARACTERISTICS_MODE: {
+            SeccaoCaracteristica* section = (SeccaoCaracteristica*) [self.prova.characteristic_sections objectAtIndex:indexPath.section];
+            Caracteristica* characteristic = (Caracteristica*) [section.characteristics objectAtIndex:indexPath.row];
+            object_setClass(cell, [CharacteristicCell class]);
+            [cell setItem:characteristic];
+        }
+            
+    }
     
     return cell;
 }
