@@ -50,6 +50,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblRegiao;
 @property (weak, nonatomic) IBOutlet UILabel *lblTipoVinho;
 @property (weak, nonatomic) IBOutlet UILabel *lblCasta;
+@property (weak, nonatomic) IBOutlet UINavigationItem *novoVinho;
 
 
 @property (nonatomic, weak) id <NovoVinhoViewControllerDelegate> delegate;

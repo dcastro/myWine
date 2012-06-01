@@ -13,7 +13,7 @@
 
 @property (nonatomic, assign) int characteristic_id;
 @property (nonatomic, assign) int order;
-@property (nonatomic, retain) Classificacao * classification_choosen;
+@property (nonatomic, retain) Classificacao * classification_chosen;
 @property (nonatomic, copy) NSString * name;
 @property (nonatomic, copy) NSString * name_en;
 @property (nonatomic, copy) NSString * name_fr;

@@ -100,7 +100,7 @@
             c.name_pt = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 9)];
 
             
-            ch.classification_choosen = c;
+            ch.classification_chosen = c;
             
             [_characteristics insertObject:ch atIndex:0];
         }

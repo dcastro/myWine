@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Regiao.h"
 #import "Pais.h"
+#import "Language.h"
 
 @protocol ListaRegioesViewControllerDelegate <NSObject>
 - (void) selectedRegion:(Regiao*) region;
@@ -18,6 +19,10 @@
 
 @property (nonatomic, strong) NSMutableArray* regions;
 @property (nonatomic, weak) id <ListaRegioesViewControllerDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UINavigationItem *Regioes;
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *Cancel;
+
+- (IBAction)Cancel:(id)sender;
 
 @end

@@ -10,9 +10,10 @@
 #import "Vinho.h"
 #import "Prova.h"
 #import "Language.h"
-#import "ProvaCriteriaViewController.h"
+#import "ProvaViewController.h"
+#import "ListaVinhosViewController.h"
 
-@class ProvaCriteriaViewController;
+@class ProvaViewController;
 @protocol SubstitutableDetailViewController;
 
 @interface SubstitutableTabBarControllerViewController : UITabBarController <SubstitutableDetailViewController>
@@ -22,8 +23,11 @@
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *editButton;
 @property (strong, nonatomic) UIBarButtonItem* tempButton;
 
-@property (strong, nonatomic) ProvaCriteriaViewController* pcvc;
+@property (strong, nonatomic) ProvaViewController* criteriaController;
+@property (strong, nonatomic) ProvaViewController* characteristicsController;
 
 - (IBAction)toggleEdit:(id)sender;
+
+- (void)showRootPopoverButtonItem:(UIBarButtonItem *)barButtonItem;
 
 @end

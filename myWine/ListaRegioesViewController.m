@@ -17,6 +17,8 @@
 
 @synthesize regions = _regions;
 @synthesize delegate;
+@synthesize Regioes;
+@synthesize Cancel;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -36,11 +38,19 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    Language* lang = [Language instance];
+    
+    [self.Cancel setTitle: [lang translate: @"Cancel"]];
+    
+    [self.Regioes setTitle: [lang translate:@"Regions"]];
 
 }
 
 - (void)viewDidUnload
 {
+    [self setCancel:nil];
+    [self setRegioes:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -148,4 +158,8 @@
      */
 }
 
+- (IBAction)Cancel:(id)sender {
+    [self dismissModalViewControllerAnimated:YES];
+    
+}
 @end
