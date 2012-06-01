@@ -37,6 +37,8 @@
 		65EFEBC41573C9770087F155 /* material mywine-16.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EFEBB51573C9770087F155 /* material mywine-16.png */; };
 		65EFEBC51573C9770087F155 /* material mywine-17.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EFEBB61573C9770087F155 /* material mywine-17.png */; };
 		A0C66470155448CC004C798E /* ListaRegioesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C6646F155448CC004C798E /* ListaRegioesViewController.m */; };
+		A97583661519F60C009B5F68 /* inicial.png in Resources */ = {isa = PBXBuildFile; fileRef = A97583651519F60C009B5F68 /* inicial.png */; };
+		A97583691519F743009B5F68 /* images.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A97583681519F743009B5F68 /* images.jpeg */; };
 		A975188315191F3700EAC591 /* ProvaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A975188215191F3700EAC591 /* ProvaViewController.m */; };
 		A9758371151A0151009B5F68 /* 117-todo.png in Resources */ = {isa = PBXBuildFile; fileRef = A9758370151A0151009B5F68 /* 117-todo.png */; };
 		A9758373151A01A2009B5F68 /* 18-envelope.png in Resources */ = {isa = PBXBuildFile; fileRef = A9758372151A01A2009B5F68 /* 18-envelope.png */; };
@@ -88,16 +90,19 @@
 		DA498F14153D6659009C4072 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = DA498F13153D6659009C4072 /* User.m */; };
 		DA631DE0156EA7F2003EC91B /* CurrencyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA631DDF156EA7F2003EC91B /* CurrencyViewController.m */; };
 		DA7D48A4152E0AAD00C525FB /* Language.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7D48A3152E0AAD00C525FB /* Language.m */; };
+		DA9031F515785609006E0E34 /* SectionItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9031F415785609006E0E34 /* SectionItemCell.m */; };
 		DA91312915767E7300D37BA0 /* slider_thumb.png in Resources */ = {isa = PBXBuildFile; fileRef = DA91312815767E7300D37BA0 /* slider_thumb.png */; };
 		DA9131311576812500D37BA0 /* UIColor+myWineColor.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9131301576812500D37BA0 /* UIColor+myWineColor.m */; };
 		DA993CDE153F22E7009D3E13 /* Vinho.m in Sources */ = {isa = PBXBuildFile; fileRef = DA993CDD153F22E7009D3E13 /* Vinho.m */; };
 		DAC99B7F155AE3EA00D9C04F /* SubstitutableTabBarControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC99B7E155AE3EA00D9C04F /* SubstitutableTabBarControllerViewController.m */; };
-		DAC99B85155B0B7B00D9C04F /* ProvaCriteriaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC99B84155B0B7B00D9C04F /* ProvaCriteriaViewController.m */; };
+		DAC99B85155B0B7B00D9C04F /* ProvaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC99B84155B0B7B00D9C04F /* ProvaViewController.m */; };
 		DADADA5515541E04008A9FBB /* ListaPaisesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DADADA5415541E04008A9FBB /* ListaPaisesViewController.m */; };
 		DADADA5915542420008A9FBB /* Pais.m in Sources */ = {isa = PBXBuildFile; fileRef = DADADA5815542420008A9FBB /* Pais.m */; };
 		DADE3BCA15480E2000465551 /* cell_bg_gradient.png in Resources */ = {isa = PBXBuildFile; fileRef = DADE3BC915480E2000465551 /* cell_bg_gradient.png */; };
 		DADE7ADA152E136400F0F680 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DADE7AD9152E136400F0F680 /* MainStoryboard.storyboard */; };
 		DADE7AF1152E170300F0F680 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DADE7AEF152E170300F0F680 /* Localizable.strings */; };
+		DAE595481578133C0039D894 /* CharacteristicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE595471578133C0039D894 /* CharacteristicCell.m */; };
+		DAE5954D157814B10039D894 /* CharacteristicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE5954C157814B10039D894 /* CharacteristicCell.xib */; };
 		DAFB6903152D138800DC74CB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFB6902152D138800DC74CB /* LoginViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -141,6 +146,8 @@
 		65EFEBB61573C9770087F155 /* material mywine-17.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "material mywine-17.png"; sourceTree = "<group>"; };
 		A0C6646E155448CC004C798E /* ListaRegioesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListaRegioesViewController.h; sourceTree = "<group>"; };
 		A0C6646F155448CC004C798E /* ListaRegioesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListaRegioesViewController.m; sourceTree = "<group>"; };
+		A97583651519F60C009B5F68 /* inicial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inicial.png; sourceTree = "<group>"; };
+		A97583681519F743009B5F68 /* images.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = images.jpeg; sourceTree = "<group>"; };
 		A975188115191F3700EAC591 /* ProvaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProvaViewController.h; sourceTree = "<group>"; };
 		A975188215191F3700EAC591 /* ProvaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProvaViewController.m; sourceTree = "<group>"; };
 		A9758370151A0151009B5F68 /* 117-todo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "117-todo.png"; sourceTree = "<group>"; };
@@ -226,6 +233,8 @@
 		DA631DDF156EA7F2003EC91B /* CurrencyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyViewController.m; sourceTree = "<group>"; };
 		DA7D48A2152E0AAD00C525FB /* Language.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Language.h; sourceTree = "<group>"; };
 		DA7D48A3152E0AAD00C525FB /* Language.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Language.m; sourceTree = "<group>"; };
+		DA9031F315785609006E0E34 /* SectionItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionItemCell.h; sourceTree = "<group>"; };
+		DA9031F415785609006E0E34 /* SectionItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionItemCell.m; sourceTree = "<group>"; };
 		DA91312815767E7300D37BA0 /* slider_thumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slider_thumb.png; sourceTree = "<group>"; };
 		DA91312F1576812500D37BA0 /* UIColor+myWineColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+myWineColor.h"; sourceTree = "<group>"; };
 		DA9131301576812500D37BA0 /* UIColor+myWineColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+myWineColor.m"; sourceTree = "<group>"; };
@@ -233,8 +242,8 @@
 		DA993CDD153F22E7009D3E13 /* Vinho.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vinho.m; sourceTree = "<group>"; };
 		DAC99B7D155AE3EA00D9C04F /* SubstitutableTabBarControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubstitutableTabBarControllerViewController.h; sourceTree = "<group>"; };
 		DAC99B7E155AE3EA00D9C04F /* SubstitutableTabBarControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubstitutableTabBarControllerViewController.m; sourceTree = "<group>"; };
-		DAC99B83155B0B7B00D9C04F /* ProvaCriteriaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProvaCriteriaViewController.h; sourceTree = "<group>"; };
-		DAC99B84155B0B7B00D9C04F /* ProvaCriteriaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProvaCriteriaViewController.m; sourceTree = "<group>"; };
+		DAC99B83155B0B7B00D9C04F /* ProvaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProvaViewController.h; sourceTree = "<group>"; };
+		DAC99B84155B0B7B00D9C04F /* ProvaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProvaViewController.m; sourceTree = "<group>"; };
 		DADADA5315541E04008A9FBB /* ListaPaisesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListaPaisesViewController.h; sourceTree = "<group>"; };
 		DADADA5415541E04008A9FBB /* ListaPaisesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListaPaisesViewController.m; sourceTree = "<group>"; };
 		DADADA5715542420008A9FBB /* Pais.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pais.h; sourceTree = "<group>"; };
@@ -244,6 +253,9 @@
 		DADE7AF0152E170300F0F680 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = myWine/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DADE7AF2152E170D00F0F680 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = myWine/fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DADE7AF4152E175B00F0F680 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = myWine/pt.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DAE595461578133C0039D894 /* CharacteristicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacteristicCell.h; sourceTree = "<group>"; };
+		DAE595471578133C0039D894 /* CharacteristicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacteristicCell.m; sourceTree = "<group>"; };
+		DAE5954C157814B10039D894 /* CharacteristicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CharacteristicCell.xib; sourceTree = "<group>"; };
 		DAFB6901152D138800DC74CB /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		DAFB6902152D138800DC74CB /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -306,8 +318,12 @@
 		A9C28881151FBADE00C2F58D /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				DA9031F315785609006E0E34 /* SectionItemCell.h */,
 				DA019F54157046A200CC589A /* CriterionCell.h */,
+				DAE595461578133C0039D894 /* CharacteristicCell.h */,
+				DA9031F415785609006E0E34 /* SectionItemCell.m */,
 				DA019F55157046A200CC589A /* CriterionCell.m */,
+				DAE595471578133C0039D894 /* CharacteristicCell.m */,
 				DA993CDC153F22E7009D3E13 /* Vinho.h */,
 				DA993CDD153F22E7009D3E13 /* Vinho.m */,
 				DA498F12153D6659009C4072 /* User.h */,
@@ -447,8 +463,8 @@
 				DAC99B7E155AE3EA00D9C04F /* SubstitutableTabBarControllerViewController.m */,
 				DA631DDE156EA7F2003EC91B /* CurrencyViewController.h */,
 				DA631DDF156EA7F2003EC91B /* CurrencyViewController.m */,
-				DAC99B83155B0B7B00D9C04F /* ProvaCriteriaViewController.h */,
-				DAC99B84155B0B7B00D9C04F /* ProvaCriteriaViewController.m */,
+				DAC99B83155B0B7B00D9C04F /* ProvaViewController.h */,
+				DAC99B84155B0B7B00D9C04F /* ProvaViewController.m */,
 				A0C6646E155448CC004C798E /* ListaRegioesViewController.h */,
 				A0C6646F155448CC004C798E /* ListaRegioesViewController.m */,
 				DADADA5315541E04008A9FBB /* ListaPaisesViewController.h */,
@@ -467,8 +483,6 @@
 				A9A69B98151FC41000FC9073 /* FotoViewController.m */,
 				A9C5A0121517A78600A3F8C5 /* DetailViewController.h */,
 				A9C5A0131517A78600A3F8C5 /* DetailViewController.m */,
-				A975188115191F3700EAC591 /* ProvaViewController.h */,
-				A975188215191F3700EAC591 /* ProvaViewController.m */,
 				A9C28882151FBB4400C2F58D /* VinhoViewController.h */,
 				A9C28883151FBB4400C2F58D /* VinhoViewController.m */,
 				A9A69B9A151FCDE100FC9073 /* SyncViewController.h */,
@@ -498,6 +512,7 @@
 			isa = PBXGroup;
 			children = (
 				DA019F521570400E00CC589A /* CriterionCell.xib */,
+				DAE5954C157814B10039D894 /* CharacteristicCell.xib */,
 			);
 			name = Interfaces;
 			sourceTree = "<group>";
@@ -639,6 +654,7 @@
 				65EFEBC41573C9770087F155 /* material mywine-16.png in Resources */,
 				65EFEBC51573C9770087F155 /* material mywine-17.png in Resources */,
 				DA91312915767E7300D37BA0 /* slider_thumb.png in Resources */,
+				DAE5954D157814B10039D894 /* CharacteristicCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -679,7 +695,6 @@
 				A9C5A0141517A78600A3F8C5 /* DetailViewController.m in Sources */,
 				A9BE2C121518C254002E4E2A /* ListaProvasViewController.m in Sources */,
 				A9BE2C161518C330002E4E2A /* Prova.m in Sources */,
-				A975188315191F3700EAC591 /* ProvaViewController.m in Sources */,
 				A9BFB2C6151D468500588B59 /* NovoVinhoViewController.m in Sources */,
 				A9C28884151FBB4400C2F58D /* VinhoViewController.m in Sources */,
 				A9A69B99151FC41000FC9073 /* FotoViewController.m in Sources */,
@@ -705,7 +720,7 @@
 				DADADA5915542420008A9FBB /* Pais.m in Sources */,
 				A0C66470155448CC004C798E /* ListaRegioesViewController.m in Sources */,
 				DAC99B7F155AE3EA00D9C04F /* SubstitutableTabBarControllerViewController.m in Sources */,
-				DAC99B85155B0B7B00D9C04F /* ProvaCriteriaViewController.m in Sources */,
+				DAC99B85155B0B7B00D9C04F /* ProvaViewController.m in Sources */,
 				D37D177B155DC249005E502A /* Sincronizacao.m in Sources */,
 				BCC8EBB91563E36B006645BC /* NSMutableArray+ProvasMutableArray.m in Sources */,
 				A979EDAB15668FCB00E94A34 /* Utils.m in Sources */,
@@ -713,6 +728,8 @@
 				D33F4B6E15702F00003C0BC5 /* SeccaoCaracteristica.m in Sources */,
 				DA019F56157046A200CC589A /* CriterionCell.m in Sources */,
 				DA9131311576812500D37BA0 /* UIColor+myWineColor.m in Sources */,
+				DAE595481578133C0039D894 /* CharacteristicCell.m in Sources */,
+				DA9031F515785609006E0E34 /* SectionItemCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
