@@ -52,7 +52,7 @@
         default:
             break;
     }
-    
+
     return _name;
 }
 

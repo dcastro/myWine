@@ -81,8 +81,8 @@
             cr.criterion_id = sqlite3_column_int(stmt, 0);
             cr.order = sqlite3_column_int(stmt, 1);
             cr.name_en = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 2)];
-            cr.name_en = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 3)];
-            cr.name_en = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 4)];
+            cr.name_fr = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 3)];
+            cr.name_pt = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 4)];
 
             
             Classificacao * c = [[Classificacao alloc]init];
