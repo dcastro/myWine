@@ -77,6 +77,10 @@
     
     [self configureView];
     
+    if( [self isEditing] ) {
+        [self setEditing:YES animated:YES done:NO];
+    }
+    
 }
 
 - (void) configureView {
