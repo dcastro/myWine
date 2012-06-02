@@ -54,6 +54,8 @@
     
     //delegate
     self.criteriaController.delegate = self;
+    
+    self.delegate = self;
 }
 
 - (void)viewDidUnload
@@ -61,6 +63,30 @@
     [self setEditButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
+}
+
+- (BOOL) tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
+    
+    UIViewController *currentVC = [tabBarController selectedViewController];
+    
+    if (currentVC == viewController)
+        return NO;
+    
+    UIViewAnimationOptions options = UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionTransitionCrossDissolve;  
+    
+    [UIView transitionWithView:tabBarController.view 
+                      duration:0.3
+                       options:options  
+                    animations:^{
+                        [currentVC viewWillAppear:YES];
+                        [viewController viewWillDisappear:YES];
+                        [viewController viewDidDisappear:YES];
+                        [currentVC viewDidAppear:YES];
+                        
+                    }  
+                    completion:NULL];
+    
+    return YES;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
