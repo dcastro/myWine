@@ -12,6 +12,7 @@
 #import "ProvaViewController.h"
 #import "NSMutableArray+ProvasMutableArray.h"
 #import "Language.h"
+#import "FormularioProva.h"
 
 @interface ListaProvasViewController : UITableViewController <NovaProvaViewControllerDelegate>
 {
@@ -32,5 +33,7 @@
 @property (nonatomic, strong) UIBarButtonItem *rootPopoverButtonItem;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *filterButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *compareButton;
+
+- (IBAction)addTasting:(id)sender;
 
 @end

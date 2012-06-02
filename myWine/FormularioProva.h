@@ -13,6 +13,6 @@
 @interface FormularioProva : NSObject
 
 
--(Prova *)generateTasting:(TipoVinho *)wineType;
++ (Prova *)generateTasting:(TipoVinho *)wineType;
 
 @end

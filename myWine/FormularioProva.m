@@ -17,7 +17,7 @@
 
 
 
--(Prova *)generateTasting:(TipoVinho *)wineType
++ (Prova *)generateTasting:(TipoVinho *)wineType
 {
     
     NSString *querySQL;

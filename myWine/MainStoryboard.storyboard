@@ -693,7 +693,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="agR-OB-LFl" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="mJA-mK-TrW" customClass="NovaProvaViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="m31-bn-hhw">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="768"/>
+                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Vinho do Porto Ferreira" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="MJr-EQ-JeM">
@@ -718,7 +718,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="0bq-QG-6Cn">
-                                <rect key="frame" x="2" y="170" width="768" height="598"/>
+                                <rect key="frame" x="2" y="406" width="768" height="598"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Cor" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="dUj-Iq-sUZ">
@@ -858,7 +858,6 @@
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" title="Nova Prova" id="EL5-Ft-Zyk">
                         <barButtonItem key="leftBarButtonItem" title="Guardar" id="peM-aW-06w">
@@ -2148,7 +2147,7 @@
                     <navigationItem key="navigationItem" title="Provas de Vinho" id="yDJ-vC-Wsr">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="MP5-Mk-Na9">
                             <connections>
-                                <segue destination="VsC-IV-gXm" kind="modal" identifier="AddProva" modalPresentationStyle="pageSheet" id="GuH-cS-sE8"/>
+                                <action selector="addTasting:" destination="GmD-9N-1lw" id="LrX-Ph-KRv"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -2782,6 +2781,7 @@
         <class className="ListaProvasViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ListaProvasViewController.h"/>
             <relationships>
+                <relationship kind="action" name="addTasting:"/>
                 <relationship kind="outlet" name="compareButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="filterButton" candidateClass="UIBarButtonItem"/>
             </relationships>
