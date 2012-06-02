@@ -181,7 +181,7 @@ const char  *databaseTables[] = {
     
     
     "CREATE TABLE FormCharacteristic (\
-    formcharacteristics_id INTEGER PRIMARY KEY AUTOINCREMENT, \
+    formcharacteristic_id INTEGER PRIMARY KEY AUTOINCREMENT, \
     formsectioncharacteristic_id INTEGER NOT NULL, \
     order_priority INTEGER NOT NULL, \
     name_en TEXT, \

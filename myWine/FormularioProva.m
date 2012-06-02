@@ -35,7 +35,7 @@
     //obter seccoes de criterios
     querySQL = [NSString stringWithFormat:@"SELECT fs.formsection_id, fs.order_priority, fs.name_en, fs.name_fr, fs.name_pt\
                 FROM FormSection fs, FormTasting ft, UserTypeForm utf \
-                WHERE utf.user = \'%@\' AND utf.winetype_id = %d AND uft.formtasting_id = ft.formtasting_id AND ft.formtasting_id = fs.formtasting_id \
+                WHERE utf.user = \'%@\' AND utf.winetype_id = %d AND utf.formtasting_id = ft.formtasting_id AND ft.formtasting_id = fs.formtasting_id \
                 ORDER BY fs.order_priority ASC;", 
                 user.username,
                 wineType.winetype_id];
@@ -114,7 +114,7 @@
             
             querySQL = [NSString stringWithFormat:@"SELECT c.classification_id, c.weight, c.name_en, c.name_fr, c.name_pt \
                         FROM Classification c, PossibleClassification pc \
-                        WHERE ps.classifiable_id = %d, ps.classifiable_type = \'%@\' AND ps.classification_id = p.classification_id",
+                        WHERE pc.classifiable_id = %d AND pc.classifiable_type = \'%@\' AND pc.classification_id = c.classification_id",
                         criterion.criterion_id,
                         @"FormCriterion"];
             
@@ -146,9 +146,9 @@
     
     //////////////////////////////////////////////////////////
     //obter seccoes de caracteristicas
-    querySQL = [NSString stringWithFormat:@"SELECT fsc.formsection_id, fsc.order_priority, fsc.name_en, fsc.name_fr, fsc.name_pt\
+    querySQL = [NSString stringWithFormat:@"SELECT fsc.formsectioncharacteristic_id, fsc.order_priority, fsc.name_en, fsc.name_fr, fsc.name_pt\
                 FROM FormSectionCharacteristic fsc, FormTasting ft, UserTypeForm utf \
-                WHERE utf.user = \'%@\' AND utf.winetype_id = %d AND uft.formtasting_id = ft.formtasting_id AND ft.formtasting_id = fsc.formtasting_id \
+                WHERE utf.user = \'%@\' AND utf.winetype_id = %d AND utf.formtasting_id = ft.formtasting_id AND ft.formtasting_id = fsc.formtasting_id \
                 ORDER BY fsc.order_priority ASC;", 
                 user.username,
                 wineType.winetype_id];
@@ -184,7 +184,7 @@
         
         SeccaoCaracteristica * sectionCharacteristic =  [tasting.characteristic_sections objectAtIndex:i];
         
-        querySQL = [NSString stringWithFormat:@"SELECT fc.formcriterion_id, fc.order_priority, fc.name_en, fc.name_fr, fc.name_pt \
+        querySQL = [NSString stringWithFormat:@"SELECT fc.formcharacteristics_id, fc.order_priority, fc.name_en, fc.name_fr, fc.name_pt \
                     FROM FormCharacteristic fc \
                     WHERE fc.formsectioncharacteristic_id = %d", sectionCharacteristic.sectioncharacteristic_id];
         
@@ -228,7 +228,7 @@
             
             querySQL = [NSString stringWithFormat:@"SELECT c.classification_id, c.weight, c.name_en, c.name_fr, c.name_pt \
                         FROM Classification c, PossibleClassification pc \
-                        WHERE ps.classifiable_id = %d, ps.classifiable_type = \'%@\' AND ps.classification_id = p.classification_id",
+                        WHERE pc.classifiable_id = %d AND pc.classifiable_type = \'%@\' AND pc.classification_id = c.classification_id",
                         characteristic.characteristic_id,
                         @"FormCharacteristic"];
             

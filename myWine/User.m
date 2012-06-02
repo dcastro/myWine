@@ -137,7 +137,7 @@ static User *sharedUser = nil;
     
     querySQL =  @"SELECT w.wine_id, w.name, w.year, w.photo_filename, w.producer, w.currency, w.price, w.grapes,\
                 c.name_en, c.name_fr, c.name_pt, r.region_id, r.name ,\
-                wt.name_en, wt.name_fr, wt.name_pt \
+                wt.winetype_id, wt.name_en, wt.name_fr, wt.name_pt \
                         FROM Wine w, Region r, Country c, WineType wt \
                         WHERE w.region_id = r.region_id AND r.country_id = c.country_id AND w.winetype_id = wt.winetype_id AND w.state <> 3 \
                         ORDER BY w.name DESC;";
@@ -194,9 +194,10 @@ static User *sharedUser = nil;
            
             
             TipoVinho *tv = [[TipoVinho alloc] init];
-            tv.name_en = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 13)];
-            tv.name_fr = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 14)];
-            tv.name_pt = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 15)];
+            tv.winetype_id = sqlite3_column_int(stmt, 13);
+            tv.name_en = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 14)];
+            tv.name_fr = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 15)];
+            tv.name_pt = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 16)];
 
             wine.winetype = tv;
 

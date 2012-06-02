@@ -1215,7 +1215,7 @@ namePT:(NSString *)name_pt andWheight:(int)weight
     
     
     /*
-     select distinct classifiable_id, classifiable_type from possibleclassification where  classifiable_type = 'FormCriterion' AND classifiable_id not in (Select formcriterion_id from formcriterion) UNION select distinct classifiable_id, classifiable_type from possibleclassification where  classifiable_type = 'FormCharacteristic' AND classifiable_id not in (Select formcharacteristics_id from FormCharacteristic) UNION select distinct classifiable_id, classifiable_type from possibleclassification where  classifiable_type = 'Criterion' AND classifiable_id not in (Select criterion_id from Criterion) UNION  select distinct classifiable_id, classifiable_type from possibleclassification where  classifiable_type = 'Characteristic' AND classifiable_id not in (Select characteristic_id from Characteristic);
+     select distinct classifiable_id, classifiable_type from possibleclassification where  classifiable_type = 'FormCriterion' AND classifiable_id not in (Select formcriterion_id from formcriterion) UNION select distinct classifiable_id, classifiable_type from possibleclassification where  classifiable_type = 'FormCharacteristic' AND classifiable_id not in (Select formcharacteristic_id from FormCharacteristic) UNION select distinct classifiable_id, classifiable_type from possibleclassification where  classifiable_type = 'Criterion' AND classifiable_id not in (Select criterion_id from Criterion) UNION  select distinct classifiable_id, classifiable_type from possibleclassification where  classifiable_type = 'Characteristic' AND classifiable_id not in (Select characteristic_id from Characteristic);
      */
     
     querySQL =  @"SELECT DISTINCT classifiable_id, classifiable_type \
@@ -1229,7 +1229,7 @@ namePT:(NSString *)name_pt andWheight:(int)weight
                 SELECT DISTINCT classifiable_id, classifiable_type \
                 FROM possibleclassification \
                 WHERE  classifiable_type = 'FormCharacteristic' AND classifiable_id NOT IN (\
-                        SELECT formcharacteristics_id \
+                        SELECT formcharacteristic_id \
                         FROM FormCharacteristic) \
                 \
                 UNION\
