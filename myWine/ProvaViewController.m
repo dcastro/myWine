@@ -350,23 +350,25 @@
             [cell commitEdit];
         } ];
         
-        //update prova
-        self.prova.comment = self.commentContentTextView.text;
-        [self.prova save];
-        
-        //update label
-        self.commentContentLabel.text = self.commentContentTextView.text;
-        
-        //adjust label size
-        [self.commentContentLabel sizeToFit];
-        CGRect frame = self.commentContentLabel.frame;
-        frame.size.width = 633;
-        self.commentContentLabel.frame = frame;
+        //update comment label
+        [self updatedCommentLabel];
     }
     //if the edition is about to begin
     else if (editing) {
         self.commentContentTextView.text = self.commentContentLabel.text;
     }
+}
+
+- (void) updatedCommentLabel {
+    //update label
+    self.commentContentLabel.text = self.prova.comment;
+    
+    //adjust label size
+    [self.commentContentLabel sizeToFit];
+    CGRect frame = self.commentContentLabel.frame;
+    frame.size.width = 633;
+    self.commentContentLabel.frame = frame;
+    
 }
 
 // Executes the given block for all cells

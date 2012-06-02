@@ -65,12 +65,24 @@
     // Release any retained subviews of the main view.
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+	return YES;
+}
+
+#pragma mark - Tab Bar Controller delegate methods
 - (BOOL) tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
     
-    UIViewController *currentVC = [tabBarController selectedViewController];
+    ProvaViewController *currentVC = (ProvaViewController*) [tabBarController selectedViewController];
+    ProvaViewController* destinationVC = (ProvaViewController*) viewController;
     
-    if (currentVC == viewController)
+    if (currentVC == destinationVC)
         return NO;
+    
+    
+    if ([self isEditing]) {
+        destinationVC.commentContentTextView.text = currentVC.commentContentTextView.text;
+    }
     
     UIViewAnimationOptions options = UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionTransitionCrossDissolve;  
     
@@ -79,8 +91,8 @@
                        options:options  
                     animations:^{
                         [currentVC viewWillAppear:YES];
-                        [viewController viewWillDisappear:YES];
-                        [viewController viewDidDisappear:YES];
+                        [destinationVC viewWillDisappear:YES];
+                        [destinationVC viewDidDisappear:YES];
                         [currentVC viewDidAppear:YES];
                         
                     }  
@@ -89,10 +101,6 @@
     return YES;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-	return YES;
-}
 
 #pragma mark -
 #pragma mark Managing the popover
@@ -142,6 +150,14 @@
         
         UIBarButtonItem* pressedButton = (UIBarButtonItem*) sender;
         done = [pressedButton style] == UIBarButtonItemStyleDone;
+        
+        if (done) {
+            //save prova
+            ProvaViewController* selectedVC = (ProvaViewController*) [self selectedViewController];
+            self.prova.comment = selectedVC.commentContentTextView.text;
+            [self.prova save];
+
+        }
 
     }
     
