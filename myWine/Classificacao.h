@@ -20,4 +20,6 @@
 
 - (NSComparisonResult)compare:(Classificacao *)classification;
 
+- (BOOL)isEqual:(id)anObject;
+
 @end

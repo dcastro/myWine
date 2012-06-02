@@ -53,5 +53,11 @@
     return _name;
 }
 
+- (BOOL)isEqual:(id)anObject {
+    if (! [anObject isKindOfClass:[Classificacao class]])
+        return NO;
+    return [[self name] isEqual:[anObject name]];
+}
+
 
 @end

@@ -43,13 +43,15 @@
     int i;
     for(i = 0; i < [self.item classifications].count && ![[((Classificacao*)[[self.item classifications] objectAtIndex:i]) name] isEqualToString:classification.name]; i++);
     
-    return i * (100.0 / (float) [[[self item] classifications] count]);
+    return i * (100.0 / (float) ([[[self item] classifications] count] - 1 ));
     
 }
 
 - (int) itemWeight:(Classificacao*) classification {
     int index = [[[self item] classifications] indexOfObject:classification];
-    return index * (100.0 / (float) [[[self item] classifications] count]);
+    int weight = index * (100.0 / (float) ([[[self item] classifications] count]-1));
+    
+    return weight;
 }
 
 - (NSString*) getClassificationLabel:(Classificacao*) classification {
