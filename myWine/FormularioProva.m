@@ -158,7 +158,10 @@
                 return nil;
             }
             
-            //DebugLog(@"\n\n");
+#warning TODO:tirar
+            criterion.classification_chosen = [criterion.classifications objectAtIndex:0];
+            
+            DebugLog(@"%@ ,%@, %d", section.name_en, criterion.name_en, criterion.classifications.count);
             
         }
         //DebugLog(@"\n\n");
