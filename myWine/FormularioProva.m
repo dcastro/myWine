@@ -28,6 +28,9 @@
     
     User * user = [User instance];
     Prova * tasting = [[Prova alloc]init];
+    tasting.sections = [[NSMutableArray alloc]init];
+    tasting.characteristic_sections = [[NSMutableArray alloc]init];
+
     
     //nao se pode fazer query dentro de query por causa do statement de sql senao apagava os dados
     
@@ -45,6 +48,7 @@
         while(sqlite3_step(stmt) == SQLITE_ROW){
             
             Seccao * section = [[Seccao alloc] init];
+            section.criteria = [[NSMutableArray alloc]init];
             
             section.order = sqlite3_column_int(stmt, 1); 
             section.name_en  = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 2)];
@@ -55,6 +59,7 @@
             section.section_id = sqlite3_column_int(stmt, 0);
             
             [tasting.sections insertObject:section atIndex:0];
+            //DebugLog(@"Section: %@", [[tasting.sections objectAtIndex:0] name_en]);
 
         }
         
@@ -65,6 +70,7 @@
         return nil;
     }
     
+    
     //obter criterios para as seccoes
     for (int i = 0; i < tasting.sections.count; i++) {
         
@@ -72,13 +78,17 @@
         
         querySQL = [NSString stringWithFormat:@"SELECT fc.formcriterion_id, fc.order_priority, fc.name_en, fc.name_fr, fc.name_pt \
         FROM FormCriterion fc \
-        WHERE fc.formsection_id = %d", section.section_id];
+        WHERE fc.formsection_id = %d;", section.section_id];
+        
+        //DebugLog(querySQL);
+        //DebugLog(@"\ncount: %d", section.criteria.count);
         
         
         if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
             while(sqlite3_step(stmt) == SQLITE_ROW){
                 
                 Criterio * criterion = [[Criterio alloc]init];
+                criterion.classifications = [[NSMutableArray alloc]init];
                 
                 
                 criterion.order = sqlite3_column_int(stmt, 1);
@@ -90,15 +100,18 @@
                 criterion.criterion_id = sqlite3_column_int(stmt, 0);
                 
                 
-                [section.criteria insertObject:criterion atIndex:0];                
+                [section.criteria  insertObject:criterion atIndex:0];
+                //DebugLog(@"Section: %@% , Criterion: %@", section.name_en, [[section.criteria objectAtIndex:0] name_en]);
             
             }
             sqlite3_finalize(stmt);
-            }else {
-                DebugLog(@"Query with error: %@", querySQL);
-                sqlite3_close(*contactDB);
-                return nil;
-            }
+        }else {
+            DebugLog(@"Query with error: %@", querySQL);
+            sqlite3_close(*contactDB);
+            return nil;
+        }
+        
+        //DebugLog(@"Section: %@-%d count: %d", section.name_en, section.section_id ,section.criteria.count);
     }
     
     
@@ -106,6 +119,7 @@
     for (int i = 0; i < tasting.sections.count; i++) {
         
         Seccao * section =  [tasting.sections objectAtIndex:i];
+        //DebugLog(@"Seccao: %@", section.name_en);
         
         for (int k = 0; k < section.criteria.count; k++) {
         
@@ -130,7 +144,12 @@
                     classification.name_pt = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 4)];
                     
                     
+                    //DebugLog(@"Section: %@, Criterion: %@, Classification: %@", section.name_en, criterion.name_en, [[criterion.classifications objectAtIndex:0] name_en]);
+                    DebugLog(@"Section: %@, Criterion: %@, Classification: %@", section.name_en, criterion.name_en, classification.name_en);
                     [criterion.classifications insertObject:classification atIndex:0];
+                    
+
+                    
                 }
                 sqlite3_finalize(stmt);
             }else {
@@ -139,11 +158,14 @@
                 return nil;
             }
             
+            //DebugLog(@"\n\n");
+            
         }
+        //DebugLog(@"\n\n");
     }
     
     
-    
+    /*
     //////////////////////////////////////////////////////////
     //obter seccoes de caracteristicas
     querySQL = [NSString stringWithFormat:@"SELECT fsc.formsectioncharacteristic_id, fsc.order_priority, fsc.name_en, fsc.name_fr, fsc.name_pt\
@@ -160,9 +182,9 @@
             SeccaoCaracteristica * sectionCharacteristic = [[SeccaoCaracteristica alloc] init];
             
             sectionCharacteristic.order = sqlite3_column_int(stmt, 1); 
-            sectionCharacteristic.name_en  = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 1)];
-            sectionCharacteristic.name_fr  = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 2)];
-            sectionCharacteristic.name_pt  = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 3)];
+            sectionCharacteristic.name_en  = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 2)];
+            sectionCharacteristic.name_fr  = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 3)];
+            sectionCharacteristic.name_pt  = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 4)];
             
             //para ter referencia em futuras queries
             sectionCharacteristic.sectioncharacteristic_id = sqlite3_column_int(stmt, 0);
@@ -186,7 +208,7 @@
         
         querySQL = [NSString stringWithFormat:@"SELECT fc.formcharacteristic_id, fc.order_priority, fc.name_en, fc.name_fr, fc.name_pt \
                     FROM FormCharacteristic fc \
-                    WHERE fc.formsectioncharacteristic_id = %d", sectionCharacteristic.sectioncharacteristic_id];
+                    WHERE fc.formsectioncharacteristic_id = %d;", sectionCharacteristic.sectioncharacteristic_id];
         
         
         if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
@@ -255,6 +277,7 @@
             
         }
     }
+     */
     
     //current time
     NSDate* date = [NSDate date];

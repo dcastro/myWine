@@ -347,15 +347,18 @@ const char  *databaseTables[] = {
     
     "INSERT INTO FormSectionCharacteristic VALUES (1, 1, 1,'Aroma', 'Arome', 'Aroma');",
 
-    
+    //vista
     "INSERT INTO FormCriterion VALUES (1, 1, 1, 'Clarity', 'Clarte', 'Limpidez');",
     "INSERT INTO FormCriterion VALUES (2, 1, 2, 'Color', 'Couleur', 'Cor');",
+    
+    //sabor
     "INSERT INTO FormCriterion VALUES (3, 2, 3, 'Genuineness', 'Authenticite', 'Genuinidade');",
     "INSERT INTO FormCriterion VALUES (4, 2, 4, 'Intensity', 'Intensite', 'Intensidade');",
     "INSERT INTO FormCriterion VALUES (5, 2, 5, 'Persistence', 'Persistance', 'Persistencia');",
     "INSERT INTO FormCriterion VALUES (6, 2, 6, 'Quality', 'Qualite', 'Qualidade');"
     
     
+    //aroma
     "INSERT INTO FormCharacteristic VALUES (1, 1, 1, 'Genuineness', 'Authenticite', 'Genuinidade');",
     "INSERT INTO FormCharacteristic VALUES (2, 1, 2, 'Intensity', 'Intensite', 'Intensidade');",
     "INSERT INTO FormCharacteristic VALUES (3, 1, 3, 'Quality', 'Qualite', 'Qualidade');",
@@ -364,14 +367,20 @@ const char  *databaseTables[] = {
 
     "INSERT INTO PossibleClassification VALUES (1,2,'FormCriterion');",
     "INSERT INTO PossibleClassification VALUES (1,4,'FormCriterion');",
+    
     "INSERT INTO PossibleClassification VALUES (2,3,'FormCriterion');",
     "INSERT INTO PossibleClassification VALUES (2,4,'FormCriterion');",
     "INSERT INTO PossibleClassification VALUES (2,5,'FormCriterion');",
     "INSERT INTO PossibleClassification VALUES (2,6,'FormCriterion');",
+    
     "INSERT INTO PossibleClassification VALUES (3,6,'FormCriterion');",
+    
     "INSERT INTO PossibleClassification VALUES (4,4,'FormCriterion');",
+    
     "INSERT INTO PossibleClassification VALUES (5,4,'FormCriterion');",
+    
     "INSERT INTO PossibleClassification VALUES (6,5,'FormCriterion');",
+    
     "INSERT INTO PossibleClassification VALUES (1,10,'FormCharacteristic');",
     "INSERT INTO PossibleClassification VALUES (2,10,'FormCharacteristic');",
     "INSERT INTO PossibleClassification VALUES (3,11,'FormCharacteristic');",
