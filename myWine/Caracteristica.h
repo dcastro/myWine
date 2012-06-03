@@ -18,7 +18,7 @@
 @property (nonatomic, copy) NSString * name_en;
 @property (nonatomic, copy) NSString * name_fr;
 @property (nonatomic, copy) NSString * name_pt;
-@property (nonatomic, copy) NSMutableArray * classifications;
+@property (nonatomic) NSMutableArray * classifications;
 
 - (NSString*) description;
 

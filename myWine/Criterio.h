@@ -18,7 +18,7 @@
 @property (nonatomic, strong) NSString * name_fr;
 @property (nonatomic, strong) NSString * name_pt;
 @property (nonatomic, assign) int order;
-@property (nonatomic, copy) NSMutableArray * classifications;
+@property (nonatomic) NSMutableArray * classifications;
 
 - (NSString*) description;
 

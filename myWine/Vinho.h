@@ -21,7 +21,7 @@
 @property (nonatomic, retain) Regiao * region;
 @property (nonatomic, retain) TipoVinho *winetype;
 @property (nonatomic, copy) NSString *photo;
-@property (nonatomic,copy) NSMutableArray *provas;
+@property (nonatomic) NSMutableArray *provas;
 @property (nonatomic, copy) NSString* grapes;
 
 
