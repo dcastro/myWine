@@ -47,9 +47,9 @@
             Seccao * section = [[Seccao alloc] init];
             
             section.order = sqlite3_column_int(stmt, 1); 
-            section.name_en  = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 1)];
-            section.name_fr  = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 2)];
-            section.name_pt  = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 3)];
+            section.name_en  = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 2)];
+            section.name_fr  = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 3)];
+            section.name_pt  = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 4)];
             
             //para ter referencia em futuras queries
             section.section_id = sqlite3_column_int(stmt, 0);
@@ -184,7 +184,7 @@
         
         SeccaoCaracteristica * sectionCharacteristic =  [tasting.characteristic_sections objectAtIndex:i];
         
-        querySQL = [NSString stringWithFormat:@"SELECT fc.formcharacteristics_id, fc.order_priority, fc.name_en, fc.name_fr, fc.name_pt \
+        querySQL = [NSString stringWithFormat:@"SELECT fc.formcharacteristic_id, fc.order_priority, fc.name_en, fc.name_fr, fc.name_pt \
                     FROM FormCharacteristic fc \
                     WHERE fc.formsectioncharacteristic_id = %d", sectionCharacteristic.sectioncharacteristic_id];
         
@@ -256,7 +256,13 @@
         }
     }
     
+    //current time
+    NSDate* date = [NSDate date];
     
+    //conversion to unix representation
+    NSTimeInterval time = [date timeIntervalSince1970];
+    
+    tasting.tasting_date = (int) time;
     
     return tasting;
     

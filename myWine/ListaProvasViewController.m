@@ -228,6 +228,8 @@ SEL action; id target;
 - (IBAction)addTasting:(id)sender {
     Prova* prova = [FormularioProva generateTasting:self.vinho.winetype]; //[[self provas] objectAtIndex:0];
     
+    //Prova* prova = [[self provas] objectAtIndex:0];
+    
     //begin row insertion
     [[self tableView] beginUpdates];
     
@@ -237,8 +239,8 @@ SEL action; id target;
                       [NSIndexPath indexPathForRow:index inSection:0]];
     
     //insertion of the tasting
-    ([self.provas insertProva:prova atIndex:index])? NSLog(@"sucess on insertion") : NSLog(@"failure to insert");
-    //[self.provas insertObject:prova atIndex:index];
+    //([self.provas insertProva:prova atIndex:index])? NSLog(@"sucess on insertion") : NSLog(@"failure to insert");
+    [self.provas insertObject:prova atIndex:index];
     
     //insertion of the row
     [[self tableView] insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationAutomatic];
