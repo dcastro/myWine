@@ -11,7 +11,7 @@
 
 @interface NSMutableArray (ProvasMutableArray)
 
--(BOOL) insertProva:(Prova*)prova atIndex:(NSUInteger)index;
+-(BOOL) insertProva:(Prova*)prova atIndex:(NSUInteger)index withVinhoID:(int) wine_id;
 
 -(BOOL) removeProvaAtIndex:(NSUInteger) index;
 

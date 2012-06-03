@@ -228,25 +228,30 @@ SEL action; id target;
 - (IBAction)addTasting:(id)sender {
     Prova* prova = [FormularioProva generateTasting:self.vinho.winetype]; //[[self provas] objectAtIndex:0];
     
-    //Prova* prova = [[self provas] objectAtIndex:0];
+    //index calculation
+    int index = [self.provas count];
+    NSIndexPath* path = [NSIndexPath indexPathForRow:index inSection:0]; 
+    NSArray *paths = [NSArray arrayWithObject: path];
     
     //begin row insertion
     [[self tableView] beginUpdates];
-    
-    //index calculation
-    int index = [self.provas count];
-    NSArray *paths = [NSArray arrayWithObject:
-                      [NSIndexPath indexPathForRow:index inSection:0]];
-    
-    //insertion of the tasting
-    //([self.provas insertProva:prova atIndex:index])? NSLog(@"sucess on insertion") : NSLog(@"failure to insert");
-    [self.provas insertObject:prova atIndex:index];
-    
-    //insertion of the row
-    [[self tableView] insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationAutomatic];
-    NSLog(@"provas %i", [self.provas count]);
-    
+    {
+        //insertion of the tasting
+        //([self.provas insertProva:prova atIndex:index withVinhoID: self.vinho.wine_id])? NSLog(@"sucess on insertion") : NSLog(@"failure to insert");
+        [self.provas insertObject:prova atIndex:index];
+        
+        //insertion of the row
+        [[self tableView] insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
     //end row insertion
     [[self tableView] endUpdates];
+    
+    
+    
+    
+    //scroll to the inserted row and select it
+    [[self tableView] scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    [[self tableView] selectRowAtIndexPath:path animated:YES scrollPosition:UITableViewScrollPositionBottom];
+    [self performSegueWithIdentifier:@"showProva" sender:self];
 }
 @end

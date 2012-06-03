@@ -11,7 +11,7 @@
 
 @implementation NSMutableArray (ProvasMutableArray)
 
-- (BOOL) insertProva:(Prova*)prova atIndex:(NSUInteger)index {
+- (BOOL) insertProva:(Prova*)prova atIndex:(NSUInteger)index withVinhoID:(int) wine_id {
     #warning TODO: completar este metodo
     
     return FALSE;
