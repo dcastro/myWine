@@ -33,10 +33,17 @@
 }
 
 - (int) maxVal {
+    if ([[self.item classifications] count] <= 1)  {
+        return 0;
+    }
     return 100;
 }
 
 - (int) itemChosenWeight {
+    if ([[self.item classifications] count] <= 1)  {
+        return 0;
+    }
+    
     Classificacao* classification = [self.item classification_chosen];
     
     //find currently selected classification's index
@@ -48,6 +55,10 @@
 }
 
 - (int) itemWeight:(Classificacao*) classification {
+    if ([[self.item classifications] count] <= 1)  {
+        return 0;
+    }
+    
     int index = [[[self item] classifications] indexOfObject:classification];
     int weight = index * (100.0 / (float) ([[[self item] classifications] count]-1));
     
