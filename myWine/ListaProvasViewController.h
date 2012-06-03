@@ -37,6 +37,9 @@
 
 @property (nonatomic) BOOL needsEditing;
 
+@property (nonatomic, getter = isComparing) BOOL comparing;
+
 - (IBAction)addTasting:(id)sender;
+- (IBAction)toggleComparison:(id)sender;
 
 @end

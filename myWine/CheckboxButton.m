@@ -30,6 +30,22 @@
     
     [super setHighlighted:highlighted];
 }
+
+- (void) setHidden:(BOOL)hidden animated:(BOOL) animated {
+    
+    if(animated) {
+        [UIView animateWithDuration:0.3 animations:^() {
+            [self setHidden:hidden];
+        }];
+    } else {
+        [self setHidden:hidden];
+    }
+}
+
+- (void) setHidden:(BOOL)hidden {
+    self.alpha = (hidden)? 0.0: 1.0;
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -63,9 +79,6 @@
     CGRect frame = checkbox.frame;
     frame.origin.x = x;
     checkbox.frame = frame;
-    
-    //hide the button
-    [checkbox setHidden:YES];
     
     return checkbox;
 }

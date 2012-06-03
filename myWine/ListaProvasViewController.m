@@ -19,6 +19,7 @@
 @synthesize vinho = _vinho;
 @synthesize currentPopover;
 @synthesize needsEditing;
+@synthesize comparing = _comparing;
 
 SEL action; id target;
 
@@ -64,9 +65,17 @@ SEL action; id target;
     
     //UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     //self.navigationItem.rightBarButtonItem = addButton;
+    
+    [self configureView];
+
+}
+
+- (void) configureView {
     Language* lan = [Language instance];
     [self.filterButton setTitle: [lan translate:@"Filter"]];
+    [self.compareButton setTitle: [lan translate:@"Compare"]];
 }
+
 
 - (void)viewDidUnload
 {
@@ -190,6 +199,7 @@ SEL action; id target;
     //initialize the checkbox button
     CheckboxButton* checkbox = [CheckboxButton createWithTarget:self andPosition:cell.frame.size.width - 50];
     
+    [checkbox setHidden: !self.isComparing];
     [cell addSubview:checkbox];
 
     return cell;
@@ -271,5 +281,25 @@ SEL action; id target;
     //presents the newly added tasting
     self.needsEditing = YES;
     [self performSegueWithIdentifier:@"showProva" sender:self];
+}
+
+- (IBAction)toggleComparison:(id)sender {
+    [self setComparing: !self.isComparing];
+    
+    if([self isComparing]) {
+        for(int i = 0; i < [self.provas count]; i++) {
+            UITableViewCell* cell = (UITableViewCell*) [[self tableView] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+            CheckboxButton* checkbox = (CheckboxButton*) [cell viewWithTag:1];
+            [checkbox setHidden: NO animated:YES];
+        }
+    } else {
+        for(int i = 0; i < [self.provas count]; i++) {
+            UITableViewCell* cell = (UITableViewCell*) [[self tableView] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+            CheckboxButton* checkbox = (CheckboxButton*) [cell viewWithTag:1];
+            
+            [checkbox setHidden: YES animated:YES];
+        }
+        
+    }
 }
 @end

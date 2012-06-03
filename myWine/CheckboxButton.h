@@ -13,4 +13,6 @@
 
 + (CheckboxButton*) createWithTarget:(id) target andPosition:(int) x;
 
+- (void) setHidden:(BOOL)hidden animated:(BOOL) animated;
+
 @end

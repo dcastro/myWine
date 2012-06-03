@@ -2140,7 +2140,7 @@
                         </barButtonItem>
                         <barButtonItem title="Comparar" id="T5a-si-eXX">
                             <connections>
-                                <segue destination="S1e-7O-wxD" kind="modal" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="1P8-sY-0kv"/>
+                                <action selector="toggleComparison:" destination="GmD-9N-1lw" id="5GC-dT-MmP"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
@@ -2782,6 +2782,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ListaProvasViewController.h"/>
             <relationships>
                 <relationship kind="action" name="addTasting:"/>
+                <relationship kind="action" name="toggleComparison:"/>
                 <relationship kind="outlet" name="compareButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="filterButton" candidateClass="UIBarButtonItem"/>
             </relationships>
