@@ -88,6 +88,10 @@
 		DA019F531570400E00CC589A /* CriterionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA019F521570400E00CC589A /* CriterionCell.xib */; };
 		DA019F56157046A200CC589A /* CriterionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA019F55157046A200CC589A /* CriterionCell.m */; };
 		DA06B867153FA0C800D03DD9 /* NSMutableArray+VinhosMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = DA06B866153FA0C800D03DD9 /* NSMutableArray+VinhosMutableArray.m */; };
+		DA433EA2157C102500407B88 /* Checkbox.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA433EA1157C102500407B88 /* Checkbox.xib */; };
+		DA433EA7157C107300407B88 /* checkbox-checked.png in Resources */ = {isa = PBXBuildFile; fileRef = DA433EA4157C107200407B88 /* checkbox-checked.png */; };
+		DA433EA8157C107300407B88 /* checkbox-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = DA433EA5157C107200407B88 /* checkbox-pressed.png */; };
+		DA433EA9157C107300407B88 /* checkbox.png in Resources */ = {isa = PBXBuildFile; fileRef = DA433EA6157C107300407B88 /* checkbox.png */; };
 		DA498F14153D6659009C4072 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = DA498F13153D6659009C4072 /* User.m */; };
 		DA631DE0156EA7F2003EC91B /* CurrencyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA631DDF156EA7F2003EC91B /* CurrencyViewController.m */; };
 		DA7D48A4152E0AAD00C525FB /* Language.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7D48A3152E0AAD00C525FB /* Language.m */; };
@@ -231,6 +235,10 @@
 		DA019F55157046A200CC589A /* CriterionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CriterionCell.m; sourceTree = "<group>"; };
 		DA06B865153FA0C800D03DD9 /* NSMutableArray+VinhosMutableArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+VinhosMutableArray.h"; sourceTree = "<group>"; };
 		DA06B866153FA0C800D03DD9 /* NSMutableArray+VinhosMutableArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+VinhosMutableArray.m"; sourceTree = "<group>"; };
+		DA433EA1157C102500407B88 /* Checkbox.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Checkbox.xib; sourceTree = "<group>"; };
+		DA433EA4157C107200407B88 /* checkbox-checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkbox-checked.png"; sourceTree = "<group>"; };
+		DA433EA5157C107200407B88 /* checkbox-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkbox-pressed.png"; sourceTree = "<group>"; };
+		DA433EA6157C107300407B88 /* checkbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkbox.png; sourceTree = "<group>"; };
 		DA498F12153D6659009C4072 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		DA498F13153D6659009C4072 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		DA631DDE156EA7F2003EC91B /* CurrencyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyViewController.h; sourceTree = "<group>"; };
@@ -427,6 +435,9 @@
 		A9C5A01A1517A7EF00A3F8C5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DA433EA4157C107200407B88 /* checkbox-checked.png */,
+				DA433EA5157C107200407B88 /* checkbox-pressed.png */,
+				DA433EA6157C107300407B88 /* checkbox.png */,
 				A975DE00151A3CCB002FC7FB /* 02-redo.png */,
 				A9BDB691151A4F420032921A /* 06-magnify.png */,
 				A9758370151A0151009B5F68 /* 117-todo.png */,
@@ -523,6 +534,7 @@
 		DA019F5015703FFB00CC589A /* Interfaces */ = {
 			isa = PBXGroup;
 			children = (
+				DA433EA1157C102500407B88 /* Checkbox.xib */,
 				DA019F521570400E00CC589A /* CriterionCell.xib */,
 				DAE5954C157814B10039D894 /* CharacteristicCell.xib */,
 			);
@@ -667,6 +679,10 @@
 				65EFEBC51573C9770087F155 /* material mywine-17.png in Resources */,
 				DA91312915767E7300D37BA0 /* slider_thumb.png in Resources */,
 				DAE5954D157814B10039D894 /* CharacteristicCell.xib in Resources */,
+				DA433EA2157C102500407B88 /* Checkbox.xib in Resources */,
+				DA433EA7157C107300407B88 /* checkbox-checked.png in Resources */,
+				DA433EA8157C107300407B88 /* checkbox-pressed.png in Resources */,
+				DA433EA9157C107300407B88 /* checkbox.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

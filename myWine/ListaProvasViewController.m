@@ -185,9 +185,36 @@ SEL action; id target;
     
     Prova *object = [_provas objectAtIndex:indexPath.row];
     cell.textLabel.text = object.shortDate;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", object.tasting_id];
+    cell.detailTextLabel.text = @""; //[NSString stringWithFormat:@"%d", object.tasting_id];
+    
+
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"Checkbox" owner:nil options:nil];
+    UIButton* button;
+    for(id currentObject in topLevelObjects)
+    {
+        if([currentObject isKindOfClass:[UIButton class]])
+        {
+            button = currentObject;
+            break;
+        }
+    }
+    
+    button.tag = 1;
+    
+    [button addTarget:self action:@selector(checkboxClicked:) forControlEvents:UIControlEventTouchUpInside];
+    
+    CGRect frame = button.frame;
+    frame.origin.x = cell.frame.size.width - 50;
+    button.frame = frame;
+    
+    
+    [cell addSubview:button];
 
     return cell;
+}
+
+-(void) checkboxClicked:(UIButton*) sender {
+    [sender setSelected: !sender.selected];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -209,6 +236,9 @@ SEL action; id target;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    UITableViewCell* cell = [[self tableView] cellForRowAtIndexPath:indexPath];
+    UIButton* button = (UIButton*) [cell viewWithTag:1];
+    [button setHighlighted:NO];
     //Prova *object = [_objects objectAtIndex:indexPath.row];
     //self.provaViewController.detailItem = object.data;
 }
@@ -249,16 +279,17 @@ SEL action; id target;
         
         //insertion of the row
         [[self tableView] insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationAutomatic];
+        
     }
     //end row insertion
     [[self tableView] endUpdates];
     
-    
-    
-    
+
     //scroll to the inserted row and select it
     [[self tableView] scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionBottom animated:YES];
     [[self tableView] selectRowAtIndexPath:path animated:YES scrollPosition:UITableViewScrollPositionBottom];
+    
+    //presents the newly added tasting
     self.needsEditing = YES;
     [self performSegueWithIdentifier:@"showProva" sender:self];
 }
