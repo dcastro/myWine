@@ -119,7 +119,6 @@
     for (int i = 0; i < tasting.sections.count; i++) {
         
         Seccao * section =  [tasting.sections objectAtIndex:i];
-        //DebugLog(@"Seccao: %@", section.name_en);
         
         for (int k = 0; k < section.criteria.count; k++) {
         
@@ -143,9 +142,8 @@
                     classification.name_fr = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 3)];
                     classification.name_pt = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 4)];
                     
-                    
-                    //DebugLog(@"Section: %@, Criterion: %@, Classification: %@", section.name_en, criterion.name_en, [[criterion.classifications objectAtIndex:0] name_en]);
-                    DebugLog(@"Section: %@, Criterion: %@, Classification: %@", section.name_en, criterion.name_en, classification.name_en);
+                   
+                    //DebugLog(@"Section: %@, Criterion: %@, Classification: %@", section.name_en, criterion.name_en, classification.name_en);
                     [criterion.classifications insertObject:classification atIndex:0];
                     
 
@@ -158,18 +156,19 @@
                 return nil;
             }
             
-#warning TODO:tirar
+            [criterion.classifications sortUsingSelector:@selector(compare:)];
             criterion.classification_chosen = [criterion.classifications objectAtIndex:0];
             
-            DebugLog(@"%@ ,%@, %d", section.name_en, criterion.name_en, criterion.classifications.count);
+            //DebugLog(@"%@ ,%@, %d", section.name_en, criterion.name_en, criterion.classifications.count);
             
         }
-        //DebugLog(@"\n\n");
+        
     }
+    //DebugLog(@"\n\n");
     
     
-    /*
-    //////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    
     //obter seccoes de caracteristicas
     querySQL = [NSString stringWithFormat:@"SELECT fsc.formsectioncharacteristic_id, fsc.order_priority, fsc.name_en, fsc.name_fr, fsc.name_pt\
                 FROM FormSectionCharacteristic fsc, FormTasting ft, UserTypeForm utf \
@@ -183,6 +182,8 @@
         while(sqlite3_step(stmt) == SQLITE_ROW){
             
             SeccaoCaracteristica * sectionCharacteristic = [[SeccaoCaracteristica alloc] init];
+            sectionCharacteristic.characteristics = [[NSMutableArray alloc]init];
+            
             
             sectionCharacteristic.order = sqlite3_column_int(stmt, 1); 
             sectionCharacteristic.name_en  = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 2)];
@@ -218,6 +219,7 @@
             while(sqlite3_step(stmt) == SQLITE_ROW){
                 
                 Caracteristica * characteristic = [[Caracteristica alloc]init];
+                characteristic.classifications = [[NSMutableArray alloc]init];
                 
                 
                 characteristic.order = sqlite3_column_int(stmt, 1);
@@ -268,7 +270,7 @@
                     classification.name_fr = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 3)];
                     classification.name_pt = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 4)];
                     
-                    
+                    //DebugLog(@"Section: %@, Criterion: %@, Classification: %@", sectionCharacteristic.name_en, characteristic.name_en, classification.name_en);
                     [characteristic.classifications insertObject:classification atIndex:0];
                 }
                 sqlite3_finalize(stmt);
@@ -278,9 +280,13 @@
                 return nil;
             }
             
+            characteristic.classification_chosen = [characteristic.classifications objectAtIndex:0];
+            
+        
+            //DebugLog(@"%@ ,%@, %d", sectionCharacteristic.name_en, characteristic.name_en, characteristic.classifications.count);
+            
         }
     }
-     */
     
     //current time
     NSDate* date = [NSDate date];
