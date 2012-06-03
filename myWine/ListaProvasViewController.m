@@ -187,28 +187,10 @@ SEL action; id target;
     cell.textLabel.text = object.shortDate;
     cell.detailTextLabel.text = @""; //[NSString stringWithFormat:@"%d", object.tasting_id];
     
-
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"Checkbox" owner:nil options:nil];
-    UIButton* button;
-    for(id currentObject in topLevelObjects)
-    {
-        if([currentObject isKindOfClass:[UIButton class]])
-        {
-            button = currentObject;
-            break;
-        }
-    }
+    //initialize the checkbox button
+    CheckboxButton* checkbox = [CheckboxButton createWithTarget:self andPosition:cell.frame.size.width - 50];
     
-    button.tag = 1;
-    
-    [button addTarget:self action:@selector(checkboxClicked:) forControlEvents:UIControlEventTouchUpInside];
-    
-    CGRect frame = button.frame;
-    frame.origin.x = cell.frame.size.width - 50;
-    button.frame = frame;
-    
-    
-    [cell addSubview:button];
+    [cell addSubview:checkbox];
 
     return cell;
 }

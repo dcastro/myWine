@@ -13,6 +13,7 @@
 #import "NSMutableArray+ProvasMutableArray.h"
 #import "Language.h"
 #import "FormularioProva.h"
+#import "CheckboxButton.h"
 
 @interface ListaProvasViewController : UITableViewController <NovaProvaViewControllerDelegate>
 {

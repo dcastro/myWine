@@ -10,4 +10,7 @@
 
 @interface CheckboxButton : UIButton
 
+
++ (CheckboxButton*) createWithTarget:(id) target andPosition:(int) x;
+
 @end

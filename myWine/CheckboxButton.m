@@ -39,4 +39,35 @@
 }
 */
 
++ (CheckboxButton*) createWithTarget:(id) target andPosition:(int)x {
+    
+    //initialize the checkbox button
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"Checkbox" owner:nil options:nil];
+    CheckboxButton* checkbox;
+    for(id currentObject in topLevelObjects)
+    {
+        if([currentObject isKindOfClass:[CheckboxButton class]])
+        {
+            checkbox = currentObject;
+            break;
+        }
+    }
+    
+    //set tag
+    checkbox.tag = 1;
+    
+    //set button's action
+    [checkbox addTarget:target action:@selector(checkboxClicked:) forControlEvents:UIControlEventTouchUpInside];
+    
+    //adjust button's position
+    CGRect frame = checkbox.frame;
+    frame.origin.x = x;
+    checkbox.frame = frame;
+    
+    //hide the button
+    [checkbox setHidden:YES];
+    
+    return checkbox;
+}
+
 @end
