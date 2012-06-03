@@ -236,9 +236,6 @@ SEL action; id target;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell* cell = [[self tableView] cellForRowAtIndexPath:indexPath];
-    UIButton* button = (UIButton*) [cell viewWithTag:1];
-    [button setHighlighted:NO];
     //Prova *object = [_objects objectAtIndex:indexPath.row];
     //self.provaViewController.detailItem = object.data;
 }

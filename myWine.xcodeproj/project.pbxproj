@@ -93,6 +93,7 @@
 		DA433EA8157C107300407B88 /* checkbox-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = DA433EA5157C107200407B88 /* checkbox-pressed.png */; };
 		DA433EA9157C107300407B88 /* checkbox.png in Resources */ = {isa = PBXBuildFile; fileRef = DA433EA6157C107300407B88 /* checkbox.png */; };
 		DA498F14153D6659009C4072 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = DA498F13153D6659009C4072 /* User.m */; };
+		DA5AEEAE157C21E700246B12 /* CheckboxButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5AEEAD157C21E700246B12 /* CheckboxButton.m */; };
 		DA631DE0156EA7F2003EC91B /* CurrencyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA631DDF156EA7F2003EC91B /* CurrencyViewController.m */; };
 		DA7D48A4152E0AAD00C525FB /* Language.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7D48A3152E0AAD00C525FB /* Language.m */; };
 		DA9031F515785609006E0E34 /* SectionItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9031F415785609006E0E34 /* SectionItemCell.m */; };
@@ -241,6 +242,8 @@
 		DA433EA6157C107300407B88 /* checkbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkbox.png; sourceTree = "<group>"; };
 		DA498F12153D6659009C4072 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		DA498F13153D6659009C4072 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		DA5AEEAC157C21E700246B12 /* CheckboxButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckboxButton.h; sourceTree = "<group>"; };
+		DA5AEEAD157C21E700246B12 /* CheckboxButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckboxButton.m; sourceTree = "<group>"; };
 		DA631DDE156EA7F2003EC91B /* CurrencyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyViewController.h; sourceTree = "<group>"; };
 		DA631DDF156EA7F2003EC91B /* CurrencyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyViewController.m; sourceTree = "<group>"; };
 		DA7D48A2152E0AAD00C525FB /* Language.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Language.h; sourceTree = "<group>"; };
@@ -331,6 +334,8 @@
 		A9C28881151FBADE00C2F58D /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				DA5AEEAC157C21E700246B12 /* CheckboxButton.h */,
+				DA5AEEAD157C21E700246B12 /* CheckboxButton.m */,
 				DA9031F315785609006E0E34 /* SectionItemCell.h */,
 				DA019F54157046A200CC589A /* CriterionCell.h */,
 				DAE595461578133C0039D894 /* CharacteristicCell.h */,
@@ -761,6 +766,7 @@
 				65B824F11579357500527D6F /* HelpViewController.m in Sources */,
 				65B824F5157935FE00527D6F /* ContactsViewController.m in Sources */,
 				D370E4C315793A7200DDEEAC /* FormularioProva.m in Sources */,
+				DA5AEEAE157C21E700246B12 /* CheckboxButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
