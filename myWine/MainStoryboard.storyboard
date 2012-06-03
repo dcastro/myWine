@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50b" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11E53" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="5">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
@@ -2055,7 +2055,7 @@
                                 </segue>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem title="Sync" id="XKE-qL-BX6">
+                        <barButtonItem systemItem="refresh" id="XKE-qL-BX6">
                             <connections>
                                 <segue destination="Rj4-Fm-dRe" kind="modal" modalPresentationStyle="formSheet" id="jTo-cA-E3q"/>
                             </connections>
@@ -2943,9 +2943,9 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="5EB-Zz-Uxs"/>
-        <segue reference="Obm-ls-lkJ"/>
+        <segue reference="GVt-fQ-GSR"/>
         <segue reference="Kqj-0D-4Kz"/>
-        <segue reference="lxC-hI-C9J"/>
+        <segue reference="Obm-ls-lkJ"/>
         <segue reference="Lgh-gb-oiR"/>
     </inferredMetricsTieBreakers>
 </document>
