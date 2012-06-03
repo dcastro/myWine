@@ -28,6 +28,8 @@
 @property (strong, nonatomic) ProvaViewController* criteriaController;
 @property (strong, nonatomic) ProvaViewController* characteristicsController;
 
+@property (nonatomic) BOOL needsEditing;
+
 - (IBAction)toggleEdit:(id)sender;
 
 - (void)showRootPopoverButtonItem:(UIBarButtonItem *)barButtonItem;

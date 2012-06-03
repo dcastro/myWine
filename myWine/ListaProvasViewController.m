@@ -18,6 +18,7 @@
 @synthesize provas = _provas;
 @synthesize vinho = _vinho;
 @synthesize currentPopover;
+@synthesize needsEditing;
 
 SEL action; id target;
 
@@ -92,6 +93,12 @@ SEL action; id target;
         //pcvc.prova = prova;
         tabBarController.vinho = self.vinho;
         tabBarController.prova = prova;
+        
+        if (needsEditing) {
+            needsEditing = false;
+            
+            tabBarController.needsEditing = true;
+        }
         
     }
     
@@ -252,6 +259,7 @@ SEL action; id target;
     //scroll to the inserted row and select it
     [[self tableView] scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionBottom animated:YES];
     [[self tableView] selectRowAtIndexPath:path animated:YES scrollPosition:UITableViewScrollPositionBottom];
+    self.needsEditing = YES;
     [self performSegueWithIdentifier:@"showProva" sender:self];
 }
 @end

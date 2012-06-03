@@ -17,7 +17,8 @@
 
 @synthesize vinho = _vinho, prova = _prova;
 @synthesize editButton = _editButton, tempButton = _tempButton;
-@synthesize  criteriaController = _criteriaController, characteristicsController = _characteristicsController;
+@synthesize criteriaController = _criteriaController, characteristicsController = _characteristicsController;
+@synthesize needsEditing;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -56,6 +57,12 @@
     self.criteriaController.delegate = self;
     
     self.delegate = self;
+    
+    if(needsEditing) {
+        [self setNeedsEditing: false];
+        [self toggleEdit:self];
+    }
+    
 }
 
 - (void)viewDidUnload

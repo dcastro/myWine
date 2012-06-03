@@ -34,6 +34,8 @@
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *filterButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *compareButton;
 
+@property (nonatomic) BOOL needsEditing;
+
 - (IBAction)addTasting:(id)sender;
 
 @end
