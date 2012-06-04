@@ -81,7 +81,7 @@
 
 - (void) setEditing:(BOOL)editing animated:(BOOL)animated {
 
-    UIViewAnimationOptions options = UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionTransitionCrossDissolve;  
+    UIViewAnimationOptions options = UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionTransitionCrossDissolve | UIViewAnimationOptionAllowAnimatedContent;  
     
     if (editing) {
         
@@ -172,7 +172,8 @@
         self.classification = [self.item classification_chosen];
         [self drawClassificationLabel:[self.item classification_chosen] animated:YES];
         
-        [self performSelector:@selector(resetSlider) withObject:nil afterDelay:0.3];
+        [self resetSlider];
+        //[self performSelector:@selector(resetSlider) withObject:nil afterDelay:0.3];
     }
     
 }
