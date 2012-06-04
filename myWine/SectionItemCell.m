@@ -109,6 +109,7 @@
                           duration:0.3
                            options:options  
                         animations:^{
+                            
                             [self.classificationSlider setMaximumTrackTintColor:[UIColor whiteColor]];
                             [self.classificationSlider setMinimumTrackTintColor:[UIColor myWineColor]];
                             
@@ -169,8 +170,9 @@
 - (void) resetState {
     if([self.item classification_chosen] != self.classification) {
         self.classification = [self.item classification_chosen];
-        [self.classificationSlider setValue: [self itemChosenWeight] animated:YES];
         [self drawClassificationLabel:[self.item classification_chosen] animated:YES];
+        
+        [self performSelector:@selector(resetSlider) withObject:nil afterDelay:0.3];
     }
     
 }
@@ -181,4 +183,9 @@
         [self.item save];
     }
 }
+
+- (void) resetSlider {
+    [self.classificationSlider setValue: [self itemChosenWeight] animated:YES];
+}
+
 @end
