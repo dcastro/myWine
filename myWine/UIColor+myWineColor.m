@@ -14,4 +14,12 @@
     return [UIColor colorWithRed:99/255.0 green:5/255.0 blue:2/255.0 alpha:1.0];
 }
 
++ (UIColor*) myWineColorDark {
+    int darkeningFactor = 3;
+    return [UIColor colorWithRed:99/255.0/ darkeningFactor
+                           green:5/255.0/ darkeningFactor
+                            blue:2/255.0/ darkeningFactor
+                           alpha:1.0];
+}
+
 @end

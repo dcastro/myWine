@@ -11,5 +11,6 @@
 @interface UIColor (myWineColor)
 
 + (UIColor*) myWineColor;
++ (UIColor*) myWineColorDark;
 
 @end

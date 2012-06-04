@@ -80,8 +80,19 @@
 }
 
 - (void) setEditing:(BOOL)editing animated:(BOOL)animated {
+
+    UIViewAnimationOptions options = UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionTransitionCrossDissolve;  
     
     if (editing) {
+        
+        [UIView transitionWithView:self.classificationSlider 
+                          duration:0.3
+                           options:options  
+                        animations:^{
+                            [self.classificationSlider setMaximumTrackTintColor:[UIColor grayColor]];
+                            [self.classificationSlider setMinimumTrackTintColor:[UIColor myWineColorDark]];
+                        }  
+                        completion:NULL];  
         
         //temp classification
         self.classification = [self.item classification_chosen];
@@ -93,6 +104,17 @@
         
         [self.classificationSlider setUserInteractionEnabled:YES];
     } else {
+        
+        [UIView transitionWithView:self.classificationSlider 
+                          duration:0.3
+                           options:options  
+                        animations:^{
+                            [self.classificationSlider setMaximumTrackTintColor:[UIColor whiteColor]];
+                            [self.classificationSlider setMinimumTrackTintColor:[UIColor myWineColor]];
+                            
+                        }  
+                        completion:NULL];  
+        
         [self.classificationSlider setUserInteractionEnabled:NO];
     }
     
