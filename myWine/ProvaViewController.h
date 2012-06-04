@@ -16,6 +16,7 @@
 #import "CharacteristicCell.h"
 #import "Vinho.h"
 #import "SubstitutableTabBarControllerViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 #define CRITERIA_MODE 0
 #define CHARACTERISTICS_MODE 1

@@ -94,6 +94,7 @@
 		DA433EA9157C107300407B88 /* checkbox.png in Resources */ = {isa = PBXBuildFile; fileRef = DA433EA6157C107300407B88 /* checkbox.png */; };
 		DA498F14153D6659009C4072 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = DA498F13153D6659009C4072 /* User.m */; };
 		DA5AEEAE157C21E700246B12 /* CheckboxButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5AEEAD157C21E700246B12 /* CheckboxButton.m */; };
+		DA5AEEB3157C4D6600246B12 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA5AEEB2157C4D6600246B12 /* QuartzCore.framework */; };
 		DA631DE0156EA7F2003EC91B /* CurrencyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA631DDF156EA7F2003EC91B /* CurrencyViewController.m */; };
 		DA7D48A4152E0AAD00C525FB /* Language.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7D48A3152E0AAD00C525FB /* Language.m */; };
 		DA9031F515785609006E0E34 /* SectionItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9031F415785609006E0E34 /* SectionItemCell.m */; };
@@ -244,6 +245,7 @@
 		DA498F13153D6659009C4072 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		DA5AEEAC157C21E700246B12 /* CheckboxButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckboxButton.h; sourceTree = "<group>"; };
 		DA5AEEAD157C21E700246B12 /* CheckboxButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckboxButton.m; sourceTree = "<group>"; };
+		DA5AEEB2157C4D6600246B12 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DA631DDE156EA7F2003EC91B /* CurrencyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyViewController.h; sourceTree = "<group>"; };
 		DA631DDF156EA7F2003EC91B /* CurrencyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyViewController.m; sourceTree = "<group>"; };
 		DA7D48A2152E0AAD00C525FB /* Language.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Language.h; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA5AEEB3157C4D6600246B12 /* QuartzCore.framework in Frameworks */,
 				A9D10DEF157905B700E8B01B /* MobileCoreServices.framework in Frameworks */,
 				D3637DD3153E322800A9B928 /* libsqlite3.dylib in Frameworks */,
 				A9C59FFB1517A78500A3F8C5 /* UIKit.framework in Frameworks */,
@@ -379,6 +382,7 @@
 		A9C59FEB1517A78500A3F8C5 = {
 			isa = PBXGroup;
 			children = (
+				DA5AEEB2157C4D6600246B12 /* QuartzCore.framework */,
 				A9D10DEE157905B700E8B01B /* MobileCoreServices.framework */,
 				D3637DD2153E322800A9B928 /* libsqlite3.dylib */,
 				A9B04E591519DE3B00DC32CF /* Settings.bundle */,
@@ -900,6 +904,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "myWine/myWine-Prefix.pch";
 				INFOPLIST_FILE = "myWine/myWine-Info.plist";
@@ -914,6 +922,10 @@
 			buildSettings = {
 				BUNDLE_LOADER = "";
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "myWine/myWine-Prefix.pch";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;

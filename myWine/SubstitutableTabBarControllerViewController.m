@@ -91,6 +91,25 @@
         destinationVC.commentContentTextView.text = currentVC.commentContentTextView.text;
     }
     
+    
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.4;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionPush;
+    transition.delegate = self;    
+    
+    if(currentVC == self.criteriaController) {
+        transition.subtype = kCATransitionFromRight;
+    } else {
+        transition.subtype = kCATransitionFromLeft;
+    }
+    
+    [[[[[self view] subviews] objectAtIndex:0] layer] addAnimation:transition forKey:nil];
+    [currentVC viewWillAppear:YES];
+    [destinationVC viewWillDisappear:YES];
+    [destinationVC viewDidDisappear:YES];
+    [currentVC viewDidAppear:YES];
+    /*
     UIViewAnimationOptions options = UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionTransitionCrossDissolve;  
     
     [UIView transitionWithView:tabBarController.view 
@@ -104,7 +123,7 @@
                         
                     }  
                     completion:NULL];
-    
+    */
     return YES;
 }
 
