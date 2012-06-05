@@ -100,6 +100,7 @@
 		DA9031F515785609006E0E34 /* SectionItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9031F415785609006E0E34 /* SectionItemCell.m */; };
 		DA91312915767E7300D37BA0 /* slider_thumb.png in Resources */ = {isa = PBXBuildFile; fileRef = DA91312815767E7300D37BA0 /* slider_thumb.png */; };
 		DA9131311576812500D37BA0 /* UIColor+myWineColor.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9131301576812500D37BA0 /* UIColor+myWineColor.m */; };
+		DA92BAE3157E7EDE0028AAC4 /* ProvaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA92BAE2157E7EDE0028AAC4 /* ProvaCell.m */; };
 		DA993CDE153F22E7009D3E13 /* Vinho.m in Sources */ = {isa = PBXBuildFile; fileRef = DA993CDD153F22E7009D3E13 /* Vinho.m */; };
 		DAC99B7F155AE3EA00D9C04F /* SubstitutableTabBarControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC99B7E155AE3EA00D9C04F /* SubstitutableTabBarControllerViewController.m */; };
 		DAC99B85155B0B7B00D9C04F /* ProvaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC99B84155B0B7B00D9C04F /* ProvaViewController.m */; };
@@ -256,6 +257,8 @@
 		DA91312815767E7300D37BA0 /* slider_thumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slider_thumb.png; sourceTree = "<group>"; };
 		DA91312F1576812500D37BA0 /* UIColor+myWineColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+myWineColor.h"; sourceTree = "<group>"; };
 		DA9131301576812500D37BA0 /* UIColor+myWineColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+myWineColor.m"; sourceTree = "<group>"; };
+		DA92BAE1157E7EDE0028AAC4 /* ProvaCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProvaCell.h; sourceTree = "<group>"; };
+		DA92BAE2157E7EDE0028AAC4 /* ProvaCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProvaCell.m; sourceTree = "<group>"; };
 		DA993CDC153F22E7009D3E13 /* Vinho.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vinho.h; sourceTree = "<group>"; };
 		DA993CDD153F22E7009D3E13 /* Vinho.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vinho.m; sourceTree = "<group>"; };
 		DAC99B7D155AE3EA00D9C04F /* SubstitutableTabBarControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubstitutableTabBarControllerViewController.h; sourceTree = "<group>"; };
@@ -340,6 +343,8 @@
 		A9C28881151FBADE00C2F58D /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				DA92BAE1157E7EDE0028AAC4 /* ProvaCell.h */,
+				DA92BAE2157E7EDE0028AAC4 /* ProvaCell.m */,
 				D3500EF7154C45D800FB85E3 /* Caracteristica.h */,
 				D3500EF8154C45D800FB85E3 /* Caracteristica.m */,
 				DAE595461578133C0039D894 /* CharacteristicCell.h */,
@@ -777,6 +782,7 @@
 				D370E4C315793A7200DDEEAC /* FormularioProva.m in Sources */,
 				DA5AEEAE157C21E700246B12 /* CheckboxButton.m in Sources */,
 				DADA15D8157D44F70084B63F /* Comparator.m in Sources */,
+				DA92BAE3157E7EDE0028AAC4 /* ProvaCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

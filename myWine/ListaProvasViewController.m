@@ -84,6 +84,17 @@ SEL action; id target;
     // Release any retained subviews of the main view.
 }
 
+- (void) viewWillDisappear:(BOOL)animated {
+    
+    //remove all observers
+    for(int i = 0; i < [self.provas count]; i++) {
+        ProvaCell* cell = (ProvaCell*) [[self tableView] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+        CheckboxButton* checkbox = (CheckboxButton*) [cell viewWithTag:1];
+        
+        [checkbox removeObserver:cell forKeyPath:@"selected"];
+    }
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return YES;
@@ -189,7 +200,7 @@ SEL action; id target;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Prova"];
+    ProvaCell *cell = (ProvaCell*) [tableView dequeueReusableCellWithIdentifier:@"Prova"];
     
     Prova *object = [_provas objectAtIndex:indexPath.row];
     cell.textLabel.text = object.shortDate;
@@ -201,11 +212,16 @@ SEL action; id target;
     //hides the checkbox unless comparation mode is on.
     [checkbox setHidden: ! [Comparator isComparing]];
     
-    if([Comparator isComparing] && [Comparator isRegistered:object])
+    if([Comparator isRegistered:object])
         [checkbox setSelected:YES];
 
     
     [cell addSubview:checkbox];
+    
+    [cell setProva:object];
+    
+    [checkbox addObserver:cell forKeyPath:@"selected" options:NSKeyValueObservingOptionNew context:nil];
+    
 
     return cell;
 }
@@ -292,15 +308,18 @@ SEL action; id target;
     [Comparator setComparing: ![Comparator isComparing]];
     
     
+    //unhide
     if([Comparator isComparing]) {
         for(int i = 0; i < [self.provas count]; i++) {
-            UITableViewCell* cell = (UITableViewCell*) [[self tableView] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+            ProvaCell* cell = (ProvaCell*) [[self tableView] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
             CheckboxButton* checkbox = (CheckboxButton*) [cell viewWithTag:1];
             [checkbox setHidden: NO animated:YES];
         }
-    } else {
+    }
+    //hide
+    else {
         for(int i = 0; i < [self.provas count]; i++) {
-            UITableViewCell* cell = (UITableViewCell*) [[self tableView] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+            ProvaCell* cell = (ProvaCell*) [[self tableView] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
             CheckboxButton* checkbox = (CheckboxButton*) [cell viewWithTag:1];
             
             [checkbox setHidden: YES animated:YES];

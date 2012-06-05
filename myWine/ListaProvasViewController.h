@@ -15,6 +15,8 @@
 #import "FormularioProva.h"
 #import "CheckboxButton.h"
 #import "Comparator.h"
+#import "ProvaCell.h"
+
 @interface ListaProvasViewController : UITableViewController <NovaProvaViewControllerDelegate>
 {
     UISplitViewController *splitViewController;
