@@ -28,4 +28,6 @@
 
 + (void) reset;
 
++ (int) numberOfRegistrations;
+
 @end

@@ -74,4 +74,13 @@ static Comparator* comparator = nil;
     comparator.prova2 = nil;
 }
 
++ (int) numberOfRegistrations {
+    int i = 0;
+    if (comparator.prova1 != nil)
+        i++;
+    if (comparator.prova2 != nil) 
+        i++;
+    return i;
+}
+
 @end

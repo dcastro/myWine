@@ -33,10 +33,12 @@
                          change:(NSDictionary *)change
                         context:(void *)context
 {
-    if ([object isSelected])
-        [Comparator register:self.prova];
-    else {
-        [Comparator unregister:self.prova];
+    if([keyPath isEqualToString:@"selected"]) {
+        if ([object isSelected])
+            [Comparator register:self.prova];
+        else {
+            [Comparator unregister:self.prova];
+        }
     }
     
 }

@@ -87,12 +87,13 @@ SEL action; id target;
 - (void) viewWillDisappear:(BOOL)animated {
     
     //remove all observers
-    for(int i = 0; i < [self.provas count]; i++) {
-        ProvaCell* cell = (ProvaCell*) [[self tableView] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
-        CheckboxButton* checkbox = (CheckboxButton*) [cell viewWithTag:1];
+    [self forEveryCell:^(ProvaCell* cell) {
         
+        CheckboxButton* checkbox = (CheckboxButton*) [cell viewWithTag:1];
         [checkbox removeObserver:cell forKeyPath:@"selected"];
-    }
+        
+    } ];
+    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -228,6 +229,19 @@ SEL action; id target;
 
 -(void) checkboxClicked:(UIButton*) sender {
     [sender setSelected: !sender.selected];
+    
+    //if there are two registrations, show comparison
+    if ([Comparator numberOfRegistrations] == 2) {
+#warning TODO: PRESENT COMPARATOR
+        [Comparator reset];
+        
+        [self forEveryCell:^(ProvaCell* cell) {
+            
+            CheckboxButton* checkbox = (CheckboxButton*) [cell viewWithTag:1];
+            [checkbox setSelected:NO];
+            
+        } ];
+    }
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -314,21 +328,31 @@ SEL action; id target;
     
     //unhide
     if([Comparator isComparing]) {
-        for(int i = 0; i < [self.provas count]; i++) {
-            ProvaCell* cell = (ProvaCell*) [[self tableView] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+        [self forEveryCell:^(ProvaCell* cell) {
             CheckboxButton* checkbox = (CheckboxButton*) [cell viewWithTag:1];
             [checkbox setHidden: NO animated:YES];
-        }
+        } ];
     }
     //hide
     else {
-        for(int i = 0; i < [self.provas count]; i++) {
-            ProvaCell* cell = (ProvaCell*) [[self tableView] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+        
+        [self forEveryCell:^(ProvaCell* cell) {
             CheckboxButton* checkbox = (CheckboxButton*) [cell viewWithTag:1];
             
             [checkbox setHidden: YES animated:YES];
-        }
+            [checkbox setSelected:NO];
+        } ];
         
+        //reset comparison
+        [Comparator reset];
+        
+    }
+}
+
+-(void) forEveryCell:(void (^)(ProvaCell *)) block {
+    for(int i = 0; i < self.provas.count; i++) {
+        ProvaCell* cell = (ProvaCell*) [[self tableView] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+            block(cell);
     }
 }
 @end
