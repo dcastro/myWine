@@ -173,6 +173,8 @@
     }
     
     [query endTransaction];
+    
+    [self insertObject:prova atIndex:index];
 
     
     return TRUE;
