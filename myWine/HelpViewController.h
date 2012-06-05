@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Language.h"
 
 @interface HelpViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UILabel *faq;
 @property (strong, nonatomic) IBOutlet UILabel *pergunta1;
 @property (strong, nonatomic) IBOutlet UITextView *resposta1;
 @property (strong, nonatomic) IBOutlet UILabel *pergunta2;
@@ -19,5 +21,6 @@
 @property (strong, nonatomic) IBOutlet UITextView *resposta4;
 @property (strong, nonatomic) IBOutlet UILabel *pergunta5;
 @property (strong, nonatomic) IBOutlet UITextView *resposta5;
+@property (weak, nonatomic) IBOutlet UITabBarItem *tabSelector;
 
 @end

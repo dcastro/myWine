@@ -1428,128 +1428,142 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="719"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Como posso adicionar um vinho novo?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="xRv-ae-V7T">
-                                <rect key="frame" x="267" y="20" width="383" height="21"/>
+                            <view contentMode="scaleToFill" id="bxe-ds-Yrg">
+                                <rect key="frame" x="253" y="0.0" width="517" height="657"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Como posso adicionar uma nova prova a um vinho?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="1AJ-Oq-0Xv">
-                                <rect key="frame" x="267" y="153" width="481" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" text="Use o botão + localizado no canto superior esquerdo em cima da lista de vinhos para adicionar um vinho novo." id="Ng9-06-HDM">
-                                <rect key="frame" x="240" y="49" width="381" height="63"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" id="zTV-Bn-Uvr">
-                                <rect key="frame" x="242" y="182" width="479" height="69"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <string key="text">Após ter selecionado o vinho do lado esquerdo do ecrã use o botão de + do canto superior esquerdo para adicionar uma nova prova a esse vinho.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Como posso alterar o alerta de sincronização?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="PYx-zi-hHX">
-                                <rect key="frame" x="267" y="287" width="544" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" text="Para alterar a configuração dos alertas visite o painel de defenições do iPad e selecione a categoria myWine." id="VGe-6p-RAu">
-                                <rect key="frame" x="242" y="317" width="479" height="69"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Como posso alterar o idioma?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="nVg-Ku-J2w">
-                                <rect key="frame" x="267" y="414" width="481" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" text="Para alterar a configuração do idioma visite o painel de defenições do iPad e selecione a categoria myWine." id="mCA-t7-IkP">
-                                <rect key="frame" x="242" y="443" width="479" height="69"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Como posso adicionar removar as credênciais?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="4Mo-X2-n06">
-                                <rect key="frame" x="267" y="538" width="481" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" text="Para alterar remover as credênciais do sistema visite o painel de defenições do iPad e selecione a categoria myWine." id="VO4-mU-PIR">
-                                <rect key="frame" x="244" y="567" width="479" height="69"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <progressView opaque="NO" contentMode="scaleToFill" progress="0.99999999999999989" id="dCr-7T-P6p">
-                                <rect key="frame" x="240" y="503" width="477" height="9"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <color key="progressTintColor" red="0.31372549020000001" green="0.027450980390000001" blue="0.015686274510000001" alpha="1" colorSpace="calibratedRGB"/>
-                            </progressView>
-                            <progressView opaque="NO" contentMode="scaleToFill" progress="1" id="DJ4-k0-tWE">
-                                <rect key="frame" x="240" y="635" width="477" height="9"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <color key="progressTintColor" red="0.31372549020000001" green="0.027450980390000001" blue="0.015686274510000001" alpha="1" colorSpace="calibratedRGB"/>
-                            </progressView>
-                            <progressView opaque="NO" contentMode="scaleToFill" progress="1" id="oJk-Qz-DoU">
-                                <rect key="frame" x="240" y="377" width="477" height="9"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <color key="progressTintColor" red="0.31372549020000001" green="0.027450980390000001" blue="0.015686274510000001" alpha="1" colorSpace="calibratedRGB"/>
-                            </progressView>
-                            <progressView opaque="NO" contentMode="scaleToFill" progress="1" id="V1k-O7-e4y">
-                                <rect key="frame" x="240" y="259" width="477" height="9"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <color key="progressTintColor" red="0.31372549020000001" green="0.027450980390000001" blue="0.015686274510000001" alpha="1" colorSpace="calibratedRGB"/>
-                            </progressView>
-                            <progressView opaque="NO" contentMode="scaleToFill" progress="1" id="vdj-xZ-324">
-                                <rect key="frame" x="240" y="120" width="477" height="9"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <color key="progressTintColor" red="0.31372549020000001" green="0.027450980390000001" blue="0.015686274510000001" alpha="1" colorSpace="calibratedRGB"/>
-                            </progressView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="material mywine-04.png" id="JCL-W9-MiD">
-                                <rect key="frame" x="240" y="20" width="23" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="material mywine-04.png" id="2tL-3x-BJi">
-                                <rect key="frame" x="240" y="153" width="23" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="material mywine-04.png" id="6W3-vZ-HVC">
-                                <rect key="frame" x="240" y="287" width="23" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="material mywine-04.png" id="Onf-8n-xUB">
-                                <rect key="frame" x="240" y="413" width="23" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="material mywine-04.png" id="qEq-bR-ZVj">
-                                <rect key="frame" x="240" y="538" width="23" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                            </imageView>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="xRv-ae-V7T">
+                                        <rect key="frame" x="47" y="83" width="383" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="1AJ-Oq-0Xv">
+                                        <rect key="frame" x="47" y="195" width="481" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" id="Ng9-06-HDM">
+                                        <rect key="frame" x="20" y="112" width="381" height="63"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" id="zTV-Bn-Uvr">
+                                        <rect key="frame" x="22" y="224" width="479" height="69"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="PYx-zi-hHX">
+                                        <rect key="frame" x="47" y="303" width="544" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" id="VGe-6p-RAu">
+                                        <rect key="frame" x="22" y="333" width="479" height="69"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="nVg-Ku-J2w">
+                                        <rect key="frame" x="47" y="419" width="481" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" id="mCA-t7-IkP">
+                                        <rect key="frame" x="22" y="448" width="479" height="69"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="4Mo-X2-n06">
+                                        <rect key="frame" x="47" y="531" width="481" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" id="VO4-mU-PIR">
+                                        <rect key="frame" x="24" y="560" width="479" height="69"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <progressView opaque="NO" contentMode="scaleToFill" progress="0.99999999999999989" id="dCr-7T-P6p">
+                                        <rect key="frame" x="20" y="496" width="477" height="9"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <color key="progressTintColor" red="0.31372549020000001" green="0.027450980390000001" blue="0.015686274510000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </progressView>
+                                    <progressView opaque="NO" contentMode="scaleToFill" progress="1" id="DJ4-k0-tWE">
+                                        <rect key="frame" x="20" y="609" width="477" height="9"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <color key="progressTintColor" red="0.31372549020000001" green="0.027450980390000001" blue="0.015686274510000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </progressView>
+                                    <progressView opaque="NO" contentMode="scaleToFill" progress="1" id="oJk-Qz-DoU">
+                                        <rect key="frame" x="20" y="382" width="477" height="9"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <color key="progressTintColor" red="0.31372549020000001" green="0.027450980390000001" blue="0.015686274510000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </progressView>
+                                    <progressView opaque="NO" contentMode="scaleToFill" progress="1" id="V1k-O7-e4y">
+                                        <rect key="frame" x="20" y="275" width="477" height="9"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <color key="progressTintColor" red="0.31372549020000001" green="0.027450980390000001" blue="0.015686274510000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </progressView>
+                                    <progressView opaque="NO" contentMode="scaleToFill" progress="1" id="vdj-xZ-324">
+                                        <rect key="frame" x="20" y="162" width="477" height="9"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <color key="progressTintColor" red="0.31372549020000001" green="0.027450980390000001" blue="0.015686274510000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </progressView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="material mywine-04.png" id="JCL-W9-MiD">
+                                        <rect key="frame" x="20" y="83" width="23" height="22"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="material mywine-04.png" id="2tL-3x-BJi">
+                                        <rect key="frame" x="20" y="195" width="23" height="22"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="material mywine-04.png" id="6W3-vZ-HVC">
+                                        <rect key="frame" x="20" y="303" width="23" height="22"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="material mywine-04.png" id="Onf-8n-xUB">
+                                        <rect key="frame" x="20" y="418" width="23" height="22"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="material mywine-04.png" id="qEq-bR-ZVj">
+                                        <rect key="frame" x="20" y="531" width="23" height="22"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Perguntas Frequentes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="dsy-J9-djh">
+                                        <rect key="frame" x="24" y="31" width="288" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Perguntas Frequentes" image="117-todo.png" id="yqy-Vf-MkU"/>
                     <connections>
+                        <outlet property="faq" destination="dsy-J9-djh" id="Q9d-Ue-d2S"/>
                         <outlet property="pergunta1" destination="xRv-ae-V7T" id="vPT-DW-vJI"/>
                         <outlet property="pergunta2" destination="1AJ-Oq-0Xv" id="CD1-eh-T6I"/>
                         <outlet property="pergunta3" destination="PYx-zi-hHX" id="lgV-PN-AY0"/>
@@ -1560,6 +1574,7 @@
                         <outlet property="resposta3" destination="VGe-6p-RAu" id="gc6-KB-8A7"/>
                         <outlet property="resposta4" destination="mCA-t7-IkP" id="cbS-rV-UU6"/>
                         <outlet property="resposta5" destination="VO4-mU-PIR" id="bls-Yx-ovo"/>
+                        <outlet property="tabSelector" destination="yqy-Vf-MkU" id="C4p-qN-4Zm"/>
                     </connections>
                 </viewController>
             </objects>
@@ -2710,233 +2725,6 @@
         <image name="material mywine-14.png" width="170" height="323"/>
         <image name="material mywine-17.png" width="711" height="617"/>
     </resources>
-    <classes>
-        <class className="ComparadorViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ComparadorViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancel:"/>
-            </relationships>
-        </class>
-        <class className="ContactsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContactsViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="comercialEmail" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="emailsLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="helpEmail" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="onlineHelp" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="onlineHelpLaber" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="telephonesLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="CriterionCell" superclassName="SectionItemCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CriterionCell.h"/>
-        </class>
-        <class className="CurrencyViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CurrencyViewController.h"/>
-        </class>
-        <class className="DetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DetailViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="help" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="myWine" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="FiltrosViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FiltrosViewController.h"/>
-        </class>
-        <class className="FotoViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FotoViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancel:"/>
-                <relationship kind="action" name="done:"/>
-                <relationship kind="outlet" name="Cancel" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="Done" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="NewPhoto" candidateClass="UINavigationItem"/>
-                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="HelpViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/HelpViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="pergunta1" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="pergunta2" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="pergunta3" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="pergunta4" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="pergunta5" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="resposta1" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="resposta2" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="resposta3" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="resposta4" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="resposta5" candidateClass="UITextView"/>
-            </relationships>
-        </class>
-        <class className="ListaPaisesViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ListaPaisesViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="Cancel:"/>
-                <relationship kind="outlet" name="Cancel" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="Paises" candidateClass="UINavigationItem"/>
-            </relationships>
-        </class>
-        <class className="ListaProvasViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ListaProvasViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addTasting:"/>
-                <relationship kind="action" name="toggleComparison:"/>
-                <relationship kind="outlet" name="compareButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="filterButton" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="ListaRegioesViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ListaRegioesViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="Cancel:"/>
-                <relationship kind="outlet" name="Cancel" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="Regioes" candidateClass="UINavigationItem"/>
-            </relationships>
-        </class>
-        <class className="ListaVinhosViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ListaVinhosViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="didPressHomeButton:"/>
-                <relationship kind="outlet" name="filterButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="tempButton" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="doLogin:"/>
-                <relationship kind="action" name="selectLanguage:"/>
-                <relationship kind="outlet" name="configLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="enFlag" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="frFlag" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="loginButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="passwordInput" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="passwordLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="ptFlag" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="usernameInput" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="usernameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="welcomeLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="NovaProvaViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NovaProvaViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancel:"/>
-                <relationship kind="action" name="done:"/>
-                <relationship kind="action" name="sliderChanged:"/>
-                <relationship kind="outlet" name="CancelButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="DoneButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="sliderLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="NovoVinhoViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NovoVinhoViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancel:"/>
-                <relationship kind="action" name="done:"/>
-                <relationship kind="outlet" name="AnoVinho" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="Cancel" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="Done" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="NomeVinho" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="PhotoButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="PickAnoVinho" candidateClass="UIPickerView"/>
-                <relationship kind="outlet" name="Preco" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="Produtor" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="castaVinho" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="lblAno" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="lblCasta" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="lblNomeVinho" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="lblPais" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="lblPreco" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="lblProdutor" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="lblRegiao" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="lblTipoVinho" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="novoVinho" candidateClass="UINavigationItem"/>
-                <relationship kind="outlet" name="paisButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="regiaoButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="tipoVinho" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="ProvaViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProvaViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="bottomScrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="commentContentLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="commentContentTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="commentLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="scoreContentLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="scoreLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="upperView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="wineNameLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="SectionItemCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SectionItemCell.h"/>
-            <relationships>
-                <relationship kind="action" name="adjustSliderValue:"/>
-                <relationship kind="action" name="classificationSliderValueChanged:"/>
-                <relationship kind="outlet" name="classificationLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="classificationSlider" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="SubstitutableTabBarControllerViewController" superclassName="UITabBarController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SubstitutableTabBarControllerViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="toggleEdit:"/>
-                <relationship kind="outlet" name="editButton" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="SyncViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SyncViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancel:"/>
-                <relationship kind="outlet" name="cancelButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="description_label" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="progress_bar" candidateClass="UIProgressView"/>
-                <relationship kind="outlet" name="progress_label" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="VinhoViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/VinhoViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="handleSwipeFrom:" candidateClass="UISwipeGestureRecognizer"/>
-                <relationship kind="action" name="toggleEdit:"/>
-                <relationship kind="outlet" name="countryButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="country_label" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="country_label_name" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="currencyButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="editButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="grapesList" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="grapesListShow" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="grapes_label" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="harvestyear" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="percentage_label_name" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="priceValue" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="price_label" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="price_value_label" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="producerName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="producer_label" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="producer_label_name" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="regionButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="region_label" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="region_label_name" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="selectCountryButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="selectCurrencyButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="selectRegionButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="swipeLeft" candidateClass="UISwipeGestureRecognizer"/>
-                <relationship kind="outlet" name="tempButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="wineName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="wine_label_name" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="wine_type_label" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="year_label" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="year_label_name" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

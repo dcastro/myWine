@@ -13,6 +13,7 @@
 @end
 
 @implementation HelpViewController
+@synthesize faq;
 @synthesize pergunta1;
 @synthesize resposta1;
 @synthesize pergunta2;
@@ -23,6 +24,7 @@
 @synthesize resposta4;
 @synthesize pergunta5;
 @synthesize resposta5;
+@synthesize tabSelector;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,7 +38,34 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    
+    Language *lan = [Language instance];
+    
+	self.faq.text = [lan translate:@"FAQ"];
+    self.faq.font = [UIFont fontWithName:@"DroidSerif-Bold" size:TITLE_FONT];
+    self.pergunta1.text = [lan translate:@"P1"];
+    self.pergunta1.font = [UIFont fontWithName:@"DroidSans-Bold" size:SMALL_FONT];
+    self.pergunta2.text = [lan translate:@"P2"];
+    self.pergunta2.font = [UIFont fontWithName:@"DroidSans-Bold" size:SMALL_FONT];
+    self.pergunta3.text = [lan translate:@"P3"];
+    self.pergunta3.font = [UIFont fontWithName:@"DroidSans-Bold" size:SMALL_FONT];
+    self.pergunta4.text = [lan translate:@"P4"];
+    self.pergunta4.font = [UIFont fontWithName:@"DroidSans-Bold" size:SMALL_FONT];
+    self.pergunta5.text = [lan translate:@"P5"];
+    self.pergunta5.font = [UIFont fontWithName:@"DroidSans-Bold" size:SMALL_FONT];
+    
+    self.resposta1.text = [lan translate:@"R1"];
+    self.resposta1.font = [UIFont fontWithName:@"DroidSans" size:SMALL_FONT-2];
+    self.resposta2.text = [lan translate:@"R2"];
+    self.resposta2.font = [UIFont fontWithName:@"DroidSans" size:SMALL_FONT-2];
+    self.resposta3.text = [lan translate:@"R3"];
+    self.resposta3.font = [UIFont fontWithName:@"DroidSans" size:SMALL_FONT-2];
+    self.resposta4.text = [lan translate:@"R4"];
+    self.resposta4.font = [UIFont fontWithName:@"DroidSans" size:SMALL_FONT-2];
+    self.resposta5.text = [lan translate:@"R5"];
+    self.resposta5.font = [UIFont fontWithName:@"DroidSans" size:SMALL_FONT-2];
+    
+    self.tabSelector.title = [lan translate:@"FAQ"];    
 }
 
 - (void)viewDidUnload
@@ -51,6 +80,8 @@
     [self setResposta4:nil];
     [self setPergunta5:nil];
     [self setResposta5:nil];
+    [self setFaq:nil];
+    [self setTabSelector:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
