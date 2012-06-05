@@ -17,12 +17,12 @@
     User * user = [User instance];
     
     Query *query = [[Query alloc] init];
+    char * errMsg;
     
     #warning TODO: FERNANDO: falta a foto
     
     NSString *querySQL = [NSString stringWithFormat:@"INSERT INTO Wine (username, region_id,  winetype_id, name, year, producer, currency, price, state)\
-                          VALUES (\'%@\', %d, %d, \'%@\', %d, \'%@\', \'%@\', %f, %d); \
-                          SELECT DISTINCT last_insert_rowid() FROM Wine;", 
+                          VALUES (\'%@\', %d, %d, \'%@\', %d, \'%@\', \'%@\', %f, %d);", 
                           user.username, 
                           vinho.region.region_id,
                           vinho.winetype.winetype_id, 
@@ -35,22 +35,21 @@
     
     //DebugLog(querySQL);
     
-    sqlite3_stmt * stmt = [query prepareForSingleQuery:querySQL];
+    sqlite3 ** contactDB = [query prepareForExecution];
     
-    if(stmt != NULL){
-        if(sqlite3_step(stmt) == SQLITE_ROW){
-         
-            vinho.wine_id = sqlite3_column_int(stmt, 0);
-        }
-        
-        [query finalizeQuery:stmt];
-        
+    //insere prova obtem id
+    if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+        DebugLog(@"Query with error: %s", errMsg);
+        sqlite3_free(errMsg);
+        sqlite3_close(*contactDB);
+        return FALSE;
+    }else {        
+        vinho.wine_id = sqlite3_last_insert_rowid(*contactDB);
+        sqlite3_close(*contactDB);
         [self insertObject:vinho atIndex:index];
         return TRUE;
-
-    }else {
-        return FALSE;
     }
+
     
 }
 

@@ -221,6 +221,7 @@
            
 -(BOOL)parseWines:(NSArray *) wines
 {
+#warning TODO:corrigir
     sqlite3_stmt * stmt;
     NSString * querySQL = nil;
     BOOL wineExists = FALSE;
@@ -537,6 +538,7 @@
 
 -(BOOL)parseNewTasting:(NSDictionary *)tastingJSON forWine:(int)wine_id
 {
+#warning TODO:Corrigir
     NSString * querySQL;
     sqlite3_stmt * stmt;
     int tasting_id;
@@ -749,7 +751,7 @@
 
 -(BOOL)parseWineTypes:(NSArray *) winetypes 
 {
-    
+#warning TODO: corrigir
     sqlite3_stmt * stmt;
     NSString * querySQL = nil;
     BOOL exists = FALSE;
@@ -1032,6 +1034,7 @@ namePT:(NSString *)name_pt andWheight:(int)weight
 {
     int return_value = -1;
     
+    
     NSString *querySQL = [NSString stringWithFormat:@"SELECT classification_id FROM Classification WHERE weight = %d AND name_en = \'%@\' AND name_fr = \'%@\' AND name_pt = \'%@\';",
                 weight,
                 name_eng,
@@ -1056,19 +1059,18 @@ namePT:(NSString *)name_pt andWheight:(int)weight
                     namePT:(NSString *)name_pt andWheight:(int)weight
 {
     int return_value = -1;
+    char *errMsg;
    
-    NSString * querySQL = [NSString stringWithFormat:@"INSERT INTO Classification(weight, name_en, name_fr, name_pt) Values(%d, \'%@\', \'%@\', \'%@\'); \
-                           SELECT DISTINCT last_insert_rowid() FROM Classification;",
+    NSString * querySQL = [NSString stringWithFormat:@"INSERT INTO Classification(weight, name_en, name_fr, name_pt) Values(%d, \'%@\', \'%@\', \'%@\');",
                            weight, name_eng, name_fr, name_pt];
     
-    if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
-        if(sqlite3_step(stmt) == SQLITE_ROW){
-            return_value = sqlite3_column_int(stmt, 0);
-            sqlite3_finalize(stmt);
-        }
-    }else {
-        DebugLog(@"Query with error: %@", querySQL);
+    
+    if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+        DebugLog(@"Query with error: %s", errMsg);
+        sqlite3_free(errMsg);
         return_value = -2;
+    }else {
+        return_value = sqlite3_last_insert_rowid(*contactDB);
     }
     
     
@@ -1085,7 +1087,7 @@ namePT:(NSString *)name_pt andWheight:(int)weight
     
     char *errMsg;
     if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
-        DebugLog(@"%s", errMsg);
+        DebugLog(@"Query with error: %s", errMsg);
         sqlite3_free(errMsg);
         return FALSE;
     }
