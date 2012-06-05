@@ -284,8 +284,12 @@ SEL action; id target;
     [[self tableView] beginUpdates];
     {
         //insertion of the tasting
-        //([self.provas insertProva:prova atIndex:index withVinhoID: self.vinho.wine_id])? NSLog(@"sucess on insertion") : NSLog(@"failure to insert");
-        [self.provas insertObject:prova atIndex:index];
+#warning TODO:DIOGO tratar erro
+        if([self.provas insertProva:prova atIndex:index withVinhoID: self.vinho.wine_id])
+            NSLog(@"sucess on insertion");
+        else
+            NSLog(@"failure to insert");
+        //[self.provas insertObject:prova atIndex:index];
         
         //insertion of the row
         [[self tableView] insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationAutomatic];
