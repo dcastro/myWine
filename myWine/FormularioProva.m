@@ -30,6 +30,7 @@
     Prova * tasting = [[Prova alloc]init];
     tasting.sections = [[NSMutableArray alloc]init];
     tasting.characteristic_sections = [[NSMutableArray alloc]init];
+    tasting.comment = [[NSString alloc] init];
 
     
     //nao se pode fazer query dentro de query por causa do statement de sql senao apagava os dados
