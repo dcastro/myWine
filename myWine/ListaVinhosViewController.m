@@ -116,6 +116,8 @@ SEL action; id target;
         DetailViewController* home = segue.destinationViewController;
         home.delegate = self;
         
+        NSIndexPath* path = [[self tableView] indexPathForSelectedRow];
+        [[self tableView] deselectRowAtIndexPath:path animated:YES];
     }
 
     //switch detail views
