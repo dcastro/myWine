@@ -13,6 +13,7 @@
 @end
 
 @implementation ContactsViewController
+@synthesize contacts;
 @synthesize telephonesLabel;
 @synthesize emailsLabel;
 @synthesize helpEmail;
@@ -43,6 +44,7 @@
     [self setComercialEmail:nil];
     [self setOnlineHelpLaber:nil];
     [self setOnlineHelp:nil];
+    [self setContacts:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }

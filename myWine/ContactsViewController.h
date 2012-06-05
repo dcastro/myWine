@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ContactsViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UILabel *contacts;
 @property (strong, nonatomic) IBOutlet UILabel *telephonesLabel;
 @property (strong, nonatomic) IBOutlet UILabel *emailsLabel;
 @property (strong, nonatomic) IBOutlet UILabel *helpEmail;
