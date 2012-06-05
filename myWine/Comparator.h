@@ -7,15 +7,24 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Vinho.h"
+#import "Prova.h"
 
 @interface Comparator : NSObject
 
-+ (BOOL) register:(Vinho*) vinho;
+@property (strong, nonatomic) Prova* prova1;
+@property (strong, nonatomic) Prova* prova2;
+@property (nonatomic, getter = isComparing) BOOL comparing;
 
-+ (void) unregister:(Vinho*) vinho;
++ (Comparator*) instance;
 
-+ (BOOL) isRegistered:(Vinho*) vinho;
++ (BOOL) isComparing;
++ (void) setComparing:(BOOL) comparing;
+
++ (BOOL) register:(Prova*) prova;
+
++ (void) unregister:(Prova*) prova;
+
++ (BOOL) isRegistered:(Prova*) prova;
 
 + (void) reset;
 

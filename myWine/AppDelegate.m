@@ -17,6 +17,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    //initializa comparator
+    [Comparator instance];
+    
     // Override point for customization after application launch.
     
     Database * db = [Database instance];

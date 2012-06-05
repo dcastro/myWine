@@ -8,17 +8,46 @@
 
 #import "Comparator.h"
 
-static Vinho* vinho1 = nil;
-static Vinho* vinho2 = nil;
+
+static Comparator* comparator = nil;
 
 @implementation Comparator
 
-+ (BOOL) register:(Vinho*) vinho {
-    if (vinho1 == nil) {
-        vinho1 = vinho;
+@synthesize prova1, prova2;
+@synthesize comparing;
+
++ (Comparator*) instance {
+    @synchronized(self) {
+        if (comparator == nil)
+            comparator = [[self alloc] init];
     }
-    else if (vinho2 == nil) {
-        vinho2 = vinho;
+    return comparator;
+    
+}
+
+- (id)init {
+    if (self = [super init]) {
+        self.prova1 = nil;
+        self.prova2 = nil;
+        self.comparing = false;
+    }
+    return self;
+}
+
++ (BOOL) isComparing {
+    return comparator.isComparing;
+}
+
++ (void) setComparing:(BOOL) comparing {
+    [comparator setComparing:comparing];
+}
+
++ (BOOL) register:(Prova*) prova {
+    if (comparator.prova1 == nil) {
+        comparator.prova1 = prova;
+    }
+    else if (comparator.prova2 == nil) {
+        comparator.prova2 = prova;
     }
     else
         return false;
@@ -27,22 +56,22 @@ static Vinho* vinho2 = nil;
     
 }
 
-+ (void) unregister:(Vinho*) vinho {
-    if (vinho1 == vinho)
-        vinho1 = nil;
-    else if (vinho2 == vinho)
-        vinho2 = nil;
++ (void) unregister:(Prova*) prova {
+    if (comparator.prova1 == prova)
+        comparator.prova1 = nil;
+    else if (comparator.prova2 == prova)
+        comparator.prova2 = nil;
 }
 
-+ (BOOL) isRegistered:(Vinho*) vinho {
-    if (vinho1 == vinho || vinho2 == vinho)
++ (BOOL) isRegistered:(Prova*) prova {
+    if (comparator.prova1 == prova || comparator.prova2 == prova)
         return true;
     return false;
 }
 
 + (void) reset {
-    vinho1 = nil;
-    vinho2 = nil;
+    comparator.prova1 = nil;
+    comparator.prova2 = nil;
 }
 
 @end

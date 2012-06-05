@@ -89,8 +89,8 @@
                           duration:0.3
                            options:options  
                         animations:^{
-                            [self.classificationSlider setMaximumTrackTintColor:[UIColor grayColor]];
-                            [self.classificationSlider setMinimumTrackTintColor:[UIColor myWineColorDark]];
+                            [self.classificationSlider setMaximumTrackTintColor:[UIColor whiteColor]];
+                            [self.classificationSlider setMinimumTrackTintColor:[UIColor myWineColor]];
                         }  
                         completion:NULL];  
         
@@ -110,8 +110,8 @@
                            options:options  
                         animations:^{
                             
-                            [self.classificationSlider setMaximumTrackTintColor:[UIColor whiteColor]];
-                            [self.classificationSlider setMinimumTrackTintColor:[UIColor myWineColor]];
+                            [self.classificationSlider setMaximumTrackTintColor:[UIColor grayColor]];
+                            [self.classificationSlider setMinimumTrackTintColor:[UIColor myWineColorDark]];
                             
                         }  
                         completion:NULL];  

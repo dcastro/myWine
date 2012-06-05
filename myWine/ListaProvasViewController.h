@@ -14,7 +14,7 @@
 #import "Language.h"
 #import "FormularioProva.h"
 #import "CheckboxButton.h"
-
+#import "Comparator.h"
 @interface ListaProvasViewController : UITableViewController <NovaProvaViewControllerDelegate>
 {
     UISplitViewController *splitViewController;
@@ -36,8 +36,6 @@
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *compareButton;
 
 @property (nonatomic) BOOL needsEditing;
-
-@property (nonatomic, getter = isComparing) BOOL comparing;
 
 - (IBAction)addTasting:(id)sender;
 - (IBAction)toggleComparison:(id)sender;

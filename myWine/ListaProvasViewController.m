@@ -19,7 +19,6 @@
 @synthesize vinho = _vinho;
 @synthesize currentPopover;
 @synthesize needsEditing;
-@synthesize comparing = _comparing;
 
 SEL action; id target;
 
@@ -198,8 +197,14 @@ SEL action; id target;
     
     //initialize the checkbox button
     CheckboxButton* checkbox = [CheckboxButton createWithTarget:self andPosition:cell.frame.size.width - 50];
+
+    //hides the checkbox unless comparation mode is on.
+    [checkbox setHidden: ! [Comparator isComparing]];
     
-    [checkbox setHidden: !self.isComparing];
+    if([Comparator isComparing] && [Comparator isRegistered:object])
+        [checkbox setSelected:YES];
+
+    
     [cell addSubview:checkbox];
 
     return cell;
@@ -284,9 +289,10 @@ SEL action; id target;
 }
 
 - (IBAction)toggleComparison:(id)sender {
-    [self setComparing: !self.isComparing];
+    [Comparator setComparing: ![Comparator isComparing]];
     
-    if([self isComparing]) {
+    
+    if([Comparator isComparing]) {
         for(int i = 0; i < [self.provas count]; i++) {
             UITableViewCell* cell = (UITableViewCell*) [[self tableView] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
             CheckboxButton* checkbox = (CheckboxButton*) [cell viewWithTag:1];
