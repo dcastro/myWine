@@ -56,8 +56,7 @@
             Prova *tasting = [[Prova alloc] init];
             
             tasting.tasting_id = sqlite3_column_int(stmt, 0);
-            tasting.tasting_date = sqlite3_column_int(stmt, 1);   
-            
+            tasting.tasting_date = sqlite3_column_double(stmt, 1);   
             const unsigned char * comment = sqlite3_column_text(stmt, 2);
             if(comment != NULL){
                 tasting.comment = [NSString stringWithUTF8String:(const char *)comment];

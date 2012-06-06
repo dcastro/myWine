@@ -11,7 +11,7 @@
 
 @interface Prova : NSObject
 
-@property (nonatomic, assign)  int tasting_date;
+@property (nonatomic, assign) double tasting_date;
 @property (nonatomic, assign) int tasting_id;
 @property (nonatomic, assign) double latitude;
 @property (nonatomic, assign) double longitude;

@@ -302,9 +302,9 @@
             
             //se o vinho existe verifica se a prova existe
             if(wineExists){
-                querySQL = [NSString stringWithFormat:@"SELECT tasting_id FROM tasting WHERE wine_id = %d AND tasting_date = %d", 
+                querySQL = [NSString stringWithFormat:@"SELECT tasting_id FROM tasting WHERE wine_id = %d AND tasting_date = %f", 
                             wine_id, 
-                            [[tastingJSON objectForKey:@"tasting_date"]intValue]];
+                            [[tastingJSON objectForKey:@"tasting_date"]doubleValue]];
                 
                 if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
                     if(sqlite3_step(stmt) == SQLITE_ROW){
@@ -547,7 +547,7 @@
                 VALUES (%d, %d, \'%@\', %f, %f); \
                 SELECT DISTINCT last_insert_rowid() FROM Tasting;",
                 wine_id, 
-                [[tastingJSON objectForKey:@"tasting_date"]intValue],
+                [[tastingJSON objectForKey:@"tasting_date"]doubleValue],
                 [tastingJSON objectForKey:@"comment"],
                 [[tastingJSON objectForKey:@"latitude"]doubleValue],
                 [[tastingJSON objectForKey:@"longitude"]doubleValue],

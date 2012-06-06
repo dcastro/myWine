@@ -295,7 +295,7 @@
     //conversion to unix representation
     NSTimeInterval time = [date timeIntervalSince1970];
     
-    tasting.tasting_date = (int) time;
+    tasting.tasting_date = time;
     
     return tasting;
     

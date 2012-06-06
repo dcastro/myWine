@@ -24,15 +24,13 @@
 
     
     querySQL = [NSString stringWithFormat:@"INSERT INTO Tasting (wine_id, tasting_date, comment, latitude, longitude, state) \
-                VALUES (%d, %d, \'%@\', %f, %f, %d);",
+                VALUES (%d, %f, \'%@\', %f, %f, %d);",
                 wine_id,
                 prova.tasting_date,
                 prova.comment,
                 prova.latitude,
                 prova.longitude,
                 1];
-    
-    
     
     //insere prova obtem id
     if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
