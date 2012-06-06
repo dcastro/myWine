@@ -57,6 +57,7 @@
     self.progress_label.Text=[NSString stringWithFormat:[lan translate:@"Synchronization step"], 0,3];
     self.progress_label.font = [UIFont fontWithName:@"DroidSans" size:SMALL_FONT];
 
+    [self.cancelButton setTitle:[lan translate:@"Cancel"] forState:UIControlStateNormal];
     self.cancelButton.titleLabel.font = [UIFont fontWithName:@"DroidSans-Bold" size:SMALL_FONT];
     
     [progress_bar setProgress:0.0];

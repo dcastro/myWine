@@ -46,7 +46,6 @@
 		A979EDAB15668FCB00E94A34 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = A979EDAA15668FCB00E94A34 /* Utils.m */; };
 		A97D9D75151A3230007CF723 /* 53-house.png in Resources */ = {isa = PBXBuildFile; fileRef = A97D9D74151A3230007CF723 /* 53-house.png */; };
 		A97D9D78151A397B007CF723 /* 86-camera.png in Resources */ = {isa = PBXBuildFile; fileRef = A97D9D77151A397B007CF723 /* 86-camera.png */; };
-		A9A69B99151FC41000FC9073 /* FotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A69B98151FC41000FC9073 /* FotoViewController.m */; };
 		A9A69B9C151FCDE200FC9073 /* SyncViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A69B9B151FCDE200FC9073 /* SyncViewController.m */; };
 		A9A69B9F151FCEC500FC9073 /* NovaProvaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A69B9E151FCEC500FC9073 /* NovaProvaViewController.m */; };
 		A9B04E5A1519DE3B00DC32CF /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A9B04E591519DE3B00DC32CF /* Settings.bundle */; };
@@ -86,6 +85,8 @@
 		D37D177B155DC249005E502A /* Sincronizacao.m in Sources */ = {isa = PBXBuildFile; fileRef = D37D177A155DC249005E502A /* Sincronizacao.m */; };
 		D37D40D3154D9BDB00A11E6F /* Regiao.m in Sources */ = {isa = PBXBuildFile; fileRef = D37D40D2154D9BDB00A11E6F /* Regiao.m */; };
 		D37D40D6154D9E1500A11E6F /* TipoVinho.m in Sources */ = {isa = PBXBuildFile; fileRef = D37D40D5154D9E1400A11E6F /* TipoVinho.m */; };
+		D90572EE157F9F1300CB6726 /* FilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D90572ED157F9F1300CB6726 /* FilterViewController.m */; };
+		D90572F2157FA0CA00CB6726 /* FilterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D90572F1157FA0CA00CB6726 /* FilterCell.m */; };
 		DA019F531570400E00CC589A /* SectionItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA019F521570400E00CC589A /* SectionItemCell.xib */; };
 		DA019F56157046A200CC589A /* CriterionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA019F55157046A200CC589A /* CriterionCell.m */; };
 		DA06B867153FA0C800D03DD9 /* NSMutableArray+VinhosMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = DA06B866153FA0C800D03DD9 /* NSMutableArray+VinhosMutableArray.m */; };
@@ -168,8 +169,6 @@
 		A979EDAA15668FCB00E94A34 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = SOURCE_ROOT; };
 		A97D9D74151A3230007CF723 /* 53-house.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "53-house.png"; sourceTree = "<group>"; };
 		A97D9D77151A397B007CF723 /* 86-camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "86-camera.png"; sourceTree = "<group>"; };
-		A9A69B97151FC41000FC9073 /* FotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FotoViewController.h; sourceTree = "<group>"; };
-		A9A69B98151FC41000FC9073 /* FotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FotoViewController.m; sourceTree = "<group>"; };
 		A9A69B9A151FCDE100FC9073 /* SyncViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncViewController.h; sourceTree = "<group>"; };
 		A9A69B9B151FCDE200FC9073 /* SyncViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncViewController.m; sourceTree = "<group>"; };
 		A9A69B9D151FCEC500FC9073 /* NovaProvaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NovaProvaViewController.h; sourceTree = "<group>"; };
@@ -236,6 +235,10 @@
 		D37D40D2154D9BDB00A11E6F /* Regiao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Regiao.m; sourceTree = "<group>"; };
 		D37D40D4154D9E1400A11E6F /* TipoVinho.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipoVinho.h; sourceTree = "<group>"; };
 		D37D40D5154D9E1400A11E6F /* TipoVinho.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipoVinho.m; sourceTree = "<group>"; };
+		D90572EC157F9F1300CB6726 /* FilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterViewController.h; sourceTree = "<group>"; };
+		D90572ED157F9F1300CB6726 /* FilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterViewController.m; sourceTree = "<group>"; };
+		D90572F0157FA0CA00CB6726 /* FilterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterCell.h; sourceTree = "<group>"; };
+		D90572F1157FA0CA00CB6726 /* FilterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterCell.m; sourceTree = "<group>"; };
 		DA019F521570400E00CC589A /* SectionItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SectionItemCell.xib; sourceTree = "<group>"; };
 		DA019F54157046A200CC589A /* CriterionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CriterionCell.h; sourceTree = "<group>"; };
 		DA019F55157046A200CC589A /* CriterionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CriterionCell.m; sourceTree = "<group>"; };
@@ -344,6 +347,8 @@
 		A9C28881151FBADE00C2F58D /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D90572F0157FA0CA00CB6726 /* FilterCell.h */,
+				D90572F1157FA0CA00CB6726 /* FilterCell.m */,
 				DA92BAE1157E7EDE0028AAC4 /* ProvaCell.h */,
 				DA92BAE2157E7EDE0028AAC4 /* ProvaCell.m */,
 				D3500EF7154C45D800FB85E3 /* Caracteristica.h */,
@@ -498,8 +503,13 @@
 		A9CA2B4E151E496500A29DE3 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+
 				841B16FC157FACAA00BB4A97 /* OrderViewController.h */,
 				841B16FD157FACAA00BB4A97 /* OrderViewController.m */,
+
+				D90572EC157F9F1300CB6726 /* FilterViewController.h */,
+				D90572ED157F9F1300CB6726 /* FilterViewController.m */,
+
 				A9F0B4BD152477C9003C931B /* ComparadorViewController.h */,
 				A9F0B4BE152477C9003C931B /* ComparadorViewController.m */,
 				65B824F3157935FE00527D6F /* ContactsViewController.h */,
@@ -510,8 +520,6 @@
 				A9C5A0131517A78600A3F8C5 /* DetailViewController.m */,
 				A9F0B4B91524731F003C931B /* FiltrosViewController.h */,
 				A9F0B4BA1524731F003C931B /* FiltrosViewController.m */,
-				A9A69B97151FC41000FC9073 /* FotoViewController.h */,
-				A9A69B98151FC41000FC9073 /* FotoViewController.m */,
 				65B824EF1579357500527D6F /* HelpViewController.h */,
 				65B824F01579357500527D6F /* HelpViewController.m */,
 				DADADA5315541E04008A9FBB /* ListaPaisesViewController.h */,
@@ -745,7 +753,6 @@
 				A9BE2C161518C330002E4E2A /* Prova.m in Sources */,
 				A9BFB2C6151D468500588B59 /* NovoVinhoViewController.m in Sources */,
 				A9C28884151FBB4400C2F58D /* VinhoViewController.m in Sources */,
-				A9A69B99151FC41000FC9073 /* FotoViewController.m in Sources */,
 				A9A69B9C151FCDE200FC9073 /* SyncViewController.m in Sources */,
 				A9A69B9F151FCEC500FC9073 /* NovaProvaViewController.m in Sources */,
 				A9F0B4BB1524731F003C931B /* FiltrosViewController.m in Sources */,
@@ -784,7 +791,11 @@
 				DA5AEEAE157C21E700246B12 /* CheckboxButton.m in Sources */,
 				DADA15D8157D44F70084B63F /* Comparator.m in Sources */,
 				DA92BAE3157E7EDE0028AAC4 /* ProvaCell.m in Sources */,
+
 				841B16FE157FACAA00BB4A97 /* OrderViewController.m in Sources */,
+
+				D90572EE157F9F1300CB6726 /* FilterViewController.m in Sources */,
+				D90572F2157FA0CA00CB6726 /* FilterCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
