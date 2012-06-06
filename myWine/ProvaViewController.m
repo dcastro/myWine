@@ -257,7 +257,7 @@
     
     if(cell == nil) {
         //cell = [[CriterionCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
-        NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"CriterionCell" owner:nil options:nil];
+        NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SectionItemCell" owner:nil options:nil];
         
         for(id currentObject in topLevelObjects)
         {

@@ -85,7 +85,7 @@
 		D37D177B155DC249005E502A /* Sincronizacao.m in Sources */ = {isa = PBXBuildFile; fileRef = D37D177A155DC249005E502A /* Sincronizacao.m */; };
 		D37D40D3154D9BDB00A11E6F /* Regiao.m in Sources */ = {isa = PBXBuildFile; fileRef = D37D40D2154D9BDB00A11E6F /* Regiao.m */; };
 		D37D40D6154D9E1500A11E6F /* TipoVinho.m in Sources */ = {isa = PBXBuildFile; fileRef = D37D40D5154D9E1400A11E6F /* TipoVinho.m */; };
-		DA019F531570400E00CC589A /* CriterionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA019F521570400E00CC589A /* CriterionCell.xib */; };
+		DA019F531570400E00CC589A /* SectionItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA019F521570400E00CC589A /* SectionItemCell.xib */; };
 		DA019F56157046A200CC589A /* CriterionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA019F55157046A200CC589A /* CriterionCell.m */; };
 		DA06B867153FA0C800D03DD9 /* NSMutableArray+VinhosMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = DA06B866153FA0C800D03DD9 /* NSMutableArray+VinhosMutableArray.m */; };
 		DA433EA2157C102500407B88 /* Checkbox.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA433EA1157C102500407B88 /* Checkbox.xib */; };
@@ -111,7 +111,6 @@
 		DADE7ADA152E136400F0F680 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DADE7AD9152E136400F0F680 /* MainStoryboard.storyboard */; };
 		DADE7AF1152E170300F0F680 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DADE7AEF152E170300F0F680 /* Localizable.strings */; };
 		DAE595481578133C0039D894 /* CharacteristicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE595471578133C0039D894 /* CharacteristicCell.m */; };
-		DAE5954D157814B10039D894 /* CharacteristicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE5954C157814B10039D894 /* CharacteristicCell.xib */; };
 		DAFB6903152D138800DC74CB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFB6902152D138800DC74CB /* LoginViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -234,7 +233,7 @@
 		D37D40D2154D9BDB00A11E6F /* Regiao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Regiao.m; sourceTree = "<group>"; };
 		D37D40D4154D9E1400A11E6F /* TipoVinho.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipoVinho.h; sourceTree = "<group>"; };
 		D37D40D5154D9E1400A11E6F /* TipoVinho.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipoVinho.m; sourceTree = "<group>"; };
-		DA019F521570400E00CC589A /* CriterionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CriterionCell.xib; sourceTree = "<group>"; };
+		DA019F521570400E00CC589A /* SectionItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SectionItemCell.xib; sourceTree = "<group>"; };
 		DA019F54157046A200CC589A /* CriterionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CriterionCell.h; sourceTree = "<group>"; };
 		DA019F55157046A200CC589A /* CriterionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CriterionCell.m; sourceTree = "<group>"; };
 		DA06B865153FA0C800D03DD9 /* NSMutableArray+VinhosMutableArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+VinhosMutableArray.h"; sourceTree = "<group>"; };
@@ -278,7 +277,6 @@
 		DADE7AF4152E175B00F0F680 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = myWine/pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DAE595461578133C0039D894 /* CharacteristicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacteristicCell.h; sourceTree = "<group>"; };
 		DAE595471578133C0039D894 /* CharacteristicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacteristicCell.m; sourceTree = "<group>"; };
-		DAE5954C157814B10039D894 /* CharacteristicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CharacteristicCell.xib; sourceTree = "<group>"; };
 		DAFB6901152D138800DC74CB /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		DAFB6902152D138800DC74CB /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -553,9 +551,8 @@
 		DA019F5015703FFB00CC589A /* Interfaces */ = {
 			isa = PBXGroup;
 			children = (
-				DAE5954C157814B10039D894 /* CharacteristicCell.xib */,
 				DA433EA1157C102500407B88 /* Checkbox.xib */,
-				DA019F521570400E00CC589A /* CriterionCell.xib */,
+				DA019F521570400E00CC589A /* SectionItemCell.xib */,
 			);
 			name = Interfaces;
 			sourceTree = "<group>";
@@ -680,7 +677,7 @@
 				D3231DA6154814FF00F09BAC /* DroidSerif-Regular.ttf in Resources */,
 				DADE3BCA15480E2000465551 /* cell_bg_gradient.png in Resources */,
 				65826F501566629300C3D2AD /* logo.png in Resources */,
-				DA019F531570400E00CC589A /* CriterionCell.xib in Resources */,
+				DA019F531570400E00CC589A /* SectionItemCell.xib in Resources */,
 				65EFEBB71573C9770087F155 /* material mywine-03.png in Resources */,
 				65EFEBB81573C9770087F155 /* material mywine-04.png in Resources */,
 				65EFEBB91573C9770087F155 /* material mywine-05.png in Resources */,
@@ -697,7 +694,6 @@
 				65EFEBC41573C9770087F155 /* material mywine-16.png in Resources */,
 				65EFEBC51573C9770087F155 /* material mywine-17.png in Resources */,
 				DA91312915767E7300D37BA0 /* slider_thumb.png in Resources */,
-				DAE5954D157814B10039D894 /* CharacteristicCell.xib in Resources */,
 				DA433EA2157C102500407B88 /* Checkbox.xib in Resources */,
 				DA433EA7157C107300407B88 /* checkbox-checked.png in Resources */,
 				DA433EA8157C107300407B88 /* checkbox-pressed.png in Resources */,
