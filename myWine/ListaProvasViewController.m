@@ -73,6 +73,7 @@ SEL action; id target;
     Language* lan = [Language instance];
     [self.filterButton setTitle: [lan translate:@"Filter"]];
     [self.compareButton setTitle: [lan translate:@"Compare"]];
+    self.title = [lan translate:@"Tastes List Title"];
 }
 
 
@@ -204,9 +205,9 @@ SEL action; id target;
     ProvaCell *cell = (ProvaCell*) [tableView dequeueReusableCellWithIdentifier:@"Prova"];
     
     Prova *object = [_provas objectAtIndex:indexPath.row];
-    cell.textLabel.text = object.shortDate;
-    cell.detailTextLabel.text = @""; //[NSString stringWithFormat:@"%d", object.tasting_id];
-    
+    cell.textLabel.text = [object.shortDate substringToIndex:10];
+    cell.detailTextLabel.text = [object.shortDate substringFromIndex:11]; //[NSString stringWithFormat:@"%d", object.tasting_id];
+    cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cell_bg_gradient.png"]];
     //initialize the checkbox button
     CheckboxButton* checkbox = [CheckboxButton createWithTarget:self andPosition:cell.frame.size.width - 50];
 
