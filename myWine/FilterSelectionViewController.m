@@ -1,19 +1,21 @@
 //
-//  FilterViewController.m
+//  FilterSelectionViewController.m
 //  myWine
 //
 //  Created by Diogo on 6/6/12.
 //  Copyright (c) 2012 FEUP. All rights reserved.
 //
 
-#import "FilterViewController.h"
 #import "FilterSelectionViewController.h"
 
-@interface FilterViewController ()
+@interface FilterSelectionViewController ()
 
 @end
 
-@implementation FilterViewController
+@implementation FilterSelectionViewController
+
+@synthesize filterType;
+@synthesize delegate;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -33,6 +35,23 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    switch (filterType) {
+        case FilterTypeYear:
+            
+            break;
+            
+        case FilterTypeCountry:
+            
+            break;
+            
+        case FilterTypeWineType:
+            
+            break;
+            
+        case FilterTypeRegion:
+            break;
+    }
 }
 
 - (void)viewDidUnload
@@ -47,38 +66,8 @@
 	return YES;
 }
 
--(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"filterToSelection"]) {
-        
-        FilterSelectionViewController* filterSelectionViewController = (FilterSelectionViewController*) [segue destinationViewController];
-        
-        FilterType filterType = [[[self tableView] indexPathForSelectedRow] row];
-        filterSelectionViewController.filterType = filterType;
-        filterSelectionViewController.delegate = self;
-        
-        switch ([[[self tableView] indexPathForSelectedRow] row]) {
-            case FilterTypeYear:
-                
-                break;
-                
-            case FilterTypeCountry:
-                
-                break;
-                
-            case FilterTypeWineType:
-                
-                break;
-                
-            case FilterTypeRegion:
-                break;
-        }
-        
-    }
-}
-
 #pragma mark - Table view data source
 
-/*
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
 #warning Potentially incomplete method implementation.
@@ -102,7 +91,6 @@
     
     return cell;
 }
-*/
 
 /*
 // Override to support conditional editing of the table view.
@@ -154,13 +142,6 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
-    
-    [self performSegueWithIdentifier:@"filterToSelection" sender:self];
-}
-
-#pragma mark - Filter Selection Delegate Method
-- (void) filterSelectionViewControllerDidSelect:(id) object {
-    
 }
 
 @end

@@ -2092,7 +2092,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Tipo de vinho" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iau-6f-zTl">
-                                                    <rect key="frame" x="-1" y="15" width="78" height="15"/>
+                                                    <rect key="frame" x="10" y="15" width="67" height="15"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                     <color key="textColor" red="0.32156862749999998" green="0.40000000000000002" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -2150,11 +2150,11 @@
             </objects>
             <point key="canvasLocation" x="-2477" y="-4433"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Filter Selection View Controller-->
         <scene sceneID="HsE-m5-NeD">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FTw-nY-4kg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tableViewController id="OZh-ih-CIa" sceneMemberID="viewController">
+                <tableViewController id="OZh-ih-CIa" customClass="FilterSelectionViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="MV6-5u-2Gt">
                         <rect key="frame" x="0.0" y="64" width="703" height="704"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2629,11 +2629,11 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m44-iz-ebz" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Ktp-M3-EvQ" customClass="FotoViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Gpt-8j-jwy">
-                        <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
+                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" barStyle="blackOpaque" id="Loc-QO-fjz">
-                                <rect key="frame" x="0.0" y="581" width="540" height="44"/>
+                                <rect key="frame" x="0.0" y="581" width="768" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Nova Foto" id="VZ1-us-xzO">
@@ -2658,7 +2658,6 @@
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <connections>
                         <outlet property="Cancel" destination="B91-xt-NKW" id="Twr-i7-1mZ"/>
@@ -2979,6 +2978,9 @@
         <class className="FilterCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FilterCell.h"/>
         </class>
+        <class className="FilterSelectionViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FilterSelectionViewController.h"/>
+        </class>
         <class className="FilterViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FilterViewController.h"/>
         </class>
@@ -3185,6 +3187,5 @@
         <segue reference="Lgh-gb-oiR"/>
         <segue reference="Obm-ls-lkJ"/>
         <segue reference="Kqj-0D-4Kz"/>
-
     </inferredMetricsTieBreakers>
 </document>

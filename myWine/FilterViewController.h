@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FilterViewController : UITableViewController
+typedef enum {
+    FilterTypeYear,
+    FilterTypeCountry,
+    FilterTypeWineType,
+    FilterTypeRegion
+} FilterType;
+
+@class FilterSelectionViewController;
+@protocol FilterSelectionViewControllerDelegate;
+
+@interface FilterViewController : UITableViewController <FilterSelectionViewControllerDelegate>
 
 @end

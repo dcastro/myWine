@@ -20,4 +20,9 @@
 
 -(void) orderVinhosBy:(int) order;
 
+- (NSMutableArray*) getYears;
+- (NSMutableArray*) getCountries;
+- (NSMutableArray*) getWineTypes;
+- (NSMutableArray*) getRegions;
+
 @end

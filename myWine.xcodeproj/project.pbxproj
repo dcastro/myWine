@@ -86,6 +86,7 @@
 		D37D40D6154D9E1500A11E6F /* TipoVinho.m in Sources */ = {isa = PBXBuildFile; fileRef = D37D40D5154D9E1400A11E6F /* TipoVinho.m */; };
 		D90572EE157F9F1300CB6726 /* FilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D90572ED157F9F1300CB6726 /* FilterViewController.m */; };
 		D90572F2157FA0CA00CB6726 /* FilterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D90572F1157FA0CA00CB6726 /* FilterCell.m */; };
+		D9057301157FAC0200CB6726 /* FilterSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9057300157FAC0200CB6726 /* FilterSelectionViewController.m */; };
 		DA019F531570400E00CC589A /* SectionItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA019F521570400E00CC589A /* SectionItemCell.xib */; };
 		DA019F56157046A200CC589A /* CriterionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA019F55157046A200CC589A /* CriterionCell.m */; };
 		DA06B867153FA0C800D03DD9 /* NSMutableArray+VinhosMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = DA06B866153FA0C800D03DD9 /* NSMutableArray+VinhosMutableArray.m */; };
@@ -236,6 +237,8 @@
 		D90572ED157F9F1300CB6726 /* FilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterViewController.m; sourceTree = "<group>"; };
 		D90572F0157FA0CA00CB6726 /* FilterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterCell.h; sourceTree = "<group>"; };
 		D90572F1157FA0CA00CB6726 /* FilterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterCell.m; sourceTree = "<group>"; };
+		D90572FF157FAC0200CB6726 /* FilterSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterSelectionViewController.h; sourceTree = "<group>"; };
+		D9057300157FAC0200CB6726 /* FilterSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterSelectionViewController.m; sourceTree = "<group>"; };
 		DA019F521570400E00CC589A /* SectionItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SectionItemCell.xib; sourceTree = "<group>"; };
 		DA019F54157046A200CC589A /* CriterionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CriterionCell.h; sourceTree = "<group>"; };
 		DA019F55157046A200CC589A /* CriterionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CriterionCell.m; sourceTree = "<group>"; };
@@ -502,6 +505,8 @@
 			children = (
 				D90572EC157F9F1300CB6726 /* FilterViewController.h */,
 				D90572ED157F9F1300CB6726 /* FilterViewController.m */,
+				D90572FF157FAC0200CB6726 /* FilterSelectionViewController.h */,
+				D9057300157FAC0200CB6726 /* FilterSelectionViewController.m */,
 				A9F0B4BD152477C9003C931B /* ComparadorViewController.h */,
 				A9F0B4BE152477C9003C931B /* ComparadorViewController.m */,
 				65B824F3157935FE00527D6F /* ContactsViewController.h */,
@@ -785,6 +790,7 @@
 				DA92BAE3157E7EDE0028AAC4 /* ProvaCell.m in Sources */,
 				D90572EE157F9F1300CB6726 /* FilterViewController.m in Sources */,
 				D90572F2157FA0CA00CB6726 /* FilterCell.m in Sources */,
+				D9057301157FAC0200CB6726 /* FilterSelectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

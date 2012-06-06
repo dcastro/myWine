@@ -126,4 +126,23 @@
     }
 }
 
+- (NSArray*) getYears {
+    NSMutableArray* array;
+    for(Vinho* vinho in self) {
+        
+    }
+}
+
+- (NSArray*) getCountries {
+    
+}
+
+- (NSArray*) getWineTypes {
+    
+}
+
+- (NSArray*) getRegions {
+    
+}
+
 @end
