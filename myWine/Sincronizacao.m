@@ -24,11 +24,34 @@
 
 -(NSString *)buildRequest:(NSError **) error
 {
+    contactDB = [query prepareForExecution];
     
     NSMutableDictionary * requestData = [NSMutableDictionary dictionaryWithObjectsAndKeys:user.username,@"username" ,user.password, @"password" , user.synced_at, @"synced_at" , nil];
     
-
     
+    
+    NSMutableArray * new = [self buildNew];
+    if (new) {
+        [requestData setObject:new forKey:@"new"];
+    }else {
+        sqlite3_close(*contactDB);
+        return nil;
+    }
+    
+    
+    
+    
+    //deleted
+    NSMutableDictionary * deleted = [self buildDeleted];
+    if (deleted) {
+        [requestData setObject:deleted forKey:@"deleted"];
+    }else {
+        sqlite3_close(*contactDB);
+        return nil;
+    }
+    
+    
+    sqlite3_close(*contactDB);
     
     //conversao para string
     NSData * data = [NSJSONSerialization dataWithJSONObject:requestData options:NSJSONWritingPrettyPrinted error:error];
@@ -40,6 +63,68 @@
     }
 }
 
+
+
+-(NSMutableArray *) buildNew
+{
+    
+}
+
+
+
+-(NSMutableDictionary *)buildDeleted
+{
+    NSString * querySQL;
+    sqlite3_stmt * stmt;
+    NSMutableDictionary* deleted = [[NSMutableDictionary alloc] init];
+    
+    
+    //wines
+    NSMutableArray * wines = [[NSMutableArray alloc] init];
+    
+    querySQL = [NSString stringWithFormat:@"SELECT wine_server_id FROM Wine WHERE user = \'%@\' AND state = 3;", user.username];
+    
+    
+    if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
+        while(sqlite3_step(stmt) == SQLITE_ROW){
+            
+            [wines addObject:[NSNumber numberWithInt:sqlite3_column_int(stmt, 0)]];
+            
+        }
+        sqlite3_finalize(stmt);
+    }else{
+        DebugLog(@"Query with error: %@", querySQL);
+        return nil;
+    }
+    
+    [deleted setObject:wines forKey:@"wines"];
+    
+    
+    //tastings
+    NSMutableArray * tasting = [[NSMutableArray alloc] init];
+    
+    querySQL = [NSString stringWithFormat:@"SELECT tasting_date FROM Tasting t, Wine w WHERE w.user = \'%@\' AND w.wine_id = t.wine_id AND t.state = 3;", user.username];
+    
+    
+    if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
+        while(sqlite3_step(stmt) == SQLITE_ROW){
+            
+            [tasting addObject:[NSNumber numberWithInt:sqlite3_column_int(stmt, 0)]];
+            
+        }
+        sqlite3_finalize(stmt);
+    }else{
+        DebugLog(@"Query with error: %@", querySQL);
+        return nil;
+    }
+    
+    [deleted setObject:wines forKey:@"tastings"];
+    
+    
+    
+    return deleted;
+    
+}
 
 
 
