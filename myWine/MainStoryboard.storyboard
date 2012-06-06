@@ -2176,7 +2176,13 @@
                             <outlet property="delegate" destination="OZh-ih-CIa" id="7bO-Qq-LBR"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="ZKZ-ag-JuD"/>
+                    <navigationItem key="navigationItem" id="ZKZ-ag-JuD">
+                        <barButtonItem key="rightBarButtonItem" title="Clear All" id="lSq-5H-Hph">
+                            <connections>
+                                <action selector="clearAll:" destination="OZh-ih-CIa" id="whM-dQ-Nkg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="-1612" y="-4834"/>
@@ -2980,6 +2986,9 @@
         </class>
         <class className="FilterSelectionViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FilterSelectionViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="clearAll:"/>
+            </relationships>
         </class>
         <class className="FilterViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FilterViewController.h"/>

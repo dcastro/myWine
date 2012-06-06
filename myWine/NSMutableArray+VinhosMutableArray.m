@@ -126,22 +126,28 @@
     }
 }
 
-- (NSArray*) getYears {
-    NSMutableArray* array;
+- (NSMutableArray*) getYears {
+
+}
+
+- (NSMutableArray*) getCountries {
+
+    NSMutableArray* array = [[NSMutableArray alloc] init];
+
     for(Vinho* vinho in self) {
-        
+        if( ! [array containsObject: vinho.region.country_name]) {
+            [array addObject:vinho.region.country_name];
+        }
     }
+    
+    return array;
 }
 
-- (NSArray*) getCountries {
+- (NSMutableArray*) getWineTypes {
     
 }
 
-- (NSArray*) getWineTypes {
-    
-}
-
-- (NSArray*) getRegions {
+- (NSMutableArray*) getRegions {
     
 }
 

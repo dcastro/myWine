@@ -16,6 +16,7 @@
 
 @synthesize filterType;
 @synthesize delegate;
+@synthesize objects = _objects;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -70,16 +71,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [[self objects] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -87,7 +86,14 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
+    if(cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+    }
+    
     // Configure the cell...
+    id object = [self.objects objectAtIndex:indexPath.row];
+    
+    [cell.textLabel setText: [object description]];
     
     return cell;
 }
@@ -135,6 +141,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    id object = [[self objects] objectAtIndex:indexPath.row];
+    
+    [self.delegate filterSelectionViewControllerDidSelect:object withFilter:filterType];
+    
+    [self.navigationController popViewControllerAnimated:YES];
     // Navigation logic may go here. Create and push another view controller.
     /*
      <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
@@ -144,4 +156,6 @@
      */
 }
 
+- (IBAction)clearAll:(id)sender {
+}
 @end

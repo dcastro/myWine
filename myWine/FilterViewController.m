@@ -8,6 +8,8 @@
 
 #import "FilterViewController.h"
 #import "FilterSelectionViewController.h"
+#import "User.h"
+#import "NSMutableArray+VinhosMutableArray.h"
 
 @interface FilterViewController ()
 
@@ -56,13 +58,15 @@
         filterSelectionViewController.filterType = filterType;
         filterSelectionViewController.delegate = self;
         
+        NSMutableArray* vinhos = [[User instance] vinhos];
+        
         switch ([[[self tableView] indexPathForSelectedRow] row]) {
             case FilterTypeYear:
                 
                 break;
                 
             case FilterTypeCountry:
-                
+                filterSelectionViewController.objects = [vinhos getCountries];
                 break;
                 
             case FilterTypeWineType:
@@ -159,8 +163,9 @@
 }
 
 #pragma mark - Filter Selection Delegate Method
-- (void) filterSelectionViewControllerDidSelect:(id) object {
+- (void) filterSelectionViewControllerDidSelect:(id) object withFilter:(FilterType) filterType {
     
+    NSLog(@"%@ %i", [object description], filterType);
 }
 
 @end

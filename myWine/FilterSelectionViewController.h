@@ -11,7 +11,7 @@
 
 @protocol FilterSelectionViewControllerDelegate <NSObject>
 
-- (void) filterSelectionViewControllerDidSelect:(id) object;
+- (void) filterSelectionViewControllerDidSelect:(id) object withFilter:(FilterType) filterType;
 
 @end
 
@@ -20,5 +20,7 @@
 
 @property (nonatomic) FilterType filterType;
 @property (strong, nonatomic) id<FilterSelectionViewControllerDelegate> delegate;
+@property (strong, nonatomic) NSArray* objects;
+- (IBAction)clearAll:(id)sender;
 
 @end
