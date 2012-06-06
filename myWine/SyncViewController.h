@@ -19,9 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *description_label;
 @property (weak, nonatomic) IBOutlet UILabel *progress_label;
 @property (weak, nonatomic) IBOutlet UIProgressView *progress_bar;
-@property (strong, nonatomic) IBOutlet UIButton *cancelButton;
-
-
+@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 
 - (IBAction)cancel:(id)sender;
 
