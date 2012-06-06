@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <MobileCoreServices/MobileCoreServices.h>
 #import "ListaPaisesViewController.h"
 #import "ListaRegioesViewController.h"
 #import "Pais.h"
@@ -24,14 +23,11 @@
     - (void)NovoVinhoViewControllerDidSave:(NovoVinhoViewController *)controller;
 @end
 
-@interface NovoVinhoViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,ListaPaisesViewControllerDelegate,ListaRegioesViewControllerDelegate> {
+@interface NovoVinhoViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, ListaPaisesViewControllerDelegate,ListaRegioesViewControllerDelegate> {
     UIPickerView *PickAnoVinho;
     UITextField *AnoVinho;
-    UIImageView *imageView;
-    BOOL newMedia;
     
 }
-
 @property (weak, nonatomic) IBOutlet UIButton *regiaoButton;
 @property (weak, nonatomic) IBOutlet UIButton *paisButton;
 @property (weak, nonatomic) IBOutlet UITextField *NomeVinho;
@@ -63,11 +59,7 @@
 @property (nonatomic,strong) Pais* country;
 @property (nonatomic,strong) Regiao* region;
 
-@property (strong, nonatomic) IBOutlet UIImageView *imageView;
-@property (strong, nonatomic) UIPopoverController *myPop;
-@property (weak, nonatomic) IBOutlet UIButton *pickFoto;
 
-- (IBAction)pickF:(id)sender;
 - (IBAction)cancel:(id)sender;
 - (IBAction)done:(id)sender;
 
