@@ -7,14 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Language.h"
 
 @interface ContactsViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UILabel *contacts;
 @property (strong, nonatomic) IBOutlet UILabel *telephonesLabel;
 @property (strong, nonatomic) IBOutlet UILabel *emailsLabel;
-@property (strong, nonatomic) IBOutlet UILabel *helpEmail;
-@property (strong, nonatomic) IBOutlet UILabel *comercialEmail;
-@property (strong, nonatomic) IBOutlet UILabel *onlineHelpLaber;
-@property (strong, nonatomic) IBOutlet UITextView *onlineHelp;
+@property (weak, nonatomic) IBOutlet UILabel *t1;
+@property (weak, nonatomic) IBOutlet UILabel *t2;
+@property (weak, nonatomic) IBOutlet UILabel *t3;
+@property (weak, nonatomic) IBOutlet UILabel *t4;
+@property (weak, nonatomic) IBOutlet UILabel *e1;
+@property (weak, nonatomic) IBOutlet UILabel *e2;
+@property (weak, nonatomic) IBOutlet UILabel *e3;
+@property (weak, nonatomic) IBOutlet UILabel *e4;
+@property (weak, nonatomic) IBOutlet UITabBarItem *tabSelector;
 
 @end
