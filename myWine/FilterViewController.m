@@ -1,21 +1,18 @@
 //
-//  OrderViewController.m
+//  FilterViewController.m
 //  myWine
 //
-//  Created by Admin on 06/06/12.
+//  Created by Diogo on 6/6/12.
 //  Copyright (c) 2012 FEUP. All rights reserved.
 //
 
-#import "OrderViewController.h"
+#import "FilterViewController.h"
 
-@interface OrderViewController ()
+@interface FilterViewController ()
 
 @end
 
-@implementation OrderViewController
-
-@synthesize delegate = _delegate;
-@synthesize selectedOrder = _selectedOrder;
+@implementation FilterViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -49,12 +46,9 @@
 	return YES;
 }
 
-- (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-}
-
 #pragma mark - Table view data source
 
+/*
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
 #warning Potentially incomplete method implementation.
@@ -78,6 +72,7 @@
     
     return cell;
 }
+*/
 
 /*
 // Override to support conditional editing of the table view.
@@ -129,7 +124,8 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
-    [self.delegate orderViewControllerDidSelect:indexPath.row];
+    
+    [self performSegueWithIdentifier:@"filterToSelection" sender:self];
 }
 
 @end
