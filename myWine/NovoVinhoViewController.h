@@ -26,7 +26,9 @@
 @interface NovoVinhoViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, ListaPaisesViewControllerDelegate,ListaRegioesViewControllerDelegate> {
     UIPickerView *PickAnoVinho;
     UITextField *AnoVinho;
-    
+    UIImageView *imageView;
+    BOOL newMedia;
+    UIImage * image;    
 }
 @property (weak, nonatomic) IBOutlet UIButton *regiaoButton;
 @property (weak, nonatomic) IBOutlet UIButton *paisButton;

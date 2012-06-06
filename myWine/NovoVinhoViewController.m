@@ -156,6 +156,106 @@
 }
 
 
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+- (IBAction)pickF:(id)sender
+{
+    if ([UIImagePickerController isSourceTypeAvailable:
+         UIImagePickerControllerSourceTypeCamera])
+    {
+        UIImagePickerController *imagePicker =
+        [[UIImagePickerController alloc] init];
+        imagePicker.delegate = self;
+        imagePicker.sourceType = 
+        UIImagePickerControllerSourceTypeCamera;
+        imagePicker.mediaTypes = [NSArray arrayWithObjects:
+                                  (NSString *) kUTTypeImage,
+                                  nil];
+        imagePicker.allowsEditing = NO;
+        [self presentModalViewController:imagePicker 
+                                animated:YES];
+        newMedia = YES;
+    }
+    else if ([UIImagePickerController isSourceTypeAvailable:
+              UIImagePickerControllerSourceTypeSavedPhotosAlbum])
+    {
+        UIImagePickerController *imagePicker =
+        [[UIImagePickerController alloc] init];
+        imagePicker.delegate = self;
+        imagePicker.sourceType = 
+        UIImagePickerControllerSourceTypePhotoLibrary;
+        imagePicker.mediaTypes = [NSArray arrayWithObjects:
+                                  (NSString *) kUTTypeImage,
+                                  nil];
+        imagePicker.allowsEditing = NO;
+        
+        //[self presentModalViewController:imagePicker animated:YES]; // Teste this type in a real device
+        
+        _myPop = [[UIPopoverController alloc] initWithContentViewController:imagePicker];
+        //[_myPop presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+        [_myPop presentPopoverFromRect:CGRectMake(180.0, 200.0, 400.0, 400.0) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        
+        
+        newMedia = NO;
+    }
+    else {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle: @"No photo capacity"
+                              message: @"No!"\
+                              delegate: nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+        
+    }
+}
+
+-(void)imagePickerController:(UIImagePickerController *)picker
+didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    NSString *mediaType = [info
+                           objectForKey:UIImagePickerControllerMediaType];
+    
+    //[self dismissModalViewControllerAnimated:YES];
+    [_myPop dismissPopoverAnimated:YES];
+    
+    //UIImage * image;
+    
+    if ([mediaType isEqualToString:(NSString *)kUTTypeImage]) {
+        image = [info objectForKey:UIImagePickerControllerOriginalImage];
+        
+        imageView.image = image;
+        if (newMedia)
+            UIImageWriteToSavedPhotosAlbum(image, 
+                                           self,
+                                           @selector(image:finishedSavingWithError:contextInfo:),
+                                           nil);
+    }
+    else if ([mediaType isEqualToString:(NSString *)kUTTypeMovie])
+    {
+		// Code here to support video if enabled
+	}
+    
+}
+
+-(void)image:(UIImage *)image
+finishedSavingWithError:(NSError *)error 
+ contextInfo:(void *)contextInfo
+{
+    if (error) {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle: @"Save failed"
+                              message: @"Failed to save image"\
+                              delegate: nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
 - (IBAction)cancel:(id)sender
 {
 	[self.delegate NovoVinhoViewControllerDidCancel:self];
@@ -185,7 +285,12 @@
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle: [lang translate:@"Error"] message:[lang translate:@"Empty region"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
                     [alert show];
                 }
-                else{
+                else
+                    if(!_tipoVinho) {
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle: [lang translate:@"Error"] message:[lang translate:@"Empty region"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                        [alert show];
+                }
+                    else{
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle: [lang translate:@"Thank you"] message:[lang translate:@"Success"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
                     [alert show];
                     Vinho* vinho = [[Vinho alloc] init];
@@ -195,7 +300,7 @@
                     vinho.price = _Preco.text.doubleValue;
                     vinho.year = _AnoVinho.text.intValue;
                     vinho.region = self.region;
-                    
+                        
                     /*@synthesize regiaoButton;
 
                     @synthesize Produtor = _Produtor;
@@ -210,6 +315,40 @@
                     @synthesize region = _region;*/
                     
                     [user.vinhos insertObject: vinho atIndex: user.vinhos.count];
+                    
+                    if(image != nil) {
+                        // Create paths to output images
+
+                        NSDate* date = [NSDate date];
+                        NSTimeInterval time = [date timeIntervalSince1970];
+                        
+                        //[NSString stringWithFormat:@"Documents/%@/%@",user.username, time];
+                        NSString *nome = user.username;
+                        NSString *stamp = [NSString stringWithFormat:@"%d", time];
+                        NSString * path = [NSString stringWithFormat:@"Documents/%@_%@.png",nome, stamp];
+                        
+                        NSString  *pngPath = [NSHomeDirectory() stringByAppendingPathComponent:path];
+                    
+                        // Write a UIImage to JPEG with minimum compression (best quality)
+                        // The value 'image' must be a UIImage object
+                        // The value '1.0' represents image compression quality as value from 0.0 to 1.0
+                        //[UIImageJPEGRepresentation(image, 1.0) writeToFile:jpgPath atomically:YES];
+                        // Write image to PNG
+                        [UIImagePNGRepresentation(image) writeToFile:pngPath atomically:YES];
+                    
+                        // Let's check to see if files were successfully written...
+                    
+                        // Create file manager
+                        NSError *error;
+                        NSFileManager *fileMgr = [NSFileManager defaultManager];
+                    
+                        // Point to Document directory
+                        NSString *documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+                    
+                        // Write out the contents of home directory to console
+                        NSLog(@"Documents directory: %@", [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:&error]);
+                    }
+                    
                     [self.delegate NovoVinhoViewControllerDidSave:self];
                 }
 }
