@@ -91,7 +91,7 @@ static User *sharedUser = nil;
 
             self.username = [NSString stringWithUTF8String:(const char *) sqlite3_column_text(stmt, 0)];
             self.password = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 1)];
-            self.synced_at = sqlite3_column_int(stmt, 2);
+            self.synced_at = sqlite3_column_double(stmt, 2);
             
             int validated = sqlite3_column_int(stmt, 3);
             if(validated >0)

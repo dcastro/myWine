@@ -28,7 +28,7 @@ const char  *databaseTables[] = {
     "CREATE TABLE User (\
     username TEXT PRIMARY KEY, \
     password TEXT, \
-    synced_at INTEGER, \
+    synced_at REAL, \
     validated INTEGER \
     );",
     
@@ -240,7 +240,7 @@ const char  *databaseTables[] = {
     
     //DADOS DE TESTE
     //VINHOS
-    "INSERT INTO User VALUES ('admin', 'admin', '10000', 1)",
+    "INSERT INTO User VALUES ('admin', 'admin', 1338154800.0, 1)",
     
     
     "INSERT INTO Country VALUES ('PT','Portugal', 'Portugal', 'Portugal');",
@@ -314,7 +314,7 @@ const char  *databaseTables[] = {
     "INSERT INTO PossibleClassification VALUES (3,11,'Characteristic');",
     
     
-    "INSERT INTO Tasting VALUES (1, 1, 1338154961, 'muito bom este negocio....', 27.0, 27.0, 0);",
+    "INSERT INTO Tasting VALUES (1, 1, 1338154961.0, 'muito bom este negocio....', 27.0, 27.0, 0);",
     
     
     "INSERT INTO Section VALUES (1,1,2,'View', 'Voir', 'Vista');",

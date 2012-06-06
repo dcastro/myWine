@@ -62,7 +62,7 @@
 
     
     
-    NSString *querySQL = [NSString stringWithFormat:@"UPDATE User SET synced_at = %d WHERE username = \'%@\';", [receivedJSON objectForKey:@"timestamp"], user.username];
+    NSString *querySQL = [NSString stringWithFormat:@"UPDATE User SET synced_at = %f WHERE username = \'%@\';", [receivedJSON objectForKey:@"timestamp"], user.username];
     
     char *errMsg;
     if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
@@ -144,7 +144,7 @@
                     [[[serverIdsJSON objectAtIndex:i] objectForKey:@"year"]intValue]];
         
         if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
-            DebugLog(@"%s", errMsg);
+            DebugLog(@"Query with error: %s", errMsg);
             sqlite3_free(errMsg);
             return FALSE;
         }
@@ -171,7 +171,7 @@
         
         
         if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
-            DebugLog(@"%s", errMsg);
+            DebugLog(@"Query with error: %s", errMsg);
             sqlite3_free(errMsg);
             return FALSE;
         }
@@ -185,8 +185,8 @@
         
         //vai buscar o id da prova do user 
         //para garantir que nao se eliminam varias provas ao mesmo tempo do user errado
-        querySQL = [NSString stringWithFormat:@"SELECT t.tasting_id FROM Tasting t , Wine w WHERE t.tasting_date = %d AND t.wine_id = w.wine_id AND w.user = \'%@\';", 
-                    [[deletedTastings objectAtIndex:i]intValue],
+        querySQL = [NSString stringWithFormat:@"SELECT t.tasting_id FROM Tasting t , Wine w WHERE t.tasting_date = %f AND t.wine_id = w.wine_id AND w.user = \'%@\';", 
+                    [[deletedTastings objectAtIndex:i]doubleValue],
                     user.username];
         
         if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
@@ -204,7 +204,7 @@
         
         querySQL = [NSString stringWithFormat:@"DELETE FROM Tasting WHERE tasting_id = %d;", tasting_id];
         if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
-            DebugLog(@"%s", errMsg);
+            DebugLog(@"Query with error: %s", errMsg);
             sqlite3_free(errMsg);
             return FALSE;
         }
@@ -221,10 +221,10 @@
            
 -(BOOL)parseWines:(NSArray *) wines
 {
-#warning TODO:corrigir
     sqlite3_stmt * stmt;
     NSString * querySQL = nil;
     BOOL wineExists = FALSE;
+    char * errMsg;
     
     for(int i = 0; i < [wines count]; i++){
         NSDictionary * wineJSON = [wines objectAtIndex:i];
@@ -260,10 +260,15 @@
                          [wineJSON objectForKey:@"currency"],
                          [[wineJSON objectForKey:@"price"]doubleValue],
                          wine_id];
+            
+            if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+                DebugLog(@"Query with error: %s", errMsg);
+                sqlite3_free(errMsg);
+                return FALSE;
+            }
         }else {
             querySQL = [NSString stringWithFormat:@"INSERT INTO Wine(user, region_id, winetype_id, wineserver_id, name, year, grapes, photo_filename, producer, currency, price, state) \
-                        VALUES (\'%@\', %d, %d, %d, \'%@\', %d, '\%@\', \'%@\', \'%@\', \'%@\', %f, 0); \
-                        SELECT DISTINCT last_insert_rowid() FROM Wine;", 
+                        VALUES (\'%@\', %d, %d, %d, \'%@\', %d, '\%@\', \'%@\', \'%@\', \'%@\', %f, 0);", 
                         user.username,
                         [[wineJSON objectForKey:@"region"] intValue],
                         [[wineJSON objectForKey:@"wine_type"] intValue],
@@ -275,21 +280,14 @@
                         [wineJSON objectForKey:@"producer"],
                         [wineJSON objectForKey:@"currency"],
                         [[wineJSON objectForKey:@"price"] doubleValue]];
-        }
-        
-        
-        //executa o insert e retorna o id
-        //ou executa so o update e nao retorna nada sendo que o wine_id anterior e mantido
-        if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
-            if(sqlite3_step(stmt) == SQLITE_ROW){
-
-                wine_id = sqlite3_column_int(stmt, 0);                
-            }
             
-            sqlite3_finalize(stmt);
-        }else {
-            DebugLog(@"Query with error: %@", querySQL);
-            return FALSE;
+            if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+                DebugLog(@"Query with error: %s", errMsg);
+                sqlite3_free(errMsg);
+                return FALSE;
+            }else {
+                wine_id = sqlite3_last_insert_rowid(*contactDB);
+            }
         }
         
         
@@ -354,7 +352,7 @@
     
     
     if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
-        DebugLog(@"%s", errMsg);
+        DebugLog(@"Query with error: %s", errMsg);
         sqlite3_free(errMsg);
         return FALSE;
     }
@@ -538,14 +536,12 @@
 
 -(BOOL)parseNewTasting:(NSDictionary *)tastingJSON forWine:(int)wine_id
 {
-#warning TODO:Corrigir
     NSString * querySQL;
-    sqlite3_stmt * stmt;
     int tasting_id;
+    char * errMsg;
     
     querySQL = [NSString stringWithFormat:@"INSERT INTO Tasting (wine_id, tasting_date, comment, latitude, longitude, state) \
-                VALUES (%d, %d, \'%@\', %f, %f); \
-                SELECT DISTINCT last_insert_rowid() FROM Tasting;",
+                VALUES (%d, %d, \'%@\', %f, %f);",
                 wine_id, 
                 [[tastingJSON objectForKey:@"tasting_date"]doubleValue],
                 [tastingJSON objectForKey:@"comment"],
@@ -553,15 +549,15 @@
                 [[tastingJSON objectForKey:@"longitude"]doubleValue],
                 0];
     
-    if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
-        if(sqlite3_step(stmt) == SQLITE_ROW){
-            tasting_id = sqlite3_column_int(stmt, 0);
-        }
-        sqlite3_finalize(stmt);
-    }else {
-        DebugLog(@"Query with error: %@", querySQL);
+    
+    if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+        DebugLog(@"Query with error: %s", errMsg);
+        sqlite3_free(errMsg);
         return FALSE;
+    }else {
+        tasting_id = sqlite3_last_insert_rowid(*contactDB);
     }
+    
     
     
     //seccoes
@@ -573,24 +569,24 @@
         int section_id;
         
         querySQL = [NSString stringWithFormat:@"INSERT INTO Section (tasting_id,order_priority, name_eng, name_fr, name_pt)\
-                    VALUES (%d, \'%@\', \'%@\', \'%@\');\
-                    SELECT DISTINCT last_insert_rowid() FROM Section;",
+                    VALUES (%d, \'%@\', \'%@\', \'%@\');",
                     tasting_id,
                     [[sectionJSON objectForKey:@"order"]intValue],
                     [sectionJSON objectForKey:@"name_eng"],
                     [sectionJSON objectForKey:@"name_fr"],
                     [sectionJSON objectForKey:@"name_pt"]];
         
-        if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
-            if(sqlite3_step(stmt) == SQLITE_ROW){
-                section_id = sqlite3_column_int(stmt, 0);
-            }
-            sqlite3_finalize(stmt);
-        }else {
-            DebugLog(@"Query with error: %@", querySQL);
+        
+        if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+            DebugLog(@"Query with error: %s", errMsg);
+            sqlite3_free(errMsg);
             return FALSE;
+        }else {
+            section_id = sqlite3_last_insert_rowid(*contactDB);
         }
         
+        
+               
         NSArray * criteriaJSON = [sectionJSON objectForKey:@"criteria"];
         for (int k = 0; k < [criteriaJSON count]; k++){
             
@@ -609,8 +605,7 @@
             
                        
             querySQL = [NSString stringWithFormat:@"INSERT INTO Criterion (section_id, order_priority, name_eng, name_fr, name_pt, classification_id)\
-                        VALUES (%d, \'%@\', \'%@\', \'%@\', %d);\
-                        SELECT DISTINCT last_insert_rowid() FROM Criterion;",
+                        VALUES (%d, \'%@\', \'%@\', \'%@\', %d);",
                         section_id,
                         [[criterionJSON objectForKey:@"order"]intValue],
                         [criterionJSON objectForKey:@"name_eng"],
@@ -618,16 +613,14 @@
                         [criterionJSON objectForKey:@"name_pt"],
                         classification_id];
             
-            if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
-                if(sqlite3_step(stmt) == SQLITE_ROW){
-                    criterion_id = sqlite3_column_int(stmt, 0);
-                }
-                sqlite3_finalize(stmt);
-            }else {
-                DebugLog(@"Query with error: %@", querySQL);
-                return FALSE;
-            }
             
+            if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+                DebugLog(@"Query with error: %s", errMsg);
+                sqlite3_free(errMsg);
+                return FALSE;
+            }else {
+                criterion_id = sqlite3_last_insert_rowid(*contactDB);
+            }
             
             
             //insere todas as classificacoes possiveis
@@ -664,23 +657,23 @@
         int characteristicsection_id;
         
         querySQL = [NSString stringWithFormat:@"INSERT INTO SectionCharacteristic (tasting_id, order_priority, name_eng, name_fr, name_pt)\
-                    VALUES (%d ,%d, \'%@\', \'%@\', \'%@\');\
-                    SELECT DISTINCT last_insert_rowid() FROM SectionCharacteristic;",
+                    VALUES (%d ,%d, \'%@\', \'%@\', \'%@\');",
                     tasting_id,
                     [[characteristicsectionJSON objectForKey:@"order"]intValue],
                     [characteristicsectionJSON objectForKey:@"name_eng"],
                     [characteristicsectionJSON objectForKey:@"name_fr"],
                     [characteristicsectionJSON objectForKey:@"name_pt"]];
         
-        if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
-            if(sqlite3_step(stmt) == SQLITE_ROW){
-                characteristicsection_id = sqlite3_column_int(stmt, 0);
-            }
-            sqlite3_finalize(stmt);
-        }else {
-            DebugLog(@"Query with error: %@", querySQL);
+        
+        if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+            DebugLog(@"Query with error: %s", errMsg);
+            sqlite3_free(errMsg);
             return FALSE;
+        }else {
+            characteristicsection_id = sqlite3_last_insert_rowid(*contactDB);
         }
+        
+        
         
         NSArray * characteriticsJSON = [characteristicsectionJSON objectForKey:@"characteristics"];
         for (int k = 0; k < [characteriticsJSON count]; k++){
@@ -700,8 +693,7 @@
             
             
             querySQL = [NSString stringWithFormat:@"INSERT INTO Characteristic (sectioncharacteristic_id, order_priority, name_eng, name_fr, name_pt, classification_id)\
-                        VALUES (%d, %d, \'%@\', \'%@\', \'%@\', %d);\
-                        SELECT DISTINCT last_insert_rowid() FROM Characteristic;",
+                        VALUES (%d, %d, \'%@\', \'%@\', \'%@\', %d);",
                         characteristicsection_id,
                         [[characteristicJSON objectForKey:@"order"]intValue],
                         [characteristicJSON objectForKey:@"name_eng"],
@@ -709,16 +701,13 @@
                         [characteristicJSON objectForKey:@"name_pt"],
                         classification_id];
             
-            if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
-                if(sqlite3_step(stmt) == SQLITE_ROW){
-                    characteristic_id = sqlite3_column_int(stmt, 0);
-                }
-                sqlite3_finalize(stmt);
-            }else {
-                DebugLog(@"Query with error: %@", querySQL);
+            if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+                DebugLog(@"Query with error: %s", errMsg);
+                sqlite3_free(errMsg);
                 return FALSE;
+            }else {
+                characteristic_id = sqlite3_last_insert_rowid(*contactDB);
             }
-            
             
             
             //insere todas as classificacoes possiveis
@@ -751,10 +740,11 @@
 
 -(BOOL)parseWineTypes:(NSArray *) winetypes 
 {
-#warning TODO: corrigir
     sqlite3_stmt * stmt;
     NSString * querySQL = nil;
     BOOL exists = FALSE;
+    char *errMsg;
+
     
     for (int i = 0; i < [winetypes count]; i++) {
         NSDictionary * winetypesWithFormsJSON = [winetypes objectAtIndex:i];
@@ -774,7 +764,7 @@
                 if(exists){
                     
                     querySQL = [NSString stringWithFormat:@"DELETE FROM FormTasting WHERE formtasting_id = %d;", formtasting_id]; 
-                    char *errMsg;
+                    
                     if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
                         DebugLog(@"%s", errMsg);
                         sqlite3_free(errMsg);
@@ -788,9 +778,9 @@
                                 [winetypesWithFormsJSON objectForKey:@"name_eng"],
                                 [winetypesWithFormsJSON objectForKey:@"name_fr"],
                                 [winetypesWithFormsJSON objectForKey:@"name_pt"]];
-                    char *errMsg;
+                    
                     if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
-                        DebugLog(@"%s", errMsg);
+                        DebugLog(@"Query with error: %s", errMsg);
                         sqlite3_free(errMsg);
                         return FALSE;
                     }
@@ -804,19 +794,17 @@
             return FALSE;
         }
         
-        
         //insere no formtasting, retrive do id
         int formTasting_id;
-        querySQL = @"INSERT INTO FormTasting Values((SELECT DISTINCT last_insert_rowid() FROM FormTasting)+1); \
-                    SELECT DISTINCT last_insert_rowid() FROM FormtTasting;";
-        if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){            
-            if(sqlite3_step(stmt) == SQLITE_ROW){
-                formTasting_id = sqlite3_column_int(stmt, 0);
-                sqlite3_finalize(stmt);
-            }
-        }else {
-            DebugLog(@"Query with error: %@", querySQL);
+        querySQL = @"INSERT INTO FormTasting Default Values;";
+
+        
+        if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+            DebugLog(@"Query with error: %s", errMsg);
+            sqlite3_free(errMsg);
             return FALSE;
+        }else {
+            formTasting_id = sqlite3_last_insert_rowid(*contactDB);
         }
         
         
@@ -832,23 +820,20 @@
             NSDictionary * formSectionJSON = [formSectionsJSON  objectAtIndex:k];
             
             querySQL = [NSString stringWithFormat:@"INSERT INTO FormSection(formtasting_id, order_priority, name_en, name_fr, name_pt) \
-                        Values(%d, %d, \'%@\', \'%@\', \'%@\'); \
-                        SELECT DISTINCT last_insert_rowid() FROM FormSection;",
+                        Values(%d, %d, \'%@\', \'%@\', \'%@\');",
                         formTasting_id,
                         [formSectionJSON objectForKey:@"order"],
                         [formSectionJSON objectForKey:@"name_eng"],
                         [formSectionJSON objectForKey:@"name_fr"],
                         [formSectionJSON objectForKey:@"name_pt"]];
             
-            if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
-                
-                if(sqlite3_step(stmt) == SQLITE_ROW){
-                    formSection_id = sqlite3_column_int(stmt, 0);
-                    sqlite3_finalize(stmt);
-                }
-            }else {
-                DebugLog(@"Query with error: %@", querySQL);
+            
+            if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+                DebugLog(@"Query with error: %s", errMsg);
+                sqlite3_free(errMsg);
                 return FALSE;
+            }else {
+                formSection_id = sqlite3_last_insert_rowid(*contactDB);
             }
             
             
@@ -860,23 +845,20 @@
                 NSDictionary * formCriterionJSON = [formCriteriaJSON objectAtIndex:w];
                 
                 querySQL = [NSString stringWithFormat:@"INSERT INTO FormCriterion(formsection_id, order_priority, name_en, name_fr, name_pt) \
-                            Values(%d, %d, \'%@\', \'%@\', \'%@\'); \
-                            SELECT DISTINCT last_insert_rowid() FROM FormCriterion;",
+                            Values(%d, %d, \'%@\', \'%@\', \'%@\');",
                             formSection_id,
                             [formCriterionJSON objectForKey:@"order"],
                             [formCriterionJSON objectForKey:@"name_eng"],
                             [formCriterionJSON objectForKey:@"name_fr"],
                             [formCriterionJSON objectForKey:@"name_pt"]];
                 
-                if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
-                    
-                    if(sqlite3_step(stmt) == SQLITE_ROW){
-                        criterion_id = sqlite3_column_int(stmt, 0);
-                        sqlite3_finalize(stmt);
-                    }
-                }else {
-                    DebugLog(@"Query with error: %@", querySQL);
+                
+                if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+                    DebugLog(@"Query with error: %s", errMsg);
+                    sqlite3_free(errMsg);
                     return FALSE;
+                }else {
+                    criterion_id = sqlite3_last_insert_rowid(*contactDB);
                 }
                 
                 
@@ -916,24 +898,20 @@
             NSDictionary * formCharacteristicSectionJSON = [formCharacteristicSectionsJSON  objectAtIndex:k];
             
             querySQL = [NSString stringWithFormat:@"INSERT INTO FormSectionCharacteristic(formtasting_id, order_priority, name_en, name_fr, name_pt) \
-                        Values(%d, %d, \'%@\', \'%@\', \'%@\'); \
-                        SELECT DISTINCT last_insert_rowid() FROM FormSectionCharacteristic;",
+                        Values(%d, %d, \'%@\', \'%@\', \'%@\');",
                         formTasting_id,
                         [formCharacteristicSectionJSON objectForKey:@"order"],
                         [formCharacteristicSectionJSON objectForKey:@"name_eng"],
                         [formCharacteristicSectionJSON objectForKey:@"name_fr"],
                         [formCharacteristicSectionJSON objectForKey:@"name_pt"]];
             
-            if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
-                if(sqlite3_step(stmt) == SQLITE_ROW){
-                    formSectionCharacteristic_id = sqlite3_column_int(stmt, 0);
-                    sqlite3_finalize(stmt);
-                }
-            }else {
-                DebugLog(@"Query with error: %@", querySQL);
+            if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+                DebugLog(@"Query with error: %s", errMsg);
+                sqlite3_free(errMsg);
                 return FALSE;
+            }else {
+                formSectionCharacteristic_id = sqlite3_last_insert_rowid(*contactDB);
             }
-            
             
             
             NSArray * formCharacteristicsJSON = [formCharacteristicSectionJSON objectForKey:@"form_characteristics"];
@@ -943,22 +921,19 @@
                 NSDictionary * formCharacteristicJSON = [formCharacteristicsJSON objectAtIndex:w];
                 
                 querySQL = [NSString stringWithFormat:@"INSERT INTO FormCharacteristic(formsectioncharacteristic_id, order_priority, name_en, name_fr, name_pt) \
-                            Values(%d, %d, \'%@\', \'%@\', \'%@\'); \
-                            SELECT DISTINCT last_insert_rowid() FROM FormCharacteristic;",
+                            Values(%d, %d, \'%@\', \'%@\', \'%@\');",
                             formSectionCharacteristic_id,
                             [formCharacteristicJSON objectForKey:@"order"],
                             [formCharacteristicJSON objectForKey:@"name_eng"],
                             [formCharacteristicJSON objectForKey:@"name_fr"],
                             [formCharacteristicJSON objectForKey:@"name_pt"]];
                 
-                if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
-                    if(sqlite3_step(stmt) == SQLITE_ROW){
-                        characteristic_id = sqlite3_column_int(stmt, 0);
-                        sqlite3_finalize(stmt);
-                    }
-                }else {
-                    DebugLog(@"Query with error: %@", querySQL);
+                if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+                    DebugLog(@"Query with error: %s", errMsg);
+                    sqlite3_free(errMsg);
                     return FALSE;
+                }else {
+                    characteristic_id = sqlite3_last_insert_rowid(*contactDB);
                 }
                 
                 
