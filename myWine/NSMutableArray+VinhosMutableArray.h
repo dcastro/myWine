@@ -23,6 +23,6 @@
 - (NSMutableArray*) getYears;
 - (NSMutableArray*) getCountries;
 - (NSMutableArray*) getWineTypes;
-- (NSMutableArray*) getRegions;
+- (NSMutableArray*) getProducers;
 
 @end

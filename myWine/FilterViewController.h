@@ -12,7 +12,7 @@ typedef enum {
     FilterTypeYear,
     FilterTypeCountry,
     FilterTypeWineType,
-    FilterTypeRegion
+    FilterTypeProducer
 } FilterType;
 
 @class FilterSelectionViewController;

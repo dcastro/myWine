@@ -62,7 +62,7 @@
         
         switch ([[[self tableView] indexPathForSelectedRow] row]) {
             case FilterTypeYear:
-                
+                filterSelectionViewController.objects = [vinhos getYears];
                 break;
                 
             case FilterTypeCountry:
@@ -70,10 +70,11 @@
                 break;
                 
             case FilterTypeWineType:
-                
+                filterSelectionViewController.objects = [vinhos getWineTypes];
                 break;
                 
-            case FilterTypeRegion:
+            case FilterTypeProducer:
+                filterSelectionViewController.objects = [vinhos getProducers];
                 break;
         }
         

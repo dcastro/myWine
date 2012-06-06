@@ -50,7 +50,7 @@
             
             break;
             
-        case FilterTypeRegion:
+        case FilterTypeProducer:
             break;
     }
 }

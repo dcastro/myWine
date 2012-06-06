@@ -127,6 +127,16 @@
 }
 
 - (NSMutableArray*) getYears {
+    NSMutableArray* array = [[NSMutableArray alloc] init];
+    
+    for(Vinho* vinho in self) {
+        NSString* year = [[NSString alloc] initWithFormat:@"%i", vinho.year];
+        if( ! [array containsObject: year]) {
+            [array addObject:year];
+        }
+    }
+    
+    return array;
 
 }
 
@@ -144,11 +154,27 @@
 }
 
 - (NSMutableArray*) getWineTypes {
+    NSMutableArray* array = [[NSMutableArray alloc] init];
     
+    for(Vinho* vinho in self) {
+        if( ! [array containsObject: vinho.winetype.name]) {
+            [array addObject:vinho.winetype.name];
+        }
+    }
+    
+    return array;
 }
 
-- (NSMutableArray*) getRegions {
+- (NSMutableArray*) getProducers {
+    NSMutableArray* array = [[NSMutableArray alloc] init];
     
+    for(Vinho* vinho in self) {
+        if( ! [array containsObject: vinho.producer]) {
+            [array addObject:vinho.producer];
+        }
+    }
+    
+    return array;
 }
 
 @end
