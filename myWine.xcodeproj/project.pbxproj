@@ -45,7 +45,6 @@
 		A979EDAB15668FCB00E94A34 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = A979EDAA15668FCB00E94A34 /* Utils.m */; };
 		A97D9D75151A3230007CF723 /* 53-house.png in Resources */ = {isa = PBXBuildFile; fileRef = A97D9D74151A3230007CF723 /* 53-house.png */; };
 		A97D9D78151A397B007CF723 /* 86-camera.png in Resources */ = {isa = PBXBuildFile; fileRef = A97D9D77151A397B007CF723 /* 86-camera.png */; };
-		A9A69B99151FC41000FC9073 /* FotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A69B98151FC41000FC9073 /* FotoViewController.m */; };
 		A9A69B9C151FCDE200FC9073 /* SyncViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A69B9B151FCDE200FC9073 /* SyncViewController.m */; };
 		A9A69B9F151FCEC500FC9073 /* NovaProvaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A69B9E151FCEC500FC9073 /* NovaProvaViewController.m */; };
 		A9B04E5A1519DE3B00DC32CF /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A9B04E591519DE3B00DC32CF /* Settings.bundle */; };
@@ -165,8 +164,6 @@
 		A979EDAA15668FCB00E94A34 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = SOURCE_ROOT; };
 		A97D9D74151A3230007CF723 /* 53-house.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "53-house.png"; sourceTree = "<group>"; };
 		A97D9D77151A397B007CF723 /* 86-camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "86-camera.png"; sourceTree = "<group>"; };
-		A9A69B97151FC41000FC9073 /* FotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FotoViewController.h; sourceTree = "<group>"; };
-		A9A69B98151FC41000FC9073 /* FotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FotoViewController.m; sourceTree = "<group>"; };
 		A9A69B9A151FCDE100FC9073 /* SyncViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncViewController.h; sourceTree = "<group>"; };
 		A9A69B9B151FCDE200FC9073 /* SyncViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncViewController.m; sourceTree = "<group>"; };
 		A9A69B9D151FCEC500FC9073 /* NovaProvaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NovaProvaViewController.h; sourceTree = "<group>"; };
@@ -505,8 +502,6 @@
 				A9C5A0131517A78600A3F8C5 /* DetailViewController.m */,
 				A9F0B4B91524731F003C931B /* FiltrosViewController.h */,
 				A9F0B4BA1524731F003C931B /* FiltrosViewController.m */,
-				A9A69B97151FC41000FC9073 /* FotoViewController.h */,
-				A9A69B98151FC41000FC9073 /* FotoViewController.m */,
 				65B824EF1579357500527D6F /* HelpViewController.h */,
 				65B824F01579357500527D6F /* HelpViewController.m */,
 				DADADA5315541E04008A9FBB /* ListaPaisesViewController.h */,
@@ -740,7 +735,6 @@
 				A9BE2C161518C330002E4E2A /* Prova.m in Sources */,
 				A9BFB2C6151D468500588B59 /* NovoVinhoViewController.m in Sources */,
 				A9C28884151FBB4400C2F58D /* VinhoViewController.m in Sources */,
-				A9A69B99151FC41000FC9073 /* FotoViewController.m in Sources */,
 				A9A69B9C151FCDE200FC9073 /* SyncViewController.m in Sources */,
 				A9A69B9F151FCEC500FC9073 /* NovaProvaViewController.m in Sources */,
 				A9F0B4BB1524731F003C931B /* FiltrosViewController.m in Sources */,
