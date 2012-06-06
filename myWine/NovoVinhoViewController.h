@@ -29,6 +29,7 @@
     UITextField *AnoVinho;
     UIImageView *imageView;
     BOOL newMedia;
+    UIImage * image;
     
 }
 
