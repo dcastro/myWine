@@ -42,6 +42,9 @@
 @synthesize novoVinho = _novoVinho;
 @synthesize country = _country;
 @synthesize region = _region;
+@synthesize pickFoto = _pickFoto;
+@synthesize myPop = _myPop;
+@synthesize imageView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -146,6 +149,9 @@
     [self setLblCasta:nil];
     [self setPhotoButton:nil];
     [self setNovoVinho:nil];
+    [self setImageView:nil];
+    [self setPickFoto:nil];
+    self.imageView = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -155,6 +161,105 @@
 	return YES;
 }
 
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+- (IBAction)pickF:(id)sender
+{
+    if ([UIImagePickerController isSourceTypeAvailable:
+         UIImagePickerControllerSourceTypeCamera])
+    {
+        UIImagePickerController *imagePicker =
+        [[UIImagePickerController alloc] init];
+        imagePicker.delegate = self;
+        imagePicker.sourceType = 
+        UIImagePickerControllerSourceTypeCamera;
+        imagePicker.mediaTypes = [NSArray arrayWithObjects:
+                                  (NSString *) kUTTypeImage,
+                                  nil];
+        imagePicker.allowsEditing = NO;
+        [self presentModalViewController:imagePicker 
+                                animated:YES];
+        newMedia = YES;
+    }
+    else if ([UIImagePickerController isSourceTypeAvailable:
+              UIImagePickerControllerSourceTypeSavedPhotosAlbum])
+    {
+        UIImagePickerController *imagePicker =
+        [[UIImagePickerController alloc] init];
+        imagePicker.delegate = self;
+        imagePicker.sourceType = 
+        UIImagePickerControllerSourceTypePhotoLibrary;
+        imagePicker.mediaTypes = [NSArray arrayWithObjects:
+                                  (NSString *) kUTTypeImage,
+                                  nil];
+        imagePicker.allowsEditing = NO;
+        
+        //[self presentModalViewController:imagePicker animated:YES]; // Teste this type in a real device
+        
+        //[_myPop presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+        
+        _myPop = [[UIPopoverController alloc] initWithContentViewController:imagePicker];
+        [_myPop presentPopoverFromRect:CGRectMake(180.0, 200.0, 400.0, 400.0) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        
+        
+        newMedia = NO;
+    }
+    else {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle: @"No photo capacity"
+                              message: @"No!"\
+                              delegate: nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+        
+    }
+}
+
+-(void)imagePickerController:(UIImagePickerController *)picker
+didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    NSString *mediaType = [info
+                           objectForKey:UIImagePickerControllerMediaType];
+    
+    //[self dismissModalViewControllerAnimated:YES];
+    NSLog(@"Picked");
+    [_myPop dismissPopoverAnimated:YES];
+    
+    if ([mediaType isEqualToString:(NSString *)kUTTypeImage]) {
+        UIImage *image = [info 
+                          objectForKey:UIImagePickerControllerOriginalImage];
+        
+        imageView.image = image;
+        if (newMedia)
+            UIImageWriteToSavedPhotosAlbum(image, 
+                                           self,
+                                           @selector(image:finishedSavingWithError:contextInfo:),
+                                           nil);
+    }
+    else if ([mediaType isEqualToString:(NSString *)kUTTypeMovie])
+    {
+		// Code here to support video if enabled
+	}
+}
+
+-(void)image:(UIImage *)image
+finishedSavingWithError:(NSError *)error 
+ contextInfo:(void *)contextInfo
+{
+    if (error) {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle: @"Save failed"
+                              message: @"Failed to save image"\
+                              delegate: nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
+}
 
 - (IBAction)cancel:(id)sender
 {
