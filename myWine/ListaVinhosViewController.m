@@ -186,6 +186,17 @@ SEL action; id target;
             [popoverController dismissPopoverAnimated:YES];
         }
     }
+    
+    if ([segue.identifier isEqualToString:@"toFilters"]) {
+        if (rootPopoverButtonItem != nil) {
+            UIViewController<SubstitutableDetailViewController>* detailViewController = (UIViewController<SubstitutableDetailViewController>*) [segue.destinationViewController topViewController];
+            [detailViewController showRootPopoverButtonItem:self.rootPopoverButtonItem];
+        }
+        
+        if (popoverController != nil) {
+            [popoverController dismissPopoverAnimated:YES];
+        }
+    }
 
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ListaVinhosViewController.h"
 
 typedef enum {
     FilterTypeYear,
@@ -15,10 +16,7 @@ typedef enum {
     FilterTypeProducer
 } FilterType;
 
-@class FilterSelectionViewController;
-@protocol FilterSelectionViewControllerDelegate;
-
-@interface FilterViewController : UITableViewController <FilterSelectionViewControllerDelegate>
+@interface FilterViewController : UITableViewController <SubstitutableDetailViewController>
 
 @property (nonatomic) FilterType selectedFilterType;
 

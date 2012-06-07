@@ -8,19 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "FilterViewController.h"
-
-@protocol FilterSelectionViewControllerDelegate <NSObject>
-
-- (void) filterSelectionViewControllerDidSelect:(id) object withFilter:(FilterType) filterType;
-
-@end
+#import "ListaVinhosViewController.h"
 
 
-@interface FilterSelectionViewController : UITableViewController
+@interface FilterSelectionViewController : UITableViewController <SubstitutableDetailViewController>
 
 @property (nonatomic) FilterType filterType;
-@property (strong, nonatomic) id<FilterSelectionViewControllerDelegate> delegate;
 @property (strong, nonatomic) NSArray* objects;
+
+@property (strong, nonatomic) id delegate;
+
+
 - (IBAction)clearAll:(id)sender;
 
 @end
