@@ -82,25 +82,25 @@
     
     
     self.producer_label.text = [lan translate:@"Producer"];
-    self.producer_label.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGE_FONT];
+    self.producer_label.font = [UIFont fontWithName:@"DroidSans-Bold" size:NORMAL_FONT];
     
     self.year_label.text = [lan translate:@"Harvest year"];
-    self.year_label.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGE_FONT];
+    self.year_label.font = [UIFont fontWithName:@"DroidSans-Bold" size:NORMAL_FONT];
     
     self.producer_label.text = [lan translate:@"Producer"];
-    self.producer_label.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGE_FONT];
+    self.producer_label.font = [UIFont fontWithName:@"DroidSans-Bold" size:NORMAL_FONT];
 
     self.region_label.text = [lan translate:@"Region"];
-    self.region_label.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGE_FONT];
+    self.region_label.font = [UIFont fontWithName:@"DroidSans-Bold" size:NORMAL_FONT];
 
     self.country_label.text = [lan translate:@"Country"];
-    self.country_label.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGE_FONT];
+    self.country_label.font = [UIFont fontWithName:@"DroidSans-Bold" size:NORMAL_FONT];
     
     self.grapes_label.text = [lan translate:@"Grapes"];
-    self.grapes_label.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGE_FONT];
+    self.grapes_label.font = [UIFont fontWithName:@"DroidSans-Bold" size:NORMAL_FONT];
     
     self.price_label.text = [lan translate:@"Price"];
-    self.price_label.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGE_FONT];
+    self.price_label.font = [UIFont fontWithName:@"DroidSans-Bold" size:NORMAL_FONT];
     
     //set score
     int score = [((Vinho*) self.detailItem) score];
@@ -109,45 +109,46 @@
         scoreString = [[NSString alloc] initWithFormat:@"-- %%"];
     else scoreString = [[NSString alloc] initWithFormat:@"%i %%", score];
     self.percentage_label_name.text = scoreString;
+    self.percentage_label_name.font = [UIFont fontWithName:@"DroidSerif-Bold" size:72];
     
     
     Vinho* vinho = (Vinho*) self.detailItem;
     
     self.producer_label_name.text = vinho.producer;
-    self.producer_label_name.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
+    self.producer_label_name.font = [UIFont fontWithName:@"DroidSans" size:SMALL_FONT];
     
     self.year_label_name.text = [NSString stringWithFormat:@"%d", vinho.year];
-    self.year_label_name.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
+    self.year_label_name.font = [UIFont fontWithName:@"DroidSans" size:SMALL_FONT];
     
     self.region_label_name.text = vinho.region.region_name;
-    self.region_label_name.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
+    self.region_label_name.font = [UIFont fontWithName:@"DroidSans" size:SMALL_FONT];
     
     self.country_label_name.text = vinho.region.country_name;
-    self.country_label_name.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
+    self.country_label_name.font = [UIFont fontWithName:@"DroidSans" size:SMALL_FONT];
     
     self.wine_label_name.text = vinho.name;
     self.wine_label_name.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGER_FONT];
     
     self.wine_type_label.text = vinho.winetype.name;
-    self.wine_type_label.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGE_FONT];
+    self.wine_type_label.font = [UIFont fontWithName:@"DroidSerif" size:LARGE_FONT];
     
     self.price_value_label.text = [vinho fullPrice];
-    self.price_value_label.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
+    self.price_value_label.font = [UIFont fontWithName:@"DroidSans" size:SMALL_FONT];
     
     self.grapesListShow.text = [vinho grapes];
+    self.grapesListShow.font = [UIFont fontWithName:@"DroidSans" size:SMALL_FONT];
     
     self.editButton.title = [lan translate:@"Edit"];
     
-    self.currencyButton.titleLabel.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
-    self.countryButton.titleLabel.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
-    self.regionButton.titleLabel.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
+    self.currencyButton.titleLabel.font = [UIFont fontWithName:@"DroidSans-Bold" size:SMALL_FONT];
+    self.countryButton.titleLabel.font = [UIFont fontWithName:@"DroidSans-Bold" size:SMALL_FONT];
+    self.regionButton.titleLabel.font = [UIFont fontWithName:@"DroidSans-Bold" size:SMALL_FONT];
 
     //set navigation bar title
     [self setTitle: [self.detailItem description]];
     
     
     [self.wineName setHidden:YES];
-    self.wineName.textAlignment = UITextAlignmentCenter;
     [self.priceValue setHidden:YES];
     [self.harvestyear setHidden:YES];
     [self.producerName setHidden:YES];
@@ -178,10 +179,10 @@
     
     //fonts
     self.wineName.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGE_FONT];
-    self.producerName.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
-    self.harvestyear.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
-    self.grapesList.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
-    self.priceValue.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT];
+    self.producerName.font = [UIFont fontWithName:@"DroidSans" size:SMALL_FONT];
+    self.harvestyear.font = [UIFont fontWithName:@"DroidSans" size:SMALL_FONT];
+    self.grapesList.font = [UIFont fontWithName:@"DroidSans" size:SMALL_FONT];
+    self.priceValue.font = [UIFont fontWithName:@"DroidSans" size:SMALL_FONT];
     
     //keyboard types
     self.harvestyear.keyboardType = UIKeyboardTypeNumberPad;
