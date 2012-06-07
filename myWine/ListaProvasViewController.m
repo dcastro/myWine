@@ -34,37 +34,7 @@ SEL action; id target;
 - (void)viewDidLoad
 {
     
-    /*
-    if (!_objects) {
-        _objects = [[NSMutableArray alloc] init];
-    }
-    
-    _objects = [NSMutableArray arrayWithCapacity:20];
-	Prova *prova = [[Prova alloc] init];
-	prova.data = @"22/06/2011";
-	prova.local = @"Casa";
-	[_objects addObject:prova];
-	prova = [[Prova alloc] init];
-	prova.data = @"12/11/2011";
-	prova.local = @"Herdade do manuel";
-	[_objects addObject:prova];
-    prova = [[Prova alloc] init];
-	prova.data = @"05/01/2012";
-	prova.local = @"Restaurante BB";
-	[_objects addObject:prova];
-    prova = [[Prova alloc] init];
-	prova.data = @"14/03/2012";
-	prova.local = @"Casa";
-*/
-    
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    //self.navigationItem.leftBarButtonItem = self.editButtonItem;
-
-    
-    //UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    //self.navigationItem.rightBarButtonItem = addButton;
-    
     [self configureView];
 
 }
@@ -123,7 +93,7 @@ SEL action; id target;
         
     }
     
-	if ([segue.identifier isEqualToString:@"AddProva"])
+	/*if ([segue.identifier isEqualToString:@"AddProva"])
 	{
 		UINavigationController *navigationController = 
         segue.destinationViewController;
@@ -133,7 +103,7 @@ SEL action; id target;
          objectAtIndex:0];
 		NovaProvaViewController.delegate = self;
 	}
-    else if([segue.identifier isEqualToString:@"filterSegue"])
+    else*/ if([segue.identifier isEqualToString:@"filterSegue"])
     {
         action = [sender action];
         target = [sender target];
@@ -206,7 +176,7 @@ SEL action; id target;
     
     Prova *object = [_provas objectAtIndex:indexPath.row];
     cell.textLabel.text = [object.shortDate substringToIndex:10];
-    cell.detailTextLabel.text = [object.shortDate substringFromIndex:11]; //[NSString stringWithFormat:@"%d", object.tasting_id];
+    cell.detailTextLabel.text = [object.shortDate substringFromIndex:11];
     cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cell_bg_gradient.png"]];
     //initialize the checkbox button
     CheckboxButton* checkbox = [CheckboxButton createWithTarget:self andPosition:cell.frame.size.width - 50];

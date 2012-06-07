@@ -223,6 +223,8 @@
             return [self.prova.sections count];
         case CHARACTERISTICS_MODE:
             return [self.prova.characteristic_sections count];
+        default:
+            return 0;
     }
     
 }
@@ -234,6 +236,8 @@
             return [[self.prova.sections objectAtIndex:section] description];
         case CHARACTERISTICS_MODE:
             return [[self.prova.characteristic_sections objectAtIndex:section] description];
+        default:
+            return @"";
     }
 }
 
@@ -245,7 +249,7 @@
         case CHARACTERISTICS_MODE:
             return [((SeccaoCaracteristica*) [self.prova.characteristic_sections objectAtIndex:section]).characteristics count];
         default:
-            break;
+            return 0;
     }
 }
 
