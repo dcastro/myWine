@@ -60,7 +60,7 @@
     
     //Set fonts
     self.wineNameLabel.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGE_FONT];
-    self.dateLabel.font = [UIFont fontWithName:@"DroidSerif-Regular" size:SMALL_FONT+2];
+    self.dateLabel.font = [UIFont fontWithName:@"DroidSerif-Regular" size:SMALL_FONT];
     
     //hide the text views
     self.commentContentTextView.hidden = TRUE;
@@ -94,30 +94,17 @@
     
     //footer
     [self styleLabel:self.commentLabel withTitle: [[Language instance] translate:@"Comment"]];
+    [self.commentLabel setFont:[UIFont fontWithName:@"DroidSans" size:SMALL_FONT]];
     
     [self.commentContentLabel setText: self.prova.comment];
+    [self.commentContentLabel setFont:[UIFont fontWithName:@"DroidSans" size:SMALL_FONT-2]];
     self.commentContentLabel.numberOfLines = 0;
     [self.commentContentLabel sizeToFit];
     
     self.scoreLabel.text = [[Language instance] translate:@"Score"];
+    [self.scoreContentLabel setFont:[UIFont fontWithName:@"DroidSerif-Regular" size:TITLE_FONT]];
     NSString* string = [[NSString alloc] initWithFormat:@"%i %%", [self.prova calcScore]];
-    self.scoreContentLabel.text = string;
-    
-    /*
-    NSArray* views = [[self tableView] subviews];
-    for(int i = 0; i < views.count; i++) {
-        const char* className = class_getName([[views objectAtIndex:i] class]);
-        NSLog(@"CLASS: %s", className);
-        
-        NSArray* views2 = [[views objectAtIndex:i] subviews];
-        for(int j = 0; j < views2.count; j++) {
-            const char* className = class_getName([[views2 objectAtIndex:j] class]);
-            NSLog(@"    CLASS: %s", className);
-        }
-
-        
-    }*/
-    
+    self.scoreContentLabel.text = string;   
 }
 
 - (int) updateScoreLabel {
@@ -160,10 +147,7 @@
 
 - (void) styleLabel:(UILabel*)label withTitle: (NSString*) title {
     label.backgroundColor = [UIColor clearColor];
-    label.textColor = [UIColor colorWithHue:(136.0/360.0)  // Slightly bluish green
-                                 saturation:1.0
-                                 brightness:0.60
-                                      alpha:1.0];
+    label.textColor = [UIColor myWineColor];
     label.shadowColor = [UIColor whiteColor];
     label.shadowOffset = CGSizeMake(0.0, 1.0);
     label.font = [UIFont boldSystemFontOfSize:16];
@@ -186,6 +170,7 @@
     
     // Create header view and add label as a subview
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
+    [view setBackgroundColor:[UIColor whiteColor ]];
     [view addSubview: label];
     
     return view;
