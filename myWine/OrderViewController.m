@@ -16,6 +16,8 @@
 
 @synthesize selectedOrder = _selectedOrder;
 @synthesize delegate = _delegate;
+@synthesize nome = _nome;
+@synthesize score = _score;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -35,6 +37,11 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    Language *lan = [Language instance];
+    
+    //self.passwordInput.placeholder = [lan translate:@"Password"];
+    self.nome.textLabel.text = [lan translate:@"OrderName"];
+    self.score.textLabel.text = [lan translate:@"OrderScore"];
 }
 
 - (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -48,6 +55,8 @@
 
 - (void)viewDidUnload
 {
+    [self setNome:nil];
+    [self setScore:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

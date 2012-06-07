@@ -112,13 +112,13 @@
     self.scoreContentLabel.text = string;
     [self.scoreContentLabel setFont:[UIFont fontWithName:@"DroidSerif" size:LARGER_FONT]];
     
-    if(prova_mode == CRITERIA_MODE){
-        [self.scoreLabel setHidden:NO];
-        [self.scoreContentLabel setHidden:NO];
-    }
-    else {
+    if(prova_mode == CHARACTERISTICS_MODE){
         [self.scoreLabel setHidden:YES];
         [self.scoreContentLabel setHidden:YES];
+        
+        CGRect frame = self.comentario.frame;
+        frame.origin.y = 20;
+        self.comentario.frame = frame;
     }
 }
 
