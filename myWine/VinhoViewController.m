@@ -418,20 +418,6 @@
     [self.navigationItem setLeftBarButtonItem:nil animated:YES];
 }
 
-- (IBAction)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer {
-    
-	CGPoint location = [recognizer locationInView:self.view];
-
-	
-    if (recognizer.direction == UISwipeGestureRecognizerDirectionLeft) {
-        NSLog(@"swipe left");
-    }
-    else {
-        NSLog(@"swipe left");
-    }
-
-}
-
 #pragma mark -
 #pragma mark UITextField Delegate Method
 
