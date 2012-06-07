@@ -31,7 +31,6 @@
 		65EFEBBA1573C9770087F155 /* material mywine-06.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EFEBAB1573C9770087F155 /* material mywine-06.png */; };
 		65EFEBBB1573C9770087F155 /* material mywine-07.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EFEBAC1573C9770087F155 /* material mywine-07.png */; };
 		65EFEBBC1573C9770087F155 /* material mywine-08.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EFEBAD1573C9770087F155 /* material mywine-08.png */; };
-		65EFEBBD1573C9770087F155 /* material mywine-09.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EFEBAE1573C9770087F155 /* material mywine-09.png */; };
 		65EFEBBE1573C9770087F155 /* material mywine-10.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EFEBAF1573C9770087F155 /* material mywine-10.png */; };
 		65EFEBBF1573C9770087F155 /* material mywine-11.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EFEBB01573C9770087F155 /* material mywine-11.png */; };
 		65EFEBC01573C9770087F155 /* material mywine-12.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EFEBB11573C9770087F155 /* material mywine-12.png */; };
@@ -42,18 +41,13 @@
 		65EFEBC51573C9770087F155 /* material mywine-17.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EFEBB61573C9770087F155 /* material mywine-17.png */; };
 		A0C66470155448CC004C798E /* ListaRegioesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C6646F155448CC004C798E /* ListaRegioesViewController.m */; };
 		A9758371151A0151009B5F68 /* 117-todo.png in Resources */ = {isa = PBXBuildFile; fileRef = A9758370151A0151009B5F68 /* 117-todo.png */; };
-		A9758373151A01A2009B5F68 /* 18-envelope.png in Resources */ = {isa = PBXBuildFile; fileRef = A9758372151A01A2009B5F68 /* 18-envelope.png */; };
-		A975DE01151A3CCB002FC7FB /* 02-redo.png in Resources */ = {isa = PBXBuildFile; fileRef = A975DE00151A3CCB002FC7FB /* 02-redo.png */; };
 		A979EDAB15668FCB00E94A34 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = A979EDAA15668FCB00E94A34 /* Utils.m */; };
-		A97D9D75151A3230007CF723 /* 53-house.png in Resources */ = {isa = PBXBuildFile; fileRef = A97D9D74151A3230007CF723 /* 53-house.png */; };
 		A97D9D78151A397B007CF723 /* 86-camera.png in Resources */ = {isa = PBXBuildFile; fileRef = A97D9D77151A397B007CF723 /* 86-camera.png */; };
 		A9A69B9C151FCDE200FC9073 /* SyncViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A69B9B151FCDE200FC9073 /* SyncViewController.m */; };
 		A9A69B9F151FCEC500FC9073 /* NovaProvaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A69B9E151FCEC500FC9073 /* NovaProvaViewController.m */; };
 		A9B04E5A1519DE3B00DC32CF /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A9B04E591519DE3B00DC32CF /* Settings.bundle */; };
-		A9BDB692151A4F420032921A /* 06-magnify.png in Resources */ = {isa = PBXBuildFile; fileRef = A9BDB691151A4F420032921A /* 06-magnify.png */; };
 		A9BE2C121518C254002E4E2A /* ListaProvasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9BE2C111518C254002E4E2A /* ListaProvasViewController.m */; };
 		A9BE2C161518C330002E4E2A /* Prova.m in Sources */ = {isa = PBXBuildFile; fileRef = A9BE2C151518C330002E4E2A /* Prova.m */; };
-		A9BFB2C3151D442600588B59 /* 184-warning.png in Resources */ = {isa = PBXBuildFile; fileRef = A9BFB2C2151D442600588B59 /* 184-warning.png */; };
 		A9BFB2C6151D468500588B59 /* NovoVinhoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9BFB2C5151D468500588B59 /* NovoVinhoViewController.m */; };
 		A9C28884151FBB4400C2F58D /* VinhoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9C28883151FBB4400C2F58D /* VinhoViewController.m */; };
 		A9C59FFB1517A78500A3F8C5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9C59FFA1517A78500A3F8C5 /* UIKit.framework */; };
@@ -155,7 +149,6 @@
 		65EFEBAB1573C9770087F155 /* material mywine-06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "material mywine-06.png"; sourceTree = "<group>"; };
 		65EFEBAC1573C9770087F155 /* material mywine-07.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "material mywine-07.png"; sourceTree = "<group>"; };
 		65EFEBAD1573C9770087F155 /* material mywine-08.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "material mywine-08.png"; sourceTree = "<group>"; };
-		65EFEBAE1573C9770087F155 /* material mywine-09.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "material mywine-09.png"; sourceTree = "<group>"; };
 		65EFEBAF1573C9770087F155 /* material mywine-10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "material mywine-10.png"; sourceTree = "<group>"; };
 		65EFEBB01573C9770087F155 /* material mywine-11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "material mywine-11.png"; sourceTree = "<group>"; };
 		65EFEBB11573C9770087F155 /* material mywine-12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "material mywine-12.png"; sourceTree = "<group>"; };
@@ -167,23 +160,18 @@
 		A0C6646E155448CC004C798E /* ListaRegioesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListaRegioesViewController.h; sourceTree = "<group>"; };
 		A0C6646F155448CC004C798E /* ListaRegioesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListaRegioesViewController.m; sourceTree = "<group>"; };
 		A9758370151A0151009B5F68 /* 117-todo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "117-todo.png"; sourceTree = "<group>"; };
-		A9758372151A01A2009B5F68 /* 18-envelope.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "18-envelope.png"; sourceTree = "<group>"; };
-		A975DE00151A3CCB002FC7FB /* 02-redo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "02-redo.png"; sourceTree = "<group>"; };
 		A979EDA915668FCB00E94A34 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = SOURCE_ROOT; };
 		A979EDAA15668FCB00E94A34 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = SOURCE_ROOT; };
-		A97D9D74151A3230007CF723 /* 53-house.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "53-house.png"; sourceTree = "<group>"; };
 		A97D9D77151A397B007CF723 /* 86-camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "86-camera.png"; sourceTree = "<group>"; };
 		A9A69B9A151FCDE100FC9073 /* SyncViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncViewController.h; sourceTree = "<group>"; };
 		A9A69B9B151FCDE200FC9073 /* SyncViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncViewController.m; sourceTree = "<group>"; };
 		A9A69B9D151FCEC500FC9073 /* NovaProvaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NovaProvaViewController.h; sourceTree = "<group>"; };
 		A9A69B9E151FCEC500FC9073 /* NovaProvaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NovaProvaViewController.m; sourceTree = "<group>"; };
 		A9B04E591519DE3B00DC32CF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		A9BDB691151A4F420032921A /* 06-magnify.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "06-magnify.png"; sourceTree = "<group>"; };
 		A9BE2C101518C254002E4E2A /* ListaProvasViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListaProvasViewController.h; sourceTree = "<group>"; };
 		A9BE2C111518C254002E4E2A /* ListaProvasViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListaProvasViewController.m; sourceTree = "<group>"; };
 		A9BE2C141518C330002E4E2A /* Prova.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prova.h; sourceTree = "<group>"; };
 		A9BE2C151518C330002E4E2A /* Prova.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Prova.m; sourceTree = "<group>"; };
-		A9BFB2C2151D442600588B59 /* 184-warning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "184-warning.png"; sourceTree = "<group>"; };
 		A9BFB2C4151D468500588B59 /* NovoVinhoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NovoVinhoViewController.h; sourceTree = "<group>"; };
 		A9BFB2C5151D468500588B59 /* NovoVinhoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NovoVinhoViewController.m; sourceTree = "<group>"; };
 		A9C28882151FBB4400C2F58D /* VinhoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VinhoViewController.h; sourceTree = "<group>"; };
@@ -465,12 +453,7 @@
 		A9C5A01A1517A7EF00A3F8C5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A975DE00151A3CCB002FC7FB /* 02-redo.png */,
-				A9BDB691151A4F420032921A /* 06-magnify.png */,
 				A9758370151A0151009B5F68 /* 117-todo.png */,
-				A9758372151A01A2009B5F68 /* 18-envelope.png */,
-				A9BFB2C2151D442600588B59 /* 184-warning.png */,
-				A97D9D74151A3230007CF723 /* 53-house.png */,
 				A97D9D77151A397B007CF723 /* 86-camera.png */,
 				6591893D1577CFF100D814C3 /* backgroundLandscape.png */,
 				6591893E1577CFF100D814C3 /* backgroundPortrait.png */,
@@ -492,7 +475,6 @@
 				65EFEBAB1573C9770087F155 /* material mywine-06.png */,
 				65EFEBAC1573C9770087F155 /* material mywine-07.png */,
 				65EFEBAD1573C9770087F155 /* material mywine-08.png */,
-				65EFEBAE1573C9770087F155 /* material mywine-09.png */,
 				65EFEBAF1573C9770087F155 /* material mywine-10.png */,
 				65EFEBB01573C9770087F155 /* material mywine-11.png */,
 				65EFEBB11573C9770087F155 /* material mywine-12.png */,
@@ -697,12 +679,7 @@
 				A9C5A0241517AB0E00A3F8C5 /* icon.png in Resources */,
 				A9B04E5A1519DE3B00DC32CF /* Settings.bundle in Resources */,
 				A9758371151A0151009B5F68 /* 117-todo.png in Resources */,
-				A9758373151A01A2009B5F68 /* 18-envelope.png in Resources */,
-				A97D9D75151A3230007CF723 /* 53-house.png in Resources */,
 				A97D9D78151A397B007CF723 /* 86-camera.png in Resources */,
-				A975DE01151A3CCB002FC7FB /* 02-redo.png in Resources */,
-				A9BDB692151A4F420032921A /* 06-magnify.png in Resources */,
-				A9BFB2C3151D442600588B59 /* 184-warning.png in Resources */,
 				DADE7ADA152E136400F0F680 /* MainStoryboard.storyboard in Resources */,
 				DADE7AF1152E170300F0F680 /* Localizable.strings in Resources */,
 				D3231DA3154814F400F09BAC /* DroidSerif-Bold.ttf in Resources */,
@@ -718,7 +695,6 @@
 				65EFEBBA1573C9770087F155 /* material mywine-06.png in Resources */,
 				65EFEBBB1573C9770087F155 /* material mywine-07.png in Resources */,
 				65EFEBBC1573C9770087F155 /* material mywine-08.png in Resources */,
-				65EFEBBD1573C9770087F155 /* material mywine-09.png in Resources */,
 				65EFEBBE1573C9770087F155 /* material mywine-10.png in Resources */,
 				65EFEBBF1573C9770087F155 /* material mywine-11.png in Resources */,
 				65EFEBC01573C9770087F155 /* material mywine-12.png in Resources */,
