@@ -7,6 +7,7 @@
 //
 
 #import "ListaVinhosViewController.h"
+#import "FilterManager.h"
 
 @interface ListaVinhosViewController () {
     NSMutableArray *_objects;
@@ -54,6 +55,11 @@ SEL action; id target;
     
     self.detailViewController.delegate = self;
     [self setHomeVisibility:TRUE];
+    
+    //Observar gestor de filtros
+    NSKeyValueObservingOptions options = NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew;
+    
+    [[FilterManager instance] addObserver:self forKeyPath:@"filters" options:options context:nil];
 }
 
 - (void)viewDidUnload
@@ -61,6 +67,16 @@ SEL action; id target;
     [self setFilterButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
+}
+
+- (void) observeValueForKeyPath:(NSString *)keyPath
+                       ofObject:(id)object
+                         change:(NSDictionary *)change
+                        context:(void *)context
+{
+    self.vinhos = [FilterManager applyFilters:[[User instance] vinhos]];
+    [[self tableView] reloadData];
+    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

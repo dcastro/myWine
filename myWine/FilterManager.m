@@ -34,13 +34,13 @@ static FilterManager* filterManager = nil;
 
 + (void) addFilterForObject:(id)object ofType:(FilterType) filterType {
     Filter* filter = [[Filter alloc] initWithFilterType:filterType andObject:object];
-    [filterManager.filters insertObject:filter atIndex:0];
+    [[filterManager mutableArrayValueForKey:@"filters"] insertObject:filter atIndex:0];
 }
 
 + (void) removeFilterForObject:(id)object ofType:(FilterType) filterType {
     NSPredicate* predicate = [NSPredicate predicateWithFormat:@"filterType != %i OR  object != %@", filterType, [object description]];
     
-    [filterManager.filters filterUsingPredicate:predicate];
+    [[filterManager mutableArrayValueForKey:@"filters"] filterUsingPredicate:predicate];
     
 }
 
@@ -63,7 +63,7 @@ static FilterManager* filterManager = nil;
 
 + (void) removeAllFilters {
     
-    [filterManager.filters removeAllObjects];
+    [[filterManager mutableArrayValueForKey:@"filters"] removeAllObjects];
     
 }
 
@@ -86,16 +86,16 @@ static FilterManager* filterManager = nil;
         
         switch (filter.filterType) {
             case FilterTypeYear:
-                predicate = [NSPredicate predicateWithFormat:@"year != %i", [filter.object intValue] ];
+                predicate = [NSPredicate predicateWithFormat:@"year == %i", [filter.object intValue] ];
                 break;
             case FilterTypeCountry:
-                predicate = [NSPredicate predicateWithFormat:@"region.country_name != %@", filter.object];
+                predicate = [NSPredicate predicateWithFormat:@"region.country_name == %@", filter.object];
                 break;
             case FilterTypeWineType:
-                predicate = [NSPredicate predicateWithFormat:@"winetype.name != %@", filter.object];
+                predicate = [NSPredicate predicateWithFormat:@"winetype.name == %@", filter.object];
                 break;
             case FilterTypeProducer:
-                predicate = [NSPredicate predicateWithFormat:@"producer != %@", filter.object];
+                predicate = [NSPredicate predicateWithFormat:@"producer == %@", filter.object];
                 break;
         }
         
