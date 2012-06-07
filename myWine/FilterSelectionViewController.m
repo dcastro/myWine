@@ -54,7 +54,25 @@
         case FilterTypeProducer:
             break;
     }
+    
+    [self configureView];
+    
 }
+
+- (void) configureView {
+    for(int i = 0; i < [[self objects] count]; i++) {
+        NSIndexPath* path = [NSIndexPath indexPathForRow:i inSection:0];
+        //UITableViewCell* cell = (UITableViewCell*) [[self tableView] cellForRowAtIndexPath:path];
+    
+        id object = [self.objects objectAtIndex:i];
+        
+        if( [FilterManager containsFilterForObject:object ofType:filterType] ) {
+            [[self tableView] selectRowAtIndexPath:path animated:NO scrollPosition:UITableViewScrollPositionNone];
+        }
+            
+    }
+}
+
 
 - (void)viewDidUnload
 {
@@ -146,7 +164,7 @@
     id object = [[self objects] objectAtIndex:indexPath.row];
     
     [FilterManager addFilterForObject:object ofType:filterType];
-        NSLog(@"count: %i", [[FilterManager instance].filters count]);
+    
     // Navigation logic may go here. Create and push another view controller.
     /*
      <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
@@ -160,11 +178,18 @@
     id object = [[self objects] objectAtIndex:indexPath.row];
     
     [FilterManager removeFilterForObject:object ofType:filterType];
-        NSLog(@"count: %i", [[FilterManager instance].filters count]);
 }
 
 - (IBAction)clearAll:(id)sender {
     [FilterManager removeFiltersOfType:filterType];
-    NSLog(@"count: %i", [[FilterManager instance].filters count]);
+    
+    for(int i = 0; i < [[self objects] count]; i++) {
+        NSIndexPath* path = [NSIndexPath indexPathForRow:i inSection:0];
+        
+        [[self tableView] deselectRowAtIndexPath:path animated:YES];
+    }
+    
+    
+    
 }
 @end

@@ -43,6 +43,15 @@ static FilterManager* filterManager = nil;
     [filterManager.filters filterUsingPredicate:predicate];
     
 }
+
++ (BOOL) containsFilterForObject:(id)object ofType:(FilterType) filterType {
+    for(Filter* filter in filterManager.filters)
+        if([filter.object isEqual:object] && filter.filterType == filterType)
+            return true;
+    return false;
+    
+}
+
 + (void) removeFiltersOfType:(FilterType) filterType {
     
     NSPredicate* predicate = [NSPredicate predicateWithFormat:@"filterType != %i", filterType];

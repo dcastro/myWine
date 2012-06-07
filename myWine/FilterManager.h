@@ -19,6 +19,7 @@
 
 + (void) addFilterForObject:(id)object ofType:(FilterType) filterType;
 + (void) removeFilterForObject:(id)object ofType:(FilterType) filterType;
++ (BOOL) containsFilterForObject:(id)object ofType:(FilterType) filterType;
 + (void) removeFiltersOfType:(FilterType) filterType;
 + (void) removeAllFilters;
 + (int) numberOfFiltersOfType:(FilterType) filterType;
