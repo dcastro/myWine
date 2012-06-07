@@ -366,7 +366,7 @@
                                     <rect key="frame" x="44" y="130" width="633" height="130"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                    <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 </textView>
@@ -385,6 +385,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </scrollView>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Criterion" textLabel="Vof-Gx-RPU" detailTextLabel="00I-Ix-mQu" style="IBUITableViewCellStyleValue1" id="Uza-02-m2z" customClass="CriterionCell">
@@ -411,6 +412,7 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -433,7 +435,7 @@
                     </connections>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="3170" y="18"/>
+            <point key="canvasLocation" x="2753" y="-1006"/>
         </scene>
         <!--Currency View Controller-->
         <scene sceneID="Fy7-kp-UtS">
@@ -953,7 +955,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="927" y="1957"/>
+            <point key="canvasLocation" x="991" y="1061"/>
         </scene>
         <!--Help View Controller - Perguntas Frequentes-->
         <scene sceneID="V9K-6H-IoO">
@@ -1114,7 +1116,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="927" y="965"/>
+            <point key="canvasLocation" x="991" y="69"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="y8S-uL-Yjb">
@@ -1501,7 +1503,7 @@
                     </connections>
                 </tabBarController>
             </objects>
-            <point key="canvasLocation" x="-360" y="965"/>
+            <point key="canvasLocation" x="-296" y="69"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="18">
@@ -1692,37 +1694,6 @@
             </objects>
             <point key="canvasLocation" x="1709" y="-4076"/>
         </scene>
-        <!--Filtros View Controller-->
-        <scene sceneID="79k-gX-OO0">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="n1I-0a-oOo" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tableViewController autoresizesArchivedViewToFullSize="NO" modalPresentationStyle="currentContext" clearsSelectionOnViewWillAppear="NO" id="CK3-BM-Oby" customClass="FiltrosViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="zap-hE-0m8">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1004"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Filtros" id="HWC-eP-lHM">
-                                <rect key="frame" x="0.0" y="54" width="768" height="46"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="45" y="1" width="658" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="CK3-BM-Oby" id="kCL-nH-Qzz"/>
-                            <outlet property="delegate" destination="CK3-BM-Oby" id="AMu-Vp-wSC"/>
-                        </connections>
-                    </tableView>
-                    <value key="contentSizeForViewInPopover" type="size" width="250" height="200"/>
-                </tableViewController>
-            </objects>
-            <point key="canvasLocation" x="918" y="-1129"/>
-        </scene>
         <!--Lista Vinhos View Controller - Vinhos-->
         <scene sceneID="24">
             <objects>
@@ -1821,7 +1792,6 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.84999999999999998" alpha="1" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                        <inset key="contentInset" minX="0.0" minY="0.0" maxX="0.0" maxY="44"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Prova" textLabel="Hod-gv-tlw" detailTextLabel="cjd-gG-2GD" style="IBUITableViewCellStyleSubtitle" id="zeq-VI-SgS" customClass="ProvaCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
@@ -1859,13 +1829,6 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
-                        <barButtonItem title="Filtrar" id="NMa-89-4oX">
-                            <connections>
-                                <segue destination="CK3-BM-Oby" kind="popover" identifier="filterSegue" popoverAnchorBarButtonItem="NMa-89-4oX" id="lxC-hI-C9J">
-                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                </segue>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem title="Comparar" id="T5a-si-eXX">
                             <connections>
                                 <action selector="toggleComparison:" destination="GmD-9N-1lw" id="5GC-dT-MmP"/>
@@ -1882,7 +1845,6 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics" barStyle="blackOpaque"/>
                     <connections>
                         <outlet property="compareButton" destination="T5a-si-eXX" id="c5N-xb-GvE"/>
-                        <outlet property="filterButton" destination="NMa-89-4oX" id="AT3-gC-DtT"/>
                     </connections>
                 </tableViewController>
             </objects>
@@ -2022,7 +1984,7 @@
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="909" y="18"/>
+            <point key="canvasLocation" x="492" y="-1006"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="IWT-xM-bBy">
@@ -2261,7 +2223,7 @@
                     </connections>
                 </tabBarController>
             </objects>
-            <point key="canvasLocation" x="2028" y="18"/>
+            <point key="canvasLocation" x="1611" y="-1006"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Bry-hX-aG9">
@@ -2345,9 +2307,6 @@
             <relationships>
                 <relationship kind="action" name="clearAll:"/>
             </relationships>
-        </class>
-        <class className="FiltrosViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FiltrosViewController.h"/>
         </class>
         <class className="HelpViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/HelpViewController.h"/>

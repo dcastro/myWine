@@ -81,6 +81,8 @@
         [self setEditing:YES animated:YES done:NO];
     }
     
+    [self.bottomScrollView setBackgroundColor:[UIColor whiteColor]];
+    
 }
 
 - (void) configureView {
@@ -102,7 +104,7 @@
     [self.commentContentLabel sizeToFit];
     
     self.scoreLabel.text = [[Language instance] translate:@"Score"];
-    [self.scoreContentLabel setFont:[UIFont fontWithName:@"DroidSerif-Regular" size:TITLE_FONT]];
+    [self.scoreLabel setFont:[UIFont fontWithName:@"DroidSerif-Regular" size:TITLE_FONT]];
     NSString* string = [[NSString alloc] initWithFormat:@"%i %%", [self.prova calcScore]];
     self.scoreContentLabel.text = string;   
 }
@@ -176,6 +178,15 @@
     return view;
     
 }
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 10)];
+    [view setBackgroundColor:[UIColor whiteColor ]];
+    
+    return view;
+}
+
 
 - (void)viewDidUnload
 {
