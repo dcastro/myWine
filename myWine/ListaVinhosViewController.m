@@ -147,6 +147,10 @@ SEL action; id target;
         ovc.delegate = self;
         self.popoverController = [(UIStoryboardPopoverSegue *)segue popoverController];
     }
+    else if ([segue.identifier isEqualToString:@"toFilters"]) {
+        NSIndexPath* path = [[self tableView] indexPathForSelectedRow];
+        [[self tableView] deselectRowAtIndexPath:path animated:YES];
+    }
 
     //switch detail views
     [self switchDetailViews:segue];

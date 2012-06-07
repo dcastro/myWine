@@ -227,7 +227,19 @@
 
 - (IBAction)clearAll:(id)sender {
     [FilterManager removeAllFilters];
-    [self configureView];
+    
+    UIViewAnimationOptions options = UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionTransitionCrossDissolve;  
+    
+    [UIView transitionWithView:[self view] 
+                      duration:0.3
+                       options:options  
+                    animations:^{
+                        [self configureView];
+                        
+                    }  
+                    completion:NULL];  
+    
+    
 }
 
 
