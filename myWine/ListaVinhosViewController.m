@@ -28,6 +28,7 @@
 @synthesize homeVisibility;
 @synthesize tempButton;
 @synthesize filterButton;
+@synthesize selectedOrder;
 
 SEL action; id target;
 
@@ -391,6 +392,8 @@ SEL action; id target;
     [vinhos orderVinhosBy:order];
     [self setVinhos:vinhos];
     [[self tableView] reloadData];
+    
+    self.selectedOrder = order;
     
     [self.popoverController dismissPopoverAnimated:YES];
 }
