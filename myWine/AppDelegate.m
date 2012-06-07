@@ -11,6 +11,8 @@
 #import "User.h"
 #import "FilterManager.h"
 #import "Filter.h"
+#import "Comparator.h"
+#import "UIColor+myWineColor.h"
 
 @implementation AppDelegate
 

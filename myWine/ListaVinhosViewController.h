@@ -11,14 +11,8 @@
 #import "LoginViewController.h"
 #import "DetailViewController.h"
 #import "VinhoViewController.h"
-#import "Vinho.h"
-#import "User.h"
-#import "Prova.h"
-#import "Language.h"
-#import "ListaProvasViewController.h"
-#import "NSMutableArray+VinhosMutableArray.h"
-#import <objc/runtime.h>
 #import "OrderViewController.h"
+
 
 @class DetailViewController;
 @class VinhoViewController;

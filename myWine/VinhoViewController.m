@@ -18,7 +18,6 @@
 @end
 
 @implementation VinhoViewController
-@synthesize swipeLeft = _swipeLeft;
 @synthesize producer_label = _producer_label;
 @synthesize producer_label_name = _producer_label_name;
 @synthesize year_label = _year_label;
@@ -215,7 +214,6 @@
     [self setPrice_label:nil];
     [self setPrice_value_label:nil];
     [self setSelectCurrencyButton:nil];
-    [self setSwipeLeft:nil];
     [self setCurrencyButton:nil];
     [self setCountryButton:nil];
     [self setRegionButton:nil];

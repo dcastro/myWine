@@ -1683,7 +1683,7 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="OcA-UE-FkB">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FilterSelectionCell" id="OcA-UE-FkB">
                                 <rect key="frame" x="0.0" y="54" width="703" height="46"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -2476,7 +2476,6 @@
         <class className="VinhoViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/VinhoViewController.h"/>
             <relationships>
-                <relationship kind="action" name="handleSwipeFrom:" candidateClass="UISwipeGestureRecognizer"/>
                 <relationship kind="action" name="toggleEdit:"/>
                 <relationship kind="outlet" name="countryButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="country_label" candidateClass="UILabel"/>
@@ -2500,7 +2499,6 @@
                 <relationship kind="outlet" name="selectCountryButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="selectCurrencyButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="selectRegionButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="swipeLeft" candidateClass="UISwipeGestureRecognizer"/>
                 <relationship kind="outlet" name="tempButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="wineName" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="wine_label_name" candidateClass="UILabel"/>

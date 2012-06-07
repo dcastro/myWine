@@ -7,6 +7,7 @@
 //
 
 #import "ListaProvasViewController.h"
+#import "SubstitutableTabBarControllerViewController.h"
 
 @interface ListaProvasViewController () {NSMutableArray *_objects;}
 

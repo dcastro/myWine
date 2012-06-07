@@ -7,15 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Vinho.h"
-#import "Prova.h"
-#import "Language.h"
 #import "ProvaViewController.h"
 #import "ListaVinhosViewController.h"
 
-@class ProvaViewController;
-@protocol SubstitutableDetailViewController;
-@protocol ProvaViewControllerDelegate;
 
 
 @interface SubstitutableTabBarControllerViewController : UITabBarController <SubstitutableDetailViewController, ProvaViewControllerDelegate, UITabBarControllerDelegate>

@@ -10,6 +10,7 @@
 #import "Language.h"
 #import <objc/runtime.h> 
 #import <QuartzCore/QuartzCore.h>
+#import "SubstitutableTabBarControllerViewController.h"
 
 @interface ProvaViewController ()
 

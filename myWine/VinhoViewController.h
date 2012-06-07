@@ -22,7 +22,7 @@
 
 @end
 
-@interface VinhoViewController : UIViewController <UISplitViewControllerDelegate, UITextFieldDelegate,UIGestureRecognizerDelegate, ListaPaisesViewControllerDelegate, ListaRegioesViewControllerDelegate, CurrencyViewControllerDelegate>
+@interface VinhoViewController : UIViewController <UISplitViewControllerDelegate, UITextFieldDelegate, ListaPaisesViewControllerDelegate, ListaRegioesViewControllerDelegate, CurrencyViewControllerDelegate>
 
 @property (strong, nonatomic) id detailItem;
 
@@ -65,9 +65,6 @@
 
 @property (nonatomic, strong) Vinho* editableWine;
 @property (nonatomic, strong) Pais* country;
-@property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeLeft;
-
-- (IBAction)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer;
 
 @property (nonatomic, strong) UIPopoverController* popover;
 

@@ -8,6 +8,9 @@
 
 #import "ListaVinhosViewController.h"
 #import "FilterManager.h"
+#import "ListaProvasViewController.h"
+#import "NSMutableArray+VinhosMutableArray.h"
+#import "ListaPaisesViewController.h"
 
 @interface ListaVinhosViewController () {
     NSMutableArray *_objects;
