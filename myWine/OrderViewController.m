@@ -14,7 +14,7 @@
 
 @implementation OrderViewController
 
-@synthesize selectedOrder = _selectedOrder;
+//@synthesize selectedOrder = _selectedOrder;
 @synthesize delegate = _delegate;
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -45,7 +45,9 @@
         [cell setAccessoryType:UITableViewCellAccessoryNone];
     }
     
+    [cell setAccessoryType:UITableViewCellAccessoryNone];
 }
+ 
 
 - (void)viewDidUnload
 {

@@ -179,7 +179,7 @@
 
 - (NSComparisonResult)compareUsingName:(Vinho*)vinho {
     
-    return [self.name compare:vinho.name];
+    return [self.name caseInsensitiveCompare:vinho.name];
 
 }
 

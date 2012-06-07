@@ -51,6 +51,7 @@
 
 @property (nonatomic, strong) UIPopoverController *popoverController;
 @property (nonatomic, strong) UIBarButtonItem *rootPopoverButtonItem;
+@property (nonatomic) int selectedOrder;
 
 
 @property (nonatomic, getter=homeIsVisible) BOOL homeVisibility;
