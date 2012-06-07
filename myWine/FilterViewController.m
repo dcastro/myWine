@@ -218,11 +218,6 @@
 }
 
 
-#pragma mark - Filter Selection Delegate Method
-- (void) filterSelectionViewControllerDidSelect:(id) object withFilter:(FilterType) filterType {
-    
-    NSLog(@"%@ %i", [object description], filterType);
-}
 
 - (IBAction)clearAll:(id)sender {
     [FilterManager removeAllFilters];
@@ -235,6 +230,21 @@
         FilterCell* cell = (FilterCell*) [[self tableView] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
         block(cell);
     }
+}
+
+#pragma mark -
+#pragma mark Managing the popover
+
+- (void)showRootPopoverButtonItem:(UIBarButtonItem *)barButtonItem {
+    Language* lan = [Language instance];
+    barButtonItem.title = [lan translate:@"Wines List Title"];
+    [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
+}
+
+
+- (void)invalidateRootPopoverButtonItem:(UIBarButtonItem *)barButtonItem {
+    
+    [self.navigationItem setLeftBarButtonItem:nil animated:YES];
 }
 
 @end

@@ -16,8 +16,8 @@
 @implementation FilterSelectionViewController
 
 @synthesize filterType;
-@synthesize delegate;
 @synthesize objects = _objects;
+@synthesize delegate = _delegate;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -192,4 +192,17 @@
     
     
 }
+
+#pragma mark -
+#pragma mark Managing the popover
+
+- (void)showRootPopoverButtonItem:(UIBarButtonItem *)barButtonItem {
+    [self.delegate showRootPopoverButtonItem:barButtonItem];
+}
+
+
+- (void)invalidateRootPopoverButtonItem:(UIBarButtonItem *)barButtonItem {
+    [self.delegate invalidateRootPopoverButtonItem:barButtonItem];
+}
+
 @end
