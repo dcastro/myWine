@@ -1790,6 +1790,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics" barStyle="blackOpaque"/>
                     <connections>
                         <outlet property="filterButton" destination="9hN-W6-5pe" id="ENy-UG-pE9"/>
+                        <outlet property="orderButton" destination="NhG-r2-GEG" id="Wdy-f8-eTO"/>
                         <segue destination="GmD-9N-1lw" kind="push" identifier="PushProvas" id="1f0-qR-5Ea"/>
                         <segue destination="N51-FY-8hq" kind="push" identifier="VinhosToHome" splitViewControllerTargetIndex="1" id="5EB-Zz-Uxs"/>
                     </connections>
@@ -1981,6 +1982,10 @@
                         </connections>
                     </tableView>
                     <value key="contentSizeForViewInPopover" type="size" width="200" height="120"/>
+                    <connections>
+                        <outlet property="nome" destination="pQM-0m-aQt" id="Lt4-OQ-Fag"/>
+                        <outlet property="score" destination="gIz-We-j1d" id="xW3-sd-iVb"/>
+                    </connections>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="-1546" y="-4467"/>
@@ -2371,6 +2376,7 @@
             <relationships>
                 <relationship kind="action" name="didPressHomeButton:"/>
                 <relationship kind="outlet" name="filterButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="orderButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="tempButton" candidateClass="UIBarButtonItem"/>
             </relationships>
         </class>
@@ -2417,6 +2423,10 @@
         </class>
         <class className="OrderViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/OrderViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="nome" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="score" candidateClass="UITableViewCell"/>
+            </relationships>
         </class>
         <class className="ProvaCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ProvaCell.h"/>

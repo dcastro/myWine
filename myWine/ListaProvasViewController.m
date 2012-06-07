@@ -55,15 +55,38 @@ SEL action; id target;
     // Release any retained subviews of the main view.
 }
 
-- (void) viewWillDisappear:(BOOL)animated {
+- (void) viewDidAppear:(BOOL)animated {
     
+    //add all observers
+    [self forEveryCell:^(ProvaCell* cell) {
+        
+        CheckboxButton* checkbox = (CheckboxButton*) [cell viewWithTag:1];
+        @try {
+            [checkbox addObserver:cell forKeyPath:@"selected" options:NSKeyValueObservingOptionNew context:nil];
+        } @catch (id anException) {
+            
+        }
+        
+    } ];
+    
+    [super viewDidAppear:animated];
+}
+
+- (void) viewDidDisappear:(BOOL)animated {
+
     //remove all observers
     [self forEveryCell:^(ProvaCell* cell) {
         
         CheckboxButton* checkbox = (CheckboxButton*) [cell viewWithTag:1];
-        [checkbox removeObserver:cell forKeyPath:@"selected"];
+        @try {
+            [checkbox removeObserver:cell forKeyPath:@"selected"];
+        } @catch (id anException) {
+            
+        }
         
     } ];
+    
+    [super viewDidDisappear:animated];
     
 }
 
@@ -192,7 +215,7 @@ SEL action; id target;
     
     [cell setProva:object];
     
-    [checkbox addObserver:cell forKeyPath:@"selected" options:NSKeyValueObservingOptionNew context:nil];
+    //[checkbox addObserver:cell forKeyPath:@"selected" options:NSKeyValueObservingOptionNew context:nil];
     
 
     return cell;

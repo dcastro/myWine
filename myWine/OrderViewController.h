@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Language.h"
 
 @protocol OrderViewControllerDelegate <NSObject>
 
@@ -18,5 +19,7 @@
 
 @property (nonatomic) int selectedOrder;
 @property (nonatomic, weak) id <OrderViewControllerDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UITableViewCell *nome;
+@property (weak, nonatomic) IBOutlet UITableViewCell *score;
 
 @end

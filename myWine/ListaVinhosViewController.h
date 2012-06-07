@@ -58,6 +58,7 @@
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *tempButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *filterButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *orderButton;
 
 - (void)insertNewObject:(id)sender;
 
