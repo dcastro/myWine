@@ -30,7 +30,7 @@
     
     
     
-    NSMutableArray * new = [self buildNew];
+    NSMutableDictionary * new = [self buildNew];
     if (new) {
         [requestData setObject:new forKey:@"new"];
     }else {
@@ -65,10 +65,93 @@
 
 
 
--(NSMutableArray *) buildNew
+-(NSMutableDictionary *) buildNew
 {
+    NSString * querySQL;
+    NSMutableDictionary * new = [[NSMutableDictionary alloc] init];
     
+    querySQL = [NSString stringWithFormat:@"SELECT wine_id, region_id, winetype_id, year, name, grapes, photo_filename, producer, currency, price \
+                FROM Wine \
+                WHERE user = \'%@\' AND state == 1", user.username];
+    
+    int wine_id;
+    sqlite3_stmt * wine_stmt;
+    NSMutableArray * wines = [[NSMutableArray alloc]init];
+    
+    if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &wine_stmt, NULL) == SQLITE_OK){
+        while(sqlite3_step(wine_stmt) == SQLITE_ROW){
+            
+            wine_id = sqlite3_column_int(wine_stmt, 0);
+            NSMutableDictionary * wine = [[NSMutableDictionary alloc]init];
+            [wine setObject:[NSNumber numberWithInt:sqlite3_column_int(wine_stmt, 1)] forKey:@"region"];
+            [wine setObject:[NSNumber numberWithInt:sqlite3_column_int(wine_stmt, 2)] forKey:@"wine_type"];
+            [wine setObject:[NSNumber numberWithInt:sqlite3_column_int(wine_stmt, 3)] forKey:@"year"];
+            [wine setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(wine_stmt, 4)] forKey:@"name"];
+            [wine setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(wine_stmt, 5)] forKey:@"grapes"];
+            [wine setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(wine_stmt, 6)] forKey:@"photo_filename"];
+            [wine setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(wine_stmt, 7)] forKey:@"producer"];
+            [wine setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(wine_stmt, 8)] forKey:@"currency"];
+            [wine setObject:[NSNumber numberWithDouble:sqlite3_column_double(wine_stmt, 9)] forKey:@"price"];
+            
+            
+            
+            
+            //nao se precisa de verificar estado porque uma vinho novo so tem provas novas
+            querySQL = [NSString stringWithFormat:@"SELECT t.tasting_id, t.tasting_date, t.comment, t.latitude, t.longitude \
+                        FROM Tasting t \
+                        WHERE wine_id = %d", wine_id];
+            
+            
+            int tasting_id;
+            sqlite3_stmt * tasting_stmt;
+            NSMutableArray * tastings = [[NSMutableArray alloc]init ];
+            
+            if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &tasting_stmt, NULL) == SQLITE_OK){
+                while(sqlite3_step(tasting_stmt) == SQLITE_ROW){
+                    
+                    tasting_id = sqlite3_column_int(tasting_stmt, 0);
+                    NSMutableDictionary * tasting = [[NSMutableDictionary alloc]init ];
+                    [tasting setObject:[NSNumber numberWithDouble:sqlite3_column_double(wine_stmt, 1)] forKey:@"tasting_date"];
+                    [wine setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(wine_stmt, 2)] forKey:@"comment"];
+                    [tasting setObject:[NSNumber numberWithDouble:sqlite3_column_double(wine_stmt, 3)] forKey:@"latitude"];
+                    [tasting setObject:[NSNumber numberWithDouble:sqlite3_column_double(wine_stmt, 4)] forKey:@"longitude"];
+                    
+                    
+                    int section_id;
+                    sqlite3_stmt * section_stmt;
+                    NSMutableArray * sections = [[NSMutableArray alloc]init ];
+
+                    
+                    
+                    //adiciona prova
+                    [tastings addObject:tasting];
+                    
+                }
+                sqlite3_finalize(tasting_stmt);
+                [wine setObject:tastings forKey:@"tastings"];
+                
+            }else {
+                DebugLog(@"Query with error: %@", querySQL);
+                return nil;
+            }
+            
+            
+            
+            //adiciona o vinho
+            [wines addObject:wine];
+            
+        }
+        sqlite3_finalize(wine_stmt);
+        [new setObject:wines forKey:@"wines"];
+    }else {
+        DebugLog(@"Query with error: %@", querySQL);
+        return nil;
+    }
+    
+    
+    return new;
 }
+
 
 
 
