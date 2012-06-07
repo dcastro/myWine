@@ -135,6 +135,12 @@ SEL action; id target;
         NSIndexPath* path = [[self tableView] indexPathForSelectedRow];
         [[self tableView] deselectRowAtIndexPath:path animated:YES];
     }
+    else if([segue.identifier isEqualToString:@"orderVinhos"]) {
+        OrderViewController* ovc = (OrderViewController*) segue.destinationViewController;
+        //ovc.selectedCurrency = self.editableWine.currency;
+        ovc.delegate = self;
+        self.popoverController = [(UIStoryboardPopoverSegue *)segue popoverController];
+    }
 
     //switch detail views
     [self switchDetailViews:segue];
@@ -380,10 +386,13 @@ SEL action; id target;
 }
 
 - (void) orderViewControllerDidSelect:(int)order {
-    [_vinhos orderVinhosBy:order];
+    NSLog(@"Order %i",order);
+    NSMutableArray* vinhos = _vinhos;
+    [vinhos orderVinhosBy:order];
+    [self setVinhos:vinhos];
     [[self tableView] reloadData];
     
-    
+    [self.popoverController dismissPopoverAnimated:YES];
 }
 
 @end

@@ -14,7 +14,7 @@
 
 @implementation OrderViewController
 
-@synthesize selectedOrder = _selectedOrder;
+//@synthesize selectedOrder = _selectedOrder;
 @synthesize delegate = _delegate;
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -38,14 +38,16 @@
 }
 
 - (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    /*
     if(cell.tag == self.selectedOrder) {
         [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
     } else {
         [cell setAccessoryType:UITableViewCellAccessoryNone];
     }
-    
+    */
+    [cell setAccessoryType:UITableViewCellAccessoryNone];
 }
+ 
 
 - (void)viewDidUnload
 {
