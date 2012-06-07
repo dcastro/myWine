@@ -1919,7 +1919,7 @@
         <scene sceneID="Bp6-XR-et8">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="McY-SF-hr9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tableViewController id="WfQ-GX-966" customClass="OrderViewController" sceneMemberID="viewController">
+                <tableViewController modalTransitionStyle="partialCurl" id="WfQ-GX-966" customClass="OrderViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="nFs-6k-MEo">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1004"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1972,6 +1972,7 @@
                             <outlet property="delegate" destination="WfQ-GX-966" id="tZh-f2-bcW"/>
                         </connections>
                     </tableView>
+                    <value key="contentSizeForViewInPopover" type="size" width="200" height="120"/>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="-1546" y="-4467"/>
