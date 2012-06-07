@@ -187,9 +187,9 @@
     int thisScore = [self score];
     int otherScore = [vinho score];
     
-    if (thisScore < otherScore)
+    if (thisScore > otherScore)
         return NSOrderedAscending;
-    else if (thisScore > otherScore)
+    else if (thisScore < otherScore)
         return NSOrderedDescending;
     else 
         return NSOrderedSame;
