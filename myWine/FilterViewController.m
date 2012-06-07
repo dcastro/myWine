@@ -10,6 +10,7 @@
 #import "FilterSelectionViewController.h"
 #import "User.h"
 #import "NSMutableArray+VinhosMutableArray.h"
+#import "FilterManager.h"
 
 @interface FilterViewController ()
 
@@ -163,10 +164,14 @@
     [self performSegueWithIdentifier:@"filterToSelection" sender:self];
 }
 
+
 #pragma mark - Filter Selection Delegate Method
 - (void) filterSelectionViewControllerDidSelect:(id) object withFilter:(FilterType) filterType {
     
     NSLog(@"%@ %i", [object description], filterType);
 }
 
+- (IBAction)clearAll:(id)sender {
+    [FilterManager removeAllFilters];
+}
 @end

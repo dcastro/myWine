@@ -17,7 +17,8 @@
 
 + (FilterManager*) instance;
 
-+ (void) addFilter:(Filter*) filter;
++ (void) addFilterForObject:(id)object ofType:(FilterType) filterType;
++ (void) removeFilterForObject:(id)object ofType:(FilterType) filterType;
 + (void) removeFiltersOfType:(FilterType) filterType;
 + (void) removeAllFilters;
 + (NSMutableArray*) applyFilters:(NSArray*) unfilteredArray;

@@ -32,10 +32,17 @@ static FilterManager* filterManager = nil;
 
 }
 
-+ (void) addFilter:(Filter*) filter {
++ (void) addFilterForObject:(id)object ofType:(FilterType) filterType {
+    Filter* filter = [[Filter alloc] initWithFilterType:filterType andObject:object];
     [filterManager.filters insertObject:filter atIndex:0];
 }
 
++ (void) removeFilterForObject:(id)object ofType:(FilterType) filterType {
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"filterType != %i OR  object != %@", filterType, [object description]];
+    
+    [filterManager.filters filterUsingPredicate:predicate];
+    
+}
 + (void) removeFiltersOfType:(FilterType) filterType {
     
     NSPredicate* predicate = [NSPredicate predicateWithFormat:@"filterType != %i", filterType];

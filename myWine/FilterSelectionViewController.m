@@ -7,6 +7,7 @@
 //
 
 #import "FilterSelectionViewController.h"
+#import "FilterManager.h"
 
 @interface FilterSelectionViewController ()
 
@@ -144,9 +145,8 @@
     
     id object = [[self objects] objectAtIndex:indexPath.row];
     
-    [self.delegate filterSelectionViewControllerDidSelect:object withFilter:filterType];
-    
-    [self.navigationController popViewControllerAnimated:YES];
+    [FilterManager addFilterForObject:object ofType:filterType];
+        NSLog(@"count: %i", [[FilterManager instance].filters count]);
     // Navigation logic may go here. Create and push another view controller.
     /*
      <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
@@ -156,6 +156,15 @@
      */
 }
 
+-(void) tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    id object = [[self objects] objectAtIndex:indexPath.row];
+    
+    [FilterManager removeFilterForObject:object ofType:filterType];
+        NSLog(@"count: %i", [[FilterManager instance].filters count]);
+}
+
 - (IBAction)clearAll:(id)sender {
+    [FilterManager removeFiltersOfType:filterType];
+    NSLog(@"count: %i", [[FilterManager instance].filters count]);
 }
 @end
