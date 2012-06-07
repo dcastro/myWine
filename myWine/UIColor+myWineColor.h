@@ -12,5 +12,7 @@
 
 + (UIColor*) myWineColor;
 + (UIColor*) myWineColorDark;
++ (UIColor*) myWineColorGrey;
++ (UIColor*) myWineColorDarkGrey;
 
 @end

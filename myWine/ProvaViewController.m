@@ -60,7 +60,7 @@
     
     //Set fonts
     self.wineNameLabel.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGE_FONT];
-    self.dateLabel.font = [UIFont fontWithName:@"DroidSerif-Regular" size:SMALL_FONT];
+    self.dateLabel.font = [UIFont fontWithName:@"DroidSerif" size:SMALL_FONT];
     
     //hide the text views
     self.commentContentTextView.hidden = TRUE;
@@ -80,8 +80,8 @@
     if( [self isEditing] ) {
         [self setEditing:YES animated:YES done:NO];
     }
-    
-    [self.bottomScrollView setBackgroundColor:[UIColor whiteColor]];
+    [self.tableView setBackgroundColor:[UIColor myWineColorGrey]];
+    [self.bottomScrollView setBackgroundColor:[UIColor myWineColorGrey]];
     
 }
 
@@ -104,9 +104,11 @@
     [self.commentContentLabel sizeToFit];
     
     self.scoreLabel.text = [[Language instance] translate:@"Score"];
-    [self.scoreLabel setFont:[UIFont fontWithName:@"DroidSerif-Regular" size:TITLE_FONT]];
-    NSString* string = [[NSString alloc] initWithFormat:@"%i %%", [self.prova calcScore]];
-    self.scoreContentLabel.text = string;   
+    [self.scoreLabel setFont:[UIFont fontWithName:@"DroidSerif" size:NORMAL_FONT]];
+    [self.scoreLabel setTextColor:[UIColor myWineColor]];
+    NSString* string = [[NSString alloc] initWithFormat:@"%i%%", [self.prova calcScore]];
+    self.scoreContentLabel.text = string;
+    [self.scoreContentLabel setFont:[UIFont fontWithName:@"DroidSerif" size:LARGER_FONT]];
 }
 
 - (int) updateScoreLabel {
@@ -131,7 +133,7 @@
 }
 
 -(void) updateScoreLabelWithScore:(int) score {
-    NSString* string = [[NSString alloc] initWithFormat:@"%i %%", score];
+    NSString* string = [[NSString alloc] initWithFormat:@"%i%%", score];
     
     if(! [self.scoreContentLabel.text isEqualToString:string]) {
         
@@ -172,7 +174,7 @@
     
     // Create header view and add label as a subview
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
-    [view setBackgroundColor:[UIColor whiteColor ]];
+    [view setBackgroundColor:[UIColor myWineColorGrey ]];
     [view addSubview: label];
     
     return view;
@@ -182,7 +184,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 10)];
-    [view setBackgroundColor:[UIColor whiteColor ]];
+    [view setBackgroundColor:[UIColor myWineColorGrey ]];
     
     return view;
 }

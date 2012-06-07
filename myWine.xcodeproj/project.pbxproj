@@ -41,6 +41,7 @@
 		65EFEBC41573C9770087F155 /* material mywine-16.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EFEBB51573C9770087F155 /* material mywine-16.png */; };
 		65EFEBC51573C9770087F155 /* material mywine-17.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EFEBB61573C9770087F155 /* material mywine-17.png */; };
 		84446B7B1580F00B00A72FA2 /* material mywine-19.png in Resources */ = {isa = PBXBuildFile; fileRef = 84446B7A1580F00B00A72FA2 /* material mywine-19.png */; };
+		84D2FB411580FD0D00F4C5EE /* DroidSerif-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D3231DA015480DF700F09BAC /* DroidSerif-Regular.ttf */; };
 		A0C66470155448CC004C798E /* ListaRegioesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C6646F155448CC004C798E /* ListaRegioesViewController.m */; };
 		A9758371151A0151009B5F68 /* 117-todo.png in Resources */ = {isa = PBXBuildFile; fileRef = A9758370151A0151009B5F68 /* 117-todo.png */; };
 		A979EDAB15668FCB00E94A34 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = A979EDAA15668FCB00E94A34 /* Utils.m */; };
@@ -69,7 +70,6 @@
 		D3231DA3154814F400F09BAC /* DroidSerif-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D3231D9D15480DF700F09BAC /* DroidSerif-Bold.ttf */; };
 		D3231DA4154814F800F09BAC /* DroidSerif-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D3231D9E15480DF700F09BAC /* DroidSerif-BoldItalic.ttf */; };
 		D3231DA5154814FC00F09BAC /* DroidSerif-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D3231D9F15480DF700F09BAC /* DroidSerif-Italic.ttf */; };
-		D3231DA6154814FF00F09BAC /* DroidSerif-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D3231DA015480DF700F09BAC /* DroidSerif-Regular.ttf */; };
 		D328B96D153F254700EA4501 /* DatabaseDefinitions.c in Sources */ = {isa = PBXBuildFile; fileRef = D328B96C153F254700EA4501 /* DatabaseDefinitions.c */; };
 		D33F4B6E15702F00003C0BC5 /* SeccaoCaracteristica.m in Sources */ = {isa = PBXBuildFile; fileRef = D33F4B6D15702F00003C0BC5 /* SeccaoCaracteristica.m */; };
 		D3500EF3154C458400FB85E3 /* Seccao.m in Sources */ = {isa = PBXBuildFile; fileRef = D3500EF2154C458400FB85E3 /* Seccao.m */; };
@@ -682,6 +682,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84D2FB411580FD0D00F4C5EE /* DroidSerif-Regular.ttf in Resources */,
 				659189461577D17700D814C3 /* backgroundLandscape.png in Resources */,
 				659189471577D17700D814C3 /* backgroundPortrait.png in Resources */,
 				659189481577D17700D814C3 /* DroidSans-Bold.ttf in Resources */,
@@ -696,7 +697,6 @@
 				D3231DA3154814F400F09BAC /* DroidSerif-Bold.ttf in Resources */,
 				D3231DA4154814F800F09BAC /* DroidSerif-BoldItalic.ttf in Resources */,
 				D3231DA5154814FC00F09BAC /* DroidSerif-Italic.ttf in Resources */,
-				D3231DA6154814FF00F09BAC /* DroidSerif-Regular.ttf in Resources */,
 				DADE3BCA15480E2000465551 /* cell_bg_gradient.png in Resources */,
 				65826F501566629300C3D2AD /* logo.png in Resources */,
 				DA019F531570400E00CC589A /* SectionItemCell.xib in Resources */,

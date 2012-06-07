@@ -55,6 +55,9 @@
     
     [self.classificationSlider setUserInteractionEnabled:FALSE];
     
+    //color
+    self.backgroundColor = [UIColor myWineColorDarkGrey];
+    
     //change slider's thumb image
     UIImage* image = [UIImage imageNamed:@"slider_thumb.png"];
     [self.classificationSlider setThumbImage:image forState:UIControlStateNormal];

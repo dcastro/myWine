@@ -22,4 +22,13 @@
                            alpha:1.0];
 }
 
++ (UIColor*) myWineColorGrey {
+    return [UIColor colorWithRed:234/255.0 green:234/255.0 blue:234/255.0 alpha:1.0];
+}
+
++ (UIColor*) myWineColorDarkGrey {
+    return [UIColor colorWithRed:198/255.0 green:198/255.0 blue:198/255.0 alpha:1.0];
+}
+
+
 @end
