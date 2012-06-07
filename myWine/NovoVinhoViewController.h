@@ -29,7 +29,7 @@
     UITextField *AnoVinho;
     UIImageView *imageView;
     BOOL newMedia;
-    
+    UIImage *image;
 }
 
 @property (weak, nonatomic) IBOutlet UIButton *regiaoButton;
