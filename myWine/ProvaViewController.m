@@ -80,6 +80,7 @@
     if( [self isEditing] ) {
         [self setEditing:YES animated:YES done:NO];
     }
+    [self.tableView setBackgroundView:nil];
     [self.tableView setBackgroundColor:[UIColor myWineColorGrey]];
     [self.bottomScrollView setBackgroundColor:[UIColor myWineColorGrey]];
     
