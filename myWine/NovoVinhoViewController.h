@@ -46,14 +46,6 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *Done;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *Cancel;
 
-@property (weak, nonatomic) IBOutlet UILabel *lblNomeVinho;
-@property (weak, nonatomic) IBOutlet UILabel *lblProdutor;
-@property (weak, nonatomic) IBOutlet UILabel *lblAno;
-@property (weak, nonatomic) IBOutlet UILabel *lblPreco;
-@property (weak, nonatomic) IBOutlet UILabel *lblPais;
-@property (weak, nonatomic) IBOutlet UILabel *lblRegiao;
-@property (weak, nonatomic) IBOutlet UILabel *lblTipoVinho;
-@property (weak, nonatomic) IBOutlet UILabel *lblCasta;
 @property (weak, nonatomic) IBOutlet UINavigationItem *novoVinho;
 
 
@@ -66,6 +58,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) UIPopoverController *myPop;
 @property (weak, nonatomic) IBOutlet UIButton *pickFoto;
+@property (strong, nonatomic) IBOutlet UILabel *foto;
 
 - (IBAction)pickF:(id)sender;
 - (IBAction)cancel:(id)sender;
