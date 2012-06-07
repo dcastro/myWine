@@ -27,6 +27,7 @@
 @synthesize dateLabel = _dateLabel;
 @synthesize scoreLabel = _scoreLabel;
 @synthesize scoreContentLabel = _scoreContentLabel;
+@synthesize comentario = _comentario;
 @synthesize prova_mode;
 @synthesize delegate;
 
@@ -211,6 +212,7 @@
     [self setCommentContentTextView:nil];
     [self setScoreLabel:nil];
     [self setScoreContentLabel:nil];
+    [self setComentario:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

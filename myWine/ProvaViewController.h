@@ -45,6 +45,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *scoreContentLabel;
+@property (weak, nonatomic) IBOutlet UIView *comentario;
 
 @property (strong, nonatomic) id<ProvaViewControllerDelegate> delegate;
 

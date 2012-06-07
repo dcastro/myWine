@@ -431,6 +431,7 @@
                     <tabBarItem key="tabBarItem" systemItem="recents" id="k51-u2-rb2"/>
                     <connections>
                         <outlet property="bottomScrollView" destination="83r-FD-Tah" id="cO8-8a-b8U"/>
+                        <outlet property="comentario" destination="4qx-UH-yBz" id="9Rl-ez-wZ2"/>
                         <outlet property="commentContentLabel" destination="6he-6c-4xP" id="6xu-vK-1rl"/>
                         <outlet property="commentContentTextView" destination="77Z-2j-uPU" id="t6N-wF-TU7"/>
                         <outlet property="commentLabel" destination="KNh-BK-Sm0" id="hiS-XV-wIX"/>
@@ -2417,6 +2418,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ProvaViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="bottomScrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="comentario" candidateClass="UIView"/>
                 <relationship kind="outlet" name="commentContentLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="commentContentTextView" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="commentLabel" candidateClass="UILabel"/>
