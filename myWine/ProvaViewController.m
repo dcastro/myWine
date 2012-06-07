@@ -60,7 +60,7 @@
     
     //Set fonts
     self.wineNameLabel.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGE_FONT];
-    self.dateLabel.font = [UIFont fontWithName:@"DroidSerif-Bold" size:SMALL_FONT+2];
+    self.dateLabel.font = [UIFont fontWithName:@"DroidSerif-Regular" size:SMALL_FONT+2];
     
     //hide the text views
     self.commentContentTextView.hidden = TRUE;

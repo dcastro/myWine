@@ -199,7 +199,7 @@ SEL action; id target;
     Vinho* vinho = [self.vinhos objectAtIndex:indexPath.row];
     
     UIButton *icon = [UIButton buttonWithType:UIButtonTypeCustom];
-    [icon setImage:[UIImage imageNamed:@"material mywine-13.png"] forState:UIControlStateNormal];
+    [icon setImage:[UIImage imageNamed:@"material mywine-19.png"] forState:UIControlStateNormal];
     [icon setFrame:CGRectMake(0,0,30,30)];
     icon.tag = indexPath.row;
     [icon addTarget:self action:@selector(listProvas:) forControlEvents:UIControlEventTouchUpInside];
