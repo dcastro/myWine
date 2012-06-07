@@ -25,6 +25,8 @@
     //inicializa filter manager
     [FilterManager instance];
     
+    //Customize TabBar's appearance
+    [[UITabBar appearance] setSelectedImageTintColor:[UIColor myWineColor]];
     
     // Override point for customization after application launch.
     
