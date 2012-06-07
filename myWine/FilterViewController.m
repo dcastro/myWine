@@ -11,12 +11,15 @@
 #import "User.h"
 #import "NSMutableArray+VinhosMutableArray.h"
 #import "FilterManager.h"
+#import "FilterCell.h"
 
 @interface FilterViewController ()
 
 @end
 
 @implementation FilterViewController
+
+@synthesize selectedFilterType;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -36,6 +39,7 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
 }
 
 - (void)viewDidUnload
@@ -55,13 +59,12 @@
         
         FilterSelectionViewController* filterSelectionViewController = (FilterSelectionViewController*) [segue destinationViewController];
         
-        FilterType filterType = [[[self tableView] indexPathForSelectedRow] row];
-        filterSelectionViewController.filterType = filterType;
+        filterSelectionViewController.filterType = selectedFilterType;
         filterSelectionViewController.delegate = self;
         
         NSMutableArray* vinhos = [[User instance] vinhos];
         
-        switch ([[[self tableView] indexPathForSelectedRow] row]) {
+        switch (filterSelectionViewController.filterType) {
             case FilterTypeYear:
                 filterSelectionViewController.objects = [vinhos getYears];
                 break;
@@ -153,6 +156,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [[self tableView] deselectRowAtIndexPath:indexPath animated:NO];
     // Navigation logic may go here. Create and push another view controller.
     /*
      <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
@@ -161,6 +165,14 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
     
+    selectedFilterType = indexPath.row;
+    [self performSegueWithIdentifier:@"filterToSelection" sender:self];
+}
+
+- (void) tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [[self tableView] selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+    
+    selectedFilterType = indexPath.row;
     [self performSegueWithIdentifier:@"filterToSelection" sender:self];
 }
 
@@ -174,4 +186,13 @@
 - (IBAction)clearAll:(id)sender {
     [FilterManager removeAllFilters];
 }
+
+
+-(void) forEveryCell:(void (^)(FilterCell *)) block {
+    for(int i = 0; i < 4; i++) {
+        FilterCell* cell = (FilterCell*) [[self tableView] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+        block(cell);
+    }
+}
+
 @end

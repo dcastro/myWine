@@ -19,6 +19,9 @@ typedef enum {
 @protocol FilterSelectionViewControllerDelegate;
 
 @interface FilterViewController : UITableViewController <FilterSelectionViewControllerDelegate>
+
+@property (nonatomic) FilterType selectedFilterType;
+
 - (IBAction)clearAll:(id)sender;
 
 @end

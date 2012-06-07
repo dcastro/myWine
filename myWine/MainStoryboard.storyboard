@@ -2401,17 +2401,6 @@
                 <relationship kind="outlet" name="welcomeLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
-        <class className="NovaProvaViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NovaProvaViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancel:"/>
-                <relationship kind="action" name="done:"/>
-                <relationship kind="action" name="sliderChanged:"/>
-                <relationship kind="outlet" name="CancelButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="DoneButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="sliderLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
         <class className="NovoVinhoViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NovoVinhoViewController.h"/>
             <relationships>
