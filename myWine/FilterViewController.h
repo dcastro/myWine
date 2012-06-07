@@ -13,7 +13,8 @@ typedef enum {
     FilterTypeYear,
     FilterTypeCountry,
     FilterTypeWineType,
-    FilterTypeProducer
+    FilterTypeProducer,
+    FilterTypeCount
 } FilterType;
 
 @interface FilterViewController : UITableViewController <SubstitutableDetailViewController>

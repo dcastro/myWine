@@ -79,6 +79,63 @@ static FilterManager* filterManager = nil;
 
 + (NSMutableArray*) applyFilters:(NSArray*) unfilteredArray {
     
+    
+     NSMutableArray* array = [unfilteredArray mutableCopy];
+    
+    for(int i = 0; i < FilterTypeCount; i++) {
+        
+        //separa filtros por tipo
+        NSPredicate* predicate = [NSPredicate predicateWithFormat:@"filterType == %i", i];
+        NSArray* arrayOfFilters = [filterManager.filters filteredArrayUsingPredicate:predicate];
+        
+        if( [arrayOfFilters count] == 0)
+            continue;
+        
+        //constroi um predicado para cada tipo de filtro
+        NSString* string = nil;
+        
+        for(Filter* filter in arrayOfFilters) {
+            switch (i) {
+                case FilterTypeYear:
+                    if(string == nil)
+                        string = [NSString stringWithFormat:@"year == %i", [filter.object intValue]];
+                    else
+                        string = [NSString stringWithFormat:@"%@ OR year == %i", string, [filter.object intValue]];
+                    break;
+                    
+                case FilterTypeCountry:
+                    if(string == nil)
+                        string = [NSString stringWithFormat:@"region.country_name == \"%@\"", filter.object];
+                    else
+                        string = [NSString stringWithFormat:@"%@ OR region.country_name == \"%@\"", string, filter.object];
+                    break;
+                    
+                case FilterTypeWineType:
+                    if(string == nil)
+                        string = [NSString stringWithFormat:@"winetype.name == \"%@\"", filter.object];
+                    else
+                        string = [NSString stringWithFormat:@"%@ OR winetype.name == \"%@\"", string, filter.object];
+                    break;
+                    
+                case FilterTypeProducer:
+                    if(string == nil)
+                        string = [NSString stringWithFormat:@"producer == \"%@\"", [filter.object description]];
+                    else
+                        string = [NSString stringWithFormat:@"%@ OR producer == \"%@\"", string, filter.object];
+                    break;
+            }
+        }
+        predicate = [NSPredicate predicateWithFormat:string];
+        [array filterUsingPredicate:predicate];
+        
+        
+        
+    }
+    
+    return array;
+    
+    
+    /*
     NSMutableArray* array = [unfilteredArray mutableCopy];
     for(Filter* filter in filterManager.filters) {
         
@@ -98,11 +155,11 @@ static FilterManager* filterManager = nil;
                 predicate = [NSPredicate predicateWithFormat:@"producer == %@", filter.object];
                 break;
         }
-        
+         NSLog([predicate predicateFormat]);
         [array filterUsingPredicate:predicate];
     }
         
-    return array;
+    return array;*/
 }
 
 @end
