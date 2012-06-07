@@ -28,6 +28,7 @@
 @synthesize homeVisibility;
 @synthesize tempButton;
 @synthesize filterButton;
+@synthesize orderButton;
 @synthesize selectedOrder;
 
 SEL action; id target;
@@ -65,6 +66,7 @@ SEL action; id target;
 - (void)viewDidUnload
 {
     [self setFilterButton:nil];
+    [self setOrderButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -342,6 +344,7 @@ SEL action; id target;
     Language* lan = [Language instance];
     
     self.title = [lan translate:@"Wines List Title"];
+    self.orderButton.title = [lan translate:@"Order"];
     //self.filter.title = [lan translate:@"Filter"];
     [self.filterButton setTitle: [lan translate:@"Filter"]];
 }
