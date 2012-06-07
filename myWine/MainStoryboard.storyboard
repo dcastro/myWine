@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11E53" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50b" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="5">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
@@ -1598,7 +1598,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Perguntas Frequentes" image="117-todo.png" id="yqy-Vf-MkU"/>
+                    <tabBarItem key="tabBarItem" title="Perguntas Frequentes" image="faq.png" id="yqy-Vf-MkU"/>
                     <connections>
                         <outlet property="faq" destination="dsy-J9-djh" id="Q9d-Ue-d2S"/>
                         <outlet property="pergunta1" destination="xRv-ae-V7T" id="vPT-DW-vJI"/>
@@ -2936,7 +2936,7 @@
     </scenes>
     <resources>
         <image name="06-magnify.png" width="24" height="24"/>
-        <image name="117-todo.png" width="18" height="19"/>
+        <image name="faq.png" width="119" height="119"/>
         <image name="logo.png" width="923" height="1069"/>
         <image name="material mywine-04.png" width="119" height="119"/>
         <image name="material mywine-05.png" width="1029" height="1277"/>
