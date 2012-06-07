@@ -47,7 +47,7 @@ SEL action; id target;
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     //self.navigationItem.leftBarButtonItem = self.editButtonItem;
-
+    self.selectedOrder = 0;
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
 
     
@@ -137,7 +137,7 @@ SEL action; id target;
     }
     else if([segue.identifier isEqualToString:@"orderVinhos"]) {
         OrderViewController* ovc = (OrderViewController*) segue.destinationViewController;
-        //ovc.selectedCurrency = self.editableWine.currency;
+        ovc.selectedOrder = self.selectedOrder;
         ovc.delegate = self;
         self.popoverController = [(UIStoryboardPopoverSegue *)segue popoverController];
     }

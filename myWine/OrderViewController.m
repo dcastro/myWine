@@ -38,13 +38,13 @@
 }
 
 - (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    /*
+    
     if(cell.tag == self.selectedOrder) {
         [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
     } else {
         [cell setAccessoryType:UITableViewCellAccessoryNone];
     }
-    */
+    
     [cell setAccessoryType:UITableViewCellAccessoryNone];
 }
  

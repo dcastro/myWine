@@ -16,7 +16,7 @@
 
 @interface OrderViewController : UITableViewController
 
-//@property (nonatomic) int selectedOrder;
+@property (nonatomic) int selectedOrder;
 @property (nonatomic, weak) id <OrderViewControllerDelegate> delegate;
 
 @end
