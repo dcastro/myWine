@@ -323,6 +323,7 @@ SEL action; id target;
 - (void)NovoVinhoViewControllerDidSave:
 (NovoVinhoViewController *)controller {
 	[self dismissViewControllerAnimated:YES completion:nil];
+    self.vinhos = [FilterManager applyFilters:[[User instance] vinhos]];
     [[self tableView] reloadData];
 }
 
