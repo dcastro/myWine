@@ -58,6 +58,16 @@ static FilterManager* filterManager = nil;
     
 }
 
++ (int) numberOfFiltersOfType:(FilterType) filterType {
+    int i = 0;
+    for(Filter* filter in filterManager.filters) {
+        if(filter.filterType == filterType)
+            i++;
+    }
+    
+    return i;
+}
+
 + (NSMutableArray*) applyFilters:(NSArray*) unfilteredArray {
     
     NSMutableArray* array = [unfilteredArray mutableCopy];

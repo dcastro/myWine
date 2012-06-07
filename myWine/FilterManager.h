@@ -21,6 +21,7 @@
 + (void) removeFilterForObject:(id)object ofType:(FilterType) filterType;
 + (void) removeFiltersOfType:(FilterType) filterType;
 + (void) removeAllFilters;
++ (int) numberOfFiltersOfType:(FilterType) filterType;
 + (NSMutableArray*) applyFilters:(NSArray*) unfilteredArray;
 
 @end

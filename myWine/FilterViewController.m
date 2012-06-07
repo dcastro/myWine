@@ -12,6 +12,7 @@
 #import "NSMutableArray+VinhosMutableArray.h"
 #import "FilterManager.h"
 #import "FilterCell.h"
+#import "Language.h"
 
 @interface FilterViewController ()
 
@@ -40,6 +41,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
+    [self configureView];
 }
 
 - (void)viewDidUnload
@@ -48,6 +50,45 @@
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
+
+-(void) viewDidAppear:(BOOL)animated {
+    
+    [self configureView];
+}
+
+- (void) configureView {
+    
+    for(int i = 0; i < 4; i++) {
+        FilterCell* cell = (FilterCell*) [[self tableView] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+        int n = [FilterManager numberOfFiltersOfType:i];
+        NSString* label;
+        
+        if (n > 0)
+            label = [[NSString alloc] initWithFormat:@"%i filters selected", n];
+        else
+            label = @"no filters selected";
+        [cell.textLabel setText: label];
+        
+        NSString* detailLabel = [[NSString alloc] initWithFormat:@"Filter%i", i];
+        [cell.detailTextLabel setText:[[Language instance] translate:detailLabel]];
+        [cell.detailTextLabel sizeToFit];
+    }
+    
+}
+/*
+- (void) viewWillDisappear:(BOOL)animated {
+ 
+    [[FilterManager instance] removeObserver:self forKeyPath:@"filters"];
+}
+
+- (void) observeValueForKeyPath:(NSString *)keyPath
+                       ofObject:(id)object
+                         change:(NSDictionary *)change
+                        context:(void *)context
+{
+    
+}
+*/
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -156,7 +197,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [[self tableView] deselectRowAtIndexPath:indexPath animated:NO];
+    //[[self tableView] deselectRowAtIndexPath:indexPath animated:NO];
     // Navigation logic may go here. Create and push another view controller.
     /*
      <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
@@ -170,7 +211,7 @@
 }
 
 - (void) tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [[self tableView] selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+    //[[self tableView] selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
     
     selectedFilterType = indexPath.row;
     [self performSegueWithIdentifier:@"filterToSelection" sender:self];
@@ -185,6 +226,7 @@
 
 - (IBAction)clearAll:(id)sender {
     [FilterManager removeAllFilters];
+    [self configureView];
 }
 
 
