@@ -352,13 +352,9 @@
 		A9C28881151FBADE00C2F58D /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				DA92BAF7158011A40028AAC4 /* FilterManager.h */,
-				DA92BAF8158011A40028AAC4 /* FilterManager.m */,
-				DA92BAFA1580121A0028AAC4 /* Filter.h */,
-				DA92BAFB1580121A0028AAC4 /* Filter.m */,
-				DA92BAF51580103F0028AAC4 /* Cells */,
 				D3500EF7154C45D800FB85E3 /* Caracteristica.h */,
 				D3500EF8154C45D800FB85E3 /* Caracteristica.m */,
+				DA92BAF51580103F0028AAC4 /* Cells */,
 				DA5AEEAC157C21E700246B12 /* CheckboxButton.h */,
 				DA5AEEAD157C21E700246B12 /* CheckboxButton.m */,
 				D3500EF4154C459600FB85E3 /* Classificacao.h */,
@@ -367,6 +363,10 @@
 				DADA15D7157D44F70084B63F /* Comparator.m */,
 				D3500EFA154C45EE00FB85E3 /* Criterio.h */,
 				D3500EFB154C45EE00FB85E3 /* Criterio.m */,
+				DA92BAFA1580121A0028AAC4 /* Filter.h */,
+				DA92BAFB1580121A0028AAC4 /* Filter.m */,
+				DA92BAF7158011A40028AAC4 /* FilterManager.h */,
+				DA92BAF8158011A40028AAC4 /* FilterManager.m */,
 				D370E4C115793A7200DDEEAC /* FormularioProva.h */,
 				D370E4C215793A7200DDEEAC /* FormularioProva.m */,
 				DA7D48A2152E0AAD00C525FB /* Language.h */,
@@ -501,10 +501,6 @@
 		A9CA2B4E151E496500A29DE3 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				D90572EC157F9F1300CB6726 /* FilterViewController.h */,
-				D90572ED157F9F1300CB6726 /* FilterViewController.m */,
-				D90572FF157FAC0200CB6726 /* FilterSelectionViewController.h */,
-				D9057300157FAC0200CB6726 /* FilterSelectionViewController.m */,
 				A9F0B4BD152477C9003C931B /* ComparadorViewController.h */,
 				A9F0B4BE152477C9003C931B /* ComparadorViewController.m */,
 				65B824F3157935FE00527D6F /* ContactsViewController.h */,
@@ -513,6 +509,10 @@
 				DA631DDF156EA7F2003EC91B /* CurrencyViewController.m */,
 				A9C5A0121517A78600A3F8C5 /* DetailViewController.h */,
 				A9C5A0131517A78600A3F8C5 /* DetailViewController.m */,
+				D90572FF157FAC0200CB6726 /* FilterSelectionViewController.h */,
+				D9057300157FAC0200CB6726 /* FilterSelectionViewController.m */,
+				D90572EC157F9F1300CB6726 /* FilterViewController.h */,
+				D90572ED157F9F1300CB6726 /* FilterViewController.m */,
 				A9F0B4B91524731F003C931B /* FiltrosViewController.h */,
 				A9F0B4BA1524731F003C931B /* FiltrosViewController.m */,
 				65B824EF1579357500527D6F /* HelpViewController.h */,
@@ -531,6 +531,8 @@
 				A9A69B9E151FCEC500FC9073 /* NovaProvaViewController.m */,
 				A9BFB2C4151D468500588B59 /* NovoVinhoViewController.h */,
 				A9BFB2C5151D468500588B59 /* NovoVinhoViewController.m */,
+				BCDC2CE91580F34A00E7AB56 /* OrderViewController.h */,
+				BCDC2CEA1580F34A00E7AB56 /* OrderViewController.m */,
 				DAC99B83155B0B7B00D9C04F /* ProvaViewController.h */,
 				DAC99B84155B0B7B00D9C04F /* ProvaViewController.m */,
 				DAC99B7D155AE3EA00D9C04F /* SubstitutableTabBarControllerViewController.h */,
@@ -539,8 +541,6 @@
 				A9A69B9B151FCDE200FC9073 /* SyncViewController.m */,
 				A9C28882151FBB4400C2F58D /* VinhoViewController.h */,
 				A9C28883151FBB4400C2F58D /* VinhoViewController.m */,
-				BCDC2CE91580F34A00E7AB56 /* OrderViewController.h */,
-				BCDC2CEA1580F34A00E7AB56 /* OrderViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -583,14 +583,14 @@
 		DA92BAF51580103F0028AAC4 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				D90572F0157FA0CA00CB6726 /* FilterCell.h */,
-				D90572F1157FA0CA00CB6726 /* FilterCell.m */,
-				DA92BAE1157E7EDE0028AAC4 /* ProvaCell.h */,
-				DA92BAE2157E7EDE0028AAC4 /* ProvaCell.m */,
 				DAE595461578133C0039D894 /* CharacteristicCell.h */,
 				DAE595471578133C0039D894 /* CharacteristicCell.m */,
 				DA019F54157046A200CC589A /* CriterionCell.h */,
 				DA019F55157046A200CC589A /* CriterionCell.m */,
+				D90572F0157FA0CA00CB6726 /* FilterCell.h */,
+				D90572F1157FA0CA00CB6726 /* FilterCell.m */,
+				DA92BAE1157E7EDE0028AAC4 /* ProvaCell.h */,
+				DA92BAE2157E7EDE0028AAC4 /* ProvaCell.m */,
 				DA9031F315785609006E0E34 /* SectionItemCell.h */,
 				DA9031F415785609006E0E34 /* SectionItemCell.m */,
 			);
