@@ -1752,7 +1752,7 @@
                     <toolbarItems>
                         <barButtonItem title="Filtrar" id="9hN-W6-5pe">
                             <connections>
-                                <segue destination="a2I-nl-2yy" kind="replace" splitViewControllerTargetIndex="1" id="gIz-tb-Hy7"/>
+                                <segue destination="a2I-nl-2yy" kind="replace" identifier="toFilters" splitViewControllerTargetIndex="1" id="gIz-tb-Hy7"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem title="Ordenar" id="NhG-r2-GEG">
