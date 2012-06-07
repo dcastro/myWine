@@ -25,6 +25,7 @@
 		659189491577D17700D814C3 /* DroidSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 659189401577CFF100D814C3 /* DroidSans.ttf */; };
 		65B824F11579357500527D6F /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B824F01579357500527D6F /* HelpViewController.m */; };
 		65B824F5157935FE00527D6F /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B824F4157935FE00527D6F /* ContactsViewController.m */; };
+		65C7B3271580D152009C5237 /* newPhoto.png in Resources */ = {isa = PBXBuildFile; fileRef = 65C7B3261580D152009C5237 /* newPhoto.png */; };
 		65EFEBB71573C9770087F155 /* material mywine-03.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EFEBA81573C9770087F155 /* material mywine-03.png */; };
 		65EFEBB81573C9770087F155 /* material mywine-04.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EFEBA91573C9770087F155 /* material mywine-04.png */; };
 		65EFEBB91573C9770087F155 /* material mywine-05.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EFEBAA1573C9770087F155 /* material mywine-05.png */; };
@@ -143,6 +144,7 @@
 		65B824F01579357500527D6F /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
 		65B824F3157935FE00527D6F /* ContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsViewController.h; sourceTree = "<group>"; };
 		65B824F4157935FE00527D6F /* ContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsViewController.m; sourceTree = "<group>"; };
+		65C7B3261580D152009C5237 /* newPhoto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newPhoto.png; sourceTree = "<group>"; };
 		65EFEBA81573C9770087F155 /* material mywine-03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "material mywine-03.png"; sourceTree = "<group>"; };
 		65EFEBA91573C9770087F155 /* material mywine-04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "material mywine-04.png"; sourceTree = "<group>"; };
 		65EFEBAA1573C9770087F155 /* material mywine-05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "material mywine-05.png"; sourceTree = "<group>"; };
@@ -483,6 +485,7 @@
 				65EFEBB41573C9770087F155 /* material mywine-15.png */,
 				65EFEBB51573C9770087F155 /* material mywine-16.png */,
 				65EFEBB61573C9770087F155 /* material mywine-17.png */,
+				65C7B3261580D152009C5237 /* newPhoto.png */,
 				DA91312815767E7300D37BA0 /* slider_thumb.png */,
 				656D8B651580B98600230587 /* sync.png */,
 			);
@@ -710,6 +713,7 @@
 				DA433EA9157C107300407B88 /* checkbox.png in Resources */,
 				656D8B631580B41900230587 /* faq.png in Resources */,
 				656D8B661580B98600230587 /* sync.png in Resources */,
+				65C7B3271580D152009C5237 /* newPhoto.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

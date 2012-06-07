@@ -31,18 +31,11 @@
 @synthesize PickAnoVinho;
 @synthesize Done;
 @synthesize Cancel;
-@synthesize lblNomeVinho = _lblNomeVinho;
-@synthesize lblProdutor = _lblProdutor;
-@synthesize lblAno = _lblAno;
-@synthesize lblPreco = _lblPreco;
-@synthesize lblPais = _lblPais;
-@synthesize lblRegiao = _lblRegiao;
-@synthesize lblTipoVinho = _lblTipoVinho;
-@synthesize lblCasta = _lblCasta;
 @synthesize novoVinho = _novoVinho;
 @synthesize country = _country;
 @synthesize region = _region;
 @synthesize pickFoto = _pickFoto;
+@synthesize foto;
 @synthesize myPop = _myPop;
 @synthesize imageView;
 
@@ -58,10 +51,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     // Setup the background
-    UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background.png"]];
-    [self.view insertSubview:background atIndex:0];
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown)
+    {
+        [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"backgroundPortrait.png"]]];
+    }
+    else 
+    {
+        [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"backgroundLandscape.png"]]];
+    }
+
     
     Language* lang = [Language instance];
     
@@ -69,21 +69,30 @@
     
     [self.Done setTitle:[lang translate: @"Done"]];
     [self.Cancel setTitle: [lang translate: @"Cancel"]];
+
+    self.foto.text = [lang translate:@"Photo"];
+    self.foto.font = [UIFont fontWithName:@"DroidSans" size:NORMAL_FONT];
     
-    [self.PhotoButton setTitle:[lang translate:@"Photo"] forState:UIControlStateNormal];
+    self.NomeVinho.placeholder=[lang translate:@"WineName"];
+    [self.NomeVinho setFont:[UIFont fontWithName:@"DroidSans" size:NORMAL_FONT-4]];
+    self.Produtor.placeholder=[lang translate:@"WineProd"];
+    [self.Produtor setFont:[UIFont fontWithName:@"DroidSans" size:NORMAL_FONT-4]];
+    self.AnoVinho.placeholder=[lang translate:@"WineYear"];
+    [self.AnoVinho setFont:[UIFont fontWithName:@"DroidSans" size:NORMAL_FONT-4]];
+    self.Preco.placeholder=[lang translate:@"WinePrice"];
+    [self.Preco setFont:[UIFont fontWithName:@"DroidSans" size:NORMAL_FONT-4]];
+    [self.paisButton setTitle:[lang translate:@"WineCountry"] forState:UIControlStateNormal];
+    [self.paisButton.titleLabel setFont:[UIFont fontWithName:@"DroidSans" size:NORMAL_FONT-4]];
+    [self.regiaoButton setTitle:[lang translate:@"WineRegion"] forState:UIControlStateNormal];
+    [self.regiaoButton.titleLabel setFont:[UIFont fontWithName:@"DroidSans" size:NORMAL_FONT-4]];
+    self.tipoVinho.placeholder=[lang translate:@"WineType"];
+    [self.tipoVinho setFont:[UIFont fontWithName:@"DroidSans" size:NORMAL_FONT-4]];
+    self.castaVinho.placeholder=[lang translate:@"WineGrape"];
+    [self.castaVinho setFont:[UIFont fontWithName:@"DroidSans" size:NORMAL_FONT-4]];
     
-    [_lblNomeVinho setText:[lang translate:@"WineName"]];
-    [_lblProdutor setText:[lang translate:@"WineProd"]];
-    [_lblAno setText:[lang translate:@"WineYear"]];
-    [_lblPreco setText:[lang translate:@"WinePrice"]];
-    [_lblPais setText:[lang translate:@"WineCountry"]];
-    [_lblRegiao setText:[lang translate:@"WineRegion"]];
-    [_lblTipoVinho setText:[lang translate:@"WineType"]];
-    [_lblCasta setText:[lang translate:@"WineGrape"]];
-    
-    [self.paisButton setTitle:[lang translate:@"Tap to select"] forState:UIControlStateNormal];
+    //[self.paisButton setTitle:[lang translate:@"Tap to select"] forState:UIControlStateNormal];
     [self.regiaoButton setEnabled:NO];
-    [self.regiaoButton setTitle: [lang translate:@"Select Country First"] forState:UIControlStateNormal];
+    //[self.regiaoButton setTitle: [lang translate:@"Select Country First"] forState:UIControlStateNormal];
     [[self.regiaoButton titleLabel] setTextColor:[UIColor grayColor]];
     
     [_AnoVinho setInputView:PickAnoVinho];
@@ -139,19 +148,12 @@
     [self setCancel:nil];
     [self setTipoVinho:nil];
     [self setCastaVinho:nil];
-    [self setLblNomeVinho:nil];
-    [self setLblProdutor:nil];
-    [self setLblAno:nil];
-    [self setLblPreco:nil];
-    [self setLblPais:nil];
-    [self setLblRegiao:nil];
-    [self setLblTipoVinho:nil];
-    [self setLblCasta:nil];
     [self setPhotoButton:nil];
     [self setNovoVinho:nil];
     [self setImageView:nil];
     [self setPickFoto:nil];
     self.imageView = nil;
+    [self setFoto:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -403,6 +405,17 @@ finishedSavingWithError:(NSError *)error
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     animatedDistance = calculateAnimation(self,keyboard);
+    // Setup the background
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown)
+    {
+        [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"backgroundPortrait.png"]]];
+    }
+    else 
+    {
+        [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"backgroundLandscape.png"]]];
+    }
+
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
