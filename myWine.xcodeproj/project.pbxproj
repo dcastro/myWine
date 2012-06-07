@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		656D8B631580B41900230587 /* faq.png in Resources */ = {isa = PBXBuildFile; fileRef = 656D8B621580B41900230587 /* faq.png */; };
+		656D8B661580B98600230587 /* sync.png in Resources */ = {isa = PBXBuildFile; fileRef = 656D8B651580B98600230587 /* sync.png */; };
 		65826F501566629300C3D2AD /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 65826F4E1566629300C3D2AD /* logo.png */; };
 		65846632156034BE003CB644 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65846631156034BE003CB644 /* SenTestingKit.framework */; };
 		65846633156034BE003CB644 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9C59FFA1517A78500A3F8C5 /* UIKit.framework */; };
@@ -131,6 +132,7 @@
 
 /* Begin PBXFileReference section */
 		656D8B621580B41900230587 /* faq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = faq.png; sourceTree = "<group>"; };
+		656D8B651580B98600230587 /* sync.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sync.png; sourceTree = "<group>"; };
 		65826F4E1566629300C3D2AD /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		65846630156034BE003CB644 /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		65846631156034BE003CB644 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -500,6 +502,7 @@
 				65EFEBB51573C9770087F155 /* material mywine-16.png */,
 				65EFEBB61573C9770087F155 /* material mywine-17.png */,
 				DA91312815767E7300D37BA0 /* slider_thumb.png */,
+				656D8B651580B98600230587 /* sync.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -730,6 +733,7 @@
 				DA433EA8157C107300407B88 /* checkbox-pressed.png in Resources */,
 				DA433EA9157C107300407B88 /* checkbox.png in Resources */,
 				656D8B631580B41900230587 /* faq.png in Resources */,
+				656D8B661580B98600230587 /* sync.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

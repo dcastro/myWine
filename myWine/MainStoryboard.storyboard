@@ -2271,7 +2271,7 @@
                                 <segue destination="a2I-nl-2yy" kind="replace" splitViewControllerTargetIndex="1" id="gIz-tb-Hy7"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem systemItem="refresh" id="XKE-qL-BX6">
+                        <barButtonItem image="sync.png" id="XKE-qL-BX6">
                             <connections>
                                 <segue destination="Rj4-Fm-dRe" kind="modal" modalPresentationStyle="formSheet" id="jTo-cA-E3q"/>
                             </connections>
@@ -2935,14 +2935,15 @@
         </scene>
     </scenes>
     <resources>
-        <image name="06-magnify.png" width="24" height="24"/>
-        <image name="faq.png" width="119" height="119"/>
+        <image name="06-magnify.png" width="16" height="16"/>
+        <image name="faq.png" width="40" height="40"/>
         <image name="logo.png" width="923" height="1069"/>
         <image name="material mywine-04.png" width="119" height="119"/>
         <image name="material mywine-05.png" width="1029" height="1277"/>
         <image name="material mywine-06.png" width="1108" height="1360"/>
         <image name="material mywine-14.png" width="170" height="323"/>
         <image name="material mywine-17.png" width="711" height="617"/>
+        <image name="sync.png" width="24" height="15"/>
     </resources>
     <classes>
         <class className="ComparadorViewController" superclassName="UIViewController">
