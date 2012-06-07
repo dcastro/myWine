@@ -110,6 +110,15 @@
     NSString* string = [[NSString alloc] initWithFormat:@"%i%%", [self.prova calcScore]];
     self.scoreContentLabel.text = string;
     [self.scoreContentLabel setFont:[UIFont fontWithName:@"DroidSerif" size:LARGER_FONT]];
+    
+    if(prova_mode == CRITERIA_MODE){
+        [self.scoreLabel setHidden:NO];
+        [self.scoreContentLabel setHidden:NO];
+    }
+    else {
+        [self.scoreLabel setHidden:YES];
+        [self.scoreContentLabel setHidden:YES];
+    }
 }
 
 - (int) updateScoreLabel {
