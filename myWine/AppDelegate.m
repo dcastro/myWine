@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "ListaVinhosViewController.h"
 #import "User.h"
+#import "FilterManager.h"
+#import "Filter.h"
 
 @implementation AppDelegate
 
@@ -17,8 +19,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    //initializa comparator
+    //inicializa comparator
     [Comparator instance];
+    
+    //inicializa filter manager
+    [FilterManager instance];
+    
     
     // Override point for customization after application launch.
     

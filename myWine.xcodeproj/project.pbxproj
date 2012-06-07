@@ -103,6 +103,8 @@
 		DA91312915767E7300D37BA0 /* slider_thumb.png in Resources */ = {isa = PBXBuildFile; fileRef = DA91312815767E7300D37BA0 /* slider_thumb.png */; };
 		DA9131311576812500D37BA0 /* UIColor+myWineColor.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9131301576812500D37BA0 /* UIColor+myWineColor.m */; };
 		DA92BAE3157E7EDE0028AAC4 /* ProvaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA92BAE2157E7EDE0028AAC4 /* ProvaCell.m */; };
+		DA92BAF9158011A40028AAC4 /* FilterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DA92BAF8158011A40028AAC4 /* FilterManager.m */; };
+		DA92BAFC1580121A0028AAC4 /* Filter.m in Sources */ = {isa = PBXBuildFile; fileRef = DA92BAFB1580121A0028AAC4 /* Filter.m */; };
 		DA993CDE153F22E7009D3E13 /* Vinho.m in Sources */ = {isa = PBXBuildFile; fileRef = DA993CDD153F22E7009D3E13 /* Vinho.m */; };
 		DAC99B7F155AE3EA00D9C04F /* SubstitutableTabBarControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC99B7E155AE3EA00D9C04F /* SubstitutableTabBarControllerViewController.m */; };
 		DAC99B85155B0B7B00D9C04F /* ProvaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC99B84155B0B7B00D9C04F /* ProvaViewController.m */; };
@@ -264,6 +266,10 @@
 		DA9131301576812500D37BA0 /* UIColor+myWineColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+myWineColor.m"; sourceTree = "<group>"; };
 		DA92BAE1157E7EDE0028AAC4 /* ProvaCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProvaCell.h; sourceTree = "<group>"; };
 		DA92BAE2157E7EDE0028AAC4 /* ProvaCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProvaCell.m; sourceTree = "<group>"; };
+		DA92BAF7158011A40028AAC4 /* FilterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterManager.h; sourceTree = "<group>"; };
+		DA92BAF8158011A40028AAC4 /* FilterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterManager.m; sourceTree = "<group>"; };
+		DA92BAFA1580121A0028AAC4 /* Filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Filter.h; sourceTree = "<group>"; };
+		DA92BAFB1580121A0028AAC4 /* Filter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Filter.m; sourceTree = "<group>"; };
 		DA993CDC153F22E7009D3E13 /* Vinho.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vinho.h; sourceTree = "<group>"; };
 		DA993CDD153F22E7009D3E13 /* Vinho.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vinho.m; sourceTree = "<group>"; };
 		DAC99B7D155AE3EA00D9C04F /* SubstitutableTabBarControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubstitutableTabBarControllerViewController.h; sourceTree = "<group>"; };
@@ -347,14 +353,13 @@
 		A9C28881151FBADE00C2F58D /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				D90572F0157FA0CA00CB6726 /* FilterCell.h */,
-				D90572F1157FA0CA00CB6726 /* FilterCell.m */,
-				DA92BAE1157E7EDE0028AAC4 /* ProvaCell.h */,
-				DA92BAE2157E7EDE0028AAC4 /* ProvaCell.m */,
+				DA92BAF7158011A40028AAC4 /* FilterManager.h */,
+				DA92BAF8158011A40028AAC4 /* FilterManager.m */,
+				DA92BAFA1580121A0028AAC4 /* Filter.h */,
+				DA92BAFB1580121A0028AAC4 /* Filter.m */,
+				DA92BAF51580103F0028AAC4 /* Cells */,
 				D3500EF7154C45D800FB85E3 /* Caracteristica.h */,
 				D3500EF8154C45D800FB85E3 /* Caracteristica.m */,
-				DAE595461578133C0039D894 /* CharacteristicCell.h */,
-				DAE595471578133C0039D894 /* CharacteristicCell.m */,
 				DA5AEEAC157C21E700246B12 /* CheckboxButton.h */,
 				DA5AEEAD157C21E700246B12 /* CheckboxButton.m */,
 				D3500EF4154C459600FB85E3 /* Classificacao.h */,
@@ -363,8 +368,6 @@
 				DADA15D7157D44F70084B63F /* Comparator.m */,
 				D3500EFA154C45EE00FB85E3 /* Criterio.h */,
 				D3500EFB154C45EE00FB85E3 /* Criterio.m */,
-				DA019F54157046A200CC589A /* CriterionCell.h */,
-				DA019F55157046A200CC589A /* CriterionCell.m */,
 				D370E4C115793A7200DDEEAC /* FormularioProva.h */,
 				D370E4C215793A7200DDEEAC /* FormularioProva.m */,
 				DA7D48A2152E0AAD00C525FB /* Language.h */,
@@ -379,8 +382,6 @@
 				D3500EF2154C458400FB85E3 /* Seccao.m */,
 				D33F4B6C15702F00003C0BC5 /* SeccaoCaracteristica.h */,
 				D33F4B6D15702F00003C0BC5 /* SeccaoCaracteristica.m */,
-				DA9031F315785609006E0E34 /* SectionItemCell.h */,
-				DA9031F415785609006E0E34 /* SectionItemCell.m */,
 				D37D1779155DC249005E502A /* Sincronizacao.h */,
 				D37D177A155DC249005E502A /* Sincronizacao.m */,
 				D37D40D4154D9E1400A11E6F /* TipoVinho.h */,
@@ -578,6 +579,23 @@
 				DA9131301576812500D37BA0 /* UIColor+myWineColor.m */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		DA92BAF51580103F0028AAC4 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				D90572F0157FA0CA00CB6726 /* FilterCell.h */,
+				D90572F1157FA0CA00CB6726 /* FilterCell.m */,
+				DA92BAE1157E7EDE0028AAC4 /* ProvaCell.h */,
+				DA92BAE2157E7EDE0028AAC4 /* ProvaCell.m */,
+				DAE595461578133C0039D894 /* CharacteristicCell.h */,
+				DAE595471578133C0039D894 /* CharacteristicCell.m */,
+				DA019F54157046A200CC589A /* CriterionCell.h */,
+				DA019F55157046A200CC589A /* CriterionCell.m */,
+				DA9031F315785609006E0E34 /* SectionItemCell.h */,
+				DA9031F415785609006E0E34 /* SectionItemCell.m */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -791,6 +809,8 @@
 				D90572EE157F9F1300CB6726 /* FilterViewController.m in Sources */,
 				D90572F2157FA0CA00CB6726 /* FilterCell.m in Sources */,
 				D9057301157FAC0200CB6726 /* FilterSelectionViewController.m in Sources */,
+				DA92BAF9158011A40028AAC4 /* FilterManager.m in Sources */,
+				DA92BAFC1580121A0028AAC4 /* Filter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
