@@ -363,4 +363,11 @@ SEL action; id target;
     [[self navigationItem] setLeftBarButtonItem:nil animated:YES];
 }
 
+- (void) orderViewControllerDidSelect:(int)order {
+    [_vinhos orderVinhosBy:order];
+    [[self tableView] reloadData];
+    
+    
+}
+
 @end

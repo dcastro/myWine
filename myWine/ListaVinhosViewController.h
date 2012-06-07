@@ -18,6 +18,7 @@
 #import "ListaProvasViewController.h"
 #import "NSMutableArray+VinhosMutableArray.h"
 #import <objc/runtime.h>
+#import "OrderViewController.h"
 
 @class DetailViewController;
 @class VinhoViewController;
@@ -31,7 +32,7 @@
 
 @end
 
-@interface ListaVinhosViewController : UITableViewController < UISplitViewControllerDelegate, VinhoViewControllerDelegate, DetailViewControllerDelegate, NovoVinhoViewControllerDelegate, LoginViewControllerDelegate>
+@interface ListaVinhosViewController : UITableViewController < UISplitViewControllerDelegate, VinhoViewControllerDelegate, DetailViewControllerDelegate, NovoVinhoViewControllerDelegate, LoginViewControllerDelegate, OrderViewControllerDelegate>
 {
     UISplitViewController *splitViewController;
     

@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol OrderViewControllerDelegate <NSObject>
+
+- (void) orderViewControllerDidSelect:(int) order;
+
+@end
+
 @interface OrderViewController : UITableViewController
+
+@property (nonatomic) int selectedOrder;
+@property (nonatomic, weak) id <OrderViewControllerDelegate> delegate;
 
 @end

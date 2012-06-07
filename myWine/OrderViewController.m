@@ -14,6 +14,9 @@
 
 @implementation OrderViewController
 
+@synthesize selectedOrder = _selectedOrder;
+@synthesize delegate = _delegate;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -34,6 +37,16 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+- (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if(cell.tag == self.selectedOrder) {
+        [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+    } else {
+        [cell setAccessoryType:UITableViewCellAccessoryNone];
+    }
+    
+}
+
 - (void)viewDidUnload
 {
     [super viewDidUnload];
@@ -47,7 +60,7 @@
 }
 
 #pragma mark - Table view data source
-
+/*
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
 #warning Potentially incomplete method implementation.
@@ -122,6 +135,15 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+    for(int i = 0; i < [[self tableView] numberOfRowsInSection:0]; i++ ){
+        UITableViewCell* cell = [[self tableView] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+        [cell setAccessoryType:UITableViewCellAccessoryNone];
+    }
+    
+    UITableViewCell* cell = [[self tableView] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:0]];
+    [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+    
+    [self.delegate orderViewControllerDidSelect:indexPath.row];
 }
 
 @end
