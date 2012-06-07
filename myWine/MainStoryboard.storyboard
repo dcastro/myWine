@@ -2223,13 +2223,13 @@
             </objects>
             <point key="canvasLocation" x="-1492" y="-3239"/>
         </scene>
-        <!--Substitutable Tab Bar Controller View Controller - Prova Alvarinho-->
+        <!--Substitutable Tab Bar Controller View Controller-->
         <scene sceneID="xuw-4O-8aF">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tze-LP-p3I" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tabBarController id="j2E-bo-XYb" customClass="SubstitutableTabBarControllerViewController" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Prova Alvarinho" id="fuT-lL-sQy">
+                    <navigationItem key="navigationItem" id="fuT-lL-sQy">
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="slH-1I-LRL">
                             <connections>
                                 <action selector="toggleEdit:" destination="j2E-bo-XYb" id="7KT-eb-PMZ"/>
