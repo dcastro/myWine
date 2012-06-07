@@ -65,6 +65,7 @@
 		A9F0B4BB1524731F003C931B /* FiltrosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F0B4BA1524731F003C931B /* FiltrosViewController.m */; };
 		A9F0B4BF152477C9003C931B /* ComparadorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F0B4BE152477C9003C931B /* ComparadorViewController.m */; };
 		BCC8EBB91563E36B006645BC /* NSMutableArray+ProvasMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = BCC8EBB81563E36B006645BC /* NSMutableArray+ProvasMutableArray.m */; };
+		BCDC2CEB1580F34A00E7AB56 /* OrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCDC2CEA1580F34A00E7AB56 /* OrderViewController.m */; };
 		D3231DA3154814F400F09BAC /* DroidSerif-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D3231D9D15480DF700F09BAC /* DroidSerif-Bold.ttf */; };
 		D3231DA4154814F800F09BAC /* DroidSerif-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D3231D9E15480DF700F09BAC /* DroidSerif-BoldItalic.ttf */; };
 		D3231DA5154814FC00F09BAC /* DroidSerif-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D3231D9F15480DF700F09BAC /* DroidSerif-Italic.ttf */; };
@@ -202,6 +203,8 @@
 		A9F0B4BE152477C9003C931B /* ComparadorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComparadorViewController.m; sourceTree = "<group>"; };
 		BCC8EBB71563E36B006645BC /* NSMutableArray+ProvasMutableArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+ProvasMutableArray.h"; sourceTree = "<group>"; };
 		BCC8EBB81563E36B006645BC /* NSMutableArray+ProvasMutableArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+ProvasMutableArray.m"; sourceTree = "<group>"; };
+		BCDC2CE91580F34A00E7AB56 /* OrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderViewController.h; sourceTree = "<group>"; };
+		BCDC2CEA1580F34A00E7AB56 /* OrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderViewController.m; sourceTree = "<group>"; };
 		D3231D9D15480DF700F09BAC /* DroidSerif-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DroidSerif-Bold.ttf"; sourceTree = "<group>"; };
 		D3231D9E15480DF700F09BAC /* DroidSerif-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DroidSerif-BoldItalic.ttf"; sourceTree = "<group>"; };
 		D3231D9F15480DF700F09BAC /* DroidSerif-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DroidSerif-Italic.ttf"; sourceTree = "<group>"; };
@@ -536,6 +539,8 @@
 				A9A69B9B151FCDE200FC9073 /* SyncViewController.m */,
 				A9C28882151FBB4400C2F58D /* VinhoViewController.h */,
 				A9C28883151FBB4400C2F58D /* VinhoViewController.m */,
+				BCDC2CE91580F34A00E7AB56 /* OrderViewController.h */,
+				BCDC2CEA1580F34A00E7AB56 /* OrderViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -803,6 +808,7 @@
 				D9057301157FAC0200CB6726 /* FilterSelectionViewController.m in Sources */,
 				DA92BAF9158011A40028AAC4 /* FilterManager.m in Sources */,
 				DA92BAFC1580121A0028AAC4 /* Filter.m in Sources */,
+				BCDC2CEB1580F34A00E7AB56 /* OrderViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
