@@ -13,6 +13,7 @@
 
 @interface FilterSelectionViewController : UITableViewController <SubstitutableDetailViewController>
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *clearAllButton;
 @property (nonatomic) FilterType filterType;
 @property (strong, nonatomic) NSArray* objects;
 

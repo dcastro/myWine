@@ -1666,6 +1666,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="clearAllButton" destination="VqY-GP-Frg" id="OsP-Hq-b9d"/>
                         <segue destination="OZh-ih-CIa" kind="push" identifier="filterToSelection" id="yxw-uK-3mC"/>
                     </connections>
                 </tableViewController>
@@ -1705,6 +1706,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="clearAllButton" destination="lSq-5H-Hph" id="a8Y-uG-OL4"/>
+                    </connections>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="1709" y="-4076"/>
@@ -2321,12 +2325,14 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FilterSelectionViewController.h"/>
             <relationships>
                 <relationship kind="action" name="clearAll:"/>
+                <relationship kind="outlet" name="clearAllButton" candidateClass="UIBarButtonItem"/>
             </relationships>
         </class>
         <class className="FilterViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FilterViewController.h"/>
             <relationships>
                 <relationship kind="action" name="clearAll:"/>
+                <relationship kind="outlet" name="clearAllButton" candidateClass="UIBarButtonItem"/>
             </relationships>
         </class>
         <class className="HelpViewController" superclassName="UIViewController">

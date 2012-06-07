@@ -20,6 +20,7 @@
 
 @implementation FilterViewController
 
+@synthesize clearAllButton;
 @synthesize selectedFilterType;
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -46,6 +47,7 @@
 
 - (void)viewDidUnload
 {
+    [self setClearAllButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -63,16 +65,20 @@
         int n = [FilterManager numberOfFiltersOfType:i];
         NSString* label;
         
-        if (n > 0)
-            label = [[NSString alloc] initWithFormat:@"%i filters selected", n];
+        if (n > 1)
+            label = [[NSString alloc] initWithFormat:@"%i %@", n, [[Language instance] translate:@"Filters selected"]];
+        else if (n == 1) 
+            label = [[NSString alloc] initWithFormat:@"%i %@", n, [[Language instance] translate:@"Filter selected"]];
         else
-            label = @"no filters selected";
+            label = [[Language instance] translate:@"No filters selected"];
         [cell.textLabel setText: label];
         
         NSString* detailLabel = [[NSString alloc] initWithFormat:@"Filter%i", i];
         [cell.detailTextLabel setText:[[Language instance] translate:detailLabel]];
         [cell.detailTextLabel sizeToFit];
     }
+    
+    [self.clearAllButton setTitle:[[Language instance] translate:@"Clear All"]];
     
 }
 /*

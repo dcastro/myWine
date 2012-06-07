@@ -19,6 +19,7 @@ typedef enum {
 
 @interface FilterViewController : UITableViewController <SubstitutableDetailViewController>
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *clearAllButton;
 @property (nonatomic) FilterType selectedFilterType;
 
 - (IBAction)clearAll:(id)sender;

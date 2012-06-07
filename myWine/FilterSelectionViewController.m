@@ -15,6 +15,7 @@
 
 @implementation FilterSelectionViewController
 
+@synthesize clearAllButton = _clearAllButton;
 @synthesize filterType;
 @synthesize objects = _objects;
 @synthesize delegate = _delegate;
@@ -71,11 +72,15 @@
         }
             
     }
+    
+    [self.clearAllButton setTitle:[[Language instance] translate:@"Clear All"]];
+    
 }
 
 
 - (void)viewDidUnload
 {
+    [self setClearAllButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
