@@ -60,6 +60,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *pickFoto;
 @property (strong, nonatomic) IBOutlet UILabel *foto;
 
+@property (nonatomic, strong) NSMutableArray* countries;
+
 - (IBAction)pickF:(id)sender;
 - (IBAction)cancel:(id)sender;
 - (IBAction)done:(id)sender;
