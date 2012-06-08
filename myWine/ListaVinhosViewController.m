@@ -83,9 +83,8 @@ SEL action; id target;
                         context:(void *)context
 {
     self.vinhos = [FilterManager applyFilters:[[User instance] vinhos]];
+    [self.vinhos sectionizeOrderedBy:self.selectedOrder];
     [[self tableView] reloadData];
-    
-#warning todo: sectionize
     
 }
 
