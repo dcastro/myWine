@@ -487,6 +487,8 @@ SEL action; id target;
 #pragma mark - VinhoViewController Delegate Methods
 
 - (void) onVinhoEdition:(Vinho*) vinho {
+    self.vinhos = [FilterManager applyFilters: [[User instance] vinhos] ];
+    [self.vinhos sectionizeOrderedBy:self.selectedOrder];
     [[self tableView] reloadData];
 }
 
