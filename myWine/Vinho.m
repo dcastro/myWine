@@ -24,6 +24,8 @@
 @synthesize provas=_provas;
 @synthesize region = _region;
 @synthesize grapes = _grapes;
+@synthesize section = _section;
+@synthesize sectionIdentifier = _sectionIdentifier;
 
 - (NSString*) description {
     return self.name;

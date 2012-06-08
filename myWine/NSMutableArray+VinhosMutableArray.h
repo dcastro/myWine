@@ -25,4 +25,9 @@
 - (NSMutableArray*) getWineTypes;
 - (NSMutableArray*) getProducers;
 
+- (void) sectionizeOrderedBy:(int) order;
+- (int) numberOfSections;
+- (int) numberOfRowsInSection:(int)section;
+- (id) vinhoForRow:(int) row atSection:(int) section;
+
 @end

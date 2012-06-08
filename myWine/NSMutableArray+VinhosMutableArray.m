@@ -177,4 +177,69 @@
     return array;
 }
 
+- (void) sectionizeOrderedBy:(int) order {
+    
+    if ([self count] == 0)
+        return;
+    
+    /*
+    id x = [self objectAtIndex:0];
+    id y = [self objectAtIndex:1];
+    [self insertObject:y atIndex:1];
+    [self insertObject:x atIndex:0];
+    [self insertObject:x atIndex:0];
+    */
+    
+    //mark vinhos with their section identifiers
+    for(Vinho* vinho in self ) {
+        if(order == ORDER_BY_NAME) {
+            NSString* firstChar = [[NSString stringWithFormat:@"%c", [vinho.name characterAtIndex:0]] uppercaseString];
+            vinho.sectionIdentifier = firstChar;
+        }
+    }
+    
+    //get set of unique identifiers
+    NSSet* identifiersSet = [NSSet setWithArray:[self valueForKey:@"sectionIdentifier"]];
+    NSArray* identifiersArray = [identifiersSet allObjects];
+    
+    //mark vinhos with their responding sections
+    for(int i = 0; i < [identifiersArray count]; i++) {
+        NSString* identifier = [identifiersArray objectAtIndex:i];
+
+        for(Vinho* vinho in self) {
+            if([vinho.sectionIdentifier isEqualToString:identifier])
+                vinho.section = i;
+        }
+    }
+    
+    
+    for(Vinho* vinho in self) {
+        NSLog(@"%@ %i", vinho.sectionIdentifier, vinho.section);
+    }
+    
+}
+
+- (int) numberOfSections {
+    NSSet* identifiersSet = [NSSet setWithArray:[self valueForKey:@"sectionIdentifier"]];
+    return [identifiersSet count];
+}
+
+- (int) numberOfRowsInSection:(int)section {
+    
+    NSArray* array = [self getSection:section];    
+    return [array count];
+}
+
+- (NSArray*) getSection:(int) section {
+    
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"section == %i", section];
+    return [self filteredArrayUsingPredicate:predicate];
+}
+
+- (id) vinhoForRow:(int) row atSection:(int) section {
+    NSArray* array = [self getSection:section];
+    return [array objectAtIndex:row];
+}
+
+
 @end

@@ -64,6 +64,9 @@ SEL action; id target;
     NSKeyValueObservingOptions options = NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew;
     
     [[FilterManager instance] addObserver:self forKeyPath:@"filters" options:options context:nil];
+    
+    [self.vinhos sectionizeOrderedBy:0];
+
 }
 
 - (void)viewDidUnload
