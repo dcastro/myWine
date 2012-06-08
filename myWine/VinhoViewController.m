@@ -152,6 +152,7 @@
     self.priceValue.delegate=self;
     self.harvestyear.delegate=self;
     self.producerName.delegate=self;
+    self.grapesList.delegate=self;
     
     self.grapesList.layer.cornerRadius = 5;
     self.grapesList.clipsToBounds = YES;
@@ -253,11 +254,21 @@
     if (nextResponder) {
         // Found next responder, so set it.
         [nextResponder becomeFirstResponder];
-    } else {
-        // Not found, so remove keyboard.
-        [textField resignFirstResponder];
+    } 
+    if (nextTag==5){
+        [self.grapesList becomeFirstResponder];
     }
     return NO; // We do not want UITextField to insert line-breaks.
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    
+    if([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    
+    return YES;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

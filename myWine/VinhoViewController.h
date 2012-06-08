@@ -22,7 +22,7 @@
 
 @end
 
-@interface VinhoViewController : UIViewController <UISplitViewControllerDelegate, UITextFieldDelegate, ListaPaisesViewControllerDelegate, ListaRegioesViewControllerDelegate, CurrencyViewControllerDelegate>
+@interface VinhoViewController : UIViewController <UISplitViewControllerDelegate, UITextFieldDelegate,  UITextViewDelegate, ListaPaisesViewControllerDelegate, ListaRegioesViewControllerDelegate, CurrencyViewControllerDelegate>
 
 @property (strong, nonatomic) id detailItem;
 
