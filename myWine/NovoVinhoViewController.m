@@ -436,6 +436,10 @@ finishedSavingWithError:(NSError *)error
     
 }
 
+- (void) selectedType:(TipoVinho *)Type{
+    [self.tipoVinho setTitle:Type.name forState: UIControlStateNormal];
+}
+
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     animatedDistance = calculateAnimation(self,keyboard);
     // Setup the background
