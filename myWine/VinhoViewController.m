@@ -13,6 +13,7 @@
 @interface VinhoViewController () {
     CGFloat animatedDistance;
     UITextField *keyboard;
+    UITextView *keyboard2;
 }
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
 - (void)configureView;
@@ -460,7 +461,24 @@
 #pragma mark UITextField Delegate Method
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    animatedDistance = calculateAnimation(self,keyboard);
+    if(keyboard!=nil){
+        animatedDistance = calculateAnimation(self,keyboard);
+    }
+    else if (keyboard2!=nil) {
+        animatedDistance = calculateAnimation2(self,keyboard2);
+    }
+    CGRect viewFrame = self.view.frame;
+    viewFrame.origin.y -= animatedDistance;
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
+    
+    [self.view setFrame:viewFrame];
+    
+    [UIView commitAnimations];
+
+    
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown)
     {
@@ -490,13 +508,12 @@
     [UIView commitAnimations];
 }
 
-
-- (void)textFieldDidEndEditing:(UITextField *)textField
+-(void)textViewDidBeginEditing:(UITextView *)textView
 {
-    keyboard = textField;
-    
+    keyboard2 = textView;
+    animatedDistance = calculateAnimation2(self, textView);
     CGRect viewFrame = self.view.frame;
-    viewFrame.origin.y += animatedDistance;
+    viewFrame.origin.y -= animatedDistance;
     
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
@@ -505,6 +522,43 @@
     [self.view setFrame:viewFrame];
     
     [UIView commitAnimations];
+
+}
+
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    keyboard = textField;
+    
+    CGRect viewFrame = self.view.frame;
+    viewFrame.origin.y += animatedDistance;
+    animatedDistance =0;
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
+    
+    [self.view setFrame:viewFrame];
+    
+    [UIView commitAnimations];
+    keyboard = nil;
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    keyboard2 = textView;
+    
+    CGRect viewFrame = self.view.frame;
+    viewFrame.origin.y += animatedDistance;
+    animatedDistance =0;
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
+    
+    [self.view setFrame:viewFrame];
+    
+    [UIView commitAnimations];
+    
+    keyboard2 = nil;
 }
 
 //only accepts 2 digits precision doubles

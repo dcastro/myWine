@@ -19,6 +19,7 @@
 extern CGFloat const KEYBOARD_ANIMATION_DURATION;
 
 double calculateAnimation(UIViewController *v, UITextField *keyboard);
+double calculateAnimation2(UIViewController *v, UITextView *keyboard);
 
 NSString* currencyStr(int currency);
 int currencyInt(NSString* currency);
