@@ -38,6 +38,7 @@
 @synthesize foto;
 @synthesize myPop = _myPop;
 @synthesize imageView;
+@synthesize countries = _countries;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -64,6 +65,9 @@
 
     
     Language* lang = [Language instance];
+    
+    User* user = [User instance];
+    [self setCountries:user.countries];
     
     [self.novoVinho setTitle:[lang translate:@"NovoVinho"]];
     
@@ -111,6 +115,13 @@
     for(int i = year ; i>1900 ; i--)
         [anosVinhos addObject: [NSNumber numberWithInt:i]];
     // TODO: convert mutable into normal static array for improved performance, since array shuld only be recalculated once per year
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    BOOL hasCountry = [defaults boolForKey:@"defaultCountrySet"];
+    if(hasCountry){
+        int countryIndex = [defaults integerForKey:@"defaultCountry"];
+        Pais* defCountry = (Pais*) [self.countries objectAtIndex:countryIndex];
+        [self selectedCountry:defCountry];
+    }
     
     if(1) {
         [self dismissModalViewControllerAnimated:YES];
@@ -320,6 +331,10 @@ finishedSavingWithError:(NSError *)error
                          @synthesize Cancel;
                          @synthesize country = _country;
                          @synthesize region = _region;*/
+                        
+                        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+                        [defaults setBool:YES forKey:@"defaultCountrySet"];
+                        [defaults synchronize];
                         
                         [user.vinhos insertObject: vinho atIndex: user.vinhos.count];
                         

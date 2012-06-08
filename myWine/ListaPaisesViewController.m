@@ -144,6 +144,10 @@
     
     Pais* pais = (Pais*)[self.countries objectAtIndex:indexPath.row];
     
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setInteger:indexPath.row forKey:@"defaultCountry"];
+    [defaults synchronize];
+    
     [self.delegate selectedCountry:pais];
    
     [self dismissModalViewControllerAnimated:YES];
