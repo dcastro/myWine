@@ -42,9 +42,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *wine_type_label;
 @property (weak, nonatomic) IBOutlet UILabel *price_label;
 @property (weak, nonatomic) IBOutlet UILabel *price_value_label;
-@property (strong, nonatomic) IBOutlet UIButton *currencyButton;
-@property (strong, nonatomic) IBOutlet UIButton *countryButton;
-@property (strong, nonatomic) IBOutlet UIButton *regionButton;
 
 @property (strong, nonatomic) IBOutlet UITextField *wineName;
 @property (strong, nonatomic) IBOutlet UITextField *priceValue;
