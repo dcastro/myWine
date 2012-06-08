@@ -65,7 +65,7 @@
     self.resposta5.text = [lan translate:@"R5"];
     self.resposta5.font = [UIFont fontWithName:@"DroidSans" size:SMALL_FONT-2];
     
-    self.tabSelector.title = [lan translate:@"FAQ"];    
+    self.tabSelector.title = [lan translate:@"FAQ"];
 }
 
 - (void)viewDidUnload

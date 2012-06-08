@@ -85,12 +85,15 @@ SEL action; id target;
     self.myWine.font = [UIFont fontWithName:@"DroidSerif-Bold" size:TITLE_FONT];    
     
     self.navigationItem.hidesBackButton = YES;
+    
+    self.myWine.font = [UIFont fontWithName:@"DroidSerif-Bold" size:TITLE_FONT+4];
     [self configureView];
 }
 
 - (void)viewDidUnload
 {
     [self setHelp:nil];
+    [self setMyWine:nil];
     [self setMyWine:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
