@@ -94,11 +94,6 @@
     User *user = [User instance];
     
 #warning TODO: FERNANDO: sync
-    //Vinho* vinho = [[Vinho alloc] init];
-    //vinho.name = @"Testing";
-    //[user.vinhos insertObject:vinho atIndex:0];
-    
-    
     //Login Successful
     if ( user.isValidated ) {
         //dismiss the login controller
@@ -111,13 +106,6 @@
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setObject:user.username forKey:@"username"];
         [defaults synchronize];
-        
-        //Vinho* vinho = [[Vinho alloc] init];
-        //vinho.name = @"Testing";
-        //[lvvc.vinhos insertObject:vinho atIndex:0];
-        //[lvvc insertNewObject:vinho];
-        //NSLog(@"LOOOOOOOOL: %d", lvvc.vinhos.count);
-        //NSLog(@"LOOOOOOOOL2: %d", user.vinhos.count);
         
     }
     //Login Failure
@@ -154,6 +142,7 @@
     } else {
         // Not found, so remove keyboard.
         [textField resignFirstResponder];
+        [self doLogin:self.loginButton.init];
     }
     return NO; // We do not want UITextField to insert line-breaks.
 }
