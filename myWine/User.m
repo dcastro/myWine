@@ -221,12 +221,14 @@ static User *sharedUser = nil;
 -(BOOL) loadWineTypesFromDB{
     _tipoVinhos = [[NSMutableArray alloc] init];
     
+    DebugLog(@"entrou");
+    
     Query *query = [[Query alloc] init];
     
     NSString *querySQL;
     
 
-            querySQL = [NSString stringWithFormat:@"SELECT wt.winetype_id, wt.name_en, wt.name_fr, wt.name_pt\
+    querySQL = [NSString stringWithFormat:@"SELECT wt.winetype_id, wt.name_en, wt.name_fr, wt.name_pt\
                         FROM WineType wt;"];
       
     sqlite3_stmt *stmt = [query prepareForSingleQuery:querySQL];
@@ -243,10 +245,13 @@ static User *sharedUser = nil;
             winetype.name_pt = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 3)];
 
             
+             DebugLog(@"NAME EN : %@", winetype.name_en);
+            
             [_tipoVinhos insertObject:winetype atIndex:0];
         }
         
         [query finalizeQuery:stmt];
+        DebugLog(@"SAIU : %d", _tipoVinhos.count);
         return TRUE;
     }else
         return FALSE;
