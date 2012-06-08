@@ -21,13 +21,16 @@
     
     #warning TODO: FERNANDO: falta a foto e corrigir a query
     
-    NSString *querySQL = [NSString stringWithFormat:@"INSERT INTO Wine (user, region_id,  winetype_id, name, year, producer, currency, price, state)\
-                          VALUES (\'%@\', %d, %d, \'%@\', %d, \'%@\', \'%@\', %f, %d);", 
+    
+    NSString *querySQL = [NSString stringWithFormat:@"INSERT INTO Wine (user, region_id,  winetype_id, name, year, grapes, photo_filename, producer, currency, price, state)\
+                          VALUES (\'%@\', %d, %d, \'%@\', %d, \'%@\' , \'%@\', \'%@\', \'%@\', %f, %d);", 
                           user.username, 
                           vinho.region.region_id,
                           vinho.winetype.winetype_id, 
                           vinho.name, 
-                          vinho.year,  
+                          vinho.year,
+                          vinho.grapes,
+                          vinho.photo,
                           vinho.producer, 
                           vinho.currency, 
                           vinho.price, 

@@ -152,11 +152,19 @@ SEL action; id target;
         [[self tableView] deselectRowAtIndexPath:path animated:YES];
     }
     else if([segue.identifier isEqualToString:@"orderVinhos"]) {
+       
+        action = [sender action];
+        target = [sender target];
+        
+        [sender setTarget:self];
+        [sender setAction:@selector(dismiss:)];
+        
         OrderViewController* ovc = (OrderViewController*) segue.destinationViewController;
         ovc.selectedOrder = [self selectedOrder];
         //NSLog(@"Segue, order %i",[self selectedOrder]);
         ovc.delegate = self;
-        self.popoverController = [(UIStoryboardPopoverSegue *)segue popoverController];
+        
+        self.currentPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
     }
     else if ([segue.identifier isEqualToString:@"toFilters"]) {
         NSIndexPath* path = [[self tableView] indexPathForSelectedRow];
@@ -169,16 +177,16 @@ SEL action; id target;
 
 -(void)dismiss:(id)sender
 {
-    [self.filterButton setAction:action];
-    [self.filterButton setTarget:target];
+    [self.orderButton setAction:action];
+    [self.orderButton setTarget:target];
     [self.currentPopover dismissPopoverAnimated:YES];
 }
 
 
 -(BOOL)popoverControllerShouldDismissPopover:(UIPopoverController *)popoverController
 {
-    [self.filterButton setAction:action];
-    [self.filterButton setTarget:target];
+    [self.orderButton setAction:action];
+    [self.orderButton setTarget:target];
     return YES;    
 }
 
