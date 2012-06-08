@@ -127,6 +127,8 @@
             case FilterTypeProducer:
                 filterSelectionViewController.objects = [vinhos getProducers];
                 break;
+            default:
+                break;
         }
         
     }

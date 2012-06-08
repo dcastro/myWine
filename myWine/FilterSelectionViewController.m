@@ -54,6 +54,9 @@
             
         case FilterTypeProducer:
             break;
+            
+        default:
+            break;
     }
     
     [self configureView];

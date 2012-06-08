@@ -29,5 +29,5 @@
 - (int) numberOfSections;
 - (int) numberOfRowsInSection:(int)section;
 - (id) vinhoForRow:(int) row atSection:(int) section;
-
+- (NSString*) titleForHeaderInSection:(int) section;
 @end

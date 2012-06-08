@@ -241,5 +241,10 @@
     return [array objectAtIndex:row];
 }
 
+- (NSString*) titleForHeaderInSection:(int) section {
+    NSArray* array = [self getSection:section];
+    Vinho* vinho = (Vinho*) [array objectAtIndex:0];
+    return vinho.sectionIdentifier;
+}
 
 @end
