@@ -340,10 +340,26 @@ SEL action; id target;
         Vinho* vinho = (Vinho*) [self.vinhos vinhoForRow:indexPath.row atSection:indexPath.section];
         NSMutableArray* vinhos = [[User instance] vinhos];
         
+        int n_sections = [self.vinhos numberOfSections];
+                  
         if ([vinhos removeVinhoAtRow:indexPath.row inSection:indexPath.section]) {
+            
+            [[self tableView] beginUpdates];  
+            
             self.vinhos = [FilterManager applyFilters:vinhos];
             [self.vinhos sectionizeOrderedBy:self.selectedOrder];
-            [[self tableView] reloadData];
+            
+            NSArray* paths = [NSArray arrayWithObject:indexPath];
+            [[self tableView] deleteRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationTop];
+            
+            if (n_sections != [self.vinhos numberOfSections]) {
+                NSIndexSet* indexSet = [NSIndexSet indexSetWithIndex:indexPath.section];
+                [self.tableView deleteSections:indexSet withRowAnimation:UITableViewRowAnimationTop];
+            }
+
+            [[self tableView] endUpdates];
+            
+            //[[self tableView] reloadData];
             
             //if the displayed wine was deleted
             if (vvc && vvc.detailItem == vinho) {
