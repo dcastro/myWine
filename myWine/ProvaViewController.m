@@ -29,6 +29,7 @@
 @synthesize scoreLabel = _scoreLabel;
 @synthesize scoreContentLabel = _scoreContentLabel;
 @synthesize comentario = _comentario;
+@synthesize header = _header;
 @synthesize prova_mode;
 @synthesize delegate;
 
@@ -95,6 +96,18 @@
     [self.wineNameLabel setText:wineNameLabelText];
     
     [self.dateLabel setText:[self.prova fullDate] ];
+    
+    // Setup the background
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown)
+    {
+        [[self header] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"backgroundPortrait.png"]]];
+    }
+    else 
+    {
+        [[self header] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"backgroundLandscape.png"]]];
+    }
+
     
     
     //footer
@@ -214,6 +227,7 @@
     [self setScoreLabel:nil];
     [self setScoreContentLabel:nil];
     [self setComentario:nil];
+    [self setHeader:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
