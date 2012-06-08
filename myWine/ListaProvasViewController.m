@@ -262,6 +262,10 @@ SEL action; id target;
     //self.provaViewController.detailItem = object.data;
 }
 
+-(NSString*) tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [[Language instance] translate:@"Delete"];
+}
+
 #pragma mark - NovaProvaViewControllerDelegate
 
 - (void)NovaProvaViewControllerDidCancel:

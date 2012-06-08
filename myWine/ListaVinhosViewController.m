@@ -284,11 +284,10 @@ SEL action; id target;
     return [self.vinhos titleForHeaderInSection:section];
 }
 
-/*
 -(NSString*) tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
-    //
+    return [[Language instance] translate:@"Delete"];
 }
-*/
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
