@@ -98,8 +98,12 @@ SEL action; id target;
     if([segue.identifier isEqualToString:@"PushProvas"]) {
         
         ListaProvasViewController* lpvc = (ListaProvasViewController*) [segue destinationViewController ];
+        //get the path for the selected button
+        UIButton* button = (UIButton*) sender;
+        UITableViewCell* cell = (UITableViewCell*) button.superview;
+        NSIndexPath* path = [[self tableView] indexPathForCell:cell];
         
-        Vinho* vinho = [self.vinhos objectAtIndex:_index];
+        Vinho* vinho = [self.vinhos vinhoForRow:path.row atSection:path.section];
         lpvc.vinho = vinho;
         lpvc.provas = vinho.provas;
         
@@ -110,7 +114,8 @@ SEL action; id target;
     else if ([segue.identifier isEqualToString:@"showVinho"]) {
         
         vvc = (VinhoViewController*) [segue.destinationViewController topViewController];
-        Vinho* vinho = [self.vinhos objectAtIndex:[[self.tableView indexPathForSelectedRow] row]];
+        NSIndexPath* path = [self.tableView indexPathForSelectedRow];
+        Vinho* vinho = [self.vinhos vinhoForRow:path.row atSection:path.section];
         vvc.detailItem = vinho;
         vvc.delegate = self;
 
@@ -228,12 +233,20 @@ SEL action; id target;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return [self.vinhos numberOfSections];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _vinhos.count;
+    return [self.vinhos numberOfRowsInSection:section];
+}
+
+- (NSString*) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return [self.vinhos titleForHeaderInSection:section];
+}
+
+-(NSString*) tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [super tableView:tableView titleForDeleteConfirmationButtonForRowAtIndexPath:indexPath];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -242,7 +255,7 @@ SEL action; id target;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     
     //NSString *object = [_objects objectAtIndex:indexPath.row];
-    Vinho* vinho = [self.vinhos objectAtIndex:indexPath.row];
+    Vinho* vinho = [self.vinhos vinhoForRow:indexPath.row atSection:indexPath.section ];
     
     UIButton *icon = [UIButton buttonWithType:UIButtonTypeCustom];
     [icon setImage:[UIImage imageNamed:@"material mywine-19.png"] forState:UIControlStateNormal];
@@ -264,8 +277,7 @@ SEL action; id target;
 
 - (void)listProvas:(UIButton *) button
 {
-    _index = (NSUInteger) button.tag;
-    [self performSegueWithIdentifier:@"PushProvas" sender:self];
+    [self performSegueWithIdentifier:@"PushProvas" sender:button];
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
@@ -416,6 +428,7 @@ SEL action; id target;
     NSMutableArray* vinhos = _vinhos;
     [vinhos orderVinhosBy:order];
     [self setVinhos:vinhos];
+    [self.vinhos sectionizeOrderedBy:order];
     [[self tableView] reloadData];
     
     self.selectedOrder = order;

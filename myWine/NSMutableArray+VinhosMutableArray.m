@@ -196,6 +196,14 @@
             NSString* firstChar = [[NSString stringWithFormat:@"%c", [vinho.name characterAtIndex:0]] uppercaseString];
             vinho.sectionIdentifier = firstChar;
         }
+        if(order == ORDER_BY_SCORE) {
+            int score = vinho.score;
+            int truncated = score/10;
+            truncated *= 10;
+            
+            NSString* roundedScore = [NSString stringWithFormat:@"%i .. %i", truncated, truncated +9];
+            vinho.sectionIdentifier = roundedScore;
+        }
     }
     
     //get set of unique identifiers
