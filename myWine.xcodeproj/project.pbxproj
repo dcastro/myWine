@@ -63,7 +63,6 @@
 		A9C5A0141517A78600A3F8C5 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9C5A0131517A78600A3F8C5 /* DetailViewController.m */; };
 		A9C5A0241517AB0E00A3F8C5 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A9C5A0231517AB0E00A3F8C5 /* icon.png */; };
 		A9D10DEF157905B700E8B01B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D10DEE157905B700E8B01B /* MobileCoreServices.framework */; };
-		A9F0B4BB1524731F003C931B /* FiltrosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F0B4BA1524731F003C931B /* FiltrosViewController.m */; };
 		A9F0B4BF152477C9003C931B /* ComparadorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F0B4BE152477C9003C931B /* ComparadorViewController.m */; };
 		BCC8EBB91563E36B006645BC /* NSMutableArray+ProvasMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = BCC8EBB81563E36B006645BC /* NSMutableArray+ProvasMutableArray.m */; };
 		BCDC2CEB1580F34A00E7AB56 /* OrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCDC2CEA1580F34A00E7AB56 /* OrderViewController.m */; };
@@ -197,8 +196,6 @@
 		A9C5A0131517A78600A3F8C5 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		A9C5A0231517AB0E00A3F8C5 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		A9D10DEE157905B700E8B01B /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		A9F0B4B91524731F003C931B /* FiltrosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiltrosViewController.h; sourceTree = "<group>"; };
-		A9F0B4BA1524731F003C931B /* FiltrosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiltrosViewController.m; sourceTree = "<group>"; };
 		A9F0B4BD152477C9003C931B /* ComparadorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComparadorViewController.h; sourceTree = "<group>"; };
 		A9F0B4BE152477C9003C931B /* ComparadorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComparadorViewController.m; sourceTree = "<group>"; };
 		BCC8EBB71563E36B006645BC /* NSMutableArray+ProvasMutableArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+ProvasMutableArray.h"; sourceTree = "<group>"; };
@@ -506,8 +503,6 @@
 				D9057300157FAC0200CB6726 /* FilterSelectionViewController.m */,
 				D90572EC157F9F1300CB6726 /* FilterViewController.h */,
 				D90572ED157F9F1300CB6726 /* FilterViewController.m */,
-				A9F0B4B91524731F003C931B /* FiltrosViewController.h */,
-				A9F0B4BA1524731F003C931B /* FiltrosViewController.m */,
 				65B824EF1579357500527D6F /* HelpViewController.h */,
 				65B824F01579357500527D6F /* HelpViewController.m */,
 				DADADA5315541E04008A9FBB /* ListaPaisesViewController.h */,
@@ -775,7 +770,6 @@
 				A9C28884151FBB4400C2F58D /* VinhoViewController.m in Sources */,
 				A9A69B9C151FCDE200FC9073 /* SyncViewController.m in Sources */,
 				A9A69B9F151FCEC500FC9073 /* NovaProvaViewController.m in Sources */,
-				A9F0B4BB1524731F003C931B /* FiltrosViewController.m in Sources */,
 				A9F0B4BF152477C9003C931B /* ComparadorViewController.m in Sources */,
 				DAFB6903152D138800DC74CB /* LoginViewController.m in Sources */,
 				DA7D48A4152E0AAD00C525FB /* Language.m in Sources */,
