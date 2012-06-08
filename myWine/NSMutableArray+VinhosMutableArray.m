@@ -256,6 +256,8 @@
     //get set of unique identifiers
     NSSet* identifiersSet = [NSSet setWithArray:[self valueForKey:@"sectionIdentifier"]];
     NSArray* identifiersArray = [identifiersSet allObjects];
+    identifiersArray = [identifiersArray sortedArrayUsingSelector:@selector(compare:)];
+    
     
     //mark vinhos with their responding sections
     
