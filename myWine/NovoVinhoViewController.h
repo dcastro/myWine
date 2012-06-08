@@ -21,7 +21,7 @@
 
 @protocol NovoVinhoViewControllerDelegate <NSObject>
     - (void)NovoVinhoViewControllerDidCancel:(NovoVinhoViewController *)controller;
-    - (void)NovoVinhoViewControllerDidSave:(NovoVinhoViewController *)controller;
+    - (void)NovoVinhoViewControllerDidSave:(Vinho*) vinho;
 @end
 
 @interface NovoVinhoViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,ListaPaisesViewControllerDelegate,ListaRegioesViewControllerDelegate> {
@@ -61,6 +61,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *foto;
 
 @property (nonatomic, strong) NSMutableArray* countries;
+
+@property (nonatomic) int vinhos_order;
 
 - (IBAction)pickF:(id)sender;
 - (IBAction)cancel:(id)sender;

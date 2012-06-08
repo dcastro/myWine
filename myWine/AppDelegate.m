@@ -89,6 +89,7 @@
         [User createWithUsername:username];
         User* user = [User instance];
         [lvvc setVinhos:user.vinhos];
+        [lvvc reloadData];
     }
     
     return YES;

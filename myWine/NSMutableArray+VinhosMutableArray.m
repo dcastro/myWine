@@ -12,16 +12,16 @@
 
 @implementation NSMutableArray (VinhosMutableArray)
 
--(BOOL) insertVinho:(Vinho*) vinho atIndex:(NSUInteger)index {
+-(BOOL) insertVinho:(Vinho*) vinho orderedBy:(int) order {
     
     User * user = [User instance];
     
     Query *query = [[Query alloc] init];
     char * errMsg;
     
-    #warning TODO: FERNANDO: falta a foto
+    #warning TODO: FERNANDO: falta a foto e corrigir a query
     
-    NSString *querySQL = [NSString stringWithFormat:@"INSERT INTO Wine (username, region_id,  winetype_id, name, year, producer, currency, price, state)\
+    NSString *querySQL = [NSString stringWithFormat:@"INSERT INTO Wine (user, region_id,  winetype_id, name, year, producer, currency, price, state)\
                           VALUES (\'%@\', %d, %d, \'%@\', %d, \'%@\', \'%@\', %f, %d);", 
                           user.username, 
                           vinho.region.region_id,
@@ -42,21 +42,55 @@
         DebugLog(@"Query with error: %s", errMsg);
         sqlite3_free(errMsg);
         sqlite3_close(*contactDB);
+        
+#warning apagar isto quando o insert do vinho na BD estiver impec
+        [self insertInArrayVinho:vinho orderedBy:order];
+        
         return FALSE;
     }else {        
         vinho.wine_id = sqlite3_last_insert_rowid(*contactDB);
         sqlite3_close(*contactDB);
-        [self insertObject:vinho atIndex:index];
+        [self insertInArrayVinho:vinho orderedBy:order];
         return TRUE;
     }
+    
+
 
     
 }
 
-
--(BOOL) removeVinhoAtIndex:(NSUInteger) index {
+-(void) insertInArrayVinho:(Vinho*) vinho orderedBy:(int) order {
+    //NSString* sectionIdentifier = [self sectionIdentifierForVinho:vinho orderedBy:order];
     
-    Vinho * v = [self objectAtIndex:index];
+    NSString* sectionIdentifier = [self sectionIdentifierForVinho:vinho orderedBy:order];
+    
+    BOOL hasIdentifier = [self hasSection:sectionIdentifier];
+    
+
+    [self insertObject:vinho atIndex:0];
+    [self orderVinhosBy:order];
+    [self sectionizeOrderedBy:order];
+    
+    if (!hasIdentifier)
+        vinho.sectionIsNew = true;
+    
+    
+}
+
+
+-(BOOL) removeVinhoAtRow:(int)row inSection:(int)section {
+    
+    Vinho * v;// = [self objectAtIndex:index];
+    int index = 0;
+    for(index = 0; index < [self count] ; index++) {
+        Vinho* x = [self objectAtIndex:index];
+        if(x.row == row && x.section == section)
+            break;
+        
+    }
+    
+    //NSLog(@"index: %i", index);
+    
     Query *query = [[Query alloc] init];
     
     BOOL return_value = TRUE;
@@ -177,6 +211,27 @@
     return array;
 }
 
+- (NSString*) sectionIdentifierForVinho:(Vinho*) vinho orderedBy:(int) order {
+    NSString* sectionIdentifier;
+    if(order == ORDER_BY_NAME) {
+        sectionIdentifier = [[NSString stringWithFormat:@"%c", [vinho.name characterAtIndex:0]] uppercaseString];
+    }
+    if(order == ORDER_BY_SCORE) {
+        int score = vinho.score;
+        int truncated = score/10;
+        truncated *= 10;
+        
+        sectionIdentifier = [NSString stringWithFormat:@"%i .. %i", truncated, truncated +9];
+    }
+    
+    return sectionIdentifier;
+}
+
+- (BOOL) hasSection:(NSString*)sectionIdentifier {
+    NSSet* identifiersSet = [NSSet setWithArray:[self valueForKey:@"sectionIdentifier"]];
+    return [identifiersSet containsObject:sectionIdentifier];
+}
+
 - (void) sectionizeOrderedBy:(int) order {
     
     if ([self count] == 0)
@@ -192,18 +247,7 @@
     
     //mark vinhos with their section identifiers
     for(Vinho* vinho in self ) {
-        if(order == ORDER_BY_NAME) {
-            NSString* firstChar = [[NSString stringWithFormat:@"%c", [vinho.name characterAtIndex:0]] uppercaseString];
-            vinho.sectionIdentifier = firstChar;
-        }
-        if(order == ORDER_BY_SCORE) {
-            int score = vinho.score;
-            int truncated = score/10;
-            truncated *= 10;
-            
-            NSString* roundedScore = [NSString stringWithFormat:@"%i .. %i", truncated, truncated +9];
-            vinho.sectionIdentifier = roundedScore;
-        }
+        vinho.sectionIdentifier = [self sectionIdentifierForVinho:vinho orderedBy:order];
     }
     
     //get set of unique identifiers
@@ -211,18 +255,24 @@
     NSArray* identifiersArray = [identifiersSet allObjects];
     
     //mark vinhos with their responding sections
+    
     for(int i = 0; i < [identifiersArray count]; i++) {
         NSString* identifier = [identifiersArray objectAtIndex:i];
-
-        for(Vinho* vinho in self) {
-            if([vinho.sectionIdentifier isEqualToString:identifier])
-                vinho.section = i;
+        
+        NSPredicate* predicate = [NSPredicate predicateWithFormat:@"sectionIdentifier == %@", identifier];
+        NSArray* array = [self filteredArrayUsingPredicate:predicate];
+        
+        for(int j = 0; j < [array count]; j++) {
+            Vinho* vinho = [array objectAtIndex:j];
+            vinho.section = i;
+            vinho.row = j;
         }
+        
     }
     
     
     for(Vinho* vinho in self) {
-        NSLog(@"%@ %i", vinho.sectionIdentifier, vinho.section);
+        //NSLog(@"%@ %i %i", vinho.sectionIdentifier, vinho.section, vinho.row);
     }
     
 }

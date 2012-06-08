@@ -14,9 +14,9 @@
 
 @interface NSMutableArray (VinhosMutableArray)
 
--(BOOL) insertVinho:(Vinho*)vinho atIndex:(NSUInteger)index;
+-(BOOL) insertVinho:(Vinho*)vinho orderedBy:(int) order;
     
--(BOOL) removeVinhoAtIndex:(NSUInteger) index;
+-(BOOL) removeVinhoAtRow:(int) row inSection:(int) section;
 
 -(void) orderVinhosBy:(int) order;
 
@@ -24,6 +24,9 @@
 - (NSMutableArray*) getCountries;
 - (NSMutableArray*) getWineTypes;
 - (NSMutableArray*) getProducers;
+
+- (NSString*) sectionIdentifierForVinho:(Vinho*) vinho orderedBy:(int) order;
+- (BOOL) hasSection:(NSString*)sectionIdentifier;
 
 - (void) sectionizeOrderedBy:(int) order;
 - (int) numberOfSections;

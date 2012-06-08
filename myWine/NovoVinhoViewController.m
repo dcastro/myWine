@@ -7,6 +7,7 @@
 //
 
 #import "NovoVinhoViewController.h"
+#import "NSMutableArray+VinhosMutableArray.h"
 
 @interface NovoVinhoViewController () {
     CGFloat animatedDistance;
@@ -39,6 +40,8 @@
 @synthesize myPop = _myPop;
 @synthesize imageView;
 @synthesize countries = _countries;
+
+@synthesize vinhos_order = _vinhos_order;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -362,7 +365,10 @@ finishedSavingWithError:(NSError *)error
                         [defaults setBool:YES forKey:@"defaultCountrySet"];
                         [defaults synchronize];
                         
-                        [user.vinhos insertObject: vinho atIndex: user.vinhos.count];
+                        //[user.vinhos insertObject: vinho atIndex: user.vinhos.count];
+                        NSLog(@"count %i", [user.vinhos count]);
+                        //[user.vinhos insertVinho:vinho orderedBy:self.vinhos_order];
+                        NSLog(@"count %i", [user.vinhos count]);
                         
                         if(image != nil) {
                             // Create paths to output images
@@ -397,7 +403,7 @@ finishedSavingWithError:(NSError *)error
                             NSLog(@"Documents directory: %@", [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:&error]);
                         }
                         
-                        [self.delegate NovoVinhoViewControllerDidSave:self];
+                        [self.delegate NovoVinhoViewControllerDidSave:vinho];
                     }
 }
 

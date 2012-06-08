@@ -105,6 +105,7 @@
         [self.delegate LoginViewControllerDidLogin:self];
         ListaVinhosViewController* lvvc = (ListaVinhosViewController*) self.delegate;
         [lvvc setVinhos:user.vinhos];
+        [lvvc reloadData];
         
         //save this user as default
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

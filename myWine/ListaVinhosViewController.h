@@ -61,4 +61,7 @@
 - (void) configureView;
 - (IBAction)didPressHomeButton:(id)sender;
 
+-(void) reloadData;
+
+
 @end

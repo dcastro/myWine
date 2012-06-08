@@ -85,6 +85,8 @@ SEL action; id target;
     self.vinhos = [FilterManager applyFilters:[[User instance] vinhos]];
     [[self tableView] reloadData];
     
+#warning todo: sectionize
+    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -128,6 +130,7 @@ SEL action; id target;
         *nvvc = 
         [[navigationController viewControllers] 
          objectAtIndex:0];
+        nvvc.vinhos_order = selectedOrder;
 		nvvc.delegate = self;
 	}
     else if([segue.identifier isEqualToString:@"filterSegue"])
@@ -224,9 +227,38 @@ SEL action; id target;
         return;
     }
     //[_objects insertObject:[NSDate date] atIndex:0];
+    
+    Vinho* vinho = (Vinho*) sender;
+    
+    NSString* sectionIdentifier = [self.vinhos sectionIdentifierForVinho:vinho orderedBy:self.selectedOrder];
+    
+    BOOL hasIdentifier = [self.vinhos hasSection:sectionIdentifier];
+    
+    
+    
+    [[self tableView] beginUpdates];
+    
+    [self.vinhos insertVinho:vinho orderedBy:self.selectedOrder];
+    
+    if (!hasIdentifier) {
+        NSIndexSet* indexSet = [NSIndexSet indexSetWithIndex:vinho.section];
+        [[self tableView] insertSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+    
+    NSIndexPath* path = [NSIndexPath indexPathForRow:vinho.row inSection:vinho.section]; 
+    NSArray *paths = [NSArray arrayWithObject: path];
+    
+    [[self tableView] insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+    
+    [[self tableView] endUpdates];
+    
+    /*
+    [self tableView] insertSections:<#(NSIndexSet *)#> withRowAnimation:<#(UITableViewRowAnimation)#>
     [self.vinhos insertVinho:sender atIndex:0];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+     */
 }
 
 #pragma mark - Table View
@@ -245,9 +277,11 @@ SEL action; id target;
     return [self.vinhos titleForHeaderInSection:section];
 }
 
+/*
 -(NSString*) tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [super tableView:tableView titleForDeleteConfirmationButtonForRowAtIndexPath:indexPath];
+    //
 }
+*/
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -297,10 +331,13 @@ SEL action; id target;
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
-        Vinho* vinho = (Vinho*) [_vinhos objectAtIndex:indexPath.row];
+        Vinho* vinho = (Vinho*) [self.vinhos vinhoForRow:indexPath.row atSection:indexPath.section];
+        NSMutableArray* vinhos = [[User instance] vinhos];
         
-        if ([_vinhos removeVinhoAtIndex:indexPath.row]) {
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        if ([vinhos removeVinhoAtRow:indexPath.row inSection:indexPath.section]) {
+            self.vinhos = [FilterManager applyFilters:vinhos];
+            [self.vinhos sectionizeOrderedBy:self.selectedOrder];
+            [[self tableView] reloadData];
             
             //if the displayed wine was deleted
             if (vvc && vvc.detailItem == vinho) {
@@ -343,9 +380,31 @@ SEL action; id target;
 }
 
 - (void)NovoVinhoViewControllerDidSave:
-(NovoVinhoViewController *)controller {
+(Vinho*)vinho {
 	[self dismissViewControllerAnimated:YES completion:nil];
-    self.vinhos = [FilterManager applyFilters:[[User instance] vinhos]];
+
+    //[[self tableView] beginUpdates];
+    
+    NSMutableArray* user_vinhos = [[User instance] vinhos];
+    
+    [user_vinhos insertVinho:vinho orderedBy:self.selectedOrder];
+    self.vinhos = [FilterManager applyFilters:user_vinhos];
+    
+    /*
+    if (vinho.sectionIsNew) {
+        NSIndexSet* indexSet = [NSIndexSet indexSetWithIndex:vinho.section];
+        [[self tableView] insertSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+    
+    NSIndexPath* path = [NSIndexPath indexPathForRow:vinho.row inSection:vinho.section]; 
+    NSArray *paths = [NSArray arrayWithObject: path];
+    
+    [[self tableView] insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+    
+    [[self tableView] endUpdates];
+     */
+    
     [[self tableView] reloadData];
 }
 
@@ -359,7 +418,7 @@ SEL action; id target;
 - (void) setVinhos:(NSMutableArray*)vinhos {
     if (vinhos != _vinhos) {
         _vinhos = vinhos;
-        [[self tableView] reloadData];
+        //[[self tableView] reloadData];
     }
 }
 
@@ -434,6 +493,10 @@ SEL action; id target;
     self.selectedOrder = order;
     
     [self.popoverController dismissPopoverAnimated:YES];
+}
+
+-(void) reloadData {
+    [[self tableView] reloadData];
 }
 
 @end
