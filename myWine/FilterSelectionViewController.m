@@ -121,7 +121,7 @@
     id object = [self.objects objectAtIndex:indexPath.row];
     
     [cell.textLabel setText: [object description]];
-    
+    [cell setSelectionStyle:UITableViewCellSelectionStyleGray];
     return cell;
 }
 
