@@ -8,6 +8,7 @@
 
 #import "VinhoViewController.h"
 #import "UIColor+myWineColor.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface VinhoViewController () {
     CGFloat animatedDistance;
@@ -147,6 +148,17 @@
     [self setTitle: [self.detailItem description]];
     
     
+    self.wineName.delegate=self;
+    self.priceValue.delegate=self;
+    self.harvestyear.delegate=self;
+    self.producerName.delegate=self;
+    
+    self.grapesList.layer.cornerRadius = 5;
+    self.grapesList.clipsToBounds = YES;
+    
+    self.grapesList.layer.cornerRadius = 5;
+    self.grapesList.clipsToBounds = YES;
+    
     [self.wineName setHidden:YES];
     [self.priceValue setHidden:YES];
     [self.harvestyear setHidden:YES];
@@ -230,6 +242,22 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return YES;
+}
+
+// allows next button on keyboard to move onto the next text field
+-(BOOL)textFieldShouldReturn:(UITextField*)textField;
+{
+    NSInteger nextTag = textField.tag + 1;
+    // Try to find next responder
+    UIResponder* nextResponder = [textField.superview viewWithTag:nextTag];
+    if (nextResponder) {
+        // Found next responder, so set it.
+        [nextResponder becomeFirstResponder];
+    } else {
+        // Not found, so remove keyboard.
+        [textField resignFirstResponder];
+    }
+    return NO; // We do not want UITextField to insert line-breaks.
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -419,12 +447,6 @@
 
 #pragma mark -
 #pragma mark UITextField Delegate Method
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [textField resignFirstResponder];
-    
-    return YES;
-}
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     animatedDistance = calculateAnimation(self,keyboard);

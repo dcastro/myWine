@@ -79,20 +79,26 @@
     
     self.NomeVinho.placeholder=[lang translate:@"WineName"];
     [self.NomeVinho setFont:[UIFont fontWithName:@"DroidSans" size:NORMAL_FONT-4]];
+    self.NomeVinho.delegate =self;
     self.Produtor.placeholder=[lang translate:@"WineProd"];
     [self.Produtor setFont:[UIFont fontWithName:@"DroidSans" size:NORMAL_FONT-4]];
+    self.Produtor.delegate =self;
     self.AnoVinho.placeholder=[lang translate:@"WineYear"];
     [self.AnoVinho setFont:[UIFont fontWithName:@"DroidSans" size:NORMAL_FONT-4]];
+    self.AnoVinho.delegate =self;
     self.Preco.placeholder=[lang translate:@"WinePrice"];
     [self.Preco setFont:[UIFont fontWithName:@"DroidSans" size:NORMAL_FONT-4]];
+    self.Preco.delegate =self;
     [self.paisButton setTitle:[lang translate:@"WineCountry"] forState:UIControlStateNormal];
     [self.paisButton.titleLabel setFont:[UIFont fontWithName:@"DroidSans" size:NORMAL_FONT-4]];
     [self.regiaoButton setTitle:[lang translate:@"WineRegion"] forState:UIControlStateNormal];
     [self.regiaoButton.titleLabel setFont:[UIFont fontWithName:@"DroidSans" size:NORMAL_FONT-4]];
     self.tipoVinho.placeholder=[lang translate:@"WineType"];
     [self.tipoVinho setFont:[UIFont fontWithName:@"DroidSans" size:NORMAL_FONT-4]];
+    self.tipoVinho.delegate =self;
     self.castaVinho.placeholder=[lang translate:@"WineGrape"];
     [self.castaVinho setFont:[UIFont fontWithName:@"DroidSans" size:NORMAL_FONT-4]];
+    self.castaVinho.delegate =self;
     
     //[self.paisButton setTitle:[lang translate:@"Tap to select"] forState:UIControlStateNormal];
     [self.regiaoButton setEnabled:NO];
@@ -172,6 +178,22 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return YES;
+}
+
+// allows next button on keyboard to move onto the next text field
+-(BOOL)textFieldShouldReturn:(UITextField*)textField;
+{
+    NSInteger nextTag = textField.tag + 1;
+    // Try to find next responder
+    UIResponder* nextResponder = [textField.superview viewWithTag:nextTag];
+    if (nextResponder) {
+        // Found next responder, so set it.
+        [nextResponder becomeFirstResponder];
+    } else {
+        // Not found, so remove keyboard.
+        [textField resignFirstResponder];
+    }
+    return NO; // We do not want UITextField to insert line-breaks.
 }
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
@@ -435,7 +457,7 @@ finishedSavingWithError:(NSError *)error
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    if(textField.tag == 2) {PickAnoVinho.hidden = NO; NSLog(@"dont hide it");}
+    if(textField.tag == 3) {PickAnoVinho.hidden = NO; NSLog(@"dont hide it");}
     else {PickAnoVinho.hidden = YES; NSLog(@"Hide it");}
     
     keyboard = textField;

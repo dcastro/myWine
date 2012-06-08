@@ -141,10 +141,20 @@
     
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [textField resignFirstResponder];
-    
-    return YES;
+// allows next button on keyboard to move onto the next text field
+-(BOOL)textFieldShouldReturn:(UITextField*)textField;
+{
+    NSInteger nextTag = textField.tag + 1;
+    // Try to find next responder
+    UIResponder* nextResponder = [textField.superview viewWithTag:nextTag];
+    if (nextResponder) {
+        // Found next responder, so set it.
+        [nextResponder becomeFirstResponder];
+    } else {
+        // Not found, so remove keyboard.
+        [textField resignFirstResponder];
+    }
+    return NO; // We do not want UITextField to insert line-breaks.
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
@@ -242,7 +252,8 @@
 - (void)configureView {
     
     Language *lan = [Language instance];
-    
+    self.usernameInput.delegate = self;
+    self.passwordInput.delegate = self;
     self.passwordInput.placeholder = [lan translate:@"Password"];
     self.usernameInput.placeholder = [lan translate:@"Username"];
     self.welcomeLabel.text = [lan translate:@"Welcome to myWine"];
