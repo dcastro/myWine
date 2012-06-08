@@ -268,6 +268,10 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         image = [info objectForKey:UIImagePickerControllerOriginalImage];
         
         imageView.image = image;
+        
+        [self.foto setHidden:YES];
+        [self.pickFoto setImage:nil forState:(UIControlStateNormal)];
+        
         if (newMedia)
             UIImageWriteToSavedPhotosAlbum(image,
                                            self,
