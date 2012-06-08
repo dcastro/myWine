@@ -53,7 +53,7 @@ SEL action; id target;
 	// Do any additional setup after loading the view, typically from a nib.
     //self.navigationItem.leftBarButtonItem = self.editButtonItem;
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
-
+    
     
     [self configureView];
     
@@ -66,7 +66,7 @@ SEL action; id target;
     [[FilterManager instance] addObserver:self forKeyPath:@"filters" options:options context:nil];
     
     [self.vinhos sectionizeOrderedBy:0];
-
+    
 }
 
 - (void)viewDidUnload
@@ -119,7 +119,7 @@ SEL action; id target;
         Vinho* vinho = [self.vinhos vinhoForRow:path.row atSection:path.section];
         vvc.detailItem = vinho;
         vvc.delegate = self;
-
+        
     }
 	else if ([segue.identifier isEqualToString:@"AddVinho"])
 	{
@@ -132,16 +132,6 @@ SEL action; id target;
         nvvc.vinhos_order = selectedOrder;
 		nvvc.delegate = self;
 	}
-    else if([segue.identifier isEqualToString:@"filterSegue"])
-    {
-        action = [sender action];
-        target = [sender target];
-        
-        [sender setTarget:self];
-        [sender setAction:@selector(dismiss:)];
-        
-        self.currentPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
-    }
     else if ([segue.identifier isEqualToString:@"VinhosToHome"]) {
         
         DetailViewController* home = segue.destinationViewController;
@@ -151,7 +141,7 @@ SEL action; id target;
         [[self tableView] deselectRowAtIndexPath:path animated:YES];
     }
     else if([segue.identifier isEqualToString:@"orderVinhos"]) {
-       
+        
         action = [sender action];
         target = [sender target];
         
@@ -164,12 +154,13 @@ SEL action; id target;
         ovc.delegate = self;
         
         self.currentPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
+        self.popoverController = [(UIStoryboardPopoverSegue *)segue popoverController];
     }
     else if ([segue.identifier isEqualToString:@"toFilters"]) {
         NSIndexPath* path = [[self tableView] indexPathForSelectedRow];
         [[self tableView] deselectRowAtIndexPath:path animated:YES];
     }
-
+    
     //switch detail views
     [self switchDetailViews:segue];
 }
@@ -224,7 +215,7 @@ SEL action; id target;
             [popoverController dismissPopoverAnimated:YES];
         }
     }
-
+    
 }
 
 - (void)insertNewObject:(id)sender
@@ -261,10 +252,10 @@ SEL action; id target;
     [[self tableView] endUpdates];
     
     /*
-    [self tableView] insertSections:<#(NSIndexSet *)#> withRowAnimation:<#(UITableViewRowAnimation)#>
-    [self.vinhos insertVinho:sender atIndex:0];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+     [self tableView] insertSections:<#(NSIndexSet *)#> withRowAnimation:<#(UITableViewRowAnimation)#>
+     [self.vinhos insertVinho:sender atIndex:0];
+     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+     [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
      */
 }
 
@@ -341,7 +332,7 @@ SEL action; id target;
         NSMutableArray* vinhos = [[User instance] vinhos];
         
         int n_sections = [self.vinhos numberOfSections];
-                  
+        
         if ([vinhos removeVinhoAtRow:indexPath.row inSection:indexPath.section]) {
             
             [[self tableView] beginUpdates];  
@@ -356,7 +347,7 @@ SEL action; id target;
                 NSIndexSet* indexSet = [NSIndexSet indexSetWithIndex:indexPath.section];
                 [self.tableView deleteSections:indexSet withRowAnimation:UITableViewRowAnimationTop];
             }
-
+            
             [[self tableView] endUpdates];
             
             //[[self tableView] reloadData];
@@ -404,7 +395,7 @@ SEL action; id target;
 - (void)NovoVinhoViewControllerDidSave:
 (Vinho*)vinho {
 	[self dismissViewControllerAnimated:YES completion:nil];
-
+    
     //[[self tableView] beginUpdates];
     
     NSMutableArray* user_vinhos = [[User instance] vinhos];
@@ -413,18 +404,18 @@ SEL action; id target;
     self.vinhos = [FilterManager applyFilters:user_vinhos];
     
     /*
-    if (vinho.sectionIsNew) {
-        NSIndexSet* indexSet = [NSIndexSet indexSetWithIndex:vinho.section];
-        [[self tableView] insertSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
-    }
-    
-    NSIndexPath* path = [NSIndexPath indexPathForRow:vinho.row inSection:vinho.section]; 
-    NSArray *paths = [NSArray arrayWithObject: path];
-    
-    [[self tableView] insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationAutomatic];
-    
-    
-    [[self tableView] endUpdates];
+     if (vinho.sectionIsNew) {
+     NSIndexSet* indexSet = [NSIndexSet indexSetWithIndex:vinho.section];
+     [[self tableView] insertSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
+     }
+     
+     NSIndexPath* path = [NSIndexPath indexPathForRow:vinho.row inSection:vinho.section]; 
+     NSArray *paths = [NSArray arrayWithObject: path];
+     
+     [[self tableView] insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationAutomatic];
+     
+     
+     [[self tableView] endUpdates];
      */
     
     [[self tableView] reloadData];
@@ -498,7 +489,7 @@ SEL action; id target;
     [self setHomeVisibility:FALSE];
     [[self navigationItem] setLeftBarButtonItem:[self tempButton] animated:YES];
     tempButton = nil;
-
+    
 }
 - (void) detailViewDidAppear {
     [self setHomeVisibility:TRUE];
@@ -515,7 +506,8 @@ SEL action; id target;
     [[self tableView] reloadData];
     
     self.selectedOrder = order;
-    
+    [self.orderButton setAction:action];
+    [self.orderButton setTarget:target];
     [self.popoverController dismissPopoverAnimated:YES];
 }
 
