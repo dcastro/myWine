@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50b" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50d" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="5">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
@@ -583,12 +583,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tipo de Vinho" minimumFontSize="17" id="aqw-2U-5UU">
-                                <rect key="frame" x="430" y="395" width="244" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <textField opaque="NO" clipsSubviews="YES" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Castas" minimumFontSize="17" id="mCS-NQ-p44">
                                 <rect key="frame" x="430" y="439" width="244" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -661,6 +655,21 @@
                                 <color key="textColor" white="0.69999999999999996" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="XlD-mc-QDI">
+                                <rect key="frame" x="430" y="390" width="244" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="YuG-jK-I3B" kind="modal" modalPresentationStyle="formSheet" id="BGv-fS-4fC"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -694,7 +703,7 @@
                         <outlet property="paisButton" destination="pnN-wP-VsL" id="BkI-92-veg"/>
                         <outlet property="pickFoto" destination="pxe-o4-Swr" id="GKg-AN-QBD"/>
                         <outlet property="regiaoButton" destination="zG8-hj-Asc" id="pDX-Ru-hMy"/>
-                        <outlet property="tipoVinho" destination="aqw-2U-5UU" id="Mwb-H2-v62"/>
+                        <outlet property="tipoVinho" destination="XlD-mc-QDI" id="BJ9-OU-af8"/>
                     </connections>
                 </viewController>
             </objects>
@@ -2151,7 +2160,58 @@
                     </connections>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="3136" y="-2101"/>
+            <point key="canvasLocation" x="3136" y="-2087"/>
+        </scene>
+        <!--Lista Tipo Vinhos View Controller-->
+        <scene sceneID="7DD-ic-jQB">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J7X-ZG-3nz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="YuG-jK-I3B" customClass="ListaTipoVinhosViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="mXA-4l-y70">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                        <navigationBar key="tableHeaderView" contentMode="scaleToFill" barStyle="blackOpaque" id="CJa-Un-Nu5">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <items>
+                                <navigationItem title="Tipos de Vinhos" id="97M-i8-fRf">
+                                    <barButtonItem key="leftBarButtonItem" title="Cancel" id="izH-Qq-GHh">
+                                        <color key="tintColor" red="1" green="0.36688190580000002" blue="0.3007817955" alpha="1" colorSpace="calibratedRGB"/>
+                                    </barButtonItem>
+                                </navigationItem>
+                            </items>
+                        </navigationBar>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="juU-td-i15" style="IBUITableViewCellStyleDefault" id="q1w-Ud-uVa">
+                                <rect key="frame" x="0.0" y="78" width="320" height="46"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="juU-td-i15">
+                                            <rect key="frame" x="10" y="0.0" width="280" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="YuG-jK-I3B" id="Duq-hz-zQ7"/>
+                            <outlet property="delegate" destination="YuG-jK-I3B" id="z6U-Az-pVr"/>
+                        </connections>
+                    </tableView>
+                    <splitViewMasterSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="3606" y="-2087"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WWI-ke-dwa">
@@ -2298,7 +2358,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="5EB-Zz-Uxs"/>
         <segue reference="A7k-ad-KMK"/>
-        <segue reference="Kqj-0D-4Kz"/>
-        <segue reference="Obm-ls-lkJ"/>
+        <segue reference="H31-UN-sUY"/>
+        <segue reference="Hqe-Hx-33H"/>
     </inferredMetricsTieBreakers>
 </document>

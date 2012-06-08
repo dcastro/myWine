@@ -10,6 +10,7 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "ListaPaisesViewController.h"
 #import "ListaRegioesViewController.h"
+#import "ListaTipoVinhosViewController.h"
 #import "Pais.h"
 #import "Regiao.h"
 #import "Language.h"
@@ -24,7 +25,7 @@
     - (void)NovoVinhoViewControllerDidSave:(NovoVinhoViewController *)controller;
 @end
 
-@interface NovoVinhoViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,ListaPaisesViewControllerDelegate,ListaRegioesViewControllerDelegate> {
+@interface NovoVinhoViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,ListaPaisesViewControllerDelegate,ListaRegioesViewControllerDelegate,ListaTipoVinhosViewControllerDelegate> {
     UIPickerView *PickAnoVinho;
     UITextField *AnoVinho;
     UIImageView *imageView;
@@ -32,14 +33,15 @@
     UIImage *image;
 }
 
+@property (weak, nonatomic) IBOutlet UIButton *tipoVinho;
 @property (weak, nonatomic) IBOutlet UIButton *regiaoButton;
 @property (weak, nonatomic) IBOutlet UIButton *paisButton;
 @property (weak, nonatomic) IBOutlet UITextField *NomeVinho;
 @property (weak, nonatomic) IBOutlet UITextField *Produtor;
 @property (weak, nonatomic) IBOutlet UITextField *AnoVinho;
 @property (weak, nonatomic) IBOutlet UITextField *Preco;
-@property (weak, nonatomic) IBOutlet UITextField *tipoVinho;
 @property (weak, nonatomic) IBOutlet UITextField *castaVinho;
+
 
 @property (weak, nonatomic) IBOutlet UIButton *PhotoButton;
 @property (nonatomic,strong) IBOutlet UIPickerView *PickAnoVinho;
@@ -54,6 +56,7 @@
 
 @property (nonatomic,strong) Pais* country;
 @property (nonatomic,strong) Regiao* region;
+
 
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) UIPopoverController *myPop;

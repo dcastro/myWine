@@ -23,7 +23,6 @@
 @synthesize Produtor = _Produtor;
 @synthesize AnoVinho = _AnoVinho;
 @synthesize Preco = _Preco;
-@synthesize tipoVinho = _tipoVinho;
 @synthesize castaVinho = _castaVinho;
 @synthesize PhotoButton;
 @synthesize delegate;
@@ -34,6 +33,7 @@
 @synthesize novoVinho = _novoVinho;
 @synthesize country = _country;
 @synthesize region = _region;
+@synthesize tipoVinho;
 @synthesize pickFoto = _pickFoto;
 @synthesize foto;
 @synthesize myPop = _myPop;
@@ -89,14 +89,13 @@
     self.Preco.placeholder=[lang translate:@"WinePrice"];
     [self.Preco setFont:[UIFont fontWithName:@"DroidSans" size:NORMAL_FONT-4]];
     self.Preco.delegate =self;
+    [self.tipoVinho setTitle:[lang translate:@"WineType"] forState:UIControlStateNormal];
+    [self.tipoVinho.titleLabel setFont:[UIFont fontWithName:@"DroidSans" size:NORMAL_FONT-4]];
     [self.paisButton setTitle:[lang translate:@"WineCountry"] forState:UIControlStateNormal];
     [self.paisButton.titleLabel setFont:[UIFont fontWithName:@"DroidSans" size:NORMAL_FONT-4]];
     [self.regiaoButton setTitle:[lang translate:@"WineRegion"] forState:UIControlStateNormal];
     [self.regiaoButton.titleLabel setFont:[UIFont fontWithName:@"DroidSans" size:NORMAL_FONT-4]];
-    self.tipoVinho.placeholder=[lang translate:@"WineType"];
-    [self.tipoVinho setFont:[UIFont fontWithName:@"DroidSans" size:NORMAL_FONT-4]];
-    self.tipoVinho.delegate =self;
-    self.castaVinho.placeholder=[lang translate:@"WineGrape"];
+       self.castaVinho.placeholder=[lang translate:@"WineGrape"];
     [self.castaVinho setFont:[UIFont fontWithName:@"DroidSans" size:NORMAL_FONT-4]];
     self.castaVinho.delegate =self;
     
@@ -108,9 +107,7 @@
     [_AnoVinho setInputView:PickAnoVinho];
     PickAnoVinho.hidden = YES;
     _AnoVinho.delegate = self;
-    _castaVinho.delegate = self;
-    _tipoVinho.delegate = self;
-    
+    _castaVinho.delegate = self;    
     // Get current year
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDateComponents *components = [gregorian components:NSYearCalendarUnit fromDate:[NSDate date]];
@@ -163,7 +160,6 @@
     [self setRegiaoButton:nil];
     [self setDone:nil];
     [self setCancel:nil];
-    [self setTipoVinho:nil];
     [self setCastaVinho:nil];
     [self setPhotoButton:nil];
     [self setNovoVinho:nil];
@@ -171,6 +167,7 @@
     [self setPickFoto:nil];
     self.imageView = nil;
     [self setFoto:nil];
+    [self setTipoVinho:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -236,7 +233,7 @@
         
         _myPop = [[UIPopoverController alloc] initWithContentViewController:imagePicker];
         //[_myPop presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
-        [_myPop presentPopoverFromRect:CGRectMake(180.0, 200.0, 400.0, 400.0) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        [_myPop presentPopoverFromRect:CGRectMake(0.0, 0.0, 400.0, 400.0) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
         
         
         newMedia = NO;
@@ -329,11 +326,6 @@ finishedSavingWithError:(NSError *)error
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle: [lang translate:@"Error"] message:[lang translate:@"Empty region"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
                     [alert show];
                 }
-                else
-                    if(!_tipoVinho) {
-                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle: [lang translate:@"Error"] message:[lang translate:@"Empty region"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-                        [alert show];
-                    }
                     else{
                         UIAlertView *alert = [[UIAlertView alloc] initWithTitle: [lang translate:@"Thank you"] message:[lang translate:@"Success"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
                         [alert show];
@@ -498,4 +490,6 @@ finishedSavingWithError:(NSError *)error
     [UIView commitAnimations];
 }
 
+- (IBAction)tipoVinho:(id)sender {
+}
 @end
