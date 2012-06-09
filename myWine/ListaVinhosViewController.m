@@ -498,12 +498,29 @@ SEL action; id target;
 }
 
 - (void) orderViewControllerDidSelect:(int)order {
-    //NSLog(@"Order %i",order);
-    NSMutableArray* vinhos = _vinhos;
-    [vinhos orderVinhosBy:order];
-    [self setVinhos:vinhos];
+
+    
+    [[self tableView] beginUpdates];
+    
+    //num de secçoes antes da re-ordenaçao
+    int nSectionsBefore = [self.vinhos numberOfSections];
+    
+    //re-ordenaçao
+    [self.vinhos orderVinhosBy:order];
     [self.vinhos sectionizeOrderedBy:order];
-    [[self tableView] reloadData];
+
+    //num de secções depois da re-ordenaçao
+    int nSectionsAfter = [self.vinhos numberOfSections];
+
+    //indices das secçoes a actualizar
+    NSIndexSet* indexSetToDelete = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, nSectionsBefore) ];
+    NSIndexSet* indexSetToInsert = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, nSectionsAfter) ];
+    
+    //actualizaçao das secçoes
+    [[self tableView] deleteSections:indexSetToDelete withRowAnimation:UITableViewRowAnimationTop];
+    [[self tableView] insertSections:indexSetToInsert withRowAnimation:UITableViewRowAnimationTop];
+    
+    [[self tableView] endUpdates];
     
     self.selectedOrder = order;
     [self.orderButton setAction:action];
