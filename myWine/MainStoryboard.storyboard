@@ -531,7 +531,7 @@
                     <value key="contentSizeForViewInPopover" type="size" width="200" height="150"/>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="2458" y="-3196"/>
+            <point key="canvasLocation" x="1709" y="-2622"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="j4p-og-NFF">
@@ -578,7 +578,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Preço" minimumFontSize="17" id="BZF-Ku-Xaj">
-                                <rect key="frame" x="430" y="251" width="244" height="31"/>
+                                <rect key="frame" x="430" y="251" width="170" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -667,7 +667,24 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="YuG-jK-I3B" kind="modal" modalPresentationStyle="formSheet" id="BGv-fS-4fC"/>
+                                    <segue destination="YuG-jK-I3B" kind="modal" identifier="showTypes" modalPresentationStyle="formSheet" id="BGv-fS-4fC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="MqU-hI-A7Z">
+                                <rect key="frame" x="608" y="246" width="66" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="0pa-lG-AL4" kind="popover" identifier="vinhoToCurrency" popoverAnchorView="MqU-hI-A7Z" id="3O9-e8-Jv2">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
                                 </connections>
                             </button>
                         </subviews>
@@ -697,17 +714,18 @@
                         <outlet property="Preco" destination="BZF-Ku-Xaj" id="tiL-HK-VTO"/>
                         <outlet property="Produtor" destination="R7u-sO-R8r" id="Pcr-c6-fYs"/>
                         <outlet property="castaVinho" destination="mCS-NQ-p44" id="w7A-no-cOR"/>
+                        <outlet property="currencyButton" destination="MqU-hI-A7Z" id="Vkd-kn-OPo"/>
                         <outlet property="foto" destination="zIM-aX-o94" id="UKP-9E-Fb9"/>
                         <outlet property="imageView" destination="C3u-w8-g4r" id="aBe-zM-btg"/>
                         <outlet property="novoVinho" destination="qde-KG-iDW" id="SVk-vU-IPc"/>
                         <outlet property="paisButton" destination="pnN-wP-VsL" id="BkI-92-veg"/>
                         <outlet property="pickFoto" destination="pxe-o4-Swr" id="GKg-AN-QBD"/>
                         <outlet property="regiaoButton" destination="zG8-hj-Asc" id="pDX-Ru-hMy"/>
-                        <outlet property="tipoVinho" destination="XlD-mc-QDI" id="BJ9-OU-af8"/>
+                        <outlet property="tipoVinho" destination="XlD-mc-QDI" id="ar8-yF-VeC"/>
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="909" y="-2087"/>
+            <point key="canvasLocation" x="829" y="-2097"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="Xcb-Ch-nM1">
@@ -2179,6 +2197,9 @@
                                 <navigationItem title="Tipos de Vinhos" id="97M-i8-fRf">
                                     <barButtonItem key="leftBarButtonItem" title="Cancel" id="izH-Qq-GHh">
                                         <color key="tintColor" red="1" green="0.36688190580000002" blue="0.3007817955" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="Cancel:" destination="YuG-jK-I3B" id="7iT-t1-vol"/>
+                                        </connections>
                                     </barButtonItem>
                                 </navigationItem>
                             </items>
@@ -2209,9 +2230,13 @@
                         </connections>
                     </tableView>
                     <splitViewMasterSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="Cancel" destination="izH-Qq-GHh" id="Q67-tH-ZYa"/>
+                        <outlet property="TipoVinhoBar" destination="97M-i8-fRf" id="Wxa-Me-7xa"/>
+                    </connections>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="3606" y="-2087"/>
+            <point key="canvasLocation" x="2644" y="-1613"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WWI-ke-dwa">
@@ -2350,243 +2375,6 @@
         <image name="newPhoto.png" width="1029" height="1277"/>
         <image name="sync.png" width="24" height="15"/>
     </resources>
-    <classes>
-        <class className="ComparadorViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ComparadorViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancel:"/>
-            </relationships>
-        </class>
-        <class className="ContactsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContactsViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="contacts" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="e1" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="e2" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="e3" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="e4" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="emailsLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="t1" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="t2" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="t3" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="t4" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="tabSelector" candidateClass="UITabBarItem"/>
-                <relationship kind="outlet" name="telephonesLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="CriterionCell" superclassName="SectionItemCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CriterionCell.h"/>
-        </class>
-        <class className="CurrencyViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CurrencyViewController.h"/>
-        </class>
-        <class className="DetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DetailViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="help" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="myWine" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="FilterCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FilterCell.h"/>
-        </class>
-        <class className="FilterSelectionViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FilterSelectionViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="clearAll:"/>
-                <relationship kind="outlet" name="clearAllButton" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="FilterViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FilterViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="clearAll:"/>
-                <relationship kind="outlet" name="clearAllButton" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="HelpViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/HelpViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="faq" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="pergunta1" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="pergunta2" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="pergunta3" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="pergunta4" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="pergunta5" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="resposta1" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="resposta2" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="resposta3" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="resposta4" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="resposta5" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="tabSelector" candidateClass="UITabBarItem"/>
-            </relationships>
-        </class>
-        <class className="ListaPaisesViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ListaPaisesViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="Cancel:"/>
-                <relationship kind="outlet" name="Cancel" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="Paises" candidateClass="UINavigationItem"/>
-            </relationships>
-        </class>
-        <class className="ListaProvasViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ListaProvasViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addTasting:"/>
-                <relationship kind="action" name="toggleComparison:"/>
-                <relationship kind="outlet" name="compareButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="filterButton" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="ListaRegioesViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ListaRegioesViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="Cancel:"/>
-                <relationship kind="outlet" name="Cancel" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="Regioes" candidateClass="UINavigationItem"/>
-            </relationships>
-        </class>
-        <class className="ListaTipoVinhosViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ListaTipoVinhosViewController.h"/>
-        </class>
-        <class className="ListaVinhosViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ListaVinhosViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="didPressHomeButton:"/>
-                <relationship kind="outlet" name="filterButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="orderButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="tempButton" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="doLogin:"/>
-                <relationship kind="action" name="selectLanguage:"/>
-                <relationship kind="outlet" name="configLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="enFlag" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="frFlag" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="loginButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="passwordInput" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="passwordLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="ptFlag" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="usernameInput" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="usernameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="welcomeLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="NovoVinhoViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NovoVinhoViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancel:"/>
-                <relationship kind="action" name="done:"/>
-                <relationship kind="action" name="pickF:"/>
-                <relationship kind="outlet" name="AnoVinho" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="Cancel" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="Done" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="NomeVinho" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="PhotoButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="PickAnoVinho" candidateClass="UIPickerView"/>
-                <relationship kind="outlet" name="Preco" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="Produtor" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="castaVinho" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="foto" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="novoVinho" candidateClass="UINavigationItem"/>
-                <relationship kind="outlet" name="paisButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="pickFoto" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="regiaoButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="tipoVinho" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="OrderViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/OrderViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="nome" candidateClass="UITableViewCell"/>
-                <relationship kind="outlet" name="score" candidateClass="UITableViewCell"/>
-            </relationships>
-        </class>
-        <class className="ProvaCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProvaCell.h"/>
-        </class>
-        <class className="ProvaViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProvaViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="bottomScrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="comentario" candidateClass="UIView"/>
-                <relationship kind="outlet" name="commentContentLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="commentContentTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="commentLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="header" candidateClass="UIView"/>
-                <relationship kind="outlet" name="scoreContentLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="scoreLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="upperView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="wineNameLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="SectionItemCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SectionItemCell.h"/>
-            <relationships>
-                <relationship kind="action" name="adjustSliderValue:"/>
-                <relationship kind="action" name="classificationSliderValueChanged:"/>
-                <relationship kind="outlet" name="classificationLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="classificationSlider" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="SubstitutableTabBarControllerViewController" superclassName="UITabBarController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SubstitutableTabBarControllerViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="toggleEdit:"/>
-                <relationship kind="outlet" name="editButton" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="SyncViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SyncViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancel:"/>
-                <relationship kind="outlet" name="cancelButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="description_label" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="progress_bar" candidateClass="UIProgressView"/>
-                <relationship kind="outlet" name="progress_label" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="VinhoViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/VinhoViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="toggleEdit:"/>
-                <relationship kind="outlet" name="countryButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="country_label" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="country_label_name" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="currencyButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="editButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="grapesList" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="grapesListShow" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="grapes_label" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="harvestyear" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="percentage_label_name" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="priceValue" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="price_label" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="price_value_label" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="producerName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="producer_label" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="producer_label_name" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="regionButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="region_label" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="region_label_name" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="selectCountryButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="selectCurrencyButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="selectRegionButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="tempButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="wineName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="wine_label_name" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="wine_type_label" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="year_label" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="year_label_name" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
@@ -2595,7 +2383,8 @@
     <inferredMetricsTieBreakers>
         <segue reference="5EB-Zz-Uxs"/>
         <segue reference="A7k-ad-KMK"/>
-        <segue reference="H31-UN-sUY"/>
         <segue reference="Hqe-Hx-33H"/>
+        <segue reference="3O9-e8-Jv2"/>
+        <segue reference="H31-UN-sUY"/>
     </inferredMetricsTieBreakers>
 </document>

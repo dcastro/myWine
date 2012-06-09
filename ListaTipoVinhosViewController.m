@@ -15,6 +15,8 @@
 @implementation ListaTipoVinhosViewController
 
 @synthesize delegate;
+@synthesize Cancel;
+@synthesize TipoVinhoBar;
 @synthesize tipos;
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -28,10 +30,18 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
     
     User* user = [User instance];
     [self setTipos:user.tipoVinhos];
-    [super viewDidLoad];
+    
+    Language* lang = [Language instance];
+    
+    [self.Cancel setTitle:[lang translate:@"Cancel"]];
+    
+    [self.TipoVinhoBar setTitle:[lang translate:@"TipoVinhoBar"]];
+    
+    
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -42,6 +52,8 @@
 
 - (void)viewDidUnload
 {
+    [self setCancel:nil];
+    [self setTipoVinhoBar:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -126,7 +138,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    
     TipoVinho* tipo = (TipoVinho*)[self.tipos objectAtIndex:indexPath.row];
     
     [self.delegate selectedType:tipo];
@@ -141,4 +152,7 @@
      */
 }
 
+- (IBAction)Cancel:(id)sender {
+    [self dismissModalViewControllerAnimated:YES];
+}
 @end

@@ -31,14 +31,18 @@
 @synthesize Done;
 @synthesize Cancel;
 @synthesize novoVinho = _novoVinho;
+@synthesize currencyButton = _currencyButton;
+@synthesize tipoVinho = _tipoVinho;
 @synthesize country = _country;
 @synthesize region = _region;
-@synthesize tipoVinho;
 @synthesize pickFoto = _pickFoto;
 @synthesize foto;
 @synthesize myPop = _myPop;
 @synthesize imageView;
 @synthesize countries = _countries;
+@synthesize tipo = _tipo;
+@synthesize currency = _currency;
+@synthesize popover = _popover;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -63,6 +67,8 @@
         [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"backgroundLandscape.png"]]];
     }
 
+    self.currency = 0;
+    [self.currencyButton setTitle:currencyStr(self.currency) forState:UIControlStateNormal];
     
     Language* lang = [Language instance];
     
@@ -98,6 +104,7 @@
        self.castaVinho.placeholder=[lang translate:@"WineGrape"];
     [self.castaVinho setFont:[UIFont fontWithName:@"DroidSans" size:NORMAL_FONT-4]];
     self.castaVinho.delegate =self;
+    [self.tipoVinho setTitle: [lang translate:@"Tap to select"] forState:UIControlStateNormal];
     
     //[self.paisButton setTitle:[lang translate:@"Tap to select"] forState:UIControlStateNormal];
     [self.regiaoButton setEnabled:NO];
@@ -145,7 +152,16 @@
         [lrvc setRegions: [self.country regions]];
         
     }
-    
+    if([segue.identifier isEqualToString:@"showTypes"]) {
+        ListaTipoVinhosViewController* ltvvc = (ListaTipoVinhosViewController*) [segue destinationViewController];
+        ltvvc.delegate = self;
+    }
+    if([segue.identifier isEqualToString:@"vinhoToCurrency"]) {
+        CurrencyViewController* cvc = (CurrencyViewController*) segue.destinationViewController;
+        cvc.delegate = self;
+        cvc.selectedCurrency = self.currency;
+        self.popover = [(UIStoryboardPopoverSegue *)segue popoverController];
+    }
 }
 
 - (void)viewDidUnload
@@ -168,6 +184,8 @@
     self.imageView = nil;
     [self setFoto:nil];
     [self setTipoVinho:nil];
+    [self setTipoVinho:nil];
+    [self setCurrencyButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -326,6 +344,11 @@ finishedSavingWithError:(NSError *)error
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle: [lang translate:@"Error"] message:[lang translate:@"Empty region"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
                     [alert show];
                 }
+                else
+                    if(!_tipo){
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle: [lang translate:@"Error"] message:[lang translate:@"Empty type"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                        [alert show];
+                    }
                     else{
                         UIAlertView *alert = [[UIAlertView alloc] initWithTitle: [lang translate:@"Thank you"] message:[lang translate:@"Success"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
                         [alert show];
@@ -336,6 +359,8 @@ finishedSavingWithError:(NSError *)error
                         vinho.price = _Preco.text.doubleValue;
                         vinho.year = _AnoVinho.text.intValue;
                         vinho.region = self.region;
+                        vinho.winetype = self.tipo;
+                        vinho.currency = self.currency;
                         
                         /*@synthesize regiaoButton;
                          
@@ -436,8 +461,22 @@ finishedSavingWithError:(NSError *)error
     
 }
 
-- (void) selectedType:(TipoVinho *)Type{
-    [self.tipoVinho setTitle:Type.name forState: UIControlStateNormal];
+- (void) selectedType:(TipoVinho *) type{
+    NSLog(@"%@", type.name);
+    self.tipo = type;
+    NSLog(@"%@", self.tipo.name);
+
+    [self.tipoVinho setTitle:type.name forState: UIControlStateNormal];
+}
+
+- (void) currencyViewControllerDidSelect:(int) currency {
+    //sets the selected currency
+    self.currency = currency;
+    [self.currencyButton setTitle:currencyStr(self.currency) forState:UIControlStateNormal];
+    
+    //dismisses the popover
+    [self.popover dismissPopoverAnimated:YES];
+    NSLog(@"MOEDA %d", self.currency);
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
@@ -494,6 +533,4 @@ finishedSavingWithError:(NSError *)error
     [UIView commitAnimations];
 }
 
-- (IBAction)tipoVinho:(id)sender {
-}
 @end

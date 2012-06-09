@@ -11,6 +11,7 @@
 #import "ListaPaisesViewController.h"
 #import "ListaRegioesViewController.h"
 #import "ListaTipoVinhosViewController.h"
+#import "CurrencyViewController.h"
 #import "Pais.h"
 #import "Regiao.h"
 #import "Language.h"
@@ -25,7 +26,7 @@
     - (void)NovoVinhoViewControllerDidSave:(NovoVinhoViewController *)controller;
 @end
 
-@interface NovoVinhoViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,ListaPaisesViewControllerDelegate,ListaRegioesViewControllerDelegate,ListaTipoVinhosViewControllerDelegate> {
+@interface NovoVinhoViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,ListaPaisesViewControllerDelegate,ListaRegioesViewControllerDelegate,ListaTipoVinhosViewControllerDelegate, CurrencyViewControllerDelegate> {
     UIPickerView *PickAnoVinho;
     UITextField *AnoVinho;
     UIImageView *imageView;
@@ -50,12 +51,14 @@
 
 @property (weak, nonatomic) IBOutlet UINavigationItem *novoVinho;
 
+@property (weak, nonatomic) IBOutlet UIButton *currencyButton;
 
 @property (nonatomic, weak) id <NovoVinhoViewControllerDelegate> delegate;
 @property (nonatomic, retain) NSMutableArray *anosVinhos;
 
 @property (nonatomic,strong) Pais* country;
 @property (nonatomic,strong) Regiao* region;
+@property (nonatomic, strong) TipoVinho* tipo;
 
 
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
@@ -64,6 +67,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *foto;
 
 @property (nonatomic, strong) NSMutableArray* countries;
+@property (nonatomic) int currency;
+@property (nonatomic, strong) UIPopoverController* popover;
 
 - (IBAction)pickF:(id)sender;
 - (IBAction)cancel:(id)sender;
