@@ -368,11 +368,11 @@
         return FALSE; 
     }
     
-    DebugLog(@"JSON: %@", [NSString stringWithFormat:@"%@",  receivedJSON]);
+    //DebugLog(@"JSON: %@", [NSString stringWithFormat:@"%@",  receivedJSON]);
 
     
     
-    NSString *querySQL = [NSString stringWithFormat:@"UPDATE User SET synced_at = %f WHERE username = \'%@\';", [receivedJSON objectForKey:@"timestamp"], user.username];
+    NSString *querySQL = [NSString stringWithFormat:@"UPDATE User SET synced_at = %f WHERE username = \'%@\';", [receivedJSON objectForKey:@"Timestamp"], user.username];
     
     char *errMsg;
     if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
@@ -384,14 +384,14 @@
     
 
     
-    if([receivedJSON objectForKey:@"countries"]){
-        if(![self parseCountries:[receivedJSON objectForKey:@"countries"]]){
+    if([receivedJSON objectForKey:@"Countries"]){
+        if(![self parseCountries:[receivedJSON objectForKey:@"Countries"]]){
             [query rollbackTransaction];
             return FALSE; 
         }
     }
     
-    
+    /*
     if([receivedJSON objectForKey:@"wine_types"]){
         if(![self parseWineTypes:[receivedJSON objectForKey:@"wine_types"]]){
             [query rollbackTransaction];
@@ -422,7 +422,7 @@
             return FALSE;
         }
     }
-
+     
     
     
     //ultimo passo e limpar o lixo solto da bd
@@ -430,7 +430,7 @@
         [query rollbackTransaction];
         return FALSE; 
     }
-    
+    */
     
     [query endTransaction];
     
@@ -1394,7 +1394,7 @@ namePT:(NSString *)name_pt andWheight:(int)weight
         
         NSDictionary * countryWithRegionsJSON = [countries objectAtIndex:i];
         
-        country_id = [countryWithRegionsJSON objectForKey:@"code"];
+        country_id = [countryWithRegionsJSON objectForKey:@"Id"];
         
         //verifies if the country exists in the database
         BOOL exists = FALSE;
@@ -1414,10 +1414,10 @@ namePT:(NSString *)name_pt andWheight:(int)weight
         //if it doest exists, stores it
         if(!exists){
             querySQL = [NSString stringWithFormat:@"INSERT INTO Country VALUES (\'%@\', \'%@\', \'%@\', \'%@\');", 
-                        [countryWithRegionsJSON objectForKey:@"code"],
-                        [countryWithRegionsJSON objectForKey:@"name_eng"],
-                        [countryWithRegionsJSON objectForKey:@"name_fr"],
-                        [countryWithRegionsJSON objectForKey:@"name_pt"]];
+                        [countryWithRegionsJSON objectForKey:@"Id"],
+                        [countryWithRegionsJSON objectForKey:@"NameEn"],
+                        [countryWithRegionsJSON objectForKey:@"NameFr"],
+                        [countryWithRegionsJSON objectForKey:@"NamePt"]];
             
             char *errMsg;
             if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
@@ -1428,13 +1428,13 @@ namePT:(NSString *)name_pt andWheight:(int)weight
         }
         
         
-        NSArray * regionsJSON = [countryWithRegionsJSON objectForKey:@"region"];
+        NSArray * regionsJSON = [countryWithRegionsJSON objectForKey:@"Regions"];
         for (int k = 0; k < [regionsJSON count]; k++) {
             NSDictionary *regionJSON = [regionsJSON objectAtIndex:k];
             querySQL = [NSString stringWithFormat:@"INSERT INTO Region VALUES (\'%@\', \'%@\', \'%@\');", 
-                        [regionJSON objectForKey:@"code"],
+                        [regionJSON objectForKey:@"Id"],
                         country_id,
-                        [regionJSON objectForKey:@"name"]];
+                        [regionJSON objectForKey:@"Name"]];
             
             char *errMsg;
             if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
