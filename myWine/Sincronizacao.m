@@ -372,7 +372,7 @@
 
     
     
-    NSString *querySQL = [NSString stringWithFormat:@"UPDATE User SET synced_at = %f WHERE username = \'%@\';", [receivedJSON objectForKey:@"Timestamp"], user.username];
+    NSString *querySQL = [NSString stringWithFormat:@"UPDATE User SET synced_at = %f, validated = 1 WHERE username = \'%@\';", [[receivedJSON objectForKey:@"Timestamp"] doubleValue], user.username];
     
     char *errMsg;
     if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
