@@ -16,8 +16,15 @@
 #import "CheckboxButton.h"
 #import "Comparator.h"
 #import "ProvaCell.h"
+#import "SubstitutableTabBarControllerViewController.h"
 
-@interface ListaProvasViewController : UITableViewController <NovaProvaViewControllerDelegate>
+@protocol ListaProvasViewControllerDelegate <NSObject>
+
+- (void) ListaProvasViewControllerDelegateDidUpdateScore;
+
+@end
+
+@interface ListaProvasViewController : UITableViewController <NovaProvaViewControllerDelegate, SubstitutableTabBarControllerViewControllerDelegate>
 {
     UISplitViewController *splitViewController;
     
@@ -38,6 +45,8 @@
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *compareButton;
 
 @property (nonatomic) BOOL needsEditing;
+
+@property (strong, nonatomic) id<ListaProvasViewControllerDelegate> delegate;
 
 - (IBAction)addTasting:(id)sender;
 - (IBAction)toggleComparison:(id)sender;

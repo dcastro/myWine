@@ -104,8 +104,8 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Country Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="iuw-1c-cQq">
-                                        <rect key="frame" x="410" y="316" width="246" height="21"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Country Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="DPx-nF-VGD">
+                                        <rect key="frame" x="410" y="317" width="203" height="33"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -127,7 +127,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Wine Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" id="ab5-7n-PtI">
-                                        <rect key="frame" x="72" y="13" width="298" height="35"/>
+                                        <rect key="frame" x="72" y="25" width="298" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <gestureRecognizers/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -135,7 +135,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Wine Type" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="NwD-33-lyH">
-                                        <rect key="frame" x="72" y="51" width="298" height="32"/>
+                                        <rect key="frame" x="72" y="63" width="298" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <gestureRecognizers/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -193,7 +193,7 @@
                                         </connections>
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="b98-GM-nbX">
-                                        <rect key="frame" x="74" y="20" width="290" height="31"/>
+                                        <rect key="frame" x="74" y="32" width="290" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="textColor" red="0.31372549020000001" green="0.027450980390000001" blue="0.015686274510000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -284,10 +284,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="countryButton" destination="19R-BP-HEn" id="DjY-4X-xXQ"/>
                         <outlet property="country_label" destination="rDV-B6-8GL" id="0b7-9f-F6k"/>
-                        <outlet property="country_label_name" destination="iuw-1c-cQq" id="dgK-jH-8ZW"/>
-                        <outlet property="currencyButton" destination="ArU-XT-rbJ" id="cNs-dg-AjM"/>
+                        <outlet property="country_label_name" destination="DPx-nF-VGD" id="mvx-Lt-MGT"/>
                         <outlet property="editButton" destination="0yn-lv-cAI" id="fmY-kU-Ggx"/>
                         <outlet property="grapesList" destination="JQg-Lm-H83" id="UIb-hq-qHT"/>
                         <outlet property="grapesListShow" destination="wym-Bz-MH6" id="gD2-Ia-hu8"/>
@@ -300,7 +298,6 @@
                         <outlet property="producerName" destination="cOa-wl-WBu" id="lwf-nV-Vv8"/>
                         <outlet property="producer_label" destination="lew-0F-qda" id="LhG-z4-zAi"/>
                         <outlet property="producer_label_name" destination="r1S-LA-qgS" id="wkS-7p-YwH"/>
-                        <outlet property="regionButton" destination="Ljr-Oc-9s5" id="7xN-tL-fes"/>
                         <outlet property="region_label" destination="Rjd-t6-dah" id="AUz-kK-fzO"/>
                         <outlet property="region_label_name" destination="i0V-oQ-nvw" id="f9v-62-zbB"/>
                         <outlet property="selectCountryButton" destination="19R-BP-HEn" id="D1N-zM-9Yj"/>
@@ -466,7 +463,7 @@
                         <sections>
                             <tableViewSection id="vl8-ay-5Bv">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="oyz-R9-m5d" style="IBUITableViewCellStyleDefault" id="err-ML-sBf">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="oyz-R9-m5d" style="IBUITableViewCellStyleDefault" id="err-ML-sBf">
                                         <rect key="frame" x="0.0" y="30" width="768" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -484,7 +481,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                     </tableViewCell>
-                                    <tableViewCell tag="1" contentMode="scaleToFill" selectionStyle="blue" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="aQE-ug-POk" style="IBUITableViewCellStyleDefault" id="wp5-we-4mn">
+                                    <tableViewCell tag="1" contentMode="scaleToFill" selectionStyle="gray" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="aQE-ug-POk" style="IBUITableViewCellStyleDefault" id="wp5-we-4mn">
                                         <rect key="frame" x="0.0" y="75" width="768" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -502,7 +499,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                     </tableViewCell>
-                                    <tableViewCell tag="2" contentMode="scaleToFill" selectionStyle="blue" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="dml-yx-dRs" style="IBUITableViewCellStyleDefault" id="WLV-qO-F0l">
+                                    <tableViewCell tag="2" contentMode="scaleToFill" selectionStyle="gray" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="dml-yx-dRs" style="IBUITableViewCellStyleDefault" id="WLV-qO-F0l">
                                         <rect key="frame" x="0.0" y="119" width="768" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -1578,7 +1575,7 @@
                         <sections>
                             <tableViewSection id="QVj-iT-RMP">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="0QU-x4-jNC" detailTextLabel="aMI-Df-LFR" style="IBUITableViewCellStyleValue2" id="3Xm-LR-P2W" customClass="FilterCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="0QU-x4-jNC" detailTextLabel="aMI-Df-LFR" style="IBUITableViewCellStyleValue2" id="3Xm-LR-P2W" customClass="FilterCell">
                                         <rect key="frame" x="0.0" y="30" width="703" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -1603,7 +1600,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="y9o-k7-0Mu" detailTextLabel="bEE-4V-YZL" style="IBUITableViewCellStyleValue2" id="P9o-uI-C03" customClass="FilterCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="y9o-k7-0Mu" detailTextLabel="bEE-4V-YZL" style="IBUITableViewCellStyleValue2" id="P9o-uI-C03" customClass="FilterCell">
                                         <rect key="frame" x="0.0" y="75" width="703" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -1628,7 +1625,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="iau-6f-zTl" detailTextLabel="CDg-E6-au7" style="IBUITableViewCellStyleValue2" id="X2M-NB-baz" customClass="FilterCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="iau-6f-zTl" detailTextLabel="CDg-E6-au7" style="IBUITableViewCellStyleValue2" id="X2M-NB-baz" customClass="FilterCell">
                                         <rect key="frame" x="0.0" y="119" width="703" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -1653,7 +1650,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="1Pl-vR-mTm" detailTextLabel="OZM-aG-ZYZ" style="IBUITableViewCellStyleValue2" id="chV-eA-Rbp" customClass="FilterCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="1Pl-vR-mTm" detailTextLabel="OZM-aG-ZYZ" style="IBUITableViewCellStyleValue2" id="chV-eA-Rbp" customClass="FilterCell">
                                         <rect key="frame" x="0.0" y="163" width="703" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -1712,7 +1709,7 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FilterSelectionCell" id="OcA-UE-FkB">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FilterSelectionCell" id="OcA-UE-FkB">
                                 <rect key="frame" x="0.0" y="54" width="703" height="46"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -1931,17 +1928,24 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="logo.png" id="nvE-WI-qGI">
-                                <rect key="frame" x="232" y="199" width="240" height="272"/>
+                            <view contentMode="scaleToFill" id="nqT-u5-otp">
+                                <rect key="frame" x="175" y="201" width="352" height="303"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="myWine" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="1tw-QD-Cci">
-                                <rect key="frame" x="232" y="449" width="240" height="57"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <subviews>
+                                    <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="logo.png" id="nvE-WI-qGI">
+                                        <rect key="frame" x="56" y="-24" width="240" height="272"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="myWine" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="1tw-QD-Cci">
+                                        <rect key="frame" x="56" y="226" width="240" height="57"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -1977,7 +1981,7 @@
                         <sections>
                             <tableViewSection id="dMS-Pc-exJ">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="mQP-Du-zGg" style="IBUITableViewCellStyleDefault" id="pQM-0m-aQt">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="mQP-Du-zGg" style="IBUITableViewCellStyleDefault" id="pQM-0m-aQt">
                                         <rect key="frame" x="0.0" y="30" width="768" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -1995,7 +1999,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                     </tableViewCell>
-                                    <tableViewCell tag="1" contentMode="scaleToFill" selectionStyle="blue" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="xaC-8o-H6M" style="IBUITableViewCellStyleDefault" id="gIz-We-j1d">
+                                    <tableViewCell tag="1" contentMode="scaleToFill" selectionStyle="gray" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="xaC-8o-H6M" style="IBUITableViewCellStyleDefault" id="gIz-We-j1d">
                                         <rect key="frame" x="0.0" y="75" width="768" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -2089,7 +2093,7 @@
                             </items>
                         </navigationBar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Countries" textLabel="yH9-Pg-jbD" style="IBUITableViewCellStyleDefault" id="z9e-8Y-Dv5">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Countries" textLabel="yH9-Pg-jbD" style="IBUITableViewCellStyleDefault" id="z9e-8Y-Dv5">
                                 <rect key="frame" x="0.0" y="78" width="540" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -2147,7 +2151,7 @@
                             </items>
                         </navigationBar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Regions" textLabel="pBG-6L-mSg" style="IBUITableViewCellStyleDefault" id="ZN1-Ul-lIi">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Regions" textLabel="pBG-6L-mSg" style="IBUITableViewCellStyleDefault" id="ZN1-Ul-lIi">
                                 <rect key="frame" x="0.0" y="78" width="320" height="46"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -2427,7 +2431,6 @@
             <relationships>
                 <relationship kind="action" name="clearAll:"/>
                 <relationship kind="outlet" name="clearAllButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="tabela" candidateClass="UITableViewSection"/>
             </relationships>
         </class>
         <class className="HelpViewController" superclassName="UIViewController">
@@ -2579,10 +2582,8 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/VinhoViewController.h"/>
             <relationships>
                 <relationship kind="action" name="toggleEdit:"/>
-                <relationship kind="outlet" name="countryButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="country_label" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="country_label_name" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="currencyButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="editButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="grapesList" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="grapesListShow" candidateClass="UITextView"/>
@@ -2595,7 +2596,6 @@
                 <relationship kind="outlet" name="producerName" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="producer_label" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="producer_label_name" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="regionButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="region_label" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="region_label_name" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="selectCountryButton" candidateClass="UIButton"/>

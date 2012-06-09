@@ -34,9 +34,6 @@
 @synthesize wine_type_label = _wine_type_label;
 @synthesize price_label = _price_label;
 @synthesize price_value_label = _price_value_label;
-@synthesize currencyButton = _currencyButton;
-@synthesize countryButton = _countryButton;
-@synthesize regionButton = _regionButton;
 @synthesize wineName = _wineName;
 @synthesize priceValue = _priceValue;
 @synthesize harvestyear = _harvestyear;
@@ -141,9 +138,9 @@
     
     self.editButton.title = [lan translate:@"Edit"];
     
-    self.currencyButton.titleLabel.font = [UIFont fontWithName:@"DroidSans-Bold" size:SMALL_FONT];
-    self.countryButton.titleLabel.font = [UIFont fontWithName:@"DroidSans-Bold" size:SMALL_FONT];
-    self.regionButton.titleLabel.font = [UIFont fontWithName:@"DroidSans-Bold" size:SMALL_FONT];
+    self.selectCurrencyButton.titleLabel.font = [UIFont fontWithName:@"DroidSans-Bold" size:SMALL_FONT];
+    self.selectCountryButton.titleLabel.font = [UIFont fontWithName:@"DroidSans-Bold" size:SMALL_FONT];
+    self.selectRegionButton.titleLabel.font = [UIFont fontWithName:@"DroidSans-Bold" size:SMALL_FONT];
 
     //set navigation bar title
     [self setTitle: [self.detailItem description]];
@@ -228,9 +225,6 @@
     [self setPrice_label:nil];
     [self setPrice_value_label:nil];
     [self setSelectCurrencyButton:nil];
-    [self setCurrencyButton:nil];
-    [self setCountryButton:nil];
-    [self setRegionButton:nil];
     [self setWineName:nil];
     [self setPriceValue:nil];
     [self setHarvestyear:nil];
@@ -359,7 +353,7 @@
                 break;
             }
         }
-        
+    
  
     } else {
         UIBarButtonItem* pressedButton = (UIBarButtonItem*) sender;
@@ -387,6 +381,8 @@
             self.producer_label_name.text = self.producerName.text;
             self.year_label_name.text = self.harvestyear.text;
             self.price_value_label.text = self.priceValue.text;
+            self.country_label_name.text= self.editableWine.region.country_name;
+            self.region_label_name.text = self.editableWine.region.region_name;
             self.grapesListShow.text = self.grapesList.text;
             
             //refresh master view
@@ -592,6 +588,10 @@
 
 - (void) selectedRegion:(Regiao*) region{
     self.editableWine.region = region;
+    self.editableWine.region.country_name = self.country.name;
+    self.editableWine.region.country_name_en = self.country.name_en;
+    self.editableWine.region.country_name_fr = self.country.name_fr;
+    self.editableWine.region.country_name_pt = self.country.name_pt;
     [self.selectRegionButton setTitle:region.region_name forState:UIControlStateNormal];
 }
 

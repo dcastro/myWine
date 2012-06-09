@@ -24,7 +24,8 @@
 @property (nonatomic) NSMutableArray *provas;
 @property (nonatomic, copy) NSString* grapes;
 
-@property (nonatomic) int section;
+@property (nonatomic) int section, row;
+@property (nonatomic) BOOL sectionIsNew;
 @property (strong, nonatomic) NSString* sectionIdentifier;
 
 - (NSString*) description;

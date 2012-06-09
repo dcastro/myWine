@@ -23,7 +23,7 @@
 
 @protocol NovoVinhoViewControllerDelegate <NSObject>
     - (void)NovoVinhoViewControllerDidCancel:(NovoVinhoViewController *)controller;
-    - (void)NovoVinhoViewControllerDidSave:(NovoVinhoViewController *)controller;
+    - (void)NovoVinhoViewControllerDidSave:(Vinho*) vinho;
 @end
 
 @interface NovoVinhoViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,ListaPaisesViewControllerDelegate,ListaRegioesViewControllerDelegate,ListaTipoVinhosViewControllerDelegate, CurrencyViewControllerDelegate> {
@@ -69,6 +69,8 @@
 @property (nonatomic, strong) NSMutableArray* countries;
 @property (nonatomic) int currency;
 @property (nonatomic, strong) UIPopoverController* popover;
+
+@property (nonatomic) int vinhos_order;
 
 - (IBAction)pickF:(id)sender;
 - (IBAction)cancel:(id)sender;

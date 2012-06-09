@@ -8,8 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "ProvaViewController.h"
-#import "ListaVinhosViewController.h"
+//#import "ListaVinhosViewController.h"
 
+@protocol SubstitutableDetailViewController;
+
+@protocol SubstitutableTabBarControllerViewControllerDelegate <NSObject>
+
+- (void) SubstitutableTabBarControllerViewControllerDidUpdateScore;
+
+@end
 
 
 @interface SubstitutableTabBarControllerViewController : UITabBarController <SubstitutableDetailViewController, ProvaViewControllerDelegate, UITabBarControllerDelegate>
@@ -23,6 +30,8 @@
 @property (strong, nonatomic) ProvaViewController* characteristicsController;
 
 @property (nonatomic) BOOL needsEditing;
+
+@property (strong, nonatomic) id<SubstitutableTabBarControllerViewControllerDelegate> myDelegate;
 
 - (IBAction)toggleEdit:(id)sender;
 

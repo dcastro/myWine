@@ -20,6 +20,7 @@
 @synthesize vinho = _vinho;
 @synthesize currentPopover;
 @synthesize needsEditing;
+@synthesize delegate;
 
 SEL action; id target;
 
@@ -108,6 +109,7 @@ SEL action; id target;
         //pcvc.prova = prova;
         tabBarController.vinho = self.vinho;
         tabBarController.prova = prova;
+        tabBarController.myDelegate = self;
         
         if (needsEditing) {
             needsEditing = false;
@@ -250,6 +252,7 @@ SEL action; id target;
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         if([_provas removeProvaAtIndex:indexPath.row]){
             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [delegate ListaProvasViewControllerDelegateDidUpdateScore];
         }
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
@@ -260,6 +263,10 @@ SEL action; id target;
 {
     //Prova *object = [_objects objectAtIndex:indexPath.row];
     //self.provaViewController.detailItem = object.data;
+}
+
+-(NSString*) tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [[Language instance] translate:@"Delete"];
 }
 
 #pragma mark - NovaProvaViewControllerDelegate
@@ -294,8 +301,10 @@ SEL action; id target;
     {
         //insertion of the tasting
 #warning TODO:DIOGO tratar erro
-        if([self.provas insertProva:prova atIndex:index withVinhoID: self.vinho.wine_id])
+        if([self.provas insertProva:prova atIndex:index withVinhoID: self.vinho.wine_id]) {
             NSLog(@"sucess on insertion");
+            [delegate ListaProvasViewControllerDelegateDidUpdateScore];
+        }
         else
             NSLog(@"failure to insert");
         //[self.provas insertObject:prova atIndex:index];
@@ -350,4 +359,9 @@ SEL action; id target;
             block(cell);
     }
 }
+
+- (void) SubstitutableTabBarControllerViewControllerDidUpdateScore {
+    [delegate ListaProvasViewControllerDelegateDidUpdateScore];
+}
+
 @end
