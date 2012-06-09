@@ -42,6 +42,7 @@
 		65EFEBC51573C9770087F155 /* material mywine-17.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EFEBB61573C9770087F155 /* material mywine-17.png */; };
 		84446B7B1580F00B00A72FA2 /* material mywine-19.png in Resources */ = {isa = PBXBuildFile; fileRef = 84446B7A1580F00B00A72FA2 /* material mywine-19.png */; };
 		84D2FB411580FD0D00F4C5EE /* DroidSerif-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D3231DA015480DF700F09BAC /* DroidSerif-Regular.ttf */; };
+		A043F46F158242B700D9BD59 /* ListaTipoVinhosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A043F46E158242B700D9BD59 /* ListaTipoVinhosViewController.m */; };
 		A0C66470155448CC004C798E /* ListaRegioesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C6646F155448CC004C798E /* ListaRegioesViewController.m */; };
 		A9758371151A0151009B5F68 /* 117-todo.png in Resources */ = {isa = PBXBuildFile; fileRef = A9758370151A0151009B5F68 /* 117-todo.png */; };
 		A979EDAB15668FCB00E94A34 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = A979EDAA15668FCB00E94A34 /* Utils.m */; };
@@ -161,6 +162,8 @@
 		65EFEBB51573C9770087F155 /* material mywine-16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "material mywine-16.png"; sourceTree = "<group>"; };
 		65EFEBB61573C9770087F155 /* material mywine-17.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "material mywine-17.png"; sourceTree = "<group>"; };
 		84446B7A1580F00B00A72FA2 /* material mywine-19.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "material mywine-19.png"; sourceTree = "<group>"; };
+		A043F46D158242B700D9BD59 /* ListaTipoVinhosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListaTipoVinhosViewController.h; path = ../ListaTipoVinhosViewController.h; sourceTree = "<group>"; };
+		A043F46E158242B700D9BD59 /* ListaTipoVinhosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListaTipoVinhosViewController.m; path = ../ListaTipoVinhosViewController.m; sourceTree = "<group>"; };
 		A0C6646E155448CC004C798E /* ListaRegioesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListaRegioesViewController.h; sourceTree = "<group>"; };
 		A0C6646F155448CC004C798E /* ListaRegioesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListaRegioesViewController.m; sourceTree = "<group>"; };
 		A9758370151A0151009B5F68 /* 117-todo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "117-todo.png"; sourceTree = "<group>"; };
@@ -511,6 +514,8 @@
 				A9BE2C111518C254002E4E2A /* ListaProvasViewController.m */,
 				A0C6646E155448CC004C798E /* ListaRegioesViewController.h */,
 				A0C6646F155448CC004C798E /* ListaRegioesViewController.m */,
+				A043F46D158242B700D9BD59 /* ListaTipoVinhosViewController.h */,
+				A043F46E158242B700D9BD59 /* ListaTipoVinhosViewController.m */,
 				A9C5A00F1517A78600A3F8C5 /* ListaVinhosViewController.h */,
 				A9C5A0101517A78600A3F8C5 /* ListaVinhosViewController.m */,
 				DAFB6901152D138800DC74CB /* LoginViewController.h */,
@@ -811,6 +816,7 @@
 				DA92BAF9158011A40028AAC4 /* FilterManager.m in Sources */,
 				DA92BAFC1580121A0028AAC4 /* Filter.m in Sources */,
 				BCDC2CEB1580F34A00E7AB56 /* OrderViewController.m in Sources */,
+				A043F46F158242B700D9BD59 /* ListaTipoVinhosViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
