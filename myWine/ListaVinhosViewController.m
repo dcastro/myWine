@@ -402,6 +402,8 @@ SEL action; id target;
     
     [user_vinhos insertVinho:vinho orderedBy:self.selectedOrder];
     self.vinhos = [FilterManager applyFilters:user_vinhos];
+    [self.vinhos orderVinhosBy:self.selectedOrder];
+    [self.vinhos sectionizeOrderedBy:self.selectedOrder];
     
     /*
      if (vinho.sectionIsNew) {
@@ -499,30 +501,33 @@ SEL action; id target;
 
 - (void) orderViewControllerDidSelect:(int)order {
 
-    
-    [[self tableView] beginUpdates];
-    
-    //num de secçoes antes da re-ordenaçao
-    int nSectionsBefore = [self.vinhos numberOfSections];
-    
-    //re-ordenaçao
-    [self.vinhos orderVinhosBy:order];
-    [self.vinhos sectionizeOrderedBy:order];
+    if(selectedOrder != order) {
+        
+        [[self tableView] beginUpdates];
+        
+        //num de secçoes antes da re-ordenaçao
+        int nSectionsBefore = [self.vinhos numberOfSections];
+        
+        //re-ordenaçao
+        [self.vinhos orderVinhosBy:order];
+        [self.vinhos sectionizeOrderedBy:order];
 
-    //num de secções depois da re-ordenaçao
-    int nSectionsAfter = [self.vinhos numberOfSections];
+        //num de secções depois da re-ordenaçao
+        int nSectionsAfter = [self.vinhos numberOfSections];
 
-    //indices das secçoes a actualizar
-    NSIndexSet* indexSetToDelete = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, nSectionsBefore) ];
-    NSIndexSet* indexSetToInsert = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, nSectionsAfter) ];
-    
-    //actualizaçao das secçoes
-    [[self tableView] deleteSections:indexSetToDelete withRowAnimation:UITableViewRowAnimationTop];
-    [[self tableView] insertSections:indexSetToInsert withRowAnimation:UITableViewRowAnimationTop];
-    
-    [[self tableView] endUpdates];
-    
-    self.selectedOrder = order;
+        //indices das secçoes a actualizar
+        NSIndexSet* indexSetToDelete = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, nSectionsBefore) ];
+        NSIndexSet* indexSetToInsert = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, nSectionsAfter) ];
+        
+        //actualizaçao das secçoes
+        [[self tableView] deleteSections:indexSetToDelete withRowAnimation:UITableViewRowAnimationTop];
+        [[self tableView] insertSections:indexSetToInsert withRowAnimation:UITableViewRowAnimationTop];
+        
+        [[self tableView] endUpdates];
+        
+        self.selectedOrder = order;
+            
+    }
     [self.orderButton setAction:action];
     [self.orderButton setTarget:target];
     [self.popoverController dismissPopoverAnimated:YES];
