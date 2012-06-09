@@ -7,6 +7,7 @@
 //
 
 #import "SubstitutableTabBarControllerViewController.h"
+#import "Language.h"
 
 
 @interface SubstitutableTabBarControllerViewController ()
@@ -19,6 +20,7 @@
 @synthesize editButton = _editButton, tempButton = _tempButton;
 @synthesize criteriaController = _criteriaController, characteristicsController = _characteristicsController;
 @synthesize needsEditing;
+@synthesize myDelegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -187,12 +189,17 @@
 
     }
     
+    int old_score = self.vinho.score;
     
     //switch editing mode
     [self.criteriaController setEditing: isEditing animated:YES done:done];
     [self.characteristicsController setEditing: isEditing animated:YES done:done];
     [self setEditing:isEditing animated:YES];
     
+    int new_score = self.vinho.score;
+    
+    if(old_score != new_score)
+        [myDelegate SubstitutableTabBarControllerViewControllerDidUpdateScore];
 }
 -(void) scoreUpdated:(int) score {
     [self.characteristicsController updateScoreLabelWithScore:score];

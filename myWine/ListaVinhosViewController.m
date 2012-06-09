@@ -107,6 +107,7 @@ SEL action; id target;
         Vinho* vinho = [self.vinhos vinhoForRow:path.row atSection:path.section];
         lpvc.vinho = vinho;
         lpvc.provas = vinho.provas;
+        lpvc.delegate = self;
         
         lpvc.rootPopoverButtonItem = self.rootPopoverButtonItem;
         lpvc.popoverController = self.popoverController;
@@ -534,6 +535,13 @@ SEL action; id target;
 }
 
 -(void) reloadData {
+    [[self tableView] reloadData];
+}
+
+-(void) ListaProvasViewControllerDelegateDidUpdateScore {
+    NSLog(@"prova did update score");
+    [self.vinhos orderVinhosBy:selectedOrder];
+    [self.vinhos sectionizeOrderedBy:selectedOrder];
     [[self tableView] reloadData];
 }
 

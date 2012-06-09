@@ -12,6 +12,7 @@
 #import "DetailViewController.h"
 #import "VinhoViewController.h"
 #import "OrderViewController.h"
+#import "ListaProvasViewController.h"
 
 
 @class DetailViewController;
@@ -26,7 +27,7 @@
 
 @end
 
-@interface ListaVinhosViewController : UITableViewController < UISplitViewControllerDelegate, VinhoViewControllerDelegate, DetailViewControllerDelegate, NovoVinhoViewControllerDelegate, LoginViewControllerDelegate, OrderViewControllerDelegate>
+@interface ListaVinhosViewController : UITableViewController < UISplitViewControllerDelegate, VinhoViewControllerDelegate, DetailViewControllerDelegate, NovoVinhoViewControllerDelegate, LoginViewControllerDelegate, OrderViewControllerDelegate, ListaProvasViewControllerDelegate>
 {
     UISplitViewController *splitViewController;
     
