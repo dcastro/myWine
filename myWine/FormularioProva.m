@@ -260,6 +260,7 @@
                         characteristic.characteristic_id,
                         @"FormCharacteristic"];
             
+            
             if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
                 while(sqlite3_step(stmt) == SQLITE_ROW){
                     
@@ -271,7 +272,7 @@
                     classification.name_fr = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 3)];
                     classification.name_pt = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 4)];
                     
-                    //DebugLog(@"Section: %@, Criterion: %@, Classification: %@", sectionCharacteristic.name_en, characteristic.name_en, classification.name_en);
+                    //DebugLog(@"Section: %@, Characteristic: %@, Classification: %@", sectionCharacteristic.name_en, characteristic.name_en, classification.name_en);
                     [characteristic.classifications insertObject:classification atIndex:0];
                 }
                 sqlite3_finalize(stmt);

@@ -40,14 +40,14 @@ const char  *databaseTables[] = {
     );",
     
     "CREATE TABLE Region (\
-    region_id INTEGER PRIMARY KEY AUTOINCREMENT, \
+    region_id INTEGER PRIMARY KEY, \
     country_id TEXT NOT NULL, \
     name TEXT, \
     FOREIGN KEY (country_id) REFERENCES Country (country_id) ON UPDATE CASCADE ON DELETE CASCADE \
     );",
     
     "CREATE TABLE WineType (\
-    winetype_id INTEGER PRIMARY KEY AUTOINCREMENT, \
+    winetype_id INTEGER PRIMARY KEY, \
     name_en TEXT, \
     name_fr TEXT, \
     name_pt TEXT \
@@ -240,7 +240,7 @@ const char  *databaseTables[] = {
     
     //DADOS DE TESTE
     //VINHOS
-    "INSERT INTO User VALUES ('mywine@cpcis.pt', 'mywine', 0.0, 0)",
+    "INSERT INTO User VALUES ('mywine@cpcis.pt', 'mywine', 0.0, 1)",
     
     
     "\n"
