@@ -39,14 +39,12 @@ double calculateAnimation(UIViewController *v, UITextField *keyboard) {
         if(midline < LANDSCAPE_KEYBOARD_HEIGHT) {
             animatedDistance = LANDSCAPE_KEYBOARD_HEIGHT-midline+(textFieldRect.size.width/2);
         }
-        NSLog(@"RIGHT  %f ", midline);
     }   
     else if (orientation == UIInterfaceOrientationLandscapeLeft){
         midline = viewRect.size.height - textFieldRect.origin.x - 0.5 * textFieldRect.size.width;
         if(midline < LANDSCAPE_KEYBOARD_HEIGHT) {
             animatedDistance = LANDSCAPE_KEYBOARD_HEIGHT-midline+(textFieldRect.size.width/2);
         }
-        NSLog(@"LEFT  %f ", midline);
     }
     return animatedDistance;
 }

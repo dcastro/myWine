@@ -504,18 +504,19 @@ finishedSavingWithError:(NSError *)error
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    animatedDistance = calculateAnimation(self,keyboard);
-    CGRect viewFrame = self.view.frame;
-    viewFrame.origin.y -= animatedDistance;
-    
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
-    
-    [self.view setFrame:viewFrame];
-    
-    [UIView commitAnimations];
-
+    if(keyboard!=nil){
+        animatedDistance = calculateAnimation(self,keyboard);
+        CGRect viewFrame = self.view.frame;
+        viewFrame.origin.y -= animatedDistance;
+        
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
+        
+        [self.view setFrame:viewFrame];
+        
+        [UIView commitAnimations];
+    }
     
     // Setup the background
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
@@ -557,6 +558,7 @@ finishedSavingWithError:(NSError *)error
     CGRect viewFrame = self.view.frame;
     viewFrame.origin.y += animatedDistance;
     animatedDistance =0;
+    keyboard = nil;
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
     [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
