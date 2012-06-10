@@ -427,6 +427,12 @@ SEL action; id target;
 
 - (void)LoginViewControllerDidLogin:(LoginViewController *)controller {
     NSLog(@"Dismissing LoginController");
+    
+    self.vinhos = [[User instance] vinhos];
+    [self.vinhos orderVinhosBy:selectedOrder];
+    [self.vinhos sectionizeOrderedBy:selectedOrder];
+    [[self tableView] reloadData];
+    
     [self dismissViewControllerAnimated:YES completion:nil];
     
 }

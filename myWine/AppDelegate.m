@@ -14,6 +14,7 @@
 #import "Comparator.h"
 #import "UIColor+myWineColor.h"
 #import "MySplitViewViewController.h"
+#import "NSMutableArray+VinhosMutableArray.h"
 
 @implementation AppDelegate
 
@@ -92,6 +93,9 @@
         [User createWithUsername:username];
         User* user = [User instance];
         [lvvc setVinhos:user.vinhos];
+        lvvc.selectedOrder = ORDER_BY_NAME;
+        [lvvc.vinhos orderVinhosBy:lvvc.selectedOrder];
+        [lvvc.vinhos sectionizeOrderedBy:lvvc.selectedOrder];
         [lvvc reloadData];
     }
     
