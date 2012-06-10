@@ -87,6 +87,9 @@
     self.foto.text = [lang translate:@"Photo"];
     self.foto.font = [UIFont fontWithName:@"DroidSans" size:NORMAL_FONT];
     
+    self.AnoVinho.keyboardType = UIKeyboardTypeNumberPad;
+    self.Preco.keyboardType = UIKeyboardTypeNumberPad;
+    
     self.NomeVinho.placeholder=[lang translate:@"WineName"];
     [self.NomeVinho setFont:[UIFont fontWithName:@"DroidSans" size:NORMAL_FONT-4]];
     self.NomeVinho.delegate =self;
@@ -502,6 +505,18 @@ finishedSavingWithError:(NSError *)error
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     animatedDistance = calculateAnimation(self,keyboard);
+    CGRect viewFrame = self.view.frame;
+    viewFrame.origin.y -= animatedDistance;
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
+    
+    [self.view setFrame:viewFrame];
+    
+    [UIView commitAnimations];
+
+    
     // Setup the background
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown)
@@ -517,12 +532,11 @@ finishedSavingWithError:(NSError *)error
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    if(textField.tag == 3) {PickAnoVinho.hidden = NO; NSLog(@"dont hide it");}
-    else {PickAnoVinho.hidden = YES; NSLog(@"Hide it");}
+    if(textField.tag == 3) {PickAnoVinho.hidden = NO;}
+    else {PickAnoVinho.hidden = YES;}
     
     keyboard = textField;
     animatedDistance = calculateAnimation(self, textField);
-    NSLog(@"Animated: %f", animatedDistance);
     CGRect viewFrame = self.view.frame;
     viewFrame.origin.y -= animatedDistance;
     
@@ -540,11 +554,9 @@ finishedSavingWithError:(NSError *)error
 {
     keyboard = textField;
     
-    NSLog(@"Animated 2: %f", animatedDistance);
-    
     CGRect viewFrame = self.view.frame;
     viewFrame.origin.y += animatedDistance;
-    
+    animatedDistance =0;
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
     [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
