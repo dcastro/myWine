@@ -26,13 +26,13 @@
 {
     contactDB = [query prepareForExecution];
     
-    NSMutableDictionary * requestData = [NSMutableDictionary dictionaryWithObjectsAndKeys:user.username,@"username" ,user.password, @"password" , user.synced_at, @"synced_at" , nil];
+    NSMutableDictionary * requestData = [NSMutableDictionary dictionaryWithObjectsAndKeys:user.username,@"Username" ,user.password, @"Password" , user.synced_at, @"SyncedAt" , nil];
     
     
     
     NSMutableDictionary * new = [self buildNew];
     if (new) {
-        [requestData setObject:new forKey:@"new"];
+        [requestData setObject:new forKey:@"New"];
     }else {
         sqlite3_close(*contactDB);
         return nil;
@@ -44,7 +44,7 @@
     //deleted
     NSMutableDictionary * deleted = [self buildDeleted];
     if (deleted) {
-        [requestData setObject:deleted forKey:@"deleted"];
+        [requestData setObject:deleted forKey:@"Deleted"];
     }else {
         sqlite3_close(*contactDB);
         return nil;
@@ -76,6 +76,9 @@
         return nil;
     }
     
+    
+#warning TODO: fazer o mesmo para os tastings
+    
     return new;
 }
 
@@ -89,101 +92,222 @@
                 FROM Wine \
                 WHERE user = \'%@\' AND state == 1", user.username];
     
-    int wine_id;
-    sqlite3_stmt * wine_stmt;
+    sqlite3_stmt * wines_stmt;
     NSMutableArray * wines = [[NSMutableArray alloc]init];
     
-    if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &wine_stmt, NULL) == SQLITE_OK){
-        while(sqlite3_step(wine_stmt) == SQLITE_ROW){
+    if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &wines_stmt, NULL) == SQLITE_OK){
+        while(sqlite3_step(wines_stmt) == SQLITE_ROW){
             
-            wine_id = sqlite3_column_int(wine_stmt, 0);
-            NSMutableDictionary * wine = [[NSMutableDictionary alloc]init];
-            [wine setObject:[NSNumber numberWithInt:sqlite3_column_int(wine_stmt, 1)] forKey:@"region"];
-            [wine setObject:[NSNumber numberWithInt:sqlite3_column_int(wine_stmt, 2)] forKey:@"wine_type"];
-            [wine setObject:[NSNumber numberWithInt:sqlite3_column_int(wine_stmt, 3)] forKey:@"year"];
-            [wine setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(wine_stmt, 4)] forKey:@"name"];
-            [wine setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(wine_stmt, 5)] forKey:@"grapes"];
-            [wine setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(wine_stmt, 6)] forKey:@"photo_filename"];
-            [wine setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(wine_stmt, 7)] forKey:@"producer"];
-            [wine setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(wine_stmt, 8)] forKey:@"currency"];
-            [wine setObject:[NSNumber numberWithDouble:sqlite3_column_double(wine_stmt, 9)] forKey:@"price"];
-            
-            
-            
-            
-            //nao se precisa de verificar estado porque uma vinho novo so tem provas novas
-            querySQL = [NSString stringWithFormat:@"SELECT t.tasting_id, t.tasting_date, t.comment, t.latitude, t.longitude \
-                        FROM Tasting t \
-                        WHERE wine_id = %d", wine_id];
-            
-            
-            int tasting_id;
-            sqlite3_stmt * tasting_stmt;
-            NSMutableArray * tastings = [[NSMutableArray alloc]init ];
-            
-            if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &tasting_stmt, NULL) == SQLITE_OK){
-                while(sqlite3_step(tasting_stmt) == SQLITE_ROW){
-                    
-                    tasting_id = sqlite3_column_int(tasting_stmt, 0);
-                    NSMutableDictionary * tasting = [[NSMutableDictionary alloc]init ];
-                    [tasting setObject:[NSNumber numberWithDouble:sqlite3_column_double(wine_stmt, 1)] forKey:@"tasting_date"];
-                    [wine setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(wine_stmt, 2)] forKey:@"comment"];
-                    [tasting setObject:[NSNumber numberWithDouble:sqlite3_column_double(wine_stmt, 3)] forKey:@"latitude"];
-                    [tasting setObject:[NSNumber numberWithDouble:sqlite3_column_double(wine_stmt, 4)] forKey:@"longitude"];
-                    
-                    
-                    
-                    
-                    querySQL = [NSString stringWithFormat:@"SELECT s.section_id, s.order_priority, s.name_en, s.name_fr, s.name_pt \
-                                FROM Section s \
-                                WHERE s.tasting_id = %d", tasting_id];
-                    
-                    
-                    int section_id;
-                    sqlite3_stmt * section_stmt;
-                    NSMutableArray * sections = [[NSMutableArray alloc]init ];
-                    
-                    if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &section_stmt, NULL) == SQLITE_OK){
-                        while(sqlite3_step(section_stmt) == SQLITE_ROW){
-                            
-                            section_id = sqlite3_column_int(section_stmt, 0);
-#warning FERNANDO: completar
-                            
-                        }
-                        sqlite3_finalize(section_stmt);
-                        [tasting setObject:sections forKey:@"sections"];
-                        
-                    }else {
-                        DebugLog(@"Query with error: %@", querySQL);
-                        return nil;
-                    }
-                    
-                    
-                    //adiciona prova
-                    [tastings addObject:tasting];
-                    
-                }
-                sqlite3_finalize(tasting_stmt);
-                [wine setObject:tastings forKey:@"tastings"];
-                
-            }else {
-                DebugLog(@"Query with error: %@", querySQL);
-                return nil;
-            }
-            
-            
-            
+
             //adiciona o vinho
-            [wines addObject:wine];
+            [wines addObject:[self buildWine:&wines_stmt]];
             
         }
-        sqlite3_finalize(wine_stmt);
+        sqlite3_finalize(wines_stmt);
     }else {
         DebugLog(@"Query with error: %@", querySQL);
         return nil;
     }
 
     return wines;
+    
+}
+                                 
+                                 
+                                 
+                                 
+-(NSDictionary *)buildWine:(sqlite3_stmt **)wine_stmt{
+    
+    int wine_id = sqlite3_column_int(*wine_stmt, 0);
+    NSMutableDictionary * wine = [[NSMutableDictionary alloc]init];
+    [wine setObject:[NSNumber numberWithInt:sqlite3_column_int(*wine_stmt, 1)] forKey:@"Region"];
+    [wine setObject:[NSNumber numberWithInt:sqlite3_column_int(*wine_stmt, 2)] forKey:@"WineType"];
+    [wine setObject:[NSNumber numberWithInt:sqlite3_column_int(*wine_stmt, 3)] forKey:@"Harvest"];
+    [wine setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*wine_stmt, 4)] forKey:@"Name"];
+    [wine setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*wine_stmt, 5)] forKey:@"Grapes"];
+    [wine setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*wine_stmt, 6)] forKey:@"PhotoFilename"];
+    [wine setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*wine_stmt, 7)] forKey:@"Producer"];
+    [wine setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*wine_stmt, 8)] forKey:@"Currency"];
+    [wine setObject:[NSNumber numberWithDouble:sqlite3_column_double(*wine_stmt, 9)] forKey:@"Price"];
+    
+    
+    
+    
+    //nao se precisa de verificar estado porque uma vinho novo so tem provas novas
+    NSString * querySQL = [NSString stringWithFormat:@"SELECT t.tasting_id, t.tasting_date, t.comment, t.latitude, t.longitude \
+                FROM Tasting t \
+                WHERE wine_id = %d", wine_id];
+    
+    
+  
+    sqlite3_stmt * tastings_stmt;
+    NSMutableArray * tastings = [[NSMutableArray alloc]init ];
+    
+    if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &tastings_stmt, NULL) == SQLITE_OK){
+        while(sqlite3_step(tastings_stmt) == SQLITE_ROW){
+            
+            
+            //adiciona prova
+            [tastings addObject:[self buildTasting:&tastings_stmt]];
+            
+            
+        }
+        sqlite3_finalize(tastings_stmt);
+    }else {
+        DebugLog(@"Query with error: %@", querySQL);
+        return nil;
+    }
+    
+    [wine setObject:tastings forKey:@"Tastings"];
+
+    
+    return wine;
+}
+
+
+
+-(NSDictionary *)buildTasting:(sqlite3_stmt**)tasting_stmt
+{
+    int tasting_id = sqlite3_column_int(*tasting_stmt, 0);
+    NSMutableDictionary * tasting = [[NSMutableDictionary alloc]init ];
+    [tasting setObject:[NSNumber numberWithDouble:sqlite3_column_double(*tasting_stmt, 1)] forKey:@"TastingDate"];
+    [tasting setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*tasting_stmt, 2)] forKey:@"Comment"];
+    [tasting setObject:[NSNumber numberWithDouble:sqlite3_column_double(*tasting_stmt, 3)] forKey:@"Latitude"];
+    [tasting setObject:[NSNumber numberWithDouble:sqlite3_column_double(*tasting_stmt, 4)] forKey:@"Longitude"];
+    
+    
+    
+    
+    NSString * querySQL = [NSString stringWithFormat:@"SELECT s.section_id, s.order_priority, s.name_en, s.name_fr, s.name_pt \
+                FROM Section s \
+                WHERE s.tasting_id = %d", tasting_id];
+    
+    
+    sqlite3_stmt * sections_stmt;
+    NSMutableArray * sections = [[NSMutableArray alloc]init ];
+    
+    if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &sections_stmt, NULL) == SQLITE_OK){
+        while(sqlite3_step(sections_stmt) == SQLITE_ROW){
+            
+            
+            [sections addObject:[self buildSection:&sections_stmt]];
+            
+        }
+        sqlite3_finalize(sections_stmt);
+    }else {
+        DebugLog(@"Query with error: %@", querySQL);
+        return nil;
+    }
+    
+    [tasting setObject:sections forKey:@"EvaluationSections"];
+             
+             
+             
+#warning TODO: fazer o mesmo para as seccoes de caracteristicas
+
+    
+    
+    return tasting;
+    
+}
+
+
+-(NSDictionary *)buildSection:(sqlite3_stmt**)section_stmt
+{
+
+    int section_id = sqlite3_column_int(*section_stmt, 0);
+    NSMutableDictionary * section = [[NSMutableDictionary alloc]init ];
+    [section setObject:[NSNumber numberWithInt:sqlite3_column_int(*section_stmt, 1)] forKey:@"Order"];
+    [section setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*section_stmt, 2)] forKey:@"NameEn"];
+    [section setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*section_stmt, 3)] forKey:@"NameFr"];
+    [section setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*section_stmt, 4)] forKey:@"NamePt"];
+    
+    
+    
+    
+    NSString *querySQL = [NSString stringWithFormat:@"SELECT c.criterion_id, c.order_priority, c.name_en, c.name_fr, c.name_pt, cl.weight, cl.name_en, cl.name_fr, cl.name_pt  \
+                FROM Criterion c, Classification cl \
+                WHERE c.section_id = %d AND c.classification_id = cl.classification_id", section_id];
+    
+    
+    sqlite3_stmt * criterions_stmt;
+    NSMutableArray * criterias = [[NSMutableArray alloc]init ];
+    
+    if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &criterions_stmt, NULL) == SQLITE_OK){
+        while(sqlite3_step(criterions_stmt) == SQLITE_ROW){
+            
+            
+            [criterias addObject:[self buildCriterion:&criterions_stmt]];
+            
+            
+        }
+        sqlite3_finalize(criterions_stmt);
+        
+    }else {
+        DebugLog(@"Query with error: %@", querySQL);
+        return nil;
+    }
+    
+    [section setObject:criterias forKey:@"Criterias"];
+    
+
+    return section;
+
+}
+
+
+-(NSMutableDictionary *)buildCriterion:(sqlite3_stmt **)criterion_stmt
+{
+    int criterion_id = sqlite3_column_int(*criterion_stmt, 0);
+    NSMutableDictionary * criterion = [[NSMutableDictionary alloc]init ];
+    [criterion setObject:[NSNumber numberWithInt:sqlite3_column_int(*criterion_stmt, 1)] forKey:@"Order"];
+    [criterion setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*criterion_stmt, 2)] forKey:@"NameEn"];
+    [criterion setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*criterion_stmt, 3)] forKey:@"NameFr"];
+    [criterion setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*criterion_stmt, 4)] forKey:@"NamePt"];
+    
+    
+    NSMutableDictionary *chosenClassification = [[NSMutableDictionary alloc]init ];
+    [chosenClassification setObject:[NSNumber numberWithInt:sqlite3_column_int(*criterion_stmt, 5)] forKey:@"Weight"];
+    [chosenClassification setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*criterion_stmt, 6)] forKey:@"NameEn"];
+    [chosenClassification setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*criterion_stmt, 7)] forKey:@"NameFr"];
+    [chosenClassification setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*criterion_stmt, 8)] forKey:@"NamePt"];
+    
+    [criterion setObject:chosenClassification forKey:@"ChosenClassifications"];
+    
+    
+    NSString *querySQL = [NSString stringWithFormat:@"SELECT cl.weight, cl.name_en, cl.name_fr, cl.name_pt  \
+                          FROM Classification cl, PossibleClassification pc \
+                          WHERE pc.classifiable_id = %d AND pc.classifiable_type = \'%@\' AND pc.classification_id = ps.classification_id", criterion_id, @"Criterion"];
+    
+    sqlite3_stmt * classifications_stmt;
+    NSMutableArray * classifications = [[NSMutableArray alloc]init ];
+    
+    if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &classifications_stmt, NULL) == SQLITE_OK){
+        while(sqlite3_step(classifications_stmt) == SQLITE_ROW){
+            
+            
+            NSMutableDictionary * classification = [[NSMutableDictionary alloc]init ];
+            [classification setObject:[NSNumber numberWithInt:sqlite3_column_int(classifications_stmt, 0)] forKey:@"Weight"];
+            [classification setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(classifications_stmt, 1)] forKey:@"NameEn"];
+            [classification setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(classifications_stmt, 2)] forKey:@"NameFr"];
+            [classification setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(classifications_stmt, 3)] forKey:@"NamePt"];
+            
+            
+            [classifications addObject:classification];
+            
+        }
+        sqlite3_finalize(classifications_stmt);
+    }else {
+        DebugLog(@"Query with error: %@", querySQL);
+        return nil;
+    }
+    
+    [criterion setObject:classifications forKey:@"Classifications"];
+
+    
+    
+    return criterion;
+    
     
 }
 
