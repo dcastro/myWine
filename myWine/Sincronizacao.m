@@ -57,7 +57,8 @@
     //conversao para string
     NSData * data = [NSJSONSerialization dataWithJSONObject:requestData options:NSJSONWritingPrettyPrinted error:error];
     
-    if(error){
+    if(!data){
+        DebugLog(@"Error: %@", *error);
         return nil;
     }else {
         return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -222,8 +223,6 @@
     [section setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*section_stmt, 2)] forKey:@"NameEn"];
     [section setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*section_stmt, 3)] forKey:@"NameFr"];
     [section setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*section_stmt, 4)] forKey:@"NamePt"];
-    
-    
     
     
     NSString *querySQL = [NSString stringWithFormat:@"SELECT c.criterion_id, c.order_priority, c.name_en, c.name_fr, c.name_pt, cl.weight, cl.name_en, cl.name_fr, cl.name_pt  \
