@@ -107,6 +107,16 @@
     self.overlayWindow = [[UIWindow alloc] initWithFrame: self.window.frame];
     
     self.overlayWindow.clipsToBounds = YES;
+    
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.8;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionPush;
+    transition.subtype = kCATransitionFromLeft;
+    transition.delegate = self;        
+    
+    [[self.comparatorNavController.view layer] addAnimation:transition forKey:nil];    
+    
     [self.overlayWindow addSubview:self.comparatorNavController.view];
     [self.overlayWindow setWindowLevel:1];
     [self.overlayWindow makeKeyAndVisible];
@@ -116,13 +126,26 @@
 }
 
 -(void) hideComparator {
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.8;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionPush;
+    transition.subtype = kCATransitionFromLeft;
+    transition.delegate = self;     
+    [CATransaction setCompletionBlock:^ {
+        self.comparatorNavController = nil;
+        
+        self.overlayWindow.hidden = YES;
+        self.overlayWindow = nil;
+        
+        [self.splitView setShouldRotate:YES];
+    }];
+    
+    [[[self.comparatorNavController.view superview] layer] addAnimation:transition forKey:nil]; 
+    
     [self.comparatorNavController.view removeFromSuperview];
-    self.comparatorNavController = nil;
     
-    self.overlayWindow.hidden = YES;
-    self.overlayWindow = nil;
-    
-    [self.splitView setShouldRotate:YES];
+    [CATransaction commit];
     
 }
 							
