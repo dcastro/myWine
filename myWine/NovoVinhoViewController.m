@@ -463,6 +463,10 @@ finishedSavingWithError:(NSError *)error
 - (void) selectedRegion:(Regiao*) region{
     
     self.region = region;
+    self.region.country_name = self.country.name;
+    self.region.country_name_en = self.country.name_en;
+    self.region.country_name_fr = self.country.name_fr;
+    self.region.country_name_pt = self.country.name_pt;
     [self.regiaoButton setTitle:region.region_name forState:UIControlStateNormal];
     
 }
