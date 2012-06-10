@@ -224,7 +224,10 @@
         int truncated = score/10;
         truncated *= 10;
         
-        sectionIdentifier = [NSString stringWithFormat:@"%i .. %i", truncated, truncated +9];
+        if(truncated != 90 && truncated != 100)
+            sectionIdentifier = [NSString stringWithFormat:@"%i .. %i %%", truncated, truncated +9];
+        else
+            sectionIdentifier = [NSString stringWithFormat:@"90 .. 100 %%", truncated, truncated +9];
     }
     
     return sectionIdentifier;
@@ -257,6 +260,9 @@
     NSSet* identifiersSet = [NSSet setWithArray:[self valueForKey:@"sectionIdentifier"]];
     NSArray* identifiersArray = [identifiersSet allObjects];
     identifiersArray = [identifiersArray sortedArrayUsingSelector:@selector(compare:)];
+    
+    if(order == ORDER_BY_SCORE)
+        identifiersArray = [[identifiersArray reverseObjectEnumerator] allObjects];
     
     
     //mark vinhos with their responding sections
