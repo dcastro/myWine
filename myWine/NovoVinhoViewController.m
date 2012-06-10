@@ -374,6 +374,7 @@ finishedSavingWithError:(NSError *)error
                         vinho.region = self.region;
                         vinho.winetype = self.tipo;
                         vinho.currency = self.currency;
+                        vinho.grapes = self.castaVinho.text;
                         
                         /*@synthesize regiaoButton;
                          
