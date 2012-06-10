@@ -8,6 +8,7 @@
 
 #import "NovoVinhoViewController.h"
 #import "NSMutableArray+VinhosMutableArray.h"
+#import "UIColor+myWineColor.h"
 
 @interface NovoVinhoViewController () {
     CGFloat animatedDistance;
@@ -99,20 +100,26 @@
     [self.Preco setFont:[UIFont fontWithName:@"DroidSans" size:NORMAL_FONT-4]];
     self.Preco.delegate =self;
     [self.tipoVinho setTitle:[lang translate:@"WineType"] forState:UIControlStateNormal];
-    [self.tipoVinho.titleLabel setFont:[UIFont fontWithName:@"DroidSans" size:NORMAL_FONT-4]];
+    [self.tipoVinho.titleLabel setFont:[UIFont fontWithName:@"DroidSans-Bold" size:NORMAL_FONT-4]];
+    [self.tipoVinho setTitleColor:[UIColor myWineColorDarkGrey] forState:UIControlStateNormal];
     [self.paisButton setTitle:[lang translate:@"WineCountry"] forState:UIControlStateNormal];
-    [self.paisButton.titleLabel setFont:[UIFont fontWithName:@"DroidSans" size:NORMAL_FONT-4]];
+    [self.paisButton.titleLabel setFont:[UIFont fontWithName:@"DroidSans-Bold" size:NORMAL_FONT-4]];
+    [self.paisButton setTitleColor:[UIColor myWineColorDarkGrey] forState:UIControlStateNormal];
     [self.regiaoButton setTitle:[lang translate:@"WineRegion"] forState:UIControlStateNormal];
-    [self.regiaoButton.titleLabel setFont:[UIFont fontWithName:@"DroidSans" size:NORMAL_FONT-4]];
+    [self.regiaoButton.titleLabel setFont:[UIFont fontWithName:@"DroidSans-Bold" size:NORMAL_FONT-4]];
+    [self.regiaoButton setTitleColor:[UIColor myWineColorDarkGrey] forState:UIControlStateNormal];
        self.castaVinho.placeholder=[lang translate:@"WineGrape"];
     [self.castaVinho setFont:[UIFont fontWithName:@"DroidSans" size:NORMAL_FONT-4]];
     self.castaVinho.delegate =self;
-    [self.tipoVinho setTitle: [lang translate:@"Tap to select"] forState:UIControlStateNormal];
+    //[self.tipoVinho setTitle: [lang translate:@"Tap to select"] forState:UIControlStateNormal];
     
     //[self.paisButton setTitle:[lang translate:@"Tap to select"] forState:UIControlStateNormal];
     [self.regiaoButton setEnabled:NO];
     //[self.regiaoButton setTitle: [lang translate:@"Select Country First"] forState:UIControlStateNormal];
-    [[self.regiaoButton titleLabel] setTextColor:[UIColor grayColor]];
+    //[[self.regiaoButton titleLabel] setTextColor:[UIColor grayColor]];
+    
+    [self.currencyButton.titleLabel setFont:[UIFont fontWithName:@"DroidSans-Bold" size:NORMAL_FONT-4]];
+    [self.currencyButton setTitleColor:[UIColor myWineColor] forState:UIControlStateNormal];
     
     [_AnoVinho setInputView:PickAnoVinho];
     PickAnoVinho.hidden = YES;
@@ -455,8 +462,10 @@ finishedSavingWithError:(NSError *)error
     Language* lang = [Language instance];
     
     [self.paisButton setTitle:country.name forState:UIControlStateNormal];
+    [self.paisButton setTitleColor:[UIColor myWineColor] forState:UIControlStateNormal];
     
-    [self.regiaoButton setTitle: [lang translate:@"Tap to select"] forState:UIControlStateNormal];
+    [self.regiaoButton setTitle: [lang translate:@"WineRegion"] forState:UIControlStateNormal];
+    [self.regiaoButton setTitleColor:[UIColor myWineColorDarkGrey] forState:UIControlStateNormal];
     [self.regiaoButton setEnabled:YES];
 }
 
@@ -468,6 +477,7 @@ finishedSavingWithError:(NSError *)error
     self.region.country_name_fr = self.country.name_fr;
     self.region.country_name_pt = self.country.name_pt;
     [self.regiaoButton setTitle:region.region_name forState:UIControlStateNormal];
+    [self.regiaoButton setTitleColor:[UIColor myWineColor] forState:UIControlStateNormal];
     
 }
 
@@ -477,6 +487,7 @@ finishedSavingWithError:(NSError *)error
     NSLog(@"%@", self.tipo.name);
 
     [self.tipoVinho setTitle:type.name forState: UIControlStateNormal];
+    [self.tipoVinho setTitleColor:[UIColor myWineColor] forState:UIControlStateNormal];
 }
 
 - (void) currencyViewControllerDidSelect:(int) currency {
