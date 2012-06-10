@@ -13,11 +13,14 @@
 #import "Filter.h"
 #import "Comparator.h"
 #import "UIColor+myWineColor.h"
+#import "MySplitViewViewController.h"
 
 @implementation AppDelegate
 
 @synthesize window = _window;
 @synthesize splitView = _splitView;
+@synthesize overlayWindow;
+@synthesize comparatorNavController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -47,7 +50,7 @@
     //Remove login
     //Add splitview
     
-    UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
+    MySplitViewViewController *splitViewController = (MySplitViewViewController *)self.window.rootViewController;
     
     self.splitView = splitViewController;
     
@@ -93,6 +96,33 @@
     }
     
     return YES;
+    
+}
+
+-(void) showComparator {
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    self.comparatorNavController = [storyboard instantiateViewControllerWithIdentifier:@"comparatorNVC"];
+    
+    self.overlayWindow = [[UIWindow alloc] initWithFrame: self.window.frame];
+    
+    self.overlayWindow.clipsToBounds = YES;
+    [self.overlayWindow addSubview:self.comparatorNavController.view];
+    [self.overlayWindow setWindowLevel:1];
+    [self.overlayWindow makeKeyAndVisible];
+    
+    [self.splitView setShouldRotate:NO];
+    
+}
+
+-(void) hideComparator {
+    [self.comparatorNavController.view removeFromSuperview];
+    self.comparatorNavController = nil;
+    
+    self.overlayWindow.hidden = YES;
+    self.overlayWindow = nil;
+    
+    [self.splitView setShouldRotate:YES];
     
 }
 							
