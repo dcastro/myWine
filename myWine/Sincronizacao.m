@@ -26,7 +26,7 @@
 {
     contactDB = [query prepareForExecution];
     
-    NSMutableDictionary * requestData = [NSMutableDictionary dictionaryWithObjectsAndKeys:user.username,@"Username" ,user.password, @"Password" , user.synced_at, @"SyncedAt" , nil];
+    NSMutableDictionary * requestData = [NSMutableDictionary dictionaryWithObjectsAndKeys:user.username,@"Username" ,user.password, @"Password" , [NSNumber numberWithDouble:user.synced_at], @"SyncedAt" , nil];
     
     
     
@@ -40,7 +40,7 @@
     
     
     
-    
+    /*
     //deleted
     NSMutableDictionary * deleted = [self buildDeleted];
     if (deleted) {
@@ -49,6 +49,7 @@
         sqlite3_close(*contactDB);
         return nil;
     }
+     */
     
     
     sqlite3_close(*contactDB);
@@ -149,7 +150,7 @@
             
             //adiciona prova
             [tastings addObject:[self buildTasting:&tastings_stmt]];
-            
+                        
             
         }
         sqlite3_finalize(tastings_stmt);
@@ -277,7 +278,7 @@
     
     NSString *querySQL = [NSString stringWithFormat:@"SELECT cl.weight, cl.name_en, cl.name_fr, cl.name_pt  \
                           FROM Classification cl, PossibleClassification pc \
-                          WHERE pc.classifiable_id = %d AND pc.classifiable_type = \'%@\' AND pc.classification_id = ps.classification_id", criterion_id, @"Criterion"];
+                          WHERE pc.classifiable_id = %d AND pc.classifiable_type = \'%@\' AND pc.classification_id = cl.classification_id", criterion_id, @"Criterion"];
     
     sqlite3_stmt * classifications_stmt;
     NSMutableArray * classifications = [[NSMutableArray alloc]init ];

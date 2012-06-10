@@ -93,6 +93,11 @@
     receivedData = [[NSMutableData data]init];
     
     //NSString *jsonRequest = @"{\"Password\":\"mywine\",\"Username\":\"mywine@cpcis.pt\",\"SyncedAt\":1339502400.0}";
+    
+    NSError * err;
+    NSString* testJSON = [sync buildRequest:&err];
+    DebugLog(testJSON);
+    
     NSString *jsonRequest = @"{\"Password\":\"mywine\",\"Username\":\"mywine@cpcis.pt\",\"SyncedAt\":634758524838925820}";
     NSURL *url = [NSURL URLWithString:@"http://backofficegp.cpcis.pt/MyWineSincService/MyWineSincService.svc/MyWineSincronize"];
     
@@ -143,13 +148,14 @@
     self.progress_label.Text=[NSString stringWithFormat:[lan translate:@"Synchronization step"], 2,3];
     [progress_bar setProgress:0.50];
     
-    
+    /*
     if(![sync parseData:receivedData]){
         [progress_bar setProgress:0.0];
         self.progress_label.Text=[NSString stringWithFormat:[lan translate:@"Synchronization step"], 0,3];
 #warning FERNANDO: mostrar aviso
         return;
     };
+     */
 
     
     [progress_bar setProgress:1.0];
