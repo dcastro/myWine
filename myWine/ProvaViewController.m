@@ -32,6 +32,7 @@
 @synthesize header = _header;
 @synthesize prova_mode;
 @synthesize delegate;
+@synthesize cellsDictionary;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -280,7 +281,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"SectionItemCell";
     //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     SectionItemCell *cell = (SectionItemCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     

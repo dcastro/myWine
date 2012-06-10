@@ -13,11 +13,15 @@
 #import "Filter.h"
 #import "Comparator.h"
 #import "UIColor+myWineColor.h"
+#import "MySplitViewViewController.h"
+#import "NSMutableArray+VinhosMutableArray.h"
 
 @implementation AppDelegate
 
 @synthesize window = _window;
 @synthesize splitView = _splitView;
+@synthesize overlayWindow;
+@synthesize comparatorNavController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -47,7 +51,7 @@
     //Remove login
     //Add splitview
     
-    UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
+    MySplitViewViewController *splitViewController = (MySplitViewViewController *)self.window.rootViewController;
     
     self.splitView = splitViewController;
     
@@ -89,10 +93,63 @@
         [User createWithUsername:username];
         User* user = [User instance];
         [lvvc setVinhos:user.vinhos];
+        lvvc.selectedOrder = ORDER_BY_NAME;
+        [lvvc.vinhos orderVinhosBy:lvvc.selectedOrder];
+        [lvvc.vinhos sectionizeOrderedBy:lvvc.selectedOrder];
         [lvvc reloadData];
     }
     
     return YES;
+    
+}
+
+-(void) showComparator {
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    self.comparatorNavController = [storyboard instantiateViewControllerWithIdentifier:@"comparatorNVC"];
+    
+    self.overlayWindow = [[UIWindow alloc] initWithFrame: self.window.frame];
+    
+    self.overlayWindow.clipsToBounds = YES;
+    
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.8;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionPush;
+    transition.subtype = kCATransitionFromLeft;
+    transition.delegate = self;        
+    
+    [[self.comparatorNavController.view layer] addAnimation:transition forKey:nil];    
+    
+    [self.overlayWindow addSubview:self.comparatorNavController.view];
+    [self.overlayWindow setWindowLevel:1];
+    [self.overlayWindow makeKeyAndVisible];
+    
+    [self.splitView setShouldRotate:NO];
+    
+}
+
+-(void) hideComparator {
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.8;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionPush;
+    transition.subtype = kCATransitionFromLeft;
+    transition.delegate = self;     
+    [CATransaction setCompletionBlock:^ {
+        self.comparatorNavController = nil;
+        
+        self.overlayWindow.hidden = YES;
+        self.overlayWindow = nil;
+        
+        [self.splitView setShouldRotate:YES];
+    }];
+    
+    [[[self.comparatorNavController.view superview] layer] addAnimation:transition forKey:nil]; 
+    
+    [self.comparatorNavController.view removeFromSuperview];
+    
+    [CATransaction commit];
     
 }
 							

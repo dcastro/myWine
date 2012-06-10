@@ -8,6 +8,7 @@
 
 #import "NovoVinhoViewController.h"
 #import "NSMutableArray+VinhosMutableArray.h"
+#import "UIColor+myWineColor.h"
 
 @interface NovoVinhoViewController () {
     CGFloat animatedDistance;
@@ -86,6 +87,9 @@
     self.foto.text = [lang translate:@"Photo"];
     self.foto.font = [UIFont fontWithName:@"DroidSans" size:NORMAL_FONT];
     
+    self.AnoVinho.keyboardType = UIKeyboardTypeNumberPad;
+    self.Preco.keyboardType = UIKeyboardTypeNumberPad;
+    
     self.NomeVinho.placeholder=[lang translate:@"WineName"];
     [self.NomeVinho setFont:[UIFont fontWithName:@"DroidSans" size:NORMAL_FONT-4]];
     self.NomeVinho.delegate =self;
@@ -99,20 +103,26 @@
     [self.Preco setFont:[UIFont fontWithName:@"DroidSans" size:NORMAL_FONT-4]];
     self.Preco.delegate =self;
     [self.tipoVinho setTitle:[lang translate:@"WineType"] forState:UIControlStateNormal];
-    [self.tipoVinho.titleLabel setFont:[UIFont fontWithName:@"DroidSans" size:NORMAL_FONT-4]];
+    [self.tipoVinho.titleLabel setFont:[UIFont fontWithName:@"DroidSans-Bold" size:NORMAL_FONT-4]];
+    [self.tipoVinho setTitleColor:[UIColor myWineColorDarkGrey] forState:UIControlStateNormal];
     [self.paisButton setTitle:[lang translate:@"WineCountry"] forState:UIControlStateNormal];
-    [self.paisButton.titleLabel setFont:[UIFont fontWithName:@"DroidSans" size:NORMAL_FONT-4]];
+    [self.paisButton.titleLabel setFont:[UIFont fontWithName:@"DroidSans-Bold" size:NORMAL_FONT-4]];
+    [self.paisButton setTitleColor:[UIColor myWineColorDarkGrey] forState:UIControlStateNormal];
     [self.regiaoButton setTitle:[lang translate:@"WineRegion"] forState:UIControlStateNormal];
-    [self.regiaoButton.titleLabel setFont:[UIFont fontWithName:@"DroidSans" size:NORMAL_FONT-4]];
+    [self.regiaoButton.titleLabel setFont:[UIFont fontWithName:@"DroidSans-Bold" size:NORMAL_FONT-4]];
+    [self.regiaoButton setTitleColor:[UIColor myWineColorDarkGrey] forState:UIControlStateNormal];
        self.castaVinho.placeholder=[lang translate:@"WineGrape"];
     [self.castaVinho setFont:[UIFont fontWithName:@"DroidSans" size:NORMAL_FONT-4]];
     self.castaVinho.delegate =self;
-    [self.tipoVinho setTitle: [lang translate:@"Tap to select"] forState:UIControlStateNormal];
+    //[self.tipoVinho setTitle: [lang translate:@"Tap to select"] forState:UIControlStateNormal];
     
     //[self.paisButton setTitle:[lang translate:@"Tap to select"] forState:UIControlStateNormal];
     [self.regiaoButton setEnabled:NO];
     //[self.regiaoButton setTitle: [lang translate:@"Select Country First"] forState:UIControlStateNormal];
-    [[self.regiaoButton titleLabel] setTextColor:[UIColor grayColor]];
+    //[[self.regiaoButton titleLabel] setTextColor:[UIColor grayColor]];
+    
+    [self.currencyButton.titleLabel setFont:[UIFont fontWithName:@"DroidSans-Bold" size:NORMAL_FONT-4]];
+    [self.currencyButton setTitleColor:[UIColor myWineColor] forState:UIControlStateNormal];
     
     [_AnoVinho setInputView:PickAnoVinho];
     PickAnoVinho.hidden = YES;
@@ -363,7 +373,24 @@ finishedSavingWithError:(NSError *)error
                         vinho.year = _AnoVinho.text.intValue;
                         vinho.region = self.region;
                         vinho.winetype = self.tipo;
-                        vinho.currency = self.currency;
+                        
+                        NSString *curr;
+                        switch (self.currency) {
+                            case 0:
+                                curr = @"EUR";
+                                break;
+                            case 1:
+                                curr = @"USD";
+                                break;
+                            case 2:
+                                curr = @"GBP";
+                                break;
+                            default:
+                                break;
+                        }
+                         
+                        vinho.currency = curr;
+                        vinho.grapes = self.castaVinho.text;
                         
                         /*@synthesize regiaoButton;
                          
@@ -455,15 +482,22 @@ finishedSavingWithError:(NSError *)error
     Language* lang = [Language instance];
     
     [self.paisButton setTitle:country.name forState:UIControlStateNormal];
+    [self.paisButton setTitleColor:[UIColor myWineColor] forState:UIControlStateNormal];
     
-    [self.regiaoButton setTitle: [lang translate:@"Tap to select"] forState:UIControlStateNormal];
+    [self.regiaoButton setTitle: [lang translate:@"WineRegion"] forState:UIControlStateNormal];
+    [self.regiaoButton setTitleColor:[UIColor myWineColorDarkGrey] forState:UIControlStateNormal];
     [self.regiaoButton setEnabled:YES];
 }
 
 - (void) selectedRegion:(Regiao*) region{
     
     self.region = region;
+    self.region.country_name = self.country.name;
+    self.region.country_name_en = self.country.name_en;
+    self.region.country_name_fr = self.country.name_fr;
+    self.region.country_name_pt = self.country.name_pt;
     [self.regiaoButton setTitle:region.region_name forState:UIControlStateNormal];
+    [self.regiaoButton setTitleColor:[UIColor myWineColor] forState:UIControlStateNormal];
     
 }
 
@@ -473,6 +507,7 @@ finishedSavingWithError:(NSError *)error
     NSLog(@"%@", self.tipo.name);
 
     [self.tipoVinho setTitle:type.name forState: UIControlStateNormal];
+    [self.tipoVinho setTitleColor:[UIColor myWineColor] forState:UIControlStateNormal];
 }
 
 - (void) currencyViewControllerDidSelect:(int) currency {
@@ -486,7 +521,20 @@ finishedSavingWithError:(NSError *)error
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    animatedDistance = calculateAnimation(self,keyboard);
+    if(keyboard!=nil){
+        animatedDistance = calculateAnimation(self,keyboard);
+        CGRect viewFrame = self.view.frame;
+        viewFrame.origin.y -= animatedDistance;
+        
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
+        
+        [self.view setFrame:viewFrame];
+        
+        [UIView commitAnimations];
+    }
+    
     // Setup the background
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown)
@@ -502,12 +550,11 @@ finishedSavingWithError:(NSError *)error
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    if(textField.tag == 3) {PickAnoVinho.hidden = NO; NSLog(@"dont hide it");}
-    else {PickAnoVinho.hidden = YES; NSLog(@"Hide it");}
+    if(textField.tag == 3) {PickAnoVinho.hidden = NO;}
+    else {PickAnoVinho.hidden = YES;}
     
     keyboard = textField;
     animatedDistance = calculateAnimation(self, textField);
-    NSLog(@"Animated: %f", animatedDistance);
     CGRect viewFrame = self.view.frame;
     viewFrame.origin.y -= animatedDistance;
     
@@ -525,11 +572,10 @@ finishedSavingWithError:(NSError *)error
 {
     keyboard = textField;
     
-    NSLog(@"Animated 2: %f", animatedDistance);
-    
     CGRect viewFrame = self.view.frame;
     viewFrame.origin.y += animatedDistance;
-    
+    animatedDistance =0;
+    keyboard = nil;
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
     [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];

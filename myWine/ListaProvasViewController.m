@@ -8,6 +8,7 @@
 
 #import "ListaProvasViewController.h"
 #import "SubstitutableTabBarControllerViewController.h"
+#import "AppDelegate.h"
 
 @interface ListaProvasViewController () {NSMutableArray *_objects;}
 
@@ -230,6 +231,9 @@ SEL action; id target;
     //if there are two registrations, show comparison
     if ([Comparator numberOfRegistrations] == 2) {
 #warning TODO: PRESENT COMPARATOR
+        AppDelegate* del = (AppDelegate*) [[UIApplication sharedApplication] delegate];
+        [del showComparator];
+        
         [Comparator reset];
         
         [self forEveryCell:^(ProvaCell* cell) {

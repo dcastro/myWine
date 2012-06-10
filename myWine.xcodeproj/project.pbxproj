@@ -98,6 +98,8 @@
 		DA5AEEB3157C4D6600246B12 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA5AEEB2157C4D6600246B12 /* QuartzCore.framework */; };
 		DA631DE0156EA7F2003EC91B /* CurrencyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA631DDF156EA7F2003EC91B /* CurrencyViewController.m */; };
 		DA7D48A4152E0AAD00C525FB /* Language.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7D48A3152E0AAD00C525FB /* Language.m */; };
+		DA7F5E7615843E2600E9418C /* MySplitViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7F5E7515843E2600E9418C /* MySplitViewViewController.m */; };
+		DA7F5E7A158440C000E9418C /* ComparatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7F5E79158440BF00E9418C /* ComparatorViewController.m */; };
 		DA9031F515785609006E0E34 /* SectionItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9031F415785609006E0E34 /* SectionItemCell.m */; };
 		DA91312915767E7300D37BA0 /* slider_thumb.png in Resources */ = {isa = PBXBuildFile; fileRef = DA91312815767E7300D37BA0 /* slider_thumb.png */; };
 		DA9131311576812500D37BA0 /* UIColor+myWineColor.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9131301576812500D37BA0 /* UIColor+myWineColor.m */; };
@@ -258,6 +260,10 @@
 		DA631DDF156EA7F2003EC91B /* CurrencyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyViewController.m; sourceTree = "<group>"; };
 		DA7D48A2152E0AAD00C525FB /* Language.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Language.h; sourceTree = "<group>"; };
 		DA7D48A3152E0AAD00C525FB /* Language.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Language.m; sourceTree = "<group>"; };
+		DA7F5E7415843E2500E9418C /* MySplitViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySplitViewViewController.h; sourceTree = "<group>"; };
+		DA7F5E7515843E2600E9418C /* MySplitViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySplitViewViewController.m; sourceTree = "<group>"; };
+		DA7F5E78158440BF00E9418C /* ComparatorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComparatorViewController.h; sourceTree = "<group>"; };
+		DA7F5E79158440BF00E9418C /* ComparatorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComparatorViewController.m; sourceTree = "<group>"; };
 		DA9031F315785609006E0E34 /* SectionItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionItemCell.h; sourceTree = "<group>"; };
 		DA9031F415785609006E0E34 /* SectionItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionItemCell.m; sourceTree = "<group>"; };
 		DA91312815767E7300D37BA0 /* slider_thumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slider_thumb.png; sourceTree = "<group>"; };
@@ -494,6 +500,10 @@
 		A9CA2B4E151E496500A29DE3 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				DA7F5E78158440BF00E9418C /* ComparatorViewController.h */,
+				DA7F5E79158440BF00E9418C /* ComparatorViewController.m */,
+				DA7F5E7415843E2500E9418C /* MySplitViewViewController.h */,
+				DA7F5E7515843E2600E9418C /* MySplitViewViewController.m */,
 				A9F0B4BD152477C9003C931B /* ComparadorViewController.h */,
 				A9F0B4BE152477C9003C931B /* ComparadorViewController.m */,
 				65B824F3157935FE00527D6F /* ContactsViewController.h */,
@@ -817,6 +827,8 @@
 				DA92BAFC1580121A0028AAC4 /* Filter.m in Sources */,
 				BCDC2CEB1580F34A00E7AB56 /* OrderViewController.m in Sources */,
 				A043F46F158242B700D9BD59 /* ListaTipoVinhosViewController.m in Sources */,
+				DA7F5E7615843E2600E9418C /* MySplitViewViewController.m in Sources */,
+				DA7F5E7A158440C000E9418C /* ComparatorViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

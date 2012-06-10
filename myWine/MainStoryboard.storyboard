@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50d" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50b" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="5">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
@@ -528,7 +528,7 @@
                     <value key="contentSizeForViewInPopover" type="size" width="200" height="150"/>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="1709" y="-2622"/>
+            <point key="canvasLocation" x="2529" y="-3302"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="j4p-og-NFF">
@@ -580,7 +580,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Castas" minimumFontSize="17" id="mCS-NQ-p44">
+                            <textField opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Castas" minimumFontSize="17" id="mCS-NQ-p44">
                                 <rect key="frame" x="430" y="439" width="244" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -652,12 +652,13 @@
                                 <color key="textColor" white="0.69999999999999996" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="XlD-mc-QDI">
-                                <rect key="frame" x="430" y="390" width="244" height="37"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="XlD-mc-QDI">
+                                <rect key="frame" x="430" y="392" width="244" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <inset key="titleEdgeInsets" minX="7" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.31372549020000001" green="0.027450980390000001" blue="0.015686274510000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted">
@@ -1175,6 +1176,32 @@
             </objects>
             <point key="canvasLocation" x="4054" y="-1194"/>
         </scene>
+        <!--Comparator View Controller-->
+        <scene sceneID="8cW-HC-edh">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mGl-sH-qkV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="9MD-YE-Wwh" customClass="ComparatorViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fhl-Kg-Itd">
+                        <rect key="frame" x="0.0" y="64" width="1024" height="704"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="zVh-hl-KRm">
+                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="ffR-f8-79i">
+                            <connections>
+                                <action selector="cancel:" destination="9MD-YE-Wwh" id="PwD-j9-amF"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="cancelButton" destination="ffR-f8-79i" id="eLt-K6-50m"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="5404" y="-2306"/>
+        </scene>
         <!--Comparador View Controller - Comparador-->
         <scene sceneID="ElM-h1-qcr">
             <objects>
@@ -1523,7 +1550,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="5321" y="-1066"/>
+            <point key="canvasLocation" x="6295" y="-1066"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="gao-Ke-pKB">
@@ -1545,11 +1572,11 @@
             </objects>
             <point key="canvasLocation" x="-296" y="69"/>
         </scene>
-        <!--Split View Controller-->
+        <!--My Split View View Controller-->
         <scene sceneID="18">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="17" sceneMemberID="firstResponder"/>
-                <splitViewController id="5" sceneMemberID="viewController">
+                <splitViewController id="5" customClass="MySplitViewViewController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="cb2-Rd-wSV"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
@@ -2367,6 +2394,24 @@
             </objects>
             <point key="canvasLocation" x="-238" y="-4076"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="CuA-7U-qSj">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f7M-uA-qtm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController storyboardIdentifier="comparatorNVC" id="7GY-Zk-Dyk" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="xn5-ti-oEp">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="9MD-YE-Wwh" kind="relationship" relationship="rootViewController" id="4vV-QW-Ck0"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="4216" y="-2418"/>
+        </scene>
     </scenes>
     <resources>
         <image name="faq.png" width="40" height="40"/>
@@ -2384,6 +2429,13 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ComparadorViewController.h"/>
             <relationships>
                 <relationship kind="action" name="cancel:"/>
+            </relationships>
+        </class>
+        <class className="ComparatorViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ComparatorViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancel:"/>
+                <relationship kind="outlet" name="cancelButton" candidateClass="UIBarButtonItem"/>
             </relationships>
         </class>
         <class className="ContactsViewController" superclassName="UIViewController">
@@ -2475,6 +2527,14 @@
                 <relationship kind="outlet" name="Regioes" candidateClass="UINavigationItem"/>
             </relationships>
         </class>
+        <class className="ListaTipoVinhosViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ListaTipoVinhosViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="Cancel:"/>
+                <relationship kind="outlet" name="Cancel" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="TipoVinhoBar" candidateClass="UINavigationItem"/>
+            </relationships>
+        </class>
         <class className="ListaVinhosViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ListaVinhosViewController.h"/>
             <relationships>
@@ -2501,6 +2561,9 @@
                 <relationship kind="outlet" name="welcomeLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
+        <class className="MySplitViewViewController" superclassName="UISplitViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MySplitViewViewController.h"/>
+        </class>
         <class className="NovoVinhoViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NovoVinhoViewController.h"/>
             <relationships>
@@ -2516,13 +2579,14 @@
                 <relationship kind="outlet" name="Preco" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="Produtor" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="castaVinho" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="currencyButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="foto" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="novoVinho" candidateClass="UINavigationItem"/>
                 <relationship kind="outlet" name="paisButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="pickFoto" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="regiaoButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="tipoVinho" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="tipoVinho" candidateClass="UIButton"/>
             </relationships>
         </class>
         <class className="OrderViewController" superclassName="UITableViewController">

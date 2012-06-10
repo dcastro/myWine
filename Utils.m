@@ -28,7 +28,6 @@ double calculateAnimation(UIViewController *v, UITextField *keyboard) {
         midline = viewRect.size.height - textFieldRect.origin.y + 0.5 * textFieldRect.size.height;
         if(midline < PORTRAIT_KEYBOARD_HEIGHT)
             animatedDistance = PORTRAIT_KEYBOARD_HEIGHT-midline+(textFieldRect.size.height/2);
-        
     }
     else if(orientation == UIInterfaceOrientationPortraitUpsideDown){
         midline = textFieldRect.origin.y + 0.5 * textFieldRect.size.height;
@@ -36,15 +35,15 @@ double calculateAnimation(UIViewController *v, UITextField *keyboard) {
             animatedDistance = PORTRAIT_KEYBOARD_HEIGHT-midline+(textFieldRect.size.height/2);
     }
     else if (orientation == UIInterfaceOrientationLandscapeRight){
-        midline = textFieldRect.origin.x + 0.5 * textFieldRect.size.height;
+        midline = textFieldRect.origin.x + 0.5 * textFieldRect.size.width;
         if(midline < LANDSCAPE_KEYBOARD_HEIGHT) {
-            animatedDistance = LANDSCAPE_KEYBOARD_HEIGHT-midline+(textFieldRect.size.height/2);
-        }    
+            animatedDistance = LANDSCAPE_KEYBOARD_HEIGHT-midline+(textFieldRect.size.width/2);
+        }
     }   
     else if (orientation == UIInterfaceOrientationLandscapeLeft){
-        midline = viewRect.size.height - textFieldRect.origin.x + 0.5 * textFieldRect.size.height;
+        midline = viewRect.size.height - textFieldRect.origin.x - 0.5 * textFieldRect.size.width;
         if(midline < LANDSCAPE_KEYBOARD_HEIGHT) {
-            animatedDistance = LANDSCAPE_KEYBOARD_HEIGHT-midline+(textFieldRect.size.height/2);
+            animatedDistance = LANDSCAPE_KEYBOARD_HEIGHT-midline+(textFieldRect.size.width/2);
         }
     }
     return animatedDistance;
