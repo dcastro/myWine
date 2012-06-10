@@ -124,15 +124,15 @@
                 
                 switch (state) {
                     case 0:
-                        querySQL = [NSString stringWithFormat:@"UPDATE Wine SET state = 2, name = \'%@\', producer = '\%@\', year = %d, grapes = \'%@\',  region_id = %d, price = %f, currency = \'%@\' WHERE wine_id = %d", self.name, self.producer, self.year, self.grapes, self.region.region_id, self.price, currencyStr(self.currency), self.wine_id];
+                        querySQL = [NSString stringWithFormat:@"UPDATE Wine SET state = 2, name = \'%@\', producer = '\%@\', year = %d, grapes = \'%@\',  region_id = %d, price = %f, currency = \'%@\' WHERE wine_id = %d", self.name, self.producer, self.year, self.grapes, self.region.region_id, self.price, self.currency, self.wine_id];
                         break;
                         
                     case 1:
-                        querySQL = [NSString stringWithFormat:@"UPDATE Wine SET state = 1, name = \'%@\', producer = \'%@\', year = %d, grapes = \'%@\',  region_id = %d, price = %f, currency = \'%@\' WHERE wine_id = %d", self.name, self.producer, self.year, self.grapes, self.region.region_id, self.price, currencyStr(self.currency), self.wine_id];
+                        querySQL = [NSString stringWithFormat:@"UPDATE Wine SET state = 1, name = \'%@\', producer = \'%@\', year = %d, grapes = \'%@\',  region_id = %d, price = %f, currency = \'%@\' WHERE wine_id = %d", self.name, self.producer, self.year, self.grapes, self.region.region_id, self.price, self.currency, self.wine_id];
                         break;
                         
                     case 2:
-                        querySQL = [NSString stringWithFormat:@"UPDATE Wine SET state = 2, name = \'%@\', producer = \'%@\', year = %d, grapes = \'%@\',  region_id = %d, price = %f, currency = \'%@\' WHERE wine_id = %d", self.name, self.producer, self.year, self.grapes, self.region.region_id, self.price, currencyStr(self.currency), self.wine_id];
+                        querySQL = [NSString stringWithFormat:@"UPDATE Wine SET state = 2, name = \'%@\', producer = \'%@\', year = %d, grapes = \'%@\',  region_id = %d, price = %f, currency = \'%@\' WHERE wine_id = %d", self.name, self.producer, self.year, self.grapes, self.region.region_id, self.price, self.currency, self.wine_id];
                         break;
                         
                     default:
@@ -176,7 +176,7 @@
 }
 
 -(NSString*) fullPrice {
-    NSString* full_price = [[NSString alloc] initWithFormat:@"%.02f %@", self.price, currencyStr(self.currency)];
+    NSString* full_price = [[NSString alloc] initWithFormat:@"%.02f %@", self.price, self.currency];
     return full_price;
 }
 

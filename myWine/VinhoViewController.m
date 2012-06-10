@@ -280,7 +280,12 @@
     }
     if([segue.identifier isEqualToString:@"vinhoToCurrency"]) {
         CurrencyViewController* cvc = (CurrencyViewController*) segue.destinationViewController;
-        cvc.selectedCurrency = self.editableWine.currency;
+        if([self.editableWine.currency isEqualToString:@"EUR"])
+            cvc.selectedCurrency = 0;
+        else if([self.editableWine.currency isEqualToString:@"USD"])
+            cvc.selectedCurrency = 1;
+        else if([self.editableWine.currency isEqualToString:@"GBP"])
+            cvc.selectedCurrency = 2;
         cvc.delegate = self;
         self.popover = [(UIStoryboardPopoverSegue *)segue popoverController];
         
@@ -598,10 +603,24 @@
 #pragma mark - Currency Delegate Method
 - (void) currencyViewControllerDidSelect:(int) currency {
     //sets the selected currency
-    self.editableWine.currency = currency;
+    NSString *curr;
+    switch (currency) {
+        case 0:
+            curr = @"EUR";
+            break;
+        case 1:
+            curr = @"USD";
+            break;
+        case 2:
+            curr = @"GBP";
+            break;
+        default:
+            break;
+    }
+    self.editableWine.currency = curr;
     
     //sets the button text
-    [self.selectCurrencyButton setTitle:currencyStr(self.editableWine.currency) forState:UIControlStateNormal];
+    [self.selectCurrencyButton setTitle:self.editableWine.currency forState:UIControlStateNormal];
     
     //dismisses the popover
     [self.popover dismissPopoverAnimated:YES];

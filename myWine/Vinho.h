@@ -15,7 +15,7 @@
 @property (nonatomic, assign) int wine_id;
 @property (nonatomic, assign) int year;
 @property (nonatomic, assign) double price;
-@property (nonatomic) int currency;
+@property (nonatomic) NSString *currency;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *producer;
 @property (nonatomic, retain) Regiao * region;

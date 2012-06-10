@@ -373,7 +373,23 @@ finishedSavingWithError:(NSError *)error
                         vinho.year = _AnoVinho.text.intValue;
                         vinho.region = self.region;
                         vinho.winetype = self.tipo;
-                        vinho.currency = self.currency;
+                        
+                        NSString *curr;
+                        switch (self.currency) {
+                            case 0:
+                                curr = @"EUR";
+                                break;
+                            case 1:
+                                curr = @"USD";
+                                break;
+                            case 2:
+                                curr = @"GBP";
+                                break;
+                            default:
+                                break;
+                        }
+                         
+                        vinho.currency = curr;
                         vinho.grapes = self.castaVinho.text;
                         
                         /*@synthesize regiaoButton;

@@ -171,7 +171,7 @@ static User *sharedUser = nil;
                 wine.producer = nil;
             
             
-            wine.currency = currencyInt( [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 5)] );
+            wine.currency = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 5)];
             wine.price = sqlite3_column_double(stmt, 6);
             
             
