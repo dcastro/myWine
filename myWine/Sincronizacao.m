@@ -383,14 +383,14 @@
     }
     
 
-    
+/*    
     if([receivedJSON objectForKey:@"Countries"]){
         if(![self parseCountries:[receivedJSON objectForKey:@"Countries"]]){
             [query rollbackTransaction];
             return FALSE; 
         }
     }
-    
+*/    
     
     if([receivedJSON objectForKey:@"WineTypes"]){
         if(![self parseWineTypes:[receivedJSON objectForKey:@"WineTypes"]]){
@@ -424,13 +424,13 @@
     }
      
     
-    
+    */
     //ultimo passo e limpar o lixo solto da bd
     if(![self cleanGarbage]){
         [query rollbackTransaction];
         return FALSE; 
     }
-    */
+    
     
     [query endTransaction];
     
@@ -1388,9 +1388,7 @@ namePT:(NSString *)name_pt andWheight:(int)weight
                 classifiable_id,
                 classification_id,
                 classifiableType];
-    
-    DebugLog(querySQL);
-    
+        
     char *errMsg;
     if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
         DebugLog(@"Query with error: %s", errMsg);
@@ -1515,7 +1513,7 @@ namePT:(NSString *)name_pt andWheight:(int)weight
             
         }
     }else {
-        DebugLog(@"Query with error: %s", querySQL);
+        DebugLog(@"Query with error: %@", querySQL);
         return FALSE;
     }
     sqlite3_finalize(stmt);
@@ -1525,10 +1523,11 @@ namePT:(NSString *)name_pt andWheight:(int)weight
     /*
      select distinct classifiable_id, classifiable_type from possibleclassification where  classifiable_type = 'FormCriterion' AND classifiable_id not in (Select formcriterion_id from formcriterion) UNION select distinct classifiable_id, classifiable_type from possibleclassification where  classifiable_type = 'FormCharacteristic' AND classifiable_id not in (Select formcharacteristic_id from FormCharacteristic) UNION select distinct classifiable_id, classifiable_type from possibleclassification where  classifiable_type = 'Criterion' AND classifiable_id not in (Select criterion_id from Criterion) UNION  select distinct classifiable_id, classifiable_type from possibleclassification where  classifiable_type = 'Characteristic' AND classifiable_id not in (Select characteristic_id from Characteristic);
      */
+
     
     querySQL =  @"SELECT DISTINCT classifiable_id, classifiable_type \
                 FROM possibleclassification \
-                WHERE  classifiable_type = 'FormCriterion' AND classifiable_id NOT INT (\
+                WHERE  classifiable_type = 'FormCriterion' AND classifiable_id NOT IN (\
                         SELECT formcriterion_id \
                         FROM formcriterion) \
                 \
@@ -1552,7 +1551,7 @@ namePT:(NSString *)name_pt andWheight:(int)weight
                 \
                 SELECT DISTINCT classifiable_id, classifiable_type \
                 FROM possibleclassification \
-                WHERE  classifiable_type = 'Characteristic' AND classifiable_id NOT INE (\
+                WHERE  classifiable_type = 'Characteristic' AND classifiable_id NOT IN (\
                         SELECT characteristic_id \
                         FROM Characteristic);";
     
@@ -1577,7 +1576,7 @@ namePT:(NSString *)name_pt andWheight:(int)weight
             
         }
     }else {
-        DebugLog(@"Query with error: %s", querySQL);
+        DebugLog(@"Query with error: %@", querySQL);
         return FALSE;
     }
     sqlite3_finalize(stmt);
@@ -1612,7 +1611,7 @@ namePT:(NSString *)name_pt andWheight:(int)weight
             
         }
     }else {
-        DebugLog(@"Query with error: %s", querySQL);
+        DebugLog(@"Query with error: %@", querySQL);
         return FALSE;
     }
     sqlite3_finalize(stmt);
