@@ -11,6 +11,7 @@
 #import "ListaProvasViewController.h"
 #import "NSMutableArray+VinhosMutableArray.h"
 #import "ListaPaisesViewController.h"
+#import <objc/runtime.h>
 
 @interface ListaVinhosViewController () {
     NSMutableArray *_objects;
@@ -95,6 +96,17 @@ SEL action; id target;
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return YES;
+}
+
+-(void) willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    
+    if(UIInterfaceOrientationIsPortrait(toInterfaceOrientation)) {
+        // Keep references to the popover controller and the popover button, and tell the detail view controller to show the button.
+        Language* lan = [Language instance];
+        
+        UIViewController <SubstitutableDetailViewController> *detailViewController = (UIViewController<SubstitutableDetailViewController>*)[[splitViewController.viewControllers objectAtIndex:1] topViewController];
+        [detailViewController showRootPopoverButtonItem:rootPopoverButtonItem];
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -439,6 +451,15 @@ SEL action; id target;
     
     [self dismissViewControllerAnimated:YES completion:nil];
     
+    //hide "Wines" button if on landscape
+    UIDeviceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    
+    if (UIInterfaceOrientationIsLandscape(orientation)) {
+        UIViewController <SubstitutableDetailViewController> *detailViewController = (UIViewController<SubstitutableDetailViewController>*)[[splitViewController.viewControllers objectAtIndex:1] topViewController];
+        [detailViewController invalidateRootPopoverButtonItem:rootPopoverButtonItem];
+        NSLog(@"LANDSCAPE class %s", class_getName([detailViewController class]));
+    }
+    
 }
 
 - (void) setVinhos:(NSMutableArray*)vinhos {
@@ -484,8 +505,8 @@ SEL action; id target;
     // Nil out references to the popover controller and the popover button, and tell the detail view controller to hide the button.
     UIViewController <SubstitutableDetailViewController> *detailViewController = (UIViewController<SubstitutableDetailViewController>*)[[splitViewController.viewControllers objectAtIndex:1] topViewController];
     [detailViewController invalidateRootPopoverButtonItem:rootPopoverButtonItem];
-    self.popoverController = nil;
-    self.rootPopoverButtonItem = nil;
+    //self.popoverController = nil;
+    //self.rootPopoverButtonItem = nil;
 }
 
 #pragma mark - VinhoViewController Delegate Methods
