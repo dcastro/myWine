@@ -312,7 +312,8 @@ SEL action; id target;
     Prova* prova = [FormularioProva generateTasting:self.vinho.winetype]; //[[self provas] objectAtIndex:0];
     
     //index calculation
-    int index = [self.provas count];
+    int index = 0;
+    //int index = [self.provas count];
     NSIndexPath* path = [NSIndexPath indexPathForRow:index inSection:0]; 
     NSArray *paths = [NSArray arrayWithObject: path];
     
@@ -339,7 +340,7 @@ SEL action; id target;
 
     //scroll to the inserted row and select it
     [[self tableView] scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-    [[self tableView] selectRowAtIndexPath:path animated:YES scrollPosition:UITableViewScrollPositionBottom];
+    [[self tableView] selectRowAtIndexPath:path animated:YES scrollPosition:UITableViewScrollPositionTop];
     
     //presents the newly added tasting
     self.needsEditing = YES;

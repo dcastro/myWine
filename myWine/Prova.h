@@ -25,4 +25,6 @@
 
 -(BOOL)save;
 
+- (NSComparisonResult)compare:(Prova *)otherProva;
+
 @end

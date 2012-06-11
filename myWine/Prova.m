@@ -194,4 +194,15 @@
     return percentage;
 }
 
+
+- (NSComparisonResult)compare:(Prova *)otherProva {
+    if (self.tasting_date > otherProva.tasting_date)
+        return NSOrderedAscending;
+    else if (self.tasting_date < otherProva.tasting_date)
+        return NSOrderedDescending;
+    else 
+        return NSOrderedSame;
+}
+
+
 @end

@@ -545,7 +545,7 @@ SEL action; id target;
 }
 
 -(void) ListaProvasViewControllerDelegateDidUpdateScore {
-    NSLog(@"prova did update score");
+    //NSLog(@"prova did update score");
     [self.vinhos orderVinhosBy:selectedOrder];
     [self.vinhos sectionizeOrderedBy:selectedOrder];
     [[self tableView] reloadData];

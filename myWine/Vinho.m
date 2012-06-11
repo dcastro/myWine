@@ -35,6 +35,7 @@
 - (NSMutableArray*) provas {
     if (! _provas) {
         [self loadProvasFromDB];
+        [_provas sortUsingSelector:@selector(compare:)];
     } 
     return _provas;
 }
