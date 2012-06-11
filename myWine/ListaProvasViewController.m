@@ -59,18 +59,19 @@ SEL action; id target;
 }
 
 - (void) viewDidAppear:(BOOL)animated {
-    
+    /*
     //add all observers
     [self forEveryCell:^(ProvaCell* cell) {
         
         CheckboxButton* checkbox = (CheckboxButton*) [cell viewWithTag:1];
         @try {
-            //[checkbox addObserver:cell forKeyPath:@"selected" options:NSKeyValueObservingOptionNew context:nil];
+            [checkbox addObserver:cell forKeyPath:@"selected" options:NSKeyValueObservingOptionNew context:nil];
         } @catch (id anException) {
             
         }
         
     } ];
+     */
     
     [super viewDidAppear:animated];
 }
@@ -82,7 +83,6 @@ SEL action; id target;
         
         CheckboxButton* checkbox = (CheckboxButton*) [cell viewWithTag:1];
         @try {
-            //NSLog(@"removed");
             [checkbox removeObserver:cell forKeyPath:@"selected"];
         } @catch (id anException) {
             
@@ -201,11 +201,27 @@ SEL action; id target;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ProvaCell *cell = (ProvaCell*) [tableView dequeueReusableCellWithIdentifier:@"Prova"];
-    
+
     Prova *object = [_provas objectAtIndex:indexPath.row];
     cell.textLabel.text = [object.shortDate substringToIndex:10];
     cell.detailTextLabel.text = [object.shortDate substringFromIndex:11];
     cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cell_bg_gradient.png"]];
+    
+    
+    //remove old checkbox and observer
+    CheckboxButton* oldCheckbox = (CheckboxButton*) [cell viewWithTag:1];
+    if( oldCheckbox != nil ) {
+        @try {
+            [oldCheckbox removeObserver:cell forKeyPath:@"selected"];
+        } @catch (id anException) {
+            
+        }
+        [oldCheckbox removeFromSuperview];
+        oldCheckbox = nil;
+
+    }
+    
+    
     //initialize the checkbox button
     CheckboxButton* checkbox = [CheckboxButton createWithTarget:self andPosition:cell.frame.size.width - 50];
 
@@ -221,8 +237,7 @@ SEL action; id target;
     [cell setProva:object];
     
     [checkbox addObserver:cell forKeyPath:@"selected" options:NSKeyValueObservingOptionNew context:nil];
-    //NSLog(@"added");
-
+    
     return cell;
 }
 
