@@ -46,6 +46,7 @@
 
 @property (nonatomic, strong) UIPopoverController *popoverController;
 @property (nonatomic, strong) UIBarButtonItem *rootPopoverButtonItem;
+@property (nonatomic, strong) UIBarButtonItem *rootTemp;
 @property (nonatomic) int selectedOrder;
 
 

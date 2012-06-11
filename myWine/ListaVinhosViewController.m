@@ -38,7 +38,7 @@
 
 SEL action; id target;
 
-@synthesize rootPopoverButtonItem, popoverController, splitViewController;
+@synthesize rootPopoverButtonItem, popoverController, splitViewController, rootTemp;
 
 
 - (void)awakeFromNib
@@ -102,10 +102,9 @@ SEL action; id target;
     
     if(UIInterfaceOrientationIsPortrait(toInterfaceOrientation)) {
         // Keep references to the popover controller and the popover button, and tell the detail view controller to show the button.
-        Language* lan = [Language instance];
         
         UIViewController <SubstitutableDetailViewController> *detailViewController = (UIViewController<SubstitutableDetailViewController>*)[[splitViewController.viewControllers objectAtIndex:1] topViewController];
-        [detailViewController showRootPopoverButtonItem:rootPopoverButtonItem];
+        [detailViewController showRootPopoverButtonItem:rootTemp];
     }
 }
 
@@ -457,7 +456,8 @@ SEL action; id target;
     if (UIInterfaceOrientationIsLandscape(orientation)) {
         UIViewController <SubstitutableDetailViewController> *detailViewController = (UIViewController<SubstitutableDetailViewController>*)[[splitViewController.viewControllers objectAtIndex:1] topViewController];
         [detailViewController invalidateRootPopoverButtonItem:rootPopoverButtonItem];
-        NSLog(@"LANDSCAPE class %s", class_getName([detailViewController class]));
+        rootPopoverButtonItem = nil;
+        popoverController = nil;
     }
     
 }
@@ -478,6 +478,7 @@ SEL action; id target;
     [self.filterButton setTitle: [lan translate:@"Filter"]];
     
     [self.rootPopoverButtonItem setTitle:[lan translate:@"Wines List Title"]];
+    [self.rootTemp setTitle:[lan translate:@"Wines List Title"]];
 }
 
 - (IBAction)didPressHomeButton:(id)sender {
@@ -497,6 +498,7 @@ SEL action; id target;
     barButtonItem.title = [lan translate:@"Wines List Title"];
     self.popoverController = pc;
     self.rootPopoverButtonItem = barButtonItem;
+    self.rootTemp = barButtonItem;
     UIViewController <SubstitutableDetailViewController> *detailViewController = (UIViewController<SubstitutableDetailViewController>*)[[splitViewController.viewControllers objectAtIndex:1] topViewController];
     [detailViewController showRootPopoverButtonItem:rootPopoverButtonItem];
 }
@@ -507,8 +509,8 @@ SEL action; id target;
     // Nil out references to the popover controller and the popover button, and tell the detail view controller to hide the button.
     UIViewController <SubstitutableDetailViewController> *detailViewController = (UIViewController<SubstitutableDetailViewController>*)[[splitViewController.viewControllers objectAtIndex:1] topViewController];
     [detailViewController invalidateRootPopoverButtonItem:rootPopoverButtonItem];
-    //self.popoverController = nil;
-    //self.rootPopoverButtonItem = nil;
+    self.popoverController = nil;
+    self.rootPopoverButtonItem = nil;
 }
 
 #pragma mark - VinhoViewController Delegate Methods
