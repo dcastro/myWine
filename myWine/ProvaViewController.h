@@ -49,7 +49,6 @@
 
 @property (strong, nonatomic) id<ProvaViewControllerDelegate> delegate;
 
-@property (strong, nonatomic) NSMutableDictionary* cellsDictionary;
 
 - (void) setEditing:(BOOL)editing animated:(BOOL)animated done:(BOOL)done;
 
