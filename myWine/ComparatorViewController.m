@@ -12,6 +12,7 @@
 #import "Comparator.h"
 #import "User.h"
 #import "ComparatorCell.h"
+#import "Language.h"
 #import <objc/runtime.h>
 
 @interface ComparatorViewController ()
@@ -54,6 +55,9 @@
 
 
 - (void) configureView {
+    
+    [self.cancelButton setTitle:[[Language instance] translate:@"Cancel"]];
+    
     NSString* string = [[NSString alloc] initWithFormat:@"%i%%", [self.provaA calcScore]];
     self.scoreContentLabelA.text = string;
     [self.scoreContentLabelA setFont:[UIFont fontWithName:@"DroidSerif" size:LARGER_FONT]];

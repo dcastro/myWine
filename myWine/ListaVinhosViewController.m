@@ -30,6 +30,7 @@
 
 @synthesize homeVisibility;
 @synthesize tempButton;
+@synthesize homeButton;
 @synthesize filterButton;
 @synthesize orderButton;
 @synthesize selectedOrder;
@@ -67,12 +68,15 @@ SEL action; id target;
     
     [self.vinhos sectionizeOrderedBy:0];
     
+    self.tempButton = self.homeButton;
+    
 }
 
 - (void)viewDidUnload
 {
     [self setFilterButton:nil];
     [self setOrderButton:nil];
+    [self setHomeButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }

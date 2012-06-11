@@ -1665,7 +1665,7 @@
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gcx-rM-uTL" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="4p9-kV-ipa" customClass="FilterViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="1lZ-xX-feq">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="1lZ-xX-feq">
                         <rect key="frame" x="0.0" y="64" width="703" height="704"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1917,6 +1917,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics" barStyle="blackOpaque"/>
                     <connections>
                         <outlet property="filterButton" destination="9hN-W6-5pe" id="ENy-UG-pE9"/>
+                        <outlet property="homeButton" destination="DcH-NY-T9O" id="H6Y-6N-c0O"/>
                         <outlet property="orderButton" destination="NhG-r2-GEG" id="Wdy-f8-eTO"/>
                         <segue destination="GmD-9N-1lw" kind="push" identifier="PushProvas" id="1f0-qR-5Ea"/>
                         <segue destination="N51-FY-8hq" kind="push" identifier="VinhosToHome" splitViewControllerTargetIndex="1" id="5EB-Zz-Uxs"/>
@@ -2615,6 +2616,7 @@
             <relationships>
                 <relationship kind="action" name="didPressHomeButton:"/>
                 <relationship kind="outlet" name="filterButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="homeButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="orderButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="tempButton" candidateClass="UIBarButtonItem"/>
             </relationships>

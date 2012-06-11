@@ -52,6 +52,8 @@
 @property (nonatomic, getter=homeIsVisible) BOOL homeVisibility;
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *tempButton;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *homeButton;
+
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *filterButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *orderButton;
 
