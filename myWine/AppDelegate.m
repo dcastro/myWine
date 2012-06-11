@@ -134,7 +134,7 @@
     transition.duration = 0.8;
     transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromLeft;
+    transition.subtype = kCATransitionFromRight;
     transition.delegate = self;     
     [CATransaction setCompletionBlock:^ {
         self.comparatorNavController = nil;
