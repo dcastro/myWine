@@ -20,6 +20,8 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableViewA;
 @property (weak, nonatomic) IBOutlet UITableView *tableViewB;
+@property (weak, nonatomic) IBOutlet UILabel *scoreContentLabelA;
+@property (weak, nonatomic) IBOutlet UILabel *scoreContentLabelB;
 
 - (IBAction)cancel:(id)sender;
 

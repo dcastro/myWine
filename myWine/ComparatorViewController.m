@@ -21,6 +21,8 @@
 @implementation ComparatorViewController
 @synthesize tableViewA;
 @synthesize tableViewB;
+@synthesize scoreContentLabelA;
+@synthesize scoreContentLabelB;
 @synthesize cancelButton;
 @synthesize provaA, provaB;
 
@@ -37,29 +39,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    /*
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-    self.provaVC1 = [storyboard instantiateViewControllerWithIdentifier:@"ProvaController"];
-    self.provaVC2 = [storyboard instantiateViewControllerWithIdentifier:@"ProvaController"];
-    
-    self.prova1 = [Comparator instance].prova1;
-    self.prova2 = [Comparator instance].prova2;
-    
-    self.provaVC1.vinho = [[[User instance] vinhos] objectAtIndex:0];
-    self.provaVC1.prova_mode = CRITERIA_MODE;
-    self.provaVC1.prova = self.prova1;
-    
-    self.provaVC2.vinho = [[[User instance] vinhos] objectAtIndex:0];
-    self.provaVC2.prova_mode = CRITERIA_MODE;
-    self.provaVC2.prova = self.prova2;
-    
-    
-    [[[self view] viewWithTag:1] addSubview:self.provaVC1.view];
-    [[[self view] viewWithTag:2] addSubview:self.provaVC2.view];
-    
-    [[[[self.view viewWithTag:1] subviews] objectAtIndex:0] setClipsToBounds:YES];
-    NSLog(@"class %s", class_getName([[[[self.view viewWithTag:1] subviews] objectAtIndex:0] class]));
-    NSLog(@"class %i", [[[self.view viewWithTag:1] subviews] count] );*/
     
     self.provaA = [Comparator instance].prova1;
     self.provaB = [Comparator instance].prova2;
@@ -69,6 +48,19 @@
     
     [self tableViewB].delegate = self;
     [self tableViewB].dataSource = self;
+    
+    [self configureView];
+}
+
+
+- (void) configureView {
+    NSString* string = [[NSString alloc] initWithFormat:@"%i%%", [self.provaA calcScore]];
+    self.scoreContentLabelA.text = string;
+    [self.scoreContentLabelA setFont:[UIFont fontWithName:@"DroidSerif" size:LARGER_FONT]];
+    
+    string = [[NSString alloc] initWithFormat:@"%i%%", [self.provaB calcScore]];
+    self.scoreContentLabelB.text = string;
+    [self.scoreContentLabelB setFont:[UIFont fontWithName:@"DroidSerif" size:LARGER_FONT]];
 }
 
 - (void)viewDidUnload
@@ -76,6 +68,8 @@
     [self setCancelButton:nil];
     [self setTableViewA:nil];
     [self setTableViewB:nil];
+    [self setScoreContentLabelA:nil];
+    [self setScoreContentLabelB:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
