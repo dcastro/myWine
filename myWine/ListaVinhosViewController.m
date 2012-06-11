@@ -476,6 +476,8 @@ SEL action; id target;
     self.orderButton.title = [lan translate:@"Order"];
     //self.filter.title = [lan translate:@"Filter"];
     [self.filterButton setTitle: [lan translate:@"Filter"]];
+    
+    [self.rootPopoverButtonItem setTitle:[lan translate:@"Wines List Title"]];
 }
 
 - (IBAction)didPressHomeButton:(id)sender {
