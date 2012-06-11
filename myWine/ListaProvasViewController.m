@@ -65,7 +65,7 @@ SEL action; id target;
         
         CheckboxButton* checkbox = (CheckboxButton*) [cell viewWithTag:1];
         @try {
-            [checkbox addObserver:cell forKeyPath:@"selected" options:NSKeyValueObservingOptionNew context:nil];
+            //[checkbox addObserver:cell forKeyPath:@"selected" options:NSKeyValueObservingOptionNew context:nil];
         } @catch (id anException) {
             
         }
@@ -82,6 +82,7 @@ SEL action; id target;
         
         CheckboxButton* checkbox = (CheckboxButton*) [cell viewWithTag:1];
         @try {
+            //NSLog(@"removed");
             [checkbox removeObserver:cell forKeyPath:@"selected"];
         } @catch (id anException) {
             
@@ -219,8 +220,8 @@ SEL action; id target;
     
     [cell setProva:object];
     
-    //[checkbox addObserver:cell forKeyPath:@"selected" options:NSKeyValueObservingOptionNew context:nil];
-    
+    [checkbox addObserver:cell forKeyPath:@"selected" options:NSKeyValueObservingOptionNew context:nil];
+    //NSLog(@"added");
 
     return cell;
 }
