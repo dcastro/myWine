@@ -46,12 +46,15 @@
 
 @property (nonatomic, strong) UIPopoverController *popoverController;
 @property (nonatomic, strong) UIBarButtonItem *rootPopoverButtonItem;
+@property (nonatomic, strong) UIBarButtonItem *rootTemp;
 @property (nonatomic) int selectedOrder;
 
 
 @property (nonatomic, getter=homeIsVisible) BOOL homeVisibility;
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *tempButton;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *homeButton;
+
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *filterButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *orderButton;
 
@@ -63,6 +66,8 @@
 - (IBAction)didPressHomeButton:(id)sender;
 
 -(void) reloadData;
+
+- (void) goHome;
 
 
 @end

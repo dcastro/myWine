@@ -32,7 +32,6 @@
 @synthesize header = _header;
 @synthesize prova_mode;
 @synthesize delegate;
-@synthesize cellsDictionary;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -59,8 +58,8 @@
     
     //Fetch the data objects from the tab bar parent
     SubstitutableTabBarControllerViewController* tabBarController = (SubstitutableTabBarControllerViewController*) [self tabBarController];
-    self.vinho = [tabBarController vinho];
-    self.prova = [tabBarController prova];
+    //self.vinho = [tabBarController vinho];
+    //self.prova = [tabBarController prova];
     
     //Set fonts
     self.wineNameLabel.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGE_FONT];

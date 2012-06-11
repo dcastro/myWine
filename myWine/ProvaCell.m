@@ -35,9 +35,9 @@
 {
     
     if([keyPath isEqualToString:@"selected"]) {
-        if ([object isSelected])
+        if ([object isSelected]) {
             [Comparator register:self.prova];
-        else {
+        } else {
             [Comparator unregister:self.prova];
         }
     }

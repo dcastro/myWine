@@ -11,6 +11,7 @@
 #import "ListaProvasViewController.h"
 #import "NSMutableArray+VinhosMutableArray.h"
 #import "ListaPaisesViewController.h"
+#import <objc/runtime.h>
 
 @interface ListaVinhosViewController () {
     NSMutableArray *_objects;
@@ -30,13 +31,14 @@
 
 @synthesize homeVisibility;
 @synthesize tempButton;
+@synthesize homeButton;
 @synthesize filterButton;
 @synthesize orderButton;
 @synthesize selectedOrder;
 
 SEL action; id target;
 
-@synthesize rootPopoverButtonItem, popoverController, splitViewController;
+@synthesize rootPopoverButtonItem, popoverController, splitViewController, rootTemp;
 
 
 - (void)awakeFromNib
@@ -67,12 +69,15 @@ SEL action; id target;
     
     [self.vinhos sectionizeOrderedBy:0];
     
+    self.tempButton = self.homeButton;
+    
 }
 
 - (void)viewDidUnload
 {
     [self setFilterButton:nil];
     [self setOrderButton:nil];
+    [self setHomeButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -91,6 +96,16 @@ SEL action; id target;
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return YES;
+}
+
+-(void) willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    
+    if(UIInterfaceOrientationIsPortrait(toInterfaceOrientation)) {
+        // Keep references to the popover controller and the popover button, and tell the detail view controller to show the button.
+        
+        UIViewController <SubstitutableDetailViewController> *detailViewController = (UIViewController<SubstitutableDetailViewController>*)[[splitViewController.viewControllers objectAtIndex:1] topViewController];
+        [detailViewController showRootPopoverButtonItem:rootTemp];
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -435,6 +450,16 @@ SEL action; id target;
     
     [self dismissViewControllerAnimated:YES completion:nil];
     
+    //hide "Wines" button if on landscape
+    UIDeviceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    
+    if (UIInterfaceOrientationIsLandscape(orientation)) {
+        UIViewController <SubstitutableDetailViewController> *detailViewController = (UIViewController<SubstitutableDetailViewController>*)[[splitViewController.viewControllers objectAtIndex:1] topViewController];
+        [detailViewController invalidateRootPopoverButtonItem:rootPopoverButtonItem];
+        rootPopoverButtonItem = nil;
+        popoverController = nil;
+    }
+    
 }
 
 - (void) setVinhos:(NSMutableArray*)vinhos {
@@ -451,6 +476,9 @@ SEL action; id target;
     self.orderButton.title = [lan translate:@"Order"];
     //self.filter.title = [lan translate:@"Filter"];
     [self.filterButton setTitle: [lan translate:@"Filter"]];
+    
+    [self.rootPopoverButtonItem setTitle:[lan translate:@"Wines List Title"]];
+    [self.rootTemp setTitle:[lan translate:@"Wines List Title"]];
 }
 
 - (IBAction)didPressHomeButton:(id)sender {
@@ -470,6 +498,7 @@ SEL action; id target;
     barButtonItem.title = [lan translate:@"Wines List Title"];
     self.popoverController = pc;
     self.rootPopoverButtonItem = barButtonItem;
+    self.rootTemp = barButtonItem;
     UIViewController <SubstitutableDetailViewController> *detailViewController = (UIViewController<SubstitutableDetailViewController>*)[[splitViewController.viewControllers objectAtIndex:1] topViewController];
     [detailViewController showRootPopoverButtonItem:rootPopoverButtonItem];
 }
@@ -544,11 +573,17 @@ SEL action; id target;
     [[self tableView] reloadData];
 }
 
+
+#pragma mark - ListaProvas Delegate Methods
 -(void) ListaProvasViewControllerDelegateDidUpdateScore {
-    NSLog(@"prova did update score");
+    //NSLog(@"prova did update score");
     [self.vinhos orderVinhosBy:selectedOrder];
     [self.vinhos sectionizeOrderedBy:selectedOrder];
     [[self tableView] reloadData];
+}
+
+- (void) goHome {
+    [self performSegueWithIdentifier:@"VinhosToHome" sender:self];
 }
 
 @end

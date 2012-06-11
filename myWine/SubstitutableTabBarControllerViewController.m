@@ -55,6 +55,13 @@
     self.criteriaController.prova_mode = CRITERIA_MODE;
     self.characteristicsController.prova_mode = CHARACTERISTICS_MODE;
     
+    //set tabs' data sources
+    self.criteriaController.prova = self.prova;
+    self.criteriaController.vinho = self.vinho;
+    self.characteristicsController.prova = self.prova;
+    self.characteristicsController.vinho = self.vinho;
+    
+    
     //delegate
     self.criteriaController.delegate = self;
     

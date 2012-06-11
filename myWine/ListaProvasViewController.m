@@ -22,6 +22,7 @@
 @synthesize currentPopover;
 @synthesize needsEditing;
 @synthesize delegate;
+@synthesize childDetail;
 
 SEL action; id target;
 
@@ -59,7 +60,7 @@ SEL action; id target;
 }
 
 - (void) viewDidAppear:(BOOL)animated {
-    
+    /*
     //add all observers
     [self forEveryCell:^(ProvaCell* cell) {
         
@@ -71,6 +72,7 @@ SEL action; id target;
         }
         
     } ];
+     */
     
     [super viewDidAppear:animated];
 }
@@ -111,6 +113,7 @@ SEL action; id target;
         tabBarController.vinho = self.vinho;
         tabBarController.prova = prova;
         tabBarController.myDelegate = self;
+        childDetail = tabBarController;
         
         if (needsEditing) {
             needsEditing = false;
@@ -200,11 +203,27 @@ SEL action; id target;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ProvaCell *cell = (ProvaCell*) [tableView dequeueReusableCellWithIdentifier:@"Prova"];
-    
+
     Prova *object = [_provas objectAtIndex:indexPath.row];
     cell.textLabel.text = [object.shortDate substringToIndex:10];
     cell.detailTextLabel.text = [object.shortDate substringFromIndex:11];
     cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cell_bg_gradient.png"]];
+    
+    
+    //remove old checkbox and observer
+    CheckboxButton* oldCheckbox = (CheckboxButton*) [cell viewWithTag:1];
+    if( oldCheckbox != nil ) {
+        @try {
+            [oldCheckbox removeObserver:cell forKeyPath:@"selected"];
+        } @catch (id anException) {
+            
+        }
+        [oldCheckbox removeFromSuperview];
+        oldCheckbox = nil;
+
+    }
+    
+    
     //initialize the checkbox button
     CheckboxButton* checkbox = [CheckboxButton createWithTarget:self andPosition:cell.frame.size.width - 50];
 
@@ -219,9 +238,8 @@ SEL action; id target;
     
     [cell setProva:object];
     
-    //[checkbox addObserver:cell forKeyPath:@"selected" options:NSKeyValueObservingOptionNew context:nil];
+    [checkbox addObserver:cell forKeyPath:@"selected" options:NSKeyValueObservingOptionNew context:nil];
     
-
     return cell;
 }
 
@@ -254,10 +272,35 @@ SEL action; id target;
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        Prova* prova = [self.provas objectAtIndex:indexPath.row];
+        [tableView beginUpdates];
         if([_provas removeProvaAtIndex:indexPath.row]){
+            
             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
             [delegate ListaProvasViewControllerDelegateDidUpdateScore];
+            
+            //se a prova que stá a ser mostrado foi apagado
+            if (childDetail && childDetail.prova == prova) {
+                
+                //se houverem mais provas na lista
+                if ([self.provas count] > 0) {
+                    NSIndexPath* path = [NSIndexPath indexPathForRow:0 inSection:0];
+                    [tableView selectRowAtIndexPath:path animated:YES scrollPosition:UITableViewScrollPositionTop];
+                    [self performSegueWithIdentifier:@"showProva" sender:self];
+                    
+                }
+                //caso contrário, go home
+                else
+                    [delegate goHome];
+            }
+            
         }
+        else {
+            Language* lan = [Language instance];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[lan translate:@"Error"] message:[lan translate:@"Tasting delete fail"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            [alert show];
+        }
+        [tableView endUpdates];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
     }
@@ -296,7 +339,8 @@ SEL action; id target;
     Prova* prova = [FormularioProva generateTasting:self.vinho.winetype]; //[[self provas] objectAtIndex:0];
     
     //index calculation
-    int index = [self.provas count];
+    int index = 0;
+    //int index = [self.provas count];
     NSIndexPath* path = [NSIndexPath indexPathForRow:index inSection:0]; 
     NSArray *paths = [NSArray arrayWithObject: path];
     
@@ -323,7 +367,7 @@ SEL action; id target;
 
     //scroll to the inserted row and select it
     [[self tableView] scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-    [[self tableView] selectRowAtIndexPath:path animated:YES scrollPosition:UITableViewScrollPositionBottom];
+    [[self tableView] selectRowAtIndexPath:path animated:YES scrollPosition:UITableViewScrollPositionTop];
     
     //presents the newly added tasting
     self.needsEditing = YES;
