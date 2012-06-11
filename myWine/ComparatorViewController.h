@@ -15,10 +15,8 @@
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
 
-@property (strong, nonatomic) Prova* prova1;
-@property (strong, nonatomic) Prova* prova2;
-@property (strong, nonatomic) ProvaViewController* provaVC1;
-@property (strong, nonatomic) ProvaViewController* provaVC2;
+@property (strong, nonatomic) Prova* provaA;
+@property (strong, nonatomic) Prova* provaB;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableViewA;
 @property (weak, nonatomic) IBOutlet UITableView *tableViewB;

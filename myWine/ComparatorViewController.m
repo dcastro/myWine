@@ -22,8 +22,7 @@
 @synthesize tableViewA;
 @synthesize tableViewB;
 @synthesize cancelButton;
-@synthesize prova1, prova2;
-@synthesize provaVC1, provaVC2;
+@synthesize provaA, provaB;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -62,6 +61,9 @@
     NSLog(@"class %s", class_getName([[[[self.view viewWithTag:1] subviews] objectAtIndex:0] class]));
     NSLog(@"class %i", [[[self.view viewWithTag:1] subviews] count] );*/
     
+    self.provaA = [Comparator instance].prova1;
+    self.provaB = [Comparator instance].prova2;
+    
     [self tableViewA].delegate = self;
     [self tableViewA].dataSource = self;
     
@@ -79,22 +81,43 @@
 }
 
 -(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
-    NSLog(@"sec");
-    return 2;
+    if (tableView == tableViewA) {
+        return [provaA.sections count];
+    }
+    else if (tableView == tableViewB) {
+        return [provaB.sections count];
+    }
+    else return 0;
 }
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"rows");
-    return 3;
+    if (tableView == tableViewA) {
+        return [[[provaA.sections objectAtIndex:section] criteria] count];
+    }
+    else if (tableView == tableViewB) {
+        return [[[provaB.sections objectAtIndex:section] criteria] count];
+    }
+    else return 0;
+}
+
+- (NSString*) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    
+    Seccao* criteriaSection;
+    
+    if(tableView == tableViewA)
+        criteriaSection = (Seccao*) [self.provaA.sections objectAtIndex:section];
+    else if (tableView == tableViewB)
+        criteriaSection = (Seccao*) [self.provaB.sections objectAtIndex:section];
+    
+    return [criteriaSection name];
 }
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"ComparatorCell";
     
-    UITableViewCell *cell = (UITableViewCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    ComparatorCell *cell = (ComparatorCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if(cell == nil) {
-        NSLog(@"new");
         //cell = [[CriterionCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
         NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"ComparatorCell" owner:nil options:nil];
         
@@ -109,7 +132,17 @@
         
     }
     
+    Seccao* section;
     
+    if(tableView == tableViewA)
+        section = (Seccao*) [self.provaA.sections objectAtIndex:indexPath.section];
+    else if (tableView == tableViewB)
+        section = (Seccao*) [self.provaB.sections objectAtIndex:indexPath.section];
+    
+    Criterio* criterion = (Criterio*) [section.criteria objectAtIndex:indexPath.row];
+    
+    [cell setCellType: (tableView == tableViewA)? ComparatorCellTypeA : ComparatorCellTypeB];
+    [cell setCriterion:criterion];
     
     return cell;
     
