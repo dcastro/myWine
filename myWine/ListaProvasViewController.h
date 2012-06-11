@@ -21,6 +21,7 @@
 @protocol ListaProvasViewControllerDelegate <NSObject>
 
 - (void) ListaProvasViewControllerDelegateDidUpdateScore;
+- (void) goHome;
 
 @end
 
@@ -47,6 +48,8 @@
 @property (nonatomic) BOOL needsEditing;
 
 @property (strong, nonatomic) id<ListaProvasViewControllerDelegate> delegate;
+
+@property (strong, nonatomic) SubstitutableTabBarControllerViewController* childDetail;
 
 - (IBAction)addTasting:(id)sender;
 - (IBAction)toggleComparison:(id)sender;

@@ -22,6 +22,7 @@
 @synthesize currentPopover;
 @synthesize needsEditing;
 @synthesize delegate;
+@synthesize childDetail;
 
 SEL action; id target;
 
@@ -112,6 +113,7 @@ SEL action; id target;
         tabBarController.vinho = self.vinho;
         tabBarController.prova = prova;
         tabBarController.myDelegate = self;
+        childDetail = tabBarController;
         
         if (needsEditing) {
             needsEditing = false;
@@ -270,10 +272,35 @@ SEL action; id target;
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        Prova* prova = [self.provas objectAtIndex:indexPath.row];
+        [tableView beginUpdates];
         if([_provas removeProvaAtIndex:indexPath.row]){
+            
             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
             [delegate ListaProvasViewControllerDelegateDidUpdateScore];
+            
+            //se a prova que stá a ser mostrado foi apagado
+            if (childDetail && childDetail.prova == prova) {
+                
+                //se houverem mais provas na lista
+                if ([self.provas count] > 0) {
+                    NSIndexPath* path = [NSIndexPath indexPathForRow:0 inSection:0];
+                    [tableView selectRowAtIndexPath:path animated:YES scrollPosition:UITableViewScrollPositionTop];
+                    [self performSegueWithIdentifier:@"showProva" sender:self];
+                    
+                }
+                //caso contrário, go home
+                else
+                    [delegate goHome];
+            }
+            
         }
+        else {
+            Language* lan = [Language instance];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[lan translate:@"Error"] message:[lan translate:@"Tasting delete fail"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            [alert show];
+        }
+        [tableView endUpdates];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
     }

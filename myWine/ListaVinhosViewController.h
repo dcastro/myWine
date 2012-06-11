@@ -64,5 +64,7 @@
 
 -(void) reloadData;
 
+- (void) goHome;
+
 
 @end

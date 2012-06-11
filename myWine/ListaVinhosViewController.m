@@ -544,11 +544,17 @@ SEL action; id target;
     [[self tableView] reloadData];
 }
 
+
+#pragma mark - ListaProvas Delegate Methods
 -(void) ListaProvasViewControllerDelegateDidUpdateScore {
     //NSLog(@"prova did update score");
     [self.vinhos orderVinhosBy:selectedOrder];
     [self.vinhos sectionizeOrderedBy:selectedOrder];
     [[self tableView] reloadData];
+}
+
+- (void) goHome {
+    [self performSegueWithIdentifier:@"VinhosToHome" sender:self];
 }
 
 @end
