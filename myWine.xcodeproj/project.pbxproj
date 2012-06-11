@@ -106,6 +106,8 @@
 		DA92BAE3157E7EDE0028AAC4 /* ProvaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA92BAE2157E7EDE0028AAC4 /* ProvaCell.m */; };
 		DA92BAF9158011A40028AAC4 /* FilterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DA92BAF8158011A40028AAC4 /* FilterManager.m */; };
 		DA92BAFC1580121A0028AAC4 /* Filter.m in Sources */ = {isa = PBXBuildFile; fileRef = DA92BAFB1580121A0028AAC4 /* Filter.m */; };
+		DA94105E15862648009B5217 /* ComparatorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA94105D15862648009B5217 /* ComparatorCell.xib */; };
+		DA94106115862698009B5217 /* ComparatorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA94106015862698009B5217 /* ComparatorCell.m */; };
 		DA993CDE153F22E7009D3E13 /* Vinho.m in Sources */ = {isa = PBXBuildFile; fileRef = DA993CDD153F22E7009D3E13 /* Vinho.m */; };
 		DAC99B7F155AE3EA00D9C04F /* SubstitutableTabBarControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC99B7E155AE3EA00D9C04F /* SubstitutableTabBarControllerViewController.m */; };
 		DAC99B85155B0B7B00D9C04F /* ProvaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC99B84155B0B7B00D9C04F /* ProvaViewController.m */; };
@@ -275,6 +277,9 @@
 		DA92BAF8158011A40028AAC4 /* FilterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterManager.m; sourceTree = "<group>"; };
 		DA92BAFA1580121A0028AAC4 /* Filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Filter.h; sourceTree = "<group>"; };
 		DA92BAFB1580121A0028AAC4 /* Filter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Filter.m; sourceTree = "<group>"; };
+		DA94105D15862648009B5217 /* ComparatorCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComparatorCell.xib; sourceTree = "<group>"; };
+		DA94105F15862698009B5217 /* ComparatorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComparatorCell.h; sourceTree = "<group>"; };
+		DA94106015862698009B5217 /* ComparatorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComparatorCell.m; sourceTree = "<group>"; };
 		DA993CDC153F22E7009D3E13 /* Vinho.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vinho.h; sourceTree = "<group>"; };
 		DA993CDD153F22E7009D3E13 /* Vinho.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vinho.m; sourceTree = "<group>"; };
 		DAC99B7D155AE3EA00D9C04F /* SubstitutableTabBarControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubstitutableTabBarControllerViewController.h; sourceTree = "<group>"; };
@@ -580,6 +585,7 @@
 			isa = PBXGroup;
 			children = (
 				DA433EA1157C102500407B88 /* Checkbox.xib */,
+				DA94105D15862648009B5217 /* ComparatorCell.xib */,
 				DA019F521570400E00CC589A /* SectionItemCell.xib */,
 			);
 			name = Interfaces;
@@ -601,6 +607,8 @@
 		DA92BAF51580103F0028AAC4 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				DA94105F15862698009B5217 /* ComparatorCell.h */,
+				DA94106015862698009B5217 /* ComparatorCell.m */,
 				DAE595461578133C0039D894 /* CharacteristicCell.h */,
 				DAE595471578133C0039D894 /* CharacteristicCell.m */,
 				DA019F54157046A200CC589A /* CriterionCell.h */,
@@ -741,6 +749,7 @@
 				656D8B661580B98600230587 /* sync.png in Resources */,
 				65C7B3271580D152009C5237 /* newPhoto.png in Resources */,
 				84446B7B1580F00B00A72FA2 /* material mywine-19.png in Resources */,
+				DA94105E15862648009B5217 /* ComparatorCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -829,6 +838,7 @@
 				A043F46F158242B700D9BD59 /* ListaTipoVinhosViewController.m in Sources */,
 				DA7F5E7615843E2600E9418C /* MySplitViewViewController.m in Sources */,
 				DA7F5E7A158440C000E9418C /* ComparatorViewController.m in Sources */,
+				DA94106115862698009B5217 /* ComparatorCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

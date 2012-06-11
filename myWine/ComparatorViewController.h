@@ -11,7 +11,7 @@
 @class Prova;
 @class ProvaViewController;
 
-@interface ComparatorViewController : UIViewController
+@interface ComparatorViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
 
@@ -20,6 +20,8 @@
 @property (strong, nonatomic) ProvaViewController* provaVC1;
 @property (strong, nonatomic) ProvaViewController* provaVC2;
 
+@property (weak, nonatomic) IBOutlet UITableView *tableViewA;
+@property (weak, nonatomic) IBOutlet UITableView *tableViewB;
 
 - (IBAction)cancel:(id)sender;
 

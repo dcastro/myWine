@@ -11,6 +11,7 @@
 #import "ProvaViewController.h"
 #import "Comparator.h"
 #import "User.h"
+#import "ComparatorCell.h"
 #import <objc/runtime.h>
 
 @interface ComparatorViewController ()
@@ -18,6 +19,8 @@
 @end
 
 @implementation ComparatorViewController
+@synthesize tableViewA;
+@synthesize tableViewB;
 @synthesize cancelButton;
 @synthesize prova1, prova2;
 @synthesize provaVC1, provaVC2;
@@ -35,7 +38,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
+    /*
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
     self.provaVC1 = [storyboard instantiateViewControllerWithIdentifier:@"ProvaController"];
     self.provaVC2 = [storyboard instantiateViewControllerWithIdentifier:@"ProvaController"];
@@ -57,14 +60,59 @@
     
     [[[[self.view viewWithTag:1] subviews] objectAtIndex:0] setClipsToBounds:YES];
     NSLog(@"class %s", class_getName([[[[self.view viewWithTag:1] subviews] objectAtIndex:0] class]));
-    NSLog(@"class %i", [[[self.view viewWithTag:1] subviews] count] );
+    NSLog(@"class %i", [[[self.view viewWithTag:1] subviews] count] );*/
+    
+    [self tableViewA].delegate = self;
+    [self tableViewA].dataSource = self;
+    
+    [self tableViewB].delegate = self;
+    [self tableViewB].dataSource = self;
 }
 
 - (void)viewDidUnload
 {
     [self setCancelButton:nil];
+    [self setTableViewA:nil];
+    [self setTableViewB:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
+}
+
+-(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
+    NSLog(@"sec");
+    return 2;
+}
+
+-(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSLog(@"rows");
+    return 3;
+}
+
+- (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *CellIdentifier = @"ComparatorCell";
+    
+    UITableViewCell *cell = (UITableViewCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if(cell == nil) {
+        NSLog(@"new");
+        //cell = [[CriterionCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+        NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"ComparatorCell" owner:nil options:nil];
+        
+        for(id currentObject in topLevelObjects)
+        {
+            if([currentObject isKindOfClass:[ComparatorCell class]])
+            {
+                cell = currentObject;
+                break;
+            }
+        }
+        
+    }
+    
+    
+    
+    return cell;
+    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
