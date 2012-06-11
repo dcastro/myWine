@@ -188,8 +188,15 @@
         
         //set delegate
         UINavigationController *masterNavigationController = [self.splitView.viewControllers objectAtIndex:0];
-        ListaVinhosViewController *lvvc = (ListaVinhosViewController *)masterNavigationController.topViewController;
+        ListaVinhosViewController *lvvc = (ListaVinhosViewController *)[[masterNavigationController viewControllers] objectAtIndex:0] ;
         
+        for(UINavigationController* c in self.splitView.viewControllers) {
+            NSLog(@"class: %s", class_getName([c class]));
+            for (UIViewController* v in c.viewControllers) {
+                NSLog(@"-class: %s", class_getName([v class]));
+            }
+        }
+        NSLog(@"--class: %s", class_getName([lvvc class]));
         lvc.delegate = lvvc;
         
     }
