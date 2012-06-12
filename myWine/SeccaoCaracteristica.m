@@ -20,6 +20,7 @@
 @synthesize name_fr = _name_fr;
 @synthesize name_pt = _name_pt;
 @synthesize order = _order;
+@synthesize label;
 
 
 

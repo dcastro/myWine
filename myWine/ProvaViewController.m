@@ -57,7 +57,7 @@
     //[self.upperView setBackgroundColor:[UIColor clearColor]];
     
     //Fetch the data objects from the tab bar parent
-    SubstitutableTabBarControllerViewController* tabBarController = (SubstitutableTabBarControllerViewController*) [self tabBarController];
+    //SubstitutableTabBarControllerViewController* tabBarController = (SubstitutableTabBarControllerViewController*) [self tabBarController];
     //self.vinho = [tabBarController vinho];
     //self.prova = [tabBarController prova];
     
@@ -201,6 +201,12 @@
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
     [view setBackgroundColor:[UIColor myWineColorGrey ]];
     [view addSubview: label];
+    
+    //save label
+    if(prova_mode == CRITERIA_MODE)
+        [[self.prova.sections objectAtIndex:section] setLabel:label];
+    else if (prova_mode == CHARACTERISTICS_MODE)
+        [[self.prova.characteristic_sections objectAtIndex:section] setLabel:label];
     
     return view;
     
@@ -473,6 +479,39 @@
         int score = [self updateScoreLabel];
         [self.delegate scoreUpdated:(int) score];
     }
+}
+
+#pragma mark - Translatable Delegate Method
+- (void) translate {
+    NSLog(@"translating prova");
+    
+    //header
+    NSString* wineNameLabelText = [[NSString alloc] initWithFormat:@"%@: %@", [[Language instance] translate:@"Tasting of"], self.vinho.name];
+    [self.wineNameLabel setText:wineNameLabelText];
+    
+    [self.dateLabel setText:[self.prova fullDate] ];
+    
+    //footer
+    [self.commentLabel setText:[[Language instance] translate:@"Comment"]];
+    self.scoreLabel.text = [[Language instance] translate:@"Score"];
+    
+    //traduz section headers
+    if (prova_mode == CRITERIA_MODE) {
+        for(Seccao* section in self.prova.sections) {
+            [section.label setText:section.name];
+        }
+    }
+    else if (prova_mode == CHARACTERISTICS_MODE) {
+        for(SeccaoCaracteristica* section in self.prova.sections) {
+            [section.label setText:section.name];
+        }
+    }
+    
+    //traduz labels das cells
+    [self forEveryCell:^(CriterionCell* cell) {
+        [cell translate];
+    } ]; 
+    
 }
 
 @end

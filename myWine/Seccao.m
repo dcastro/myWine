@@ -20,6 +20,7 @@
 @synthesize section_id = _section_id;
 @synthesize criteria = _criteria;
 @synthesize order = _order;
+@synthesize label;
 
 
 -(NSMutableArray *)  criteria{

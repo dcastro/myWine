@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ProvaViewController.h"
-//#import "ListaVinhosViewController.h"
+#import "MySplitViewViewController.h"
 
 @protocol SubstitutableDetailViewController;
 
@@ -19,7 +19,7 @@
 @end
 
 
-@interface SubstitutableTabBarControllerViewController : UITabBarController <SubstitutableDetailViewController, ProvaViewControllerDelegate, UITabBarControllerDelegate>
+@interface SubstitutableTabBarControllerViewController : UITabBarController <SubstitutableDetailViewController, ProvaViewControllerDelegate, UITabBarControllerDelegate, TranslatableViewController>
 
 @property (strong, nonatomic) Vinho* vinho;
 @property (strong, nonatomic) Prova* prova;
@@ -36,5 +36,7 @@
 - (IBAction)toggleEdit:(id)sender;
 
 - (void)showRootPopoverButtonItem:(UIBarButtonItem *)barButtonItem;
+
+- (void) translate;
 
 @end

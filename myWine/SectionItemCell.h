@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Criterio.h"
 #import "UIColor+myWineColor.h"
+#import "MySplitViewViewController.h"
 
 @protocol SectionItemCellCellDelegate <NSObject>
 
@@ -16,7 +17,7 @@
 
 @end
 
-@interface SectionItemCell : UITableViewCell
+@interface SectionItemCell : UITableViewCell <TranslatableViewController>
 
 
 @property (strong, nonatomic) id item;
@@ -33,6 +34,8 @@
 - (IBAction)classificationSliderValueChanged:(id)sender;
 - (void) resetState;
 - (void) commitEdit;
+
+-(void) translate;
 
 //template methods
 - (int) minVal;
