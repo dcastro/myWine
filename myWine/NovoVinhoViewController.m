@@ -260,10 +260,7 @@
                                   nil];
         imagePicker.allowsEditing = NO;
         
-        //[self presentModalViewController:imagePicker animated:YES]; // Teste this type in a real device
-        
         _myPop = [[UIPopoverController alloc] initWithContentViewController:imagePicker];
-        //[_myPop presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
         [_myPop presentPopoverFromRect:CGRectMake(0.0, 0.0, 400.0, 400.0) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
         
         
@@ -287,7 +284,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     NSString *mediaType = [info
                            objectForKey:UIImagePickerControllerMediaType];
     
-    //[self dismissModalViewControllerAnimated:YES];
     [_myPop dismissPopoverAnimated:YES];
     
     //UIImage * image;
@@ -295,10 +291,9 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     if ([mediaType isEqualToString:(NSString *)kUTTypeImage]) {
         image = [info objectForKey:UIImagePickerControllerOriginalImage];
         
-        imageView.image = image;
-        
+        [self.pickFoto setImage:image forState:(UIControlStateNormal)];
         [self.foto setHidden:YES];
-        [self.pickFoto setImage:nil forState:(UIControlStateNormal)];
+
         
         if (newMedia)
             UIImageWriteToSavedPhotosAlbum(image,

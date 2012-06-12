@@ -24,7 +24,6 @@
 @end
 
 @interface VinhoViewController : UIViewController <UISplitViewControllerDelegate, UITextFieldDelegate,  UITextViewDelegate, ListaPaisesViewControllerDelegate, ListaRegioesViewControllerDelegate, CurrencyViewControllerDelegate, TranslatableViewController> {
-    UIImageView *winePic;
     UIImage *image;
 }
 
@@ -69,7 +68,8 @@
 
 @property (nonatomic, strong) UIPopoverController* popover;
 
-@property (strong, nonatomic) IBOutlet UIImageView *winePic;
+@property (weak, nonatomic) IBOutlet UIButton *winePic;
+
 
 - (IBAction)toggleEdit:(id)sender;
 

@@ -110,6 +110,9 @@
 - (NSString*) description {
     return self.name;
 }
-         
+
+- (NSComparisonResult)compare:(Seccao *)otherSection {
+    return [self.name compare:otherSection.name];
+}
 
 @end
