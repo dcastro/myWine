@@ -170,6 +170,7 @@
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [defaults synchronize];
     BOOL logout = [defaults boolForKey:@"logout"];
     
     int selectedLanguage = [defaults integerForKey:@"lang"];
