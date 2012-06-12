@@ -102,6 +102,8 @@
         self.currency = vinho.currency;
     if (self.price != vinho.price)
         self.price = vinho.price;
+    if(self.photo != vinho.photo)
+        self.photo = vinho.photo;
     
     //TODO: actualizar na BD os atributos alterados
     Query *query = [[Query alloc] init];

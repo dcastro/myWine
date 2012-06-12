@@ -177,6 +177,7 @@
         NSString *path = [NSString stringWithFormat:@"Documents/Images/%@/%@",nome,vinho.photo];
         NSString *pngPath = [NSHomeDirectory() stringByAppendingPathComponent:path]; 
         image = [UIImage imageWithContentsOfFile:pngPath];
+        NSLog(@"image name: %@", vinho.photo);
         [self.winePic setImage:image forState:(UIControlStateNormal)];
     }
     
@@ -214,6 +215,7 @@
     [self.selectRegionButton setHidden:TRUE];
     [self.selectCurrencyButton setHidden:TRUE];
     [self.winePic setUserInteractionEnabled:NO];
+    newMedia = NO;
     
 
 }
@@ -332,7 +334,7 @@
         imagePicker.allowsEditing = NO;
         [self presentModalViewController:imagePicker
                                 animated:YES];
-        newMedia = YES;
+        newMedia = NO;
     }
     else if ([UIImagePickerController isSourceTypeAvailable:
               UIImagePickerControllerSourceTypeSavedPhotosAlbum])
@@ -378,12 +380,8 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         
         [self.winePic setImage:image forState:(UIControlStateNormal)];
         
+        newMedia = YES;
         
-        if (newMedia)
-            UIImageWriteToSavedPhotosAlbum(image,
-                                           self,
-                                           @selector(image:finishedSavingWithError:contextInfo:),
-                                           nil);
     }
     else if ([mediaType isEqualToString:(NSString *)kUTTypeMovie])
     {
@@ -479,6 +477,36 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
             [self.editableWine setGrapes:self.grapesList.text];
             [self.editableWine setPrice: [self.priceValue.text doubleValue]];  
         
+            if(newMedia) {
+                if(image != nil) {
+                    // Create paths to output images
+                    
+                    NSDate* date = [NSDate date];
+                    NSTimeInterval time = [date timeIntervalSince1970];
+                    
+                    User* user = [User instance];
+                    
+                    NSString *nome = user.username;
+                    NSString *stamp = [NSString stringWithFormat:@"%d", time];
+                    NSString *path = [NSString stringWithFormat:@"Documents/Images/%@/",nome];
+                    NSString *filePath = [NSString stringWithFormat:@"Documents/Images/%@/%@_%@.png",nome,nome,stamp];
+                    
+                    NSString *pngPath = [NSHomeDirectory() stringByAppendingPathComponent:filePath];                            
+                    NSString *dirPath = [NSHomeDirectory() stringByAppendingPathComponent:path];
+                    
+                    NSError *error;
+                    if (![[NSFileManager defaultManager] fileExistsAtPath:dirPath]) 
+                        if(![[NSFileManager defaultManager] createDirectoryAtPath:dirPath withIntermediateDirectories:YES attributes:nil error:&error])
+                            NSLog(@"Create directory error: %@", error);
+
+                    [UIImagePNGRepresentation(image) writeToFile:pngPath atomically:YES];
+                    [self.editableWine setPhoto:[NSString stringWithFormat:@"%@_%@.png",nome,stamp]];
+                    NSLog(@"editable foto name: %@", self.editableWine.photo);
+                    
+                }
+            }
+            
+            
             [self.detailItem updateWithVinho:self.editableWine];
         
             self.wine_label_name.text = self.wineName.text;
