@@ -16,5 +16,5 @@
 @property (nonatomic, copy) NSString *name_fr;
 @property (nonatomic, copy) NSString *name_pt;
 
-
+- (NSString*) description;
 @end

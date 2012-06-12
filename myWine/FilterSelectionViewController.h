@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "FilterViewController.h"
 #import "ListaVinhosViewController.h"
+#import "MySplitViewViewController.h"
 
-
-@interface FilterSelectionViewController : UITableViewController <SubstitutableDetailViewController>
+@interface FilterSelectionViewController : UITableViewController <SubstitutableDetailViewController, TranslatableViewController>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *clearAllButton;
 @property (nonatomic) FilterType filterType;
@@ -21,5 +21,7 @@
 
 
 - (IBAction)clearAll:(id)sender;
+
+- (void) translate;
 
 @end
