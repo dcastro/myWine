@@ -116,5 +116,9 @@
     return self.name;
 }
 
+- (NSComparisonResult)compare:(SeccaoCaracteristica *)otherSection {
+    return [self.name compare:otherSection.name];
+}
+
 
 @end

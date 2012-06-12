@@ -27,6 +27,7 @@
 {
     if (!_sections) {
         [self loadSectionsFromDB];
+        [_sections sortUsingSelector:@selector(compare:)];
     }
     return _sections;
 }
@@ -36,6 +37,7 @@
 {
     if (!_characteristic_sections) {
         [self loadCharacteristicSectionsFromDB];
+        [_sections sortUsingSelector:@selector(compare:)];
     }
     return _characteristic_sections;
 }

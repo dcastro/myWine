@@ -20,4 +20,6 @@
 
 @property (strong, nonatomic) UILabel* label;
 
+- (NSComparisonResult)compare:(SeccaoCaracteristica *)otherSection;
+
 @end
