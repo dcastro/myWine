@@ -53,6 +53,7 @@
 @synthesize delegate;
 
 @synthesize popover = _popover;
+@synthesize winePic;
 
 @synthesize editableWine = _editableWine, country = _country;
 
@@ -168,6 +169,17 @@
     self.grapesListShow.backgroundColor = [UIColor  clearColor];
     self.grapesListShow.textColor = [UIColor whiteColor];
     
+    
+    if(vinho.photo != nil) {
+        User* user = [User instance];
+        NSString *nome = user.username;
+        NSString *path = [NSString stringWithFormat:@"Documents/Images/%@/%@",nome,vinho.photo];
+        image = [UIImage imageWithContentsOfFile:path];
+        [self.winePic initWithImage:image];
+        NSLog(@"Wine foto fetching: %@", path);
+     
+    }
+    
 }
 
 - (void)viewDidLoad
@@ -201,6 +213,7 @@
     [self.selectCountryButton setHidden:TRUE];
     [self.selectRegionButton setHidden:TRUE];
     [self.selectCurrencyButton setHidden:TRUE];
+    
 
 }
 
@@ -231,6 +244,8 @@
     [self setProducerName:nil];
     [self setGrapesList:nil];
     [self setGrapesListShow:nil];
+    [self setWinePic:nil];
+    [self setWinePic:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
