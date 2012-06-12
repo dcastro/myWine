@@ -168,11 +168,15 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
+    
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     BOOL logout = [defaults boolForKey:@"logout"];
     
     if(logout){
+        NSLog(@"dismissing modal views");
+        [self.splitView dismiss ];
+        
         //NSLog(@"Entrou em foreground e flag logout e true");
 
         [defaults setObject:nil forKey:@"username"];
@@ -205,6 +209,8 @@
         lvc.splitViewController = self.splitView;
         
     }
+    
+
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

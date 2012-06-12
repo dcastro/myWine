@@ -64,4 +64,13 @@
     }
 }
 
+-(void)dismiss {
+    for(UINavigationController* navController in self.viewControllers) {
+        for (UIViewController *viewController in navController.viewControllers) {
+            [viewController dismissModalViewControllerAnimated:NO];
+        }
+        [navController dismissModalViewControllerAnimated:NO];
+    }
+}
+
 @end
