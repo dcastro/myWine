@@ -24,6 +24,9 @@
 @synthesize tableViewB;
 @synthesize scoreContentLabelA;
 @synthesize scoreContentLabelB;
+@synthesize header;
+@synthesize provaAlabel;
+@synthesize provaBlabel;
 @synthesize cancelButton;
 @synthesize provaA, provaB;
 
@@ -51,6 +54,12 @@
     [self tableViewB].dataSource = self;
     
     [self configureView];
+    
+    [self.header setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"backgroundLandscape.png"]]];
+    [self.provaAlabel setText:[self.provaA fullDate]];
+    [self.provaAlabel setFont:[UIFont fontWithName:@"DroidSerif" size:NORMAL_FONT]];
+    [self.provaBlabel setText:[self.provaB fullDate]];
+    [self.provaBlabel setFont:[UIFont fontWithName:@"DroidSerif" size:NORMAL_FONT]];
 }
 
 
@@ -74,6 +83,9 @@
     [self setTableViewB:nil];
     [self setScoreContentLabelA:nil];
     [self setScoreContentLabelB:nil];
+    [self setHeader:nil];
+    [self setProvaAlabel:nil];
+    [self setProvaBlabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
