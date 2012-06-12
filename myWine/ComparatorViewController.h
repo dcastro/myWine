@@ -27,6 +27,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *provaBlabel;
 @property (weak, nonatomic) IBOutlet UILabel *provaAdate;
 @property (weak, nonatomic) IBOutlet UILabel *provaBdate;
+@property (weak, nonatomic) IBOutlet UIView *scoreView2;
+@property (weak, nonatomic) IBOutlet UIView *scoreView1;
 
 - (IBAction)cancel:(id)sender;
 

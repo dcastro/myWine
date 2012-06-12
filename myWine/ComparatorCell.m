@@ -46,6 +46,9 @@
     [self.criterionNameLabel setText: self.criterion.name];
     [self.criterionNameLabel sizeToFit];
     
+    //color
+    self.backgroundColor = [UIColor myWineColorDarkGrey];
+    
     
     //ajustar posicionamento da label
     CGRect frame = self.criterionNameLabel.frame;    
