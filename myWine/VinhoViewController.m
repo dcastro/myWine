@@ -53,7 +53,7 @@
 @synthesize delegate;
 
 @synthesize popover = _popover;
-@synthesize winePic;
+@synthesize winePic = _winePic;
 
 @synthesize editableWine = _editableWine, country = _country;
 
@@ -176,7 +176,7 @@
         NSString *path = [NSString stringWithFormat:@"Documents/Images/%@/%@",nome,vinho.photo];
         NSString *pngPath = [NSHomeDirectory() stringByAppendingPathComponent:path]; 
         image = [UIImage imageWithContentsOfFile:pngPath];
-        winePic.image = image;
+        [self.winePic setImage:image forState:(UIControlStateNormal)];
     }
     
 }
@@ -243,6 +243,7 @@
     [self setProducerName:nil];
     [self setGrapesList:nil];
     [self setGrapesListShow:nil];
+    [self setWinePic:nil];
     [self setWinePic:nil];
     [self setWinePic:nil];
     [super viewDidUnload];
