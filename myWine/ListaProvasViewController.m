@@ -236,7 +236,12 @@ SEL action; id target;
     [cell setProva:object];
     
     [checkbox addObserver:cell forKeyPath:@"selected" options:NSKeyValueObservingOptionNew context:nil];
-    
+
+    //centrar a checkbox verticalmente dentro da cell
+    CGRect frame = checkbox.frame;
+    frame.origin.y = (cell.frame.size.height/2.0) - (frame.size.height/2.0);
+    checkbox.frame = frame;
+
     return cell;
 }
 
