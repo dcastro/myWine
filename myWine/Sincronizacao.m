@@ -79,9 +79,20 @@
     }
     
     
-#warning TODO: fazer o mesmo para os tastings
+    NSMutableDictionary * newTastings;
+    if(newTastings){
+        [new setObject:newTastings forKey:@"wines"];
+    }else {
+        return nil;
+    }
     
     return new;
+}
+
+
+-(NSMutableArray *)buildNewTastings
+{
+    NSString * querySQL = [NSString stringWithFormat:@"SELECT "];
 }
 
 
@@ -90,9 +101,9 @@
 {
     
     
-    NSString * querySQL = [NSString stringWithFormat:@"SELECT wine_id, region_id, winetype_id, year, name, grapes, photo_filename, producer, currency, price \
-                FROM Wine \
-                WHERE user = \'%@\' AND state == 1", user.username];
+    NSString * querySQL = [NSString stringWithFormat:@"SELECT w.wine_id, w.region_id, w.year, w.name, w.grapes, w.photo_filename, w.producer, w.currency, w.price, wt.winetype_id, wt.name_en, wt.name_fr, wt.name_pt  \
+                FROM Wine w, WineType wt\
+                WHERE user = \'%@\' AND state == 1 AND w.winetype_id = wt.winetype_id", user.username];
     
     sqlite3_stmt * wines_stmt;
     NSMutableArray * wines = [[NSMutableArray alloc]init];
@@ -118,21 +129,29 @@
                                  
                                  
                                  
--(NSDictionary *)buildWine:(sqlite3_stmt **)wine_stmt{
+-(NSDictionary *)buildWine:(sqlite3_stmt **)wine_stmt
+{
     
     int wine_id = sqlite3_column_int(*wine_stmt, 0);
     NSMutableDictionary * wine = [[NSMutableDictionary alloc]init];
     [wine setObject:[NSNumber numberWithInt:sqlite3_column_int(*wine_stmt, 1)] forKey:@"Region"];
-    [wine setObject:[NSNumber numberWithInt:sqlite3_column_int(*wine_stmt, 2)] forKey:@"WineType"];
-    [wine setObject:[NSNumber numberWithInt:sqlite3_column_int(*wine_stmt, 3)] forKey:@"Harvest"];
-    [wine setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*wine_stmt, 4)] forKey:@"Name"];
-    [wine setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*wine_stmt, 5)] forKey:@"Grapes"];
-    [wine setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*wine_stmt, 6)] forKey:@"PhotoFilename"];
-    [wine setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*wine_stmt, 7)] forKey:@"Producer"];
-    [wine setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*wine_stmt, 8)] forKey:@"Currency"];
-    [wine setObject:[NSNumber numberWithDouble:sqlite3_column_double(*wine_stmt, 9)] forKey:@"Price"];
+    [wine setObject:[NSNumber numberWithInt:sqlite3_column_int(*wine_stmt, 2)] forKey:@"Harvest"]; //year
+    [wine setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*wine_stmt, 3)] forKey:@"Name"];
+    [wine setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*wine_stmt, 4)] forKey:@"Grapes"];
+    [wine setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*wine_stmt, 5)] forKey:@"PhotoFilename"];
+    [wine setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*wine_stmt, 6)] forKey:@"Producer"];
+    [wine setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*wine_stmt, 7)] forKey:@"Currency"];
+    [wine setObject:[NSNumber numberWithDouble:sqlite3_column_double(*wine_stmt, 8)] forKey:@"Price"];
     
+    NSMutableDictionary * winetype =[[NSMutableDictionary alloc] init ]; 
+    [winetype setObject:[NSNumber numberWithInt:sqlite3_column_int(*wine_stmt, 9)] forKey:@"Id"];
+    [winetype setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*wine_stmt, 10)] forKey:@"NameEn"];
+    [winetype setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*wine_stmt, 11)] forKey:@"NameFr"];
+    [winetype setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*wine_stmt, 12)] forKey:@"NamePt"];
     
+    [wine setObject:winetype forKey:@"WineType"];
+
+
     
     
     //nao se precisa de verificar estado porque uma vinho novo so tem provas novas

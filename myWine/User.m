@@ -221,15 +221,15 @@ static User *sharedUser = nil;
 -(BOOL) loadWineTypesFromDB{
     _tipoVinhos = [[NSMutableArray alloc] init];
     
-    DebugLog(@"entrou");
     
     Query *query = [[Query alloc] init];
     
     NSString *querySQL;
     
 
-    querySQL = [NSString stringWithFormat:@"SELECT wt.winetype_id, wt.name_en, wt.name_fr, wt.name_pt\
-                        FROM WineType wt;"];
+    querySQL = [NSString stringWithFormat:@"SELECT wt.winetype_id, wt.name_en, wt.name_fr, wt.name_pt \
+                FROM WineType wt, UserTypeForm utf \
+                WHERE wt.winetype_id = utf.winetype_id AND user = \'%@\';", _username];
       
     sqlite3_stmt *stmt = [query prepareForSingleQuery:querySQL];
     
