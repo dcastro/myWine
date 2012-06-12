@@ -29,6 +29,8 @@
 @synthesize provaBlabel;
 @synthesize provaAdate;
 @synthesize provaBdate;
+@synthesize scoreView2;
+@synthesize scoreView1;
 @synthesize cancelButton;
 @synthesize provaA, provaB;
 
@@ -57,7 +59,14 @@
     
     [self configureView];
     
+    [self.tableViewA setBackgroundView:nil];
+    [self.tableViewA setBackgroundColor:[UIColor myWineColorGrey]];
+    [self.tableViewB setBackgroundView:nil];
+    [self.tableViewB setBackgroundColor:[UIColor myWineColorGrey]];
+    
     [self.header setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"backgroundLandscape.png"]]];
+    [self.scoreView1 setBackgroundColor:[UIColor myWineColorGrey]];
+    [self.scoreView2 setBackgroundColor:[UIColor myWineColorGrey]];
     [self.provaAlabel setText:self.provaA.vinho.name];
     [self.provaAlabel setFont:[UIFont fontWithName:@"DroidSerif" size:LARGE_FONT]];
     [self.provaBlabel setText:self.provaB.vinho.name];
@@ -103,6 +112,8 @@
     [self setProvaBlabel:nil];
     [self setProvaAdate:nil];
     [self setProvaBdate:nil];
+    [self setScoreView2:nil];
+    [self setScoreView1:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -138,6 +149,53 @@
     
     return [criteriaSection name];
 }
+
+- (void) styleLabel:(UILabel*)label withTitle: (NSString*) title {
+    label.backgroundColor = [UIColor clearColor];
+    label.textColor = [UIColor myWineColor];
+    label.shadowColor = [UIColor whiteColor];
+    label.shadowOffset = CGSizeMake(0.0, 1.0);
+    label.font = [UIFont boldSystemFontOfSize:16];
+    label.text = title;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    NSString *sectionTitle = [self tableView:tableView titleForHeaderInSection:section];
+    if (sectionTitle == nil) {
+        return nil;
+    }
+    
+    // Create label with section title
+    UILabel *label = [[UILabel alloc] init];
+    label.frame = CGRectMake(50, 6, 300, 30);
+    [self styleLabel:label withTitle:sectionTitle];
+    
+    
+    
+    // Create header view and add label as a subview
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
+    [view setBackgroundColor:[UIColor myWineColorGrey ]];
+    [view addSubview: label];
+    
+    if(tableView == tableViewA)
+         [[self.provaA.sections objectAtIndex:section] setLabel:label];
+    else if (tableView == tableViewB)
+         [[self.provaB.sections objectAtIndex:section] setLabel:label];
+    
+    return view;
+    
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 10)];
+    [view setBackgroundColor:[UIColor myWineColorGrey ]];
+    
+    return view;
+}
+
+
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"ComparatorCell";

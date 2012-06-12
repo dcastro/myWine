@@ -1170,7 +1170,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="3Vd-tT-6tW">
-                                <rect key="frame" x="0.0" y="-160" width="1024" height="300"/>
+                                <rect key="frame" x="0.0" y="-160" width="1024" height="293"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="0M0-fb-57q">
@@ -1213,11 +1213,11 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="aFG-Hy-vqA">
-                                <rect key="frame" x="0.0" y="140" width="513" height="564"/>
+                                <rect key="frame" x="1.5" y="140" width="510" height="564"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" white="0.92000000000000004" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="eMw-4S-5kY">
-                                    <rect key="frame" x="0.0" y="110" width="513" height="116"/>
+                                    <rect key="frame" x="0.0" y="110" width="510" height="116"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Score" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="iee-mT-wlu">
@@ -1232,10 +1232,10 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="x" id="FXg-Am-OcY">
-                                        <rect key="frame" x="0.0" y="54" width="513" height="46"/>
+                                        <rect key="frame" x="0.0" y="54" width="510" height="46"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="31" y="1" width="451" height="43"/>
+                                            <rect key="frame" x="31" y="1" width="448" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -1245,7 +1245,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="aMX-0Q-LJa">
                                 <rect key="frame" x="521" y="140" width="510" height="564"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" white="0.92000000000000004" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="ok4-6l-p07">
                                     <rect key="frame" x="0.0" y="110" width="510" height="116"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1273,7 +1273,7 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.92000000000000004" alpha="1" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" id="zVh-hl-KRm">
@@ -1293,6 +1293,8 @@
                         <outlet property="provaBlabel" destination="IVA-Fq-Sbc" id="6oH-bo-EnZ"/>
                         <outlet property="scoreContentLabelA" destination="iee-mT-wlu" id="meL-Vt-QKQ"/>
                         <outlet property="scoreContentLabelB" destination="0Q7-b7-NzX" id="lf0-1i-BCV"/>
+                        <outlet property="scoreView1" destination="eMw-4S-5kY" id="EsD-cg-Fjh"/>
+                        <outlet property="scoreView2" destination="ok4-6l-p07" id="HyU-Yj-hDR"/>
                         <outlet property="tableViewA" destination="aFG-Hy-vqA" id="GLq-R2-MUH"/>
                         <outlet property="tableViewB" destination="aMX-0Q-LJa" id="8Fd-oD-uzJ"/>
                     </connections>
@@ -2186,6 +2188,8 @@
                 <relationship kind="outlet" name="provaBlabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="scoreContentLabelA" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="scoreContentLabelB" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scoreView1" candidateClass="UIView"/>
+                <relationship kind="outlet" name="scoreView2" candidateClass="UIView"/>
                 <relationship kind="outlet" name="tableViewA" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="tableViewB" candidateClass="UITableView"/>
             </relationships>
@@ -2419,6 +2423,7 @@
                 <relationship kind="outlet" name="selectRegionButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="tempButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="wineName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="winePic" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="wine_label_name" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="wine_type_label" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="year_label" candidateClass="UILabel"/>
