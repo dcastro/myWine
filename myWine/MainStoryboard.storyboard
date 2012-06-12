@@ -1169,28 +1169,50 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="3Vd-tT-6tW">
-                                <rect key="frame" x="0.0" y="-160" width="1024" height="248"/>
+                                <rect key="frame" x="0.0" y="-160" width="1024" height="300"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="0M0-fb-57q">
-                                        <rect key="frame" x="0.0" y="182" width="518" height="46"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="0M0-fb-57q">
+                                        <rect key="frame" x="86" y="182" width="432" height="46"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="IVA-Fq-Sbc">
-                                        <rect key="frame" x="517" y="182" width="507" height="46"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="IVA-Fq-Sbc">
+                                        <rect key="frame" x="592" y="182" width="432" height="46"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="material mywine-14.png" id="9j6-fr-GKM">
+                                        <rect key="frame" x="31" y="177" width="47" height="96"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="NTe-Xo-g5X">
+                                        <rect key="frame" x="86" y="230" width="432" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="material mywine-14.png" id="vsj-fM-hqD">
+                                        <rect key="frame" x="537" y="182" width="47" height="96"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="EXi-D0-rNi">
+                                        <rect key="frame" x="592" y="235" width="432" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="aFG-Hy-vqA">
-                                <rect key="frame" x="0.0" y="96" width="513" height="608"/>
+                                <rect key="frame" x="0.0" y="140" width="513" height="564"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="eMw-4S-5kY">
@@ -1220,7 +1242,7 @@
                                 </prototypes>
                             </tableView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="aMX-0Q-LJa">
-                                <rect key="frame" x="521" y="96" width="510" height="608"/>
+                                <rect key="frame" x="521" y="140" width="510" height="564"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="ok4-6l-p07">
@@ -1264,7 +1286,9 @@
                     <connections>
                         <outlet property="cancelButton" destination="ffR-f8-79i" id="eLt-K6-50m"/>
                         <outlet property="header" destination="3Vd-tT-6tW" id="3It-OI-XJJ"/>
+                        <outlet property="provaAdate" destination="NTe-Xo-g5X" id="XD0-uj-0GF"/>
                         <outlet property="provaAlabel" destination="0M0-fb-57q" id="K0b-cl-UZk"/>
+                        <outlet property="provaBdate" destination="EXi-D0-rNi" id="bjo-5l-cm8"/>
                         <outlet property="provaBlabel" destination="IVA-Fq-Sbc" id="6oH-bo-EnZ"/>
                         <outlet property="scoreContentLabelA" destination="iee-mT-wlu" id="meL-Vt-QKQ"/>
                         <outlet property="scoreContentLabelB" destination="0Q7-b7-NzX" id="lf0-1i-BCV"/>
@@ -2155,7 +2179,9 @@
                 <relationship kind="action" name="cancel:"/>
                 <relationship kind="outlet" name="cancelButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="header" candidateClass="UIView"/>
+                <relationship kind="outlet" name="provaAdate" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="provaAlabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="provaBdate" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="provaBlabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="scoreContentLabelA" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="scoreContentLabelB" candidateClass="UILabel"/>

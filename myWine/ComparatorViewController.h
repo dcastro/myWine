@@ -25,6 +25,8 @@
 @property (weak, nonatomic) IBOutlet UIView *header;
 @property (weak, nonatomic) IBOutlet UILabel *provaAlabel;
 @property (weak, nonatomic) IBOutlet UILabel *provaBlabel;
+@property (weak, nonatomic) IBOutlet UILabel *provaAdate;
+@property (weak, nonatomic) IBOutlet UILabel *provaBdate;
 
 - (IBAction)cancel:(id)sender;
 
