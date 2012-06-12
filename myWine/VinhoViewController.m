@@ -54,6 +54,7 @@
 
 @synthesize popover = _popover;
 @synthesize winePic = _winePic;
+@synthesize myPop = _myPop;
 
 @synthesize editableWine = _editableWine, country = _country;
 
@@ -212,6 +213,7 @@
     [self.selectCountryButton setHidden:TRUE];
     [self.selectRegionButton setHidden:TRUE];
     [self.selectCurrencyButton setHidden:TRUE];
+    [self.winePic setUserInteractionEnabled:NO];
     
 
 }
@@ -309,6 +311,87 @@
     
 }
 
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+- (IBAction)pickF:(id)sender
+{
+    if ([UIImagePickerController isSourceTypeAvailable:
+         UIImagePickerControllerSourceTypeCamera])
+    {
+        UIImagePickerController *imagePicker =
+        [[UIImagePickerController alloc] init];
+        imagePicker.delegate = self;
+        imagePicker.sourceType =
+        UIImagePickerControllerSourceTypeCamera;
+        imagePicker.mediaTypes = [NSArray arrayWithObjects:
+                                  (NSString *) kUTTypeImage,
+                                  nil];
+        imagePicker.allowsEditing = NO;
+        [self presentModalViewController:imagePicker
+                                animated:YES];
+        newMedia = YES;
+    }
+    else if ([UIImagePickerController isSourceTypeAvailable:
+              UIImagePickerControllerSourceTypeSavedPhotosAlbum])
+    {
+        UIImagePickerController *imagePicker =
+        [[UIImagePickerController alloc] init];
+        imagePicker.delegate = self;
+        imagePicker.sourceType =
+        UIImagePickerControllerSourceTypePhotoLibrary;
+        imagePicker.mediaTypes = [NSArray arrayWithObjects:
+                                  (NSString *) kUTTypeImage,
+                                  nil];
+        imagePicker.allowsEditing = NO;
+        
+        _myPop = [[UIPopoverController alloc] initWithContentViewController:imagePicker];
+        [_myPop presentPopoverFromRect:CGRectMake(0.0, 0.0, 400.0, 400.0) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        
+        
+        newMedia = NO;
+    }
+    else {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle: @"No photo capacity"
+                              message: @"No!"\
+                              delegate: nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+        
+    }
+}
+
+-(void)imagePickerController:(UIImagePickerController *)picker
+didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    NSString *mediaType = [info
+                           objectForKey:UIImagePickerControllerMediaType];
+    
+    [_myPop dismissPopoverAnimated:YES];
+    
+    if ([mediaType isEqualToString:(NSString *)kUTTypeImage]) {
+        image = [info objectForKey:UIImagePickerControllerOriginalImage];
+        
+        [self.winePic setImage:image forState:(UIControlStateNormal)];
+        
+        
+        if (newMedia)
+            UIImageWriteToSavedPhotosAlbum(image,
+                                           self,
+                                           @selector(image:finishedSavingWithError:contextInfo:),
+                                           nil);
+    }
+    else if ([mediaType isEqualToString:(NSString *)kUTTypeMovie])
+    {
+        // Code here to support video if enabled
+    }
+    
+}
+
 #pragma mark - Split view
 
 - (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
@@ -351,6 +434,7 @@
                             [self.producerName setHidden:NO];
                             [self.grapesListShow setHidden:YES];
                             [self.grapesList setHidden:NO];
+                            [self.winePic setUserInteractionEnabled:YES];
                         }
 						completion:nil];
         
@@ -418,6 +502,7 @@
                             [self.producerName setHidden:YES];
                             [self.grapesListShow setHidden:NO];
                             [self.grapesList setHidden:YES];
+                            [self.winePic setUserInteractionEnabled:NO];
                         }
 						completion:nil];
         
