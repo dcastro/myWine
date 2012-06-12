@@ -8,8 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+
+@protocol TranslatableViewController <NSObject>
+
+- (void) translate;
+
+@end
+
 @interface MySplitViewViewController : UISplitViewController
 
 @property (nonatomic) BOOL shouldRotate;
+
+- (void) translate;
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "MySplitViewViewController.h"
+#import <objc/runtime.h>
 
 @interface MySplitViewViewController ()
 
@@ -44,6 +45,22 @@
         return YES;
     else {
         return UIInterfaceOrientationIsLandscape(interfaceOrientation);
+    }
+}
+
+- (void) translate {
+    for(UINavigationController* navController in self.viewControllers) {
+        //NSLog(@"class: %s", class_getName([navController class]));
+        for (id<TranslatableViewController> viewController in navController.viewControllers) {
+            //NSLog(@"-class: %s", class_getName([viewController class]));
+            if ([viewController respondsToSelector:@selector(translate)]) {
+                [viewController translate];
+                NSLog(@"-class: %s translated", class_getName([viewController class]));
+            }
+            else {
+                NSLog(@"***class: %s cannot be translated", class_getName([viewController class]));
+            }
+        }
     }
 }
 

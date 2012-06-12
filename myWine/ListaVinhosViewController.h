@@ -13,7 +13,7 @@
 #import "VinhoViewController.h"
 #import "OrderViewController.h"
 #import "ListaProvasViewController.h"
-
+#import "MySplitViewViewController.h"
 
 @class DetailViewController;
 @class VinhoViewController;
@@ -27,7 +27,7 @@
 
 @end
 
-@interface ListaVinhosViewController : UITableViewController < UISplitViewControllerDelegate, VinhoViewControllerDelegate, DetailViewControllerDelegate, NovoVinhoViewControllerDelegate, LoginViewControllerDelegate, OrderViewControllerDelegate, ListaProvasViewControllerDelegate>
+@interface ListaVinhosViewController : UITableViewController < UISplitViewControllerDelegate, VinhoViewControllerDelegate, DetailViewControllerDelegate, NovoVinhoViewControllerDelegate, LoginViewControllerDelegate, OrderViewControllerDelegate, ListaProvasViewControllerDelegate, TranslatableViewController>
 {
     UISplitViewController *splitViewController;
     
@@ -69,5 +69,6 @@
 
 - (void) goHome;
 
+-(void) translate;
 
 @end

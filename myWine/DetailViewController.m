@@ -176,6 +176,13 @@ SEL action; id target;
     [self.navigationItem setLeftBarButtonItem:nil animated:YES];
 }
 
+#pragma mark - Translatable Delegate Method
+- (void) translate {
+    Language* lan = [Language instance];
+    
+    self.help.title = [lan translate:@"Help"];
+    self.title = [lan translate:@"Home"];
+}
 
 
 @end

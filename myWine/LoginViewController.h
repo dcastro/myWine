@@ -11,6 +11,7 @@
 #import "User.h"
 #import "Vinho.h"
 
+@class MySplitViewViewController;
 @class LoginViewController;
 
 @protocol LoginViewControllerDelegate <NSObject>
@@ -31,6 +32,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UITextField *usernameInput;
 @property (weak, nonatomic) IBOutlet UITextField *passwordInput;
+@property (strong, nonatomic) MySplitViewViewController* splitViewController;
 
 @property(nonatomic, getter=isEditing) BOOL editing;
 
