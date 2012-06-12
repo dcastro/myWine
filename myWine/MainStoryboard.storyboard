@@ -304,6 +304,7 @@
                         <outlet property="selectCurrencyButton" destination="ArU-XT-rbJ" id="Qfg-6k-X4s"/>
                         <outlet property="selectRegionButton" destination="Ljr-Oc-9s5" id="e2B-Dt-dkB"/>
                         <outlet property="wineName" destination="b98-GM-nbX" id="Iuo-vk-TEH"/>
+                        <outlet property="winePic" destination="l97-bY-Eh7" id="h0j-qk-bjm"/>
                         <outlet property="wine_label_name" destination="ab5-7n-PtI" id="p6F-eY-9Zk"/>
                         <outlet property="wine_type_label" destination="NwD-33-lyH" id="BsE-iQ-c4w"/>
                         <outlet property="year_label" destination="eN6-g3-hLR" id="gQt-zC-gG0"/>
@@ -2433,8 +2434,8 @@
     <inferredMetricsTieBreakers>
         <segue reference="5EB-Zz-Uxs"/>
         <segue reference="A7k-ad-KMK"/>
-        <segue reference="Hqe-Hx-33H"/>
-        <segue reference="3O9-e8-Jv2"/>
-        <segue reference="H31-UN-sUY"/>
+        <segue reference="GUc-5x-PXD"/>
+        <segue reference="Kqj-0D-4Kz"/>
+        <segue reference="Obm-ls-lkJ"/>
     </inferredMetricsTieBreakers>
 </document>
