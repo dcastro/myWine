@@ -39,4 +39,6 @@
 - (IBAction)doLogin:(id)sender;
 - (IBAction)selectLanguage:(id)sender;
 
+- (void) translate;
+
 @end

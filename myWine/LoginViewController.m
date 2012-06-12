@@ -132,6 +132,11 @@
     
 }
 
+- (void) translate {
+    [self configureView];
+    [self.splitViewController translate];
+}
+
 // allows next button on keyboard to move onto the next text field
 -(BOOL)textFieldShouldReturn:(UITextField*)textField;
 {

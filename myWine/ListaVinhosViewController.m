@@ -597,6 +597,7 @@ SEL action; id target;
     
     [self.rootPopoverButtonItem setTitle:[lan translate:@"Wines List Title"]];
     [self.rootTemp setTitle:[lan translate:@"Wines List Title"]];
+    [[self tableView] reloadData];
     
 }
 
