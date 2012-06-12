@@ -333,8 +333,8 @@ SEL action; id target;
 }
 
 - (IBAction)addTasting:(id)sender {
-    Prova* prova = [FormularioProva generateTasting:self.vinho.winetype]; //[[self provas] objectAtIndex:0];
-    
+    Prova* prova = [FormularioProva generateTasting:self.vinho.winetype];
+    prova.vinho = self.vinho;
     //index calculation
     int index = 0;
     //int index = [self.provas count];

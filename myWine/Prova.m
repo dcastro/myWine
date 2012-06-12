@@ -21,7 +21,7 @@
 @synthesize tasting_id = _tasting_id;
 @synthesize sections = _sections;
 @synthesize characteristic_sections = _characteristic_sections;
-
+@synthesize vinho = _vinho;
 
 - (NSMutableArray *) sections 
 {

@@ -27,6 +27,8 @@
 @synthesize header;
 @synthesize provaAlabel;
 @synthesize provaBlabel;
+@synthesize provaAdate;
+@synthesize provaBdate;
 @synthesize cancelButton;
 @synthesize provaA, provaB;
 
@@ -74,6 +76,15 @@
     string = [[NSString alloc] initWithFormat:@"%i%%", [self.provaB calcScore]];
     self.scoreContentLabelB.text = string;
     [self.scoreContentLabelB setFont:[UIFont fontWithName:@"DroidSerif" size:LARGER_FONT]];
+    if([self.provaA calcScore]>[self.provaB calcScore]){
+        [self.scoreContentLabelA setFont:[UIFont fontWithName:@"DroidSerif" size:LARGER_FONT+8]];
+        [self.scoreContentLabelA setTextColor:[UIColor myWineColor]];
+    }
+    else if([self.provaA calcScore]<[self.provaB calcScore]){
+        [self.scoreContentLabelB setFont:[UIFont fontWithName:@"DroidSerif" size:LARGER_FONT+8]];
+        [self.scoreContentLabelB setTextColor:[UIColor myWineColor]];
+    }
+        
 }
 
 - (void)viewDidUnload
@@ -86,6 +97,8 @@
     [self setHeader:nil];
     [self setProvaAlabel:nil];
     [self setProvaBlabel:nil];
+    [self setProvaAdate:nil];
+    [self setProvaBdate:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
