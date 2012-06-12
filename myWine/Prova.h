@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "Criterio.h"
 
+@class Vinho;
+
 @interface Prova : NSObject
 
 @property (nonatomic, assign) double tasting_date;
@@ -18,6 +20,7 @@
 @property (nonatomic, copy) NSString *comment;
 @property (nonatomic,strong) NSMutableArray *sections;
 @property (nonatomic,strong) NSMutableArray *characteristic_sections;
+@property (nonatomic, strong) Vinho* vinho;
 
 - (NSString*) fullDate;
 - (NSString*) shortDate;

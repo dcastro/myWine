@@ -71,6 +71,7 @@
             tasting.latitude = sqlite3_column_int(stmt, 3);
             tasting.longitude = sqlite3_column_double(stmt, 4);
                         
+            tasting.vinho = self;
             [_provas insertObject:tasting atIndex:0];
         }
         
