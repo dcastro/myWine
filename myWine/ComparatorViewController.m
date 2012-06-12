@@ -58,10 +58,14 @@
     [self configureView];
     
     [self.header setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"backgroundLandscape.png"]]];
-    [self.provaAlabel setText:[self.provaA fullDate]];
-    [self.provaAlabel setFont:[UIFont fontWithName:@"DroidSerif" size:NORMAL_FONT]];
-    [self.provaBlabel setText:[self.provaB fullDate]];
-    [self.provaBlabel setFont:[UIFont fontWithName:@"DroidSerif" size:NORMAL_FONT]];
+    [self.provaAlabel setText:self.provaA.vinho.name];
+    [self.provaAlabel setFont:[UIFont fontWithName:@"DroidSerif" size:LARGE_FONT]];
+    [self.provaBlabel setText:self.provaB.vinho.name];
+    [self.provaBlabel setFont:[UIFont fontWithName:@"DroidSerif" size:LARGE_FONT]];
+    [self.provaAdate setText:[self.provaA fullDate]];
+    [self.provaAdate setFont:[UIFont fontWithName:@"DroidSerif" size:SMALL_FONT]];
+    [self.provaBdate setText:[self.provaB fullDate]];
+    [self.provaBdate setFont:[UIFont fontWithName:@"DroidSerif" size:SMALL_FONT]];
 }
 
 
