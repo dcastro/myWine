@@ -2182,7 +2182,6 @@
         <image name="newPhoto.png" width="1029" height="1277"/>
         <image name="sync.png" width="24" height="15"/>
     </resources>
-<<<<<<< HEAD
     <classes>
         <class className="ComparatorViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ComparatorViewController.h"/>
@@ -2439,8 +2438,6 @@
             </relationships>
         </class>
     </classes>
-=======
->>>>>>> 8b12faee0ab32f381b15776a6515f31e8dd84164
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
