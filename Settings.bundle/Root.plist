@@ -66,20 +66,20 @@
 			<key>Title</key>
 			<string>Seleção de Idioma</string>
 			<key>Key</key>
-			<string>multi_id</string>
+			<string>lang</string>
 			<key>DefaultValue</key>
-			<string>0</string>
+			<string>3</string>
 			<key>Values</key>
 			<array>
-				<string>0</string>
-				<string>1</string>
+				<string>3</string>
 				<string>2</string>
+				<string>1</string>
 			</array>
 			<key>Titles</key>
 			<array>
-				<string>Inglês</string>
+				<string>English</string>
 				<string>Português</string>
-				<string>Francês</string>
+				<string>Français</string>
 			</array>
 		</dict>
 		<dict>

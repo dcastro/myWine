@@ -173,6 +173,21 @@
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     BOOL logout = [defaults boolForKey:@"logout"];
     
+    int selectedLanguage = [defaults integerForKey:@"lang"];
+    Language* lan = [Language instance];
+    
+    if (selectedLanguage != lan.selectedLanguage) {
+        
+        NSLog(@"dismissing modal views");
+        [self.splitView dismiss ];
+        
+        NSLog(@"Translating app");
+        [lan setLang:selectedLanguage];
+        [self.splitView translate];
+        
+    }
+    
+    
     if(logout){
         NSLog(@"dismissing modal views");
         [self.splitView dismiss ];
