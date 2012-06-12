@@ -428,6 +428,7 @@ finishedSavingWithError:(NSError *)error
                             //[UIImageJPEGRepresentation(image, 1.0) writeToFile:jpgPath atomically:YES];
                             // Write image to PNG
                             [UIImagePNGRepresentation(image) writeToFile:pngPath atomically:YES];
+                            vinho.photo = [NSString stringWithFormat:@"%@_%@.png",nome,stamp];
                             
                         }
                         
