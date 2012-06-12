@@ -174,10 +174,9 @@
         User* user = [User instance];
         NSString *nome = user.username;
         NSString *path = [NSString stringWithFormat:@"Documents/Images/%@/%@",nome,vinho.photo];
-        image = [UIImage imageWithContentsOfFile:path];
-        [self.winePic initWithImage:image];
-        NSLog(@"Wine foto fetching: %@", path);
-     
+        NSString *pngPath = [NSHomeDirectory() stringByAppendingPathComponent:path]; 
+        image = [UIImage imageWithContentsOfFile:pngPath];
+        winePic.image = image;
     }
     
 }
