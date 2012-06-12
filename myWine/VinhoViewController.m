@@ -626,4 +626,41 @@
     [self.popover dismissPopoverAnimated:YES];
 }
 
+#pragma mark - Translatable Delegate Method
+- (void) translate {
+    
+    Language *lan = [Language instance];
+    
+    //traduzir labels
+    self.producer_label.text = [lan translate:@"Producer"];
+    self.year_label.text = [lan translate:@"Harvest year"];
+    self.producer_label.text = [lan translate:@"Producer"];
+    self.region_label.text = [lan translate:@"Region"];
+    self.country_label.text = [lan translate:@"Country"];
+    self.grapes_label.text = [lan translate:@"Grapes"];
+    self.price_label.text = [lan translate:@"Price"];
+    
+    //traduzir conteúdo
+    Vinho* vinho = (Vinho*) self.detailItem;
+    self.wine_type_label.text = vinho.winetype.name;
+    
+    self.country_label_name.text = vinho.region.country_name;
+
+    if (self.isEditing) {
+        [self.selectCountryButton setTitle:self.country.name forState:UIControlStateNormal];
+        
+        if (self.editableWine.region == nil) {
+            [self.selectRegionButton setTitle:[[Language instance] translate:@"Tap to select"] forState:UIControlStateNormal];
+        }
+        
+        //butoes done & cancel
+        [[[self navigationItem] rightBarButtonItem] setTitle:[lan translate:@"Done"]];
+        [[[self navigationItem] leftBarButtonItem] setTitle:[lan translate:@"Cancel"]];
+    }
+    
+    self.editButton.title = [lan translate:@"Edit"];
+    
+}
+
+
 @end

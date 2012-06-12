@@ -15,6 +15,7 @@
 #import "Utils.h"
 #import "User.h"
 #import "CurrencyViewController.h"
+#import "MySplitViewViewController.h"
 
 @protocol VinhoViewControllerDelegate <NSObject>
 
@@ -22,7 +23,7 @@
 
 @end
 
-@interface VinhoViewController : UIViewController <UISplitViewControllerDelegate, UITextFieldDelegate,  UITextViewDelegate, ListaPaisesViewControllerDelegate, ListaRegioesViewControllerDelegate, CurrencyViewControllerDelegate>
+@interface VinhoViewController : UIViewController <UISplitViewControllerDelegate, UITextFieldDelegate,  UITextViewDelegate, ListaPaisesViewControllerDelegate, ListaRegioesViewControllerDelegate, CurrencyViewControllerDelegate, TranslatableViewController>
 
 @property (strong, nonatomic) id detailItem;
 
@@ -69,5 +70,7 @@
 - (IBAction)toggleEdit:(id)sender;
 
 - (void)configureView;
+
+- (void) translate;
 
 @end
