@@ -392,18 +392,6 @@ finishedSavingWithError:(NSError *)error
                         vinho.currency = curr;
                         vinho.grapes = self.castaVinho.text;
                         
-                        /*@synthesize regiaoButton;
-                         
-                         @synthesize Produtor = _Produtor;
-                         @synthesize AnoVinho = _AnoVinho;
-                         @synthesize Preco = _Preco;
-                         @synthesize delegate;
-                         @synthesize anosVinhos;
-                         @synthesize PickAnoVinho;
-                         @synthesize Done;
-                         @synthesize Cancel;
-                         @synthesize country = _country;
-                         @synthesize region = _region;*/
                         
                         NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
                         [defaults setBool:YES forKey:@"defaultCountrySet"];
@@ -423,9 +411,16 @@ finishedSavingWithError:(NSError *)error
                             //[NSString stringWithFormat:@"Documents/%@/%@",user.username, time];
                             NSString *nome = user.username;
                             NSString *stamp = [NSString stringWithFormat:@"%d", time];
-                            NSString * path = [NSString stringWithFormat:@"Documents/%@_%@.png",nome, stamp];
+                            NSString *path = [NSString stringWithFormat:@"Documents/Images/%@/",nome];
+                            NSString *filePath = [NSString stringWithFormat:@"Documents/Images/%@/%@_%@.png",nome,nome,stamp];
                             
-                            NSString *pngPath = [NSHomeDirectory() stringByAppendingPathComponent:path];
+                            NSString *pngPath = [NSHomeDirectory() stringByAppendingPathComponent:filePath];                            
+                            NSString *dirPath = [NSHomeDirectory() stringByAppendingPathComponent:path];
+                            
+                            NSError *error;
+                            if (![[NSFileManager defaultManager] fileExistsAtPath:dirPath]) 
+                                if(![[NSFileManager defaultManager] createDirectoryAtPath:dirPath withIntermediateDirectories:YES attributes:nil error:&error])
+                                    NSLog(@"Create directory error: %@", error);
                             
                             // Write a UIImage to JPEG with minimum compression (best quality)
                             // The value 'image' must be a UIImage object
@@ -434,17 +429,6 @@ finishedSavingWithError:(NSError *)error
                             // Write image to PNG
                             [UIImagePNGRepresentation(image) writeToFile:pngPath atomically:YES];
                             
-                            // Let's check to see if files were successfully written...
-                            
-                            // Create file manager
-                            NSError *error;
-                            NSFileManager *fileMgr = [NSFileManager defaultManager];
-                            
-                            // Point to Document directory
-                            NSString *documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-                            
-                            // Write out the contents of home directory to console
-                            NSLog(@"Documents directory: %@", [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:&error]);
                         }
                         
                         [self.delegate NovoVinhoViewControllerDidSave:vinho];
