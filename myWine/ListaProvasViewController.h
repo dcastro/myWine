@@ -17,6 +17,7 @@
 #import "Comparator.h"
 #import "ProvaCell.h"
 #import "SubstitutableTabBarControllerViewController.h"
+#import "MySplitViewViewController.h"
 
 @protocol ListaProvasViewControllerDelegate <NSObject>
 
@@ -25,7 +26,7 @@
 
 @end
 
-@interface ListaProvasViewController : UITableViewController <NovaProvaViewControllerDelegate, SubstitutableTabBarControllerViewControllerDelegate>
+@interface ListaProvasViewController : UITableViewController <NovaProvaViewControllerDelegate, SubstitutableTabBarControllerViewControllerDelegate, SubstitutableDetailViewController>
 {
     UISplitViewController *splitViewController;
     
@@ -42,7 +43,6 @@
 @property (weak, nonatomic) UIPopoverController *currentPopover;
 @property (nonatomic, strong) UIPopoverController *popoverController;
 @property (nonatomic, strong) UIBarButtonItem *rootPopoverButtonItem;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *filterButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *compareButton;
 
 @property (nonatomic) BOOL needsEditing;
@@ -53,5 +53,7 @@
 
 - (IBAction)addTasting:(id)sender;
 - (IBAction)toggleComparison:(id)sender;
+
+- (void) translate;
 
 @end

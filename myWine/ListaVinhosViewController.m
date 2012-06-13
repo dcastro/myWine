@@ -586,4 +586,19 @@ SEL action; id target;
     [self performSegueWithIdentifier:@"VinhosToHome" sender:self];
 }
 
+
+#pragma mark - Translatable Delegate Method
+- (void) translate {
+    Language* lan = [Language instance];
+    
+    self.title = [lan translate:@"Wines List Title"];
+    self.orderButton.title = [lan translate:@"Order"];
+    [self.filterButton setTitle: [lan translate:@"Filter"]];
+    
+    [self.rootPopoverButtonItem setTitle:[lan translate:@"Wines List Title"]];
+    [self.rootTemp setTitle:[lan translate:@"Wines List Title"]];
+    [[self tableView] reloadData];
+    
+}
+
 @end

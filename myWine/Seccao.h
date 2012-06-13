@@ -19,4 +19,8 @@
 
 @property (nonatomic, strong) NSMutableArray * criteria;
 
+@property (strong, nonatomic) UILabel* label;
+
+- (NSComparisonResult)compare:(Seccao *)otherSection;
+
 @end

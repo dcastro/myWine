@@ -71,6 +71,7 @@
             tasting.latitude = sqlite3_column_int(stmt, 3);
             tasting.longitude = sqlite3_column_double(stmt, 4);
                         
+            tasting.vinho = self;
             [_provas insertObject:tasting atIndex:0];
         }
         
@@ -101,6 +102,8 @@
         self.currency = vinho.currency;
     if (self.price != vinho.price)
         self.price = vinho.price;
+    if(self.photo != vinho.photo)
+        self.photo = vinho.photo;
     
     //TODO: actualizar na BD os atributos alterados
     Query *query = [[Query alloc] init];

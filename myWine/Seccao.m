@@ -20,6 +20,7 @@
 @synthesize section_id = _section_id;
 @synthesize criteria = _criteria;
 @synthesize order = _order;
+@synthesize label;
 
 
 -(NSMutableArray *)  criteria{
@@ -109,6 +110,9 @@
 - (NSString*) description {
     return self.name;
 }
-         
+
+- (NSComparisonResult)compare:(Seccao *)otherSection {
+    return [self.name compare:otherSection.name];
+}
 
 @end

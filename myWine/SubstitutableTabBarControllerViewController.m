@@ -212,4 +212,26 @@
     [self.characteristicsController updateScoreLabelWithScore:score];
 }
 
+#pragma mark - Translatable Delegate Method
+- (void) translate {
+    Language* lan = [Language instance];
+    
+    [self.criteriaController translate];
+    [self.characteristicsController translate];
+    
+    //traduzir butoes
+    
+    if (self.isEditing) {
+        //butoes done & cancel
+        [[[self navigationItem] rightBarButtonItem] setTitle:[lan translate:@"Done"]];
+        [[[self navigationItem] leftBarButtonItem] setTitle:[lan translate:@"Cancel"]];
+    }
+
+    [self.editButton setTitle:[[Language instance] translate:@"Edit"]];
+    
+    [self.criteriaController.tabBarItem setTitle:[lan translate:@"Criteria"]];
+    [self.characteristicsController.tabBarItem setTitle:[lan translate:@"Characteristics"]];
+}
+
+
 @end

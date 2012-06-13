@@ -267,4 +267,9 @@
     [self.navigationItem setLeftBarButtonItem:nil animated:YES];
 }
 
+#pragma mark - Translatable Delegate Method
+- (void) translate {
+    [self configureView];
+}
+
 @end

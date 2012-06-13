@@ -53,6 +53,8 @@
 @synthesize delegate;
 
 @synthesize popover = _popover;
+@synthesize winePic = _winePic;
+@synthesize myPop = _myPop;
 
 @synthesize editableWine = _editableWine, country = _country;
 
@@ -168,6 +170,17 @@
     self.grapesListShow.backgroundColor = [UIColor  clearColor];
     self.grapesListShow.textColor = [UIColor whiteColor];
     
+    
+    if(vinho.photo != nil) {
+        User* user = [User instance];
+        NSString *nome = user.username;
+        NSString *path = [NSString stringWithFormat:@"Documents/Images/%@/%@",nome,vinho.photo];
+        NSString *pngPath = [NSHomeDirectory() stringByAppendingPathComponent:path]; 
+        image = [UIImage imageWithContentsOfFile:pngPath];
+        NSLog(@"image name: %@", vinho.photo);
+        [self.winePic setImage:image forState:(UIControlStateNormal)];
+    }
+    
 }
 
 - (void)viewDidLoad
@@ -201,6 +214,9 @@
     [self.selectCountryButton setHidden:TRUE];
     [self.selectRegionButton setHidden:TRUE];
     [self.selectCurrencyButton setHidden:TRUE];
+    [self.winePic setUserInteractionEnabled:NO];
+    newMedia = NO;
+    
 
 }
 
@@ -231,6 +247,9 @@
     [self setProducerName:nil];
     [self setGrapesList:nil];
     [self setGrapesListShow:nil];
+    [self setWinePic:nil];
+    [self setWinePic:nil];
+    [self setWinePic:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -294,6 +313,83 @@
     
 }
 
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+- (IBAction)pickF:(id)sender
+{
+    if ([UIImagePickerController isSourceTypeAvailable:
+         UIImagePickerControllerSourceTypeCamera])
+    {
+        UIImagePickerController *imagePicker =
+        [[UIImagePickerController alloc] init];
+        imagePicker.delegate = self;
+        imagePicker.sourceType =
+        UIImagePickerControllerSourceTypeCamera;
+        imagePicker.mediaTypes = [NSArray arrayWithObjects:
+                                  (NSString *) kUTTypeImage,
+                                  nil];
+        imagePicker.allowsEditing = NO;
+        [self presentModalViewController:imagePicker
+                                animated:YES];
+        newMedia = NO;
+    }
+    else if ([UIImagePickerController isSourceTypeAvailable:
+              UIImagePickerControllerSourceTypeSavedPhotosAlbum])
+    {
+        UIImagePickerController *imagePicker =
+        [[UIImagePickerController alloc] init];
+        imagePicker.delegate = self;
+        imagePicker.sourceType =
+        UIImagePickerControllerSourceTypePhotoLibrary;
+        imagePicker.mediaTypes = [NSArray arrayWithObjects:
+                                  (NSString *) kUTTypeImage,
+                                  nil];
+        imagePicker.allowsEditing = NO;
+        
+        _myPop = [[UIPopoverController alloc] initWithContentViewController:imagePicker];
+        [_myPop presentPopoverFromRect:CGRectMake(0.0, 0.0, 400.0, 400.0) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        
+        
+        newMedia = NO;
+    }
+    else {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle: @"No photo capacity"
+                              message: @"No!"\
+                              delegate: nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+        
+    }
+}
+
+-(void)imagePickerController:(UIImagePickerController *)picker
+didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    NSString *mediaType = [info
+                           objectForKey:UIImagePickerControllerMediaType];
+    
+    [_myPop dismissPopoverAnimated:YES];
+    
+    if ([mediaType isEqualToString:(NSString *)kUTTypeImage]) {
+        image = [info objectForKey:UIImagePickerControllerOriginalImage];
+        
+        [self.winePic setImage:image forState:(UIControlStateNormal)];
+        
+        newMedia = YES;
+        
+    }
+    else if ([mediaType isEqualToString:(NSString *)kUTTypeMovie])
+    {
+        // Code here to support video if enabled
+    }
+    
+}
+
 #pragma mark - Split view
 
 - (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
@@ -336,6 +432,7 @@
                             [self.producerName setHidden:NO];
                             [self.grapesListShow setHidden:YES];
                             [self.grapesList setHidden:NO];
+                            [self.winePic setUserInteractionEnabled:YES];
                         }
 						completion:nil];
         
@@ -380,6 +477,36 @@
             [self.editableWine setGrapes:self.grapesList.text];
             [self.editableWine setPrice: [self.priceValue.text doubleValue]];  
         
+            if(newMedia) {
+                if(image != nil) {
+                    // Create paths to output images
+                    
+                    NSDate* date = [NSDate date];
+                    NSTimeInterval time = [date timeIntervalSince1970];
+                    
+                    User* user = [User instance];
+                    
+                    NSString *nome = user.username;
+                    NSString *stamp = [NSString stringWithFormat:@"%d", time];
+                    NSString *path = [NSString stringWithFormat:@"Documents/Images/%@/",nome];
+                    NSString *filePath = [NSString stringWithFormat:@"Documents/Images/%@/%@_%@.png",nome,nome,stamp];
+                    
+                    NSString *pngPath = [NSHomeDirectory() stringByAppendingPathComponent:filePath];                            
+                    NSString *dirPath = [NSHomeDirectory() stringByAppendingPathComponent:path];
+                    
+                    NSError *error;
+                    if (![[NSFileManager defaultManager] fileExistsAtPath:dirPath]) 
+                        if(![[NSFileManager defaultManager] createDirectoryAtPath:dirPath withIntermediateDirectories:YES attributes:nil error:&error])
+                            NSLog(@"Create directory error: %@", error);
+
+                    [UIImagePNGRepresentation(image) writeToFile:pngPath atomically:YES];
+                    [self.editableWine setPhoto:[NSString stringWithFormat:@"%@_%@.png",nome,stamp]];
+                    NSLog(@"editable foto name: %@", self.editableWine.photo);
+                    
+                }
+            }
+            
+            
             [self.detailItem updateWithVinho:self.editableWine];
         
             self.wine_label_name.text = self.wineName.text;
@@ -403,6 +530,7 @@
                             [self.producerName setHidden:YES];
                             [self.grapesListShow setHidden:NO];
                             [self.grapesList setHidden:YES];
+                            [self.winePic setUserInteractionEnabled:NO];
                         }
 						completion:nil];
         
@@ -625,5 +753,42 @@
     //dismisses the popover
     [self.popover dismissPopoverAnimated:YES];
 }
+
+#pragma mark - Translatable Delegate Method
+- (void) translate {
+    
+    Language *lan = [Language instance];
+    
+    //traduzir labels
+    self.producer_label.text = [lan translate:@"Producer"];
+    self.year_label.text = [lan translate:@"Harvest year"];
+    self.producer_label.text = [lan translate:@"Producer"];
+    self.region_label.text = [lan translate:@"Region"];
+    self.country_label.text = [lan translate:@"Country"];
+    self.grapes_label.text = [lan translate:@"Grapes"];
+    self.price_label.text = [lan translate:@"Price"];
+    
+    //traduzir conteúdo
+    Vinho* vinho = (Vinho*) self.detailItem;
+    self.wine_type_label.text = vinho.winetype.name;
+    
+    self.country_label_name.text = vinho.region.country_name;
+
+    if (self.isEditing) {
+        [self.selectCountryButton setTitle:self.country.name forState:UIControlStateNormal];
+        
+        if (self.editableWine.region == nil) {
+            [self.selectRegionButton setTitle:[[Language instance] translate:@"Tap to select"] forState:UIControlStateNormal];
+        }
+        
+        //butoes done & cancel
+        [[[self navigationItem] rightBarButtonItem] setTitle:[lan translate:@"Done"]];
+        [[[self navigationItem] leftBarButtonItem] setTitle:[lan translate:@"Cancel"]];
+    }
+    
+    self.editButton.title = [lan translate:@"Edit"];
+    
+}
+
 
 @end

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Language.h"
+#import "MySplitViewViewController.h"
 
 @protocol DetailViewControllerDelegate <NSObject>
 
@@ -16,7 +17,7 @@
 
 @end
 
-@interface DetailViewController : UIViewController <UISplitViewControllerDelegate> 
+@interface DetailViewController : UIViewController <UISplitViewControllerDelegate, TranslatableViewController> 
 
 @property (strong, nonatomic) id detailItem;
 
@@ -26,5 +27,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *myWine;
 
 @property (nonatomic, weak) id <DetailViewControllerDelegate> delegate;
+
+
+-(void) translate;
 
 @end

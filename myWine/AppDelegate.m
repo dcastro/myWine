@@ -80,6 +80,7 @@
     
         //set ListaVinhos as Login's delegate
         lvc.delegate = lvvc;
+        lvc.splitViewController = self.splitView;
         
         if(logout){
             [defaults setBool:NO forKey:@"logout"];
@@ -169,14 +170,49 @@
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [defaults synchronize];
     BOOL logout = [defaults boolForKey:@"logout"];
     
+    int selectedLanguage = [defaults integerForKey:@"lang"];
+    Language* lan = [Language instance];
+    
+    //se o idioma tiver sido alterado
+    if (selectedLanguage != 0 && selectedLanguage != lan.selectedLanguage) {
+        NSLog(@"selected lang %i", selectedLanguage);
+        [lan setLang:selectedLanguage];
+        
+        LoginViewController* loginVC = (LoginViewController*) [self.splitView modalViewController];
+        if ([loginVC isKindOfClass:[LoginViewController class]] && loginVC != nil) {
+            //traduzir login
+            NSLog(@"Translating login and app");
+            [loginVC translate];
+        }
+        else { 
+            NSLog(@"dismissing modal views");
+            [self.splitView dismiss ];
+            
+            NSLog(@"Translating app");
+            [self.splitView translate];
+        }
+        
+    }
+    
     if(logout){
+
+        
         //NSLog(@"Entrou em foreground e flag logout e true");
 
         [defaults setObject:nil forKey:@"username"];
         [defaults setBool:NO forKey:@"logout"];
         [defaults synchronize];
+        
+        //se o login view estiver activo, return
+        if ([self.splitView modalViewController] != nil)
+            return;
+        
+        //dismiss das model views
+        NSLog(@"dismissing modal views");
+        [self.splitView dismiss ];
         
         //show login controller at startup
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
@@ -190,6 +226,7 @@
         UINavigationController *masterNavigationController = [self.splitView.viewControllers objectAtIndex:0];
         ListaVinhosViewController *lvvc = (ListaVinhosViewController *)[[masterNavigationController viewControllers] objectAtIndex:0] ;
         
+        /*
         for(UINavigationController* c in self.splitView.viewControllers) {
             NSLog(@"class: %s", class_getName([c class]));
             for (UIViewController* v in c.viewControllers) {
@@ -197,9 +234,14 @@
             }
         }
         NSLog(@"--class: %s", class_getName([lvvc class]));
+        */
+        
         lvc.delegate = lvvc;
+        lvc.splitViewController = self.splitView;
         
     }
+    
+
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

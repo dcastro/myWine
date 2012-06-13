@@ -21,12 +21,13 @@
 @synthesize tasting_id = _tasting_id;
 @synthesize sections = _sections;
 @synthesize characteristic_sections = _characteristic_sections;
-
+@synthesize vinho = _vinho;
 
 - (NSMutableArray *) sections 
 {
     if (!_sections) {
         [self loadSectionsFromDB];
+        [_sections sortUsingSelector:@selector(compare:)];
     }
     return _sections;
 }
@@ -36,6 +37,7 @@
 {
     if (!_characteristic_sections) {
         [self loadCharacteristicSectionsFromDB];
+        [_sections sortUsingSelector:@selector(compare:)];
     }
     return _characteristic_sections;
 }

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ListaVinhosViewController.h"
+#import "MySplitViewViewController.h"
 
 typedef enum {
     FilterTypeYear,
@@ -17,11 +18,13 @@ typedef enum {
     FilterTypeCount
 } FilterType;
 
-@interface FilterViewController : UITableViewController <SubstitutableDetailViewController>
+@interface FilterViewController : UITableViewController <SubstitutableDetailViewController, TranslatableViewController>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *clearAllButton;
 @property (nonatomic) FilterType selectedFilterType;
 
 - (IBAction)clearAll:(id)sender;
+
+- (void) translate;
 
 @end

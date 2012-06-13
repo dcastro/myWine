@@ -15,7 +15,6 @@
 @end
 
 @implementation ListaProvasViewController
-@synthesize filterButton;
 @synthesize compareButton;
 @synthesize provas = _provas;
 @synthesize vinho = _vinho;
@@ -45,7 +44,6 @@ SEL action; id target;
 
 - (void) configureView {
     Language* lan = [Language instance];
-    [self.filterButton setTitle: [lan translate:@"Filter"]];
     [self.compareButton setTitle: [lan translate:@"Compare"]];
     self.title = [lan translate:@"Tastes List Title"];
 }
@@ -53,7 +51,6 @@ SEL action; id target;
 
 - (void)viewDidUnload
 {
-    [self setFilterButton:nil];
     [self setCompareButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -150,16 +147,16 @@ SEL action; id target;
 
 -(void)dismiss:(id)sender
 {
-    [self.filterButton setAction:action];
-    [self.filterButton setTarget:target];
+    //[self.filterButton setAction:action];
+    //[self.filterButton setTarget:target];
     [self.currentPopover dismissPopoverAnimated:YES];
 }
 
 
 -(BOOL)popoverControllerShouldDismissPopover:(UIPopoverController *)popoverController
 {
-    [self.filterButton setAction:action];
-    [self.filterButton setTarget:target];
+    //[self.filterButton setAction:action];
+    //[self.filterButton setTarget:target];
     return YES;    
 }
 
@@ -239,7 +236,12 @@ SEL action; id target;
     [cell setProva:object];
     
     [checkbox addObserver:cell forKeyPath:@"selected" options:NSKeyValueObservingOptionNew context:nil];
-    
+
+    //centrar a checkbox verticalmente dentro da cell
+    CGRect frame = checkbox.frame;
+    frame.origin.y = (cell.frame.size.height/2.0) - (frame.size.height/2.0);
+    checkbox.frame = frame;
+
     return cell;
 }
 
@@ -336,8 +338,8 @@ SEL action; id target;
 }
 
 - (IBAction)addTasting:(id)sender {
-    Prova* prova = [FormularioProva generateTasting:self.vinho.winetype]; //[[self provas] objectAtIndex:0];
-    
+    Prova* prova = [FormularioProva generateTasting:self.vinho.winetype];
+    prova.vinho = self.vinho;
     //index calculation
     int index = 0;
     //int index = [self.provas count];
@@ -411,5 +413,11 @@ SEL action; id target;
 - (void) SubstitutableTabBarControllerViewControllerDidUpdateScore {
     [delegate ListaProvasViewControllerDelegateDidUpdateScore];
 }
+
+#pragma mark - Translatable Delegate Method
+- (void) translate {
+    [self configureView];
+}
+
 
 @end

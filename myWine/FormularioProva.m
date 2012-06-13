@@ -298,6 +298,12 @@
     
     tasting.tasting_date = time;
     
+    
+    //ordenar seccoes
+    [tasting.sections sortUsingSelector:@selector(compare:)];
+    [tasting.characteristic_sections sortUsingSelector:@selector(compare:)];
+    
+    
     return tasting;
     
 }

@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "ListaVinhosViewController.h"
+#import "MySplitViewViewController.h"
 
 @interface LoginViewController (){
     CGFloat animatedDistance;
@@ -31,7 +32,7 @@
 @synthesize usernameInput = _usernameInput;
 @synthesize passwordInput = _passwordInput;
 @synthesize editing = _editing;
-
+@synthesize splitViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -125,9 +126,15 @@
     [lan setLang:selected.tag];
     
     [self configureView];
-    ListaVinhosViewController* lvvc = (ListaVinhosViewController*) self.delegate;
-    [lvvc configureView];
+    //ListaVinhosViewController* lvvc = (ListaVinhosViewController*) self.delegate;
+    //[lvvc configureView];
+    [self.splitViewController translate];
     
+}
+
+- (void) translate {
+    [self configureView];
+    [self.splitViewController translate];
 }
 
 // allows next button on keyboard to move onto the next text field

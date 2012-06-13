@@ -8,6 +8,7 @@
 
 #import "FilterSelectionViewController.h"
 #import "FilterManager.h"
+#import "NSMutableArray+VinhosMutableArray.h"
 
 @interface FilterSelectionViewController ()
 
@@ -211,6 +212,35 @@
 
 - (void)invalidateRootPopoverButtonItem:(UIBarButtonItem *)barButtonItem {
     [self.delegate invalidateRootPopoverButtonItem:barButtonItem];
+}
+
+#pragma mark - Translatable Delegate Method
+- (void) translate {
+    
+    NSMutableArray* vinhos = [[User instance] vinhos];
+    
+    switch (filterType) {
+        case FilterTypeYear:
+            self.objects = [vinhos getYears];
+            break;
+            
+        case FilterTypeCountry:
+            self.objects = [vinhos getCountries];
+            break;
+            
+        case FilterTypeWineType:
+            self.objects = [vinhos getWineTypes];
+            break;
+            
+        case FilterTypeProducer:
+            self.objects = [vinhos getProducers];
+            break;
+        default:
+            break;
+    }
+    
+    [[self tableView] reloadData];
+    [self configureView];
 }
 
 @end

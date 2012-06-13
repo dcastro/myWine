@@ -15,6 +15,7 @@
 #import "Caracteristica.h"
 #import "CharacteristicCell.h"
 #import "Vinho.h"
+#import "MySplitViewViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define CRITERIA_MODE 0
@@ -26,7 +27,7 @@
 
 @end
 
-@interface ProvaViewController : UITableViewController <SectionItemCellCellDelegate>
+@interface ProvaViewController : UITableViewController <SectionItemCellCellDelegate, TranslatableViewController>
 
 @property (strong, nonatomic) Prova* prova;
 @property (strong, nonatomic) Vinho* vinho;
@@ -53,5 +54,7 @@
 - (void) setEditing:(BOOL)editing animated:(BOOL)animated done:(BOOL)done;
 
 -(void) updateScoreLabelWithScore:(int) score;
+
+- (void) translate;
 
 @end

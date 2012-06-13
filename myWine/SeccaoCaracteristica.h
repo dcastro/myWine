@@ -18,6 +18,8 @@
 @property (nonatomic, assign) int order;
 @property (nonatomic, strong) NSMutableArray * characteristics;
 
+@property (strong, nonatomic) UILabel* label;
 
+- (NSComparisonResult)compare:(SeccaoCaracteristica *)otherSection;
 
 @end

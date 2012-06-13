@@ -22,6 +22,13 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableViewB;
 @property (weak, nonatomic) IBOutlet UILabel *scoreContentLabelA;
 @property (weak, nonatomic) IBOutlet UILabel *scoreContentLabelB;
+@property (weak, nonatomic) IBOutlet UIView *header;
+@property (weak, nonatomic) IBOutlet UILabel *provaAlabel;
+@property (weak, nonatomic) IBOutlet UILabel *provaBlabel;
+@property (weak, nonatomic) IBOutlet UILabel *provaAdate;
+@property (weak, nonatomic) IBOutlet UILabel *provaBdate;
+@property (weak, nonatomic) IBOutlet UIView *scoreView2;
+@property (weak, nonatomic) IBOutlet UIView *scoreView1;
 
 - (IBAction)cancel:(id)sender;
 

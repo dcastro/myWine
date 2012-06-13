@@ -192,4 +192,12 @@
     [self.classificationSlider setValue: [self itemChosenWeight] animated:YES];
 }
 
+- (void) translate {
+    //traduz nome
+    [self.nameLabel setText: [self.item name]];
+    
+    //traduz classificacao
+    [self drawClassificationLabel:self.classification animated:NO];
+}
+
 @end

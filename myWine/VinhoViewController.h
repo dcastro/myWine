@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MobileCoreServices/MobileCoreServices.h>
 #import "Vinho.h"
 #import "ListaPaisesViewController.h"
 #import "ListaRegioesViewController.h"
@@ -15,6 +16,7 @@
 #import "Utils.h"
 #import "User.h"
 #import "CurrencyViewController.h"
+#import "MySplitViewViewController.h"
 
 @protocol VinhoViewControllerDelegate <NSObject>
 
@@ -22,7 +24,10 @@
 
 @end
 
-@interface VinhoViewController : UIViewController <UISplitViewControllerDelegate, UITextFieldDelegate,  UITextViewDelegate, ListaPaisesViewControllerDelegate, ListaRegioesViewControllerDelegate, CurrencyViewControllerDelegate>
+@interface VinhoViewController : UIViewController <UISplitViewControllerDelegate, UITextFieldDelegate,  UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, ListaPaisesViewControllerDelegate, ListaRegioesViewControllerDelegate, CurrencyViewControllerDelegate, TranslatableViewController> {
+    UIImage *image;
+    BOOL newMedia;
+}
 
 @property (strong, nonatomic) id detailItem;
 
@@ -65,9 +70,14 @@
 
 @property (nonatomic, strong) UIPopoverController* popover;
 
+@property (weak, nonatomic) IBOutlet UIButton *winePic;
+@property (strong, nonatomic) UIPopoverController *myPop;
 
+- (IBAction)pickF:(id)sender;
 - (IBAction)toggleEdit:(id)sender;
 
 - (void)configureView;
+
+- (void) translate;
 
 @end
