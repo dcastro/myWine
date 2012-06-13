@@ -757,7 +757,7 @@
             }
             
             
-            querySQL = [NSString stringWithFormat:@"INSERT INTO Wine(user, region_id, winetype_id, wineserver_id, name, year, grapes, photo_filename, producer, currency, price, state) \
+            querySQL = [NSString stringWithFormat:@"INSERT INTO Wine(user, region_id, winetype_id, wine_server_id, name, year, grapes, photo_filename, producer, currency, price, state) \
                         VALUES (\'%@\', %d, %d, %d, \'%@\', %d, '\%@\', \'%@\', \'%@\', \'%@\', %f, 0);", 
                         user.username,
                         [[wineJSON objectForKey:@"Region"] intValue],
@@ -1031,7 +1031,7 @@
     char * errMsg;
     
     querySQL = [NSString stringWithFormat:@"INSERT INTO Tasting (wine_id, tasting_date, comment, latitude, longitude, state) \
-                VALUES (%d, %d, \'%@\', %f, %f);",
+                VALUES (%d, %f, \'%@\', %f, %f, %d);",
                 wine_id, 
                 [[tastingJSON objectForKey:@"TastingDate"]doubleValue],
                 [tastingJSON objectForKey:@"Comment"],
@@ -1058,8 +1058,8 @@
         
         int section_id;
         
-        querySQL = [NSString stringWithFormat:@"INSERT INTO Section (tasting_id,order_priority, name_eng, name_fr, name_pt)\
-                    VALUES (%d, \'%@\', \'%@\', \'%@\');",
+        querySQL = [NSString stringWithFormat:@"INSERT INTO Section (tasting_id, order_priority, name_en, name_fr, name_pt)\
+                    VALUES (%d, %d, \'%@\', \'%@\', \'%@\');",
                     tasting_id,
                     [[sectionJSON objectForKey:@"Order"]intValue],
                     [sectionJSON objectForKey:@"NameEn"],
@@ -1094,8 +1094,8 @@
                 return FALSE;
             
                        
-            querySQL = [NSString stringWithFormat:@"INSERT INTO Criterion (section_id, order_priority, name_eng, name_fr, name_pt, classification_id)\
-                        VALUES (%d, \'%@\', \'%@\', \'%@\', %d);",
+            querySQL = [NSString stringWithFormat:@"INSERT INTO Criterion (section_id, order_priority, name_en, name_fr, name_pt, classification_id)\
+                        VALUES (%d, %d, \'%@\', \'%@\', \'%@\', %d);",
                         section_id,
                         [[criterionJSON objectForKey:@"Order"]intValue],
                         [criterionJSON objectForKey:@"NameEn"],
@@ -1146,7 +1146,7 @@
         
         int characteristicsection_id;
         
-        querySQL = [NSString stringWithFormat:@"INSERT INTO SectionCharacteristic (tasting_id, order_priority, name_eng, name_fr, name_pt)\
+        querySQL = [NSString stringWithFormat:@"INSERT INTO SectionCharacteristic (tasting_id, order_priority, name_en, name_fr, name_pt)\
                     VALUES (%d ,%d, \'%@\', \'%@\', \'%@\');",
                     tasting_id,
                     [[characteristicsectionJSON objectForKey:@"Order"]intValue],
@@ -1182,7 +1182,7 @@
                 return FALSE;
             
             
-            querySQL = [NSString stringWithFormat:@"INSERT INTO Characteristic (sectioncharacteristic_id, order_priority, name_eng, name_fr, name_pt, classification_id)\
+            querySQL = [NSString stringWithFormat:@"INSERT INTO Characteristic (sectioncharacteristic_id, order_priority, name_en, name_fr, name_pt, classification_id)\
                         VALUES (%d, %d, \'%@\', \'%@\', \'%@\', %d);",
                         characteristicsection_id,
                         [[characteristicJSON objectForKey:@"Order"]intValue],
