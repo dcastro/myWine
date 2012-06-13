@@ -126,7 +126,7 @@
                 
                 
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[lan translate:@"Alert Title"] message:alert_message delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-                [alert show];
+                [alert performSelector:@selector(show) withObject:nil afterDelay:0.0];
             }
             
             
