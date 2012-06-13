@@ -92,11 +92,12 @@
 - (void) startsync{
     receivedData = [[NSMutableData data]init];
     
+    /*
     //NSString *jsonRequest = @"{\"Password\":\"mywine\",\"Username\":\"mywine@cpcis.pt\",\"SyncedAt\":1339502400.0}";
-    
     NSError * err;
     NSString* testJSON = [sync buildRequest:&err];
     DebugLog(testJSON);
+    
     
     NSString *jsonRequest = @"{\"Password\":\"mywine\",\"Username\":\"mywine@cpcis.pt\",\"SyncedAt\":634758524838925820}";
     NSURL *url = [NSURL URLWithString:@"http://backofficegp.cpcis.pt/MyWineSincService/MyWineSincService.svc/MyWineSincronize"];
@@ -108,6 +109,12 @@
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setValue:[NSString stringWithFormat:@"%d", [requestData length]] forHTTPHeaderField:@"Content-Length"];
     [request setHTTPBody: requestData];
+     */
+    
+    
+    NSURL *url = [NSURL URLWithString:@"http://dl.dropbox.com/u/14513425/resp3.json"];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     
     
     NSURLConnection * theConnection = [NSURLConnection connectionWithRequest:[request copy] delegate:self];
@@ -157,7 +164,17 @@
     };
      
 
+    /*
+    NSError * jsonParsingError = nil;
+    NSDictionary *receivedJSON = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONWritingPrettyPrinted error:&jsonParsingError];
     
+    if(jsonParsingError){
+        DebugLog(@"JSON PARSING ERROR: %@", jsonParsingError);
+        return; 
+    }
+    
+    DebugLog(@"JSON: %@", [NSString stringWithFormat:@"%@",  receivedJSON]);
+    */
     [progress_bar setProgress:1.0];
     self.progress_label.Text=[NSString stringWithFormat:[lan translate:@"Synchronization step"], 3,3];
 
