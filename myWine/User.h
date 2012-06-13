@@ -33,5 +33,6 @@
 
 
 -(NSString *)description;
+-(BOOL)validateUser;
 
 @end

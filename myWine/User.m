@@ -314,4 +314,72 @@ static User *sharedUser = nil;
 }
 
 
+
+-(BOOL)validateUser
+{
+    NSString * querySQL;
+    Query * query = [[Query alloc] init];
+    sqlite3** contactDB = [query prepareForExecution]; 
+    sqlite3_stmt * stmt;
+    char* errMsg;
+    
+    BOOL userExists = FALSE;
+    
+    
+    querySQL = [NSString stringWithFormat:@"SELECT username FROM User WHERE username = \'%@\';", 
+                _username];
+    
+    
+    if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
+        if(sqlite3_step(stmt) == SQLITE_ROW){
+            
+            userExists = TRUE;             
+        }
+        
+        sqlite3_finalize(stmt);
+    }else {
+        DebugLog(@"Query with error: %@", querySQL);
+        return FALSE;
+    }
+    
+    
+    if(userExists){
+        
+        querySQL = [NSString stringWithFormat:@"UPDATE User SET validadted = %d WHERE username = \'%@\';", 
+                    _isValidated, _username];
+        
+        
+        if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+            DebugLog(@"Query with error: %s", errMsg);
+            sqlite3_free(errMsg);
+            return FALSE;
+        }
+        
+        
+    }else {
+        
+        if(_isValidated){
+           querySQL = [NSString stringWithFormat:@"INSERT INTO User VALUES(\'%@\', \'%@\', %f, %d);",
+                       _username,
+                       _password,
+                       0.0,
+                       1];
+            
+            
+            if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+                DebugLog(@"Query with error: %s", errMsg);
+                sqlite3_free(errMsg);
+                return FALSE;
+            }
+            
+        }
+    }
+    
+    
+    
+    
+    return TRUE;
+}
+
+
 @end

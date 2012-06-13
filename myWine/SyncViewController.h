@@ -14,6 +14,7 @@
     NSMutableData *receivedData;
     Language *lan;
     Sincronizacao * sync;
+    User * user;
 }
 
 @property (weak, nonatomic) IBOutlet UILabel *description_label;

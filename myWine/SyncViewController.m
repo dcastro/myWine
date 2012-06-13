@@ -37,6 +37,7 @@
     
     lan = [Language instance];
     sync = [[Sincronizacao alloc]init];
+    user = [User instance];
 
     
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
@@ -143,8 +144,19 @@
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
+    
     int responseStatusCode = [httpResponse statusCode];
     DebugLog(@"Status Code: %d", responseStatusCode);
+    
+    if (responseStatusCode == 200) {
+        user.isValidated = TRUE;
+    }else {
+        user.isValidated = FALSE;
+    }
+    
+    [user validateUser];
+    
+    
     [receivedData setLength:0];
 }
 
@@ -152,6 +164,12 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
+    if(!user.isValidated){
+#warning TODO: alerta qualquer
+        return;
+    }
+    
+    
     self.progress_label.Text=[NSString stringWithFormat:[lan translate:@"Synchronization step"], 2,3];
     [progress_bar setProgress:0.50];
     
@@ -159,7 +177,7 @@
     if(![sync parseData:receivedData]){
         [progress_bar setProgress:0.0];
         self.progress_label.Text=[NSString stringWithFormat:[lan translate:@"Synchronization step"], 0,3];
-#warning FERNANDO: mostrar aviso
+        
         return;
     };
      
@@ -203,6 +221,10 @@
     NSLog(@"Connection failed! Error - %@ %@",
           [error localizedDescription],
           [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]);
+    
+    
+#warning TODO: se nao houver net isto vai para aqui....
+    
 }
 
 @end
