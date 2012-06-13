@@ -250,7 +250,6 @@ SEL action; id target;
     
     //if there are two registrations, show comparison
     if ([Comparator numberOfRegistrations] == 2) {
-#warning TODO: PRESENT COMPARATOR
         AppDelegate* del = (AppDelegate*) [[UIApplication sharedApplication] delegate];
         [del showComparator];
         
