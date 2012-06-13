@@ -78,13 +78,14 @@
         return nil;
     }
     
-    
+    /*
     NSMutableDictionary * newTastings;
     if(newTastings){
         [new setObject:newTastings forKey:@"wines"];
     }else {
         return nil;
     }
+     */
     
     return new;
 }
@@ -526,14 +527,14 @@
     }
     
 
-/*    
+  
     if([receivedJSON objectForKey:@"Countries"]){
         if(![self parseCountries:[receivedJSON objectForKey:@"Countries"]]){
             [query rollbackTransaction];
             return FALSE; 
         }
     }
-*/    
+    
     
     if([receivedJSON objectForKey:@"WineTypes"]){
         if(![self parseWineTypes:[receivedJSON objectForKey:@"WineTypes"]]){
