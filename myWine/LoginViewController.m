@@ -87,8 +87,7 @@
 	return YES;
 }
 
-- (IBAction)doLogin:(id)sender {
-    
+- (void)executeLogin {
     Language *lan = [Language instance];
     
     [User createWithUsername: self.usernameInput.text Password: self.passwordInput.text];
@@ -116,6 +115,11 @@
         [alert show];
         
     }
+}
+
+- (IBAction)doLogin:(id)sender {
+    
+    [self executeLogin];
     
 }
 
@@ -149,7 +153,7 @@
     } else {
         // Not found, so remove keyboard.
         [textField resignFirstResponder];
-        [self doLogin:self.loginButton.init];
+        [self executeLogin];
     }
     return NO; // We do not want UITextField to insert line-breaks.
 }
