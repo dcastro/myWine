@@ -83,6 +83,7 @@
 
 -(BOOL) removeVinhoAtRow:(int)row inSection:(int)section {
     
+#warning TODO: o problema esta aqui
     Vinho * v;// = [self objectAtIndex:index];
     int index = 0;
     for(index = 0; index < [self count] ; index++) {
