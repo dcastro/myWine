@@ -550,6 +550,9 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         [[self navigationItem] setRightBarButtonItem:self.editButton animated:YES];
         [[self navigationItem] setLeftBarButtonItem:self.tempButton animated:YES];
         [self setTempButton:nil];
+
+        [self.wineName  becomeFirstResponder];
+        [self.wineName  resignFirstResponder];
         
         [self configureView];
         
