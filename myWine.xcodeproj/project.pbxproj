@@ -15,6 +15,8 @@
 		65846634156034BE003CB644 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9C59FFC1517A78500A3F8C5 /* Foundation.framework */; };
 		6584663A156034BE003CB644 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 65846638156034BE003CB644 /* InfoPlist.strings */; };
 		6584663D156034BE003CB644 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6584663C156034BE003CB644 /* Tests.m */; };
+		6586D4FF1588C88F00676A14 /* characteristics.png in Resources */ = {isa = PBXBuildFile; fileRef = 6586D4FD1588C88F00676A14 /* characteristics.png */; };
+		6586D5001588C88F00676A14 /* criteria.png in Resources */ = {isa = PBXBuildFile; fileRef = 6586D4FE1588C88F00676A14 /* criteria.png */; };
 		659189411577CFF100D814C3 /* backgroundLandscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 6591893D1577CFF100D814C3 /* backgroundLandscape.png */; };
 		659189421577CFF100D814C3 /* backgroundPortrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 6591893E1577CFF100D814C3 /* backgroundPortrait.png */; };
 		659189431577CFF100D814C3 /* DroidSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6591893F1577CFF100D814C3 /* DroidSans-Bold.ttf */; };
@@ -142,6 +144,8 @@
 		6584663B156034BE003CB644 /* Tests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tests.h; sourceTree = "<group>"; };
 		6584663C156034BE003CB644 /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		6584663E156034BE003CB644 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
+		6586D4FD1588C88F00676A14 /* characteristics.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = characteristics.png; sourceTree = "<group>"; };
+		6586D4FE1588C88F00676A14 /* criteria.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = criteria.png; sourceTree = "<group>"; };
 		6591893D1577CFF100D814C3 /* backgroundLandscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundLandscape.png; sourceTree = "<group>"; };
 		6591893E1577CFF100D814C3 /* backgroundPortrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundPortrait.png; sourceTree = "<group>"; };
 		6591893F1577CFF100D814C3 /* DroidSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DroidSans-Bold.ttf"; sourceTree = "<group>"; };
@@ -469,9 +473,11 @@
 				6591893D1577CFF100D814C3 /* backgroundLandscape.png */,
 				6591893E1577CFF100D814C3 /* backgroundPortrait.png */,
 				DADE3BC915480E2000465551 /* cell_bg_gradient.png */,
+				6586D4FD1588C88F00676A14 /* characteristics.png */,
 				DA433EA4157C107200407B88 /* checkbox-checked.png */,
 				DA433EA5157C107200407B88 /* checkbox-pressed.png */,
 				DA433EA6157C107300407B88 /* checkbox.png */,
+				6586D4FE1588C88F00676A14 /* criteria.png */,
 				6591893F1577CFF100D814C3 /* DroidSans-Bold.ttf */,
 				659189401577CFF100D814C3 /* DroidSans.ttf */,
 				D3231D9D15480DF700F09BAC /* DroidSerif-Bold.ttf */,
@@ -750,6 +756,8 @@
 				65C7B3271580D152009C5237 /* newPhoto.png in Resources */,
 				84446B7B1580F00B00A72FA2 /* material mywine-19.png in Resources */,
 				DA94105E15862648009B5217 /* ComparatorCell.xib in Resources */,
+				6586D4FF1588C88F00676A14 /* characteristics.png in Resources */,
+				6586D5001588C88F00676A14 /* criteria.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

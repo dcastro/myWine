@@ -5,6 +5,12 @@
 	<key>PreferenceSpecifiers</key>
 	<array>
 		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Credênciais</string>
+		</dict>
+		<dict>
 			<key>TrueValue</key>
 			<true/>
 			<key>FalseValue</key>
@@ -17,42 +23,6 @@
 			<string>logout</string>
 			<key>DefaultValue</key>
 			<false/>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-			<key>Title</key>
-			<string>Credênciais</string>
-		</dict>
-		<dict>
-			<key>DefaultValue</key>
-			<string>0</string>
-			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-			<key>Title</key>
-			<string>Limpar Dados</string>
-			<key>Key</key>
-			<string>rem_user</string>
-		</dict>
-		<dict>
-			<key>DefaultValue</key>
-			<string></string>
-			<key>Type</key>
-			<string>PSMultiValueSpecifier</string>
-			<key>Title</key>
-			<string>Terminar sessão</string>
-			<key>Key</key>
-			<string>muda_user</string>
-			<key>Values</key>
-			<array>
-				<string>0</string>
-				<string>1</string>
-			</array>
-			<key>Titles</key>
-			<array>
-				<string></string>
-				<string>Password</string>
-			</array>
 		</dict>
 		<dict>
 			<key>Title</key>
@@ -85,20 +55,26 @@
 		<dict>
 			<key>Titles</key>
 			<array>
+				<string>Desligado</string>
+				<string>3 dias</string>
 				<string>5 dias</string>
+				<string>7 dias</string>
 			</array>
 			<key>Values</key>
 			<array>
-				<string>0</string>
+				<string>1</string>
+				<string>3</string>
+				<string>5</string>
+				<string>7</string>
 			</array>
 			<key>DefaultValue</key>
-			<integer>0</integer>
+			<integer>7</integer>
 			<key>Type</key>
 			<string>PSMultiValueSpecifier</string>
 			<key>Title</key>
 			<string>Alerta de Sincronização</string>
 			<key>Key</key>
-			<string>muda_idioma</string>
+			<string>sync_reminder</string>
 		</dict>
 	</array>
 	<key>StringsTable</key>

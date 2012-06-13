@@ -45,10 +45,7 @@
         DebugLog(@"Query with error: %s", errMsg);
         sqlite3_free(errMsg);
         sqlite3_close(*contactDB);
-        
-#warning apagar isto quando o insert do vinho na BD estiver impec
-        [self insertInArrayVinho:vinho orderedBy:order];
-        
+                
         return FALSE;
     }else {        
         vinho.wine_id = sqlite3_last_insert_rowid(*contactDB);
