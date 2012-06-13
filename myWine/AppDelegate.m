@@ -63,6 +63,7 @@
     
     //check if there's a default user
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults synchronize];
     NSString* username;
     
     BOOL logout = [defaults boolForKey:@"logout"];
@@ -98,6 +99,40 @@
         [lvvc.vinhos orderVinhosBy:lvvc.selectedOrder];
         [lvvc.vinhos sectionizeOrderedBy:lvvc.selectedOrder];
         [lvvc reloadData];
+
+        
+        //alerta de sync
+        int alert_option = [defaults integerForKey:@"sync_reminder"];
+        NSLog(@"alert option %i", alert_option);
+        // se o alerta estiver ligado
+        if (alert_option != 1) {
+            if (alert_option == 0)
+                alert_option = 7; //valor por defeito
+            
+            NSDate* last_sync = [NSDate dateWithTimeIntervalSince1970:user.synced_at];
+            NSDate* today = [NSDate date];
+            
+            NSDateComponents* components;
+            int days_since_last_sync;
+            
+            components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:last_sync toDate:today options:0];
+            days_since_last_sync = [components day];
+            NSLog(@"days elapsed since last sync %i", days_since_last_sync);
+            
+            
+            if (days_since_last_sync > alert_option) {
+                Language* lan = [Language instance];
+                NSString* alert_message = [NSString stringWithFormat:@"%@ %i %@", [lan translate:@"Alert1"], days_since_last_sync, [lan translate:@"Alert2"]];
+                
+                
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[lan translate:@"Alert Title"] message:alert_message delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                [alert show];
+            }
+            
+            
+        }
+        
+
     }
     
     return YES;
