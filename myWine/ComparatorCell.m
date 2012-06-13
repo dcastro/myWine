@@ -89,6 +89,7 @@
     [self.classificationSlider setThumbImage:image forState:UIControlStateNormal];
     [self.classificationSlider setThumbImage:image forState:UIControlStateHighlighted];
     
+    [self.classificationSlider setUserInteractionEnabled:NO];
     
 }
 

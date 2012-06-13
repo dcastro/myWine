@@ -45,8 +45,8 @@
     
     //set Tab Bar items
     Language* lan = [Language instance];
-    UITabBarItem* criteriaItem = [[UITabBarItem alloc] initWithTitle:[lan translate:@"Criteria"] image:nil tag:0];
-    UITabBarItem* characteristicsItem = [[UITabBarItem alloc] initWithTitle:[lan translate:@"Characteristics"] image:nil tag:1];
+    UITabBarItem* criteriaItem = [[UITabBarItem alloc] initWithTitle:[lan translate:@"Criteria"] image:[UIImage imageNamed:@"criteria.png"] tag:0];
+    UITabBarItem* characteristicsItem = [[UITabBarItem alloc] initWithTitle:[lan translate:@"Characteristics"] image:[UIImage imageNamed:@"characteristics.png"] tag:1];
     
     self.criteriaController.tabBarItem = criteriaItem;
     self.characteristicsController.tabBarItem = characteristicsItem;
