@@ -171,7 +171,7 @@
     self.grapesListShow.textColor = [UIColor whiteColor];
     
     
-    if(vinho.photo != nil) {
+    if(vinho.photo != nil && vinho.photo != NULL) {
         User* user = [User instance];
         NSString *nome = user.username;
         NSString *path = [NSString stringWithFormat:@"Documents/Images/%@/%@",nome,vinho.photo];
@@ -477,32 +477,44 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
             [self.editableWine setGrapes:self.grapesList.text];
             [self.editableWine setPrice: [self.priceValue.text doubleValue]];  
         
-            if(newMedia) {
+            if(newMedia) {                
                 if(image != nil) {
-                    // Create paths to output images
+                    
+                    // Create paths to output images and delete old
                     
                     NSDate* date = [NSDate date];
                     NSTimeInterval time = [date timeIntervalSince1970];
-                    
+
                     User* user = [User instance];
+                    Vinho* oldVinho = (Vinho*) self.detailItem;
+                    
+                    
                     
                     NSString *nome = user.username;
                     NSString *stamp = [NSString stringWithFormat:@"%d", time];
                     NSString *path = [NSString stringWithFormat:@"Documents/Images/%@/",nome];
                     NSString *filePath = [NSString stringWithFormat:@"Documents/Images/%@/%@_%@.png",nome,nome,stamp];
+                    NSString *oldPath = [NSString stringWithFormat:@"Documents/Images/%@/%@",nome,oldVinho.photo];
+                    
+
                     
                     NSString *pngPath = [NSHomeDirectory() stringByAppendingPathComponent:filePath];                            
                     NSString *dirPath = [NSHomeDirectory() stringByAppendingPathComponent:path];
+                    NSString *remPath = [NSHomeDirectory() stringByAppendingPathComponent:oldPath];
+                    
+                    [[NSFileManager defaultManager] removeItemAtPath:remPath error:NULL];
                     
                     NSError *error;
-                    if (![[NSFileManager defaultManager] fileExistsAtPath:dirPath]) 
+                    
+                    if (![[NSFileManager defaultManager] fileExistsAtPath:dirPath])
                         if(![[NSFileManager defaultManager] createDirectoryAtPath:dirPath withIntermediateDirectories:YES attributes:nil error:&error])
                             NSLog(@"Create directory error: %@", error);
 
+                    
                     [UIImagePNGRepresentation(image) writeToFile:pngPath atomically:YES];
                     [self.editableWine setPhoto:[NSString stringWithFormat:@"%@_%@.png",nome,stamp]];
-                    NSLog(@"editable foto name: %@", self.editableWine.photo);
                     
+                    newMedia = NO;
                 }
             }
             
