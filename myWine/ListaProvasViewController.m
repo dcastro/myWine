@@ -339,6 +339,15 @@ SEL action; id target;
 
 - (IBAction)addTasting:(id)sender {
     Prova* prova = [FormularioProva generateTasting:self.vinho.winetype];
+    
+    if(prova == nil) {
+        Language* lan = [Language instance];
+        NSString* message = [NSString stringWithFormat:@"%@ %@", [lan translate:@"Tasting adding fail"], self.vinho.winetype.name];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[lan translate:@"Error"] message:message delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
+    
     prova.vinho = self.vinho;
     //index calculation
     int index = 0;
