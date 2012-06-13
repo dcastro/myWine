@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11E53" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50b" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="5">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
@@ -255,12 +255,8 @@
                                         <rect key="frame" x="45" y="103" width="352" height="432"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="material mywine-06.png" id="TLs-JQ-PxB">
-                                                <rect key="frame" x="4" y="0.0" width="344" height="422"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="l9W-Ph-qbW">
-                                                <rect key="frame" x="20" y="15" width="312" height="392"/>
+                                                <rect key="frame" x="21" y="20" width="312" height="392"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                 <state key="normal" image="material mywine-05.png">
@@ -274,6 +270,10 @@
                                                     <action selector="pickF:" destination="4" eventType="touchUpInside" id="akx-aJ-BQd"/>
                                                 </connections>
                                             </button>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="material mywine-06.png" id="TLs-JQ-PxB">
+                                                <rect key="frame" x="9" y="5" width="335" height="422"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                     </view>
@@ -2411,6 +2411,7 @@
         <class className="VinhoViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/VinhoViewController.h"/>
             <relationships>
+                <relationship kind="action" name="pickF:"/>
                 <relationship kind="action" name="toggleEdit:"/>
                 <relationship kind="outlet" name="country_label" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="country_label_name" candidateClass="UILabel"/>
@@ -2433,7 +2434,7 @@
                 <relationship kind="outlet" name="selectRegionButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="tempButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="wineName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="winePic" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="winePic" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="wine_label_name" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="wine_type_label" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="year_label" candidateClass="UILabel"/>
