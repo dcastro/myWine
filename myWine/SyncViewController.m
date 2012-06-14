@@ -149,7 +149,6 @@
     NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
     
     int responseStatusCode = [httpResponse statusCode];
-    DebugLog(@"Status Code: %d", responseStatusCode);
     
     
     switch (responseStatusCode) {
@@ -182,7 +181,6 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    DebugLog(@"entrou no parse");
     if(!user.isValidated){
         [progress_bar setProgress:0.0];
         self.progress_label.Text=[NSString stringWithFormat:[lan translate:@"Synchronization step"], 0,3];

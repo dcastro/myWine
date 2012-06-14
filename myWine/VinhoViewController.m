@@ -171,7 +171,7 @@
     self.grapesListShow.textColor = [UIColor whiteColor];
     
     
-    if(vinho.photo != nil && vinho.photo != NULL) {
+    if(vinho.photo != nil && vinho.photo != NULL && ![vinho.photo isEqualToString:@"<null>"]) {
         User* user = [User instance];
         NSString *nome = user.username;
         NSString *path = [NSString stringWithFormat:@"Documents/Images/%@/%@",nome,vinho.photo];
