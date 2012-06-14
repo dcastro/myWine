@@ -119,29 +119,6 @@ SEL action; id target;
         }
         
     }
-    
-	/*if ([segue.identifier isEqualToString:@"AddProva"])
-	{
-		UINavigationController *navigationController = 
-        segue.destinationViewController;
-		NovaProvaViewController 
-        *NovaProvaViewController = 
-        [[navigationController viewControllers] 
-         objectAtIndex:0];
-		NovaProvaViewController.delegate = self;
-	}
-    else*/ if([segue.identifier isEqualToString:@"filterSegue"])
-    {
-        action = [sender action];
-        target = [sender target];
-        
-        [sender setTarget:self];
-        [sender setAction:@selector(dismiss:)];
-        
-        self.currentPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
-    }
-
-    
     [self switchDetailViews:segue];
 }
 
