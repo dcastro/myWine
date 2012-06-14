@@ -157,6 +157,7 @@
     label.shadowOffset = CGSizeMake(0.0, 1.0);
     label.font = [UIFont boldSystemFontOfSize:16];
     label.text = title;
+    [label sizeToFit];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -168,8 +169,13 @@
     
     // Create label with section title
     UILabel *label = [[UILabel alloc] init];
-    label.frame = CGRectMake(50, 6, 300, 30);
     [self styleLabel:label withTitle:sectionTitle];
+    NSLog(@"%f %f", self.tableViewA.frame.size.width,label.frame.size.width);
+    if(tableView == tableViewA)
+        label.frame = CGRectMake(self.tableViewA.frame.size.width - 50 - label.frame.size.width, 6, 300, 30);
+    else if (tableView == tableViewB)
+        label.frame = CGRectMake(50, 6, 300, 30);
+    
     
     
     
