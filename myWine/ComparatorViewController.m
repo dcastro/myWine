@@ -80,7 +80,7 @@
 
 - (void) configureView {
     
-    [self.cancelButton setTitle:[[Language instance] translate:@"Cancel"]];
+    [self.cancelButton setTitle:[[Language instance] translate:@"Done"]];
     
     NSString* string = [[NSString alloc] initWithFormat:@"%i%%", [self.provaA calcScore]];
     self.scoreContentLabelA.text = string;
