@@ -286,7 +286,26 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"SectionItemCell";
+    static NSString *CellIdentifier;
+    switch (prova_mode) {
+        case CRITERIA_MODE: {
+            Seccao* section = (Seccao*) [self.prova.sections objectAtIndex:indexPath.section];
+            Criterio* criterion = (Criterio*) [section.criteria objectAtIndex:indexPath.row];
+            CellIdentifier = [NSString stringWithFormat:@"criterion %i", criterion.criterion_id];
+            break;
+            
+        }
+            
+        case CHARACTERISTICS_MODE: {
+            SeccaoCaracteristica* section = (SeccaoCaracteristica*) [self.prova.characteristic_sections objectAtIndex:indexPath.section];
+            Caracteristica* characteristic = (Caracteristica*) [section.characteristics objectAtIndex:indexPath.row];
+            CellIdentifier = [NSString stringWithFormat:@"characteristic %i", characteristic.characteristic_id];
+        }
+            
+    }
+    
+    
+    
     //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     SectionItemCell *cell = (SectionItemCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
@@ -302,28 +321,28 @@
                 break;
             }
         }
-
-    }
-    
-    [cell setDelegate:self];
-    
-    switch (prova_mode) {
-        case CRITERIA_MODE: {
-            Seccao* section = (Seccao*) [self.prova.sections objectAtIndex:indexPath.section];
-            Criterio* criterion = (Criterio*) [section.criteria objectAtIndex:indexPath.row];
-            object_setClass(cell, [CriterionCell class]);
-            [cell setItem:criterion];
-            break;
-            
+        
+        [cell setDelegate:self];
+        
+        switch (prova_mode) {
+            case CRITERIA_MODE: {
+                Seccao* section = (Seccao*) [self.prova.sections objectAtIndex:indexPath.section];
+                Criterio* criterion = (Criterio*) [section.criteria objectAtIndex:indexPath.row];
+                object_setClass(cell, [CriterionCell class]);
+                [cell setItem:criterion];
+                break;
+                
+            }
+                
+            case CHARACTERISTICS_MODE: {
+                SeccaoCaracteristica* section = (SeccaoCaracteristica*) [self.prova.characteristic_sections objectAtIndex:indexPath.section];
+                Caracteristica* characteristic = (Caracteristica*) [section.characteristics objectAtIndex:indexPath.row];
+                object_setClass(cell, [CharacteristicCell class]);
+                [cell setItem:characteristic];
+            }
+                
         }
 
-        case CHARACTERISTICS_MODE: {
-            SeccaoCaracteristica* section = (SeccaoCaracteristica*) [self.prova.characteristic_sections objectAtIndex:indexPath.section];
-            Caracteristica* characteristic = (Caracteristica*) [section.characteristics objectAtIndex:indexPath.row];
-            object_setClass(cell, [CharacteristicCell class]);
-            [cell setItem:characteristic];
-        }
-            
     }
     
     return cell;
