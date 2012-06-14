@@ -1595,14 +1595,14 @@ namePT:(NSString *)name_pt andWheight:(int)weight
         country_id = [countryWithRegionsJSON objectForKey:@"Id"];
         
         //verifies if the country exists in the database
-        BOOL exists = FALSE;
+        BOOL existsCountry = FALSE;
         querySQL = [NSString stringWithFormat:@"SELECT country_id FROM Country WHERE country_id = \'%@\';", country_id];
         
         if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
                 if(sqlite3_step(stmt) == SQLITE_ROW){
-                    exists = TRUE;
-                    sqlite3_finalize(stmt);
+                    existsCountry = TRUE;
                 }
+                sqlite3_finalize(stmt);
             }else{
                 DebugLog(@"Query with error: %@", querySQL);
                 return FALSE;
@@ -1610,7 +1610,7 @@ namePT:(NSString *)name_pt andWheight:(int)weight
         
         
         //if it doest exists, stores it
-        if(!exists){
+        if(!existsCountry){
             querySQL = [NSString stringWithFormat:@"INSERT INTO Country VALUES (\'%@\', \'%@\', \'%@\', \'%@\');", 
                         [countryWithRegionsJSON objectForKey:@"Id"],
                         [countryWithRegionsJSON objectForKey:@"NameEn"],
@@ -1629,16 +1629,33 @@ namePT:(NSString *)name_pt andWheight:(int)weight
         NSArray * regionsJSON = [countryWithRegionsJSON objectForKey:@"Regions"];
         for (int k = 0; k < [regionsJSON count]; k++) {
             NSDictionary *regionJSON = [regionsJSON objectAtIndex:k];
-            querySQL = [NSString stringWithFormat:@"INSERT INTO Region VALUES (\'%@\', \'%@\', \'%@\');", 
-                        [regionJSON objectForKey:@"Id"],
-                        country_id,
-                        [regionJSON objectForKey:@"Name"]];
             
-            char *errMsg;
-            if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
-                DebugLog(@"%s", errMsg);
-                sqlite3_free(errMsg);
+            BOOL existsRegion = FALSE;
+            querySQL = [NSString stringWithFormat:@"SELECT region_id FROM Region WHERE region_id = %d;", [[regionJSON objectForKey:@"Id"]intValue]];
+            
+            
+            if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
+                if(sqlite3_step(stmt) == SQLITE_ROW){
+                    existsRegion = TRUE;
+                }
+                sqlite3_finalize(stmt);
+            }else{
+                DebugLog(@"Query with error: %@", querySQL);
                 return FALSE;
+            }
+            
+            if(!existsRegion){
+                querySQL = [NSString stringWithFormat:@"INSERT INTO Region VALUES (%d, \'%@\', \'%@\');", 
+                            [[regionJSON objectForKey:@"Id"]intValue],
+                            country_id,
+                            [regionJSON objectForKey:@"Name"]];
+                
+                char *errMsg;
+                if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+                    DebugLog(@"%s", errMsg);
+                    sqlite3_free(errMsg);
+                    return FALSE;
+                }
             }
 
         }
