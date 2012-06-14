@@ -421,6 +421,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         
         [self.selectCountryButton setTitle:self.country_label_name.text forState:UIControlStateNormal];
         [self.selectRegionButton setTitle:self.region_label_name.text forState:UIControlStateNormal];
+        [self.selectCurrencyButton setTitle:self.editableWine.currency forState:UIControlStateNormal];
         
         [UIView transitionWithView:[self view] duration:0.5
 						   options:UIViewAnimationOptionTransitionCurlDown
