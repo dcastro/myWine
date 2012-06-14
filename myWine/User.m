@@ -43,7 +43,7 @@ static User *sharedUser = nil;
     if (self = [super init]) {
         self.username = username;
         
-        [self loadFromDB];
+        [self loadFromDBWithFlag:0];
     }
     
     return self;
@@ -62,7 +62,7 @@ static User *sharedUser = nil;
         self.username = username;
         self.password = password;
         
-        [self loadFromDB];
+        [self loadFromDBWithFlag:1];
         
     }
     
@@ -76,12 +76,27 @@ static User *sharedUser = nil;
     }
 }
 
-- (void) loadFromDB {
-    
+- (void) loadFromDBWithFlag:(int)flag 
+{
+        
     Query *query = [[Query alloc] init];
     
-    NSString *querySQL = [NSString stringWithFormat: 
-                          @"SELECT * FROM User WHERE username=\'%@\' AND password = \'%@\';",self.username, self.password];
+    NSString *querySQL;
+    
+    
+    switch (flag) {
+            //por nsdefaults
+        case 0:
+            querySQL = [NSString stringWithFormat: @"SELECT * FROM User WHERE username=\'%@\';",self.username];
+            break;
+           //pela primeira vez 
+        case 1:
+            querySQL = [NSString stringWithFormat: @"SELECT * FROM User WHERE username=\'%@\' AND password = \'%@\';",self.username, self.password];
+            break;
+        default:
+            break;
+    }
+
     
     sqlite3_stmt *stmt = [query prepareForSingleQuery:querySQL];
     

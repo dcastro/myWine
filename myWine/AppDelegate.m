@@ -110,7 +110,7 @@
             
             NSDate* last_sync = [NSDate dateWithTimeIntervalSince1970:user.synced_at];
             NSDate* today = [NSDate date];
-            
+       
             NSDateComponents* components;
             int days_since_last_sync;
             
