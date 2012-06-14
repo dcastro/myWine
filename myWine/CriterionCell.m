@@ -168,5 +168,8 @@
     return [[NSString alloc] initWithFormat:@"%i  %@", classification.weight, classification.name];
 }
 
+-(NSString*) reuseIdentifier {
+    return [NSString stringWithFormat:@"criterion %i", [[self item] criterion_id]];
+}
 
 @end

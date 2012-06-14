@@ -69,4 +69,8 @@
     return [[NSString alloc] initWithFormat:@"%@", classification.name];
 }
 
+-(NSString*) reuseIdentifier {
+    return [NSString stringWithFormat:@"characteristic %i", [[self item] characteristic_id]];
+}
+
 @end
