@@ -51,16 +51,20 @@
     
     
     //ajustar posicionamento da label
-    CGRect frame = self.criterionNameLabel.frame;    
+    CGRect frame = self.criterionNameLabel.frame;
+    CGRect frame2 = self.classificationSlider.frame;
     switch (cellType) {
         case ComparatorCellTypeA:
             frame.origin.x = self.frame.size.width - 20 - frame.size.width;
+            frame2.origin.x = 50;
             break;
         case ComparatorCellTypeB:
             frame.origin.x = 20;
+            frame2.origin.x = self.frame.size.width - 50 - frame2.size.width;
             break;
     }
     self.criterionNameLabel.frame = frame;
+    self.classificationSlider.frame = frame2;
     
     
     //ajustar sliders

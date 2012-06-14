@@ -98,7 +98,7 @@
                         completion:NULL];  
         
         //temp classification
-        self.classification = [self.item classification_chosen];
+        //self.classification = [self.item classification_chosen];
         
         //find currently selected classification's index
         int i;
