@@ -27,7 +27,10 @@
 
 @end
 
-@interface ProvaViewController : UITableViewController <SectionItemCellCellDelegate, TranslatableViewController>
+@interface ProvaViewController : UITableViewController <SectionItemCellCellDelegate, TranslatableViewController> {
+    BOOL keyboardIsShown;
+    CGPoint originalOffset;
+}
 
 @property (strong, nonatomic) Prova* prova;
 @property (strong, nonatomic) Vinho* vinho;
@@ -56,5 +59,6 @@
 -(void) updateScoreLabelWithScore:(int) score;
 
 - (void) translate;
+
 
 @end

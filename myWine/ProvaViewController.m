@@ -45,7 +45,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    // register for keyboard notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(keyboardWillShow:) 
+                                                 name:UIKeyboardWillShowNotification 
+                                               object:self.view.window];
+    // register for keyboard notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(keyboardWillHide:) 
+                                                 name:UIKeyboardWillHideNotification 
+                                               object:self.view.window];
+    keyboardIsShown = NO;
+    
+    //make contentSize bigger than your scrollSize (you will need to figure out for your own use case)
+    CGSize scrollContentSize = CGSizeMake(320, 345);
+    _bottomScrollView.contentSize = scrollContentSize;
+    
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -135,6 +151,7 @@
         self.comentario.frame = frame;
     }
 }
+
 
 - (int) updateScoreLabel {
     
@@ -237,6 +254,57 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    
+    // unregister for keyboard notifications while not visible.
+    [[NSNotificationCenter defaultCenter] removeObserver:self 
+                                                    name:UIKeyboardWillShowNotification 
+                                                  object:nil]; 
+    // unregister for keyboard notifications while not visible.
+    [[NSNotificationCenter defaultCenter] removeObserver:self 
+                                                    name:UIKeyboardWillHideNotification 
+                                                  object:nil]; 
+}
+
+- (void)dealloc {
+    // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
+    
+    // unregister for keyboard notifications while not visible.
+    [[NSNotificationCenter defaultCenter] removeObserver:self 
+                                                    name:UIKeyboardWillShowNotification 
+                                                  object:nil]; 
+    // unregister for keyboard notifications while not visible.
+    [[NSNotificationCenter defaultCenter] removeObserver:self 
+                                                    name:UIKeyboardWillHideNotification 
+                                                  object:nil];  
+    
+}
+
+- (void)keyboardWillShow:(NSNotification*)aNotification
+{
+    NSDictionary* info = [aNotification userInfo];
+    CGRect kbRect = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+	kbRect = [self.view convertRect:kbRect toView:nil];
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbRect.size.height, 0.0);
+    _bottomScrollView.contentInset = contentInsets;
+    _bottomScrollView.scrollIndicatorInsets = contentInsets;
+    
+    CGRect aRect = self.view.frame;
+    aRect.size.height -= kbRect.size.height;
+    CGPoint fieldOrigin = _comentario.frame.origin;
+    fieldOrigin.y -= _bottomScrollView.contentOffset.y;
+    fieldOrigin = [self.view convertPoint:fieldOrigin toView:self.view.superview];
+    originalOffset = _bottomScrollView.contentOffset;
+    if (!CGRectContainsPoint(aRect, fieldOrigin) ) {
+        [_bottomScrollView scrollRectToVisible:_comentario.frame animated:YES];
+    }
+}
+
+- (void)keyboardWillHide:(NSNotification*)aNotification {
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    _bottomScrollView.contentInset = contentInsets;
+    _bottomScrollView.scrollIndicatorInsets = contentInsets;
+    [_bottomScrollView setContentOffset:originalOffset animated:YES];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -393,7 +461,7 @@
             int score = [self updateScoreLabel];
             [self.delegate scoreUpdated:score];
         }
-
+        [self.view endEditing:YES];
         
     }
     //if the edition was completed successfully
@@ -406,6 +474,7 @@
         
         //update comment label
         [self updatedCommentLabel];
+        [self.view endEditing:YES];
     }
     //if the edition is about to begin
     else if (editing) {
