@@ -287,7 +287,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Detalhes" id="53">
-                        <barButtonItem key="rightBarButtonItem" title="Editar" style="plain" id="0yn-lv-cAI">
+                        <barButtonItem key="rightBarButtonItem" title="Editar" id="0yn-lv-cAI">
                             <connections>
                                 <action selector="toggleEdit:" destination="4" id="cBq-JK-tJC"/>
                             </connections>

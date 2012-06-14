@@ -175,7 +175,7 @@ SEL action; id target;
         ovc.delegate = self;
         
         self.currentPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
-        self.currentPopover.delegate = self;
+        self.currentPopover.delegate = (id)self;
         self.popoverController = [(UIStoryboardPopoverSegue *)segue popoverController];
     }
     else if ([segue.identifier isEqualToString:@"toFilters"]) {

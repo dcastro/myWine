@@ -127,7 +127,7 @@ SEL action; id target;
         [sender setAction:@selector(dismiss:)];
         
         self.currentPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
-        self.currentPopover.delegate = self;
+        self.currentPopover.delegate = (id) self;
     }
 }
 
