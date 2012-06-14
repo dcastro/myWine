@@ -112,7 +112,12 @@
 }
 
 - (NSComparisonResult)compare:(Seccao *)otherSection {
-    return [self.name compare:otherSection.name];
+    if (self.order < otherSection.order)
+        return NSOrderedAscending;
+    else if (self.order > otherSection.order)
+        return NSOrderedDescending;
+    else 
+        return NSOrderedSame;
 }
 
 @end
