@@ -18,6 +18,8 @@
 @synthesize delegate = _delegate;
 @synthesize nome = _nome;
 @synthesize score = _score;
+@synthesize nome_desc = _nome_desc;
+@synthesize score_asc = _score_asc;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -42,6 +44,8 @@
     //self.passwordInput.placeholder = [lan translate:@"Password"];
     self.nome.textLabel.text = [lan translate:@"OrderName"];
     self.score.textLabel.text = [lan translate:@"OrderScore"];
+    self.nome_desc.textLabel.text = [lan translate:@"OrderNameDesc"];
+    self.score_asc.textLabel.text = [lan translate:@"OrderScoreAsc"];
 }
 
 - (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -57,6 +61,8 @@
 {
     [self setNome:nil];
     [self setScore:nil];
+    [self setNome_desc:nil];
+    [self setScore_asc:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

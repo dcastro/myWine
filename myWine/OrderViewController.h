@@ -21,5 +21,7 @@
 @property (nonatomic, weak) id <OrderViewControllerDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UITableViewCell *nome;
 @property (weak, nonatomic) IBOutlet UITableViewCell *score;
+@property (weak, nonatomic) IBOutlet UITableViewCell *nome_desc;
+@property (weak, nonatomic) IBOutlet UITableViewCell *score_asc;
 
 @end
