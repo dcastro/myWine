@@ -710,7 +710,7 @@
                          [wineJSON objectForKey:@"Name"],
                          [wineJSON objectForKey:@"Producer"],
                          [[wineJSON objectForKey:@"Harvest"] intValue],
-                         [wineJSON objectForKey:@"grapes"],
+                         [wineJSON objectForKey:@"Grapes"],
                          [[wineJSON objectForKey:@"Region"] intValue],
                          [wineJSON objectForKey:@"Currency"],
                          [[wineJSON objectForKey:@"Price"]doubleValue],
