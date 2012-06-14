@@ -111,8 +111,17 @@
     //Login Failure
     else {
         //show alert
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[lan translate:@"Error"] message:[lan translate:@"Login Failure"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-        [alert show];
+        //UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[lan translate:@"Error"] message:[lan translate:@"Login Failure"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        //[alert show];
+        
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+        UINavigationController* syncNC = (UINavigationController*) [storyboard instantiateViewControllerWithIdentifier:@"syncNC"];
+        
+        [syncNC setModalPresentationStyle:UIModalPresentationFormSheet];
+        syncNC.delegate = self;
+        
+        [self presentModalViewController:syncNC animated:YES];
+        
         
     }
 }
@@ -264,5 +273,10 @@
     [self.loginButton setTitle:[lan translate:@"Login"] forState:UIControlStateNormal];
     self.loginButton.titleLabel.font = [UIFont fontWithName:@"DroidSans" size:LARGE_FONT];
 }
+
+- (void) SyncViewControllerDidFinishWithStatusCode:(int) code {
+    
+}
+
 
 @end

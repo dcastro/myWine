@@ -7,8 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Language.h"
-#import "Sincronizacao.h"
+
+@class Language;
+@class Sincronizacao;
+
+@protocol SyncViewControllerDelegate <NSObject>
+
+- (void) SyncViewControllerDidFinishWithStatusCode:(int) code;
+
+@end
+
 
 @interface SyncViewController : UIViewController{
     NSMutableData *receivedData;
@@ -20,6 +28,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *progress_label;
 @property (weak, nonatomic) IBOutlet UIProgressView *progress_bar;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
+
+@property (strong, nonatomic) id<SyncViewControllerDelegate> delegate;
 
 - (IBAction)cancel:(id)sender;
 

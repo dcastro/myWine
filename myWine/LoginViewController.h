@@ -10,6 +10,7 @@
 #import "Language.h"
 #import "User.h"
 #import "Vinho.h"
+#import "SyncViewController.h"
 
 @class MySplitViewViewController;
 @class LoginViewController;
@@ -19,7 +20,7 @@
 @end
 
 
-@interface LoginViewController : UIViewController <UITextFieldDelegate>
+@interface LoginViewController : UIViewController <UITextFieldDelegate, SyncViewControllerDelegate>
 
 @property (nonatomic, weak) id <LoginViewControllerDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UIButton *frFlag;
