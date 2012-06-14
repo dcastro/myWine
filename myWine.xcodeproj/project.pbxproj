@@ -66,7 +66,6 @@
 		A9C5A0141517A78600A3F8C5 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9C5A0131517A78600A3F8C5 /* DetailViewController.m */; };
 		A9C5A0241517AB0E00A3F8C5 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A9C5A0231517AB0E00A3F8C5 /* icon.png */; };
 		A9D10DEF157905B700E8B01B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D10DEE157905B700E8B01B /* MobileCoreServices.framework */; };
-		A9F0B4BF152477C9003C931B /* ComparadorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F0B4BE152477C9003C931B /* ComparadorViewController.m */; };
 		BCC8EBB91563E36B006645BC /* NSMutableArray+ProvasMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = BCC8EBB81563E36B006645BC /* NSMutableArray+ProvasMutableArray.m */; };
 		BCDC2CEB1580F34A00E7AB56 /* OrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCDC2CEA1580F34A00E7AB56 /* OrderViewController.m */; };
 		D3231DA3154814F400F09BAC /* DroidSerif-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D3231D9D15480DF700F09BAC /* DroidSerif-Bold.ttf */; };
@@ -207,8 +206,6 @@
 		A9C5A0131517A78600A3F8C5 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		A9C5A0231517AB0E00A3F8C5 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		A9D10DEE157905B700E8B01B /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		A9F0B4BD152477C9003C931B /* ComparadorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComparadorViewController.h; sourceTree = "<group>"; };
-		A9F0B4BE152477C9003C931B /* ComparadorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComparadorViewController.m; sourceTree = "<group>"; };
 		BCC8EBB71563E36B006645BC /* NSMutableArray+ProvasMutableArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+ProvasMutableArray.h"; sourceTree = "<group>"; };
 		BCC8EBB81563E36B006645BC /* NSMutableArray+ProvasMutableArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+ProvasMutableArray.m"; sourceTree = "<group>"; };
 		BCDC2CE91580F34A00E7AB56 /* OrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderViewController.h; sourceTree = "<group>"; };
@@ -513,10 +510,6 @@
 			children = (
 				DA7F5E78158440BF00E9418C /* ComparatorViewController.h */,
 				DA7F5E79158440BF00E9418C /* ComparatorViewController.m */,
-				DA7F5E7415843E2500E9418C /* MySplitViewViewController.h */,
-				DA7F5E7515843E2600E9418C /* MySplitViewViewController.m */,
-				A9F0B4BD152477C9003C931B /* ComparadorViewController.h */,
-				A9F0B4BE152477C9003C931B /* ComparadorViewController.m */,
 				65B824F3157935FE00527D6F /* ContactsViewController.h */,
 				65B824F4157935FE00527D6F /* ContactsViewController.m */,
 				DA631DDE156EA7F2003EC91B /* CurrencyViewController.h */,
@@ -541,6 +534,8 @@
 				A9C5A0101517A78600A3F8C5 /* ListaVinhosViewController.m */,
 				DAFB6901152D138800DC74CB /* LoginViewController.h */,
 				DAFB6902152D138800DC74CB /* LoginViewController.m */,
+				DA7F5E7415843E2500E9418C /* MySplitViewViewController.h */,
+				DA7F5E7515843E2600E9418C /* MySplitViewViewController.m */,
 				A9A69B9D151FCEC500FC9073 /* NovaProvaViewController.h */,
 				A9A69B9E151FCEC500FC9073 /* NovaProvaViewController.m */,
 				A9BFB2C4151D468500588B59 /* NovoVinhoViewController.h */,
@@ -802,7 +797,6 @@
 				A9C28884151FBB4400C2F58D /* VinhoViewController.m in Sources */,
 				A9A69B9C151FCDE200FC9073 /* SyncViewController.m in Sources */,
 				A9A69B9F151FCEC500FC9073 /* NovaProvaViewController.m in Sources */,
-				A9F0B4BF152477C9003C931B /* ComparadorViewController.m in Sources */,
 				DAFB6903152D138800DC74CB /* LoginViewController.m in Sources */,
 				DA7D48A4152E0AAD00C525FB /* Language.m in Sources */,
 				DA498F14153D6659009C4072 /* User.m in Sources */,
