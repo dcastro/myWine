@@ -19,6 +19,7 @@
 @synthesize progress_label;
 @synthesize progress_bar;
 @synthesize cancelButton;
+@synthesize delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
