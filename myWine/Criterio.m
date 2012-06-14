@@ -21,6 +21,7 @@
 @synthesize name_fr = _name_fr;
 @synthesize classification_chosen = _classification_chosen;
 @synthesize classifications = _classifications;
+@synthesize classification;
 
 - (NSMutableArray *)classifications {
     if(!_classifications){
@@ -129,6 +130,10 @@
 
 - (BOOL) save 
 {
+    if(self.classification == nil)
+        return true;
+    
+    self.classification_chosen = self.classification;    
     
     Query *query = [[Query alloc]init];
     NSString * querySQL = [NSString stringWithFormat:@"UPDATE Criterion SET classification_id = %d WHERE criterion_id= %d", 

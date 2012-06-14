@@ -14,7 +14,7 @@
 @synthesize classificationLabel;
 @synthesize item = _item;
 @synthesize delegate = _delegate;
-@synthesize classification = _classification;
+//@synthesize classification = _classification;
 @synthesize classification_index = _classification_index;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -51,7 +51,7 @@
     //NSLog(@" MIN %i MAX %i CHOSEN %i", self.criterion.minWeight, self.criterion.maxWeight, self.criterion.classification_chosen.weight);
     
     //temp classification
-    self.classification = [self.item classification_chosen];
+    [[self item] setClassification:[self.item classification_chosen]];
     
     [self.classificationSlider setUserInteractionEnabled:FALSE];
     
@@ -102,7 +102,7 @@
         
         //find currently selected classification's index
         int i;
-        for(i = 0; i < [self.item classifications].count && ![[((Classificacao*)[[self.item classifications] objectAtIndex:i]) name] isEqualToString:self.classification.name]; i++);
+        for(i = 0; i < [self.item classifications].count && ![[((Classificacao*)[[self.item classifications] objectAtIndex:i]) name] isEqualToString:[[[self item] classification] name]]; i++);
         self.classification_index = i;
         
         [self.classificationSlider setUserInteractionEnabled:YES];
@@ -127,7 +127,7 @@
 }
 
 - (IBAction)adjustSliderValue:(id)sender {
-    [self.classificationSlider setValue:[self itemWeight:self.classification] animated:YES];
+    [self.classificationSlider setValue:[self itemWeight:[[ self item] classification]] animated:YES];
 }
 
 - (IBAction)classificationSliderValueChanged:(id)sender {
@@ -136,7 +136,7 @@
     float value = self.classificationSlider.value;
     Classificacao* nextClassification;
     int new_index;
-    int classification_weight = [self itemWeight:self.classification];
+    int classification_weight = [self itemWeight:[[self item] classification]];
     
     if(value == classification_weight) {
         return;
@@ -157,10 +157,10 @@
     
     //if the value is closer to the nextClassification than to the current, the current classification is changed  
     if (distanceToNext < distanceToCurrent) {
-        self.classification = nextClassification;
+        [[self item] setClassification: nextClassification];
         self.classification_index = new_index;
         
-        [self drawClassificationLabel:self.classification animated:YES];
+        [self drawClassificationLabel:[[self item] classification] animated:YES];
         
         [self.delegate sectionItemCellDidUpdateClassification];
     }
@@ -171,8 +171,8 @@
 
 
 - (void) resetState {
-    if([self.item classification_chosen] != self.classification) {
-        self.classification = [self.item classification_chosen];
+    if([self.item classification_chosen] != [[self item] classification]) {
+        [[self item] setClassification:[self.item classification_chosen]];
         [self drawClassificationLabel:[self.item classification_chosen] animated:YES];
         
         [self resetSlider];
@@ -182,8 +182,8 @@
 }
 
 - (void) commitEdit {
-    if([self.item classification_chosen] != self.classification) {
-        [self.item setClassification_chosen:self.classification];
+    if([self.item classification_chosen] != [[self item] classification]) {
+        [self.item setClassification_chosen:[[self item] classification]];
         [self.item save];
     }
 }
@@ -197,7 +197,7 @@
     [self.nameLabel setText: [self.item name]];
     
     //traduz classificacao
-    [self drawClassificationLabel:self.classification animated:NO];
+    [self drawClassificationLabel:[[self item] classification] animated:NO];
 }
 
 @end

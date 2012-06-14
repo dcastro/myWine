@@ -20,6 +20,8 @@
 @property (nonatomic, assign) int order;
 @property (nonatomic, strong) NSMutableArray * classifications;
 
+@property (nonatomic, strong) Classificacao* classification; //for editing
+
 - (NSString*) description;
 
 - (int) minWeight;

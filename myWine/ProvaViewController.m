@@ -162,7 +162,7 @@
         
         for(int j = 0; j < seccao.criteria.count; j++) {
             CriterionCell* cell = (CriterionCell*) [[self tableView] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:j inSection:i]];
-            score += cell.classification.weight;
+            score += [[[cell item] classification] weight ];
             max += [cell.item maxWeight];
         }
         
@@ -468,9 +468,25 @@
     else if (!editing) {
         
         //save changes
-        [self forEveryCell:^(CriterionCell* cell) {
+        /*[self forEveryCell:^(CriterionCell* cell) {
             [cell commitEdit];
-        } ];
+        } ];*/
+        
+        if (prova_mode == CRITERIA_MODE) {
+            
+            for(Seccao* s in self.prova.sections) {
+                for(Criterio* c in s.criteria) {
+                    [c save];
+                }
+            }            
+            
+        } else if ( prova_mode == CHARACTERISTICS_MODE) {
+            for(SeccaoCaracteristica* s in self.prova.characteristic_sections) {
+                for(Caracteristica* c in s.characteristics) {
+                    [c save];
+                }
+            }  
+        }
         
         //update comment label
         [self updatedCommentLabel];

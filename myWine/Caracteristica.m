@@ -21,6 +21,7 @@
 @synthesize characteristic_id = _characteristic_id;
 @synthesize classification_chosen = _classification_chosen;
 @synthesize classifications = _classifications;
+@synthesize classification;
 
 - (NSMutableArray *)classifications {
     if(!_classifications){
@@ -98,11 +99,15 @@
 
 - (BOOL) save {
     
+    if(self.classification == nil)
+        return true;
+    
+    self.classification_chosen = self.classification;  
+    
     Query *query = [[Query alloc]init];
     NSString * querySQL = [NSString stringWithFormat:@"UPDATE Characteristic SET classification_id = %d WHERE characteristic_id= %d", 
                            self.classification_chosen.classification_id,
                            self.characteristic_id];
-    
     sqlite3 ** contactDB = [query prepareForExecution];
     
     char *errMsg;

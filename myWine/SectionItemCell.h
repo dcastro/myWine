@@ -21,7 +21,7 @@
 
 
 @property (strong, nonatomic) id item;
-@property (strong, nonatomic) Classificacao* classification;
+//@property (strong, nonatomic) Classificacao* classification;
 @property (nonatomic) int classification_index;
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
