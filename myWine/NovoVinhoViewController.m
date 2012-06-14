@@ -52,13 +52,26 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
 
 - (void)viewDidLoad
 {
+    // Get current year
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *components = [gregorian components:NSYearCalendarUnit fromDate:[NSDate date]];
+    NSInteger year = [components year];
+    
+    // Populate picker data array from 1900 to current year
+    self.anosVinhos = [[NSMutableArray alloc] init];
+    for(int i = year ; i>1900 ; i--)
+        [self.anosVinhos addObject: [NSNumber numberWithInt:i]];
+    
+    NSLog(@"aaaa %d", self.anosVinhos.count);
+    
+
+    
     [super viewDidLoad];
     // Setup the background
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
@@ -127,17 +140,8 @@
     [_AnoVinho setInputView:PickAnoVinho];
     PickAnoVinho.hidden = YES;
     _AnoVinho.delegate = self;
-    _castaVinho.delegate = self;    
-    // Get current year
-    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSDateComponents *components = [gregorian components:NSYearCalendarUnit fromDate:[NSDate date]];
-    NSInteger year = [components year];
+    _castaVinho.delegate = self;
     
-    // Populate picker data array from 1900 to current year
-    self.anosVinhos = [[NSMutableArray alloc] init];
-    for(int i = year ; i>1900 ; i--)
-        [anosVinhos addObject: [NSNumber numberWithInt:i]];
-    // TODO: convert mutable into normal static array for improved performance, since array shuld only be recalculated once per year
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     BOOL hasCountry = [defaults boolForKey:@"defaultCountrySet"];
     if(hasCountry){
@@ -146,9 +150,7 @@
         [self selectedCountry:defCountry];
     }
     
-    if(1) {
-        [self dismissModalViewControllerAnimated:YES];
-    }
+    [self dismissModalViewControllerAnimated:YES];
     
 }
 
@@ -440,13 +442,15 @@ finishedSavingWithError:(NSError *)error
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
     //set number of rows
-    return anosVinhos.count;
+    NSLog(@"ccc %d", self.anosVinhos.count);
+    return self.anosVinhos.count;
 }
 
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     //set item per row
-    return [NSString stringWithFormat:@"%d", [[anosVinhos objectAtIndex:row] integerValue]];
+    NSLog(@"bbb %d", self.anosVinhos.count);
+    return [NSString stringWithFormat:@"%d", [[self.anosVinhos objectAtIndex:row] integerValue]];
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {

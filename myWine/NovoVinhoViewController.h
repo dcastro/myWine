@@ -27,7 +27,6 @@
 @end
 
 @interface NovoVinhoViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,ListaPaisesViewControllerDelegate,ListaRegioesViewControllerDelegate,ListaTipoVinhosViewControllerDelegate, CurrencyViewControllerDelegate> {
-    UIPickerView *PickAnoVinho;
     UITextField *AnoVinho;
     UIImageView *imageView;
     BOOL newMedia;
