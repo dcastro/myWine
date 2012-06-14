@@ -686,7 +686,7 @@
         int wine_id;
         
         //verificar se o vinho ja existe na da bd, se existir e um update
-        querySQL = [NSString stringWithFormat:@"SELECT wine_id FROM wine WHERE wine_server_id = %d AND user = \'%@\'", [wineJSON objectForKey:@"WineServerId"], user.username];
+        querySQL = [NSString stringWithFormat:@"SELECT wine_id FROM wine WHERE wine_server_id = %d AND user = \'%@\'", [[wineJSON objectForKey:@"WineServerId"]intValue], user.username];
         
         
         if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
@@ -808,7 +808,6 @@
         
             //faz update de uma prova existente
             if(wineExists && existsTasting){
-                
                 if(![self parseUpdatedTasting:tastingJSON forWine:wine_id withTasting:tasting_id])
                     return FALSE;
                 
@@ -865,6 +864,7 @@
                     [sectionJSON objectForKey:@"NameFr"],
                     [sectionJSON objectForKey:@"NamePt"]];
         
+        
         if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
             if(sqlite3_step(stmt) == SQLITE_ROW){
                 section_id = sqlite3_column_int(stmt, 0);
@@ -892,7 +892,6 @@
                         [criterionJSON objectForKey:@"NameEn"],
                         [criterionJSON objectForKey:@"NameFr"],
                         [criterionJSON objectForKey:@"NamePt"]];
-            
             
             
             if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
@@ -927,9 +926,6 @@
                 return FALSE;
             }
         }
-        
-        
-        return TRUE;
     }
     
     
@@ -939,7 +935,7 @@
     
     //seccoes de caracteristicas
     NSArray * characteristicsSectionsJSON = [tastingJSON objectForKey:@"CaracteristicsSections"];
-    for(int i = 0; i < [sectionsJSON count]; i++){
+    for(int i = 0; i < [characteristicsSectionsJSON count]; i++){
         
         NSDictionary *characteristicsectionJSON = [characteristicsSectionsJSON objectAtIndex:i];
         
