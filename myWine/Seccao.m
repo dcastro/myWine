@@ -70,7 +70,7 @@
                 c.classification_id, c.weight, c.name_en, c.name_fr, c.name_pt\
                 FROM Criterion cr, Classification c\
                 WHERE cr.section_id = %d AND cr.classification_id = c.classification_id \
-                ORDER BY cr.order_priority ASC;", _section_id];
+                ORDER BY cr.order_priority ASC;", self.section_id];
 
     sqlite3_stmt *stmt = [query prepareForSingleQuery:querySQL];
     

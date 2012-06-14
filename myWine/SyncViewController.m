@@ -18,7 +18,7 @@
 @synthesize description_label;
 @synthesize progress_label;
 @synthesize progress_bar;
-@synthesize cancelButton;
+//@synthesize cancelButton;
 @synthesize delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -38,6 +38,7 @@
     
     lan = [Language instance];
     sync = [[Sincronizacao alloc]init];
+    user = [User instance];
 
     
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
@@ -58,9 +59,10 @@
     self.progress_label.Text=[NSString stringWithFormat:[lan translate:@"Synchronization step"], 0,3];
     self.progress_label.font = [UIFont fontWithName:@"DroidSans" size:SMALL_FONT];
 
+    /*
     [self.cancelButton setTitle:[lan translate:@"Cancel"] forState:UIControlStateNormal];
     self.cancelButton.titleLabel.font = [UIFont fontWithName:@"DroidSans-Bold" size:SMALL_FONT];
-    
+    */
     [progress_bar setProgress:0.0];
     
     
@@ -73,7 +75,7 @@
     [self setDescription_label:nil];
     [self setProgress_label:nil];
     [self setProgress_bar:nil];
-    [self setCancelButton:nil];
+    //[self setCancelButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -83,17 +85,24 @@
 	return YES;
 }
 
+/*
 - (IBAction)cancel:(id)sender
 {
 	[self dismissModalViewControllerAnimated:YES];
 }
-
+*/
 
 
 - (void) startsync{
     receivedData = [[NSMutableData data]init];
     
+    /*
     //NSString *jsonRequest = @"{\"Password\":\"mywine\",\"Username\":\"mywine@cpcis.pt\",\"SyncedAt\":1339502400.0}";
+    NSError * err;
+    NSString* testJSON = [sync buildRequest:&err];
+    DebugLog(testJSON);
+    
+    
     NSString *jsonRequest = @"{\"Password\":\"mywine\",\"Username\":\"mywine@cpcis.pt\",\"SyncedAt\":634758524838925820}";
     NSURL *url = [NSURL URLWithString:@"http://backofficegp.cpcis.pt/MyWineSincService/MyWineSincService.svc/MyWineSincronize"];
     
@@ -104,6 +113,12 @@
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setValue:[NSString stringWithFormat:@"%d", [requestData length]] forHTTPHeaderField:@"Content-Length"];
     [request setHTTPBody: requestData];
+     */
+    
+    
+    NSURL *url = [NSURL URLWithString:@"http://dl.dropbox.com/u/14513425/resp.json"];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     
     
     NSURLConnection * theConnection = [NSURLConnection connectionWithRequest:[request copy] delegate:self];
@@ -132,8 +147,34 @@
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
+    
     int responseStatusCode = [httpResponse statusCode];
     DebugLog(@"Status Code: %d", responseStatusCode);
+    
+    
+    switch (responseStatusCode) {
+        case 200:
+            user.isValidated = TRUE;
+            [user validateUser];
+            break;
+            
+        case 400:
+            user.isValidated = FALSE;
+            [user validateUser];
+            [delegate SyncViewControllerDidFinishWithStatusCode:400];
+            
+            
+            break;
+            
+        default:
+            user.isValidated = FALSE;
+            [user validateUser];
+            [delegate SyncViewControllerDidFinishWithStatusCode:responseStatusCode];            
+            break;
+    }
+
+        
+    
     [receivedData setLength:0];
 }
 
@@ -141,25 +182,47 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
+    DebugLog(@"entrou no parse");
+    if(!user.isValidated){
+        [progress_bar setProgress:0.0];
+        self.progress_label.Text=[NSString stringWithFormat:[lan translate:@"Synchronization step"], 0,3];
+        NSNumber *num = [NSNumber numberWithBool:YES];
+        [self performSelector:@selector(dismissModalViewControllerAnimated:) withObject:num afterDelay:1.0];
+        return;
+    }
+    
+    
     self.progress_label.Text=[NSString stringWithFormat:[lan translate:@"Synchronization step"], 2,3];
     [progress_bar setProgress:0.50];
     
-    /*
+    
     if(![sync parseData:receivedData]){
         [progress_bar setProgress:0.0];
         self.progress_label.Text=[NSString stringWithFormat:[lan translate:@"Synchronization step"], 0,3];
-#warning FERNANDO: mostrar aviso
+        
         return;
     };
-     */
+     
+
+    /*
     NSError * jsonParsingError = nil;
-    NSDictionary *receivedJSON = [NSJSONSerialization JSONObjectWithData:receivedData options:0 error:&jsonParsingError];
+    NSDictionary *receivedJSON = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONWritingPrettyPrinted error:&jsonParsingError];
+    
+    if(jsonParsingError){
+        DebugLog(@"JSON PARSING ERROR: %@", jsonParsingError);
+        return; 
+    }
     
     DebugLog(@"JSON: %@", [NSString stringWithFormat:@"%@",  receivedJSON]);
-
-    
+    */
     [progress_bar setProgress:1.0];
     self.progress_label.Text=[NSString stringWithFormat:[lan translate:@"Synchronization step"], 3,3];
+    
+    
+    [delegate SyncViewControllerDidFinishWithStatusCode:200];
+    NSNumber *num = [NSNumber numberWithBool:YES];
+    [self performSelector:@selector(dismissModalViewControllerAnimated:) withObject:num afterDelay:1.0];
+
 
     
 }
@@ -182,10 +245,25 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {    
+    
     // inform the user
-    NSLog(@"Connection failed! Error - %@ %@",
+    DebugLog(@"Connection failed! Error - %@ %@",
           [error localizedDescription],
           [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]);
+    
+    
+    
+    self.progress_label.Text=[NSString stringWithFormat:[lan translate:@"Synchronization step"], 0,3];
+    [progress_bar setProgress:0.0];
+
+    
+    [delegate SyncViewControllerDidFinishWithStatusCode:0];
+    NSNumber *num = [NSNumber numberWithBool:YES];
+    [self performSelector:@selector(dismissModalViewControllerAnimated:) withObject:num afterDelay:1.0];
+    
+    
+    return;
+    
 }
 
 @end

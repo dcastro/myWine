@@ -10,6 +10,7 @@
 
 @class Language;
 @class Sincronizacao;
+@class User;
 
 @protocol SyncViewControllerDelegate <NSObject>
 
@@ -22,15 +23,16 @@
     NSMutableData *receivedData;
     Language *lan;
     Sincronizacao * sync;
+    User * user;
 }
 
 @property (weak, nonatomic) IBOutlet UILabel *description_label;
 @property (weak, nonatomic) IBOutlet UILabel *progress_label;
 @property (weak, nonatomic) IBOutlet UIProgressView *progress_bar;
-@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
+//@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 
 @property (strong, nonatomic) id<SyncViewControllerDelegate> delegate;
 
-- (IBAction)cancel:(id)sender;
+//- (IBAction)cancel:(id)sender;
 
 @end

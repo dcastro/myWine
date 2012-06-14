@@ -48,7 +48,7 @@
     
     NSString *querySQL = [NSString stringWithFormat:@"SELECT t.tasting_id, t.tasting_date, t.comment, t.latitude, t.longitude \
                           FROM Tasting t \
-                          WHERE t.wine_id = %d AND t.state <> 3;", _wine_id ];
+                          WHERE t.wine_id = %d AND t.state <> 3;", self.wine_id ];
     
         
     sqlite3_stmt *stmt = [query prepareForSingleQuery:querySQL];

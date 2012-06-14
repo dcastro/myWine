@@ -73,7 +73,7 @@
                 c.classification_id, c.weight, c.name_en, c.name_fr, c.name_pt\
                 FROM Characteristic ch, Classification c\
                 WHERE ch.sectioncharacteristic_id = %d AND ch.classification_id = c.classification_id \
-                ORDER BY ch.order_priority ASC;", _sectioncharacteristic_id];
+                ORDER BY ch.order_priority ASC;", self.sectioncharacteristic_id];
    
     
     sqlite3_stmt *stmt = [query prepareForSingleQuery:querySQL];

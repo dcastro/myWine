@@ -26,13 +26,13 @@
 {
     contactDB = [query prepareForExecution];
     
-    NSMutableDictionary * requestData = [NSMutableDictionary dictionaryWithObjectsAndKeys:user.username,@"username" ,user.password, @"password" , user.synced_at, @"synced_at" , nil];
+    NSMutableDictionary * requestData = [NSMutableDictionary dictionaryWithObjectsAndKeys:user.username,@"Username" ,user.password, @"Password" , [NSNumber numberWithDouble:user.synced_at], @"SyncedAt" , nil];
     
     
     
     NSMutableDictionary * new = [self buildNew];
     if (new) {
-        [requestData setObject:new forKey:@"new"];
+        [requestData setObject:new forKey:@"New"];
     }else {
         sqlite3_close(*contactDB);
         return nil;
@@ -40,15 +40,16 @@
     
     
     
-    
+    /*
     //deleted
     NSMutableDictionary * deleted = [self buildDeleted];
     if (deleted) {
-        [requestData setObject:deleted forKey:@"deleted"];
+        [requestData setObject:deleted forKey:@"Deleted"];
     }else {
         sqlite3_close(*contactDB);
         return nil;
     }
+     */
     
     
     sqlite3_close(*contactDB);
@@ -56,7 +57,8 @@
     //conversao para string
     NSData * data = [NSJSONSerialization dataWithJSONObject:requestData options:NSJSONWritingPrettyPrinted error:error];
     
-    if(error){
+    if(!data){
+        DebugLog(@"Error: %@", *error);
         return nil;
     }else {
         return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -76,7 +78,23 @@
         return nil;
     }
     
+    /*
+    NSMutableDictionary * newTastings;
+    if(newTastings){
+        [new setObject:newTastings forKey:@"wines"];
+    }else {
+        return nil;
+    }
+     */
+    
     return new;
+}
+
+
+-(NSMutableArray *)buildNewTastings
+{
+    //NSString * querySQL = [NSString stringWithFormat:@"SELECT "];
+    return nil;
 }
 
 
@@ -85,105 +103,232 @@
 {
     
     
-    NSString * querySQL = [NSString stringWithFormat:@"SELECT wine_id, region_id, winetype_id, year, name, grapes, photo_filename, producer, currency, price \
-                FROM Wine \
-                WHERE user = \'%@\' AND state == 1", user.username];
+    NSString * querySQL = [NSString stringWithFormat:@"SELECT w.wine_id, w.region_id, w.year, w.name, w.grapes, w.photo_filename, w.producer, w.currency, w.price, wt.winetype_id, wt.name_en, wt.name_fr, wt.name_pt  \
+                FROM Wine w, WineType wt\
+                WHERE user = \'%@\' AND state == 1 AND w.winetype_id = wt.winetype_id", user.username];
     
-    int wine_id;
-    sqlite3_stmt * wine_stmt;
+    sqlite3_stmt * wines_stmt;
     NSMutableArray * wines = [[NSMutableArray alloc]init];
     
-    if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &wine_stmt, NULL) == SQLITE_OK){
-        while(sqlite3_step(wine_stmt) == SQLITE_ROW){
+    if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &wines_stmt, NULL) == SQLITE_OK){
+        while(sqlite3_step(wines_stmt) == SQLITE_ROW){
             
-            wine_id = sqlite3_column_int(wine_stmt, 0);
-            NSMutableDictionary * wine = [[NSMutableDictionary alloc]init];
-            [wine setObject:[NSNumber numberWithInt:sqlite3_column_int(wine_stmt, 1)] forKey:@"region"];
-            [wine setObject:[NSNumber numberWithInt:sqlite3_column_int(wine_stmt, 2)] forKey:@"wine_type"];
-            [wine setObject:[NSNumber numberWithInt:sqlite3_column_int(wine_stmt, 3)] forKey:@"year"];
-            [wine setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(wine_stmt, 4)] forKey:@"name"];
-            [wine setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(wine_stmt, 5)] forKey:@"grapes"];
-            [wine setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(wine_stmt, 6)] forKey:@"photo_filename"];
-            [wine setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(wine_stmt, 7)] forKey:@"producer"];
-            [wine setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(wine_stmt, 8)] forKey:@"currency"];
-            [wine setObject:[NSNumber numberWithDouble:sqlite3_column_double(wine_stmt, 9)] forKey:@"price"];
-            
-            
-            
-            
-            //nao se precisa de verificar estado porque uma vinho novo so tem provas novas
-            querySQL = [NSString stringWithFormat:@"SELECT t.tasting_id, t.tasting_date, t.comment, t.latitude, t.longitude \
-                        FROM Tasting t \
-                        WHERE wine_id = %d", wine_id];
-            
-            
-            int tasting_id;
-            sqlite3_stmt * tasting_stmt;
-            NSMutableArray * tastings = [[NSMutableArray alloc]init ];
-            
-            if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &tasting_stmt, NULL) == SQLITE_OK){
-                while(sqlite3_step(tasting_stmt) == SQLITE_ROW){
-                    
-                    tasting_id = sqlite3_column_int(tasting_stmt, 0);
-                    NSMutableDictionary * tasting = [[NSMutableDictionary alloc]init ];
-                    [tasting setObject:[NSNumber numberWithDouble:sqlite3_column_double(wine_stmt, 1)] forKey:@"tasting_date"];
-                    [wine setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(wine_stmt, 2)] forKey:@"comment"];
-                    [tasting setObject:[NSNumber numberWithDouble:sqlite3_column_double(wine_stmt, 3)] forKey:@"latitude"];
-                    [tasting setObject:[NSNumber numberWithDouble:sqlite3_column_double(wine_stmt, 4)] forKey:@"longitude"];
-                    
-                    
-                    
-                    
-                    querySQL = [NSString stringWithFormat:@"SELECT s.section_id, s.order_priority, s.name_en, s.name_fr, s.name_pt \
-                                FROM Section s \
-                                WHERE s.tasting_id = %d", tasting_id];
-                    
-                    
-                    int section_id;
-                    sqlite3_stmt * section_stmt;
-                    NSMutableArray * sections = [[NSMutableArray alloc]init ];
-                    
-                    if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &section_stmt, NULL) == SQLITE_OK){
-                        while(sqlite3_step(section_stmt) == SQLITE_ROW){
-                            
-                            section_id = sqlite3_column_int(section_stmt, 0);
-#warning FERNANDO: completar
-                            
-                        }
-                        sqlite3_finalize(section_stmt);
-                        [tasting setObject:sections forKey:@"sections"];
-                        
-                    }else {
-                        DebugLog(@"Query with error: %@", querySQL);
-                        return nil;
-                    }
-                    
-                    
-                    //adiciona prova
-                    [tastings addObject:tasting];
-                    
-                }
-                sqlite3_finalize(tasting_stmt);
-                [wine setObject:tastings forKey:@"tastings"];
-                
-            }else {
-                DebugLog(@"Query with error: %@", querySQL);
-                return nil;
-            }
-            
-            
-            
+
             //adiciona o vinho
-            [wines addObject:wine];
+            [wines addObject:[self buildWine:&wines_stmt]];
             
         }
-        sqlite3_finalize(wine_stmt);
+        sqlite3_finalize(wines_stmt);
     }else {
         DebugLog(@"Query with error: %@", querySQL);
         return nil;
     }
 
     return wines;
+    
+}
+                                 
+                                 
+                                 
+                                 
+-(NSDictionary *)buildWine:(sqlite3_stmt **)wine_stmt
+{
+    
+    int wine_id = sqlite3_column_int(*wine_stmt, 0);
+    NSMutableDictionary * wine = [[NSMutableDictionary alloc]init];
+    [wine setObject:[NSNumber numberWithInt:sqlite3_column_int(*wine_stmt, 1)] forKey:@"Region"];
+    [wine setObject:[NSNumber numberWithInt:sqlite3_column_int(*wine_stmt, 2)] forKey:@"Harvest"]; //year
+    [wine setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*wine_stmt, 3)] forKey:@"Name"];
+    [wine setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*wine_stmt, 4)] forKey:@"Grapes"];
+    [wine setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*wine_stmt, 5)] forKey:@"PhotoFilename"];
+    [wine setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*wine_stmt, 6)] forKey:@"Producer"];
+    [wine setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*wine_stmt, 7)] forKey:@"Currency"];
+    [wine setObject:[NSNumber numberWithDouble:sqlite3_column_double(*wine_stmt, 8)] forKey:@"Price"];
+    
+    NSMutableDictionary * winetype =[[NSMutableDictionary alloc] init ]; 
+    [winetype setObject:[NSNumber numberWithInt:sqlite3_column_int(*wine_stmt, 9)] forKey:@"Id"];
+    [winetype setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*wine_stmt, 10)] forKey:@"NameEn"];
+    [winetype setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*wine_stmt, 11)] forKey:@"NameFr"];
+    [winetype setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*wine_stmt, 12)] forKey:@"NamePt"];
+    
+    [wine setObject:winetype forKey:@"WineType"];
+
+
+    
+    
+    //nao se precisa de verificar estado porque uma vinho novo so tem provas novas
+    NSString * querySQL = [NSString stringWithFormat:@"SELECT t.tasting_id, t.tasting_date, t.comment, t.latitude, t.longitude \
+                FROM Tasting t \
+                WHERE wine_id = %d", wine_id];
+    
+    
+  
+    sqlite3_stmt * tastings_stmt;
+    NSMutableArray * tastings = [[NSMutableArray alloc]init ];
+    
+    if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &tastings_stmt, NULL) == SQLITE_OK){
+        while(sqlite3_step(tastings_stmt) == SQLITE_ROW){
+            
+            
+            //adiciona prova
+            [tastings addObject:[self buildTasting:&tastings_stmt]];
+                        
+            
+        }
+        sqlite3_finalize(tastings_stmt);
+    }else {
+        DebugLog(@"Query with error: %@", querySQL);
+        return nil;
+    }
+    
+    [wine setObject:tastings forKey:@"Tastings"];
+
+    
+    return wine;
+}
+
+
+
+-(NSDictionary *)buildTasting:(sqlite3_stmt**)tasting_stmt
+{
+    int tasting_id = sqlite3_column_int(*tasting_stmt, 0);
+    NSMutableDictionary * tasting = [[NSMutableDictionary alloc]init ];
+    [tasting setObject:[NSNumber numberWithDouble:sqlite3_column_double(*tasting_stmt, 1)] forKey:@"TastingDate"];
+    [tasting setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*tasting_stmt, 2)] forKey:@"Comment"];
+    [tasting setObject:[NSNumber numberWithDouble:sqlite3_column_double(*tasting_stmt, 3)] forKey:@"Latitude"];
+    [tasting setObject:[NSNumber numberWithDouble:sqlite3_column_double(*tasting_stmt, 4)] forKey:@"Longitude"];
+    
+    
+    
+    
+    NSString * querySQL = [NSString stringWithFormat:@"SELECT s.section_id, s.order_priority, s.name_en, s.name_fr, s.name_pt \
+                FROM Section s \
+                WHERE s.tasting_id = %d", tasting_id];
+    
+    
+    sqlite3_stmt * sections_stmt;
+    NSMutableArray * sections = [[NSMutableArray alloc]init ];
+    
+    if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &sections_stmt, NULL) == SQLITE_OK){
+        while(sqlite3_step(sections_stmt) == SQLITE_ROW){
+            
+            
+            [sections addObject:[self buildSection:&sections_stmt]];
+            
+        }
+        sqlite3_finalize(sections_stmt);
+    }else {
+        DebugLog(@"Query with error: %@", querySQL);
+        return nil;
+    }
+    
+    [tasting setObject:sections forKey:@"EvaluationSections"];
+             
+             
+             
+#warning TODO: fazer o mesmo para as seccoes de caracteristicas
+
+    
+    
+    return tasting;
+    
+}
+
+
+-(NSDictionary *)buildSection:(sqlite3_stmt**)section_stmt
+{
+
+    int section_id = sqlite3_column_int(*section_stmt, 0);
+    NSMutableDictionary * section = [[NSMutableDictionary alloc]init ];
+    [section setObject:[NSNumber numberWithInt:sqlite3_column_int(*section_stmt, 1)] forKey:@"Order"];
+    [section setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*section_stmt, 2)] forKey:@"NameEn"];
+    [section setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*section_stmt, 3)] forKey:@"NameFr"];
+    [section setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*section_stmt, 4)] forKey:@"NamePt"];
+    
+    
+    NSString *querySQL = [NSString stringWithFormat:@"SELECT c.criterion_id, c.order_priority, c.name_en, c.name_fr, c.name_pt, cl.weight, cl.name_en, cl.name_fr, cl.name_pt  \
+                FROM Criterion c, Classification cl \
+                WHERE c.section_id = %d AND c.classification_id = cl.classification_id", section_id];
+    
+    
+    sqlite3_stmt * criterions_stmt;
+    NSMutableArray * criterias = [[NSMutableArray alloc]init ];
+    
+    if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &criterions_stmt, NULL) == SQLITE_OK){
+        while(sqlite3_step(criterions_stmt) == SQLITE_ROW){
+            
+            
+            [criterias addObject:[self buildCriterion:&criterions_stmt]];
+            
+            
+        }
+        sqlite3_finalize(criterions_stmt);
+        
+    }else {
+        DebugLog(@"Query with error: %@", querySQL);
+        return nil;
+    }
+    
+    [section setObject:criterias forKey:@"Criterias"];
+    
+
+    return section;
+
+}
+
+
+-(NSMutableDictionary *)buildCriterion:(sqlite3_stmt **)criterion_stmt
+{
+    int criterion_id = sqlite3_column_int(*criterion_stmt, 0);
+    NSMutableDictionary * criterion = [[NSMutableDictionary alloc]init ];
+    [criterion setObject:[NSNumber numberWithInt:sqlite3_column_int(*criterion_stmt, 1)] forKey:@"Order"];
+    [criterion setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*criterion_stmt, 2)] forKey:@"NameEn"];
+    [criterion setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*criterion_stmt, 3)] forKey:@"NameFr"];
+    [criterion setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*criterion_stmt, 4)] forKey:@"NamePt"];
+    
+    
+    NSMutableDictionary *chosenClassification = [[NSMutableDictionary alloc]init ];
+    [chosenClassification setObject:[NSNumber numberWithInt:sqlite3_column_int(*criterion_stmt, 5)] forKey:@"Weight"];
+    [chosenClassification setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*criterion_stmt, 6)] forKey:@"NameEn"];
+    [chosenClassification setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*criterion_stmt, 7)] forKey:@"NameFr"];
+    [chosenClassification setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*criterion_stmt, 8)] forKey:@"NamePt"];
+    
+    [criterion setObject:chosenClassification forKey:@"ChosenClassifications"];
+    
+    
+    NSString *querySQL = [NSString stringWithFormat:@"SELECT cl.weight, cl.name_en, cl.name_fr, cl.name_pt  \
+                          FROM Classification cl, PossibleClassification pc \
+                          WHERE pc.classifiable_id = %d AND pc.classifiable_type = \'%@\' AND pc.classification_id = cl.classification_id", criterion_id, @"Criterion"];
+    
+    sqlite3_stmt * classifications_stmt;
+    NSMutableArray * classifications = [[NSMutableArray alloc]init ];
+    
+    if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &classifications_stmt, NULL) == SQLITE_OK){
+        while(sqlite3_step(classifications_stmt) == SQLITE_ROW){
+            
+            
+            NSMutableDictionary * classification = [[NSMutableDictionary alloc]init ];
+            [classification setObject:[NSNumber numberWithInt:sqlite3_column_int(classifications_stmt, 0)] forKey:@"Weight"];
+            [classification setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(classifications_stmt, 1)] forKey:@"NameEn"];
+            [classification setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(classifications_stmt, 2)] forKey:@"NameFr"];
+            [classification setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(classifications_stmt, 3)] forKey:@"NamePt"];
+            
+            
+            [classifications addObject:classification];
+            
+        }
+        sqlite3_finalize(classifications_stmt);
+    }else {
+        DebugLog(@"Query with error: %@", querySQL);
+        return nil;
+    }
+    
+    [criterion setObject:classifications forKey:@"Classifications"];
+
+    
+    
+    return criterion;
+    
     
 }
 
@@ -368,11 +513,11 @@
         return FALSE; 
     }
     
-    DebugLog(@"JSON: %@", [NSString stringWithFormat:@"%@",  receivedJSON]);
+    //DebugLog(@"JSON: %@", [NSString stringWithFormat:@"%@",  receivedJSON]);
 
     
     
-    NSString *querySQL = [NSString stringWithFormat:@"UPDATE User SET synced_at = %f WHERE username = \'%@\';", [receivedJSON objectForKey:@"timestamp"], user.username];
+    NSString *querySQL = [NSString stringWithFormat:@"UPDATE User SET synced_at = %f, validated = 1 WHERE username = \'%@\';", [[receivedJSON objectForKey:@"Timestamp"] doubleValue], user.username];
     
     char *errMsg;
     if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
@@ -383,46 +528,46 @@
     }
     
 
-    
-    if([receivedJSON objectForKey:@"countries"]){
-        if(![self parseCountries:[receivedJSON objectForKey:@"countries"]]){
+  
+    if([receivedJSON objectForKey:@"Countries"]){
+        if(![self parseCountries:[receivedJSON objectForKey:@"Countries"]]){
             [query rollbackTransaction];
             return FALSE; 
         }
     }
     
     
-    if([receivedJSON objectForKey:@"wine_types"]){
-        if(![self parseWineTypes:[receivedJSON objectForKey:@"wine_types"]]){
+    if([receivedJSON objectForKey:@"WineTypes"]){
+        if(![self parseWineTypes:[receivedJSON objectForKey:@"WineTypes"]]){
             [query rollbackTransaction];
             return FALSE; 
         }
     }
 
     
-    if([receivedJSON objectForKey:@"wines"]){
-        if(![self parseWines:[receivedJSON objectForKey:@"wines"]]){
+    if([receivedJSON objectForKey:@"Wines"]){
+        if(![self parseWines:[receivedJSON objectForKey:@"Wines"]]){
             [query rollbackTransaction];
             return FALSE; 
         }
     }
     
     
-    if([receivedJSON objectForKey:@"deleted"]){
-        if(![self parseDeleted:[receivedJSON objectForKey:@"deleted"]]){
+    if([receivedJSON objectForKey:@"Deleted"]){
+        if(![self parseDeleted:[receivedJSON objectForKey:@"Deleted"]]){
             [query rollbackTransaction];
             return FALSE;
         }
     }
     
     
-    if([receivedJSON objectForKey:@"wine_server_ids"]){
-        if(![self parseWineServerIds:[receivedJSON objectForKey:@"wine_server_ids"]]){
+    if([receivedJSON objectForKey:@"WineSeverIds"]){
+        if(![self parseWineServerIds:[receivedJSON objectForKey:@"WineSeverIds"]]){
             [query rollbackTransaction];
             return FALSE;
         }
     }
-
+     
     
     
     //ultimo passo e limpar o lixo solto da bd
@@ -472,12 +617,12 @@
     char *errMsg;
     
     //wines
-    NSArray * deletedWines = [deletedJSON objectForKey:@"wines"];
+    NSArray * deletedWines = [deletedJSON objectForKey:@"Wines"];
     for (int i = 0; i < [deletedWines count]; i++) {
         
         querySQL = [NSString stringWithFormat:@"DELETE FROM Wine WHERE user = \'%@\' AND wine_server_id = %d",
                     user.username,
-                    [[deletedWines objectAtIndex:i]intValue]];
+                    [[[deletedWines objectAtIndex:i] objectForKey:@"WineSeverIds"] intValue]];
         
         
         if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
@@ -489,14 +634,14 @@
     
     
     //tastings
-    NSArray * deletedTastings = [deletedJSON objectForKey:@"tastings"];
+    NSArray * deletedTastings = [deletedJSON objectForKey:@"Tastings"];
     int tasting_id;
     for (int i = 0; i < [deletedTastings count]; i++) {
         
         //vai buscar o id da prova do user 
         //para garantir que nao se eliminam varias provas ao mesmo tempo do user errado
         querySQL = [NSString stringWithFormat:@"SELECT t.tasting_id FROM Tasting t , Wine w WHERE t.tasting_date = %f AND t.wine_id = w.wine_id AND w.user = \'%@\';", 
-                    [[deletedTastings objectAtIndex:i]doubleValue],
+                    [[[deletedTastings objectAtIndex:i] objectForKey:@"TastingDate"] doubleValue],
                     user.username];
         
         if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
@@ -541,7 +686,7 @@
         int wine_id;
         
         //verificar se o vinho ja existe na da bd, se existir e um update
-        querySQL = [NSString stringWithFormat:@"SELECT wine_id FROM wine WHERE wine_server_id = %d AND user = \'%@\'", [wineJSON objectForKey:@"wine_server_id"], user.username];
+        querySQL = [NSString stringWithFormat:@"SELECT wine_id FROM wine WHERE wine_server_id = %d AND user = \'%@\'", [wineJSON objectForKey:@"WineServerId"], user.username];
         
         
         if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
@@ -562,13 +707,13 @@
         //se exisit faz update, senao cria
         if(wineExists){
              querySQL = [NSString stringWithFormat:@"UPDATE Wine SET state = 0, name = \'%@\', producer = '\%@\', year = %d, grapes = \'%@\',  region_id = %d, currency = \'%@\', price = %f WHERE wine_id = %d", 
-                         [wineJSON objectForKey:@"name"],
-                         [wineJSON objectForKey:@"producer"],
-                         [[wineJSON objectForKey:@"year"] intValue],
+                         [wineJSON objectForKey:@"Name"],
+                         [wineJSON objectForKey:@"Producer"],
+                         [[wineJSON objectForKey:@"Harvest"] intValue],
                          [wineJSON objectForKey:@"grapes"],
-                         [[wineJSON objectForKey:@"region"] intValue],
-                         [wineJSON objectForKey:@"currency"],
-                         [[wineJSON objectForKey:@"price"]doubleValue],
+                         [[wineJSON objectForKey:@"Region"] intValue],
+                         [wineJSON objectForKey:@"Currency"],
+                         [[wineJSON objectForKey:@"Price"]doubleValue],
                          wine_id];
             
             if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
@@ -577,19 +722,54 @@
                 return FALSE;
             }
         }else {
-            querySQL = [NSString stringWithFormat:@"INSERT INTO Wine(user, region_id, winetype_id, wineserver_id, name, year, grapes, photo_filename, producer, currency, price, state) \
+            //verificar se o tipo de vinho existe
+            querySQL = [NSString stringWithFormat:@"SELECT winetype_id FROM WineType WHERE winetype_id = %d", 
+                        [[[wineJSON objectForKey:@"WineType"]objectForKey:@"Id"]intValue]];
+            
+            BOOL wineTypeExists = FALSE;
+            
+            if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
+                if(sqlite3_step(stmt) == SQLITE_ROW){
+                    
+                    wineTypeExists = TRUE;
+                    
+                }
+                sqlite3_finalize(stmt);
+            }else{
+                DebugLog(@"Query with error: %@", querySQL);
+                return FALSE;
+            }
+                        
+            
+            if(!wineTypeExists){
+                querySQL = [NSString stringWithFormat:@"INSERT INTO WineType VALUES (%d, \'%@\', \'%@\', \'%@\')", 
+                            [[[wineJSON objectForKey:@"WineType"]objectForKey:@"Id"]intValue],
+                            [[wineJSON objectForKey:@"WineType"]objectForKey:@"NameEn"],
+                            [[wineJSON objectForKey:@"WineType"]objectForKey:@"NameFr"],
+                            [[wineJSON objectForKey:@"WineType"]objectForKey:@"NamePt"]];
+                
+                
+                if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+                    DebugLog(@"Query with error: %s", errMsg);
+                    sqlite3_free(errMsg);
+                    return FALSE;
+                }
+            }
+            
+            
+            querySQL = [NSString stringWithFormat:@"INSERT INTO Wine(user, region_id, winetype_id, wine_server_id, name, year, grapes, photo_filename, producer, currency, price, state) \
                         VALUES (\'%@\', %d, %d, %d, \'%@\', %d, '\%@\', \'%@\', \'%@\', \'%@\', %f, 0);", 
                         user.username,
-                        [[wineJSON objectForKey:@"region"] intValue],
-                        [[wineJSON objectForKey:@"wine_type"] intValue],
-                        [[wineJSON objectForKey:@"wine_server_id"] intValue],
-                        [wineJSON objectForKey:@"name"],
-                        [[wineJSON objectForKey:@"year"]intValue],
-                        [wineJSON objectForKey:@"grapes"],
-                        [wineJSON objectForKey:@"photo_filename"],
-                        [wineJSON objectForKey:@"producer"],
-                        [wineJSON objectForKey:@"currency"],
-                        [[wineJSON objectForKey:@"price"] doubleValue]];
+                        [[wineJSON objectForKey:@"Region"] intValue],
+                        [[[wineJSON objectForKey:@"WineType"]objectForKey:@"Id"]intValue],
+                        [[wineJSON objectForKey:@"WineServerId"] intValue],
+                        [wineJSON objectForKey:@"Name"],
+                        [[wineJSON objectForKey:@"Harvest"]intValue],
+                        [wineJSON objectForKey:@"Grapes"],
+                        [wineJSON objectForKey:@"PhotoFilename"],
+                        [wineJSON objectForKey:@"Producer"],
+                        [wineJSON objectForKey:@"Currency"],
+                        [[wineJSON objectForKey:@"Price"] doubleValue]];
             
             if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
                 DebugLog(@"Query with error: %s", errMsg);
@@ -601,7 +781,7 @@
         }
         
         
-        NSArray * tastingsJSON = [wineJSON objectForKey:@"tastings"];
+        NSArray * tastingsJSON = [wineJSON objectForKey:@"Tastings"];
         for (int k = 0; k < [tastingsJSON count]; k++) {
             NSDictionary * tastingJSON = [tastingsJSON objectAtIndex:k];
             
@@ -612,7 +792,7 @@
             if(wineExists){
                 querySQL = [NSString stringWithFormat:@"SELECT tasting_id FROM tasting WHERE wine_id = %d AND tasting_date = %f", 
                             wine_id, 
-                            [[tastingJSON objectForKey:@"tasting_date"]doubleValue]];
+                            [[tastingJSON objectForKey:@"TastingDate"]doubleValue]];
                 
                 if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
                     if(sqlite3_step(stmt) == SQLITE_ROW){
@@ -655,9 +835,9 @@
     //guarda os dados da prova
 
     querySQL = [NSString stringWithFormat:@"UPDATE Tasting SET comment = \'%@\' , latitude = %f, longitude = %f, state = 0 WHERE tasting_id = %d",
-                [tastingJSON objectForKey:@"comment"],
-                [[tastingJSON objectForKey:@"latitude"]doubleValue],
-                [[tastingJSON objectForKey:@"longitude"]doubleValue],
+                [tastingJSON objectForKey:@"Comment"],
+                [[tastingJSON objectForKey:@"Latitude"]doubleValue],
+                [[tastingJSON objectForKey:@"Longitude"]doubleValue],
                 tasting_id];
     
     
@@ -669,7 +849,7 @@
     
     
     //seccoes
-    NSArray * sectionsJSON = [tastingJSON objectForKey:@"sections"];
+    NSArray * sectionsJSON = [tastingJSON objectForKey:@"EvaluationSections"];
     for(int i = 0; i < [sectionsJSON count]; i++){
         
         NSDictionary *sectionJSON = [sectionsJSON objectAtIndex:i];
@@ -680,10 +860,10 @@
                     FROM Section \
                     WHERE tasting_id = %d AND order_priority = %d AND name_en = \'%@\' AND  name_fr = \'%@\' AND name_pt = \'%@\';",
                     tasting_id,
-                    [[sectionJSON objectForKey:@"order"]intValue],
-                    [sectionJSON objectForKey:@"name_eng"],
-                    [sectionJSON objectForKey:@"name_fr"],
-                    [sectionJSON objectForKey:@"name_pt"]];
+                    [[sectionJSON objectForKey:@"Order"]intValue],
+                    [sectionJSON objectForKey:@"NameEn"],
+                    [sectionJSON objectForKey:@"NameFr"],
+                    [sectionJSON objectForKey:@"NamePt"]];
         
         if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
             if(sqlite3_step(stmt) == SQLITE_ROW){
@@ -696,7 +876,7 @@
         }
         
         
-        NSArray * criteriaJSON = [sectionJSON objectForKey:@"criteria"];
+        NSArray * criteriaJSON = [sectionJSON objectForKey:@"Criterias"];
         for (int k = 0; k < [criteriaJSON count]; k++){
             
             NSDictionary * criterionJSON = [criteriaJSON objectAtIndex:k];
@@ -708,10 +888,10 @@
                         FROM Criterion \
                         WHERE section_id = %d AND order_priority = %d AND name_en = \'%@\' AND  name_fr = \'%@\' AND name_pt = \'%@\';",
                         section_id,
-                        [[sectionJSON objectForKey:@"order"]intValue],
-                        [sectionJSON objectForKey:@"name_eng"],
-                        [sectionJSON objectForKey:@"name_fr"],
-                        [sectionJSON objectForKey:@"name_pt"]];
+                        [[criterionJSON objectForKey:@"Order"]intValue],
+                        [criterionJSON objectForKey:@"NameEn"],
+                        [criterionJSON objectForKey:@"NameFr"],
+                        [criterionJSON objectForKey:@"NamePt"]];
             
             
             
@@ -727,10 +907,10 @@
         
             
             classification_id = [self existsClassification:stmt 
-                                                    nameEN:[[criterionJSON objectForKey:@"chosen_classification"] objectForKey:@"name_eng"] 
-                                                    nameFR:[[criterionJSON objectForKey:@"chosen_classification"] objectForKey:@"name_fr"] 
-                                                    namePT:[[criterionJSON objectForKey:@"chosen_classification"] objectForKey:@"name_pt"] 
-                                                andWheight:[[[criterionJSON objectForKey:@"chosen_classification"] objectForKey:@"weight"]intValue]];
+                                                    nameEN:[[criterionJSON objectForKey:@"ChosenClassifications"] objectForKey:@"NameEn"] 
+                                                    nameFR:[[criterionJSON objectForKey:@"ChosenClassifications"] objectForKey:@"NameFr"] 
+                                                    namePT:[[criterionJSON objectForKey:@"ChosenClassifications"] objectForKey:@"NamePt"] 
+                                                andWheight:[[[criterionJSON objectForKey:@"ChosenClassifications"] objectForKey:@"Weight"]intValue]];
             
             if(classification_id == -2)
                 return FALSE;
@@ -758,7 +938,7 @@
     
     
     //seccoes de caracteristicas
-    NSArray * characteristicsSectionsJSON = [tastingJSON objectForKey:@"characteristics_sections"];
+    NSArray * characteristicsSectionsJSON = [tastingJSON objectForKey:@"CaracteristicsSections"];
     for(int i = 0; i < [sectionsJSON count]; i++){
         
         NSDictionary *characteristicsectionJSON = [characteristicsSectionsJSON objectAtIndex:i];
@@ -769,10 +949,10 @@
                     FROM SectionCharacteristic \
                     WHERE tasting_id = %d AND order_priority = %d AND name_en = \'%@\' AND  name_fr = \'%@\' AND name_pt = \'%@\';",
                     tasting_id,
-                    [[characteristicsectionJSON objectForKey:@"order"]intValue],
-                    [characteristicsectionJSON objectForKey:@"name_eng"],
-                    [characteristicsectionJSON objectForKey:@"name_fr"],
-                    [characteristicsectionJSON objectForKey:@"name_pt"]];
+                    [[characteristicsectionJSON objectForKey:@"Order"]intValue],
+                    [characteristicsectionJSON objectForKey:@"NameEn"],
+                    [characteristicsectionJSON objectForKey:@"NameFr"],
+                    [characteristicsectionJSON objectForKey:@"NamePt"]];
         
         if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
             if(sqlite3_step(stmt) == SQLITE_ROW){
@@ -785,7 +965,7 @@
         }
         
         
-        NSArray * characteriticsJSON = [characteristicsectionJSON objectForKey:@"characteristics"];
+        NSArray * characteriticsJSON = [characteristicsectionJSON objectForKey:@"Criterias"];
         for (int k = 0; k < [characteriticsJSON count]; k++){
             
             NSDictionary * characteristicJSON = [characteriticsJSON objectAtIndex:k];
@@ -797,10 +977,10 @@
                         FROM Characteristic \
                         WHERE sectioncharacteristic_id = %d AND order_priority = %d AND name_en = \'%@\' AND  name_fr = \'%@\' AND name_pt = \'%@\';",
                         characteristicsection_id,
-                        [[characteristicJSON objectForKey:@"order"]intValue],
-                        [characteristicJSON objectForKey:@"name_eng"],
-                        [characteristicJSON objectForKey:@"name_fr"],
-                        [characteristicJSON objectForKey:@"name_pt"]];
+                        [[characteristicJSON objectForKey:@"Order"]intValue],
+                        [characteristicJSON objectForKey:@"NameEn"],
+                        [characteristicJSON objectForKey:@"NameFr"],
+                        [characteristicJSON objectForKey:@"NamePt"]];
             
             
             
@@ -816,10 +996,10 @@
             
             
             classification_id = [self existsClassification:stmt 
-                                                    nameEN:[[characteristicJSON objectForKey:@"chosen_classification"] objectForKey:@"name_eng"] 
-                                                    nameFR:[[characteristicJSON objectForKey:@"chosen_classification"] objectForKey:@"name_fr"] 
-                                                    namePT:[[characteristicJSON objectForKey:@"chosen_classification"] objectForKey:@"name_pt"] 
-                                                andWheight:[[[characteristicJSON objectForKey:@"chosen_classification"] objectForKey:@"weight"]intValue]];
+                                                    nameEN:[[characteristicJSON objectForKey:@"ChosenClassifications"] objectForKey:@"NameEn"] 
+                                                    nameFR:[[characteristicJSON objectForKey:@"ChosenClassifications"] objectForKey:@"NameFr"] 
+                                                    namePT:[[characteristicJSON objectForKey:@"ChosenClassifications"] objectForKey:@"NamePt"] 
+                                                andWheight:[[[characteristicJSON objectForKey:@"ChosenClassifications"] objectForKey:@"Weight"]intValue]];
             
             if(classification_id == -2)
                 return FALSE;
@@ -851,12 +1031,12 @@
     char * errMsg;
     
     querySQL = [NSString stringWithFormat:@"INSERT INTO Tasting (wine_id, tasting_date, comment, latitude, longitude, state) \
-                VALUES (%d, %d, \'%@\', %f, %f);",
+                VALUES (%d, %f, \'%@\', %f, %f, %d);",
                 wine_id, 
-                [[tastingJSON objectForKey:@"tasting_date"]doubleValue],
-                [tastingJSON objectForKey:@"comment"],
-                [[tastingJSON objectForKey:@"latitude"]doubleValue],
-                [[tastingJSON objectForKey:@"longitude"]doubleValue],
+                [[tastingJSON objectForKey:@"TastingDate"]doubleValue],
+                [tastingJSON objectForKey:@"Comment"],
+                [[tastingJSON objectForKey:@"Latitude"]doubleValue],
+                [[tastingJSON objectForKey:@"Longitude"]doubleValue],
                 0];
     
     
@@ -871,20 +1051,20 @@
     
     
     //seccoes
-    NSArray * sectionsJSON = [tastingJSON objectForKey:@"sections"];
+    NSArray * sectionsJSON = [tastingJSON objectForKey:@"EvaluationSections"];
     for(int i = 0; i < [sectionsJSON count]; i++){
         
         NSDictionary *sectionJSON = [sectionsJSON objectAtIndex:i];
         
         int section_id;
         
-        querySQL = [NSString stringWithFormat:@"INSERT INTO Section (tasting_id,order_priority, name_eng, name_fr, name_pt)\
-                    VALUES (%d, \'%@\', \'%@\', \'%@\');",
+        querySQL = [NSString stringWithFormat:@"INSERT INTO Section (tasting_id, order_priority, name_en, name_fr, name_pt)\
+                    VALUES (%d, %d, \'%@\', \'%@\', \'%@\');",
                     tasting_id,
-                    [[sectionJSON objectForKey:@"order"]intValue],
-                    [sectionJSON objectForKey:@"name_eng"],
-                    [sectionJSON objectForKey:@"name_fr"],
-                    [sectionJSON objectForKey:@"name_pt"]];
+                    [[sectionJSON objectForKey:@"Order"]intValue],
+                    [sectionJSON objectForKey:@"NameEn"],
+                    [sectionJSON objectForKey:@"NameFr"],
+                    [sectionJSON objectForKey:@"NamePt"]];
         
         
         if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
@@ -897,7 +1077,7 @@
         
         
                
-        NSArray * criteriaJSON = [sectionJSON objectForKey:@"criteria"];
+        NSArray * criteriaJSON = [sectionJSON objectForKey:@"Criterias"];
         for (int k = 0; k < [criteriaJSON count]; k++){
             
             NSDictionary * criterionJSON = [criteriaJSON objectAtIndex:k];
@@ -905,22 +1085,22 @@
             int classification_id;
             
             
-            classification_id = [self insertClassificationIfNotExists:[[criterionJSON objectForKey:@"chosen_classification"] objectForKey:@"name_eng"] 
-                                                               nameFR:[[criterionJSON objectForKey:@"chosen_classification"] objectForKey:@"name_fr"] 
-                                                               namePT:[[criterionJSON objectForKey:@"chosen_classification"] objectForKey:@"name_pt"] 
-                                                           andWheight:[[[criterionJSON objectForKey:@"chosen_classification"] objectForKey:@"weight"]intValue]];
+            classification_id = [self insertClassificationIfNotExists:[[criterionJSON objectForKey:@"ChosenClassifications"] objectForKey:@"NameEn"] 
+                                                               nameFR:[[criterionJSON objectForKey:@"ChosenClassifications"] objectForKey:@"NameFr"] 
+                                                               namePT:[[criterionJSON objectForKey:@"ChosenClassifications"] objectForKey:@"NamePt"] 
+                                                           andWheight:[[[criterionJSON objectForKey:@"ChosenClassifications"] objectForKey:@"Weight"]intValue]];
             
             if(classification_id == -2)
                 return FALSE;
             
                        
-            querySQL = [NSString stringWithFormat:@"INSERT INTO Criterion (section_id, order_priority, name_eng, name_fr, name_pt, classification_id)\
-                        VALUES (%d, \'%@\', \'%@\', \'%@\', %d);",
+            querySQL = [NSString stringWithFormat:@"INSERT INTO Criterion (section_id, order_priority, name_en, name_fr, name_pt, classification_id)\
+                        VALUES (%d, %d, \'%@\', \'%@\', \'%@\', %d);",
                         section_id,
-                        [[criterionJSON objectForKey:@"order"]intValue],
-                        [criterionJSON objectForKey:@"name_eng"],
-                        [criterionJSON objectForKey:@"name_fr"],
-                        [criterionJSON objectForKey:@"name_pt"],
+                        [[criterionJSON objectForKey:@"Order"]intValue],
+                        [criterionJSON objectForKey:@"NameEn"],
+                        [criterionJSON objectForKey:@"NameFr"],
+                        [criterionJSON objectForKey:@"NamePt"],
                         classification_id];
             
             
@@ -934,19 +1114,18 @@
             
             
             //insere todas as classificacoes possiveis
-            NSArray * classificationsJSON = [sectionJSON objectForKey:@"classifications"];
+            NSArray * classificationsJSON = [criterionJSON objectForKey:@"Classifications"];
             for (int z = 0; z < [classificationsJSON count]; z++) {
                 NSDictionary * classificationJSON = [classificationsJSON objectAtIndex:z];
                 
                 
-                classification_id = [self insertClassificationIfNotExists:[classificationJSON objectForKey:@"name_eng"] 
-                                                                   nameFR:[classificationJSON objectForKey:@"name_fr"] 
-                                                                   namePT:[classificationJSON objectForKey:@"name_pt"] 
-                                                               andWheight:[[classificationJSON objectForKey:@"weight"]intValue]];
+                classification_id = [self insertClassificationIfNotExists:[classificationJSON objectForKey:@"NameEn"] 
+                                                                   nameFR:[classificationJSON objectForKey:@"NameFr"] 
+                                                                   namePT:[classificationJSON objectForKey:@"NamePt"] 
+                                                               andWheight:[[classificationJSON objectForKey:@"Weight"]intValue]];
                 
                 if(classification_id == -2)
                     return FALSE;
-                
                 
                 if(![self insertPossibleClassification:criterion_id 
                                     withClassification:classification_id 
@@ -960,19 +1139,19 @@
     
     
     //seccoes de caracteristicas
-    NSArray * characteristicsSectionsJSON = [tastingJSON objectForKey:@"characteristics_sections"];
+    NSArray * characteristicsSectionsJSON = [tastingJSON objectForKey:@"CaracteristicsSections"];
     for (int i = 0; i < [characteristicsSectionsJSON count]; i++) {
         NSDictionary *characteristicsectionJSON = [characteristicsSectionsJSON objectAtIndex:i];
         
         int characteristicsection_id;
         
-        querySQL = [NSString stringWithFormat:@"INSERT INTO SectionCharacteristic (tasting_id, order_priority, name_eng, name_fr, name_pt)\
+        querySQL = [NSString stringWithFormat:@"INSERT INTO SectionCharacteristic (tasting_id, order_priority, name_en, name_fr, name_pt)\
                     VALUES (%d ,%d, \'%@\', \'%@\', \'%@\');",
                     tasting_id,
-                    [[characteristicsectionJSON objectForKey:@"order"]intValue],
-                    [characteristicsectionJSON objectForKey:@"name_eng"],
-                    [characteristicsectionJSON objectForKey:@"name_fr"],
-                    [characteristicsectionJSON objectForKey:@"name_pt"]];
+                    [[characteristicsectionJSON objectForKey:@"Order"]intValue],
+                    [characteristicsectionJSON objectForKey:@"NameEn"],
+                    [characteristicsectionJSON objectForKey:@"NameFr"],
+                    [characteristicsectionJSON objectForKey:@"NamePt"]];
         
         
         if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
@@ -985,7 +1164,7 @@
         
         
         
-        NSArray * characteriticsJSON = [characteristicsectionJSON objectForKey:@"characteristics"];
+        NSArray * characteriticsJSON = [characteristicsectionJSON objectForKey:@"Criterias"];
         for (int k = 0; k < [characteriticsJSON count]; k++){
             
             NSDictionary * characteristicJSON = [characteriticsJSON objectAtIndex:k];
@@ -993,22 +1172,22 @@
             int classification_id;
             
             
-            classification_id = [self insertClassificationIfNotExists:[[characteristicJSON objectForKey:@"chosen_classification"] objectForKey:@"name_eng"] 
-                                                               nameFR:[[characteristicJSON objectForKey:@"chosen_classification"] objectForKey:@"name_fr"] 
-                                                               namePT:[[characteristicJSON objectForKey:@"chosen_classification"] objectForKey:@"name_pt"] 
+            classification_id = [self insertClassificationIfNotExists:[[characteristicJSON objectForKey:@"ChosenClassifications"] objectForKey:@"NameEn"] 
+                                                               nameFR:[[characteristicJSON objectForKey:@"ChosenClassifications"] objectForKey:@"NameFr"] 
+                                                               namePT:[[characteristicJSON objectForKey:@"ChosenClassifications"] objectForKey:@"NamePt"] 
                                                            andWheight:0];
             
             if(classification_id == -2)
                 return FALSE;
             
             
-            querySQL = [NSString stringWithFormat:@"INSERT INTO Characteristic (sectioncharacteristic_id, order_priority, name_eng, name_fr, name_pt, classification_id)\
+            querySQL = [NSString stringWithFormat:@"INSERT INTO Characteristic (sectioncharacteristic_id, order_priority, name_en, name_fr, name_pt, classification_id)\
                         VALUES (%d, %d, \'%@\', \'%@\', \'%@\', %d);",
                         characteristicsection_id,
-                        [[characteristicJSON objectForKey:@"order"]intValue],
-                        [characteristicJSON objectForKey:@"name_eng"],
-                        [characteristicJSON objectForKey:@"name_fr"],
-                        [characteristicJSON objectForKey:@"name_pt"],
+                        [[characteristicJSON objectForKey:@"Order"]intValue],
+                        [characteristicJSON objectForKey:@"NameEn"],
+                        [characteristicJSON objectForKey:@"NameFr"],
+                        [characteristicJSON objectForKey:@"NamePt"],
                         classification_id];
             
             if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
@@ -1021,14 +1200,14 @@
             
             
             //insere todas as classificacoes possiveis
-            NSArray * classificationsJSON = [characteristicJSON objectForKey:@"classifications"];
+            NSArray * classificationsJSON = [characteristicJSON objectForKey:@"Classifications"];
             for (int z = 0; z < [classificationsJSON count]; z++) {
                 NSDictionary * classificationJSON = [classificationsJSON objectAtIndex:z];
                 
                 
-                classification_id = [self insertClassificationIfNotExists:[classificationJSON objectForKey:@"name_eng"] 
-                                                                   nameFR:[classificationJSON objectForKey:@"name_fr"] 
-                                                                   namePT:[classificationJSON objectForKey:@"name_pt"] 
+                classification_id = [self insertClassificationIfNotExists:[classificationJSON objectForKey:@"NameEn"] 
+                                                                   nameFR:[classificationJSON objectForKey:@"NameFr"] 
+                                                                   namePT:[classificationJSON objectForKey:@"NamePt"] 
                                                                andWheight:0];
                 
                 if(classification_id == -2)
@@ -1058,45 +1237,19 @@
     
     for (int i = 0; i < [winetypes count]; i++) {
         NSDictionary * winetypesWithFormsJSON = [winetypes objectAtIndex:i];
-        int winetype_id = [[winetypesWithFormsJSON objectForKey:@"id"] intValue];
+        int winetype_id = [[winetypesWithFormsJSON objectForKey:@"Id"] intValue];
+        int formTasting_id;
         
-        //verifica se o tipo de vinho existe
-        querySQL = [NSString stringWithFormat:@"SELECT formtasting_id FROM UserTypeWine WHERE winetype_id = %d AND user = \'%@\'", winetype_id, user.username];
+        //verifica se a form para o tipo de vinho existe
+        querySQL = [NSString stringWithFormat:@"SELECT formtasting_id FROM UserTypeForm WHERE winetype_id = %d AND user = \'%@\';", winetype_id, user.username];
+
 
         if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
             if(sqlite3_step(stmt) == SQLITE_ROW){
                 
                 exists = TRUE;
-                int formtasting_id = sqlite3_column_int(stmt, 0);
+                formTasting_id = sqlite3_column_int(stmt, 0);
                 sqlite3_finalize(stmt);
-                
-                //se existir apaga os formularios associados e possible classifications
-                if(exists){
-                    
-                    querySQL = [NSString stringWithFormat:@"DELETE FROM FormTasting WHERE formtasting_id = %d;", formtasting_id]; 
-                    
-                    if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
-                        DebugLog(@"%s", errMsg);
-                        sqlite3_free(errMsg);
-                        return FALSE;
-                    }
-                    
-                }else {//senao existir adiciona
-                    
-                    querySQL = [NSString stringWithFormat:@"INSERT INTO WineType VALUES (%d, \'%@\', \'%@\', \'%@\');", 
-                                winetype_id,
-                                [winetypesWithFormsJSON objectForKey:@"name_eng"],
-                                [winetypesWithFormsJSON objectForKey:@"name_fr"],
-                                [winetypesWithFormsJSON objectForKey:@"name_pt"]];
-                    
-                    if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
-                        DebugLog(@"Query with error: %s", errMsg);
-                        sqlite3_free(errMsg);
-                        return FALSE;
-                    }
-                    
-                }
-                
                 
             }
         }else{
@@ -1104,8 +1257,41 @@
             return FALSE;
         }
         
+        
+        //se existir apaga os formularios associados e possible classifications (atraves de cascade da foreign key)
+        if(exists){
+            
+            //isto tambem apaga no UserTypeForm
+            querySQL = [NSString stringWithFormat:@"DELETE FROM FormTasting WHERE formtasting_id = %d;", formTasting_id];
+
+            
+            if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+                DebugLog(@"%s", errMsg);
+                sqlite3_free(errMsg);
+                return FALSE;
+            }
+            
+        }else {//senao existir adiciona
+            
+            querySQL = [NSString stringWithFormat:@"INSERT INTO WineType VALUES (%d, \'%@\', \'%@\', \'%@\');", 
+                        winetype_id,
+                        [winetypesWithFormsJSON objectForKey:@"NameEn"],
+                        [winetypesWithFormsJSON objectForKey:@"NameFr"],
+                        [winetypesWithFormsJSON objectForKey:@"NamePt"]];
+            
+            
+            if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+                DebugLog(@"Query with error: %s", errMsg);
+                sqlite3_free(errMsg);
+                return FALSE;
+            }
+            
+        }
+        
+        
+        
+        
         //insere no formtasting, retrive do id
-        int formTasting_id;
         querySQL = @"INSERT INTO FormTasting Default Values;";
 
         
@@ -1119,11 +1305,22 @@
         
         
         
-        //adiciona os formularios
-        NSDictionary * formJSON = [winetypesWithFormsJSON objectForKey:@"form"];
+        //falta inserir no usertypeform
+        querySQL = [NSString stringWithFormat:@"INSERT INTO UserTypeForm VALUES (\'%@\', %d, %d);",
+                    user.username,
+                    winetype_id,
+                    formTasting_id];
+        //DebugLog(querySQL);
+        if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+            DebugLog(@"Query with error: %s", errMsg);
+            sqlite3_free(errMsg);
+            return FALSE;
+        }
+        
+        
         
         //seccoes, criterios e classificacoes associadas
-        NSArray * formSectionsJSON = [formJSON objectForKey:@"form_sections"];
+        NSArray * formSectionsJSON = [winetypesWithFormsJSON objectForKey:@"FormsEvaluationSections"];
         for(int k = 0; k < [formSectionsJSON count]; k++){
             
             int formSection_id;
@@ -1132,10 +1329,10 @@
             querySQL = [NSString stringWithFormat:@"INSERT INTO FormSection(formtasting_id, order_priority, name_en, name_fr, name_pt) \
                         Values(%d, %d, \'%@\', \'%@\', \'%@\');",
                         formTasting_id,
-                        [formSectionJSON objectForKey:@"order"],
-                        [formSectionJSON objectForKey:@"name_eng"],
-                        [formSectionJSON objectForKey:@"name_fr"],
-                        [formSectionJSON objectForKey:@"name_pt"]];
+                        [[formSectionJSON objectForKey:@"Order"] intValue],
+                        [formSectionJSON objectForKey:@"NameEn"],
+                        [formSectionJSON objectForKey:@"NameFr"],
+                        [formSectionJSON objectForKey:@"NamePt"]];
             
             
             if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
@@ -1148,7 +1345,7 @@
             
             
             
-            NSArray * formCriteriaJSON = [formSectionJSON objectForKey:@"forms_criteria"];
+            NSArray * formCriteriaJSON = [formSectionJSON objectForKey:@"Criterias"];
             for (int w=0; w < [formCriteriaJSON count]; w++) {
                 
                 int criterion_id;
@@ -1157,10 +1354,10 @@
                 querySQL = [NSString stringWithFormat:@"INSERT INTO FormCriterion(formsection_id, order_priority, name_en, name_fr, name_pt) \
                             Values(%d, %d, \'%@\', \'%@\', \'%@\');",
                             formSection_id,
-                            [formCriterionJSON objectForKey:@"order"],
-                            [formCriterionJSON objectForKey:@"name_eng"],
-                            [formCriterionJSON objectForKey:@"name_fr"],
-                            [formCriterionJSON objectForKey:@"name_pt"]];
+                            [[formCriterionJSON objectForKey:@"Order"] intValue],
+                            [formCriterionJSON objectForKey:@"NameEn"],
+                            [formCriterionJSON objectForKey:@"NameFr"],
+                            [formCriterionJSON objectForKey:@"NamePt"]];
                 
                 
                 if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
@@ -1172,7 +1369,7 @@
                 }
                 
                 
-                NSArray * formClassificationsJSON = [formCriterionJSON objectForKey:@"classifications"];
+                NSArray * formClassificationsJSON = [formCriterionJSON objectForKey:@"Classifications"];
                 for (int z = 0; z < [formClassificationsJSON count]; z++) {
                     
                     NSDictionary * classificationJSON = [formClassificationsJSON objectAtIndex:z];
@@ -1180,10 +1377,10 @@
                     //verificar se existe, 
                     int classification_id;
                     
-                    classification_id = [self insertClassificationIfNotExists:[classificationJSON objectForKey:@"name_eng"]  
-                                                                       nameFR:[classificationJSON objectForKey:@"name_fr"] 
-                                                                       namePT:[classificationJSON objectForKey:@"name_pt"] 
-                                                                   andWheight:[[classificationJSON objectForKey:@"weight"]intValue]];
+                    classification_id = [self insertClassificationIfNotExists:[classificationJSON objectForKey:@"NameEn"]  
+                                                                       nameFR:[classificationJSON objectForKey:@"NameFr"] 
+                                                                       namePT:[classificationJSON objectForKey:@"NamePt"] 
+                                                                   andWheight:[[classificationJSON objectForKey:@"Weight"]intValue]];
                     
                     if(classification_id == -2)
                         return FALSE;
@@ -1202,7 +1399,7 @@
         
         
         //seccoes de caracteristicas, caracteristicas e classificacoes associadas
-        NSArray * formCharacteristicSectionsJSON = [formJSON objectForKey:@"form_characteristics_sections"];
+        NSArray * formCharacteristicSectionsJSON = [winetypesWithFormsJSON objectForKey:@"FormsCaracteristicsSections"];
         for(int k = 0; k < [formCharacteristicSectionsJSON count]; k++){
             int formSectionCharacteristic_id;
             NSDictionary * formCharacteristicSectionJSON = [formCharacteristicSectionsJSON  objectAtIndex:k];
@@ -1210,10 +1407,10 @@
             querySQL = [NSString stringWithFormat:@"INSERT INTO FormSectionCharacteristic(formtasting_id, order_priority, name_en, name_fr, name_pt) \
                         Values(%d, %d, \'%@\', \'%@\', \'%@\');",
                         formTasting_id,
-                        [formCharacteristicSectionJSON objectForKey:@"order"],
-                        [formCharacteristicSectionJSON objectForKey:@"name_eng"],
-                        [formCharacteristicSectionJSON objectForKey:@"name_fr"],
-                        [formCharacteristicSectionJSON objectForKey:@"name_pt"]];
+                        [[formCharacteristicSectionJSON objectForKey:@"Order"] intValue],
+                        [formCharacteristicSectionJSON objectForKey:@"NameEn"],
+                        [formCharacteristicSectionJSON objectForKey:@"NameFr"],
+                        [formCharacteristicSectionJSON objectForKey:@"NamePt"]];
             
             if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
                 DebugLog(@"Query with error: %s", errMsg);
@@ -1224,7 +1421,7 @@
             }
             
             
-            NSArray * formCharacteristicsJSON = [formCharacteristicSectionJSON objectForKey:@"form_characteristics"];
+            NSArray * formCharacteristicsJSON = [formCharacteristicSectionJSON objectForKey:@"Criterias"];
             for (int w=0; w < [formCharacteristicsJSON count]; w++) {
                 
                 int characteristic_id;
@@ -1233,10 +1430,10 @@
                 querySQL = [NSString stringWithFormat:@"INSERT INTO FormCharacteristic(formsectioncharacteristic_id, order_priority, name_en, name_fr, name_pt) \
                             Values(%d, %d, \'%@\', \'%@\', \'%@\');",
                             formSectionCharacteristic_id,
-                            [formCharacteristicJSON objectForKey:@"order"],
-                            [formCharacteristicJSON objectForKey:@"name_eng"],
-                            [formCharacteristicJSON objectForKey:@"name_fr"],
-                            [formCharacteristicJSON objectForKey:@"name_pt"]];
+                            [[formCharacteristicJSON objectForKey:@"Order"] intValue],
+                            [formCharacteristicJSON objectForKey:@"NameEn"],
+                            [formCharacteristicJSON objectForKey:@"NameFr"],
+                            [formCharacteristicJSON objectForKey:@"NamePt"]];
                 
                 if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
                     DebugLog(@"Query with error: %s", errMsg);
@@ -1247,7 +1444,7 @@
                 }
                 
                 
-                NSArray * formClassificationsJSON = [formCharacteristicJSON objectForKey:@"classifications"];
+                NSArray * formClassificationsJSON = [formCharacteristicJSON objectForKey:@"Classifications"];
                 for (int z = 0; z < [formClassificationsJSON count]; z++) {
                     
                     NSDictionary * classificationJSON = [formClassificationsJSON objectAtIndex:z];
@@ -1255,9 +1452,9 @@
                     //verificar se existe, 
                     int classification_id;
                     
-                    classification_id = [self insertClassificationIfNotExists:[classificationJSON objectForKey:@"name_eng"] 
-                                                                       nameFR:[classificationJSON objectForKey:@"name_fr"] 
-                                                                       namePT:[classificationJSON objectForKey:@"name_pt"] 
+                    classification_id = [self insertClassificationIfNotExists:[classificationJSON objectForKey:@"NameEn"] 
+                                                                       nameFR:[classificationJSON objectForKey:@"NameFr"] 
+                                                                       namePT:[classificationJSON objectForKey:@"NamePt"] 
                                                                    andWheight:0];
                     
                     if(classification_id == -2)
@@ -1273,6 +1470,7 @@
                 }
             }
         }
+         
     }
     
     
@@ -1369,7 +1567,7 @@ namePT:(NSString *)name_pt andWheight:(int)weight
                 classifiable_id,
                 classification_id,
                 classifiableType];
-    
+        
     char *errMsg;
     if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
         DebugLog(@"Query with error: %s", errMsg);
@@ -1394,7 +1592,7 @@ namePT:(NSString *)name_pt andWheight:(int)weight
         
         NSDictionary * countryWithRegionsJSON = [countries objectAtIndex:i];
         
-        country_id = [countryWithRegionsJSON objectForKey:@"code"];
+        country_id = [countryWithRegionsJSON objectForKey:@"Id"];
         
         //verifies if the country exists in the database
         BOOL exists = FALSE;
@@ -1414,10 +1612,10 @@ namePT:(NSString *)name_pt andWheight:(int)weight
         //if it doest exists, stores it
         if(!exists){
             querySQL = [NSString stringWithFormat:@"INSERT INTO Country VALUES (\'%@\', \'%@\', \'%@\', \'%@\');", 
-                        [countryWithRegionsJSON objectForKey:@"code"],
-                        [countryWithRegionsJSON objectForKey:@"name_eng"],
-                        [countryWithRegionsJSON objectForKey:@"name_fr"],
-                        [countryWithRegionsJSON objectForKey:@"name_pt"]];
+                        [countryWithRegionsJSON objectForKey:@"Id"],
+                        [countryWithRegionsJSON objectForKey:@"NameEn"],
+                        [countryWithRegionsJSON objectForKey:@"NameFr"],
+                        [countryWithRegionsJSON objectForKey:@"NamePt"]];
             
             char *errMsg;
             if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
@@ -1428,13 +1626,13 @@ namePT:(NSString *)name_pt andWheight:(int)weight
         }
         
         
-        NSArray * regionsJSON = [countryWithRegionsJSON objectForKey:@"region"];
+        NSArray * regionsJSON = [countryWithRegionsJSON objectForKey:@"Regions"];
         for (int k = 0; k < [regionsJSON count]; k++) {
             NSDictionary *regionJSON = [regionsJSON objectAtIndex:k];
             querySQL = [NSString stringWithFormat:@"INSERT INTO Region VALUES (\'%@\', \'%@\', \'%@\');", 
-                        [regionJSON objectForKey:@"code"],
+                        [regionJSON objectForKey:@"Id"],
                         country_id,
-                        [regionJSON objectForKey:@"name"]];
+                        [regionJSON objectForKey:@"Name"]];
             
             char *errMsg;
             if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
@@ -1494,7 +1692,7 @@ namePT:(NSString *)name_pt andWheight:(int)weight
             
         }
     }else {
-        DebugLog(@"Query with error: %s", querySQL);
+        DebugLog(@"Query with error: %@", querySQL);
         return FALSE;
     }
     sqlite3_finalize(stmt);
@@ -1504,10 +1702,11 @@ namePT:(NSString *)name_pt andWheight:(int)weight
     /*
      select distinct classifiable_id, classifiable_type from possibleclassification where  classifiable_type = 'FormCriterion' AND classifiable_id not in (Select formcriterion_id from formcriterion) UNION select distinct classifiable_id, classifiable_type from possibleclassification where  classifiable_type = 'FormCharacteristic' AND classifiable_id not in (Select formcharacteristic_id from FormCharacteristic) UNION select distinct classifiable_id, classifiable_type from possibleclassification where  classifiable_type = 'Criterion' AND classifiable_id not in (Select criterion_id from Criterion) UNION  select distinct classifiable_id, classifiable_type from possibleclassification where  classifiable_type = 'Characteristic' AND classifiable_id not in (Select characteristic_id from Characteristic);
      */
+
     
     querySQL =  @"SELECT DISTINCT classifiable_id, classifiable_type \
                 FROM possibleclassification \
-                WHERE  classifiable_type = 'FormCriterion' AND classifiable_id NOT INT (\
+                WHERE  classifiable_type = 'FormCriterion' AND classifiable_id NOT IN (\
                         SELECT formcriterion_id \
                         FROM formcriterion) \
                 \
@@ -1531,7 +1730,7 @@ namePT:(NSString *)name_pt andWheight:(int)weight
                 \
                 SELECT DISTINCT classifiable_id, classifiable_type \
                 FROM possibleclassification \
-                WHERE  classifiable_type = 'Characteristic' AND classifiable_id NOT INE (\
+                WHERE  classifiable_type = 'Characteristic' AND classifiable_id NOT IN (\
                         SELECT characteristic_id \
                         FROM Characteristic);";
     
@@ -1556,7 +1755,7 @@ namePT:(NSString *)name_pt andWheight:(int)weight
             
         }
     }else {
-        DebugLog(@"Query with error: %s", querySQL);
+        DebugLog(@"Query with error: %@", querySQL);
         return FALSE;
     }
     sqlite3_finalize(stmt);
@@ -1591,7 +1790,7 @@ namePT:(NSString *)name_pt andWheight:(int)weight
             
         }
     }else {
-        DebugLog(@"Query with error: %s", querySQL);
+        DebugLog(@"Query with error: %@", querySQL);
         return FALSE;
     }
     sqlite3_finalize(stmt);

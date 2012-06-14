@@ -305,11 +305,13 @@
         }
         //outros erros
         default: {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[lan translate:@"Error"] message:[lan translate:@"Login Default Error"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            NSString* message = [NSString stringWithFormat:@"%@ (%i)", [lan translate:@"Login Default Error"], code];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[lan translate:@"Error"] message:message delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
             [alert show];
             break;
         }
     }
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 
