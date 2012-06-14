@@ -88,24 +88,15 @@
 }
 
 - (void)executeLogin {
-    Language *lan = [Language instance];
+    //Language *lan = [Language instance];
     
     [User createWithUsername: self.usernameInput.text Password: self.passwordInput.text];
     User *user = [User instance];
     
-#warning TODO: FERNANDO: sync
     //Login Successful
     if ( user.isValidated ) {
-        //dismiss the login controller
-        [self.delegate LoginViewControllerDidLogin:self];
-        ListaVinhosViewController* lvvc = (ListaVinhosViewController*) self.delegate;
-        [lvvc setVinhos:user.vinhos];
-        [lvvc reloadData];
         
-        //save this user as default
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setObject:user.username forKey:@"username"];
-        [defaults synchronize];
+        [self successfulLogin];
         
     }
     //Login Failure
@@ -118,12 +109,30 @@
         UINavigationController* syncNC = (UINavigationController*) [storyboard instantiateViewControllerWithIdentifier:@"syncNC"];
         
         [syncNC setModalPresentationStyle:UIModalPresentationFormSheet];
-        syncNC.delegate = self;
+        
+        SyncViewController* syncVC = (SyncViewController*) [syncNC topViewController];
+        
+        syncVC.delegate = self;
         
         [self presentModalViewController:syncNC animated:YES];
         
         
     }
+}
+
+- (void) successfulLogin {
+    User *user = [User instance];
+    
+    //dismiss the login controller
+    [self.delegate LoginViewControllerDidLogin:self];
+    ListaVinhosViewController* lvvc = (ListaVinhosViewController*) self.delegate;
+    [lvvc setVinhos:user.vinhos];
+    [lvvc reloadData];
+    
+    //save this user as default
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:user.username forKey:@"username"];
+    [defaults synchronize];
 }
 
 - (IBAction)doLogin:(id)sender {
@@ -275,7 +284,32 @@
 }
 
 - (void) SyncViewControllerDidFinishWithStatusCode:(int) code {
+    Language *lan = [Language instance];
     
+    switch (code) {
+        //sucesso
+        case 200:
+            [self successfulLogin];
+            break;
+        //credenciais invalidas
+        case 400: {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[lan translate:@"Error"] message:[lan translate:@"Login 400"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            [alert show];
+            break;
+        }
+        //sem conexão
+        case 0: {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[lan translate:@"Error"] message:[lan translate:@"Login 0"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            [alert show];
+            break;
+        }
+        //outros erros
+        default: {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[lan translate:@"Error"] message:[lan translate:@"Login Default Error"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            [alert show];
+            break;
+        }
+    }
 }
 
 
