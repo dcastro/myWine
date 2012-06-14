@@ -1845,7 +1845,7 @@
                             <outlet property="delegate" destination="WfQ-GX-966" id="tZh-f2-bcW"/>
                         </connections>
                     </tableView>
-                    <value key="contentSizeForViewInPopover" type="size" width="200" height="210"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="250" height="210"/>
                     <connections>
                         <outlet property="nome" destination="pQM-0m-aQt" id="Q6B-QQ-JmZ"/>
                         <outlet property="nome_desc" destination="gIz-We-j1d" id="Jic-Xl-cIi"/>
