@@ -58,6 +58,8 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
+    
     // Get current year
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDateComponents *components = [gregorian components:NSYearCalendarUnit fromDate:[NSDate date]];
@@ -68,11 +70,6 @@
     for(int i = year ; i>1900 ; i--)
         [self.anosVinhos addObject: [NSNumber numberWithInt:i]];
     
-    NSLog(@"aaaa %d", self.anosVinhos.count);
-    
-
-    
-    [super viewDidLoad];
     // Setup the background
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown)
@@ -442,14 +439,12 @@ finishedSavingWithError:(NSError *)error
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
     //set number of rows
-    NSLog(@"ccc %d", self.anosVinhos.count);
     return self.anosVinhos.count;
 }
 
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     //set item per row
-    NSLog(@"bbb %d", self.anosVinhos.count);
     return [NSString stringWithFormat:@"%d", [[self.anosVinhos objectAtIndex:row] integerValue]];
 }
 
