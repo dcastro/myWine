@@ -157,16 +157,16 @@
     
     int score = 0, max = 0;
     
-    for(int i = 0; i < self.prova.sections.count; i++) {
-        Seccao* seccao = [self.prova.sections objectAtIndex:i];
-        
-        for(int j = 0; j < seccao.criteria.count; j++) {
-            CriterionCell* cell = (CriterionCell*) [[self tableView] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:j inSection:i]];
-            score += [[[cell item] classification] weight ];
-            max += [cell.item maxWeight];
+    for( Seccao* section in self.prova.sections) {
+        for( Criterio* criterion in section.criteria ) {
+            if(criterion.classification != nil)
+                score += criterion.classification.weight;
+            else 
+                score += criterion.classification_chosen.weight;
+            max += criterion.maxWeight;
         }
-        
     }
+    //NSLog(@"update %i %i", score, max);
     
     int percentage = ((float) score/ (float) max) * 100.0;
     [self updateScoreLabelWithScore:percentage];
