@@ -89,6 +89,8 @@
         
     }
     
+    v = [self objectAtIndex:index];
+    
     //NSLog(@"index: %i", index);
     
     Query *query = [[Query alloc] init];
