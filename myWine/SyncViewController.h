@@ -10,6 +10,7 @@
 
 @class Language;
 @class Sincronizacao;
+@class User;
 
 @protocol SyncViewControllerDelegate <NSObject>
 

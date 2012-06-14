@@ -1127,7 +1127,6 @@
                 if(classification_id == -2)
                     return FALSE;
                 
-                DebugLog(@"VAI INSERIR %d, %d",criterion_id, classification_id);
                 if(![self insertPossibleClassification:criterion_id 
                                     withClassification:classification_id 
                                                   Type:@"Criterion"])

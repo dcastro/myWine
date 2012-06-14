@@ -345,7 +345,7 @@ static User *sharedUser = nil;
     
     if(userExists){
         
-        querySQL = [NSString stringWithFormat:@"UPDATE User SET validadted = %d WHERE username = \'%@\';", 
+        querySQL = [NSString stringWithFormat:@"UPDATE User SET validated = %d WHERE username = \'%@\';", 
                     _isValidated, _username];
         
         
