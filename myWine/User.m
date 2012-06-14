@@ -380,7 +380,6 @@ static User *sharedUser = nil;
 }
 
 - (void) resetState {
-#warning todo: reset estado, tudo a nil crlho
     
     self.vinhos = nil;
     self.countries = nil;

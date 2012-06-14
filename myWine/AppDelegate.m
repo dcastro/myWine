@@ -42,7 +42,6 @@
     //[db deleteDatabase:&error];
     if(![db isDatabaseCreated]){
         if(![db createDatabase:&error]){
-            #warning TODO: o error tem a mensagem de erro a ser mostrada ao utilizador, convem mostrar
             DebugLog(@"%@", [error localizedDescription]);
         }
     }

@@ -19,8 +19,6 @@
     Query *query = [[Query alloc] init];
     char * errMsg;
     
-    #warning TODO: FERNANDO: falta a foto e corrigir a query
-    
     
     NSString *querySQL = [NSString stringWithFormat:@"INSERT INTO Wine (user, region_id,  winetype_id, name, year, grapes, photo_filename, producer, currency, price, state)\
                           VALUES (\'%@\', %d, %d, \'%@\', %d, \'%@\' , \'%@\', \'%@\', \'%@\', %f, %d);", 
@@ -80,7 +78,6 @@
 
 -(BOOL) removeVinhoAtRow:(int)row inSection:(int)section {
     
-#warning TODO: o problema esta aqui
     Vinho * v;// = [self objectAtIndex:index];
     int index = 0;
     for(index = 0; index < [self count] ; index++) {
