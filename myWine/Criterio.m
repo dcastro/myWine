@@ -69,7 +69,7 @@
 
     querySQL = [NSString stringWithFormat:@"SELECT c.classification_id, c.weight ,c.name_en, c.name_fr, c.name_pt\
                 FROM Classification c, PossibleClassification ps\
-                WHERE ps.classifiable_id = %d AND ps.classifiable_type = 'Criterion' AND ps.classification_id = c.classification_id;", _criterion_id];
+                WHERE ps.classifiable_id = %d AND ps.classifiable_type = 'Criterion' AND ps.classification_id = c.classification_id;", self.criterion_id];
 
     sqlite3_stmt *stmt = [query prepareForSingleQuery:querySQL];
     

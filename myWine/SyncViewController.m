@@ -18,7 +18,7 @@
 @synthesize description_label;
 @synthesize progress_label;
 @synthesize progress_bar;
-@synthesize cancelButton;
+//@synthesize cancelButton;
 @synthesize delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -59,9 +59,10 @@
     self.progress_label.Text=[NSString stringWithFormat:[lan translate:@"Synchronization step"], 0,3];
     self.progress_label.font = [UIFont fontWithName:@"DroidSans" size:SMALL_FONT];
 
+    /*
     [self.cancelButton setTitle:[lan translate:@"Cancel"] forState:UIControlStateNormal];
     self.cancelButton.titleLabel.font = [UIFont fontWithName:@"DroidSans-Bold" size:SMALL_FONT];
-    
+    */
     [progress_bar setProgress:0.0];
     
     
@@ -74,7 +75,7 @@
     [self setDescription_label:nil];
     [self setProgress_label:nil];
     [self setProgress_bar:nil];
-    [self setCancelButton:nil];
+    //[self setCancelButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -84,11 +85,12 @@
 	return YES;
 }
 
+/*
 - (IBAction)cancel:(id)sender
 {
 	[self dismissModalViewControllerAnimated:YES];
 }
-
+*/
 
 
 - (void) startsync{
@@ -149,14 +151,29 @@
     int responseStatusCode = [httpResponse statusCode];
     DebugLog(@"Status Code: %d", responseStatusCode);
     
-    if (responseStatusCode == 200) {
-        user.isValidated = TRUE;
-    }else {
-        user.isValidated = FALSE;
+    
+    switch (responseStatusCode) {
+        case 200:
+            user.isValidated = TRUE;
+            [user validateUser];
+            break;
+            
+        case 400:
+            user.isValidated = FALSE;
+            [user validateUser];
+            [delegate SyncViewControllerDidFinishWithStatusCode:400];
+            
+            
+            break;
+            
+        default:
+            user.isValidated = FALSE;
+            [user validateUser];
+            [delegate SyncViewControllerDidFinishWithStatusCode:responseStatusCode];            
+            break;
     }
-    
-    [user validateUser];
-    
+
+        
     
     [receivedData setLength:0];
 }
@@ -165,8 +182,12 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
+    DebugLog(@"entrou no parse");
     if(!user.isValidated){
-#warning TODO: alerta qualquer
+        [progress_bar setProgress:0.0];
+        self.progress_label.Text=[NSString stringWithFormat:[lan translate:@"Synchronization step"], 0,3];
+        NSNumber *num = [NSNumber numberWithBool:YES];
+        [self performSelector:@selector(dismissModalViewControllerAnimated:) withObject:num afterDelay:1.0];
         return;
     }
     
@@ -196,6 +217,12 @@
     */
     [progress_bar setProgress:1.0];
     self.progress_label.Text=[NSString stringWithFormat:[lan translate:@"Synchronization step"], 3,3];
+    
+    
+    [delegate SyncViewControllerDidFinishWithStatusCode:200];
+    NSNumber *num = [NSNumber numberWithBool:YES];
+    [self performSelector:@selector(dismissModalViewControllerAnimated:) withObject:num afterDelay:1.0];
+
 
     
 }
@@ -218,13 +245,24 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {    
+    
     // inform the user
-    NSLog(@"Connection failed! Error - %@ %@",
+    DebugLog(@"Connection failed! Error - %@ %@",
           [error localizedDescription],
           [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]);
     
     
-#warning TODO: se nao houver net isto vai para aqui....
+    
+    self.progress_label.Text=[NSString stringWithFormat:[lan translate:@"Synchronization step"], 0,3];
+    [progress_bar setProgress:0.0];
+
+    
+    [delegate SyncViewControllerDidFinishWithStatusCode:0];
+    NSNumber *num = [NSNumber numberWithBool:YES];
+    [self performSelector:@selector(dismissModalViewControllerAnimated:) withObject:num afterDelay:1.0];
+    
+    
+    return;
     
 }
 

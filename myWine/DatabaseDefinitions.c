@@ -236,13 +236,6 @@ const char  *databaseTables[] = {
     "CREATE INDEX IDX_CLASSIFICATION_TOUPLE ON Classification(weight, name_en, name_fr, name_pt);",
     
     
-    
-    
-    //DADOS DE TESTE
-    //VINHOS
-    "INSERT INTO User VALUES ('mywine@cpcis.pt', 'mywine', 0.0, 1)",
-    
-    
     "\n"
 };
 

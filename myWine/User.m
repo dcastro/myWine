@@ -81,7 +81,7 @@ static User *sharedUser = nil;
     Query *query = [[Query alloc] init];
     
     NSString *querySQL = [NSString stringWithFormat: 
-                          @"SELECT * FROM User WHERE username=\'%@\';",self.username,"%"];
+                          @"SELECT * FROM User WHERE username=\'%@\' AND password = \'%@\';",self.username, self.password];
     
     sqlite3_stmt *stmt = [query prepareForSingleQuery:querySQL];
     
@@ -100,13 +100,11 @@ static User *sharedUser = nil;
                 self.isValidated = FALSE;
             
             
-#warning TODO caso o utilizador tenha mudado de pass
             
         }else {
             
             self.isValidated = FALSE;
-            DebugLog(@"User doest exist in the database");
-    #warning TODO o user nao existe
+            //DebugLog(@"User doest exist in the database");
         } 
         
         
@@ -229,7 +227,7 @@ static User *sharedUser = nil;
 
     querySQL = [NSString stringWithFormat:@"SELECT wt.winetype_id, wt.name_en, wt.name_fr, wt.name_pt \
                 FROM WineType wt, UserTypeForm utf \
-                WHERE wt.winetype_id = utf.winetype_id AND user = \'%@\';", _username];
+                WHERE wt.winetype_id = utf.winetype_id AND user = \'%@\';", self.username];
       
     sqlite3_stmt *stmt = [query prepareForSingleQuery:querySQL];
     
@@ -327,7 +325,7 @@ static User *sharedUser = nil;
     
     
     querySQL = [NSString stringWithFormat:@"SELECT username FROM User WHERE username = \'%@\';", 
-                _username];
+                self.username];
     
     
     if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
@@ -346,7 +344,7 @@ static User *sharedUser = nil;
     if(userExists){
         
         querySQL = [NSString stringWithFormat:@"UPDATE User SET validated = %d WHERE username = \'%@\';", 
-                    _isValidated, _username];
+                    self.isValidated, self.username];
         
         
         if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
@@ -360,8 +358,8 @@ static User *sharedUser = nil;
         
         if(_isValidated){
            querySQL = [NSString stringWithFormat:@"INSERT INTO User VALUES(\'%@\', \'%@\', %f, %d);",
-                       _username,
-                       _password,
+                       self.username,
+                       self.password,
                        0.0,
                        1];
             

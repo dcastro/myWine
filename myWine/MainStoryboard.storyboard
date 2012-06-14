@@ -2059,21 +2059,6 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="K2L-m8-WbU">
-                                <rect key="frame" x="226" y="519" width="89" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal">
-                                    <color key="titleColor" red="0.33459739960000001" green="0.01176470588" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="cancel:" destination="cUh-or-q6J" eventType="touchUpInside" id="Ewo-5L-Djt"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Passo 1 de 2 completo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="9yt-sW-Lja">
                                 <rect key="frame" x="182" y="419" width="176" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -2097,7 +2082,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="A sincronizar" id="oEX-0U-WvP"/>
                     <connections>
-                        <outlet property="cancelButton" destination="K2L-m8-WbU" id="I5v-um-GGE"/>
                         <outlet property="description_label" destination="m8x-nO-M5s" id="894-FO-2vG"/>
                         <outlet property="progress_bar" destination="bXh-Qw-DBT" id="17Y-oU-TRn"/>
                         <outlet property="progress_label" destination="9yt-sW-Lja" id="tC1-fN-eTk"/>

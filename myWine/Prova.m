@@ -56,7 +56,7 @@
     querySQL = [NSString stringWithFormat:@"SELECT s.section_id, s.order_priority ,s.name_en, s.name_fr, s.name_pt\
                 FROM Section s\
                 WHERE s.tasting_id = %d \
-                ORDER BY s.order_priority ASC;", _tasting_id];
+                ORDER BY s.order_priority ASC;", self.tasting_id];
      
     sqlite3_stmt *stmt = [query prepareForSingleQuery:querySQL];
     
@@ -99,7 +99,7 @@
     querySQL = [NSString stringWithFormat:@"SELECT sc.sectioncharacteristic_id, sc.order_priority, sc.name_en, sc.name_fr, sc.name_pt\
                 FROM SectionCharacteristic sc\
                 WHERE sc.tasting_id = %d \
-                ORDER BY sc.order_priority ASC;", _tasting_id];
+                ORDER BY sc.order_priority ASC;", self.tasting_id];
  
     
     sqlite3_stmt *stmt = [query prepareForSingleQuery:querySQL];
