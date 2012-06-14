@@ -10,7 +10,9 @@
 #import "Vinho.h"
 
 #define ORDER_BY_NAME 0
-#define ORDER_BY_SCORE 1
+#define ORDER_BY_NAME_DESC 1
+#define ORDER_BY_SCORE_ASC 2
+#define ORDER_BY_SCORE 3
 
 @interface NSMutableArray (VinhosMutableArray)
 

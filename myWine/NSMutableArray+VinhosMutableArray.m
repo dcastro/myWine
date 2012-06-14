@@ -157,6 +157,9 @@
             
         case ORDER_BY_SCORE:
             [self sortUsingSelector:@selector(compareUsingScore:)];
+            break;
+        default:
+            break;
     }
 }
 
@@ -213,10 +216,10 @@
 
 - (NSString*) sectionIdentifierForVinho:(Vinho*) vinho orderedBy:(int) order {
     NSString* sectionIdentifier;
-    if(order == ORDER_BY_NAME) {
+    if(order == ORDER_BY_NAME || order == ORDER_BY_NAME_DESC) {
         sectionIdentifier = [[NSString stringWithFormat:@"%c", [vinho.name characterAtIndex:0]] uppercaseString];
     }
-    if(order == ORDER_BY_SCORE) {
+    if(order == ORDER_BY_SCORE || order == ORDER_BY_SCORE_ASC) {
         int score = vinho.score;
         int truncated = score/10;
         truncated *= 10;
@@ -258,7 +261,8 @@
     NSArray* identifiersArray = [identifiersSet allObjects];
     identifiersArray = [identifiersArray sortedArrayUsingSelector:@selector(compare:)];
     
-    if(order == ORDER_BY_SCORE)
+    
+    if(order == ORDER_BY_SCORE || order == ORDER_BY_NAME_DESC)
         identifiersArray = [[identifiersArray reverseObjectEnumerator] allObjects];
     
     
