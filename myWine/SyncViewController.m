@@ -184,8 +184,7 @@
     if(!user.isValidated){
         [progress_bar setProgress:0.0];
         self.progress_label.Text=[NSString stringWithFormat:[lan translate:@"Synchronization step"], 0,3];
-        NSNumber *num = [NSNumber numberWithBool:YES];
-        [self performSelector:@selector(dismissModalViewControllerAnimated:) withObject:num afterDelay:1.0];
+
         return;
     }
     
@@ -216,11 +215,7 @@
     [progress_bar setProgress:1.0];
     self.progress_label.Text=[NSString stringWithFormat:[lan translate:@"Synchronization step"], 3,3];
     
-    
     [delegate SyncViewControllerDidFinishWithStatusCode:200];
-    NSNumber *num = [NSNumber numberWithBool:YES];
-    [self performSelector:@selector(dismissModalViewControllerAnimated:) withObject:num afterDelay:1.0];
-
 
     
 }
@@ -256,9 +251,6 @@
 
     
     [delegate SyncViewControllerDidFinishWithStatusCode:0];
-    NSNumber *num = [NSNumber numberWithBool:YES];
-    [self performSelector:@selector(dismissModalViewControllerAnimated:) withObject:num afterDelay:1.0];
-    
     
     return;
     

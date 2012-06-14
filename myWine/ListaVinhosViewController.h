@@ -14,6 +14,7 @@
 #import "OrderViewController.h"
 #import "ListaProvasViewController.h"
 #import "MySplitViewViewController.h"
+#import "SyncViewController.h"
 
 @class DetailViewController;
 @class VinhoViewController;
@@ -27,7 +28,7 @@
 
 @end
 
-@interface ListaVinhosViewController : UITableViewController < UISplitViewControllerDelegate, VinhoViewControllerDelegate, DetailViewControllerDelegate, NovoVinhoViewControllerDelegate, LoginViewControllerDelegate, OrderViewControllerDelegate, ListaProvasViewControllerDelegate, TranslatableViewController>
+@interface ListaVinhosViewController : UITableViewController < UISplitViewControllerDelegate, VinhoViewControllerDelegate, DetailViewControllerDelegate, NovoVinhoViewControllerDelegate, LoginViewControllerDelegate, OrderViewControllerDelegate, ListaProvasViewControllerDelegate, TranslatableViewController, SyncViewControllerDelegate>
 {
     UISplitViewController *splitViewController;
     
@@ -70,5 +71,7 @@
 - (void) goHome;
 
 -(void) translate;
+
+- (void) SyncViewControllerDidFinishWithStatusCode:(int)code;
 
 @end

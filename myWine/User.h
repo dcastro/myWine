@@ -35,4 +35,6 @@
 -(NSString *)description;
 -(BOOL)validateUser;
 
+- (void) resetState;
+
 @end

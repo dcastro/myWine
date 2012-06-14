@@ -140,7 +140,7 @@
     [self.scoreLabel setTextColor:[UIColor myWineColor]];
     NSString* string = [[NSString alloc] initWithFormat:@"%i%%", [self.prova calcScore]];
     self.scoreContentLabel.text = string;
-    [self.scoreContentLabel setFont:[UIFont fontWithName:@"DroidSerif" size:LARGER_FONT]];
+    [self.scoreContentLabel setFont:[UIFont fontWithName:@"DroidSerif" size:LARGER_FONT+10]];
     
     if(prova_mode == CHARACTERISTICS_MODE){
         [self.scoreLabel setHidden:YES];

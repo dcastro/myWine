@@ -22,4 +22,6 @@
 -(void) showComparator;
 -(void) hideComparator;
 
+- (void) doLogout;
+
 @end

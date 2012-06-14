@@ -1583,7 +1583,7 @@
                         </barButtonItem>
                         <barButtonItem image="sync.png" id="XKE-qL-BX6">
                             <connections>
-                                <segue destination="Rj4-Fm-dRe" kind="modal" modalPresentationStyle="formSheet" id="jTo-cA-E3q"/>
+                                <segue destination="Rj4-Fm-dRe" kind="modal" identifier="vinhosToSync" modalPresentationStyle="formSheet" id="jTo-cA-E3q"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
@@ -2381,8 +2381,6 @@
         <class className="SyncViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SyncViewController.h"/>
             <relationships>
-                <relationship kind="action" name="cancel:"/>
-                <relationship kind="outlet" name="cancelButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="description_label" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="progress_bar" candidateClass="UIProgressView"/>
                 <relationship kind="outlet" name="progress_label" candidateClass="UILabel"/>

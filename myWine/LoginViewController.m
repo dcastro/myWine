@@ -288,30 +288,40 @@
     
     switch (code) {
         //sucesso
-        case 200:
-            [self successfulLogin];
+        case 200: {
+            [self dismissViewControllerAnimated:YES completion: ^() {
+                [self successfulLogin];
+            }];
+            
             break;
+        }
         //credenciais invalidas
         case 400: {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[lan translate:@"Error"] message:[lan translate:@"Login 400"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-            [alert show];
+            [self dismissViewControllerAnimated:YES completion: ^() {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[lan translate:@"Error"] message:[lan translate:@"Login 400"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                [alert show];
+            }];
             break;
         }
         //sem conexão
         case 0: {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[lan translate:@"Error"] message:[lan translate:@"Login 0"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-            [alert show];
+            
+            [self dismissViewControllerAnimated:YES completion: ^() {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[lan translate:@"Error"] message:[lan translate:@"Login 0"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                [alert show];
+            }];
             break;
         }
         //outros erros
         default: {
-            NSString* message = [NSString stringWithFormat:@"%@ (%i)", [lan translate:@"Login Default Error"], code];
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[lan translate:@"Error"] message:message delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-            [alert show];
+            
+            [self dismissViewControllerAnimated:YES completion: ^() {
+                NSString* message = [NSString stringWithFormat:@"%@ (%i)", [lan translate:@"Login Default Error"], code];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[lan translate:@"Error"] message:message delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                [alert show];            }];
             break;
         }
     }
-    [self dismissModalViewControllerAnimated:YES];
 }
 
 

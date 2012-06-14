@@ -11,7 +11,9 @@
 #import "ListaProvasViewController.h"
 #import "NSMutableArray+VinhosMutableArray.h"
 #import "ListaPaisesViewController.h"
+#import "AppDelegate.h"
 #import <objc/runtime.h>
+
 
 @interface ListaVinhosViewController () {
     NSMutableArray *_objects;
@@ -110,8 +112,11 @@ SEL action; id target;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    
-    if([segue.identifier isEqualToString:@"PushProvas"]) {
+    if( [segue.identifier isEqualToString:@"vinhosToSync"]) {
+        SyncViewController* syncVC = (SyncViewController*) [[segue destinationViewController] topViewController];
+        syncVC.delegate = self;
+    }
+    else if([segue.identifier isEqualToString:@"PushProvas"]) {
         
         ListaProvasViewController* lpvc = (ListaProvasViewController*) [segue destinationViewController ];
         //get the path for the selected button
@@ -598,6 +603,70 @@ SEL action; id target;
     [self.rootPopoverButtonItem setTitle:[lan translate:@"Wines List Title"]];
     [self.rootTemp setTitle:[lan translate:@"Wines List Title"]];
     [[self tableView] reloadData];
+    
+}
+
+#pragma mark - SyncVC Delegate Method
+- (void) SyncViewControllerDidFinishWithStatusCode:(int)code {
+    
+    Language *lan = [Language instance];
+
+    switch (code) {
+        //sucesso
+        case 200: {
+            
+            [self dismissViewControllerAnimated:YES completion:nil];
+            
+            //reset dos dados
+            [[User instance] resetState];
+            
+            //reload da tabela
+            self.vinhos = [FilterManager applyFilters:[[User instance] vinhos]];
+            [self.vinhos orderVinhosBy:selectedOrder];
+            [self.vinhos sectionizeOrderedBy:selectedOrder];
+            [[self tableView] reloadData];
+            
+            //go back home
+            [self performSegueWithIdentifier:@"VinhosToHome" sender:self];
+            break;
+
+        }
+            
+        //credenciais invalidas
+        case 400: {            
+            [self dismissViewControllerAnimated:YES completion: ^() {
+                AppDelegate* appDelegate = (AppDelegate*) [[UIApplication sharedApplication] delegate]; 
+                [appDelegate doLogout];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[lan translate:@"Error"] message:[lan translate:@"Login 400"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                [alert show];
+            }];
+            
+
+            //[appDelegate performSelector:@selector(doLogout) withObject:nil afterDelay:3.0];
+            
+            break;
+        }
+        //sem conexão
+        case 0: {
+            [self dismissViewControllerAnimated:YES completion: ^() {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[lan translate:@"Error"] message:[lan translate:@"Login 0"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                [alert show];
+            }];
+            break;
+        }
+        //outros erros
+        default: {
+            
+            [self dismissViewControllerAnimated:YES completion: ^() {
+                NSString* message = [NSString stringWithFormat:@"%@ (%i)", [lan translate:@"Login Default Error"], code];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[lan translate:@"Error"] message:message delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                [alert show];
+            }];
+            break;
+        }
+    }
+    
+    
     
 }
 
