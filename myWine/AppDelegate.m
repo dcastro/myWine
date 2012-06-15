@@ -234,38 +234,6 @@
     if(logout){
 
         [self doLogout];
-        /*
-        //NSLog(@"Entrou em foreground e flag logout e true");
-
-        [defaults setObject:nil forKey:@"username"];
-        [defaults setBool:NO forKey:@"logout"];
-        [defaults synchronize];
-        
-        //se o login view estiver activo, return
-        if ([self.splitView modalViewController] != nil)
-            return;
-        
-        //dismiss das model views
-        NSLog(@"dismissing modal views");
-        [self.splitView dismiss ];
-        
-        //show login controller at startup
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-        LoginViewController *lvc = (LoginViewController *) [storyboard instantiateViewControllerWithIdentifier:@"firstLogin"];
-        lvc.modalPresentationStyle = UIModalPresentationFullScreen;
-        [_window makeKeyAndVisible];
-        [self.splitView presentModalViewController:lvc animated:NO];
-        
-        
-        //set delegate
-        UINavigationController *masterNavigationController = [self.splitView.viewControllers objectAtIndex:0];
-        ListaVinhosViewController *lvvc = (ListaVinhosViewController *)[[masterNavigationController viewControllers] objectAtIndex:0] ;
-        
-        
-        lvc.delegate = lvvc;
-        lvc.splitViewController = self.splitView;
-        */
-        
     }
     
 
@@ -297,16 +265,6 @@
     //set delegate
     UINavigationController *masterNavigationController = [self.splitView.viewControllers objectAtIndex:0];
     ListaVinhosViewController *lvvc = (ListaVinhosViewController *)[[masterNavigationController viewControllers] objectAtIndex:0] ;
-    
-    /*
-     for(UINavigationController* c in self.splitView.viewControllers) {
-     NSLog(@"class: %s", class_getName([c class]));
-     for (UIViewController* v in c.viewControllers) {
-     NSLog(@"-class: %s", class_getName([v class]));
-     }
-     }
-     NSLog(@"--class: %s", class_getName([lvvc class]));
-     */
     
     lvc.delegate = lvvc;
     lvc.splitViewController = self.splitView;
