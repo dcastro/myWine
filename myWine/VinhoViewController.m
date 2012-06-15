@@ -171,7 +171,7 @@
     self.grapesListShow.textColor = [UIColor whiteColor];
     
     
-    if(vinho.photo != nil && vinho.photo != NULL && ![vinho.photo isEqualToString:@"<null>"]) {
+    if(vinho.photo != nil) {
         User* user = [User instance];
         NSString *nome = user.username;
         NSString *path = [NSString stringWithFormat:@"Documents/Images/%@/%@",nome,vinho.photo];
@@ -179,6 +179,9 @@
         image = [UIImage imageWithContentsOfFile:pngPath];
         NSLog(@"image name: %@", vinho.photo);
         [self.winePic setImage:image forState:(UIControlStateNormal)];
+    }
+    else {
+        [self.winePic setImage:[UIImage imageNamed:@"material mywine-05.png"] forState:(UIControlStateNormal)];    
     }
     
 }
