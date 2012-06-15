@@ -386,26 +386,27 @@
         //cancel changes
         [self forEveryCell:^(CriterionCell* cell) {
             [cell resetState];
-            [[cell item] setClassification:[[cell item ] classification_chosen]];
+            //[[cell item] setClassification:[[cell item ] classification_chosen]];
             
-            if(prova_mode == CRITERIA_MODE) {
-                for( Seccao* section in self.prova.sections) {
-                    for( Criterio* criterion in section.criteria ) {
-                        [criterion setClassification:criterion.classification_chosen];
-                    }
-                    
-                }
-            }
-            else if (prova_mode == CHARACTERISTICS_MODE) {
-                for( SeccaoCaracteristica* section in self.prova.characteristic_sections) {
-                    for( Caracteristica* characteristic in section.characteristics ) {
-                        [characteristic setClassification:characteristic.classification_chosen];
-                    }
-                    
-                }
-            }
+
             
         } ];
+        if(prova_mode == CRITERIA_MODE) {
+            for( Seccao* section in self.prova.sections) {
+                for( Criterio* criterion in section.criteria ) {
+                    [criterion setClassification:criterion.classification_chosen];
+                }
+                
+            }
+        }
+        else if (prova_mode == CHARACTERISTICS_MODE) {
+            for( SeccaoCaracteristica* section in self.prova.characteristic_sections) {
+                for( Caracteristica* characteristic in section.characteristics ) {
+                    [characteristic setClassification:characteristic.classification_chosen];
+                }
+                
+            }
+        }
         
         if(prova_mode == CRITERIA_MODE) {
             int score = [self updateScoreLabel];
