@@ -598,7 +598,7 @@ SEL action; id target;
 #pragma mark - Translatable Delegate Method
 - (void) translate {
     Language* lan = [Language instance];
-    
+    [self.homeButton setTitle:[lan translate:@"Home"]];
     self.title = [lan translate:@"Wines List Title"];
     self.orderButton.title = [lan translate:@"Order"];
     [self.filterButton setTitle: [lan translate:@"Filter"]];
