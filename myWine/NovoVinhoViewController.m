@@ -391,11 +391,6 @@ finishedSavingWithError:(NSError *)error
                         [defaults setBool:YES forKey:@"defaultCountrySet"];
                         [defaults synchronize];
                         
-                        //[user.vinhos insertObject: vinho atIndex: user.vinhos.count];
-                        NSLog(@"count %i", [user.vinhos count]);
-                        //[user.vinhos insertVinho:vinho orderedBy:self.vinhos_order];
-                        NSLog(@"count %i", [user.vinhos count]);
-                        
                         if(image != nil) {
                             // Create paths to output images
                             
@@ -481,9 +476,7 @@ finishedSavingWithError:(NSError *)error
 }
 
 - (void) selectedType:(TipoVinho *) type{
-    NSLog(@"%@", type.name);
     self.tipo = type;
-    NSLog(@"%@", self.tipo.name);
 
     [self.tipoVinho setTitle:type.name forState: UIControlStateNormal];
     [self.tipoVinho setTitleColor:[UIColor myWineColor] forState:UIControlStateNormal];
@@ -496,7 +489,6 @@ finishedSavingWithError:(NSError *)error
     
     //dismisses the popover
     [self.popover dismissPopoverAnimated:YES];
-    NSLog(@"MOEDA %d", self.currency);
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {

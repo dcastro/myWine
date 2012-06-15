@@ -89,8 +89,6 @@
     
     v = [self objectAtIndex:index];
     
-    //NSLog(@"index: %i", index);
-    
     Query *query = [[Query alloc] init];
     
     BOOL return_value = TRUE;
@@ -280,13 +278,7 @@
             vinho.row = j;
         }
         
-    }
-    
-    
-    for(Vinho* vinho in self) {
-        //NSLog(@"%@ %i %i", vinho.sectionIdentifier, vinho.section, vinho.row);
-    }
-    
+    }    
 }
 
 - (int) numberOfSections {

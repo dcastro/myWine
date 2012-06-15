@@ -166,8 +166,6 @@
             max += criterion.maxWeight;
         }
     }
-    //NSLog(@"update %i %i", score, max);
-    
     int percentage = ((float) score/ (float) max) * 100.0;
     [self updateScoreLabelWithScore:percentage];
     
@@ -616,8 +614,6 @@
 
 #pragma mark - Translatable Delegate Method
 - (void) translate {
-    NSLog(@"translating prova");
-    
     //header
     NSString* wineNameLabelText = [[NSString alloc] initWithFormat:@"%@: %@", [[Language instance] translate:@"Tasting of"], self.vinho.name];
     [self.wineNameLabel setText:wineNameLabelText];

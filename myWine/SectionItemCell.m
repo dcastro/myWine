@@ -48,7 +48,6 @@
     [self.classificationSlider setMinimumValue: [self minVal]]; 
     [self.classificationSlider setMaximumValue: [self maxVal]]; 
     [self.classificationSlider setValue:[self itemChosenWeight]];
-    //NSLog(@" MIN %i MAX %i CHOSEN %i", self.criterion.minWeight, self.criterion.maxWeight, self.criterion.classification_chosen.weight);
     
     //temp classification
     [[self item] setClassification:[self.item classification_chosen]];
@@ -164,9 +163,6 @@
         
         [self.delegate sectionItemCellDidUpdateClassification];
     }
-    
-    //NSLog(@"classification %i   value %.02f", self.classification.weight, value);
-    
 }
 
 
