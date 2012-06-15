@@ -37,7 +37,6 @@
 
 @property (nonatomic) int prova_mode;
 
-@property (weak, nonatomic) IBOutlet UIScrollView *bottomScrollView;
 @property (weak, nonatomic) IBOutlet UIView *upperView;
 
 

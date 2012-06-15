@@ -19,7 +19,6 @@
 @implementation ProvaViewController
 @synthesize prova = _prova;
 @synthesize vinho = _vinho;
-@synthesize bottomScrollView = _bottomScrollView;
 @synthesize upperView = _upperView;
 @synthesize commentContentLabel = _commentContentLabel;
 @synthesize commentContentTextView = _commentContentTextView;
@@ -45,38 +44,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // register for keyboard notifications
-    [[NSNotificationCenter defaultCenter] addObserver:self 
-                                             selector:@selector(keyboardWillShow:) 
-                                                 name:UIKeyboardWillShowNotification 
-                                               object:self.view.window];
-    // register for keyboard notifications
-    [[NSNotificationCenter defaultCenter] addObserver:self 
-                                             selector:@selector(keyboardWillHide:) 
-                                                 name:UIKeyboardWillHideNotification 
-                                               object:self.view.window];
-    keyboardIsShown = NO;
-    
-    //make contentSize bigger than your scrollSize (you will need to figure out for your own use case)
-    CGSize scrollContentSize = CGSizeMake(320, 345);
-    _bottomScrollView.contentSize = scrollContentSize;
-    
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    
-    //Makes upperView's background transparent
-    //[self.upperView setBackgroundColor:[UIColor clearColor]];
-    
-    //Fetch the data objects from the tab bar parent
-    //SubstitutableTabBarControllerViewController* tabBarController = (SubstitutableTabBarControllerViewController*) [self tabBarController];
-    //self.vinho = [tabBarController vinho];
-    //self.prova = [tabBarController prova];
-    
+
     //Set fonts
     self.wineNameLabel.font = [UIFont fontWithName:@"DroidSerif-Bold" size:LARGE_FONT];
     self.dateLabel.font = [UIFont fontWithName:@"DroidSerif" size:SMALL_FONT];
@@ -101,7 +69,6 @@
     }
     [self.tableView setBackgroundView:nil];
     [self.tableView setBackgroundColor:[UIColor myWineColorGrey]];
-    [self.bottomScrollView setBackgroundColor:[UIColor myWineColorGrey]];
     
 }
 
@@ -131,7 +98,7 @@
     [self.commentLabel setFont:[UIFont fontWithName:@"DroidSans" size:SMALL_FONT]];
     
     [self.commentContentLabel setText: self.prova.comment];
-    [self.commentContentLabel setFont:[UIFont fontWithName:@"DroidSans" size:SMALL_FONT-2]];
+    [self.commentContentLabel setFont:[UIFont fontWithName:@"DroidSans" size:SMALL_FONT]];
     self.commentContentLabel.numberOfLines = 0;
     [self.commentContentLabel sizeToFit];
     
@@ -238,7 +205,7 @@
 
 - (void)viewDidUnload
 {
-    [self setBottomScrollView:nil];
+
     [self setCommentContentLabel:nil];
     [self setCommentLabel:nil];
     [self setUpperView:nil];
@@ -276,33 +243,6 @@
                                                     name:UIKeyboardWillHideNotification 
                                                   object:nil];  
     
-}
-
-- (void)keyboardWillShow:(NSNotification*)aNotification
-{
-    NSDictionary* info = [aNotification userInfo];
-    CGRect kbRect = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
-	kbRect = [self.view convertRect:kbRect toView:nil];
-    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbRect.size.height, 0.0);
-    _bottomScrollView.contentInset = contentInsets;
-    _bottomScrollView.scrollIndicatorInsets = contentInsets;
-    
-    CGRect aRect = self.view.frame;
-    aRect.size.height -= kbRect.size.height;
-    CGPoint fieldOrigin = _comentario.frame.origin;
-    fieldOrigin.y -= _bottomScrollView.contentOffset.y;
-    fieldOrigin = [self.view convertPoint:fieldOrigin toView:self.view.superview];
-    originalOffset = _bottomScrollView.contentOffset;
-    if (!CGRectContainsPoint(aRect, fieldOrigin) ) {
-        [_bottomScrollView scrollRectToVisible:_comentario.frame animated:YES];
-    }
-}
-
-- (void)keyboardWillHide:(NSNotification*)aNotification {
-    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
-    _bottomScrollView.contentInset = contentInsets;
-    _bottomScrollView.scrollIndicatorInsets = contentInsets;
-    [_bottomScrollView setContentOffset:originalOffset animated:YES];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -426,26 +366,9 @@
 
 - (void) setEditing:(BOOL)editing animated:(BOOL)animated done:(BOOL)done {
     
-    /*
-    [UIView animateWithDuration:0.3 animations:^() {
-        self.commentContentLabel.alpha = (editing)? 0.0 : 1.0;
-    }];
-    */
-    
-    /*
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:1.0];
-    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.commentContentLabel cache:YES];
-    
-    self.commentContentLabel.hidden = editing;   
-    
-    [UIView commitAnimations];
-    */
-    
-    //prepare animations
     UIViewAnimationOptions options = UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionTransitionCrossDissolve;  
     
-    [UIView transitionWithView:self.bottomScrollView 
+    [UIView transitionWithView:self.view
                       duration:0.3
                        options:options  
                     animations:^{
