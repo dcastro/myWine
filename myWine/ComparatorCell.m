@@ -74,11 +74,11 @@
     if (cellType == ComparatorCellTypeB) {
         [self.classificationSlider setValue: self.criterion.classification_chosen.weight];
         [self.classificationSlider setMaximumTrackTintColor:[UIColor grayColor]];
-        [self.classificationSlider setMinimumTrackTintColor:[UIColor myWineColorDark]];
+        [self.classificationSlider setMinimumTrackTintColor:[UIColor myWineColor]];
     } else if (cellType == ComparatorCellTypeA) {
         [self.classificationSlider setValue: (self.criterion.maxWeight - self.criterion.classification_chosen.weight + self.criterion.minWeight)];
         [self.classificationSlider setMinimumTrackTintColor:[UIColor grayColor]];
-        [self.classificationSlider setMaximumTrackTintColor:[UIColor myWineColorDark]];
+        [self.classificationSlider setMaximumTrackTintColor:[UIColor myWineColor]];
     }
     
     //ajustar slide para a direita quando só há 1 classificaçao
