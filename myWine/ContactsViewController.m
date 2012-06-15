@@ -43,7 +43,6 @@
     Language *lan = [Language instance];
     
 	self.contacts.text = [lan translate:@"Contacts"];
-    self.tabSelector.title = [lan translate:@"Contacts"];  
     self.contacts.font = [UIFont fontWithName:@"DroidSerif-Bold" size:TITLE_FONT];
     self.telephonesLabel.text = [lan translate:@"Telephones"];
     self.telephonesLabel.font = [UIFont fontWithName:@"DroidSans-Bold" size:SMALL_FONT];
@@ -58,6 +57,8 @@
     self.e2.font = [UIFont fontWithName:@"DroidSans" size:SMALL_FONT-2];
     self.e3.font = [UIFont fontWithName:@"DroidSans" size:SMALL_FONT-2];
     self.e4.font = [UIFont fontWithName:@"DroidSans" size:SMALL_FONT-2];
+    
+    self.tabSelector.title = [lan translate:@"Contacts"]; 
 
 }
 

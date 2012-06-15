@@ -66,6 +66,7 @@
     self.resposta5.font = [UIFont fontWithName:@"DroidSans" size:SMALL_FONT-2];
     
     self.tabSelector.title = [lan translate:@"FAQ"];
+    [[self.tabBarController.viewControllers objectAtIndex:1] setTitle:[lan translate:@"Contacts"]];
 }
 
 - (void)viewDidUnload

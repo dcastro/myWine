@@ -70,6 +70,8 @@ SEL action; id target;
     [[FilterManager instance] addObserver:self forKeyPath:@"filters" options:options context:nil];
     
     [self.vinhos sectionizeOrderedBy:0];
+    Language* lan = [Language instance];
+    [self.homeButton setTitle:[lan translate:@"Home"]];
     
     self.tempButton = self.homeButton;
     
