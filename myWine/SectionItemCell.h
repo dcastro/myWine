@@ -37,6 +37,8 @@
 
 -(void) translate;
 
+- (void) drawClassificationLabel:(Classificacao*) classification animated:(BOOL) animated;
+
 //template methods
 - (int) minVal;
 - (int) maxVal;

@@ -157,16 +157,16 @@
     
     int score = 0, max = 0;
     
-    for(int i = 0; i < self.prova.sections.count; i++) {
-        Seccao* seccao = [self.prova.sections objectAtIndex:i];
-        
-        for(int j = 0; j < seccao.criteria.count; j++) {
-            CriterionCell* cell = (CriterionCell*) [[self tableView] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:j inSection:i]];
-            score += [[[cell item] classification] weight ];
-            max += [cell.item maxWeight];
+    for( Seccao* section in self.prova.sections) {
+        for( Criterio* criterion in section.criteria ) {
+            if(criterion.classification != nil)
+                score += criterion.classification.weight;
+            else 
+                score += criterion.classification_chosen.weight;
+            max += criterion.maxWeight;
         }
-        
     }
+    //NSLog(@"update %i %i", score, max);
     
     int percentage = ((float) score/ (float) max) * 100.0;
     [self updateScoreLabelWithScore:percentage];
@@ -377,6 +377,7 @@
     //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     SectionItemCell *cell = (SectionItemCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
+    //Nova cell
     if(cell == nil) {
         //cell = [[CriterionCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
         NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SectionItemCell" owner:nil options:nil];
@@ -411,6 +412,15 @@
                 
         }
 
+    }
+    //Cell reusada
+    else {
+        //needs resetting
+        if( ((int)cell.classificationSlider.value) != [cell itemWeight:[[ cell item] classification]]  ) {
+            cell.classificationSlider.value = [cell itemWeight:[[ cell item] classification]];
+            [cell drawClassificationLabel:[[cell item] classification] animated:NO];
+            
+        }
     }
     
     return cell;
@@ -455,6 +465,25 @@
         //cancel changes
         [self forEveryCell:^(CriterionCell* cell) {
             [cell resetState];
+            [[cell item] setClassification:[[cell item ] classification_chosen]];
+            
+            if(prova_mode == CRITERIA_MODE) {
+                for( Seccao* section in self.prova.sections) {
+                    for( Criterio* criterion in section.criteria ) {
+                        [criterion setClassification:criterion.classification_chosen];
+                    }
+                    
+                }
+            }
+            else if (prova_mode == CHARACTERISTICS_MODE) {
+                for( SeccaoCaracteristica* section in self.prova.characteristic_sections) {
+                    for( Caracteristica* characteristic in section.characteristics ) {
+                        [characteristic setClassification:characteristic.classification_chosen];
+                    }
+                    
+                }
+            }
+            
         } ];
         
         if(prova_mode == CRITERIA_MODE) {
