@@ -173,7 +173,6 @@ SEL action; id target;
         
         OrderViewController* ovc = (OrderViewController*) segue.destinationViewController;
         ovc.selectedOrder = [self selectedOrder];
-        //NSLog(@"Segue, order %i",[self selectedOrder]);
         ovc.delegate = self;
         
         self.currentPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
@@ -449,8 +448,6 @@ SEL action; id target;
 
 
 - (void)LoginViewControllerDidLogin:(LoginViewController *)controller {
-    NSLog(@"Dismissing LoginController");
-    
     self.vinhos = [[User instance] vinhos];
     [self.vinhos orderVinhosBy:selectedOrder];
     [self.vinhos sectionizeOrderedBy:selectedOrder];
@@ -584,7 +581,6 @@ SEL action; id target;
 
 #pragma mark - ListaProvas Delegate Methods
 -(void) ListaProvasViewControllerDelegateDidUpdateScore {
-    //NSLog(@"prova did update score");
     [self.vinhos orderVinhosBy:selectedOrder];
     [self.vinhos sectionizeOrderedBy:selectedOrder];
     [[self tableView] reloadData];

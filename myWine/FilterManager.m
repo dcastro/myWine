@@ -127,39 +127,8 @@ static FilterManager* filterManager = nil;
         }
         predicate = [NSPredicate predicateWithFormat:string];
         [array filterUsingPredicate:predicate];
-        
-        
-        
     }
-    
     return array;
-    
-    
-    /*
-    NSMutableArray* array = [unfilteredArray mutableCopy];
-    for(Filter* filter in filterManager.filters) {
-        
-        NSPredicate* predicate;
-        
-        switch (filter.filterType) {
-            case FilterTypeYear:
-                predicate = [NSPredicate predicateWithFormat:@"year == %i", [filter.object intValue] ];
-                break;
-            case FilterTypeCountry:
-                predicate = [NSPredicate predicateWithFormat:@"region.country_name == %@", filter.object];
-                break;
-            case FilterTypeWineType:
-                predicate = [NSPredicate predicateWithFormat:@"winetype.name == %@", filter.object];
-                break;
-            case FilterTypeProducer:
-                predicate = [NSPredicate predicateWithFormat:@"producer == %@", filter.object];
-                break;
-        }
-         NSLog([predicate predicateFormat]);
-        [array filterUsingPredicate:predicate];
-    }
-        
-    return array;*/
 }
 
 @end

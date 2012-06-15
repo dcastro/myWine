@@ -342,7 +342,6 @@ SEL action; id target;
         }
         else
             NSLog(@"failure to insert");
-        //[self.provas insertObject:prova atIndex:index];
         
         //insertion of the row
         [[self tableView] insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationAutomatic];

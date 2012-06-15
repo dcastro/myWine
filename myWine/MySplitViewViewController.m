@@ -50,9 +50,7 @@
 
 - (void) translate {
     for(UINavigationController* navController in self.viewControllers) {
-        //NSLog(@"class: %s", class_getName([navController class]));
         for (id<TranslatableViewController> viewController in navController.viewControllers) {
-            //NSLog(@"-class: %s", class_getName([viewController class]));
             if ([viewController respondsToSelector:@selector(translate)]) {
                 [viewController translate];
                 NSLog(@"-class: %s translated", class_getName([viewController class]));

@@ -170,14 +170,10 @@
     // Create label with section title
     UILabel *label = [[UILabel alloc] init];
     [self styleLabel:label withTitle:sectionTitle];
-    NSLog(@"%f %f", self.tableViewA.frame.size.width,label.frame.size.width);
     if(tableView == tableViewA)
         label.frame = CGRectMake(self.tableViewA.frame.size.width - 50 - label.frame.size.width, 6, 300, 30);
     else if (tableView == tableViewB)
         label.frame = CGRectMake(50, 6, 300, 30);
-    
-    
-    
     
     // Create header view and add label as a subview
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
