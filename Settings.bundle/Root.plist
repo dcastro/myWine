@@ -8,7 +8,7 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>Credênciais</string>
+			<string>Credentials</string>
 		</dict>
 		<dict>
 			<key>TrueValue</key>
@@ -26,7 +26,7 @@
 		</dict>
 		<dict>
 			<key>Title</key>
-			<string>Configuração</string>
+			<string>Configuration</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>
@@ -34,7 +34,7 @@
 			<key>Type</key>
 			<string>PSMultiValueSpecifier</string>
 			<key>Title</key>
-			<string>Seleção de Idioma</string>
+			<string>Language Selection</string>
 			<key>Key</key>
 			<string>lang</string>
 			<key>DefaultValue</key>
@@ -55,10 +55,10 @@
 		<dict>
 			<key>Titles</key>
 			<array>
-				<string>Desligado</string>
-				<string>3 dias</string>
-				<string>5 dias</string>
-				<string>7 dias</string>
+				<string>Disabled</string>
+				<string>3 days</string>
+				<string>5 days</string>
+				<string>7 days</string>
 			</array>
 			<key>Values</key>
 			<array>
@@ -72,7 +72,7 @@
 			<key>Type</key>
 			<string>PSMultiValueSpecifier</string>
 			<key>Title</key>
-			<string>Alerta de Sincronização</string>
+			<string>Sync Alert</string>
 			<key>Key</key>
 			<string>sync_reminder</string>
 		</dict>
