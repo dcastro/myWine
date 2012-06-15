@@ -359,6 +359,10 @@
             [cell drawClassificationLabel:[[cell item] classification] animated:NO];
             
         }
+        
+        [cell.nameLabel setText: [[cell item] name]];
+        [cell drawClassificationLabel: [[cell item] classification] animated:NO];
+        
     }
     
     return cell;
