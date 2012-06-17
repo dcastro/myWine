@@ -73,7 +73,7 @@
     
     NSMutableArray * newWines = [self buildNewWines];
     if(newWines){
-        [new setObject:newWines forKey:@"wines"];
+        [new setObject:newWines forKey:@"Wines"];
     }else {
         return nil;
     }
@@ -223,11 +223,33 @@
     }
     
     [tasting setObject:sections forKey:@"EvaluationSections"];
-             
-             
-             
-#warning TODO: fazer o mesmo para as seccoes de caracteristicas
+    
+    
+    
+    
+    
+    
+    querySQL = [NSString stringWithFormat:@"SELECT sc.sectioncharacteristic_id, sc.order_priority, sc.name_en, sc.name_fr, sc.name_pt \
+                FROM SectionCharacteristic sc \
+                WHERE sc.tasting_id = %d", tasting_id];
+    
+    
+    NSMutableArray * characteristicSections = [[NSMutableArray alloc]init ];
+    sqlite3_stmt * characteristicSections_stmt;
+    if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &characteristicSections_stmt, NULL) == SQLITE_OK){
+        while(sqlite3_step(characteristicSections_stmt) == SQLITE_ROW){
+            
+            
+            [characteristicSections addObject:[self buildCharacteristicSection:&characteristicSections_stmt]];
+            
+        }
+        sqlite3_finalize(characteristicSections_stmt);
+    }else {
+        DebugLog(@"Query with error: %@", querySQL);
+        return nil;
+    }
 
+    [tasting setObject:characteristicSections forKey:@"CaracteristicsSections"];
     
     
     return tasting;
@@ -235,7 +257,99 @@
 }
 
 
--(NSDictionary *)buildSection:(sqlite3_stmt**)section_stmt
+-(NSMutableDictionary *)buildCharacteristicSection:(sqlite3_stmt**)charcteristicSection_stmt
+{
+    int characteristicSection_id = sqlite3_column_int(*charcteristicSection_stmt, 0);
+    NSMutableDictionary * characteristicSection = [[NSMutableDictionary alloc]init ];
+    [characteristicSection setObject:[NSNumber numberWithInt:sqlite3_column_int(*charcteristicSection_stmt, 1)] forKey:@"Order"];
+    [characteristicSection setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*charcteristicSection_stmt, 2)] forKey:@"NameEn"];
+    [characteristicSection setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*charcteristicSection_stmt, 3)] forKey:@"NameFr"];
+    [characteristicSection setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*charcteristicSection_stmt, 4)] forKey:@"NamePt"];
+    
+    
+    NSString *querySQL = [NSString stringWithFormat:@"SELECT c.characteristic_id, c.order_priority, c.name_en, c.name_fr, c.name_pt, cl.name_en, cl.name_fr, cl.name_pt  \
+                          FROM Characteristic c, Classification cl \
+                          WHERE c.sectioncharacteristic_id = %d AND c.classification_id = cl.classification_id", characteristicSection_id];
+    
+    
+    sqlite3_stmt * characteristics_stmt;
+    NSMutableArray * characteristics = [[NSMutableArray alloc]init ];
+    
+    if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &characteristics_stmt, NULL) == SQLITE_OK){
+        while(sqlite3_step(characteristics_stmt) == SQLITE_ROW){
+            
+            [characteristics addObject:[self buildCharacteristic:&characteristics_stmt]];
+            
+            
+        }
+        sqlite3_finalize(characteristics_stmt);
+        
+    }else {
+        DebugLog(@"Query with error: %@", querySQL);
+        return nil;
+    }
+    
+    [characteristicSection setObject:characteristics forKey:@"Criterias"];
+    
+    
+    return characteristicSection;
+    
+}
+
+-(NSMutableDictionary *)buildCharacteristic:(sqlite3_stmt **)characteristic_stmt
+{
+    int characteristic_id = sqlite3_column_int(*characteristic_stmt, 0);
+    NSMutableDictionary * characteristic = [[NSMutableDictionary alloc]init ];
+    [characteristic setObject:[NSNumber numberWithInt:sqlite3_column_int(*characteristic_stmt, 1)] forKey:@"Order"];
+    [characteristic setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*characteristic_stmt, 2)] forKey:@"NameEn"];
+    [characteristic setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*characteristic_stmt, 3)] forKey:@"NameFr"];
+    [characteristic setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*characteristic_stmt, 4)] forKey:@"NamePt"];
+    
+    
+    NSMutableDictionary *chosenClassification = [[NSMutableDictionary alloc]init ];
+    [chosenClassification setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*characteristic_stmt, 5)] forKey:@"NameEn"];
+    [chosenClassification setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*characteristic_stmt, 6)] forKey:@"NameFr"];
+    [chosenClassification setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(*characteristic_stmt, 7)] forKey:@"NamePt"];
+    
+    [characteristic setObject:chosenClassification forKey:@"ChosenClassifications"];
+    
+    
+    NSString *querySQL = [NSString stringWithFormat:@"SELECT cl.name_en, cl.name_fr, cl.name_pt  \
+                          FROM Classification cl, PossibleClassification pc \
+                          WHERE pc.classifiable_id = %d AND pc.classifiable_type = \'%@\' AND pc.classification_id = cl.classification_id", characteristic_id, @"Characteristic"];
+    
+    sqlite3_stmt * classifications_stmt;
+    NSMutableArray * classifications = [[NSMutableArray alloc]init ];
+    
+    if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &classifications_stmt, NULL) == SQLITE_OK){
+        while(sqlite3_step(classifications_stmt) == SQLITE_ROW){
+            
+            
+            NSMutableDictionary * classification = [[NSMutableDictionary alloc]init ];
+            [classification setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(classifications_stmt, 0)] forKey:@"NameEn"];
+            [classification setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(classifications_stmt, 1)] forKey:@"NameFr"];
+            [classification setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(classifications_stmt, 2)] forKey:@"NamePt"];
+            
+            
+            [classifications addObject:classification];
+            
+        }
+        sqlite3_finalize(classifications_stmt);
+    }else {
+        DebugLog(@"Query with error: %@", querySQL);
+        return nil;
+    }
+    
+    [characteristic setObject:classifications forKey:@"Classifications"];
+    
+    
+    
+    return characteristic;
+    
+}
+
+
+-(NSMutableDictionary *)buildSection:(sqlite3_stmt**)section_stmt
 {
 
     int section_id = sqlite3_column_int(*section_stmt, 0);

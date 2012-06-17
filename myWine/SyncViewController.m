@@ -95,6 +95,10 @@
 
 - (void) startsync{
     receivedData = [[NSMutableData data]init];
+    NSError * err;
+    NSString* testJSON = [sync buildRequest:&err];
+    DebugLog(testJSON);
+    
     
     /*
     //NSString *jsonRequest = @"{\"Password\":\"mywine\",\"Username\":\"mywine@cpcis.pt\",\"SyncedAt\":1339502400.0}";
@@ -113,7 +117,7 @@
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setValue:[NSString stringWithFormat:@"%d", [requestData length]] forHTTPHeaderField:@"Content-Length"];
     [request setHTTPBody: requestData];
-     */
+     
     
     
     NSURL *url = [NSURL URLWithString:@"http://dl.dropbox.com/u/14513425/resp.json"];
@@ -127,9 +131,10 @@
     if (!theConnection) {
         DebugLog(@"Connection Failed");
     }
-    
+    */
     self.progress_label.Text=[NSString stringWithFormat:[lan translate:@"Synchronization step"], 1,3];
     [progress_bar setProgress:0.2]; 
+    
 }
 
 
