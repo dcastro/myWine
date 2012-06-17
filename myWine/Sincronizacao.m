@@ -78,14 +78,14 @@
         return nil;
     }
     
-    /*
-    NSMutableDictionary * newTastings;
+    
+    NSMutableArray * newTastings = [self buildNewTastings];
     if(newTastings){
-        [new setObject:newTastings forKey:@"wines"];
+        [new setObject:newTastings forKey:@"Tastings"];
     }else {
         return nil;
     }
-     */
+     
     
     return new;
 }
@@ -93,8 +93,91 @@
 
 -(NSMutableArray *)buildNewTastings
 {
-    //NSString * querySQL = [NSString stringWithFormat:@"SELECT "];
-    return nil;
+    NSString * querySQL = [NSString stringWithFormat:@"SELECT t.tasting_id, t.tasting_date, t.comment, t.latitude, t.longitude, w.wine_server_id \
+                           FROM Tasting t, Wine w \
+                           WHERE t.state = 1 AND t.wine_id = w.wine_id AND w.state = 0 AND w.user = \'%@\';",user.username];    
+    
+    
+    
+    sqlite3_stmt * tastings_stmt;
+    NSMutableArray * tastings = [[NSMutableArray alloc]init];
+    
+    if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &tastings_stmt, NULL) == SQLITE_OK){
+        while(sqlite3_step(tastings_stmt) == SQLITE_ROW){
+            
+            
+            int tasting_id = sqlite3_column_int(tastings_stmt, 0);
+            
+            NSMutableDictionary * tasting = [[NSMutableDictionary alloc]init ];
+            [tasting setObject:[NSNumber numberWithDouble:sqlite3_column_double(tastings_stmt, 1)] forKey:@"TastingDate"];
+            [tasting setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(tastings_stmt, 2)] forKey:@"Comment"];
+            [tasting setObject:[NSNumber numberWithDouble:sqlite3_column_double(tastings_stmt, 3)] forKey:@"Latitude"];
+            [tasting setObject:[NSNumber numberWithDouble:sqlite3_column_double(tastings_stmt, 4)] forKey:@"Longitude"];
+            [tasting setObject:[NSNumber numberWithInt:sqlite3_column_int(tastings_stmt, 5)] forKey:@"WineServerId"];
+            
+            
+            
+            querySQL = [NSString stringWithFormat:@"SELECT s.section_id, s.order_priority, s.name_en, s.name_fr, s.name_pt \
+                        FROM Section s \
+                        WHERE s.tasting_id = %d", tasting_id];
+            
+            
+            
+            
+            sqlite3_stmt * sections_stmt;
+            NSMutableArray * sections = [[NSMutableArray alloc]init ];
+            
+            if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &sections_stmt, NULL) == SQLITE_OK){
+                while(sqlite3_step(sections_stmt) == SQLITE_ROW){
+                    
+                    
+                    [sections addObject:[self buildSection:&sections_stmt]];
+                    
+                }
+                sqlite3_finalize(sections_stmt);
+            }else {
+                DebugLog(@"Query with error: %@", querySQL);
+                return nil;
+            }
+            
+            [tasting setObject:sections forKey:@"EvaluationSections"];
+            
+            
+            
+            querySQL = [NSString stringWithFormat:@"SELECT sc.sectioncharacteristic_id, sc.order_priority, sc.name_en, sc.name_fr, sc.name_pt \
+                        FROM SectionCharacteristic sc \
+                        WHERE sc.tasting_id = %d", tasting_id];
+            
+            
+            NSMutableArray * characteristicSections = [[NSMutableArray alloc]init ];
+            sqlite3_stmt * characteristicSections_stmt;
+            if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &characteristicSections_stmt, NULL) == SQLITE_OK){
+                while(sqlite3_step(characteristicSections_stmt) == SQLITE_ROW){
+                    
+                    
+                    [characteristicSections addObject:[self buildCharacteristicSection:&characteristicSections_stmt]];
+                    
+                }
+                sqlite3_finalize(characteristicSections_stmt);
+            }else {
+                DebugLog(@"Query with error: %@", querySQL);
+                return nil;
+            }
+            
+            [tasting setObject:characteristicSections forKey:@"CaracteristicsSections"];
+
+            
+            
+            [tastings addObject:tasting];
+            
+        }
+        sqlite3_finalize(tastings_stmt);
+    }else {
+        DebugLog(@"Query with error: %@", querySQL);
+        return nil;
+    }
+    
+    return tastings;
 }
 
 
