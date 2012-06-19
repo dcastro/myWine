@@ -653,6 +653,14 @@ SEL action; id target;
             }];
             break;
         }
+        case 900: {
+            
+            [self dismissViewControllerAnimated:YES completion: ^() {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[lan translate:@"Error"] message:[lan translate:@"Login 900"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                [alert show];
+            }];
+            break;
+        }
         //outros erros
         default: {
             

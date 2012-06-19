@@ -1971,7 +1971,7 @@ namePT:(NSString *)name_pt andWheight:(int)weight
     
     
     //elimina todas os vinhos que estejam com state = 3 (deleted)
-    querySQL = [NSString stringWithFormat:@"DELETE FROM Wine WHERE user= \'%@\' AND state = 3", user.username];
+    querySQL = [NSString stringWithFormat:@"DELETE FROM Wine WHERE user= \'%@\' AND state = 3;", user.username];
     if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
         DebugLog(@"%s", errMsg);
         sqlite3_free(errMsg);

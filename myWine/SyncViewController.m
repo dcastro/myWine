@@ -120,7 +120,7 @@
      */
     
     
-    NSURL *url = [NSURL URLWithString:@"http://dl.dropbox.com/u/14513425/resp.json"];
+    NSURL *url = [NSURL URLWithString:@"http://dl.dropbox.com/u/14513425/resp1.json"];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     
@@ -201,7 +201,7 @@
     if(![sync parseData:receivedData]){
         [progress_bar setProgress:0.0];
         self.progress_label.Text=[NSString stringWithFormat:[lan translate:@"Synchronization step"], 0,3];
-        
+        [delegate SyncViewControllerDidFinishWithStatusCode:900];
         return;
     };
      
