@@ -936,9 +936,13 @@
         
         //vai buscar o id da prova do user 
         //para garantir que nao se eliminam varias provas ao mesmo tempo do user errado
-        querySQL = [NSString stringWithFormat:@"SELECT t.tasting_id FROM Tasting t , Wine w WHERE t.tasting_date = %f AND t.wine_id = w.wine_id AND w.user = \'%@\';", 
+        //sqlite nao suporta comparacoes directas com floats da quase sempre miss na comparacao: 30.0 diferente de 30.00 
+        querySQL = [NSString stringWithFormat:@"SELECT t.tasting_id FROM Tasting t , Wine w WHERE t.tasting_date > (%f - 0.00001) AND t.tasting_date < (%f + 0.00001)  AND t.wine_id = w.wine_id AND w.user = \'%@\';", 
+                    [[deletedTastings objectAtIndex:i] doubleValue],
                     [[deletedTastings objectAtIndex:i] doubleValue],
                     user.username];
+        
+        DebugLog(querySQL);
         
         if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
             if(sqlite3_step(stmt) == SQLITE_ROW){
