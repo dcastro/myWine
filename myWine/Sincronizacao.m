@@ -805,6 +805,8 @@
     
     NSString *querySQL = [NSString stringWithFormat:@"UPDATE User SET synced_at = %f, validated = 1 WHERE username = \'%@\';", [[receivedJSON objectForKey:@"Timestamp"] doubleValue], user.username];
     
+    
+    
     char *errMsg;
     if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
         DebugLog(@"%s", errMsg);
@@ -863,11 +865,19 @@
     }
     
     
+
+    if(![self resetStates]){
+        [query rollbackTransaction];
+        return FALSE;
+    }
+    
+    //actualiza o synced_at
+    user.synced_at = [[receivedJSON objectForKey:@"Timestamp"] doubleValue];
+    
     [query endTransaction];
     
     return TRUE;
 }
-
 
 
 -(BOOL)parseWineServerIds:(NSArray *)serverIdsJSON
@@ -1952,7 +1962,7 @@ namePT:(NSString *)name_pt andWheight:(int)weight
 
 
 
--(BOOL)cleanGarbage
+-(BOOL)cleanGarbage  
 {
     
     sqlite3_stmt *stmt;
@@ -2098,5 +2108,36 @@ namePT:(NSString *)name_pt andWheight:(int)weight
     return TRUE;
     
 }
+
+
+-(BOOL)resetStates{
+    
+    
+    //wines
+    NSString * querySQL = [NSString stringWithFormat:@"UPDATE Wine SET state = 0 WHERE (state = 1 OR state =2) AND user = \'%@\';", user.username];
+    
+    char *errMsg;
+    if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+        DebugLog(@"Query with error: %s", errMsg);
+        sqlite3_free(errMsg);
+        return FALSE;
+    }
+    
+    
+    
+    //tastings
+    querySQL = [NSString stringWithFormat:@"UPDATE Tasting SET state = 0 WHERE wine_id IN (SELECT w.wine_id FROM Wine w WHERE w.user = \'%@\') AND (state = 1 OR state =2);", user.username];
+
+    if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
+        DebugLog(@"Query with error: %s", errMsg);
+        sqlite3_free(errMsg);
+        return FALSE;
+    }
+    
+
+    
+    return TRUE;
+}
+
 
 @end
