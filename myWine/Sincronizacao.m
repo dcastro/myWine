@@ -942,7 +942,6 @@
                     [[deletedTastings objectAtIndex:i] doubleValue],
                     user.username];
         
-        DebugLog(querySQL);
         
         if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
             if(sqlite3_step(stmt) == SQLITE_ROW){

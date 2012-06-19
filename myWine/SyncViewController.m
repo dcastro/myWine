@@ -95,10 +95,6 @@
 
 - (void) startsync{
     receivedData = [[NSMutableData data]init];
-    NSError * err;
-    NSString* testJSON = [sync buildRequest:&err];
-    DebugLog(testJSON);
-    
     
     /*
     //NSString *jsonRequest = @"{\"Password\":\"mywine\",\"Username\":\"mywine@cpcis.pt\",\"SyncedAt\":1339502400.0}";
@@ -120,7 +116,7 @@
      */
     
     
-    NSURL *url = [NSURL URLWithString:@"http://dl.dropbox.com/u/14513425/resp2.json"];
+    NSURL *url = [NSURL URLWithString:@"http://dl.dropbox.com/u/14513425/resp.json"];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     
