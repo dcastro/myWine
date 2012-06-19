@@ -757,15 +757,15 @@
     
     
     //tastings
-    NSMutableArray * tasting = [[NSMutableArray alloc] init];
+    NSMutableArray * tastings = [[NSMutableArray alloc] init];
     
-    querySQL = [NSString stringWithFormat:@"SELECT tasting_date FROM Tasting t, Wine w WHERE w.user = \'%@\' AND w.wine_id = t.wine_id AND t.state = 3;", user.username];
+    querySQL = [NSString stringWithFormat:@"SELECT t.tasting_date FROM Tasting t, Wine w WHERE w.user = \'%@\' AND w.wine_id = t.wine_id AND t.state = 3;", user.username];
     
     
     if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
         while(sqlite3_step(stmt) == SQLITE_ROW){
             
-            [tasting addObject:[NSNumber numberWithInt:sqlite3_column_int(stmt, 0)]];
+            [tastings addObject:[NSNumber numberWithDouble:sqlite3_column_double(stmt, 0)]];
             
         }
         sqlite3_finalize(stmt);
@@ -774,7 +774,7 @@
         return nil;
     }
     
-    [deleted setObject:wines forKey:@"Tastings"];
+    [deleted setObject:tastings forKey:@"Tastings"];
     
     
     

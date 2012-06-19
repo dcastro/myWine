@@ -199,18 +199,19 @@
             if(sqlite3_step(stmt) == SQLITE_ROW){
                 state = sqlite3_column_int(stmt, 0);
                 sqlite3_finalize(stmt);
+
                 
                 switch (state) {
                     case 0:
-                        querySQL = [NSString stringWithFormat:@"UPDATE Tasting SET state = 3 WHERE wine_id = %d", p.tasting_id];
+                        querySQL = [NSString stringWithFormat:@"UPDATE Tasting SET state = 3 WHERE tasting_id = %d;", p.tasting_id];
                         break;
                         
                     case 1:
-                        querySQL = [NSString stringWithFormat:@"DELETE FROM Tasting WHERE tasting_id = %d", p.tasting_id];
+                        querySQL = [NSString stringWithFormat:@"DELETE FROM Tasting WHERE tasting_id = %d;", p.tasting_id];
                         break;
                         
                     case 2:
-                        querySQL = [NSString stringWithFormat:@"UPDATE Tasting SET state = 3 WHERE tasting_id = %d", p.tasting_id];
+                        querySQL = [NSString stringWithFormat:@"UPDATE Tasting SET state = 3 WHERE tasting_id = %d;", p.tasting_id];
                         break;
                         
                     default:
