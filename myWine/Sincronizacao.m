@@ -888,11 +888,11 @@
     
     for (int i = 0; i < [serverIdsJSON count]; i++) {
         
-        querySQL = [NSString stringWithFormat:@"UPDATE Wine SET wine_server_id = %d WHERE user = \'%@\' name = \'%@\' AND year = %d;", 
-                    [[[serverIdsJSON objectAtIndex:i] objectForKey:@"Wine_server_id"]intValue],
+        querySQL = [NSString stringWithFormat:@"UPDATE Wine SET wine_server_id = %d WHERE user = \'%@\' AND name = \'%@\' AND year = %d;", 
+                    [[[serverIdsJSON objectAtIndex:i] objectForKey:@"WineServerId"]intValue],
                     user.username,
-                    [[serverIdsJSON objectAtIndex:i] objectForKey:@"name"],
-                    [[[serverIdsJSON objectAtIndex:i] objectForKey:@"year"]intValue]];
+                    [[serverIdsJSON objectAtIndex:i] objectForKey:@"Name"],
+                    [[[serverIdsJSON objectAtIndex:i] objectForKey:@"Year"]intValue]];
         
         if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
             DebugLog(@"Query with error: %s", errMsg);
@@ -916,9 +916,9 @@
     NSArray * deletedWines = [deletedJSON objectForKey:@"Wines"];
     for (int i = 0; i < [deletedWines count]; i++) {
         
-        querySQL = [NSString stringWithFormat:@"DELETE FROM Wine WHERE user = \'%@\' AND wine_server_id = %d",
+        querySQL = [NSString stringWithFormat:@"DELETE FROM Wine WHERE user = \'%@\' AND wine_server_id = %d;",
                     user.username,
-                    [[[deletedWines objectAtIndex:i] objectForKey:@"WineSeverIds"] intValue]];
+                    [[deletedWines objectAtIndex:i] intValue]];
         
         
         if(sqlite3_exec(*contactDB, [querySQL UTF8String], NULL, NULL, &errMsg) != SQLITE_OK){
@@ -937,7 +937,7 @@
         //vai buscar o id da prova do user 
         //para garantir que nao se eliminam varias provas ao mesmo tempo do user errado
         querySQL = [NSString stringWithFormat:@"SELECT t.tasting_id FROM Tasting t , Wine w WHERE t.tasting_date = %f AND t.wine_id = w.wine_id AND w.user = \'%@\';", 
-                    [[[deletedTastings objectAtIndex:i] objectForKey:@"TastingDate"] doubleValue],
+                    [[deletedTastings objectAtIndex:i] doubleValue],
                     user.username];
         
         if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
