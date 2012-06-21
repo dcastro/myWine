@@ -403,5 +403,15 @@ static User *sharedUser = nil;
     
 }
 
+-(Regiao*) regionWithName:(NSString*) region_name {
+    
+    for(Vinho* v in self.vinhos) {
+        if([v.region.region_name isEqualToString:region_name]) {
+            return v.region;
+        }
+    }
+    
+    return nil;
+}
 
 @end

@@ -39,27 +39,7 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    switch (filterType) {
-        case FilterTypeYear:
-            
-            break;
-            
-        case FilterTypeCountry:
-            
-            break;
-            
-        case FilterTypeWineType:
-            
-            break;
-            
-        case FilterTypeProducer:
-            break;
-            
-        default:
-            break;
-    }
-    
+        
     [self configureView];
     
 }
@@ -111,7 +91,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"FilterSelectionCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if(cell == nil) {
@@ -234,6 +214,9 @@
             
         case FilterTypeProducer:
             self.objects = [vinhos getProducers];
+            break;
+        case FilterTypeRegion:
+            self.objects = [vinhos getRegions];
             break;
         default:
             break;

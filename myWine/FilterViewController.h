@@ -12,9 +12,10 @@
 
 typedef enum {
     FilterTypeYear,
-    FilterTypeCountry,
     FilterTypeWineType,
     FilterTypeProducer,
+    FilterTypeCountry,
+    FilterTypeRegion,
     FilterTypeCount
 } FilterType;
 

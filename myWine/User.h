@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+@class Regiao;
 
 @interface User : NSObject
 
@@ -34,6 +35,7 @@
 
 -(NSString *)description;
 -(BOOL)validateUser;
+-(Regiao*) regionWithName:(NSString*) region_name;
 
 - (void) resetState;
 

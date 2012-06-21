@@ -60,7 +60,7 @@
 
 - (void) configureView {
     
-    for(int i = 0; i < 4; i++) {
+    for(int i = 0; i < 5; i++) {
         FilterCell* cell = (FilterCell*) [[self tableView] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
         int n = [FilterManager numberOfFiltersOfType:i];
         NSString* label;
@@ -126,6 +126,9 @@
                 
             case FilterTypeProducer:
                 filterSelectionViewController.objects = [vinhos getProducers];
+                break;
+            case FilterTypeRegion:
+                filterSelectionViewController.objects = [vinhos getRegions];
                 break;
             default:
                 break;

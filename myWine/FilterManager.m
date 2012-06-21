@@ -8,6 +8,7 @@
 
 #import "FilterManager.h"
 #import "Filter.h"
+#import "NSMutableArray+VinhosMutableArray.h"
 
 static FilterManager* filterManager = nil;
 
@@ -35,6 +36,8 @@ static FilterManager* filterManager = nil;
 + (void) addFilterForObject:(id)object ofType:(FilterType) filterType {
     Filter* filter = [[Filter alloc] initWithFilterType:filterType andObject:object];
     [[filterManager mutableArrayValueForKey:@"filters"] insertObject:filter atIndex:0];
+
+    
 }
 
 + (void) removeFilterForObject:(id)object ofType:(FilterType) filterType {
@@ -93,6 +96,7 @@ static FilterManager* filterManager = nil;
         
         //constroi um predicado para cada tipo de filtro
         NSString* string = nil;
+        NSString* arg;
         
         for(Filter* filter in arrayOfFilters) {
             switch (i) {
@@ -122,6 +126,17 @@ static FilterManager* filterManager = nil;
                         string = [NSString stringWithFormat:@"producer == \"%@\"", [filter.object description]];
                     else
                         string = [NSString stringWithFormat:@"%@ OR producer == \"%@\"", string, filter.object];
+                    break;
+                    
+                case FilterTypeRegion:
+                    if(string == nil) {
+                        arg = [NSString stringWithFormat:@"%@", filter.object ];
+                        string = [NSString stringWithFormat:@"region.region_name == '%@'", arg];
+                    }
+                    else {
+                        arg = [NSString stringWithFormat:@"%@", filter.object ];
+                        string = [NSString stringWithFormat:@"%@ OR region.region_name == '%@'", string, arg];
+                    }
                     break;
             }
         }

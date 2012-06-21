@@ -212,6 +212,18 @@
     return array;
 }
 
+- (NSMutableArray*) getRegions {
+    NSMutableArray* array = [[NSMutableArray alloc] init];
+    
+    for(Vinho* vinho in self) {
+        if( ! [array containsObject: vinho.region.region_name]) {
+            [array addObject:vinho.region.region_name];
+        }
+    }
+    
+    return array;
+}
+
 - (NSString*) sectionIdentifierForVinho:(Vinho*) vinho orderedBy:(int) order {
     NSString* sectionIdentifier;
     if(order == ORDER_BY_NAME || order == ORDER_BY_NAME_DESC) {

@@ -26,6 +26,7 @@
 - (NSMutableArray*) getCountries;
 - (NSMutableArray*) getWineTypes;
 - (NSMutableArray*) getProducers;
+- (NSMutableArray*) getRegions;
 
 - (NSString*) sectionIdentifierForVinho:(Vinho*) vinho orderedBy:(int) order;
 - (BOOL) hasSection:(NSString*)sectionIdentifier;

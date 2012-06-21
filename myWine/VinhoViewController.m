@@ -323,6 +323,7 @@
 
 - (IBAction)pickF:(id)sender
 {
+    /*
     if ([UIImagePickerController isSourceTypeAvailable:
          UIImagePickerControllerSourceTypeCamera])
     {
@@ -339,7 +340,7 @@
                                 animated:YES];
         newMedia = NO;
     }
-    else if ([UIImagePickerController isSourceTypeAvailable:
+    else */ if ([UIImagePickerController isSourceTypeAvailable:
               UIImagePickerControllerSourceTypeSavedPhotosAlbum])
     {
         UIImagePickerController *imagePicker =
