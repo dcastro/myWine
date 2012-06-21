@@ -11,7 +11,9 @@
 
 @implementation Sincronizacao
 
-
+/**
+ Default initializer
+ */
 - (id)init
 {
     self = [super init];
@@ -22,6 +24,24 @@
     return self;
 }
 
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                              //
+//                          METHODS FOR THE BUILD OF THE REQUEST JSON                           //
+//                                                                                              //
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+/**
+ Build the request json to be used in the http connection
+ 
+ @param error - pointer an error classe to be modified in case of error
+ @returns string - encoded string with the json information
+ */
 -(NSString *)buildRequest:(NSError **) error
 {
     contactDB = [query prepareForExecution];
@@ -79,6 +99,12 @@
 
 
 
+
+/**
+ Builds the json object that contains the information of the updated wines and tastings
+ 
+ @returns json object or nill (if an error occurred)
+ */
 -(NSMutableDictionary *)buildUpdatedWines
 {
     NSMutableDictionary * updated = [[NSMutableDictionary alloc]init ];
@@ -143,11 +169,6 @@
     }
 
     
-    
-    
-    
-    
-    
     [updated setObject:wines forKey:@"Wines"];
     
     return updated;
@@ -156,6 +177,12 @@
 
 
 
+
+/**
+ Builds the json object that contains the information of the new wines and tastings
+ 
+ @returns json object or nill (if an error occurred)
+ */
 -(NSMutableDictionary *) buildNew
 {
     NSMutableDictionary * new = [[NSMutableDictionary alloc] init];
@@ -180,6 +207,13 @@
 }
 
 
+
+
+/**
+ Auxiliary function of the function "buildNew" that builds the json array that contains the information of the new tastings
+ 
+ @returns json array or nill (if an error occurred)
+ */
 -(NSMutableArray *)buildNewTastings
 {
     NSString * querySQL = [NSString stringWithFormat:@"SELECT t.tasting_id, t.tasting_date, t.comment, t.latitude, t.longitude, w.wine_server_id \
@@ -271,6 +305,12 @@
 
 
 
+
+/**
+ Auxiliary function of the function "buildNew" that builds the json array that contains the information of the new wines and associated tastings
+ 
+ @returns json array or nill (if an error occurred)
+ */
 -(NSMutableArray *)buildNewWines
 {
     
@@ -302,7 +342,14 @@
                                  
                                  
                                  
-                                 
+
+/**
+ Auxiliary function of the function "buildNewWines" that builds the json object that contains the information of the new wine and associated tastings,
+ passed by the sqlite3 statement.
+ 
+ @param sqlite3 statement - statement that contains information about a wine
+ @returns json array or nill (if an error occurred)
+ */
 -(NSDictionary *)buildWine:(sqlite3_stmt **)wine_stmt
 {
     
@@ -361,6 +408,14 @@
 
 
 
+
+/**
+ Auxiliary function of the functions "buildWine" and "buildUpdatedWines" that builds the json object that contains the information of the tasting,
+ passed by the sqlite3 statement.
+ 
+ @param sqlite3 statement - statement that contains information about a tasting
+ @returns json object or nill (if an error occurred)
+ */
 -(NSDictionary *)buildTasting:(sqlite3_stmt**)tasting_stmt
 {
     int tasting_id = sqlite3_column_int(*tasting_stmt, 0);
@@ -429,6 +484,15 @@
 }
 
 
+
+
+/**
+ Auxiliary function of the function "buildTasting" that builds the json object that contains the information of a characteristic section,
+ passed by the sqlite3 statement.
+ 
+ @param sqlite3 statement - statement that contains information about a tasting
+ @returns json object or nill (if an error occurred)
+ */
 -(NSMutableDictionary *)buildCharacteristicSection:(sqlite3_stmt**)charcteristicSection_stmt
 {
     int characteristicSection_id = sqlite3_column_int(*charcteristicSection_stmt, 0);
@@ -468,6 +532,16 @@
     
 }
 
+
+
+
+/**
+ Auxiliary function of the function "buildCharacteristicSection" that builds the json object that contains the information of a characteristic,
+ passed by the sqlite3 statement.
+ 
+ @param sqlite3 statement - statement that contains information about a tasting
+ @returns json object or nill (if an error occurred)
+ */
 -(NSMutableDictionary *)buildCharacteristic:(sqlite3_stmt **)characteristic_stmt
 {
     int characteristic_id = sqlite3_column_int(*characteristic_stmt, 0);
@@ -521,6 +595,15 @@
 }
 
 
+
+
+/**
+ Auxiliary function of the function "buildTasting" that builds the json object that contains the information of an evaluation section,
+ passed by the sqlite3 statement.
+ 
+ @param sqlite3 statement - statement that contains information about an evaluation section
+ @returns json object or nill (if an error occurred)
+ */
 -(NSMutableDictionary *)buildSection:(sqlite3_stmt**)section_stmt
 {
 
@@ -563,6 +646,15 @@
 }
 
 
+
+
+/**
+ Auxiliary function of the function "buildSection" that builds the json object that contains the information of a criterion,
+ passed by the sqlite3 statement.
+ 
+ @param sqlite3 statement - statement that contains information about a criterion
+ @returns json object or nill (if an error occurred)
+ */
 -(NSMutableDictionary *)buildCriterion:(sqlite3_stmt **)criterion_stmt
 {
     int criterion_id = sqlite3_column_int(*criterion_stmt, 0);
@@ -620,44 +712,15 @@
 
 
 
--(NSMutableDictionary *)getClassificationByID:(int)classification_id
-{
-    NSMutableDictionary * classification = [[NSMutableDictionary alloc]init];
-    
-    sqlite3_stmt * stmt;
-    NSString * querySQL = [NSString stringWithFormat:@"SELECT weight, name_en, name_fr, name_pt \
-                           FROM Classification \
-                           WHERE classification_id = %d;", classification_id];
-    
-    
-    
-    if (sqlite3_prepare_v2(*contactDB, [querySQL UTF8String], -1, &stmt, NULL) == SQLITE_OK){
-        if(sqlite3_step(stmt) == SQLITE_ROW){
-            
-            NSNumber * weight = [NSNumber numberWithInt:sqlite3_column_int(stmt, 0)];
-            if(weight != 0)
-                [classification setObject:weight forKey:@"weight"];
-                
-            
-            [classification setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 1)] forKey:@"name_eng"];
-            [classification setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 2)] forKey:@"name_fr"];
-            [classification setObject:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 3)] forKey:@"name_pt"];
-            
-            
-        }
-        sqlite3_finalize(stmt);
-    }else {
-        DebugLog(@"Query with error: %@", querySQL);
-        return nil;
-    }
-    
-    
-    return classification;
-    
-}
 
-
-
+/**
+ Auxiliary function of the functions "buildCriterion" and "buildCharacteristic" that builds the json object of a classification,
+ which has the id "classification_id" and classifiable type "classifiableType".
+ 
+ @param int - id of the criterion or characteristic
+ @param string -  string with possible values "Citerion" or "Characteristic", if the pretended classification are from a criterion or a characteristic.
+ @returns json array or nill (if an error occurred)
+ */
 -(NSMutableArray *)getClassificationsByID:(int)classifiable Type:(NSString*)classifiableType
 {
     NSMutableArray * classifications = [[NSMutableArray alloc]init];
@@ -785,6 +848,27 @@
 
 
 
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                              //
+//                          METHODS FOR THE PARSE OF THE RESPONSE JSON                          //
+//                                                                                              //
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+/**
+ Parses the data of the response from the http connection. 
+ In this method the connection to database is initialized with a transaction.
+ In case of error the transaction is rolledback so that the information of the user is restored.
+ 
+ @param data -  data received from the server
+ @return boolean - the result of the parse
+ */
 -(BOOL)parseData:(NSMutableData *)receivedData
 {
     
