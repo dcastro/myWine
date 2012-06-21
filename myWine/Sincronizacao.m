@@ -714,11 +714,11 @@
 
 
 /**
- Auxiliary function of the functions "buildCriterion" and "buildCharacteristic" that builds the json object of a classification,
- which has the id "classification_id" and classifiable type "classifiableType".
+ Auxiliary function of the functions "buildCriterion" and "buildCharacteristic" that builds the json array of the classifications,
+ which have the id "classification_id" and classifiable type "classifiableType".
  
  @param int - id of the criterion or characteristic
- @param string -  string with possible values "Citerion" or "Characteristic", if the pretended classification are from a criterion or a characteristic.
+ @param string -  string with possible values "Citerion" or "Characteristic", if the pretended classifications are from a criterion or a characteristic.
  @returns json array or nill (if an error occurred)
  */
 -(NSMutableArray *)getClassificationsByID:(int)classifiable Type:(NSString*)classifiableType
@@ -791,6 +791,12 @@
 
 
 
+
+/**
+ Auxiliary function of the function "buildNew" that builds the json object containing the information of the deleted wines and tastings
+ 
+ @returns json object or nill (if an error occurred)
+ */
 -(NSMutableDictionary *)buildDeleted
 {
     NSString * querySQL;
@@ -964,6 +970,14 @@
 }
 
 
+
+
+/**
+ Parses and updates the database with the wine server ids received from the server. 
+ 
+ @param json array -  json array containing the server ids for the new wines
+ @return boolean - the result of the parse
+ */
 -(BOOL)parseWineServerIds:(NSArray *)serverIdsJSON
 {
     NSString * querySQL;
@@ -990,6 +1004,14 @@
 }
 
 
+
+
+/**
+ Parses and deletes from the database, the deleted json object. 
+ 
+ @param json object -  json object containing the deleted json object
+ @return boolean - the result of the parse
+ */
 -(BOOL)parseDeleted:(NSDictionary *)deletedJSON
 {
     NSString * querySQL;
@@ -1056,7 +1078,13 @@
 
            
            
-           
+
+/**
+ Parses and inserts into the database, the wines from json array. 
+ 
+ @param json array -  json array containing the wines
+ @return boolean - the result of the parse
+ */
 -(BOOL)parseWines:(NSArray *) wines
 {
     sqlite3_stmt * stmt;
@@ -1208,6 +1236,15 @@
 
 
 
+
+/**
+ Auxiliary function of the function "parseWines" that parses and updates the tasting in the database. 
+ 
+ @param json object -  json object containing the tasting
+ @param int - wine id which the tasting is appended to
+ @param int - id of the tasting to be updated
+ @return boolean - the result of the parse
+ */
 -(BOOL)parseUpdatedTasting:(NSDictionary*)tastingJSON forWine:(int)wine_id withTasting:(int)tasting_id
 {
     NSString * querySQL;
@@ -1403,6 +1440,14 @@
 }
 
 
+
+/**
+ Auxiliary function of the function "parseWines" that parses and inserts the new tasting into the database. 
+ 
+ @param json object -  json object containing the tasting
+ @param int - wine id which the tasting will be appended to
+ @return boolean - the result of the parse
+ */
 -(BOOL)parseNewTasting:(NSDictionary *)tastingJSON forWine:(int)wine_id
 {
     NSString * querySQL;
@@ -1606,6 +1651,13 @@
 
 
 
+
+/**
+ Parses and inserts into the database, the forms of the wine types from json array. 
+ 
+ @param json array -  json array containing the wine type forms
+ @return boolean - the result of the parse
+ */
 -(BOOL)parseWineTypes:(NSArray *) winetypes 
 {
     sqlite3_stmt * stmt;
@@ -1858,7 +1910,15 @@
 
 
 
-
+/**
+ Inserts into the database a classification if it not exists. Returns the classification id of the classification if an error did not occurred.
+ 
+ @param string name_eng -  name of the classification in english
+ @param string name_fr -  name of the classification in french
+ @param string name_pt -  name of the classification in portuguese
+ @param int weight -  weight of the classification
+ @return int - id of the classification; -2 in case of error
+ */
 -(int)insertClassificationIfNotExists:(NSString *)name_eng nameFR:(NSString *)name_fr
                                namePT:(NSString *)name_pt andWheight:(int)weight
 {
@@ -1891,6 +1951,17 @@
 }
 
 
+
+
+/**
+ Auxiliary function of the function "insertClassificationIfNotExists" that verifies if the classification exists in the database.
+ 
+ @param string name_eng -  name of the classification in english
+ @param string name_fr -  name of the classification in french
+ @param string name_pt -  name of the classification in portuguese
+ @param int weight -  weight of the classification
+ @return int - id of the classification; -2 in case of error; -1 if not exists
+ */
 -(int)existsClassification:(sqlite3_stmt *)stmt nameEN:(NSString *)name_eng nameFR:(NSString *)name_fr
 namePT:(NSString *)name_pt andWheight:(int)weight
 {
@@ -1917,6 +1988,17 @@ namePT:(NSString *)name_pt andWheight:(int)weight
 }
 
 
+
+
+/**
+ Auxiliary function of the function "insertClassificationIfNotExists" that inserts the classification into in the database and returns its id.
+ 
+ @param string name_eng -  name of the classification in english
+ @param string name_fr -  name of the classification in french
+ @param string name_pt -  name of the classification in portuguese
+ @param int weight -  weight of the classification
+ @return int - id of the classification; -2 in case of error;
+ */
 -(int)insertClassification:(sqlite3_stmt *)stmt nameEN:(NSString *)name_eng nameFR:(NSString *)name_fr
                     namePT:(NSString *)name_pt andWheight:(int)weight
 {
@@ -1939,6 +2021,16 @@ namePT:(NSString *)name_pt andWheight:(int)weight
     return return_value;
 }
 
+
+
+/**
+ Auxiliary function that inserts the possible classification of a criterion or characteristic into in the database.
+ 
+ @param int classifiable_id -  id of the criterion or characteristic or formcriterion or formcharacteristic
+ @param int classification_id -  id of the classification
+ @param string classifiableType - "Criterion" or "Characteristic" or "FormCriterion" or "FormCharacteristic"
+ @return int - id of the classification; -2 in case of error;
+ */
 -(BOOL)insertPossibleClassification:(int)classifiable_id withClassification:(int)classification_id Type:(NSString *)classifiableType
 {
     //insere nas possibleClassifications
@@ -1959,6 +2051,14 @@ namePT:(NSString *)name_pt andWheight:(int)weight
 }
 
 
+
+
+/**
+ Parses and inserts into the database, the countries and regions from json array. 
+ 
+ @param json array -  json array containing the countries
+ @return boolean - the result of the parse
+ */
 -(BOOL)parseCountries:(NSArray *) countries 
 {
     
@@ -2049,6 +2149,13 @@ namePT:(NSString *)name_pt andWheight:(int)weight
 
 
 
+/**
+ Deletes all the classifications and possible classifications in the database that are not used.
+ Also deletes the wines and tastings marked for deletion in the app.
+ Executed in the end of the syncronization after all the information of the response is processed.
+ 
+ @return boolean - if the garbage clean as successful
+ */
 -(BOOL)cleanGarbage  
 {
     
@@ -2197,7 +2304,16 @@ namePT:(NSString *)name_pt andWheight:(int)weight
 }
 
 
--(BOOL)resetStates{
+
+
+/**
+ Puts the state of the tastings and wines to synced where the state was "new" or "edited".
+ Executed in the end of the syncronization after all the information of the response is processed.
+ 
+ @return boolean - if the garbage clean as successful
+ */
+-(BOOL)resetStates
+{
     
     
     //wines
