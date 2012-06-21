@@ -170,10 +170,10 @@ static User *sharedUser = nil;
             
             wine.year = sqlite3_column_int(stmt, 2);
             
-            const unsigned char * photo = sqlite3_column_text(stmt, 3);
-#warning FERNANDO: o photo nunca é NULL, por isso nunca entra no else. corrigir o if
-            if(photo != NULL)
-                wine.photo = [NSString stringWithUTF8String:(const char *)photo];
+            
+            NSString * photo = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 3)];
+            if(!([photo isEqualToString:@"<null>"] || [photo isEqualToString:@"(null)"]))
+                wine.photo = photo;
             else
                 wine.photo = nil;
             
