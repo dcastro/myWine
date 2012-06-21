@@ -36,7 +36,19 @@ static FilterManager* filterManager = nil;
 + (void) addFilterForObject:(id)object ofType:(FilterType) filterType {
     Filter* filter = [[Filter alloc] initWithFilterType:filterType andObject:object];
     [[filterManager mutableArrayValueForKey:@"filters"] insertObject:filter atIndex:0];
-
+    
+    if(filterType == FilterTypeRegion) {
+        
+        
+        Regiao* region = [[User instance] regionWithName:object];
+        
+        NSString* country_name = [region country_name];
+        if( ![self containsFilterForObject:country_name ofType:FilterTypeCountry]) {
+            
+            Filter* filter = [[Filter alloc] initWithFilterType:FilterTypeCountry andObject:country_name];
+            [[filterManager mutableArrayValueForKey:@"filters"] insertObject:filter atIndex:0];
+        }
+    }
     
 }
 
