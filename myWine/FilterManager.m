@@ -57,6 +57,20 @@ static FilterManager* filterManager = nil;
     
     [[filterManager mutableArrayValueForKey:@"filters"] filterUsingPredicate:predicate];
     
+    if (filterType == FilterTypeCountry) {
+        [self removeRegionsBelongingToCountry:object];
+    }
+    
+}
+
++ (void) removeRegionsBelongingToCountry:(NSString*) country {
+    
+    NSMutableArray* regions = [[[User instance] vinhos] getRegionsBelongingToCountry:country];
+    
+    for (Regiao* region in regions) {
+        [self removeFilterForObject:region.region_name ofType:FilterTypeRegion];
+    }
+    
 }
 
 + (BOOL) containsFilterForObject:(id)object ofType:(FilterType) filterType {
@@ -73,6 +87,10 @@ static FilterManager* filterManager = nil;
     
     NSMutableArray* array = [[filterManager.filters filteredArrayUsingPredicate:predicate] mutableCopy];
     filterManager.filters = array;
+    
+    if (filterType == FilterTypeCountry) {
+        [self removeFiltersOfType:FilterTypeRegion];
+    }
     
 }
 

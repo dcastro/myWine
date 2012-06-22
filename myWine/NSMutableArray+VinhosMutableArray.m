@@ -224,6 +224,21 @@
     return array;
 }
 
+- (NSMutableArray*) getRegionsBelongingToCountry:(NSString*) country {
+    NSMutableArray* array = [[NSMutableArray alloc] init];
+    
+    for(Vinho* vinho in self) {
+        if([vinho.region.country_name isEqualToString:country]) {
+            if( ! [array containsObject: vinho.region]) {
+                [array addObject:vinho.region];
+            }
+        }
+    }
+    //NSLog(@"regions %i", [array count]);
+    return array;
+    
+}
+
 - (NSString*) sectionIdentifierForVinho:(Vinho*) vinho orderedBy:(int) order {
     NSString* sectionIdentifier;
     if(order == ORDER_BY_NAME || order == ORDER_BY_NAME_DESC) {
